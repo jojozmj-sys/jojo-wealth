@@ -2878,6 +2878,172 @@
   }
   renderDiaryHistory();
 
+  // ---------- 一键导出（Markdown 格式） ----------
+  // 通用下载工具
+  function downloadTextFile(filename, content, mime) {
+    try {
+      const blob = new Blob([content], { type: (mime || "text/markdown") + ";charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url; a.download = filename;
+      document.body.appendChild(a); a.click();
+      setTimeout(() => { URL.revokeObjectURL(url); a.remove(); }, 0);
+    } catch (e) {
+      console.warn("下载失败", e);
+      const appToast = window.appToast;
+      if (appToast) appToast("导出失败：" + (e && e.message || e), 3000, "err");
+    }
+  }
+  function fmtTs() {
+    const d = new Date();
+    const p = n => String(n).padStart(2, "0");
+    return d.getFullYear() + p(d.getMonth()+1) + p(d.getDate());
+  }
+
+  // 日记 → MD（按日期分组）
+  function buildDiaryMarkdown() {
+    const records = loadDiaryRecords().slice().sort((a, b) =>
+      (a.createdAt || "") < (b.createdAt || "") ? 1 : -1);
+    const lines = [];
+    lines.push("# 每日觉察日记 · 完整导出");
+    lines.push("");
+    lines.push("> 导出时间：" + new Date().toLocaleString("zh-CN"));
+    lines.push("> 共 " + records.length + " 篇觉察记录");
+    lines.push("");
+    if (records.length === 0) {
+      lines.push("_还没有日记记录，去写第一篇吧_ 🌱");
+      return lines.join("\n");
+    }
+    const FIELDS = [
+      { t: "🌬️ 身体扫描", k: "djBody" },
+      { t: "💭 主要情绪", k: "djEmo" },
+      { t: "☁️ 飘过的念头", k: "djMind" },
+      { t: "📌 发生的情景", k: "djSee" },
+      { t: "⚡ 自动念头", k: "djAuto" },
+      { t: "⚖️ 事实 vs 想法（证据）", k: "djFact" },
+      { t: "🕳️ 认知陷阱", k: "__bias" },
+      { t: "🩹 陷阱说明", k: "djBiasNote" },
+      { t: "🔄 其他可能的解释", k: "djReframe" },
+      { t: "🌈 替代念头", k: "djAlt" },
+      { t: "🧭 课题归属", k: "__kada" },
+      { t: "🧭 课题说明", k: "djKadaWhy" },
+      { t: "🎬 一个小行动", k: "djAct" },
+      { t: "🌟 三件感恩", k: "djGrat" },
+      { t: "💎 一句话总结", k: "djOne" }
+    ];
+    records.forEach((r, i) => {
+      const date = (r.createdAt || "").toString().slice(0, 10) || "未注日期";
+      lines.push("---");
+      lines.push("");
+      lines.push("## 📅 " + date + "　·　第 " + (i + 1) + " / " + records.length + " 篇");
+      lines.push("");
+      if (r.djKada) lines.push("- **课题**：" + (r.djKada || "") + (r.djKadaWhy ? "　·　_" + r.djKadaWhy + "_" : ""));
+      if (r.djBias) lines.push("- **认知陷阱**：" + (r.djBias || ""));
+      lines.push("");
+      FIELDS.forEach(f => {
+        if (f.k === "__bias") return;
+        if (f.k === "__kada") return;
+        const v = (r[f.k] || "").toString().trim();
+        if (!v) return;
+        lines.push("### " + f.t);
+        lines.push("");
+        lines.push("> " + v.replace(/\n/g, "\n> "));
+        lines.push("");
+      });
+    });
+    lines.push("---");
+    lines.push("");
+    lines.push("_由 jojo-wealth 导出 · 每日觉察日记_");
+    return lines.join("\n");
+  }
+
+  // 摘抄 → MD（按分类分组）
+  function buildExcerptsMarkdown() {
+    const arr = exLoadAll().slice();
+    const lines = [];
+    lines.push("# 我的摘抄 · 完整导出");
+    lines.push("");
+    lines.push("> 导出时间：" + new Date().toLocaleString("zh-CN"));
+    lines.push("> 共 " + arr.length + " 条摘抄");
+    lines.push("");
+    if (arr.length === 0) {
+      lines.push("_还没有摘抄记录，认字 / 拍图存起来吧_ ✍️");
+      return lines.join("\n");
+    }
+    // 按分类分组
+    const groups = {};
+    arr.forEach(it => {
+      const c = (it.cat && it.cat.trim()) ? it.cat.trim() : "未分类";
+      if (!groups[c]) groups[c] = [];
+      groups[c].push(it);
+    });
+    // 分类名排序：写人/写事/写景/观点/情感/其他/自定义…/未分类 放最后
+    const order = ["写人", "写事", "写景", "观点", "情感", "其他"];
+    const keys = Object.keys(groups).sort((a, b) => {
+      const ia = order.indexOf(a), ib = order.indexOf(b);
+      if (ia >= 0 && ib >= 0) return ia - ib;
+      if (ia >= 0) return -1;
+      if (ib >= 0) return 1;
+      if (a === "未分类") return 1;
+      if (b === "未分类") return -1;
+      return a.localeCompare(b, "zh");
+    });
+    keys.forEach(cat => {
+      const items = groups[cat];
+      lines.push("---");
+      lines.push("");
+      lines.push("## 📂 " + cat + "　·　" + items.length + " 条");
+      lines.push("");
+      items.forEach((it, i) => {
+        const text = (it.text || "").toString().trim();
+        if (!text) return;
+        const date = (it.date || "").toString().trim();
+        const source = (it.source || "").toString().trim();
+        const tags = (it.tags || "").toString().trim();
+        lines.push("### " + (date || "无日期") + "　·　#" + (i + 1));
+        lines.push("");
+        lines.push("> " + text.replace(/\n/g, "\n> "));
+        lines.push("");
+        if (source) lines.push("- **来源**：" + source);
+        if (tags) {
+          const tagList = tags.split(/[,，\s]+/).filter(Boolean).map(t => "`" + t + "`").join(" ");
+          if (tagList) lines.push("- **标签**：" + tagList);
+        }
+        lines.push("");
+      });
+    });
+    lines.push("---");
+    lines.push("");
+    lines.push("_由 jojo-wealth 导出 · 摘抄笔记_");
+    return lines.join("\n");
+  }
+
+  // 绑定按钮
+  const djExportBtn = $("#djExport");
+  if (djExportBtn) djExportBtn.addEventListener("click", () => {
+    const recs = loadDiaryRecords();
+    if (recs.length === 0) {
+      const appToast = window.appToast;
+      if (appToast) appToast("还没有日记记录可以导出 🌱", 2500, "info");
+      return;
+    }
+    downloadTextFile("每日觉察日记_" + fmtTs() + ".md", buildDiaryMarkdown());
+    const appToast = window.appToast;
+    if (appToast) appToast("已导出 " + recs.length + " 篇日记 ✓", 2500, "ok");
+  });
+  const exExportBtn = $("#exExport");
+  if (exExportBtn) exExportBtn.addEventListener("click", () => {
+    const arr = exLoadAll();
+    if (arr.length === 0) {
+      const appToast = window.appToast;
+      if (appToast) appToast("还没有摘抄记录可以导出 ✍️", 2500, "info");
+      return;
+    }
+    downloadTextFile("我的摘抄_" + fmtTs() + ".md", buildExcerptsMarkdown());
+    const appToast = window.appToast;
+    if (appToast) appToast("已导出 " + arr.length + " 条摘抄 ✓", 2500, "ok");
+  });
+
   // 课题归属选择
   djKadaBtns().forEach(b => {
     b.addEventListener("click", () => {
