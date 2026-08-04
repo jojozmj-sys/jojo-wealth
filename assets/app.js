@@ -5793,14 +5793,13 @@
     if (!q) return [];
     const u = q.trim().toUpperCase();
     const out = [];
-    // 直接当代码
-    if (/^\d{6}$/.test(u)) out.push({ code: u, name: NAME_HINT[u] || "A 股", market: "sh" });
-    if (/^\d{5}$/.test(u)) out.push({ code: u, name: NAME_HINT[u] || "港股", market: "hk" });
-    if (/^[A-Z]{1,5}$/.test(u)) out.push({ code: u, name: NAME_HINT[u] || "美股", market: "us" });
-    // 名称反查（精确 → 包含），方向正确：股票名包含输入词
+    // 直接当 A 股代码（6 位数字，0/3/6 开头为沪深 A 股）
+    if (/^\d{6}$/.test(u) && /^[036]/.test(u)) out.push({ code: u, name: NAME_HINT[u] || "", market: /^(0|3)/.test(u) ? "sz" : "sh" });
+    // 名称反查（精确 → 包含），只取 A 股代码
     const qq = q.trim();
     Object.entries(NAME_HINT).forEach(([c, n]) => {
       if (out.some(x => x.code === c)) return;
+      if (!/^\d{6}$/.test(c) || !/^[036]/.test(c)) return;   // 跳过港股(5位)/美股(字母)
       if (nameMatch(n, qq, u)) out.push({ code: c, name: n, market: detectMarket(c) });
     });
     return out.slice(0, 6);
@@ -5811,24 +5810,37 @@
       s.Classify === "HK" ? "hk" :
       s.Classify === "US" ? "us" :
       s.SecurityTypeName && /美/.test(s.SecurityTypeName) ? "us" :
-      s.SecurityTypeName && /港/.test(s.SecurityTypeName) ? "hk" : "sh";
+      s.SecurityTypeName && /港/.test(s.SecurityTypeName) ? "hk" :
+      /^(0|3)/.test(s.Code) ? "sz" : "sh";
     return { code: s.Code, name: s.Name, market };
   }
-  // 东财全市场实时搜索（名称 / 拼音 / 代码）
-  async function searchOnline(q) {
-    try {
-      const url = `https://searchapi.eastmoney.com/api/suggest/get?input=${encodeURIComponent(q.trim())}&type=14&token=D43BF722C8E33BDC906FB84D85E326E8&count=10`;
-      const res = await fetch(url, { mode: "cors" });
-      const json = await res.json();
-      const rows = (json && json.QuotationCodeTable && json.QuotationCodeTable.Data) || [];
-      return rows
-        .filter(r => ["AStock", "HK", "US"].includes(r.Classify))   // 只要 A/港/美股票
-        .slice(0, 10)
-        .map(normalizeSuggest);
-    } catch (e) {
-      console.warn("[stock] 在线搜索失败：", e);
-      return [];
-    }
+  // 东财全市场搜索（JSONP 绕过 CORS；支持名称/拼音/代码）→ 只返回 A 股
+  let _jsonpSeq = 0;
+  function searchOnline(q) {
+    return new Promise(resolve => {
+      const cbName = "__stSrch_" + (++_jsonpSeq) + "_" + Date.now();
+      const url = `https://searchapi.eastmoney.com/api/suggest/get?input=${encodeURIComponent(q.trim())}&type=14&token=D43BF722C8E33BDC906FB84D85E326E8&count=15&cb=${cbName}`;
+      const script = document.createElement("script");
+      let done = false;
+      function cleanup() {
+        if (done) return; done = true;
+        delete window[cbName];
+        if (script.parentNode) script.parentNode.removeChild(script);
+      }
+      window[cbName] = function(json) {
+        cleanup();
+        const rows = (json && json.QuotationCodeTable && json.QuotationCodeTable.Data) || [];
+        const aStocks = rows
+          .filter(r => r.Classify === "AStock")          // 只取 A 股
+          .slice(0, 12)
+          .map(normalizeSuggest);
+        resolve(aStocks);
+      };
+      script.onerror = function() { cleanup(); resolve([]); };
+      setTimeout(function() { cleanup(); resolve([]); }, 6000);   // 6s 超时兜底
+      script.src = url;
+      document.head.appendChild(script);
+    });
   }
   let searchSeq = 0;   // 防竞态：只渲染最后一次请求
   function renderSearchResult(q) {
@@ -5850,14 +5862,14 @@
         if (!seen.has(k)) { seen.add(k); all.push(o); }
       });
       if (!all.length) {
-        box.innerHTML = `<span class="st-hint-inline">无匹配，试试输入股票代码（如 600519）</span>`;
+        box.innerHTML = `<span class="st-hint-inline">无匹配 A 股，试试输入名称（如 茅台）或代码（如 600519）</span>`;
         return;
       }
-      const mt = { sh: "A股", sz: "A股", hk: "港股", us: "美股" };
+      const mt = { sh: "沪", sz: "深" };
       box.innerHTML = all.map(a => {
         const inSel = quotes.some(x => x.code === a.code);
         return `<span class="st-search-chip ${inSel ? "st-chip-done" : ""}" data-add="${a.code}" data-name="${a.name}" data-mkt="${a.market}">
-          <span class="st-chip-mkt">${mt[a.market] || a.market}</span>${a.name} <b>${a.code}</b> ${inSel ? "✓" : "+"}
+          <span class="st-chip-mkt">${mt[a.market] || "A"}</span>${a.name} <b>${a.code}</b> ${inSel ? "✓" : "+"}
         </span>`;
       }).join("");
       $$(".st-search-chip", box).forEach(chip => {
@@ -5869,13 +5881,11 @@
   function resolveInputToCode(v) {
     if (!v) return null;
     const u = v.toUpperCase();
-    // 1) 直接就是合法代码
-    if (/^\d{6}$/.test(u)) return { code: u, name: NAME_HINT[u] || "", market: /^(0|3)/.test(u) ? "sz" : "sh" };
-    if (/^\d{5}$/.test(u)) return { code: u, name: NAME_HINT[u] || "", market: "hk" };
-    if (/^[A-Z]{1,5}(\.[A-Z])?$/.test(u)) return { code: u, name: NAME_HINT[u] || "", market: "us" };
-    // 2) 名称反查本地字典：精确 > 包含（方向正确：股票名包含输入词）
+    // 1) 直接就是 A 股代码（6 位数字，0/3/6 开头）
+    if (/^\d{6}$/.test(u) && /^[036]/.test(u)) return { code: u, name: NAME_HINT[u] || "", market: /^(0|3)/.test(u) ? "sz" : "sh" };
+    // 2) 名称反查本地字典（仅 A 股）：精确 > 包含
     const qq = v.trim();
-    const all = Object.entries(NAME_HINT);
+    const all = Object.entries(NAME_HINT).filter(([c]) => /^\d{6}$/.test(c) && /^[036]/.test(c));
     let exact = all.find(([c, n]) => n === qq || n.toUpperCase() === u);
     if (exact) return { code: exact[0], name: exact[1], market: detectMarket(exact[0]) };
     let partial = all.find(([c, n]) => nameMatch(n, qq, u));
@@ -5934,7 +5944,7 @@
         // 不是代码也不是已知名称 → 提示去搜索结果里选
         renderSearchResult(v);
         const hint = $("#stSearchHint");
-        if (hint) { hint.textContent = "未识别，请从下方候选里点 + 或输入代码"; setTimeout(() => { hint.textContent = "支持 6 位 A 股 / 5 位港股 / 字母美股 · 也可输入名称如「腾讯」"; }, 3500); }
+        if (hint) { hint.textContent = "未识别，请从下方候选里点 + 或输入代码"; setTimeout(() => { hint.textContent = "支持 A 股名称（如 茅台）或代码（如 600519）"; }, 3500); }
       }
     });
 
