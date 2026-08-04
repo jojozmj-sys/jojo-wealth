@@ -5652,7 +5652,10 @@
     const url = `https://qt.gtimg.cn/q=${encodeURIComponent(qs)}`;
     try {
       const res = await fetch(url, { mode: "cors" });
-      const text = await res.text();
+      // qt.gtimg.cn 返回 GBK 编码字节；必须用 TextDecoder('gbk') 解密，
+      // 否则股票中文名会乱码（fetch.text() 默认按 UTF-8 解释）。
+      const buf = await res.arrayBuffer();
+      const text = new TextDecoder("gbk").decode(buf);
       const map = {};
       const re = /v_(\w+)="([^"]*)"/g;
       let m;
@@ -6136,8 +6139,9 @@
     renderQuotes();
     renderIndiSel();
     /* 如果存的是占位名，异步拉取真实名称并回写存储 + 重渲染 */
+    // 搜索/解析通常已提供真实中文名，仅当确为占位占位或空名、且本地字典也查不到时才需回源补名
     const needName = !name || !realName || /^(A 股|港股|美股|A股|)$/.test(q.name.trim());
-    if (needName) {
+    if (needName && (name || !NAME_HINT[code])) {
       fetchQuotesBatch([q]).then(map => {
         const d = map[q.code];
         if (d && d.name) {
