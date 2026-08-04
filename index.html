@@ -1,0 +1,1150 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>JOJO的发财之路</title>
+  <!-- PWA / 添加到主屏幕（APP模式全屏，顶栏沉浸到状态栏） -->
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="JOJO之路" />
+  <meta name="theme-color" content="#BCDCC9" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" type="image/svg+xml" href="assets/app-icon.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/app-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/styles.css?v=20260805b115" />
+</head>
+<body class="sidebar-collapsed">
+  <!-- 手绘卡通 SVG 图标库（彩铅/水彩风格） -->
+  <svg style="display:none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <!-- 语音麦克风 -->
+    <symbol id="hb-mic" viewBox="0 0 24 24">
+      <g fill="none" stroke="#3C8E72" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="8.9" y="2.9" width="6.2" height="11.4" rx="3.1" fill="#DDF3EA"/>
+        <path d="M5.6 11.3a6.4 6.4 0 0 0 12.8 0"/>
+        <path d="M12 18.1v3.3"/>
+        <path d="M8.2 21.4h7.6"/>
+        <path d="M10.7 5.4h2.6" stroke-opacity=".4" stroke-width="1.3"/>
+      </g>
+    </symbol>
+    <!-- 语音麦克风（录音中·红色） -->
+    <symbol id="hb-mic-on" viewBox="0 0 24 24">
+      <g fill="none" stroke="#E2546B" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="8.9" y="2.9" width="6.2" height="11.4" rx="3.1" fill="#FFE1E6"/>
+        <path d="M5.6 11.3a6.4 6.4 0 0 0 12.8 0"/>
+        <path d="M12 18.1v3.3"/>
+        <path d="M8.2 21.4h7.6"/>
+      </g>
+    </symbol>
+    <!-- 图片/相框（上传） -->
+    <symbol id="hb-img" viewBox="0 0 24 24">
+      <g fill="none" stroke="#3C8E72" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3.1" y="4.6" width="17.8" height="14.8" rx="2.6" fill="#DDF3EA"/>
+        <circle cx="8.9" cy="9.6" r="1.9" fill="#FDE68A" stroke="#F4C20D" stroke-width="1.4"/>
+        <path d="M4.2 16.8l4.6-4.2 3.2 3 4.3-4 3.5 3.4" fill="none" stroke="#8B756C"/>
+        <path d="M9.4 6.4h1.4" stroke-opacity=".4" stroke-width="1.3"/>
+      </g>
+    </symbol>
+    <!-- 朗读喇叭 -->
+    <symbol id="hb-speak" viewBox="0 0 24 24">
+      <g fill="none" stroke="#3C8E72" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4.2 9.2v5.6h3l4.6 3.6V5.6L7.2 9.2H4.2z" fill="#DDF3EA"/>
+        <path d="M16.3 8.7a4.6 4.6 0 0 1 0 6.6" stroke="#3C8E72"/>
+        <path d="M19 6.4a8 8 0 0 1 0 11.2" stroke="#3C8E72" stroke-opacity=".55"/>
+      </g>
+    </symbol>
+    <!-- 静音/不可用 -->
+    <symbol id="hb-mute" viewBox="0 0 24 24">
+      <g fill="none" stroke="#B6A39A" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4.2 9.2v5.6h3l4.6 3.6V5.6L7.2 9.2H4.2z" fill="#EFE9DF"/>
+        <path d="M15.6 9.4l5.2 5.2M20.8 9.4l-5.2 5.2" stroke="#B6A39A"/>
+      </g>
+    </symbol>
+    <!-- 眼睛（显示答案） -->
+    <symbol id="hb-eye" viewBox="0 0 24 24">
+      <g fill="none" stroke="#3C8E72" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M2.6 12C5 8.2 8 6.2 12 6.2S19 8.2 21.4 12C19 15.8 16 17.8 12 17.8S5 15.8 2.6 12z" fill="#DDF3EA"/>
+        <circle cx="12" cy="12" r="3" fill="#FDE68A" stroke="#F4C20D" stroke-width="1.4"/>
+        <path d="M10.5 9.8h1.1" stroke-opacity=".45" stroke-width="1.2"/>
+      </g>
+    </symbol>
+    <!-- 叉眼（隐藏答案） -->
+    <symbol id="hb-eye-off" viewBox="0 0 24 24">
+      <g fill="none" stroke="#8B756C" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M2.6 12C5 8.2 8 6.2 12 6.2S19 8.2 21.4 12C19 15.8 16 17.8 12 17.8S5 15.8 2.6 12z" fill="#EFE9DF"/>
+        <path d="M9.4 9.4l5.2 5.2M14.6 9.4l-5.2 5.2" stroke="#B6A39A"/>
+      </g>
+    </symbol>
+    <!-- 朗读气泡（会读/朗读核心句） -->
+    <symbol id="hb-voice-bubble" viewBox="0 0 24 24">
+      <g fill="none" stroke="#3C8E72" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4.6 5.4h14.8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H11l-4 3v-3H4.6a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2z" fill="#DDF3EA"/>
+        <path d="M8.3 10h7.4M8.3 13.2h4.6" stroke="#3C8E72"/>
+        <path d="M7 8.6h1.2" stroke-opacity=".45" stroke-width="1.2"/>
+      </g>
+    </symbol>
+    <!-- 播放 -->
+    <symbol id="hb-play" viewBox="0 0 24 24">
+      <g fill="none" stroke="#3C8E72" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 5.5v13a1 1 0 0 0 1.5.87l10.5-6.5a1 1 0 0 0 0-1.74L9.5 4.63A1 1 0 0 0 8 5.5z" fill="#DDF3EA"/>
+      </g>
+    </symbol>
+    <!-- 暂停 -->
+    <symbol id="hb-pause" viewBox="0 0 24 24">
+      <g fill="none" stroke="#3C8E72" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="6.5" y="5" width="4" height="14" rx="1.6" fill="#DDF3EA"/>
+        <rect x="13.5" y="5" width="4" height="14" rx="1.6" fill="#DDF3EA"/>
+      </g>
+    </symbol>
+    <!-- 播客耳机（收听本期） -->
+    <symbol id="hb-podcast" viewBox="0 0 24 24">
+      <g fill="none" stroke="#3C8E72" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 14v-2a8 8 0 0 1 16 0v2" stroke="#3C8E72"/>
+        <rect x="2.8" y="13.5" width="4.2" height="6.5" rx="1.8" fill="#DDF3EA"/>
+        <rect x="17" y="13.5" width="4.2" height="6.5" rx="1.8" fill="#DDF3EA"/>
+        <path d="M17.5 20a3.5 3.5 0 0 1-3.5 3" stroke-opacity=".5"/>
+      </g>
+    </symbol>
+  </svg>
+  <div class="app">
+    <aside class="sidebar" id="sidebar">
+      <div class="side-tools">
+        <button class="side-edit" id="sideEdit" type="button" aria-label="调整顺序或改名" title="调整顺序 / 改名">
+          <span class="se-icon">✎</span>
+        </button>
+        <button class="side-collapse" id="sideCollapse" type="button" aria-label="收起侧边栏" title="收起/展开侧边栏">
+          <span class="sc-icon">◀</span>
+        </button>
+      </div>
+      <div class="brand"><img class="brand-ic" src="assets/icons/icon-brand.png" alt="logo"><span class="brand-text">JOJO</span></div>
+      <div class="side-deco" aria-hidden="true">
+        <svg class="sd sd-cloud" viewBox="0 0 120 72" fill="none"><path d="M96 58H20C9 58 0 49 0 38c0-9 6-17 15-19 1-11 11-19 22-19 7 0 13 3 17 8 4-5 10-8 17-8 12 0 22 10 22 22 0 1 0 2-.1 3 8 2 14 9 14 17 0 10-8 18-18 18h7z" fill="rgba(74,143,231,.12)" stroke="rgba(74,143,231,.25)"/></svg>
+        <svg class="sd sd-star" viewBox="0 0 40 40" fill="none"><path d="M20 2l4.5 11.5L36 15l-9 8.5L29 36 20 29l-9 7 2-12.5-9-8.5 11.5-1.5L20 2z" fill="rgba(74,143,231,.3)"/></svg>
+        <svg class="sd sd-heart" viewBox="0 0 32 32" fill="none"><path d="M16 28C16 28 3 20 3 11.5 3 6.8 6.8 3 11.5 3c2.7 0 5.1 1.2 6.8 3.1C19.9 4.2 22.3 3 25 3c4.7 0 8.5 3.8 8.5 8.5 0 8.5-13 16.5-13 16.5z" fill="rgba(74,143,231,.22)"/></svg>
+      </div>
+      <nav class="menu" id="menu">
+        <a href="#" data-page="desk" class="active"><span class="micon"><img class="micon-img" src="assets/icons/icon-desk.png?v=b80" alt="桌面"></span><span class="mlabel">桌面</span><span class="mnum">01</span></a>
+        <a href="#" data-page="plan"><span class="micon"><img class="micon-img" src="assets/icons/icon-plan.png" alt="每日计划"></span><span class="mlabel">每日计划</span><span class="mnum">02</span></a>
+        <a href="#" data-page="english"><span class="micon"><img class="micon-img" src="assets/icons/icon-english.png" alt="英语学习"></span><span class="mlabel">英语学习</span><span class="mnum">03</span></a>
+        <a href="#" data-page="selfmedia"><span class="micon"><img class="micon-img" src="assets/icons/icon-selfmedia.png?v=b72" alt="自媒体"></span><span class="mlabel">自媒体</span><span class="mnum">04</span></a>
+        <a href="#" data-page="films"><span class="micon"><img class="micon-img" src="assets/icons/icon-films.png" alt="每日新闻"></span><span class="mlabel">每日新闻</span><span class="mnum">05</span></a>
+        <a href="#" data-page="hot"><span class="micon"><img class="micon-img" src="assets/icons/icon-hot.png" alt="每日热点"></span><span class="mlabel">每日热点</span><span class="mnum">06</span></a>
+        <a href="#" data-page="podcast"><span class="micon"><img class="micon-img" src="assets/icons/icon-podcast.png" alt="播客"></span><span class="mlabel">播客</span><span class="mnum">07</span></a>
+        <a href="#" data-page="fragment"><span class="micon"><img class="micon-img" src="assets/icons/icon-fragment.png" alt="碎片阅读"></span><span class="mlabel">碎片阅读</span><span class="mnum">08</span></a>
+        <a href="#" data-page="notes"><span class="micon"><img class="micon-img" src="assets/icons/icon-notes.png" alt="备忘录"></span><span class="mlabel">备忘录</span><span class="mnum">09</span></a>
+        <a href="#" data-page="weekly"><span class="micon"><img class="micon-img" src="assets/icons/icon-weekly.png" alt="每日觉察日记"></span><span class="mlabel">每日觉察日记</span><span class="mnum">10</span></a>
+        <a href="#" data-page="excerpt"><span class="micon"><img class="micon-img" src="assets/icons/icon-excerpt.png" alt="摘抄笔记"></span><span class="mlabel">摘抄笔记</span><span class="mnum">11</span></a>
+        <a href="#" data-page="manifest"><span class="micon"><img class="micon-img" src="assets/icons/icon-manifest.png" alt="显化日记"></span><span class="mlabel">显化日记</span><span class="mnum">12</span></a>
+        <a href="#" data-page="stock"><span class="micon"><img class="micon-img" src="assets/icons/icon-stock.png" alt="股票"></span><span class="mlabel">股票</span><span class="mnum">13</span></a>
+        <a href="#" data-page="psych"><span class="micon"><img class="micon-img" src="assets/icons/icon-psych.png?v=b97" alt="心理学"></span><span class="mlabel">心理学</span><span class="mnum">14</span></a>
+        <a href="#" data-page="mindful"><span class="micon"><img class="micon-img" src="assets/icons/icon-mindful.svg?v=b80" alt="正念练习"></span><span class="mlabel">正念练习</span><span class="mnum">15</span></a>
+      </nav>
+    </aside>
+    <div class="overlay" id="overlay"></div>
+
+    <main class="main">
+      <header class="topbar">
+        <button class="menu-toggle" id="menuToggle">☰</button>
+        <h1 id="pageTitle">桌面</h1>
+        <div class="date" id="date"></div>
+        <button type="button" class="wb-sync-chip idle" id="wbSyncChip" title="数据云同步状态 — 点击查看详情"><span class="wb-chip-dot"></span><span class="wb-chip-txt">连接中</span></button>
+        <div class="topbar-deco" aria-hidden="true">
+          <svg class="tbd tbd-cloud" viewBox="0 0 120 72" fill="none"><path d="M96 58H20C9 58 0 49 0 38c0-9 6-17 15-19 1-11 11-19 22-19 7 0 13 3 17 8 4-5 10-8 17-8 12 0 22 10 22 22 0 1 0 2-.1 3 8 2 14 9 14 17 0 10-8 18-18 18h7z" fill="rgba(255,255,255,.22)" stroke="rgba(255,255,255,.4)"/></svg>
+          <svg class="tbd tbd-star" viewBox="0 0 40 40" fill="none"><path d="M20 2l4.5 11.5L36 15l-9 8.5L29 36 20 29l-9 7 2-12.5-9-8.5 11.5-1.5L20 2z" fill="rgba(255,255,255,.5)"/></svg>
+          <svg class="tbd tbd-star" viewBox="0 0 40 40" fill="none"><path d="M20 2l4.5 11.5L36 15l-9 8.5L29 36 20 29l-9 7 2-12.5-9-8.5 11.5-1.5L20 2z" fill="rgba(255,255,255,.35)"/></svg>
+        </div>
+      </header>
+
+      <div class="wb-sync-bar" id="wbSyncBar" hidden>
+        <span class="wb-sync-dot"></span>
+        <span class="wb-sync-text">云同步</span>
+        <span class="wb-sync-status"></span>
+        <button type="button" class="wb-sync-btn-pull">⬇ 拉取云端</button>
+        <button type="button" class="wb-sync-btn">⬆ 立即备份</button>
+      </div>
+
+      <div class="content" id="content">
+        <!-- 桌面 -->
+        <section class="page active" id="page-desk">
+          <div class="desk-hero">
+            <div class="desk-hero-emoji"><img src="assets/icons/icon-desk.png?v=b89" alt="好运财运"></div>
+            <h2 class="desk-hi">hi，JOJO！</h2>
+            <p class="desk-line1">一大波好运和财运正向你袭来！</p>
+            <p class="desk-line2">你在靠近理想中的生活，你值得一切美好的事物！</p>
+            <div class="desk-hero-deco" aria-hidden="true">
+              <svg class="dh-sun" viewBox="0 0 80 80" fill="none"><circle cx="40" cy="40" r="22" fill="rgba(188,220,201,.5)" stroke="rgba(60,142,114,.4)"/><g stroke="rgba(60,142,114,.5)" stroke-width="3" stroke-linecap="round"><line x1="40" y1="4" x2="40" y2="14"/><line x1="40" y1="66" x2="40" y2="76"/><line x1="4" y1="40" x2="14" y2="40"/><line x1="66" y1="40" x2="76" y2="40"/><line x1="15" y1="15" x2="22" y2="22"/><line x1="58" y1="58" x2="65" y2="65"/><line x1="65" y1="15" x2="58" y2="22"/><line x1="22" y1="58" x2="15" y2="65"/></g></svg>
+              <!-- 六颗大小不一的黄色闪烁星星，随机散落 -->
+              <svg class="dh-star dh-star-lg dh-star-a" viewBox="0 0 24 24"><path d="M12 1.5l3.1 7.9 8.4.7-6.4 5.5 2 8.2L12 19.9 4.9 23.8l2-8.2L.5 10.1l8.4-.7z" fill="rgba(255,220,110,.85)"/></svg>
+              <svg class="dh-star dh-star-lg dh-star-b" viewBox="0 0 24 24"><path d="M12 1.5l3.1 7.9 8.4.7-6.4 5.5 2 8.2L12 19.9 4.9 23.8l2-8.2L.5 10.1l8.4-.7z" fill="rgba(255,224,120,.8)"/></svg>
+              <svg class="dh-star dh-star-sm dh-star-c" viewBox="0 0 24 24"><path d="M12 1.5l3.1 7.9 8.4.7-6.4 5.5 2 8.2L12 19.9 4.9 23.8l2-8.2L.5 10.1l8.4-.7z" fill="rgba(255,226,130,.75)"/></svg>
+              <svg class="dh-star dh-star-sm dh-star-d" viewBox="0 0 24 24"><path d="M12 1.5l3.1 7.9 8.4.7-6.4 5.5 2 8.2L12 19.9 4.9 23.8l2-8.2L.5 10.1l8.4-.7z" fill="rgba(255,222,115,.72)"/></svg>
+              <svg class="dh-star dh-star-sm dh-star-e" viewBox="0 0 24 24"><path d="M12 1.5l3.1 7.9 8.4.7-6.4 5.5 2 8.2L12 19.9 4.9 23.8l2-8.2L.5 10.1l8.4-.7z" fill="rgba(255,228,135,.78)"/></svg>
+              <svg class="dh-star dh-star-sm dh-star-f" viewBox="0 0 24 24"><path d="M12 1.5l3.1 7.9 8.4.7-6.4 5.5 2 8.2L12 19.9 4.9 23.8l2-8.2L.5 10.1l8.4-.7z" fill="rgba(255,224,120,.78)"/></svg>
+            </div>
+          </div>
+
+          <div class="card desk-quote">
+            <div class="card-head"><div class="ic"><img src="assets/icons/card-alm.png" alt="每日一句话"></div><h2>每日一句话</h2><span class="sub">中英双语 · 每天一句</span></div>
+            <div class="desk-quote-body" id="deskQuote"></div>
+          </div>
+
+          <div class="card desk-overview">
+            <div class="card-head"><div class="ic"><img src="assets/icons/icon-brand.png" alt="概览"></div><h2>概览</h2><span class="sub" id="ovSub">今日工作台统计图</span></div>
+            <div class="desk-overview-body" id="deskOverview"></div>
+          </div>
+        </section>
+
+        <!-- 每日计划 -->
+        <section class="page" id="page-plan">
+          <div class="card alm-card" id="almCard">
+            <div class="card-head"><div class="ic"><img src="assets/icons/card-alm.png" alt="好运日历"></div><h2>好运日历</h2><span class="sub" id="almSub">八字 × 星盘 · 双视角每日运势</span></div>
+            <div class="alm-body" id="almBody"></div>
+          </div>
+          <div class="card plan">
+            <div class="card-head"><div class="ic"><img src="assets/icons/icon-plan.png" alt="每日计划"></div><h2>每日计划</h2><span class="sub">输入事件 · 一键生成行程表</span></div>
+            <div class="plan-quick">
+              <input id="planInput" type="text" placeholder="说或写一件事，例如 背单词30分钟 / 9:00 开会" maxlength="120" />
+              <input id="planDur" class="plan-dur" type="number" min="0" step="5" placeholder="分钟" title="预估时长（可留空，规划时自动解析）" />
+              <button class="btn mic" id="planVoice" type="button" title="语音输入"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><use href="#hb-mic"/></svg></button>
+              <button class="btn" id="planAdd">添加</button>
+            </div>
+            <div class="plan-voice-status" id="planVoiceStatus"></div>
+            <div class="plan-text-wrap">
+              <label class="plan-text-label">📝 今日事件（每行一件，自由增删；也可直接在此粘贴清单）</label>
+              <textarea id="planText" class="plan-text" placeholder="9:00 晨会&#10;背单词30分钟&#10;健身1小时&#10;14:00-15:00 项目评审&#10;重要: 写周报&#10;买菜"></textarea>
+            </div>
+            <div class="plan-actions">
+              <button class="btn primary" id="planGen">🤖 智能规划</button>
+              <button class="btn ghost" id="planExample">加载示例</button>
+              <button class="btn ghost" id="planClear">清空</button>
+            </div>
+            <div class="plan-settings">
+              <span class="sched-tip">⚙️ 排程：</span>
+              <label>起始 <input id="planStart" type="time" value="08:00" /></label>
+              <label>休息 <input id="planGap" type="number" min="0" step="5" value="10" /> 分</label>
+              <label class="chk-inline"><input id="planMeals" type="checkbox" checked /> 自动三餐</label>
+            </div>
+            <div class="progress"><span id="planProgress"></span></div>
+            <div class="progress-label" id="planProgressLabel"></div>
+            <div class="plan-donebar">
+              <label class="chk-inline"><input type="checkbox" id="planHideDone" /> 收起已完成任务</label>
+              <span class="plan-donebar-tip">勾完的事会自动折叠，页面更清爽</span>
+            </div>
+            <div id="planSchedule" class="plan-sched-out"></div>
+          </div>
+
+          <div class="card plan-history-card">
+            <div class="card-head"><div class="ic"><img src="assets/icons/icon-plan.png" alt="历史任务归档"></div><h2>历史任务归档</h2><span class="sub" id="phSub">按日期折叠 · 点标题展开</span></div>
+            <div class="ph-toolbar">
+              <div class="ph-tabs">
+                <button type="button" class="ph-tab active" data-f="all">全部</button>
+                <button type="button" class="ph-tab" data-f="done">仅已完成</button>
+                <button type="button" class="ph-tab" data-f="undone">仅未完成</button>
+              </div>
+              <div class="ph-ops">
+                <button type="button" class="btn ghost" id="phExpandAll">全部展开</button>
+                <button type="button" class="btn ghost" id="phCollapseAll">全部收起</button>
+              </div>
+            </div>
+            <div id="planHistory" class="ph-list"></div>
+          </div>
+        </section>
+
+        <!-- 英语学习 -->
+        <section class="page" id="page-english">
+          <div class="card eng-spoken">
+            <div class="card-head"><div class="ic"><img src="assets/icons/icon-english.png" alt="每日口语跟读"></div><h2>每日口语跟读</h2><span class="sub" id="engSpokenDate"></span></div>
+            <div class="eng-rate" id="engRate">
+              <span class="eng-rate-label">朗读语速</span>
+              <div class="eng-rate-seg">
+                <button class="eng-rate-btn active" type="button" data-rate="1">原速</button>
+                <button class="eng-rate-btn" type="button" data-rate="0.6">慢速</button>
+              </div>
+            </div>
+            <div class="sub-title-collapse collapsible-head" data-collapse="spoken-body">
+              <span><span class="ch-emoji">📖</span> 核心句与原文</span>
+              <span class="sec-toggle-wrap"><span class="sec-arr">▾</span></span>
+            </div>
+            <div class="collapsible-body" id="spokenBody">
+              <div id="engSpoken"></div>
+            </div>
+          </div>
+          <div class="card eng-vocab">
+            <div class="card-head sub-title-collapse collapsible-head" data-collapse="vocab-body">
+              <div class="card-head-inner"><div class="ic"><img src="assets/icons/icon-english.png" alt="今日必记词汇"></div><h2>今日必记词汇</h2><span class="sub">5 个 · 每天轮换</span></div>
+              <span class="sec-toggle-wrap"><span class="sec-arr">▾</span></span>
+            </div>
+            <div class="collapsible-body" id="vocabBody">
+              <div id="engVocab"></div>
+            </div>
+          </div>
+          <div class="card eb-review">
+            <div class="card-head"><div class="ic"><img src="assets/icons/icon-english.png" alt="艾宾浩斯复习"></div><h2>艾宾浩斯复习 · 当周内容</h2><span class="sub" id="ebSub"></span></div>
+            <div class="sub-title-collapse collapsible-head" data-collapse="eb-week">
+              <span><span class="ch-emoji">📊</span> 本周概览</span>
+              <span class="sec-toggle-wrap"><span class="sec-arr">▾</span></span>
+            </div>
+            <div class="collapsible-body" id="ebWeekBody"><div id="ebWeek"></div></div>
+            <div class="sub-title-collapse collapsible-head" data-collapse="eb-due">
+              <span><span class="ch-emoji">📆</span> 今日待复习</span>
+              <span class="sec-toggle-wrap"><span class="eb-sec-x sec-count" id="ebDueCount">0 项</span><span class="sec-arr">▾</span></span>
+            </div>
+            <div class="collapsible-body" id="ebDueBody">
+              <div id="ebDue"></div>
+              <div class="eb-empty" id="ebEmpty" style="display:none"></div>
+              <button class="eb-reset" id="ebReset" type="button">↻ 重置本周复习进度</button>
+            </div>
+          </div>
+          <div class="card wl-card">
+            <div class="card-head"><div class="ic"><img src="assets/icons/card-words.png" alt="单词库"></div><h2>单词库 · 过关打卡</h2><span class="sub">会认 · 会读 · 知道意思</span></div>
+            <div class="wl-toolbar">
+              <div class="wl-tabs">
+                <button class="wl-tab active" type="button" data-tab="pending">未过关 <b id="wlPendingCount">0</b></button>
+                <button class="wl-tab" type="button" data-tab="passed">已过关 <b id="wlPassedCount">0</b></button>
+                <button class="wl-tab" type="button" data-tab="all">全部 <b id="wlAllCount">0</b></button>
+              </div>
+              <div class="wl-progress" id="wlProgress"></div>
+            </div>
+            <div class="wl-rule">过关标准：<b>会认</b>（看到认识）＋ <b>会读</b>（能读出来）＋ <b>知道意思</b>（说出中文）。三项都✅才算过关。</div>
+            <div id="wlList" class="wl-list"></div>
+            <button class="wl-reset" id="wlReset" type="button">↻ 重置单词库进度</button>
+          </div>
+          <div class="tracker" data-key="wb_english" data-title="英语学习打卡" data-placeholder="输入英语学习任务，例如：背 20 个单词…" data-icon="📚"></div>
+        </section>
+
+        <!-- 自媒体：每日网络热梗 -->
+        <section class="page" id="page-selfmedia">
+          <div class="card meme">
+            <div class="card-head"><div class="ic"><img src="assets/icons/icon-selfmedia.png?v=b72" alt="每日网络热梗"></div><h2>每日网络热梗</h2><span class="sub" id="memeDate"></span></div>
+            <div class="meme-topbar">
+              <span class="meme-badge">🔥 每日更新 · AI 梳理</span>
+              <span class="meme-updated" id="memeUpdated"></span>
+            </div>
+            <div class="meme-summary" id="memeSummary"></div>
+            <div id="memeGroups"></div>
+          </div>
+        </section>
+
+        <!-- 阅片 -->
+        <section class="page" id="page-films">
+          <div class="card news">
+            <div class="card-head"><div class="ic"><img src="assets/icons/icon-films.png" alt="每日新闻"></div><h2>每日新闻</h2><span class="sub" id="newsDate"></span></div>
+            <div class="news-topbar">
+              <span class="news-badge" id="newsLiveBadge">🔄 每2小时自动更新</span>
+              <span class="news-updated" id="newsUpdated"></span>
+            </div>
+            <div class="news-headline" id="newsHeadline" hidden>
+              <div class="news-headline-head"><span class="news-headline-t">⭐ 今日要闻</span><span class="news-headline-x" id="newsHeadlineCount"></span></div>
+              <div class="news-headline-list" id="newsHeadlineList"></div>
+            </div>
+            <div class="news-sec"><span class="news-sec-t">🗞 今日版面</span><span class="news-sec-x" id="newsCount"></span></div>
+            <div class="news-filter" id="newsFilter"></div>
+            <div id="news"></div>
+          </div>
+        </section>
+
+        <section class="page" id="page-hot">
+          <div class="card hot">
+            <div class="card-head"><div class="ic"><img src="assets/icons/icon-hot.png" alt="每日热点"></div><h2>每日热点</h2><span class="sub" id="hotDate"></span></div>
+            <div class="hot-refresh-bar" id="hotRefreshBar"><span class="hot-bar-dot" data-state="idle"></span><span class="hot-bar-txt">⏱ 30 分钟自动刷新</span><span class="hot-bar-cdn">…</span></div>
+            <div class="hot-topbar">
+              <span class="hot-badge">🔄 分平台实时热点</span>
+              <span class="hot-updated" id="hotUpdated"></span>
+              <button class="hot-refresh" id="hotRefresh">🔄 立即更新</button>
+            </div>
+            <div class="hot-platforms" id="hotPlatforms"></div>
+          </div>
+        </section>
+
+        <!-- 播客 -->
+        <section class="page" id="page-podcast">
+          <div class="card">
+            <div class="card-head"><div class="ic"><img src="assets/icons/icon-podcast.png" alt="热门播客"></div><h2>热门播客内容整理</h2><span class="sub">2026 真实快照 · <span id="podcastUpdate" class="upd-time">每日更新</span></span></div>
+            <div id="podcastRecommend" class="pod-rec-box"></div>
+            <div class="sub-title sub-title-collapse" data-sec="podList"><span>🎧 值得听的播客 · 附最新一期（每日 8 点更新，随节目自动更新）</span><button class="sec-toggle" type="button"><span class="sec-arr">▾</span></button></div>
+            <div id="podcastList" class="sec-body"></div>
+            <div class="sub-title sub-title-row sub-title-collapse" data-sec="podEp"><span>📚 精选深度解读（人工精编 · 常更常新）</span><span class="sec-toggle-wrap"><button class="mode-toggle" id="podToggle" type="button">📖 阅读模式</button><button class="sec-toggle" type="button"><span class="sec-arr">▾</span></button></span></div>
+            <div id="podcastEpisodes" class="sec-body"></div>
+            <div class="sub-title sub-title-collapse" data-sec="podTrends"><span>📈 2026 播客趋势洞察</span><button class="sec-toggle" type="button"><span class="sec-arr">▾</span></button></div>
+            <div id="podcastTrends" class="sec-body"></div>
+          </div>
+        </section>
+
+        <!-- 碎片阅读 -->
+        <section class="page" id="page-fragment">
+          <div class="card frag-card">
+            <div class="card-head"><div class="ic"><img src="assets/icons/icon-fragment.png" alt="碎片阅读"></div><h2>碎片阅读</h2><span class="sub" id="fragDate"></span></div>
+            <div class="frag-topbar">
+              <span class="frag-badge">🔄 每周更新素材库</span>
+              <span class="frag-issue" id="fragIssue"></span>
+              <span class="frag-streak" id="fragStreak"></span>
+              <button type="button" class="frag-checkin" id="fragCheck">今日已读 ✓</button>
+            </div>
+            <div class="frag-sec frag-fold" data-target="fragFeatured"><span class="frag-sec-t">🌟 今日精选</span><span class="frag-sec-x">长短穿插 · 每日更新</span><button class="sec-toggle" type="button"><span class="sec-arr">▾</span></button></div>
+            <div id="fragFeatured" class="frag-fold-body"></div>
+
+            <div class="frag-sec frag-fold collapsed" data-target="fragArchive"><span class="frag-sec-t">🗂 往期回顾</span><span class="frag-sec-x">点击展开某一天</span><button class="sec-toggle" type="button"><span class="sec-arr">▸</span></button></div>
+            <div class="frag-archive frag-fold-body frag-fold-hidden" id="fragArchive"></div>
+
+            <div class="frag-sec frag-fold" data-target="deepToday"><span class="frag-sec-t">📚 深度阅读</span><span class="frag-sec-x">每日一篇 · 慢慢读 · 想清楚</span><button class="sec-toggle" type="button"><span class="sec-arr">▾</span></button></div>
+            <div id="deepToday" class="frag-fold-body"></div>
+
+            <div class="frag-sec frag-fold" data-target="deepArchive"><span class="frag-sec-t">🗂 深度往期</span><span class="frag-sec-x">点击展开某一篇</span><button class="sec-toggle" type="button"><span class="sec-arr">▾</span></button></div>
+            <div class="deep-archive frag-fold-body" id="deepArchive"></div>
+
+            <div class="frag-sec frag-fold" data-target="fragClassicToday"><span class="frag-sec-t">📜 今日古诗文</span><span class="frag-sec-x">诗人 · 历史 · 内容 · 每日一篇</span><button class="sec-toggle" type="button"><span class="sec-arr">▾</span></button></div>
+            <div class="frag-classic-today frag-fold-body" id="fragClassicToday"></div>
+
+            <div class="frag-sec frag-fold" data-target="fragHistoryToday"><span class="frag-sec-t">🏯 今日历史</span><span class="frag-sec-x">中国 + 世界史双线 · 每日一个事件</span><button class="sec-toggle" type="button"><span class="sec-arr">▾</span></button></div>
+            <div class="frag-history-today frag-fold-body" id="fragHistoryToday"></div>
+
+            <div class="frag-sec frag-fold collapsed" data-target="fragFavoritesWrap"><span class="frag-sec-t">⭐ 我的收藏</span><span class="frag-sec-x" id="fragFavoritesCount">已收藏 0 条</span><button class="sec-toggle" type="button"><span class="sec-arr">▸</span></button></div>
+            <div class="frag-fold-body frag-favorites-wrap frag-fold-hidden" id="fragFavoritesWrap">
+              <div id="fragFavoritesList"></div>
+            </div>
+
+            <div class="frag-sec frag-fold collapsed" data-target="fragListWrap"><span class="frag-sec-t">📚 素材库</span><span class="frag-sec-x" id="fragCount"></span><button class="sec-toggle" type="button"><span class="sec-arr">▸</span></button></div>
+            <div class="frag-fold-body frag-fold-hidden" id="fragListWrap">
+              <div class="frag-weekbar" id="fragWeekbar"></div>
+              <div class="frag-filter" id="fragFilter"></div>
+              <div id="fragList"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 备忘录 -->
+        <section class="page" id="page-notes">
+          <div class="card">
+            <div class="card-head"><div class="ic"><img src="assets/icons/icon-notes.png" alt="我的记录"></div><h2>我的记录</h2><span class="sub">本地保存 · 智能归档 · 支持语音与图片</span></div>
+            <div class="plan-bar memo-bar">
+              <textarea id="memoInput" placeholder="写下随手记录…（可语音输入，或上传图片）" rows="2"></textarea>
+              <div class="memo-cat-row">
+                <label class="memo-cat-label">归档到</label>
+                <select id="memoCat" class="memo-cat-select">
+                  <option value="auto" selected>🤖 自动识别</option>
+                  <option value="meeting">📋 会议记录</option>
+                  <option value="study">📖 学习记录</option>
+                  <option value="daily">📅 日常记录</option>
+                  <option value="thought">💭 随笔感想</option>
+                </select>
+              </div>
+              <div class="memo-tools">
+                <button class="btn ghost icon" id="memoVoice" type="button" title="语音输入"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><use href="#hb-mic"/></svg></button>
+                <button class="btn ghost icon" id="memoImgBtn" type="button" title="上传图片"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><use href="#hb-img"/></svg></button>
+                <button class="btn" id="memoAdd">添加</button>
+              </div>
+            </div>
+            <input type="file" id="memoFile" accept="image/*" hidden />
+            <div class="memo-img-preview" id="memoImgPreview" hidden>
+              <img id="memoImgThumb" alt="待添加图片预览" />
+              <button class="btn ghost" id="memoImgClear" type="button">✕ 移除</button>
+            </div>
+            <div class="memo-tabs" id="memoTabs">
+              <button class="memo-tab active" data-mcat="all">📚 全部</button>
+              <button class="memo-tab" data-mcat="meeting">📋 会议记录</button>
+              <button class="memo-tab" data-mcat="study">📖 学习记录</button>
+              <button class="memo-tab" data-mcat="daily">📅 日常记录</button>
+              <button class="memo-tab" data-mcat="thought">💭 随笔感想</button>
+            </div>
+            <ul class="plan-list" id="memoList"></ul>
+          </div>
+        </section>
+
+        <!-- 摘抄笔记 -->
+        <section class="page" id="page-excerpt">
+          <div class="card">
+            <div class="card-head"><div class="ic"><img src="assets/icons/icon-excerpt.png" alt="摘抄笔记"></div><h2>摘抄笔记</h2><span class="sub">拍照/相册传图自动转文字</span></div>
+
+            <div class="excerpt-upload" id="exUpload">
+              <input type="file" id="exFile" accept="image/*" hidden />
+              <input type="file" id="exFileCam" accept="image/*" capture="environment" hidden />
+              <div class="excerpt-upload-inner">
+                <div class="excerpt-upload-ic">📷</div>
+                <div class="excerpt-upload-t">点击拍照 / 从相册选择</div>
+                <div class="excerpt-upload-sub">支持书页、便签、手写、截图，自动识别中文</div>
+              </div>
+              <div class="excerpt-upload-actions">
+                <button class="btn" id="exPick" type="button">🖼 从相册上传</button>
+                <button class="btn ghost" id="exCam" type="button">📷 拍一张</button>
+              </div>
+            </div>
+            <img id="exPreview" class="excerpt-preview" alt="预览" hidden />
+
+            <div class="excerpt-actions" id="exActions" hidden>
+              <button class="btn" id="exRecognize" type="button">🔍 开始识字</button>
+              <button class="btn ghost" id="exRetry" type="button">↺ 换一张</button>
+            </div>
+            <div class="excerpt-enhance" id="exEnhanceBar" hidden>
+              <label class="enhance-toggle">
+                <input type="checkbox" id="exEnhance" checked />
+                <span>🔧 智能增强（放大·去噪·增强对比，推荐）</span>
+              </label>
+              <span class="enhance-hint" id="exEnhanceHint">关闭则用原图直接识别</span>
+            </div>
+            <div class="excerpt-progress" id="exProgress" hidden></div>
+
+            <div class="weekly-group" style="margin-top:16px;">
+              <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;">
+                <label style="margin:0;">📖 整理后的文字（可编辑）</label>
+                <button type="button" class="btn small ghost ex-text-clear" id="exTextClear" title="一键清除编辑区文字" aria-label="一键清除编辑区文字">
+                  <svg class="hd-trash" viewBox="0 0 24 24" width="18" height="18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M4.6 6.8 Q12 5 19.4 6.8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M10.1 6.7 Q12 3.8 13.9 6.7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M6.7 7.4 L7.4 19.3 Q7.6 21 9.2 21 L14.8 21 Q16.4 21 16.6 19.3 L17.3 7.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M10.3 9.3 Q10 15 10.3 19.1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity=".7"/>
+                    <path d="M13.7 9.3 Q14 15 13.7 19.1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity=".7"/>
+                    <path d="M20.6 9.4 q1.5 0 2 1.1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity=".55"/>
+                    <path d="M20.9 13.6 q1.7 0 2.2 1.3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity=".55"/>
+                  </svg>
+                </button>
+              </div>
+              <textarea id="exText" rows="5" placeholder="识别出的文字会显示在这里，可手动修订、分段、润色…"></textarea>
+              <div class="ex-auto-cat" id="exAutoCat" hidden>
+                <span class="ex-auto-cat-label">🤖 自动识别</span>
+                <span class="ex-auto-cat-chip" id="exAutoCatChip"></span>
+                <span class="ex-auto-cat-conf" id="exAutoCatConf"></span>
+              </div>
+            </div>
+            <div class="excerpt-meta">
+              <input id="exSource" type="text" placeholder="出处 / 书名（选填）" maxlength="60" />
+              <input id="exTags" type="text" placeholder="标签，逗号分隔（选填）" maxlength="40" />
+            </div>
+            <div class="excerpt-cat">
+              <label class="excerpt-cat-label">🏷 类别</label>
+              <div class="excerpt-cat-chips" id="exCatChips"></div>
+              <input id="exCatCustom" type="text" placeholder="自定义类别（选填）" maxlength="12" />
+            </div>
+            <button class="btn" id="exSave" type="button">💾 保存为摘抄</button>
+            <div id="exMsg" style="font-size:12px;color:var(--pink);margin-top:8px;"></div>
+          </div>
+
+          <div class="card" style="margin-top:18px;">
+            <div class="card-head"><div class="ic"><img src="assets/icons/card-excerpts.png" alt="我的摘抄"></div><h2>我的摘抄</h2><span class="sub" id="exCount"></span></div>
+            <div class="excerpt-batch" id="exBatch" hidden>
+              <span class="excerpt-batch-tip">有 <b id="exBatchN">0</b> 条尚未归类</span>
+              <button type="button" class="btn small" id="exBatchBtn">📦 一键智能归类</button>
+            </div>
+            <div class="excerpt-filters" id="exFilters"></div>
+            <div id="exList"></div>
+          </div>
+        </section>
+
+        <!-- 碎片阅读 -->
+        <!-- 每日觉察日记 -->
+        <section class="page" id="page-weekly">
+          <div class="card">
+            <div class="card-head"><div class="ic"><img src="assets/icons/icon-weekly.png" alt="每日觉察日记"></div><h2>每日觉察日记</h2><span class="sub">正念 ✕ 认知行为疗法 · 带自己完整走一遍</span></div>
+            <div class="dj-nav">
+              <button class="dj-arrow" id="djPrev" type="button">◀</button>
+              <span class="dj-date" id="djDate">今天</span>
+              <button class="dj-arrow" id="djNext" type="button">▶</button>
+            </div>
+
+            <!-- 第 1 步 · 觉察（正念） -->
+            <div class="dj-step" data-step="1">
+              <div class="dj-step-head"><span class="dj-step-n">1</span><div><div class="dj-step-t">觉察 · 先看见，不评判</div><div class="dj-step-d">正念练习：像旁观者一样观察此刻的自己，不急着分析</div></div></div>
+              <div class="weekly-group">
+                <label>🌬️ 此刻，我的身体哪里最紧绷 / 最放松？</label>
+                <textarea id="djBody" rows="2" placeholder="慢慢地从头到脚扫一遍：眉心、肩膀、胸口、肚子、手心…哪一处有感觉？"></textarea>
+              </div>
+              <div class="weekly-group">
+                <label>💭 此刻，心里涌动的主要情绪是什么？</label>
+                <textarea id="djEmo" rows="2" placeholder="给情绪一个名字：焦躁？委屈？平静？无力？… 试着具体一点"></textarea>
+              </div>
+              <div class="weekly-group">
+                <label>☁️ 有什么念头像云一样飘过？（只是看见，不用抓住）</label>
+                <textarea id="djMind" rows="2" placeholder="念头来了就来了，它不等于你，也不等于事实…"></textarea>
+              </div>
+            </div>
+
+            <!-- 第 2 步 · 探索（CBT） -->
+            <div class="dj-step" data-step="2">
+              <div class="dj-step-head"><span class="dj-step-n">2</span><div><div class="dj-step-t">探索 · 找到那根刺</div><div class="dj-step-d">情绪不会凭空而来，往下挖一层，看看念头在说什么</div></div></div>
+              <div class="weekly-group">
+                <label>📌 发生了什么，让我情绪起了变化？</label>
+                <textarea id="djSee" rows="2" placeholder="一个具体的情景：谁、在哪里、做了什么、说了什么…"></textarea>
+              </div>
+              <div class="weekly-group">
+                <label>⚡ 那一刻，我脑海里自动冒出的念头是什么？</label>
+                <textarea id="djAuto" rows="2" placeholder="越原始越好，哪怕不理性：『我是不是又搞砸了』『他是不是在针对我』…"></textarea>
+              </div>
+              <div class="weekly-group">
+                <label>⚖️ 这是「事实」还是「我的想法」？有哪些证据？</label>
+                <textarea id="djFact" rows="2" placeholder="支持这个念头的证据写左边，反对它的证据写右边，分别列出来…"></textarea>
+              </div>
+              <div class="weekly-group">
+                <label>🕳️ 我可能掉进了哪种认知陷阱？（可多选）</label>
+                <div class="dj-bias" id="djBias">
+                  <button type="button" class="kada-btn bias-btn" data-b="all-or-nothing">非黑即白</button>
+                  <button type="button" class="kada-btn bias-btn" data-b="catastrophizing">灾难化</button>
+                  <button type="button" class="kada-btn bias-btn" data-b="mind-reading">读心术</button>
+                  <button type="button" class="kada-btn bias-btn" data-b="over-general">以偏概全</button>
+                  <button type="button" class="kada-btn bias-btn" data-b="should">应该主义</button>
+                  <button type="button" class="kada-btn bias-btn" data-b="labeling">贴标签</button>
+                  <button type="button" class="kada-btn bias-btn" data-b="emotional">情绪推理</button>
+                  <button type="button" class="kada-btn bias-btn" data-b="negative">否定正面</button>
+                </div>
+                <textarea id="djBiasNote" rows="2" placeholder="可以写一句：这个陷阱让我的念头偏离了事实的哪一步…"></textarea>
+              </div>
+              <div class="weekly-group">
+                <label>🔄 换个角度，还有什么其他可能的解释？</label>
+                <textarea id="djReframe" rows="2" placeholder="如果是我最好的朋友遇到同样的事，我会怎么劝 TA？还有别的可能吗？…"></textarea>
+              </div>
+            </div>
+
+            <!-- 第 3 步 · 回应（CBT + 阿德勒） -->
+            <div class="dj-step" data-step="3">
+              <div class="dj-step-head"><span class="dj-step-n">3</span><div><div class="dj-step-t">回应 · 接住自己</div><div class="dj-step-d">用更平衡的视角重写念头，然后分清课题、落回行动</div></div></div>
+              <div class="weekly-group">
+                <label>🌈 一个更平衡、更真实的替代念头是……</label>
+                <textarea id="djAlt" rows="2" placeholder="基于上面的证据和换位思考，写一句更公正的话：『我确实搞砸了这一次，但我不等于失败，我可以补救』…"></textarea>
+              </div>
+              <div class="weekly-group">
+                <label>🔀 这到底是「谁」的课题？</label>
+                <div class="dj-kada" id="djKada">
+                  <button type="button" class="kada-btn" data-k="my">我的课题</button>
+                  <button type="button" class="kada-btn" data-k="other">别人的课题</button>
+                  <button type="button" class="kada-btn" data-k="heaven">老天的课题</button>
+                </div>
+                <textarea id="djKadaWhy" rows="2" placeholder="为什么这样判断？（谁承担后果，就是谁的课题）…"></textarea>
+              </div>
+              <div class="weekly-group">
+                <label>🎯 基于新视角，我今天能做的那件小事是……</label>
+                <textarea id="djAct" rows="2" placeholder="只聚焦自己可控的部分，一个小小的行动就够了…"></textarea>
+              </div>
+            </div>
+
+            <!-- 第 4 步 · 收束（正念回归） -->
+            <div class="dj-step" data-step="4">
+              <div class="dj-step-head"><span class="dj-step-n">4</span><div><div class="dj-step-t">收束 · 温柔落脚</div><div class="dj-step-d">回到当下，谢谢自己，把今天轻轻放下</div></div></div>
+              <div class="weekly-group">
+                <label>💛 此刻，我想感谢自己或世界的一件小事</label>
+                <textarea id="djGrat" rows="2" placeholder="哪怕很小：谢谢自己撑过了这一天、一杯好喝的咖啡、一句关心…"></textarea>
+              </div>
+              <div class="weekly-group">
+                <label>✍️ 用一句话为这次自我对话收个尾</label>
+                <textarea id="djOne" rows="2" placeholder="一句话，把今天的觉察沉淀下来…"></textarea>
+              </div>
+            </div>
+
+            <button class="btn" id="djSave" style="margin-top:10px;">保存今日觉察</button>
+            <button class="btn" id="djNewEntry" style="margin-top:10px;margin-left:8px;">＋ 新建一条</button>
+            <div id="djMsg" style="font-size:12px;color:var(--pink);margin-top:8px;"></div>
+            <div class="weekly-divider">📚 我的日记记录</div>
+            <div class="dj-history-tip" style="margin-bottom:8px;font-size:12px;color:var(--muted);">点击条目可回填编辑 · 每次保存不会覆盖之前的记录 ✨</div>
+            <div class="dj-history" id="djHistory">
+              <div class="dj-history-empty" id="djHistoryEmpty">还没有写过日记，点上面「保存今日觉察」开始你的第一篇 🌱</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 显化日记 -->
+        <section class="page" id="page-manifest">
+          <div class="card">
+            <div class="card-head"><div class="ic"><img src="assets/icons/icon-manifest.png" alt="显化日记"></div><h2>显化日记</h2><span class="sub">吸引力法则 ✕ 假设法则 ✕ SATS ✕ 可视化 · 每日引导</span></div>
+            <div class="mf-hint">
+              💡 显化的核心：不是「我渴望」，而是「我已经是」。先调动感受让自己处于拥有它的状态，再用行动回应这个版本的我。
+            </div>
+            <div class="dj-nav">
+              <button class="dj-arrow" id="mfPrev" type="button">◀</button>
+              <span class="dj-date" id="mfDate">今天</span>
+              <button class="dj-arrow" id="mfNext" type="button">▶</button>
+            </div>
+
+            <!-- 第 1 步 · 校准愿望 -->
+            <div class="dj-step" data-step="1">
+              <div class="dj-step-head"><span class="dj-step-n">1</span><div><div class="dj-step-t">校准 · 你到底想要什么</div><div class="dj-step-d">把模糊的「想要」说成清晰、具体、属于你的事实</div></div></div>
+              <div class="weekly-group">
+                <label>🎯 我在显化的一件愿望是……（越具体越好）</label>
+                <textarea id="mfWish" rows="2" placeholder="例如：『我今年收入达到 50 万』『我拥有自己的小工作室』『我和他关系修复』…不要只写模糊的『有钱』『变好』"></textarea>
+              </div>
+              <div class="weekly-group">
+                <label>💭 为什么我真心想要它？得到它，我会是什么感觉？（动机越真实，能量越足）</label>
+                <textarea id="mfWhy" rows="2" placeholder="它不是外界硬塞给我的，是我真心向往的…它满足我哪个深层需要？自由？认可？安全？"></textarea>
+              </div>
+            </div>
+
+            <!-- 第 2 步 · 方法实践 -->
+            <div class="dj-step" data-step="2">
+              <div class="dj-step-head"><span class="dj-step-n">2</span><div><div class="dj-step-t">实践 · 选一个方法活进去</div><div class="dj-step-d">今天用下面任一方法，让自己先「感到」愿望成真</div></div></div>
+              <div class="weekly-group">
+                <label>🧭 今天我想用的显化方法（可多选，选中即展开对应实践栏）</label>
+                <div class="dj-bias mf-method" id="mfMethod">
+                  <button type="button" class="kada-btn bias-btn" data-m="visual">🖼 可视化</button>
+                  <button type="button" class="kada-btn bias-btn" data-m="affirm">🗣 肯定语</button>
+                  <button type="button" class="kada-btn bias-btn" data-m="gratitude">🙏 感恩</button>
+                  <button type="button" class="kada-btn bias-btn" data-m="script">✍️ 脚本/剧本</button>
+                  <button type="button" class="kada-btn bias-btn" data-m="vision">📌 愿景板</button>
+                  <button type="button" class="kada-btn bias-btn" data-m="sats">🌙 SATS</button>
+                  <button type="button" class="kada-btn bias-btn" data-m="act-as-if">🎭 假设法则</button>
+                  <button type="button" class="kada-btn bias-btn" data-m="letter">💌 写给未来自己</button>
+                  <button type="button" class="kada-btn bias-btn" data-m="release">🔓 释放法</button>
+                </div>
+              </div>
+
+              <!-- 肯定语：专属填写区 -->
+              <div class="weekly-group mf-tool" data-m="affirm">
+                <label>🗣 肯定语 —— 写下用「现在时」的积极宣言</label>
+                <div class="mf-affirm">
+                  <div class="weekly-group">
+                    <label>① 把愿望改成「已经拥有」的现在时肯定句</label>
+                    <textarea id="mfAffirm" rows="2" placeholder="规则：用现在时、肯定语气、第一人称、情绪积极。&#10;把『我想要 50 万』改成『我现在正轻松而喜悦地拥有 50 万，并善用它创造价值』。&#10;写 1-3 句，不要用『不要/不会/不想』这类否定词。"></textarea>
+                  </div>
+                  <div class="weekly-group">
+                    <label>② 今天我会带着它去做的动作（让肯定语落地）</label>
+                    <textarea id="mfAffirmAct" rows="2" placeholder="肯定语不能只是口号——写一件与之匹配的行为。&#10;例：『今天我为这个目标推进一小步，并对自己说：我在路上，我已经是了。』"></textarea>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 感恩：专属填写区 -->
+              <div class="weekly-group mf-tool" data-m="gratitude">
+                <label>🙏 感恩 —— 为「已经拥有」提前感谢，放大显化能量</label>
+                <div class="mf-grat">
+                  <div class="weekly-group">
+                    <label>① 感恩三件事（今天真实存在的，无论多小）</label>
+                    <textarea id="mfGratList" rows="2" placeholder="写下今天 3 件让你感恩的小事：一杯好咖啡、一句温暖的话、健康的身体…&#10;1.&#10;2.&#10;3."></textarea>
+                  </div>
+                  <div class="weekly-group">
+                    <label>② 提前感恩愿望成真（感恩日记法的核心）</label>
+                    <textarea id="mfGratFuture" rows="2" placeholder="用已经实现的口吻感谢：&#10;『谢谢，我的收入已经稳定在 50 万，我真的好感恩这段自由丰盛的日子。』&#10;越具体、越有画面越好，让大脑先『相信』它已发生。"></textarea>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 脚本/剧本：专属填写区 -->
+              <div class="weekly-group mf-tool" data-m="script">
+                <label>✍️ 脚本 / 剧本 —— 把愿望成真后的这一天写出来</label>
+                <textarea id="mfScript" rows="4" placeholder="用第一人称、现在时，写「愿望已成真后的某一天」：&#10;『今天是 20XX 年 X 月 X 日，我坐在自己的工作室里，阳光照在桌面上……我看到账户里的数字，心跳平稳而满足……』&#10;越具体越好，写你正在做、看到、听到、感受到什么。"></textarea>
+              </div>
+
+              <!-- 愿景板：专属填写区（含本地图片上传） -->
+              <div class="weekly-group mf-tool" data-m="vision">
+                <label>📌 愿景板 —— 根据你的愿望收集视觉素材</label>
+                <div class="mf-vision">
+                  <textarea id="mfVision" rows="2" placeholder="写下想放进愿景板的关键词 / 画面：如『50 万存款界面』『我的工作室一角』『我穿着喜欢的衣服旅行』…"></textarea>
+                  <div class="mf-vision-upload">
+                    <label class="mf-up-btn">🖼 选一张代表愿望的图片<input type="file" id="mfVisionFile" accept="image/*" hidden></label>
+                    <button type="button" class="mf-up-btn mf-up-clear" id="mfVisionClear">✕ 移除图片</button>
+                  </div>
+                  <div class="mf-vision-preview" id="mfVisionPreview" hidden></div>
+                  <div class="mf-vision-tip">提示：图片只保存在本机浏览器，用于每天注视锚定你的愿望。</div>
+                </div>
+              </div>
+
+              <!-- 假设法则：专属填写区 -->
+              <div class="weekly-group mf-tool" data-m="act-as-if">
+                <label>🎭 假设法则 —— 用「已经实现」的版本过今天</label>
+                <textarea id="mfAsIf" rows="4" placeholder="问自己：『如果我已经做到 / 拥有了它，那个我会怎么想、怎么说、怎么做？』&#10;例：『那个已经月入 50 万的我，今天会先处理哪件事？会用怎样的语气说话？会拒绝什么？』&#10;写下一件今天就按这个版本去做的小事。"></textarea>
+              </div>
+
+              <!-- 写给未来自己：专属填写区 -->
+              <div class="weekly-group mf-tool" data-m="letter">
+                <label>💌 写给未来自己 —— 给「愿望已实现」的自己写封信</label>
+                <textarea id="mfLetter" rows="4" placeholder="以『亲爱的未来的我』开头，描述你已经拥有愿望的状态，越具体越好，并感谢那个坚持下来的自己。&#10;『亲爱的未来的我：&nbsp;此刻的你已经…… 谢谢你一路没有放弃……』"></textarea>
+              </div>
+
+              <!-- 释放法：专属填写区（Lester Levenson 三步释放） -->
+              <div class="weekly-group mf-tool" data-m="release">
+                <label>🔓 释放法 —— 放下执念，让显化自然发生</label>
+                <div class="mf-release">
+                  <div class="weekly-group">
+                    <label>1️⃣ 先觉察——此刻面对这个愿望，我抓住的是哪种感受？</label>
+                    <textarea id="mfRelFeel" rows="2" placeholder="六种基本感受中选：想要控制 / 想要被认可 / 想要安全；或对应的抗拒（不想要控制 / 认可 / 安全）。也可写下更细的情绪：紧张、担心、急切、害怕…"></textarea>
+                  </div>
+                  <div class="weekly-group">
+                    <label>2️⃣ 再发问——我能放下这份「想要/抗拒」吗？</label>
+                    <textarea id="mfRelQ" rows="2" placeholder="自问三连：『这是否值得放下？』→『我能放下吗？』→『我什么时候放下？』&#10;即使心里说『还不能』也没关系，觉察本身已在松动它。写下你的回答。"></textarea>
+                  </div>
+                  <div class="weekly-group">
+                    <label>3️⃣ 最后松手——我允许自己把它放下，回到平静</label>
+                    <textarea id="mfRelR" rows="2" placeholder="呼一口气，想象那团紧握的感受从胸口松开、飘走。&#10;写下一句：『我现在允许自己放下对它的执着，回到平静，愿望在放松中自然显化。』"></textarea>
+                  </div>
+                </div>
+              </div>
+              <div class="weekly-group">
+                <label>✨ 此刻，把它当成已经实现——我的身体里涌起什么感受？</label>
+                <textarea id="mfFeel" rows="2" placeholder="闭上眼，假装它已经发生：心跳、呼吸、脸上会不会不自觉露出笑？把那股『已经有了』的感觉写下来…"></textarea>
+              </div>
+              <div class="weekly-group">
+                <label>🎬 如果此刻它已成真，我会看到 / 听到 / 感到什么？</label>
+                <textarea id="mfScene" rows="2" placeholder="像写剧本一样描述场景：谁在身边、周围什么样、我正在做什么、别人对我说了什么…"></textarea>
+              </div>
+            </div>
+
+            <!-- 第 3 步 · 松手与行动 -->
+            <div class="dj-step" data-step="3">
+              <div class="dj-step-head"><span class="dj-step-n">3</span><div><div class="dj-step-t">松手 · 交托并行动</div><div class="dj-step-d">显化不是死抓，而是放下「怎么来」，只专注当下的下一步</div></div></div>
+              <div class="weekly-group">
+                <label>🕊️ 我允许宇宙 / 时间以自己的节奏实现它——写下这句交托的话</label>
+                <textarea id="mfRelease" rows="2" placeholder="『我已将它交给更大的安排，我不再执着于它何时、以何种方式到来』…"></textarea>
+              </div>
+              <div class="weekly-group">
+                <label>👟 作为「已经拥有它的我」，今天我会做的一小步是……</label>
+                <textarea id="mfAction" rows="2" placeholder="不要想着如何让愿望发生，而是『已经是那样的人』会怎么行动？哪怕很小：存第一笔钱 / 发一条朋友圈 / 打一个电话…"></textarea>
+              </div>
+            </div>
+
+            <!-- 第 4 步 · 锚定 -->
+            <div class="dj-step" data-step="4">
+              <div class="dj-step-head"><span class="dj-step-n">4</span><div><div class="dj-step-t">锚定 · 记住这种感觉</div><div class="dj-step-d">把「已经拥有」的感受存进身体，明天还能调用它</div></div></div>
+              <div class="weekly-group">
+                <label>🔁 一句我可以反复默念的肯定语（现在式、肯定式、第一人称）</label>
+                <textarea id="mfMantra" rows="2" placeholder="避免『我想』『我希望能』，用『我是』『我拥有』：『我轻松地显化富足』『我值得被好好对待』…"></textarea>
+              </div>
+              <div class="weekly-group">
+                <label>📅 我给自己设定的「放下重看」日期 / 触发点</label>
+                <textarea id="mfRevisit" rows="2" placeholder="写个日期或信号：两周后回顾 / 发工资那天 / 看到某样东西时…提醒自己回到这种感觉"></textarea>
+              </div>
+            </div>
+
+            <button class="btn" id="mfNew" style="margin-top:10px;background:#ececf5;color:#3a3a4a;">＋ 新建一条</button>
+            <button class="btn" id="mfSave" style="margin-top:10px;">✨ 保存这条显化</button>
+            <div id="mfMsg" style="font-size:12px;color:var(--rose);margin-top:8px;"></div>
+            <div class="weekly-divider">📚 我的显化记录</div>
+            <div class="dj-history-tip">点条目可回填继续编辑；点「📖 查看完整版」通读全文。每条愿望独立保存，不会被覆盖 ✨</div>
+            <div class="dj-history" id="mfHistory">
+              <div class="dj-history-empty" id="mfHistoryEmpty">还没有显化记录，写下第一个愿望吧 ✨</div>
+            </div>
+
+            <div class="weekly-divider">📖 显化方法 · 速查指引</div>
+            <div class="mf-guide" id="mfGuide"></div>
+          </div>
+        </section>
+
+        <!-- 股票 -->
+        <section class="page" id="page-stock">
+          <!-- 1) 实时行情 · 自选股 -->
+          <div class="card st-quote-card">
+            <div class="card-head">
+              <div class="ic"><img src="assets/icons/icon-stock.png" alt="实时行情"></div>
+              <h2>实时行情 · 自选股</h2>
+              <span class="sub" id="stQuoteSub">A 股 / 港股 / 美股 · 一键搜索添加</span>
+              <button class="card-toggle" type="button" aria-label="折叠">▾</button>
+            </div>
+            <div class="st-quote-add">
+              <input id="stSearchInput" type="text" placeholder="输入代码或名称，如 600519 / 腾讯 / TSLA" />
+              <button class="btn primary" id="stSearchBtn" type="button">🔍 搜索</button>
+              <button class="btn" id="stAddByCode" type="button">+ 加入自选</button>
+              <span class="st-hint" id="stSearchHint">支持 6 位 A 股 / 5 位港股 / 字母美股</span>
+            </div>
+            <div class="st-search-result" id="stSearchResult"></div>
+            <div class="st-quote-list" id="stQuoteList"></div>
+            <div class="st-quote-empty" id="stQuoteEmpty">
+              <div class="st-empty-illu">📊</div>
+              <p>还没有自选股，搜索一只加入吧～</p>
+            </div>
+          </div>
+
+          <!-- 2) 技术指标 MACD / RSI / 均线 -->
+          <div class="card st-indi-card">
+            <div class="card-head">
+              <div class="ic"><img src="assets/icons/icon-stock.png" alt="技术指标"></div>
+              <h2>技术指标 · MACD / RSI / 均线</h2>
+              <span class="sub">选择一只自选股查看</span>
+              <button class="card-toggle" type="button" aria-label="折叠">▾</button>
+            </div>
+            <div class="st-indi-bar">
+              <label>分析对象
+                <select id="stIndiSel"></select>
+              </label>
+              <label>周期
+                <select id="stIndiPeriod">
+                  <option value="daily">日线</option>
+                  <option value="weekly">周线</option>
+                  <option value="monthly">月线</option>
+                </select>
+              </label>
+              <button class="btn" id="stIndiRefresh" type="button">🔄 刷新</button>
+            </div>
+            <div class="st-indi-body" id="stIndiBody">
+              <div class="st-indi-empty">请先在「实时行情」里加一只股票</div>
+            </div>
+          </div>
+
+          <!-- 3) 持仓管理 -->
+          <div class="card st-pos-card">
+            <div class="card-head">
+              <div class="ic"><img src="assets/icons/icon-stock.png" alt="持仓管理"></div>
+              <h2>持仓管理</h2>
+              <span class="sub" id="stPosSub">买入 / 卖出 / 盈亏 · 自动算成本</span>
+              <button class="card-toggle" type="button" aria-label="折叠">▾</button>
+            </div>
+            <div class="st-pos-summary" id="stPosSummary"></div>
+            <div class="st-pos-form">
+              <input id="stPosCode" type="text" placeholder="代码" />
+              <input id="stPosName" type="text" placeholder="名称" />
+              <input id="stPosPrice" type="number" step="0.01" placeholder="成交价" />
+              <input id="stPosQty" type="number" step="1" placeholder="数量" />
+              <select id="stPosType">
+                <option value="buy">买入</option>
+                <option value="sell">卖出</option>
+              </select>
+              <input id="stPosDate" type="date" />
+              <input id="stPosNote" type="text" placeholder="备注（可选）" />
+              <button class="btn primary" id="stPosAdd" type="button">+ 记一笔</button>
+            </div>
+            <div class="st-pos-list" id="stPosList"></div>
+          </div>
+
+          <!-- 4) 每日复盘 -->
+          <div class="card st-review-card">
+            <div class="card-head">
+              <div class="ic"><img src="assets/icons/icon-stock.png" alt="每日复盘"></div>
+              <h2>每日复盘</h2>
+              <span class="sub">大盘 · 持仓 · 心态 · 计划</span>
+              <button class="card-toggle" type="button" aria-label="折叠">▾</button>
+            </div>
+            <div class="st-review-form">
+              <input id="stReviewDate" type="date" />
+              <textarea id="stReviewMarket" placeholder="📈 大盘 / 板块（300字内）"></textarea>
+              <textarea id="stReviewPos" placeholder="💼 持仓复盘（300字内）"></textarea>
+              <textarea id="stReviewMind" placeholder="🧠 心态 · 情绪 · 误区（200字内）"></textarea>
+              <textarea id="stReviewPlan" placeholder="🎯 明日计划（200字内）"></textarea>
+              <button class="btn primary" id="stReviewSave" type="button">💾 保存</button>
+            </div>
+            <div class="st-review-list" id="stReviewList"></div>
+          </div>
+
+          <!-- 5) 舆情 + 风险预警 -->
+          <div class="card st-news-card">
+            <div class="card-head">
+              <div class="ic"><img src="assets/icons/icon-stock.png" alt="舆情分析"></div>
+              <h2>舆情分析 · 风险预警</h2>
+              <span class="sub">自选股新闻 + 阈值提醒</span>
+              <button class="card-toggle" type="button" aria-label="折叠">▾</button>
+            </div>
+            <div class="st-news-alert-bar">
+              <span>⚙️ 预警阈值：</span>
+              <label>跌幅 <input id="stAlertDrop" type="number" step="0.1" value="3" />%</label>
+              <label>涨幅 <input id="stAlertRise" type="number" step="0.1" value="5" />%</label>
+              <label>RSI> <input id="stAlertRsi" type="number" step="1" value="70" /></label>
+              <label>RSI< <input id="stAlertRsiLow" type="number" step="1" value="30" /></label>
+              <button class="btn" id="stAlertSave" type="button">💾 保存阈值</button>
+            </div>
+            <div class="st-news-alert-list" id="stAlertList"></div>
+            <div class="st-news-list" id="stNewsList"></div>
+          </div>
+        </section>
+
+        <!-- 心理学 · 读懂人心，用得上 -->
+        <section class="page" id="page-psych">
+          <div class="card psych-head-card">
+            <div class="card-head">
+              <div class="ic"><img src="assets/icons/icon-psych.png?v=b97" alt="心理学"></div>
+              <h2>心理学 · 读懂人心，用得上</h2>
+              <span class="sub" id="psychSub">由浅入深 · 看懂 → 会用</span>
+              <button class="card-toggle" type="button" aria-label="折叠">▾</button>
+            </div>
+            <div class="psych-progress-row">
+              <div class="psych-progress-bar"><span id="psychProgressBar"></span></div>
+              <div class="psych-progress-text" id="psychProgressText">已掌握 0 / 0</div>
+            </div>
+            <div class="psych-actions">
+              <button class="btn primary" id="psychToday" type="button">🎯 今日 3 条</button>
+              <button class="btn" id="psychReview" type="button">🔀 随机复习</button>
+              <button class="btn ghost" id="psychReset" type="button">↺ 重置进度</button>
+            </div>
+          </div>
+
+          <div class="card psych-filter-card">
+            <div class="psych-filter-line">
+              <span class="psych-filter-label">分类</span>
+              <div class="psych-chips" id="psychCatChips"></div>
+            </div>
+            <div class="psych-filter-line">
+              <span class="psych-filter-label">难度</span>
+              <div class="psych-chips" id="psychLevelChips">
+                <button class="psych-chip active" data-level="all" type="button">全部</button>
+                <button class="psych-chip" data-level="1" type="button">入门</button>
+                <button class="psych-chip" data-level="2" type="button">进阶</button>
+                <button class="psych-chip" data-level="3" type="button">实战</button>
+              </div>
+            </div>
+            <div class="psych-filter-line">
+              <span class="psych-filter-label">视图</span>
+              <div class="psych-chips" id="psychViewChips">
+                <button class="psych-chip active" data-view="path" type="button">📈 学习路径</button>
+                <button class="psych-chip" data-view="cat" type="button">🗂 分类浏览</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="psych-list" id="psychList"></div>
+
+          <!-- 心理学练习 -->
+          <div class="card psych-quiz-card">
+            <div class="card-head">
+              <div class="ic"><span style="font-size:28px">🧩</span></div>
+              <h2>心理学练习</h2>
+              <span class="sub">每天一道情景判断题，检验学习成果</span>
+              <button class="card-toggle" type="button" aria-label="折叠">▾</button>
+            </div>
+            <div class="psych-quiz-body" id="psychQuizList"></div>
+          </div>
+        </section>
+
+        <!-- 正念练习 -->
+        <section class="page" id="page-mindful">
+          <!-- 呼吸引导 -->
+          <div class="card mf-card mf-breathe">
+            <div class="card-head">
+              <div class="ic"><img src="assets/icons/icon-mindful.svg?v=b80" alt="呼吸引导"></div>
+              <h2>呼吸引导</h2>
+              <span class="sub">跟着光球，把节奏慢下来</span>
+              <button class="card-toggle" type="button" aria-label="折叠">▾</button>
+            </div>
+            <div class="mf-breathe-body">
+              <div class="mf-pattern" id="mfPattern">
+                <button class="mf-pat active" data-pat="478" type="button">4-7-8 安眠</button>
+                <button class="mf-pat" data-pat="box" type="button">4-4-4-4 方箱</button>
+                <button class="mf-pat" data-pat="calm" type="button">4-2-6 舒缓</button>
+              </div>
+              <div class="mf-orb-wrap">
+                <div class="mf-orb" id="mfOrb">
+                  <span class="mf-orb-text" id="mfOrbText">准备好了吗</span>
+                  <span class="mf-orb-count" id="mfOrbCount"></span>
+                </div>
+              </div>
+              <div class="mf-breathe-actions">
+                <button class="btn primary" id="mfBreatheBtn" type="button"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><use href="#hb-play"/></svg><span class="hb-label">开始</span></button>
+                <span class="mf-round" id="mfRound">第 0 轮</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 正念引导语 -->
+          <div class="card mf-card">
+            <div class="card-head">
+              <div class="ic"><img src="assets/icons/icon-mindful.svg?v=b80" alt="引导语"></div>
+              <h2>正念引导语</h2>
+              <span class="sub">每天一段，慢慢读</span>
+            </div>
+            <div class="mf-guide-body" id="mfGuideText"></div>
+          </div>
+
+          <!-- 正念语录 -->
+          <div class="card mf-card mf-quote">
+            <div class="card-head">
+              <div class="ic"><img src="assets/icons/card-alm.png" alt="语录"></div>
+              <h2>正念语录</h2>
+              <span class="sub">中英双语 · 静心一句</span>
+            </div>
+            <div class="mf-quote-body" id="mfQuote"></div>
+          </div>
+
+          <!-- 身体扫描 / 觉察 -->
+          <div class="card mf-card">
+            <div class="card-head">
+              <div class="ic"><img src="assets/icons/icon-mindful.svg?v=b80" alt="身体扫描"></div>
+              <h2>身体扫描 · 当下觉察</h2>
+              <span class="sub" id="mfScanSub">逐处停留，感受当下</span>
+              <button class="card-toggle" type="button" aria-label="折叠">▾</button>
+            </div>
+            <div class="mf-scan-guide-row">
+              <button class="btn mf-scan-guide-btn" id="mfScanGuide" type="button">🎤 开始引导</button>
+              <span class="mf-scan-guide-hint" id="mfScanGuideHint">点击后闭上眼睛，跟随语音从头到脚感受身体</span>
+            </div>
+            <div class="mf-scan-body" id="mfScan"></div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- 显化记录 · 完整版查看模态框 -->
+  <div class="mf-modal-overlay" id="mfModal" hidden>
+    <div class="mf-modal" role="dialog" aria-modal="true" aria-label="显化记录完整版">
+      <div class="mf-modal-head">
+        <div class="mf-modal-title">✨ 显化记录 · 完整版</div>
+        <button class="mf-modal-close" id="mfModalClose" type="button" title="关闭">✕</button>
+      </div>
+      <div class="mf-modal-body" id="mfModalBody"></div>
+    </div>
+  </div>
+
+  <!-- 觉察日记 · 完整版查看模态框 -->
+  <div class="mf-modal-overlay" id="djModal" hidden>
+    <div class="mf-modal" role="dialog" aria-modal="true" aria-label="觉察日记完整版">
+      <div class="mf-modal-head">
+        <div class="mf-modal-title">🌿 觉察日记 · 完整版</div>
+        <button class="mf-modal-close" id="djModalClose" type="button" title="关闭">✕</button>
+      </div>
+      <div class="mf-modal-body" id="djModalBody"></div>
+    </div>
+  </div>
+
+  <!-- 备忘录记录 · 完整内容查看模态框 -->
+  <div class="mf-modal-overlay" id="memoModal" hidden>
+    <div class="mf-modal" role="dialog" aria-modal="true" aria-label="记录完整内容">
+      <div class="mf-modal-head">
+        <div class="mf-modal-title">📝 记录 · 完整内容</div>
+        <button class="mf-modal-close" id="memoModalClose" type="button" title="关闭">✕</button>
+      </div>
+      <div class="mf-modal-body" id="memoModalBody"></div>
+    </div>
+  </div>
+
+  <!-- 摘抄：调整分类弹窗 -->
+  <div class="mf-modal-overlay" id="exCatModal" hidden>
+    <div class="mf-modal" role="dialog" aria-modal="true" aria-label="调整摘抄分类">
+      <div class="mf-modal-head">
+        <div class="mf-modal-title">🏷 调整摘抄分类</div>
+        <button class="mf-modal-close" id="exCatModalClose" type="button" title="关闭">✕</button>
+      </div>
+      <div class="mf-modal-body" id="exCatModalBody"></div>
+    </div>
+  </div>
+
+  <!-- 从卡通背景图拆分出来的装饰元素：云、星、心、金币、爪印、叶子、小花 -->
+  <div class="deco-layer" aria-hidden="true">
+    <svg class="deco deco-cloud" style="top:8%;left:4%" viewBox="0 0 120 72" fill="none"><path d="M96 58H20C9 58 0 49 0 38c0-9 6-17 15-19 1-11 11-19 22-19 7 0 13 3 17 8 4-5 10-8 17-8 12 0 22 10 22 22 0 1 0 2-.1 3 8 2 14 9 14 17 0 10-8 18-18 18h7z" fill="rgba(255,255,255,.78)" stroke="rgba(255,255,255,.95)" stroke-width="2"/></svg>
+    <svg class="deco deco-cloud" style="top:22%;right:6%;width:90px" viewBox="0 0 120 72" fill="none"><path d="M96 58H20C9 58 0 49 0 38c0-9 6-17 15-19 1-11 11-19 22-19 7 0 13 3 17 8 4-5 10-8 17-8 12 0 22 10 22 22 0 1 0 2-.1 3 8 2 14 9 14 17 0 10-8 18-18 18h7z" fill="rgba(255,255,255,.7)" stroke="rgba(255,255,255,.9)" stroke-width="2"/></svg>
+    <svg class="deco deco-cloud" style="top:62%;left:2%;width:70px" viewBox="0 0 120 72" fill="none"><path d="M96 58H20C9 58 0 49 0 38c0-9 6-17 15-19 1-11 11-19 22-19 7 0 13 3 17 8 4-5 10-8 17-8 12 0 22 10 22 22 0 1 0 2-.1 3 8 2 14 9 14 17 0 10-8 18-18 18h7z" fill="rgba(255,255,255,.65)" stroke="rgba(255,255,255,.85)" stroke-width="2"/></svg>
+
+    <svg class="deco deco-star" style="top:14%;left:18%" viewBox="0 0 40 40" fill="none"><path d="M20 2l4.5 11.5L36 15l-9 8.5L29 36 20 29l-9 7 2-12.5-9-8.5 11.5-1.5L20 2z" fill="var(--lemon)" stroke="#F4D03F" stroke-width="1.5"/></svg>
+    <svg class="deco deco-star" style="top:34%;right:14%;width:28px" viewBox="0 0 40 40" fill="none"><path d="M20 2l4.5 11.5L36 15l-9 8.5L29 36 20 29l-9 7 2-12.5-9-8.5 11.5-1.5L20 2z" fill="var(--lemon)" stroke="#F4D03F" stroke-width="1.5"/></svg>
+    <svg class="deco deco-star" style="top:74%;right:22%;width:22px" viewBox="0 0 40 40" fill="none"><path d="M20 2l4.5 11.5L36 15l-9 8.5L29 36 20 29l-9 7 2-12.5-9-8.5 11.5-1.5L20 2z" fill="var(--lemon)" stroke="#F4D03F" stroke-width="1.5"/></svg>
+
+    <svg class="deco deco-heart" style="top:10%;right:26%" viewBox="0 0 32 32" fill="none"><path d="M16 28C16 28 3 20 3 11.5 3 6.8 6.8 3 11.5 3c2.7 0 5.1 1.2 6.8 3.1C19.9 4.2 22.3 3 25 3c4.7 0 8.5 3.8 8.5 8.5 0 8.5-13 16.5-13 16.5z" fill="var(--rose)" stroke="#FF9EAA" stroke-width="1.5"/></svg>
+    <svg class="deco deco-heart" style="top:46%;left:12%;width:22px" viewBox="0 0 32 32" fill="none"><path d="M16 28C16 28 3 20 3 11.5 3 6.8 6.8 3 11.5 3c2.7 0 5.1 1.2 6.8 3.1C19.9 4.2 22.3 3 25 3c4.7 0 8.5 3.8 8.5 8.5 0 8.5-13 16.5-13 16.5z" fill="var(--rose)" stroke="#FF9EAA" stroke-width="1.5"/></svg>
+    <svg class="deco deco-heart" style="top:80%;right:8%;width:18px" viewBox="0 0 32 32" fill="none"><path d="M16 28C16 28 3 20 3 11.5 3 6.8 6.8 3 11.5 3c2.7 0 5.1 1.2 6.8 3.1C19.9 4.2 22.3 3 25 3c4.7 0 8.5 3.8 8.5 8.5 0 8.5-13 16.5-13 16.5z" fill="var(--rose)" stroke="#FF9EAA" stroke-width="1.5"/></svg>
+
+    <svg class="deco deco-coin" style="top:18%;right:4%" viewBox="0 0 36 36" fill="none"><circle cx="18" cy="18" r="16" fill="var(--lemon)" stroke="#F4D03F" stroke-width="2"/><text x="18" y="24" text-anchor="middle" font-size="18" font-weight="800" fill="#B8860B">$</text></svg>
+    <svg class="deco deco-coin" style="top:58%;left:16%;width:26px" viewBox="0 0 36 36" fill="none"><circle cx="18" cy="18" r="16" fill="var(--lemon)" stroke="#F4D03F" stroke-width="2"/><text x="18" y="24" text-anchor="middle" font-size="18" font-weight="800" fill="#B8860B">$</text></svg>
+
+    <svg class="deco deco-paw" style="top:30%;left:6%" viewBox="0 0 36 36" fill="none"><ellipse cx="11" cy="10" rx="4" ry="5" fill="var(--pink)"/><ellipse cx="25" cy="10" rx="4" ry="5" fill="var(--pink)"/><ellipse cx="7" cy="20" rx="3.5" ry="4.5" fill="var(--pink)"/><ellipse cx="29" cy="20" rx="3.5" ry="4.5" fill="var(--pink)"/><ellipse cx="18" cy="26" rx="9" ry="7" fill="var(--pink)" stroke="#2E6BB5" stroke-width="1"/></svg>
+    <svg class="deco deco-paw" style="top:70%;right:5%;width:28px" viewBox="0 0 36 36" fill="none"><ellipse cx="11" cy="10" rx="4" ry="5" fill="var(--pink)"/><ellipse cx="25" cy="10" rx="4" ry="5" fill="var(--pink)"/><ellipse cx="7" cy="20" rx="3.5" ry="4.5" fill="var(--pink)"/><ellipse cx="29" cy="20" rx="3.5" ry="4.5" fill="var(--pink)"/><ellipse cx="18" cy="26" rx="9" ry="7" fill="var(--pink)" stroke="#2E6BB5" stroke-width="1"/></svg>
+
+    <svg class="deco deco-leaf" style="top:50%;right:2%" viewBox="0 0 32 32" fill="none"><path d="M16 30C16 30 4 22 4 12c0-7 5-11 12-11s12 4 12 11c0 10-12 18-12 18z" fill="var(--leaf)" stroke="#6BC8A3" stroke-width="1.5"/><path d="M16 30V4" stroke="#4AA883" stroke-width="1.5" stroke-linecap="round"/></svg>
+    <svg class="deco deco-leaf" style="top:8%;left:30%;width:24px" viewBox="0 0 32 32" fill="none"><path d="M16 30C16 30 4 22 4 12c0-7 5-11 12-11s12 4 12 11c0 10-12 18-12 18z" fill="var(--leaf)" stroke="#6BC8A3" stroke-width="1.5"/><path d="M16 30V4" stroke="#4AA883" stroke-width="1.5" stroke-linecap="round"/></svg>
+
+    <svg class="deco deco-flower" style="top:85%;left:8%" viewBox="0 0 36 36" fill="none"><circle cx="18" cy="8" r="5" fill="var(--rose)"/><circle cx="28" cy="18" r="5" fill="var(--rose)"/><circle cx="18" cy="28" r="5" fill="var(--rose)"/><circle cx="8" cy="18" r="5" fill="var(--rose)"/><circle cx="18" cy="18" r="5" fill="var(--lemon)"/></svg>
+    <svg class="deco deco-flower" style="top:12%;left:45%;width:24px" viewBox="0 0 36 36" fill="none"><circle cx="18" cy="8" r="5" fill="var(--rose)"/><circle cx="28" cy="18" r="5" fill="var(--rose)"/><circle cx="18" cy="28" r="5" fill="var(--rose)"/><circle cx="8" cy="18" r="5" fill="var(--rose)"/><circle cx="18" cy="18" r="5" fill="var(--lemon)"/></svg>
+  </div>
+
+  <script src="assets/data.js?v=20260805b115" defer></script>
+  <script src="assets/config.js?v=20260805b115" defer></script>
+  <script src="assets/sync.js?v=20260805b115" defer></script>
+  <script src="assets/manual-sync.js?v=20260805b115" defer></script>
+  <script src="assets/lunar.js?v=20260805b115" defer></script>
+  <script src="assets/dog_icons.js?v=20260805b115" defer></script>
+  <script src="assets/app.js?v=20260805b115" defer></script>
+  <!-- 注册 Service Worker：离线可用 + 自动更新缓存，解决"看不到更新" -->
+  <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", function () {
+        navigator.serviceWorker.register("sw.js").catch(function (e) {
+          console.warn("SW register failed:", e);
+        });
+      });
+    }
+  </script>
+</body>
+</html>

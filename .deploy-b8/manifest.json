@@ -1,0 +1,25 @@
+{
+  "name": "JOJO的发财之路",
+  "short_name": "JOJO之路",
+  "description": "JOJO的发财之路 —— 每日计划 · 学习 · 觉察 · 显化 一体化个人管理",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#BCDCC9",
+  "theme_color": "#BCDCC9",
+  "icons": [
+    {
+      "src": "assets/app-icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/app-icon-maskable.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
