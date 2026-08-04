@@ -3446,7 +3446,7 @@ button:has(.hb-ic), .wl-play:has(.hb-ic) {
 /* 四颗小的 */
 .dh-star-sm { width: 14px; height: 14px; }
 /* 随机位置 */
-.dh-star-a { top: 14px; left: 10%; animation: dhTwkA 2.8s ease-in-out infinite; }
+.dh-star-a { top: 33%; left: 10%; animation: dhTwkA 2.8s ease-in-out infinite; }
 .dh-star-b { top: 46%; right: 8%; animation: dhTwkB 3.3s ease-in-out infinite .5s; }
 .dh-star-c { top: 22px; left: 62%; animation: dhTwkC 2.1s ease-in-out infinite 1s; }
 .dh-star-d { bottom: 18px; left: 28%; animation: dhTwkD 2.5s ease-in-out infinite 1.4s; }
