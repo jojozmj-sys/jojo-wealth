@@ -5217,76 +5217,137 @@
     appToast("进度已重置", 1600, "warn");
   });
 
-  // ---------- 练习部分（情景判断题）----------
+  // ---------- 每日练习：基于今日 3 张卡片动态生成 3 道题 ----------
   const QKEY = "wb_psych_quiz_v1";
-  function loadQuizProg() { try { return JSON.parse(localStorage.getItem(QKEY)) || {}; } catch (e) { return {}; } }
+  const QDAY_KEY = "wb_psych_quiz_day_v1";  // 记录 quizProg 属于哪一天，跨天自动清空
+  function loadQuizProg() {
+    try {
+      const stored = JSON.parse(localStorage.getItem(QKEY)) || {};
+      const lastDay = localStorage.getItem(QDAY_KEY);
+      const today = String(daySeed());
+      if (lastDay !== today) {
+        // 跨天：清空旧答题记录（题目已换）
+        localStorage.setItem(QKEY, "{}");
+        localStorage.setItem(QDAY_KEY, today);
+        return {};
+      }
+      return stored;
+    } catch (e) { return {}; }
+  }
   function saveQuizProg(q) { try { localStorage.setItem(QKEY, JSON.stringify(q)); } catch (e) {} }
   let quizProg = loadQuizProg();
 
-  function quizDayIdx() {
-    // 如果用户当天手动点了"下一题"，优先用 override 值
-    const override = localStorage.getItem("wb_psych_quiz_override");
-    const lastDay = localStorage.getItem("wb_psych_quiz_override_day");
-    if (override != null && lastDay === String(daySeed())) {
-      const ov = parseInt(override);
-      if (!isNaN(ov)) return ov % QUIZZES.length;
-    }
-    return daySeed() % QUIZZES.length;
+  // 基于今日 pickDaily3() 的 3 张卡片，各生成一道选择题
+  // 题干 = card.example（兜底 one）；选项 = 正确 title + 3 个干扰 title（打乱）
+  // 解释 = card.concept + card.why
+  function genDailyQuizzes() {
+    const picks = pickDaily3();
+    const all = CARDS();
+    // 使用与 pickDaily3 不同的种子流，避免 shuffle 相关性
+    const rng = mulberry32(daySeed() * 7 + 13);
+    return picks.map(card => {
+      const scenario = (card.example || card.one || "").trim();
+      // 干扰项池：除本卡片外的所有 title
+      const distractPool = all.filter(c => c.id !== card.id).map(c => c.title);
+      // Fisher-Yates 抽 3 个干扰项
+      for (let i = distractPool.length - 1; i > 0; i--) {
+        const j = Math.floor(rng() * (i + 1));
+        [distractPool[i], distractPool[j]] = [distractPool[j], distractPool[i]];
+      }
+      const distract3 = distractPool.slice(0, 3);
+      // 4 选项 + 打乱位置
+      const opts = [card.title].concat(distract3);
+      for (let i = opts.length - 1; i > 0; i--) {
+        const j = Math.floor(rng() * (i + 1));
+        [opts[i], opts[j]] = [opts[j], opts[i]];
+      }
+      const answer = opts.indexOf(card.title);
+      // 解释：concept 主体 + why 补充
+      let explain = (card.concept || "").trim();
+      if (card.why) explain += "  原理：" + card.why.trim();
+      const catName = (catMap[card.cat] || {}).name || "";
+      return {
+        id: "daily_" + card.id,
+        cardId: card.id,
+        cardTitle: card.title,
+        catName,
+        scenario,
+        question: "以上场景最可能体现了下面哪个心理学原理？",
+        options: opts,
+        answer,
+        explain
+      };
+    });
   }
 
   function renderQuiz() {
     const quizBox = $("#psychQuizList");
-    if (!quizBox || !QUIZZES.length) return;
-    const idx = quizDayIdx();
-    const q = QUIZZES[idx];
-    const answered = quizProg[q.id];
-    const opts = q.options.map((opt, i) => {
-      let cls = "quiz-opt";
-      if (answered != null) {
-        if (i === q.answer) cls += " correct";
-        else if (i === answered) cls += " wrong";
-      }
-      return `<button class="${cls}" data-opt="${i}" type="button"${answered != null ? " disabled" : ""}>
-        <span class="quiz-letter">${String.fromCharCode(65 + i)}</span>
-        <span class="quiz-text">${escapeHtml(opt)}</span>
-        ${answered != null && i === q.answer ? '<span class="quiz-mark">✓</span>' : ""}
-        ${answered != null && i === answered && i !== q.answer ? '<span class="quiz-mark">✗</span>' : ""}
-      </button>`;
-    }).join("");
-    const correctCount = QUIZZES.filter(x => quizProg[x.id] === x.answer).length;
-    quizBox.innerHTML = `
-      <div class="quiz-card" data-qid="${q.id}">
+    if (!quizBox) return;
+    const quizzes = genDailyQuizzes();
+    if (!quizzes.length) { quizBox.innerHTML = ""; return; }
+    const total = quizzes.length;
+    const answered = quizzes.filter(q => quizProg[q.id] != null).length;
+    const correct = quizzes.filter(q => quizProg[q.id] === q.answer).length;
+    const pct = Math.round(answered / total * 100);
+    const allDone = answered === total;
+
+    const cardsHtml = quizzes.map((q, qi) => {
+      const ans = quizProg[q.id];
+      const opts = q.options.map((opt, i) => {
+        let cls = "quiz-opt";
+        if (ans != null) {
+          if (i === q.answer) cls += " correct";
+          else if (i === ans) cls += " wrong";
+        }
+        return `<button class="${cls}" data-q="${qi}" data-opt="${i}" type="button"${ans != null ? " disabled" : ""}>
+          <span class="quiz-letter">${String.fromCharCode(65 + i)}</span>
+          <span class="quiz-text">${escapeHtml(opt)}</span>
+          ${ans != null && i === q.answer ? '<span class="quiz-mark">✓</span>' : ""}
+          ${ans != null && i === ans && i !== q.answer ? '<span class="quiz-mark">✗</span>' : ""}
+        </button>`;
+      }).join("");
+      const headRight = ans != null
+        ? `✅ ${escapeHtml(q.cardTitle)}`
+        : escapeHtml(q.catName || ("第 " + (qi + 1) + " 题"));
+      return `<div class="quiz-card" data-qid="${q.id}">
         <div class="quiz-head">
-          <span class="quiz-badge">📝 每日一练</span>
-          <span class="quiz-count">第 ${idx + 1} / ${QUIZZES.length} 题 · 已答对 ${correctCount}</span>
+          <span class="quiz-badge">📝 第 ${qi + 1} 题</span>
+          <span class="quiz-count">${headRight}</span>
         </div>
         <div class="quiz-scenario">${escapeHtml(q.scenario)}</div>
         <div class="quiz-question">${escapeHtml(q.question)}</div>
         <div class="quiz-opts">${opts}</div>
-        ${answered != null ? `
+        ${ans != null ? `
           <div class="quiz-explain">
-            <div class="quiz-explain-t">${answered === q.answer ? "✅ 回答正确！" : "💡 正确答案是 " + String.fromCharCode(65 + q.answer)}</div>
+            <div class="quiz-explain-t">${ans === q.answer ? "✅ 回答正确！" : "💡 正确答案：" + String.fromCharCode(65 + q.answer) + " · " + escapeHtml(q.cardTitle)}</div>
             <div class="quiz-explain-body">${escapeHtml(q.explain)}</div>
           </div>
-          <button class="btn ghost quiz-next" type="button">下一题 →</button>
         ` : ""}
       </div>`;
+    }).join("");
+
+    quizBox.innerHTML = `
+      <div class="quiz-summary">
+        <div class="quiz-summary-info">
+          <span class="quiz-summary-label">今日 ${total} 题</span>
+          <span class="quiz-summary-stat">已答 ${answered}/${total} · 答对 <strong>${correct}</strong></span>
+        </div>
+        <div class="quiz-summary-bar"><div class="quiz-summary-fill" style="width:${pct}%"></div></div>
+      </div>
+      ${cardsHtml}
+      ${allDone ? `<div class="quiz-done">🎉 今日练习完成！正确率 ${correct}/${total}，明天再来挑战</div>` : ""}
+    `;
+
     // 绑定选项点击
     quizBox.querySelectorAll(".quiz-opt").forEach(b => b.addEventListener("click", () => {
+      const qi = parseInt(b.dataset.q);
       const choice = parseInt(b.dataset.opt);
+      const q = quizzes[qi];
+      if (!q || quizProg[q.id] != null) return;
       quizProg[q.id] = choice;
       saveQuizProg(quizProg);
       renderQuiz();
     }));
-    // 绑定下一题
-    const nextBtn = quizBox.querySelector(".quiz-next");
-    if (nextBtn) nextBtn.addEventListener("click", () => {
-      // 手动推进到下一题（当天内有效）
-      const customIdx = (quizDayIdx() + 1) % QUIZZES.length;
-      localStorage.setItem("wb_psych_quiz_override", String(customIdx));
-      localStorage.setItem("wb_psych_quiz_override_day", String(daySeed()));
-      renderQuiz();
-    });
   }
 
   // 初始渲染
