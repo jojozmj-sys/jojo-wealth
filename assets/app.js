@@ -6717,4 +6717,520 @@
       render();
     }
   })();
+
+  /* ==================== 知识库 (KB) ==================== */
+  (function () {
+    var LS_KB = "wb_kb_notes_v1";
+    var $ = function (s, r) { return (r || document).querySelector(s); };
+    var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+    var lsGet = function (k, fb) { try { var v = JSON.parse(localStorage.getItem(k)); return v == null ? fb : v; } catch (e) { return fb; } };
+    var lsSet = function (k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} };
+
+    /* ---------- DOM 缓存 ---------- */
+    var textPanel, urlPanel, filePanel;
+    var textArea, urlInput, fileInput, fileDrop;
+    var titleInput, tagInput, catSelect, saveBtn;
+    var listEl, countEl, searchBox, catFilter, sortSelect;
+
+    /* ---------- State ---------- */
+    var currentInput = { type: "text", content: "", title: "", tags: "", cat: "" };
+    var notes = [];
+
+    function initDOME() {
+      textPanel  = document.querySelector('[data-kb-panel="text"]');
+      urlPanel   = document.querySelector('[data-kb-panel="url"]');
+      filePanel  = document.querySelector('[data-kb-panel="file"]');
+      textArea   = document.getElementById("kbTextInput");
+      urlInput   = document.getElementById("kbUrlInput");
+      fileInput  = document.getElementById("kbFileInput");
+      fileDrop   = document.getElementById("kbFileDrop");
+      titleInput = document.getElementById("kbTitleInput");
+      tagInput   = document.getElementById("kbTagInput");
+      catSelect  = document.getElementById("kbCatSelect");
+      saveBtn    = document.getElementById("kbSaveBtn");
+      listEl     = document.getElementById("kbList");
+      countEl    = document.getElementById("kbCount");
+      searchBox  = document.getElementById("kbSearch");
+      catFilter  = document.getElementById("kbFilterCat");
+      sortSelect = document.getElementById("kbSort");
+    }
+
+    /* ---------- 工具 ---------- */
+    function escapeHtml(s) {
+      return String(s || "").replace(/[&<>"']/g, function (c) {
+        return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+      });
+    }
+
+    function nowTime() {
+      var d = new Date();
+      return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0") + " " + String(d.getHours()).padStart(2, "0") + ":" + String(d.getMinutes()).padStart(2, "0");
+    }
+
+    function extractTags(text) {
+      var tags = [];
+      var patterns = [
+        /#(\w+)/g,
+        /@(\w+)/g
+      ];
+      patterns.forEach(function (p) {
+        var m;
+        while ((m = p.exec(text)) !== null) tags.push(m[1]);
+      });
+      /* 去重 */
+      var seen = {};
+      return tags.filter(function (t) { if (seen[t]) return false; seen[t] = true; return true; });
+    }
+
+    function extractTitle(text) {
+      /* 取第一行非空 */
+      var lines = text.trim().split(/\r?\n/).map(function (l) { return l.trim(); }).filter(function (l) { return l.length > 0; });
+      if (lines.length > 0) {
+        var first = lines[0].replace(/^#+\s*/, "").slice(0, 60);
+        return first || "未命名笔记";
+      }
+      return "未命名笔记";
+    }
+
+    function extractPreview(text, maxLen) {
+      maxLen = maxLen || 200;
+      var stripped = text.replace(/<[^>]+>/g, "").replace(/[ \t]+/g, " ");
+      if (stripped.length > maxLen) {
+        return stripped.slice(0, maxLen) + " ...";
+      }
+      return stripped || "（暂无内容）";
+    }
+
+    /* ---------- 文件读取 ---------- */
+    function readFileContent(file) {
+      return new Promise(function (resolve, reject) {
+        var reader = new FileReader();
+        reader.onload = function (e) { resolve(e.target.result); };
+        reader.onerror = function (e) { reject(e); };
+        reader.readAsText(file);
+      });
+    }
+
+    function handleFileSelect(evt) {
+      var files = evt.target.files;
+      if (!files || files.length === 0) return;
+      handleFile(files[0]);
+    }
+
+    function handleFile(file) {
+      if (!file) return;
+      var allowed = ["text/plain", "text/markdown", "text/csv", "application/json", "text/html", "application/xml"];
+      var ext = file.name.split(".").pop().toLowerCase();
+      var okExt = ["txt", "md", "csv", "json", "html", "htm"];
+      if (!okExt.includes(ext) && !allowed.includes(file.type)) {
+        appToast("不支持的文件类型：" + file.name, 2400, "warn");
+        return;
+      }
+      readFileContent(file).then(function (content) {
+        currentInput.type = "file";
+        currentInput.content = content;
+        currentInput.sourceFile = file.name;
+        if (!currentInput.title) currentInput.title = file.name.replace(/\.[^.]+$/, "") || "未命名笔记";
+        appToast("已加载文件：" + file.name, 2000, "ok");
+      }).catch(function () {
+        appToast("文件读取失败", 2400, "err");
+      });
+    }
+
+    /* ---------- 内容提取 (URL 文本) ---------- */
+    function extractTextFromHtml(html) {
+      var div = document.createElement("div");
+      div.innerHTML = html;
+      /* 移除 script / style */
+      var scripts = div.querySelectorAll("script, style, noscript, iframe, svg");
+      scripts.forEach(function (el) { el.remove(); });
+      /* 优先 article/main */
+      var article = div.querySelector("article, main, .post, .article, .content, #content");
+      var container = article || div;
+      var text = container.innerText || container.textContent || "";
+      return text.trim().replace(/\n{3,}/g, "\n\n");
+    }
+
+    function fetchUrlText(url) {
+      /* 尝试 fetch 到公共代理；若失败则提示 */
+      return fetch("https://r.jina.ai/" + url, {
+        headers: { "Accept": "text/plain" }
+      }).then(function (resp) {
+        if (!resp.ok) throw new Error("HTTP " + resp.status);
+        return resp.text();
+      }).catch(function (err) {
+        appToast("链接内容提取失败：" + (err.message || err), 3000, "err");
+        throw err;
+      });
+    }
+
+    /* ---------- 保存笔记 ---------- */
+    function saveNote() {
+      var content = "";
+      var sourceType = currentInput.type;
+      var url = "";
+      var sourceFile = "";
+
+      if (sourceType === "text") {
+        content = textArea ? textArea.value : "";
+      } else if (sourceType === "url") {
+        url = urlInput ? urlInput.value.trim() : "";
+        if (!url) { appToast("请输入链接地址", 2200, "warn"); return; }
+        if (!isValidUrl(url)) { appToast("链接格式不正确", 2200, "warn"); return; }
+        saveBtn.disabled = true;
+        saveBtn.textContent = "⏳ 提取中...";
+        fetchUrlText(url).then(function (text) {
+          content = text;
+          saveBtn.disabled = false;
+          saveBtn.textContent = "📥 归档";
+          doSave(content, sourceType, url, sourceFile);
+        }).catch(function () {
+          saveBtn.disabled = false;
+          saveBtn.textContent = "📥 归档";
+          /* 提取失败也保存 URL */
+          content = "来源：" + url + "\n\n（内容提取失败，请手动打开链接查看）";
+          doSave(content, sourceType, url, sourceFile);
+        });
+        return;
+      } else if (sourceType === "file") {
+        content = currentInput.content || "";
+        sourceFile = currentInput.sourceFile || "";
+        if (!content) { appToast("请先选择文件", 2200, "warn"); return; }
+      }
+
+      doSave(content, sourceType, url, sourceFile);
+    }
+
+    function doSave(content, sourceType, url, sourceFile) {
+      if (!content || content.trim().length === 0) {
+        appToast("请输入内容或上传文件后再归档", 2200, "warn");
+        return;
+      }
+
+      var title = titleInput ? titleInput.value.trim() : "";
+      if (!title) title = currentInput.title || extractTitle(content);
+      var tags = (tagInput ? tagInput.value.trim() : "") || "";
+      var tagArr = tags ? tags.split(",").map(function (t) { return t.trim(); }).filter(function (t) { return t; }) : extractTags(content);
+      var cat = catSelect ? catSelect.value : "";
+
+      var source = "手动输入";
+      if (sourceType === "url") source = url;
+      else if (sourceType === "file") source = sourceFile || "上传文件";
+
+      var note = {
+        id: dateNow() + "_" + Math.random().toString(36).slice(2, 8),
+        title: title,
+        content: content,
+        tags: tagArr,
+        category: cat || "其他",
+        type: sourceType,
+        url: url,
+        source: source,
+        createdAt: nowTime(),
+        updatedAt: nowTime()
+      };
+
+      notes.unshift(note);
+      lsSet(LS_KB, notes);
+      appToast("已归档到知识库：" + title, 2000, "ok");
+      resetInput();
+      renderList();
+    }
+
+    function dateNow() {
+      return Date.now();
+    }
+
+    function resetInput() {
+      currentInput = { type: "text", content: "", title: "", tags: "", cat: "" };
+      if (textArea) textArea.value = "";
+      if (urlInput) urlInput.value = "";
+      if (fileInput) fileInput.value = "";
+      if (titleInput) titleInput.value = "";
+      if (tagInput) tagInput.value = "";
+      if (catSelect) catSelect.value = "";
+    }
+
+    /* ---------- 渲染列表 ---------- */
+    function renderList() {
+      if (!listEl) return;
+      notes = lsGet(LS_KB, []);
+
+      /* 搜索过滤 */
+      var kw = (searchBox ? searchBox.value.trim().toLowerCase() : "");
+      /* 分类过滤 */
+      var cf = catFilter ? catFilter.value : "";
+      /* 排序 */
+      var sortVal = sortSelect ? sortSelect.value : "newest";
+
+      var filtered = notes.filter(function (n) {
+        var matchKw = !kw || (n.title && n.title.toLowerCase().includes(kw)) || (n.content && n.content.toLowerCase().includes(kw)) || (n.tags && n.tags.some(function (t) { return t.toLowerCase().includes(kw); }));
+        var matchCat = !cf || n.category === cf;
+        return matchKw && matchCat;
+      });
+
+      filtered.sort(function (a, b) {
+        if (sortVal === "newest") return b.createdAt.localeCompare(a.createdAt);
+        if (sortVal === "oldest") return a.createdAt.localeCompare(b.createdAt);
+        if (sortVal === "title") return a.title.localeCompare(b.title);
+        return 0;
+      });
+
+      updateCount(filtered.length, notes.length, kw, cf);
+
+      if (filtered.length === 0) {
+        listEl.innerHTML = '<div class="kb-empty">📭 ' + (kw || cf ? "没有匹配的笔记" : "还没有知识笔记，从上方添加第一条吧") + "</div>";
+        return;
+      }
+
+      var html = filtered.map(function (n) {
+        return renderNoteCard(n);
+      }).join("");
+      listEl.innerHTML = html;
+
+      /* 绑定事件 */
+      bindNoteEvents();
+    }
+
+    function updateCount(filtered, total, kw, cf) {
+      if (!countEl) return;
+      var label = "全部";
+      if (cf) {
+        var opt = catFilter ? catFilter.options[catFilter.selectedIndex] : null;
+        label = opt ? opt.text : cf;
+      }
+      if (kw && cf) countEl.textContent = filtered + " / " + total + " 条 · 「" + label + "」 · 搜索“" + kw + "”";
+      else if (kw) countEl.textContent = filtered + " / " + total + " 条 · 搜索“" + kw + "”";
+      else if (cf) countEl.textContent = filtered + " / " + total + " 条 · 「" + label + "」";
+      else countEl.textContent = total + " 条笔记";
+    }
+
+    function renderNoteCard(n) {
+      var title = escapeHtml(n.title || "未命名笔记");
+      var cat = escapeHtml(n.category || "其他");
+      var source = escapeHtml(n.source || "");
+      var preview = escapeHtml(extractPreview(n.content));
+      var date = escapeHtml(n.createdAt);
+      var tags = (n.tags || []).map(function (t) {
+        return '<span class="kb-note-tag">' + escapeHtml(t) + '</span>';
+      }).join("");
+
+      var sourceHtml = "";
+      if (source) {
+        if (n.type === "url" && n.url) {
+          sourceHtml = '<div class="kb-note-source"><a href="' + escapeHtml(n.url) + '" target="_blank" rel="noopener">' + source + "</a></div>";
+        } else {
+          sourceHtml = '<div class="kb-note-source">' + source + "</div>";
+        }
+      }
+
+      var parts = [
+        '<div class="kb-note-card" data-kb-id="' + escapeHtml(n.id) + '">',
+        '  <div class="kb-note-head">',
+        '    <div class="kb-note-title" title="查看详情">' + title + "</div>",
+        '    <span class="kb-note-cat">' + cat + "</span>",
+        "  </div>",
+        sourceHtml,
+        '  <div class="kb-note-preview" title="展开/折叠"><span class="kb-preview-text">' + preview + '</span></div>',
+        '  <div class="kb-note-tags">' + tags + "</div>",
+        '  <div class="kb-note-foot">',
+        '    <span class="kb-note-date">' + date + "</span>",
+        '    <div class="kb-note-actions">',
+        '      <button class="kb-note-btn" data-kb-action="view" title="查看">👁</button>',
+        '      <button class="kb-note-btn" data-kb-action="delete" title="删除">🗑</button>',
+        "    </div>",
+        "  </div>",
+        "</div>"
+      ];
+      return parts.join("\n");
+    }
+
+    function bindNoteEvents() {
+      /* 查看详情 */
+      $$("[data-kb-action='view']").forEach(function (btn) {
+        btn.addEventListener("click", function (e) {
+          e.stopPropagation();
+          var card = this.closest(".kb-note-card");
+          var id = card.getAttribute("data-kb-id");
+          var note = notes.find(function (n) { return n.id === id; });
+          if (note) showNoteDetail(note);
+        });
+      });
+      /* 删除 */
+      $$("[data-kb-action='delete']").forEach(function (btn) {
+        btn.addEventListener("click", function (e) {
+          e.stopPropagation();
+          var card = this.closest(".kb-note-card");
+          var id = card.getAttribute("data-kb-id");
+          var note = notes.find(function (n) { return n.id === id; });
+          if (confirm("确定删除笔记「" + (note ? note.title : "") + "」？")) {
+            notes = notes.filter(function (n) { return n.id !== id; });
+            lsSet(LS_KB, notes);
+            appToast("已删除笔记", 1600, "ok");
+            renderList();
+          }
+        });
+      });
+    }
+
+    function showNoteDetail(note) {
+      var title = escapeHtml(note.title || "未命名笔记");
+      var content = escapeHtml(note.content || "");
+      var cat = escapeHtml(note.category || "其他");
+      var tags = (note.tags || []).map(function (t) {
+        return '<span class="kb-note-tag">' + escapeHtml(t) + '</span>';
+      }).join("");
+      var source = escapeHtml(note.source || "");
+      var date = escapeHtml(note.createdAt || "");
+
+      var sourceHtml = "";
+      if (source && note.url) {
+        sourceHtml = '<div class="kb-note-source"><a href="' + escapeHtml(note.url) + '" target="_blank" rel="noopener">' + source + "</a></div>";
+      } else if (source) {
+        sourceHtml = '<div class="kb-note-source">' + source + "</div>";
+      }
+
+      var body = '<div style="font-size:13px;line-height:1.8;white-space:pre-wrap;word-break:break-word;">' + content + "</div>";
+
+      var modal = document.getElementById("kbModal") || createKbModal();
+      var bodyEl = modal.querySelector(".kb-modal-body");
+      var titleEl = modal.querySelector(".kb-modal-title");
+      titleEl.textContent = title;
+      bodyEl.innerHTML = '<div class="kb-modal-meta">' + sourceHtml + '<div style="font-size:11px;color:var(--ink-faint);margin-top:6px;">分类：' + cat + " · 更新：" + date + "</div>" + (tags ? '<div style="margin-top:6px;">' + tags + "</div>" : "") + "</div>" + body;
+      modal.hidden = false;
+    }
+
+    function createKbModal() {
+      var overlay = document.createElement("div");
+      overlay.id = "kbModal";
+      overlay.className = "mf-modal-overlay";
+      overlay.innerHTML = [
+        '<div class="mf-modal" role="dialog" aria-modal="true" aria-label="知识笔记详情">',
+        '  <div class="mf-modal-head">',
+        '    <div class="kb-modal-title">笔记详情</div>',
+        '    <button class="mf-modal-close" type="button" title="关闭">✕</button>',
+        "  </div>",
+        '  <div class="kb-modal-body"></div>',
+        "</div>"
+      ].join("\n");
+      overlay.querySelector(".mf-modal-close").addEventListener("click", function () { overlay.hidden = true; });
+      overlay.addEventListener("click", function (e) { if (e.target === overlay) overlay.hidden = true; });
+      document.body.appendChild(overlay);
+      return overlay;
+    }
+
+    /* ---------- Tab 切换 ---------- */
+    function bindTabs() {
+      var tabs = $$("[data-kb-tab]");
+      tabs.forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          var tab = this.getAttribute("data-kb-tab");
+          tabs.forEach(function (t) {
+            var isActive = t.getAttribute("data-kb-tab") === tab;
+            t.classList.toggle("active", isActive);
+          });
+          var panels = $$("[data-kb-panel]");
+          panels.forEach(function (p) {
+            var isActive = p.getAttribute("data-kb-panel") === tab;
+            p.hidden = !isActive;
+            p.classList.toggle("active", isActive);
+          });
+          currentInput.type = tab;
+        });
+      });
+    }
+
+    /* ---------- 文件拖拽 ---------- */
+    function bindFileDrop() {
+      if (!fileDrop || !fileInput) return;
+      ["dragenter", "dragover"].forEach(function (ev) {
+        fileDrop.addEventListener(ev, function (e) { e.preventDefault(); e.stopPropagation(); fileDrop.classList.add("dragover"); });
+      });
+      ["dragleave", "drop"].forEach(function (ev) {
+        fileDrop.addEventListener(ev, function (e) { e.preventDefault(); e.stopPropagation(); fileDrop.classList.remove("dragover"); });
+      });
+      fileDrop.addEventListener("drop", function (e) {
+        var dt = e.dataTransfer;
+        if (dt && dt.files && dt.files.length > 0) {
+          handleFile(dt.files[0]);
+          fileInput.files = dt.files;
+        }
+      });
+      fileDrop.addEventListener("click", function () { fileInput.click(); });
+      fileInput.addEventListener("change", handleFileSelect);
+    }
+
+    /* ---------- 绑定主事件 ---------- */
+    function bindMainEvents() {
+      if (saveBtn) saveBtn.addEventListener("click", saveNote);
+
+      /* URL 输入框回车 */
+      if (urlInput) {
+        urlInput.addEventListener("blur", function () {
+          var u = urlInput.value.trim();
+          if (u && isValidUrl(u)) {
+            currentInput.type = "url";
+            currentInput.url = u;
+            currentInput.content = "";
+            urlInput.value = u;
+            /* 自动提取标题 */
+            var t = getDomain(u);
+            if (!titleInput.value && t) titleInput.value = t;
+            appToast("链接已记录，点击「归档」提取内容", 1800, "info");
+          }
+        });
+      }
+
+      /* 搜索 + 筛选 */
+      if (searchBox) searchBox.addEventListener("input", debounce(renderList, 300));
+      if (catFilter) catFilter.addEventListener("change", renderList);
+      if (sortSelect) sortSelect.addEventListener("change", renderList);
+
+      /* 监听页面切换到知识库时重新渲染 */
+      document.addEventListener("wb:pagechange", function (e) {
+        if (e.detail && e.detail.page === "kb") {
+          notes = lsGet(LS_KB, []);
+          renderList();
+        }
+      });
+    }
+
+    function isValidUrl(string) {
+      try { new URL(string); return true; } catch (e) { return false; }
+    }
+
+    function getDomain(url) {
+      try { return new URL(url).hostname.replace(/^www\./, ""); } catch (e) { return ""; }
+    }
+
+    function debounce(fn, ms) {
+      var timer;
+      return function () {
+        var args = arguments;
+        clearTimeout(timer);
+        timer = setTimeout(function () { fn.apply(null, args); }, ms);
+      };
+    }
+
+    /* ---------- 初始化 ---------- */
+    function init() {
+      initDOME();
+      if (!saveBtn) return; /* 页面未加载，跳过 */
+      notes = lsGet(LS_KB, []);
+      bindTabs();
+      bindFileDrop();
+      bindMainEvents();
+      renderList();
+    }
+
+    /* DOM ready 或延迟初始化 */
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", init);
+    } else {
+      setTimeout(init, 0);
+    }
+
+    /* 暴露供调试 */
+    window.__kb = { refresh: renderList, notes: function () { return lsGet(LS_KB, []); }, set: function (arr) { lsSet(LS_KB, arr); renderList(); } };
+  })();
 })();
