@@ -6955,7 +6955,7 @@
         }
         const u = new SpeechSynthesisUtterance(GUIDE_SCRIPT[idx]);
         u.lang = "zh-CN";
-        u.rate = 0.68;     /* 更慢，适合冥想引导 */
+        u.rate = 0.62;     /* 更慢，适合冥想引导 */
         u.pitch = 1.12;    /* 略高音调，温暖治愈的女声感 */
         u.volume = 0.85;   /* 略低音量，更柔和 */
         const v = pickZhVoice();
