@@ -2408,6 +2408,69 @@
     document.addEventListener("keydown", e => { if (e.key === "Escape" && !ov.hidden) close(); });
   })();
 
+  /* 备忘录 → MD 导出 */
+  function buildMemosMarkdown() {
+    const lines = [];
+    lines.push("# 我的记录（备忘录）· 完整导出");
+    lines.push("");
+    lines.push("> 导出时间：" + new Date().toLocaleString("zh-CN"));
+    lines.push("> 共 " + memos.length + " 条记录");
+    lines.push("");
+    if (memos.length === 0) {
+      lines.push("_还没有记录，随手写一条吧_ 📝");
+      return lines.join("\n");
+    }
+    // 按分类分组，保持原有顺序（新→旧）
+    const groups = {};
+    memos.forEach(m => {
+      const c = m.cat || "daily";
+      if (!groups[c]) groups[c] = [];
+      groups[c].push(m);
+    });
+    // 分类展示顺序
+    const memoOrder = ["meeting", "study", "daily", "thought"];
+    const keys = Object.keys(groups).sort((a, b) => {
+      const ia = memoOrder.indexOf(a), ib = memoOrder.indexOf(b);
+      if (ia >= 0 && ib >= 0) return ia - ib;
+      if (ia >= 0) return -1;
+      if (ib >= 0) return 1;
+      return a.localeCompare(b, "zh");
+    });
+    keys.forEach(cat => {
+      const meta = MEMO_CATS[cat] || { name: cat, icon: "🗂️" };
+      const items = groups[cat];
+      lines.push("---");
+      lines.push("");
+      lines.push("## " + meta.icon + " " + meta.name + "　·　" + items.length + " 条");
+      lines.push("");
+      items.forEach((m, i) => {
+        const date = m.ts ? formatMemoTs(m.ts) : "无日期";
+        lines.push("### " + date + "　·　#" + (i + 1));
+        lines.push("");
+        if (m.t && m.t.trim()) lines.push("> " + m.t.trim().replace(/\n/g, "\n> "));
+        else lines.push("> （本条只有图片）");
+        lines.push("");
+        if (m.img) lines.push("- **含图片**：需在「我的记录」页面查看原图");
+        lines.push("");
+      });
+    });
+    lines.push("---");
+    lines.push("");
+    lines.push("_由 jojo-wealth 导出 · 备忘录_");
+    return lines.join("\n");
+  }
+  const memoExportBtn = document.getElementById("memoExport");
+  if (memoExportBtn) memoExportBtn.addEventListener("click", () => {
+    if (memos.length === 0) {
+      const appToast = window.appToast;
+      if (appToast) appToast("还没有记录可以导出 📝", 2500, "info");
+      return;
+    }
+    downloadTextFile("我的记录_" + fmtTs() + ".md", buildMemosMarkdown());
+    const appToast = window.appToast;
+    if (appToast) appToast("已导出 " + memos.length + " 条记录 ✓", 2500, "ok");
+  });
+
   /* ---------- 玄学日历（黄历，依赖 lunar.js） ---------- */
   /* 个人命盘：身强戊土 · 属狗 · 上升处女座 · 喜金水木（木为调和） */
   const MY_PROFILE = {
