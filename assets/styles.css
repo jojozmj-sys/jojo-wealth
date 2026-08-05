@@ -3699,7 +3699,7 @@ button:has(.hb-ic), .wl-play:has(.hb-ic) {
 /* 随机位置 */
 .dh-star-a { top: 33%; left: 10%; animation: dhTwkA 2.8s ease-in-out infinite; }
 .dh-star-b { top: 46%; right: 8%; animation: dhTwkB 3.3s ease-in-out infinite .5s; }
-.dh-star-c { top: 22px; left: 62%; animation: dhTwkC 2.1s ease-in-out infinite 1s; }
+.dh-star-c { top: 218px; left: 62%; animation: dhTwkC 2.1s ease-in-out infinite 1s; }
 .dh-star-d { top: 72%; left: 50%; margin-left: -7px; animation: dhTwkD 2.5s ease-in-out infinite 1.4s; }
 .dh-star-e { bottom: 36px; right: 34%; animation: dhTwkE 3s ease-in-out infinite .8s; }
 .dh-star-f { top: 4px; left: 28%; animation: dhTwkF 2.6s ease-in-out infinite 1.2s; }
