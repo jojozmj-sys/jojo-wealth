@@ -2645,7 +2645,7 @@
       const ascPart = aspAsc
         ? `对外表现受「${aspAsc.name}」影响`
         : `对外气场平稳`;
-      const astroText = `今日月亮落在${moonSign}座（${moonElem}象），与你的本命太阳成「${mainAsp.name}」${moonNatalPart}，${ascPart}。${_ASPECT_CORE[mainAsp.kind]}${_ELEM_NOTE[moonElem]}`;
+      const astroText = `今日月亮落在${moonSign}座（${moonElem}象），与你的本命太阳成「${mainAsp ? mainAsp.name : "顺行"}」${moonNatalPart}，${ascPart}。${mainAsp ? _ASPECT_CORE[mainAsp.kind] : _ASPECT_CORE.minor}${_ELEM_NOTE[moonElem]}`;
       /* ---- 当日财运（星盘视角）：月亮四象定位务实/开拓/人脉/情绪消费，再以本命相位加持或收束 ---- */
       const wealthMoonMap = { "土": "财旺", "火": "财活", "风": "财源", "水": "财平" };
       const wealthNoteMap = {
