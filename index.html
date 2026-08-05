@@ -17,11 +17,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/styles.css?v=20260805b193" />
+  <link rel="stylesheet" href="assets/styles.css?v=20260805b194" />
   <!-- 预加载：与 HTML 解析并行下载大 JS，避免启动时串行等待 -->
-  <link rel="preload" as="script" href="assets/data.js?v=20260805b193" fetchpriority="high" />
-  <link rel="preload" as="script" href="assets/lunar.js?v=20260805b193" />
-  <link rel="preload" as="script" href="assets/app.js?v=20260805b193" fetchpriority="high" />
+  <link rel="preload" as="script" href="assets/data.js?v=20260805b194" fetchpriority="high" />
+  <link rel="preload" as="script" href="assets/lunar.js?v=20260805b194" />
+  <link rel="preload" as="script" href="assets/app.js?v=20260805b194" fetchpriority="high" />
 </head>
 <body class="sidebar-collapsed">
   <!-- 手绘卡通 SVG 图标库（彩铅/水彩风格） -->
@@ -132,7 +132,7 @@
         <svg class="sd sd-heart" viewBox="0 0 32 32" fill="none"><path d="M16 28C16 28 3 20 3 11.5 3 6.8 6.8 3 11.5 3c2.7 0 5.1 1.2 6.8 3.1C19.9 4.2 22.3 3 25 3c4.7 0 8.5 3.8 8.5 8.5 0 8.5-13 16.5-13 16.5z" fill="rgba(74,143,231,.22)"/></svg>
       </div>
       <nav class="menu" id="menu">
-        <a href="#" data-page="desk" class="active"><span class="micon"><img class="micon-img" src="assets/icons/icon-desk.png?v=b80" alt="桌面"></span><span class="mlabel">桌面</span><span class="mnum">01</span></a>
+        <a href="#" data-page="desk" class="active"><span class="micon"><img class="micon-img" src="assets/icons/icon-desk.png?v=b89" alt="桌面"></span><span class="mlabel">桌面</span><span class="mnum">01</span></a>
         <a href="#" data-page="plan"><span class="micon"><img class="micon-img" src="assets/icons/icon-plan.png" alt="每日计划"></span><span class="mlabel">每日计划</span><span class="mnum">02</span></a>
         <a href="#" data-page="english"><span class="micon"><img class="micon-img" src="assets/icons/icon-english.png" alt="英语学习"></span><span class="mlabel">英语学习</span><span class="mnum">03</span></a>
         <a href="#" data-page="selfmedia"><span class="micon"><img class="micon-img" src="assets/icons/icon-selfmedia.png?v=b72" alt="自媒体"></span><span class="mlabel">自媒体</span><span class="mnum">04</span></a>
@@ -1283,10 +1283,10 @@
   </div>
 
   <!-- 轻脚本保持 defer 顺序（小体积，几乎无感；config 必须在 data 后依赖它） -->
-  <script src="assets/config.js?v=20260805b193" defer></script>
-  <script src="assets/sync.js?v=20260805b193" defer></script>
-  <script src="assets/manual-sync.js?v=20260805b193" defer></script>
-  <script src="assets/dog_icons.js?v=20260805b193" defer></script>
+  <script src="assets/config.js?v=20260805b194" defer></script>
+  <script src="assets/sync.js?v=20260805b194" defer></script>
+  <script src="assets/manual-sync.js?v=20260805b194" defer></script>
+  <script src="assets/dog_icons.js?v=20260805b194" defer></script>
   <!-- 注册 Service Worker：离线可用 + 自动更新缓存，解决"看不到更新" -->
   <script>
     if ("serviceWorker" in navigator) {
@@ -1320,9 +1320,9 @@
       }
       /* 先让浏览器完成首帧绘制，再拉数据链 */
       idle(function () {
-        load("assets/data.js?v=20260805b193")
-          .then(function () { return load("assets/lunar.js?v=20260805b193"); })
-          .then(function () { return load("assets/app.js?v=20260805b193"); });
+        load("assets/data.js?v=20260805b194")
+          .then(function () { return load("assets/lunar.js?v=20260805b194"); })
+          .then(function () { return load("assets/app.js?v=20260805b194"); });
       });
     })();
   </script>
