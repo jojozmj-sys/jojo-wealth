@@ -2963,63 +2963,6 @@
     return d.getFullYear() + p(d.getMonth()+1) + p(d.getDate());
   }
 
-  // 日记 → MD（按日期分组）
-  function buildDiaryMarkdown() {
-    const records = loadDiaryRecords().slice().sort((a, b) =>
-      (a.createdAt || "") < (b.createdAt || "") ? 1 : -1);
-    const lines = [];
-    lines.push("# 每日觉察日记 · 完整导出");
-    lines.push("");
-    lines.push("> 导出时间：" + new Date().toLocaleString("zh-CN"));
-    lines.push("> 共 " + records.length + " 篇觉察记录");
-    lines.push("");
-    if (records.length === 0) {
-      lines.push("_还没有日记记录，去写第一篇吧_ 🌱");
-      return lines.join("\n");
-    }
-    const FIELDS = [
-      { t: "🌬️ 身体扫描", k: "djBody" },
-      { t: "💭 主要情绪", k: "djEmo" },
-      { t: "☁️ 飘过的念头", k: "djMind" },
-      { t: "📌 发生的情景", k: "djSee" },
-      { t: "⚡ 自动念头", k: "djAuto" },
-      { t: "⚖️ 事实 vs 想法（证据）", k: "djFact" },
-      { t: "🕳️ 认知陷阱", k: "__bias" },
-      { t: "🩹 陷阱说明", k: "djBiasNote" },
-      { t: "🔄 其他可能的解释", k: "djReframe" },
-      { t: "🌈 替代念头", k: "djAlt" },
-      { t: "🧭 课题归属", k: "__kada" },
-      { t: "🧭 课题说明", k: "djKadaWhy" },
-      { t: "🎬 一个小行动", k: "djAct" },
-      { t: "🌟 三件感恩", k: "djGrat" },
-      { t: "💎 一句话总结", k: "djOne" }
-    ];
-    records.forEach((r, i) => {
-      const date = (r.createdAt || "").toString().slice(0, 10) || "未注日期";
-      lines.push("---");
-      lines.push("");
-      lines.push("## 📅 " + date + "　·　第 " + (i + 1) + " / " + records.length + " 篇");
-      lines.push("");
-      if (r.djKada) lines.push("- **课题**：" + (r.djKada || "") + (r.djKadaWhy ? "　·　_" + r.djKadaWhy + "_" : ""));
-      if (r.djBias) lines.push("- **认知陷阱**：" + (r.djBias || ""));
-      lines.push("");
-      FIELDS.forEach(f => {
-        if (f.k === "__bias") return;
-        if (f.k === "__kada") return;
-        const v = (r[f.k] || "").toString().trim();
-        if (!v) return;
-        lines.push("### " + f.t);
-        lines.push("");
-        lines.push("> " + v.replace(/\n/g, "\n> "));
-        lines.push("");
-      });
-    });
-    lines.push("---");
-    lines.push("");
-    lines.push("_由 jojo-wealth 导出 · 每日觉察日记_");
-    return lines.join("\n");
-  }
-
   // 摘抄 → MD（按分类分组）
   function buildExcerptsMarkdown() {
     const arr = exLoadAll().slice();
@@ -3082,18 +3025,6 @@
   }
 
   // 绑定按钮
-  const djExportBtn = $("#djExport");
-  if (djExportBtn) djExportBtn.addEventListener("click", () => {
-    const recs = loadDiaryRecords();
-    if (recs.length === 0) {
-      const appToast = window.appToast;
-      if (appToast) appToast("还没有日记记录可以导出 🌱", 2500, "info");
-      return;
-    }
-    downloadTextFile("每日觉察日记_" + fmtTs() + ".md", buildDiaryMarkdown());
-    const appToast = window.appToast;
-    if (appToast) appToast("已导出 " + recs.length + " 篇日记 ✓", 2500, "ok");
-  });
   const exExportBtn = $("#exExport");
   if (exExportBtn) exExportBtn.addEventListener("click", () => {
     const arr = exLoadAll();
