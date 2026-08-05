@@ -7282,7 +7282,10 @@
       } else if (dqBtn) { dqBtn.style.display = "none"; }
     }
 
-    // 概览：读取各模块 localStorage，构建今日速览（统计图形式）
+    /* 概览渲染：读取各模块 localStorage，构建今日速览（统计图形式）。
+       抽成独立函数，页面加载 + 每次切回首页 + 跨标签页 storage 变化时重新渲染，
+       保证计划/日记/收藏/心理练习等操作后概览"完成情况"及时刷新 */
+    function renderDeskOverview() {
     const ovBox = document.getElementById("deskOverview");
     if (ovBox) {
       const today = new Date().toISOString().slice(0, 10);
@@ -7431,6 +7434,23 @@
       miniRow.innerHTML = (planCard || "") + (enStatsHtml || "") + (psychStatsHtml || "");
       ovBox.insertBefore(miniRow, ovBox.firstChild);
     }
+    }
+
+    /* 首次渲染 */
+    renderDeskOverview();
+    /* 切回首页时重新渲染概览（各模块数据变更后回首页要看到最新完成情况） */
+    document.addEventListener("wb:pagechange", function (ev) {
+      if (ev.detail && ev.detail.page === "desk") {
+        renderDeskOverview();
+      }
+    });
+    /* 跨标签页同步：其他标签页写入数据时刷新概览 */
+    window.addEventListener("storage", function (ev) {
+      if (!ev.key) return;
+      if (/wb_plan|wb_diary|wb_manifest|wb_excerpt|wb_frag|wb_psych|wb_kb|wb_pod/.test(ev.key)) {
+        renderDeskOverview();
+      }
+    });
   })();
 
   /* ================= 正念练习 ================= */
