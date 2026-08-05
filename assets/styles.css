@@ -501,23 +501,37 @@ body.sidebar-edit .menu a .mlabel { cursor: text; text-decoration: underline dot
 /* ---------- Card 收起/展开 ---------- */
 .card-toggle {
   flex: none;
-  width: 30px; height: 30px;
-  border: none; background: transparent;
+  width: 28px; height: 28px;
+  border: 1.5px solid rgba(126,147,169,.15);
+  background: var(--mint-soft);
   color: var(--mint-line);
-  font-size: 22px;
-  font-weight: 800;
+  font-size: 14px;
+  font-weight: 900;
   line-height: 1;
   display: grid; place-items: center;
   cursor: pointer;
-  margin-left: 2px;
-  transition: transform .25s ease, color .2s ease;
+  border-radius: 8px;
+  transition: all .3s ease;
 }
-.card-toggle:hover { color: var(--mint-deep); }
-.card.collapsed .card-toggle { transform: rotate(180deg); color: var(--mint-deep); }
-.card.collapsed .card-toggle::after { }
-.card.collapsed > *:not(.card-head) { display: none; }
+.card-toggle:hover { background: var(--mint); color: #fff; border-color: var(--mint); }
+.card.collapsed .card-toggle { transform: rotate(-180deg); color: #fff; background: var(--mint-deep); border-color: var(--mint-deep); }
+.card > *:not(.card-head) {
+  max-height: 6000px;
+  opacity: 1;
+  overflow: hidden;
+  transition: max-height .45s ease, opacity .35s ease, margin .35s ease;
+}
+.card.collapsed > *:not(.card-head) {
+  max-height: 0;
+  opacity: 0;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
 .card.collapsed { padding-bottom: 14px; }
 .card.collapsed .card-head { margin-bottom: 0; }
+.card.collapsed .card-head .sub { display: none; }
 
 /* ---------- Buttons / inputs ---------- */
 .plan-bar {

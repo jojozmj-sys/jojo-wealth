@@ -5102,11 +5102,34 @@
   if (D && D.snapshotLabel) { const sl = $("#snapLabel"); if (sl) sl.textContent = D.snapshotLabel.split("·")[1].trim(); }
 
   /* ---------- Card 收起 / 展开 ---------- */
-  $$(".card").forEach(card => {
-    const head = card.querySelector(".card-head");
+  var LS_KEY = "wb_card_collapsed_v1";
+  var saved = {};
+  try {
+    var raw = localStorage.getItem(LS_KEY);
+    if (raw) saved = JSON.parse(raw);
+  } catch(e) {}
+  function _cardId(card) {
+    // 用 card 内的 h2 文本 + 父页面 ID 生成唯一 key
+    var h2 = card.querySelector("h2");
+    var pageEl = card.closest(".page");
+    var prefix = pageEl ? pageEl.id.replace("page-","") : "global";
+    var title = h2 ? h2.textContent.replace(/\s+/g,"").substring(0,20) : "";
+    return prefix + "__" + title;
+  }
+  function _saveCards() {
+    var obj = {};
+    $$(".card.collapsed").forEach(function(c) { var id = _cardId(c); if (id) obj[id] = 1; });
+    try { localStorage.setItem(LS_KEY, JSON.stringify(obj)); } catch(e) {}
+  }
+  function _restoreCard(card) {
+    var id = _cardId(card);
+    if (saved[id]) card.classList.add("collapsed");
+  }
+  $$(".card").forEach(function(card) {
+    var head = card.querySelector(".card-head");
     if (!head) return;
     // 已有或没有都走同一条路：找到 .card-toggle，没有就建一个
-    let btn = head.querySelector(".card-toggle");
+    var btn = head.querySelector(".card-toggle");
     if (!btn) {
       btn = document.createElement("button");
       btn.type = "button";
@@ -5115,13 +5138,16 @@
       btn.innerHTML = "▾";
       head.appendChild(btn);
     }
-    btn.setAttribute("aria-expanded", card.classList.contains("collapsed") ? "false" : "true");
-    btn.addEventListener("click", e => {
+    btn.addEventListener("click", function(e) {
       e.preventDefault();
       e.stopPropagation();
       card.classList.toggle("collapsed");
       btn.setAttribute("aria-expanded", card.classList.contains("collapsed") ? "false" : "true");
+      _saveCards();
     });
+    // 恢复上一次折叠状态
+    _restoreCard(card);
+    btn.setAttribute("aria-expanded", card.classList.contains("collapsed") ? "false" : "true");
   });
 })();
 
