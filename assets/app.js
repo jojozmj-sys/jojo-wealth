@@ -7327,7 +7327,7 @@
         var prR = 28, prC = 2 * Math.PI * prR, prDash = prC * psychPct / 100;
         psychStatsHtml =
           '<div class="ov-mini-card ov-mini-psych">' +
-            '<div class="ov-mini-hd"><span class="ov-mini-ic">🧠</span><span class="ov-mini-title">心理学</span></div>' +
+            '<div class="ov-mini-hd"><img class="ov-mini-ic-img" src="assets/icons/icon-psych.png?v=b97" alt="心理学"><span class="ov-mini-title">心理学</span></div>' +
             '<div class="ov-mini-body">' +
               '<svg class="ov-mini-ring" viewBox="0 0 72 72" width="72" height="72">' +
                 '<circle cx="36" cy="36" r="' + prR + '" fill="none" stroke="rgba(201,138,94,.12)" stroke-width="5"/>' +
