@@ -6553,10 +6553,10 @@
       appToast("✅ 阈值已保存", 1800, "ok");
     });
 
-    /* ========== 尾盘选股：三步筛选 ==========
-       第一步：clist 全A股初筛（涨幅/量比/换手率/市值）
-       第二步：push2his K线取MA5/MA10/MA20，验证多头排列+站上均线+MA5向上
-       第三步：push2 trends2 分时走势 vs 上证综指，验证跑赢大盘 */
+    /* ========== 尾盘选股：尾盘涨幅 + 量比/换手/市值 + 全天跑赢大盘 ==========
+       第一步：clist 全A股初筛（量比>1 / 换手5-10% / 市值50-200亿 / 日涨幅≥1%）
+       第二步：trends2 分时数据 → 计算 14:30→收盘 段涨幅，筛选 3%-5%
+       第三步：个股分时全天走势 vs 上证综指 → 筛选跑赢大盘（≥60%时间跑赢） */
 
     let _screenResults = [];
     let _screenRunning = false;
@@ -6565,82 +6565,96 @@
       return (code.startsWith("6") ? "1." : "0.") + code;
     }
 
+    /* ---- Step 1: clist 全市场初筛（量比/换手/市值，涨幅放宽后续精筛） ---- */
     async function fetchScreenCandidates() {
-      const url = "https://push2.eastmoney.com/api/qt/clist/get?pn=1&pz=5000&po=1&np=1&fltt=2&invt=2&fid=f3&fs=m:0+t:6,m:0+t:80,m:1+t:2,m:1+t:23&fields=f2,f3,f8,f10,f12,f14,f20,f21";
+      const url = "https://push2.eastmoney.com/api/qt/clist/get?pn=1&pz=5000&po=1&np=1&fltt=2&invt=2&fid=f3&fs=m:0+t:6,m:0+t:80,m:1+t:2,m:1+t:23&fields=f2,f3,f8,f10,f12,f14,f21";
       const parse = (json) => {
         if (json && json.data && Array.isArray(json.data.diff)) return json.data.diff;
         return [];
       };
       const rows = await jsonpFetch(url, parse);
-      return rows.filter(s => {
-        const chg = parseFloat(s.f3) || 0;
-        const volRatio = parseFloat(s.f10) || 0;
-        const turnover = parseFloat(s.f8) || 0;
-        const circMv = (parseFloat(s.f21) || 0) / 1e8;
-        return chg >= 3 && chg <= 5 && volRatio > 1 && turnover >= 5 && turnover <= 10 && circMv >= 50 && circMv <= 200;
+      return rows.filter(function(s) {
+        var chg = parseFloat(s.f3) || 0;
+        var volRatio = parseFloat(s.f10) || 0;
+        var turnover = parseFloat(s.f8) || 0;
+        var circMv = (parseFloat(s.f21) || 0) / 1e8;
+        /* 初筛放宽涨幅至 ≥1%，后续用 14:30→收盘 精确涨幅 3-5% 筛选 */
+        return chg >= 1 && volRatio > 1 && turnover >= 5 && turnover <= 10 && circMv >= 50 && circMv <= 200;
+      }).map(function(s) {
+        return {
+          code: s.f12, name: s.f14,
+          dayChg: parseFloat(s.f3) || 0,
+          volRatio: parseFloat(s.f10) || 0,
+          turnover: parseFloat(s.f8) || 0,
+          circMv: (parseFloat(s.f21) || 0) / 1e8,
+          price: parseFloat(s.f2) || 0
+        };
       });
     }
 
-    async function validateMA(candidates) {
-      const passed = [];
-      const batchSize = 8;
-      const total = candidates.length;
-      const statusEl = $("#stScreenStatus");
+    /* ---- Step 2: trends2 分时 → 计算 14:30→收盘 段涨幅，筛选 3%-5% ---- */
+    async function validateTailRise(candidates) {
+      var passed = [];
+      var batchSize = 8;
+      var total = candidates.length;
+      var statusEl = $("#stScreenStatus");
 
-      for (let i = 0; i < total; i += batchSize) {
-        const batch = candidates.slice(i, i + batchSize);
-        const promises = batch.map(c => {
-          const secid = getSecId(c.f12);
-          const url = "https://push2his.eastmoney.com/api/qt/stock/kline/get?secid=" + secid + "&fields1=f1,f2,f3,f4,f5,f6&fields2=f51,f52,f53,f54,f55,f56,f57,f58,f59,f60,f61&klt=101&fqt=1&end=20500101&lmt=25";
-          return jsonpFetch(url, (json) => {
-            if (!json || !json.data || !json.data.klines) return null;
-            return { candidate: c, klines: json.data.klines };
+      for (var i = 0; i < total; i += batchSize) {
+        var batch = candidates.slice(i, i + batchSize);
+        var promises = batch.map(function(c) {
+          var secid = getSecId(c.code);
+          var url = "https://push2.eastmoney.com/api/qt/stock/trends2/get?secid=" + secid +
+            "&fields1=f1,f2,f3,f4,f5,f6,f7,f8,f9,f10,f11,f12,f13" +
+            "&fields2=f51,f52,f53,f54,f55,f56,f57,f58,f59,f60,f61&ndays=1";
+          return jsonpFetch(url, function(json) {
+            if (!json || !json.data || !json.data.trends) return null;
+            return { candidate: c, trends: json.data.trends, preClose: parseFloat(json.data.preClose) || 0 };
           });
         });
-        const results = await Promise.all(promises);
+        var results = await Promise.all(promises);
 
-        for (const r of results) {
-          if (!r || !r.klines || r.klines.length < 20) continue;
-          const c = r.candidate;
-          const closes = r.klines.map(function(line) { return parseFloat(line.split(",")[2]); });
-          const len = closes.length;
-          const lastClose = closes[len - 1];
+        for (var j = 0; j < results.length; j++) {
+          var r = results[j];
+          if (!r || !r.trends || !r.trends.length || !r.preClose) continue;
 
-          const ma5  = closes.slice(-5).reduce(function(a, b) { return a + b; }, 0) / 5;
-          const ma10 = closes.slice(-10).reduce(function(a, b) { return a + b; }, 0) / 10;
-          const ma20 = closes.slice(-20).reduce(function(a, b) { return a + b; }, 0) / 20;
-          const ma60 = closes.reduce(function(a, b) { return a + b; }, 0) / len;
-          const ma5Prev = closes.slice(-6, -1).reduce(function(a, b) { return a + b; }, 0) / 5;
+          /* 分时数据格式："2026-08-05 14:30,price,avg,..."
+           * 找到 14:30 之后的第一个点（含）作为起始价，最后一点作为收盘价 */
+          var startIdx = -1;
+          for (var k = 0; k < r.trends.length; k++) {
+            var timeStr = r.trends[k].split(",")[0];
+            var hhmm = timeStr.split(" ")[1] || "";
+            if (hhmm >= "14:30") { startIdx = k; break; }
+          }
+          if (startIdx < 0 || startIdx >= r.trends.length - 1) continue;
 
-          // 多头排列 + 站上均线 + MA5向上
-          if (!(ma5 > ma10 && ma10 > ma20 && ma20 > ma60)) continue;
-          if (!(lastClose > ma5 && lastClose > ma10)) continue;
-          if (ma5 <= ma5Prev) continue;
+          var startPrice = parseFloat(r.trends[startIdx].split(",")[1]) || 0;
+          var endPrice = parseFloat(r.trends[r.trends.length - 1].split(",")[1]) || 0;
+          if (!startPrice) continue;
 
-          passed.push({
-            code: c.f12, name: c.f14,
-            chg: parseFloat(c.f3) || 0,
-            volRatio: parseFloat(c.f10) || 0,
-            turnover: parseFloat(c.f8) || 0,
-            circMv: (parseFloat(c.f21) || 0) / 1e8,
-            price: lastClose, ma5: ma5, ma10: ma10, ma20: ma20, ma60: ma60
-          });
+          var tailRise = (endPrice - startPrice) / startPrice * 100;
+          if (tailRise < 3 || tailRise > 5) continue;
+
+          r.candidate.tailRise = tailRise;
+          r.candidate.tailStart = startPrice;
+          r.candidate.tailEnd = endPrice;
+          passed.push(r.candidate);
         }
 
-        if (statusEl) statusEl.innerHTML = "<span class=\"st-screen-spin\"></span> 均线验证中 "
+        if (statusEl) statusEl.innerHTML = "<span class=\"st-screen-spin\"></span> 尾盘涨幅验证中 "
           + Math.min(i + batchSize, total) + "/" + total + "，已通过 " + passed.length + " 只…";
       }
 
       return passed;
     }
 
-    async function validateVsIndex(maPassed) {
-      if (!maPassed.length) return [];
-      const statusEl = $("#stScreenStatus");
+    /* ---- Step 3: 分时走势全天 vs 上证综指 → 跑赢大盘 ---- */
+    async function validateVsIndex(tailPassed) {
+      if (!tailPassed.length) return [];
+      var statusEl = $("#stScreenStatus");
       if (statusEl) statusEl.innerHTML = "<span class=\"st-screen-spin\"></span> 正在获取上证综指分时走势…";
 
-      // 获取上证综指分时
-      const idxData = await jsonpFetch(
+      /* 获取上证综指分时 */
+      var idxData = await jsonpFetch(
         "https://push2.eastmoney.com/api/qt/stock/trends2/get?secid=1.000001&fields1=f1,f2,f3,f4,f5,f6,f7,f8,f9,f10,f11,f12,f13&fields2=f51,f52,f53,f54,f55,f56,f57,f58,f59,f60,f61&ndays=1",
         function(json) {
           if (!json || !json.data || !json.data.trends) return null;
@@ -6651,16 +6665,16 @@
       var idxReturns = [];
       if (idxData && idxData.trends && idxData.trends.length && idxData.preClose) {
         idxReturns = idxData.trends.map(function(line) {
-          return (parseFloat(line.split(",")[2]) - idxData.preClose) / idxData.preClose;
+          return (parseFloat(line.split(",")[1]) - idxData.preClose) / idxData.preClose;
         });
       }
 
       var finalResults = [];
       var batchSize = 8;
-      var total = maPassed.length;
+      var total = tailPassed.length;
 
       for (var i = 0; i < total; i += batchSize) {
-        var batch = maPassed.slice(i, i + batchSize);
+        var batch = tailPassed.slice(i, i + batchSize);
         var promises = batch.map(function(s) {
           var secid = getSecId(s.code);
           return jsonpFetch(
@@ -6687,7 +6701,7 @@
           }
 
           var stockReturns = r.trendsData.trends.map(function(line) {
-            return (parseFloat(line.split(",")[2]) - r.trendsData.preClose) / r.trendsData.preClose;
+            return (parseFloat(line.split(",")[1]) - r.trendsData.preClose) / r.trendsData.preClose;
           });
 
           var minLen = Math.min(stockReturns.length, idxReturns.length);
@@ -6696,7 +6710,7 @@
             if (stockReturns[k] >= idxReturns[k] - 0.001) beatCount++;
           }
           var beatPct = minLen > 0 ? beatCount / minLen : 0;
-          stk.vsIndex = beatPct >= 0.8 ? "跑赢" : beatPct >= 0.6 ? "基本" : "跑输";
+          stk.vsIndex = beatPct >= 0.6 ? "跑赢" : beatPct >= 0.45 ? "基本" : "跑输";
           stk.vsPct = beatPct;
           finalResults.push(stk);
         }
@@ -6705,7 +6719,8 @@
           + Math.min(i + batchSize, total) + "/" + total + "，已通过 " + finalResults.length + " 只…";
       }
 
-      return finalResults;
+      /* 只保留跑赢大盘的（≥60%） */
+      return finalResults.filter(function(s) { return s.vsPct >= 0.6; });
     }
 
     async function screenStocks() {
@@ -6719,28 +6734,28 @@
       if (resultsEl) resultsEl.innerHTML = "";
 
       try {
-        // Step 1: clist 初筛
+        // Step 1: clist 初筛（量比/换手/市值）
         var candidates = await fetchScreenCandidates();
         if (!candidates.length) {
-          if (statusEl) statusEl.innerHTML = "<span class=\"st-screen-empty\">暂无符合条件的股票（涨幅3-5% / 量比>1 / 换手5-10% / 市值50-200亿）</span>";
+          if (statusEl) statusEl.innerHTML = "<span class=\"st-screen-empty\">暂无符合条件的股票（量比>1 / 换手5-10% / 市值50-200亿）</span>";
           _screenRunning = false;
           if (btn) { btn.disabled = false; btn.textContent = "开始选股"; }
           return;
         }
-        if (statusEl) statusEl.innerHTML = "<span class=\"st-screen-spin\"></span> 初筛通过 " + candidates.length + " 只，正在验证均线多头排列…";
+        if (statusEl) statusEl.innerHTML = "<span class=\"st-screen-spin\"></span> 初筛通过 " + candidates.length + " 只，正在获取分时数据计算尾盘涨幅…";
 
-        // Step 2: K线均线验证
-        var maPassed = await validateMA(candidates);
-        if (!maPassed.length) {
-          if (statusEl) statusEl.innerHTML = "<span class=\"st-screen-empty\">均线多头排列验证未通过，暂无符合条件的股票</span>";
+        // Step 2: 尾盘段（14:30→收盘）涨幅 3-5% 精确筛选
+        var tailPassed = await validateTailRise(candidates);
+        if (!tailPassed.length) {
+          if (statusEl) statusEl.innerHTML = "<span class=\"st-screen-empty\">尾盘(14:30-15:00)涨幅 3-5% 验证未通过，暂无符合条件的股票</span>";
           _screenRunning = false;
           if (btn) { btn.disabled = false; btn.textContent = "开始选股"; }
           return;
         }
-        if (statusEl) statusEl.innerHTML = "<span class=\"st-screen-spin\"></span> 均线通过 " + maPassed.length + " 只，正在对比分时走势跑赢大盘…";
+        if (statusEl) statusEl.innerHTML = "<span class=\"st-screen-spin\"></span> 尾盘涨幅通过 " + tailPassed.length + " 只，正在对比当日分时是否跑赢大盘…";
 
-        // Step 3: 分时 vs 上证综指
-        var finalResults = await validateVsIndex(maPassed);
+        // Step 3: 全天分时 vs 上证综指（跑赢大盘）
+        var finalResults = await validateVsIndex(tailPassed);
         _screenResults = finalResults;
         renderScreenResults(finalResults);
 
@@ -6768,7 +6783,7 @@
         return;
       }
 
-      var sorted = results.slice().sort(function(a, b) { return b.vsPct - a.vsPct; });
+      var sorted = results.slice().sort(function(a, b) { return b.tailRise - a.tailRise; });
       var fmtMv = function(mv) { return mv >= 100 ? Math.round(mv) + "亿" : mv.toFixed(1) + "亿"; };
       var fmtPct = function(v) { return (v >= 0 ? "+" : "") + v.toFixed(2) + "%"; };
       var vsClass = function(label) {
@@ -6781,24 +6796,24 @@
         + '<div class="st-screen-head">'
         + '<span class="col-code">代码</span>'
         + '<span class="col-name">名称</span>'
-        + '<span class="col-chg">涨幅</span>'
+        + '<span class="col-chg">尾盘涨</span>'
+        + '<span class="col-daychg">日涨</span>'
         + '<span class="col-vol">量比</span>'
         + '<span class="col-turn">换手</span>'
         + '<span class="col-mv">市值</span>'
-        + '<span class="col-ma">均线</span>'
-        + '<span class="col-vs">大盘对比</span>'
+        + '<span class="col-vs">跑赢大盘</span>'
         + '<span class="col-act">操作</span>'
         + '</div>'
         + sorted.map(function(s) {
           return '<div class="st-screen-row" data-code="' + s.code + '">'
             + '<span class="col-code">' + s.code + '</span>'
             + '<span class="col-name">' + s.name + '</span>'
-            + '<span class="col-chg st-up">' + fmtPct(s.chg) + '</span>'
+            + '<span class="col-chg st-up">' + fmtPct(s.tailRise) + '</span>'
+            + '<span class="col-daychg st-up">' + fmtPct(s.dayChg) + '</span>'
             + '<span class="col-vol">' + s.volRatio.toFixed(2) + '</span>'
             + '<span class="col-turn">' + s.turnover.toFixed(2) + '%</span>'
             + '<span class="col-mv">' + fmtMv(s.circMv) + '</span>'
-            + '<span class="col-ma st-up">多头</span>'
-            + '<span class="col-vs ' + vsClass(s.vsIndex) + '">' + s.vsIndex + (s.vsIndex !== "--" ? " " + Math.round(s.vsPct * 100) + "%" : "") + '</span>'
+            + '<span class="col-vs ' + vsClass(s.vsIndex) + '">' + s.vsIndex + " " + Math.round(s.vsPct * 100) + '%</span>'
             + '<span class="col-act"><button class="st-sc-add" data-code="' + s.code + '" data-name="' + s.name + '">＋自选</button></span>'
             + '</div>';
         }).join("")

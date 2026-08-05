@@ -3480,10 +3480,10 @@ button:has(.hb-ic), .wl-play:has(.hb-ic) {
 #page-stock .st-screen-row .col-code { font-weight: 700; color: var(--ink); font-family: "SF Mono", "Consolas", monospace; font-size: 11px; }
 #page-stock .st-screen-row .col-name { font-weight: 600; color: var(--ink); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 #page-stock .st-screen-row .col-chg { font-weight: 800; }
+#page-stock .st-screen-row .col-daychg { font-weight: 700; font-size: 11px; text-align: center; }
 #page-stock .st-screen-row .col-vol,
 #page-stock .st-screen-row .col-turn,
 #page-stock .st-screen-row .col-mv { color: #4a4a44; text-align: center; font-size: 11px; }
-#page-stock .st-screen-row .col-ma { font-size: 11px; text-align: center; }
 #page-stock .st-screen-row .col-vs { font-weight: 700; text-align: center; font-size: 11px; }
 #page-stock .st-sc-add {
   background: #eaf6ee; color: #2f7d43;
