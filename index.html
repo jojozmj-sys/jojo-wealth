@@ -17,7 +17,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/styles.css?v=20260805b162" />
+  <link rel="stylesheet" href="assets/styles.css?v=20260805b163" />
 </head>
 <body class="sidebar-collapsed">
   <!-- 手绘卡通 SVG 图标库（彩铅/水彩风格） -->
@@ -844,6 +844,24 @@
             <div class="st-board-loading" id="stBoardLoading">正在加载板块数据…</div>
           </div>
 
+          <!-- 0.75) 尾盘选股：三步筛选（涨幅/量比/换手率 → 均线多头排列 → 分时跑赢大盘） -->
+          <div class="card st-screen-card">
+            <div class="card-head">
+              <div class="ic"><img src="assets/icons/icon-stock.png" alt="选股"></div>
+              <h2>尾盘选股</h2>
+              <span class="sub">涨幅3-5% · 量比>1 · 换手5-10% · 市值50-200亿 · 均线多头 · 跑赢大盘</span>
+              <button class="card-toggle" type="button" aria-label="折叠">▾</button>
+            </div>
+            <div class="st-screen-body">
+              <div class="st-screen-bar">
+                <button class="btn primary st-screen-btn" id="stScreenBtn" type="button">开始选股</button>
+                <span class="st-screen-note" id="stScreenNote">建议尾盘 14:30-15:00 使用，数据更准确</span>
+              </div>
+              <div class="st-screen-status" id="stScreenStatus"></div>
+              <div class="st-screen-results" id="stScreenResults"></div>
+            </div>
+          </div>
+
           <!-- 1) 实时行情 · 自选股 -->
           <div class="card st-quote-card">
             <div class="card-head">
@@ -1260,13 +1278,13 @@
     <svg class="deco deco-flower" style="top:12%;left:45%;width:24px" viewBox="0 0 36 36" fill="none"><circle cx="18" cy="8" r="5" fill="var(--rose)"/><circle cx="28" cy="18" r="5" fill="var(--rose)"/><circle cx="18" cy="28" r="5" fill="var(--rose)"/><circle cx="8" cy="18" r="5" fill="var(--rose)"/><circle cx="18" cy="18" r="5" fill="var(--lemon)"/></svg>
   </div>
 
-  <script src="assets/data.js?v=20260805b162" defer></script>
-  <script src="assets/config.js?v=20260805b162" defer></script>
-  <script src="assets/sync.js?v=20260805b162" defer></script>
-  <script src="assets/manual-sync.js?v=20260805b162" defer></script>
-  <script src="assets/lunar.js?v=20260805b162" defer></script>
-  <script src="assets/dog_icons.js?v=20260805b162" defer></script>
-  <script src="assets/app.js?v=20260805b162" defer></script>
+  <script src="assets/data.js?v=20260805b163" defer></script>
+  <script src="assets/config.js?v=20260805b163" defer></script>
+  <script src="assets/sync.js?v=20260805b163" defer></script>
+  <script src="assets/manual-sync.js?v=20260805b163" defer></script>
+  <script src="assets/lunar.js?v=20260805b163" defer></script>
+  <script src="assets/dog_icons.js?v=20260805b163" defer></script>
+  <script src="assets/app.js?v=20260805b163" defer></script>
   <!-- 注册 Service Worker：离线可用 + 自动更新缓存，解决"看不到更新" -->
   <script>
     if ("serviceWorker" in navigator) {

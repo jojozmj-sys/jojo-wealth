@@ -6527,10 +6527,280 @@
       appToast("✅ 阈值已保存", 1800, "ok");
     });
 
+    /* ========== 尾盘选股：三步筛选 ==========
+       第一步：clist 全A股初筛（涨幅/量比/换手率/市值）
+       第二步：push2his K线取MA5/MA10/MA20，验证多头排列+站上均线+MA5向上
+       第三步：push2 trends2 分时走势 vs 上证综指，验证跑赢大盘 */
+
+    let _screenResults = [];
+    let _screenRunning = false;
+
+    function getSecId(code) {
+      return (code.startsWith("6") ? "1." : "0.") + code;
+    }
+
+    async function fetchScreenCandidates() {
+      const url = "https://push2.eastmoney.com/api/qt/clist/get?pn=1&pz=5000&po=1&np=1&fltt=2&invt=2&fid=f3&fs=m:0+t:6,m:0+t:80,m:1+t:2,m:1+t:23&fields=f2,f3,f8,f10,f12,f14,f20,f21";
+      const parse = (json) => {
+        if (json && json.data && Array.isArray(json.data.diff)) return json.data.diff;
+        return [];
+      };
+      const rows = await jsonpFetch(url, parse);
+      return rows.filter(s => {
+        const chg = parseFloat(s.f3) || 0;
+        const volRatio = parseFloat(s.f10) || 0;
+        const turnover = parseFloat(s.f8) || 0;
+        const circMv = (parseFloat(s.f21) || 0) / 1e8;
+        return chg >= 3 && chg <= 5 && volRatio > 1 && turnover >= 5 && turnover <= 10 && circMv >= 50 && circMv <= 200;
+      });
+    }
+
+    async function validateMA(candidates) {
+      const passed = [];
+      const batchSize = 8;
+      const total = candidates.length;
+      const statusEl = $("#stScreenStatus");
+
+      for (let i = 0; i < total; i += batchSize) {
+        const batch = candidates.slice(i, i + batchSize);
+        const promises = batch.map(c => {
+          const secid = getSecId(c.f12);
+          const url = "https://push2his.eastmoney.com/api/qt/stock/kline/get?secid=" + secid + "&fields1=f1,f2,f3,f4,f5,f6&fields2=f51,f52,f53,f54,f55,f56,f57,f58,f59,f60,f61&klt=101&fqt=1&end=20500101&lmt=25";
+          return jsonpFetch(url, (json) => {
+            if (!json || !json.data || !json.data.klines) return null;
+            return { candidate: c, klines: json.data.klines };
+          });
+        });
+        const results = await Promise.all(promises);
+
+        for (const r of results) {
+          if (!r || !r.klines || r.klines.length < 20) continue;
+          const c = r.candidate;
+          const closes = r.klines.map(function(line) { return parseFloat(line.split(",")[2]); });
+          const len = closes.length;
+          const lastClose = closes[len - 1];
+
+          const ma5  = closes.slice(-5).reduce(function(a, b) { return a + b; }, 0) / 5;
+          const ma10 = closes.slice(-10).reduce(function(a, b) { return a + b; }, 0) / 10;
+          const ma20 = closes.slice(-20).reduce(function(a, b) { return a + b; }, 0) / 20;
+          const ma60 = closes.reduce(function(a, b) { return a + b; }, 0) / len;
+          const ma5Prev = closes.slice(-6, -1).reduce(function(a, b) { return a + b; }, 0) / 5;
+
+          // 多头排列 + 站上均线 + MA5向上
+          if (!(ma5 > ma10 && ma10 > ma20 && ma20 > ma60)) continue;
+          if (!(lastClose > ma5 && lastClose > ma10)) continue;
+          if (ma5 <= ma5Prev) continue;
+
+          passed.push({
+            code: c.f12, name: c.f14,
+            chg: parseFloat(c.f3) || 0,
+            volRatio: parseFloat(c.f10) || 0,
+            turnover: parseFloat(c.f8) || 0,
+            circMv: (parseFloat(c.f21) || 0) / 1e8,
+            price: lastClose, ma5: ma5, ma10: ma10, ma20: ma20, ma60: ma60
+          });
+        }
+
+        if (statusEl) statusEl.innerHTML = "<span class=\"st-screen-spin\"></span> 均线验证中 "
+          + Math.min(i + batchSize, total) + "/" + total + "，已通过 " + passed.length + " 只…";
+      }
+
+      return passed;
+    }
+
+    async function validateVsIndex(maPassed) {
+      if (!maPassed.length) return [];
+      const statusEl = $("#stScreenStatus");
+      if (statusEl) statusEl.innerHTML = "<span class=\"st-screen-spin\"></span> 正在获取上证综指分时走势…";
+
+      // 获取上证综指分时
+      const idxData = await jsonpFetch(
+        "https://push2.eastmoney.com/api/qt/stock/trends2/get?secid=1.000001&fields1=f1,f2,f3,f4,f5,f6,f7,f8,f9,f10,f11,f12,f13&fields2=f51,f52,f53,f54,f55,f56,f57,f58,f59,f60,f61&ndays=1",
+        function(json) {
+          if (!json || !json.data || !json.data.trends) return null;
+          return { trends: json.data.trends, preClose: parseFloat(json.data.preClose) || 0 };
+        }
+      );
+
+      var idxReturns = [];
+      if (idxData && idxData.trends && idxData.trends.length && idxData.preClose) {
+        idxReturns = idxData.trends.map(function(line) {
+          return (parseFloat(line.split(",")[2]) - idxData.preClose) / idxData.preClose;
+        });
+      }
+
+      var finalResults = [];
+      var batchSize = 8;
+      var total = maPassed.length;
+
+      for (var i = 0; i < total; i += batchSize) {
+        var batch = maPassed.slice(i, i + batchSize);
+        var promises = batch.map(function(s) {
+          var secid = getSecId(s.code);
+          return jsonpFetch(
+            "https://push2.eastmoney.com/api/qt/stock/trends2/get?secid=" + secid + "&fields1=f1,f2,f3,f4,f5,f6,f7,f8,f9,f10,f11,f12,f13&fields2=f51,f52,f53,f54,f55,f56,f57,f58,f59,f60,f61&ndays=1",
+            function(json) {
+              if (!json || !json.data || !json.data.trends) return Object.assign({}, s, { trendsData: null });
+              return Object.assign({}, s, { trendsData: { trends: json.data.trends, preClose: parseFloat(json.data.preClose) || 0 } });
+            }
+          );
+        });
+        var results = await Promise.all(promises);
+
+        for (var j = 0; j < results.length; j++) {
+          var r = results[j];
+          if (!r) continue;
+          var stk = Object.assign({}, r);
+          delete stk.trendsData;
+
+          if (!r.trendsData || !r.trendsData.trends.length || !r.trendsData.preClose || !idxReturns.length) {
+            stk.vsIndex = "--";
+            stk.vsPct = 0;
+            finalResults.push(stk);
+            continue;
+          }
+
+          var stockReturns = r.trendsData.trends.map(function(line) {
+            return (parseFloat(line.split(",")[2]) - r.trendsData.preClose) / r.trendsData.preClose;
+          });
+
+          var minLen = Math.min(stockReturns.length, idxReturns.length);
+          var beatCount = 0;
+          for (var k = 0; k < minLen; k++) {
+            if (stockReturns[k] >= idxReturns[k] - 0.001) beatCount++;
+          }
+          var beatPct = minLen > 0 ? beatCount / minLen : 0;
+          stk.vsIndex = beatPct >= 0.8 ? "跑赢" : beatPct >= 0.6 ? "基本" : "跑输";
+          stk.vsPct = beatPct;
+          finalResults.push(stk);
+        }
+
+        if (statusEl) statusEl.innerHTML = "<span class=\"st-screen-spin\"></span> 对比大盘中 "
+          + Math.min(i + batchSize, total) + "/" + total + "，已通过 " + finalResults.length + " 只…";
+      }
+
+      return finalResults;
+    }
+
+    async function screenStocks() {
+      if (_screenRunning) return;
+      _screenRunning = true;
+      var statusEl = $("#stScreenStatus");
+      var resultsEl = $("#stScreenResults");
+      var btn = $("#stScreenBtn");
+      if (btn) { btn.disabled = true; btn.textContent = "筛选中…"; }
+      if (statusEl) statusEl.innerHTML = "<span class=\"st-screen-spin\"></span> 正在获取全市场股票数据…";
+      if (resultsEl) resultsEl.innerHTML = "";
+
+      try {
+        // Step 1: clist 初筛
+        var candidates = await fetchScreenCandidates();
+        if (!candidates.length) {
+          if (statusEl) statusEl.innerHTML = "<span class=\"st-screen-empty\">暂无符合条件的股票（涨幅3-5% / 量比>1 / 换手5-10% / 市值50-200亿）</span>";
+          _screenRunning = false;
+          if (btn) { btn.disabled = false; btn.textContent = "开始选股"; }
+          return;
+        }
+        if (statusEl) statusEl.innerHTML = "<span class=\"st-screen-spin\"></span> 初筛通过 " + candidates.length + " 只，正在验证均线多头排列…";
+
+        // Step 2: K线均线验证
+        var maPassed = await validateMA(candidates);
+        if (!maPassed.length) {
+          if (statusEl) statusEl.innerHTML = "<span class=\"st-screen-empty\">均线多头排列验证未通过，暂无符合条件的股票</span>";
+          _screenRunning = false;
+          if (btn) { btn.disabled = false; btn.textContent = "开始选股"; }
+          return;
+        }
+        if (statusEl) statusEl.innerHTML = "<span class=\"st-screen-spin\"></span> 均线通过 " + maPassed.length + " 只，正在对比分时走势跑赢大盘…";
+
+        // Step 3: 分时 vs 上证综指
+        var finalResults = await validateVsIndex(maPassed);
+        _screenResults = finalResults;
+        renderScreenResults(finalResults);
+
+        if (statusEl) {
+          if (finalResults.length) {
+            statusEl.innerHTML = "✅ 选股完成，共 " + finalResults.length + " 只（" + new Date().toLocaleTimeString() + "）";
+          } else {
+            statusEl.innerHTML = "<span class=\"st-screen-empty\">无股票同时满足所有条件</span>";
+          }
+        }
+      } catch (e) {
+        if (statusEl) statusEl.innerHTML = "<span class=\"st-screen-err\">选股出错：" + e.message + "</span>";
+        console.error("[screen] error:", e);
+      } finally {
+        _screenRunning = false;
+        if (btn) { btn.disabled = false; btn.textContent = "开始选股"; }
+      }
+    }
+
+    function renderScreenResults(results) {
+      var el = $("#stScreenResults");
+      if (!el) return;
+      if (!results || !results.length) {
+        el.innerHTML = "";
+        return;
+      }
+
+      var sorted = results.slice().sort(function(a, b) { return b.vsPct - a.vsPct; });
+      var fmtMv = function(mv) { return mv >= 100 ? Math.round(mv) + "亿" : mv.toFixed(1) + "亿"; };
+      var fmtPct = function(v) { return (v >= 0 ? "+" : "") + v.toFixed(2) + "%"; };
+      var vsClass = function(label) {
+        if (label === "跑赢") return "st-up";
+        if (label === "跑输") return "st-down";
+        return "";
+      };
+
+      el.innerHTML = '<div class="st-screen-table">'
+        + '<div class="st-screen-head">'
+        + '<span class="col-code">代码</span>'
+        + '<span class="col-name">名称</span>'
+        + '<span class="col-chg">涨幅</span>'
+        + '<span class="col-vol">量比</span>'
+        + '<span class="col-turn">换手</span>'
+        + '<span class="col-mv">市值</span>'
+        + '<span class="col-ma">均线</span>'
+        + '<span class="col-vs">大盘对比</span>'
+        + '<span class="col-act">操作</span>'
+        + '</div>'
+        + sorted.map(function(s) {
+          return '<div class="st-screen-row" data-code="' + s.code + '">'
+            + '<span class="col-code">' + s.code + '</span>'
+            + '<span class="col-name">' + s.name + '</span>'
+            + '<span class="col-chg st-up">' + fmtPct(s.chg) + '</span>'
+            + '<span class="col-vol">' + s.volRatio.toFixed(2) + '</span>'
+            + '<span class="col-turn">' + s.turnover.toFixed(2) + '%</span>'
+            + '<span class="col-mv">' + fmtMv(s.circMv) + '</span>'
+            + '<span class="col-ma st-up">多头</span>'
+            + '<span class="col-vs ' + vsClass(s.vsIndex) + '">' + s.vsIndex + (s.vsIndex !== "--" ? " " + Math.round(s.vsPct * 100) + "%" : "") + '</span>'
+            + '<span class="col-act"><button class="st-sc-add" data-code="' + s.code + '" data-name="' + s.name + '">＋自选</button></span>'
+            + '</div>';
+        }).join("")
+        + '</div>';
+
+      // 绑定"加入自选"按钮
+      el.querySelectorAll(".st-sc-add").forEach(function(btn) {
+        btn.addEventListener("click", function() {
+          var code = this.dataset.code;
+          var name = this.dataset.name;
+          var exists = quotes.find(function(q) { return q.code === code; });
+          if (exists) {
+            appToast(name + " 已在自选中", 1800, "info");
+            return;
+          }
+          addQuote({ code: code, name: name || code });
+          appToast("✅ 已加入自选：" + name, 2000, "ok");
+        });
+      });
+    }
+
+    // 绑定"开始选股"按钮
+    $("#stScreenBtn").addEventListener("click", screenStocks);
+
     // 监听侧边栏切到 stock 时刷新
     const link = document.querySelector('.menu a[data-page="stock"]');
     if (link) link.addEventListener("click", () => {
-      setTimeout(() => { renderIndex(); renderBoards(); renderQuotes(); renderIndiSel(); renderTrades(); renderReviews(); renderNews(); }, 50);
+      setTimeout(() => { renderIndex(); renderBoards(); renderScreenResults(_screenResults); renderQuotes(); renderIndiSel(); renderTrades(); renderReviews(); renderNews(); }, 50);
     });
   }
 
@@ -6543,6 +6813,7 @@
     if (!document.getElementById("stQuoteList")) return;
     renderIndex();                            // 指数概览持续刷新
     renderBoards();                           // 行业板块持续刷新
+    renderScreenResults(_screenResults);      // 尾盘选股结果保持显示
     if (!quotes.length) return;
     renderQuotes();
   }, 30 * 1000);
