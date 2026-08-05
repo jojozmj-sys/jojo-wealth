@@ -6858,6 +6858,48 @@
     // 绑定"开始选股"按钮
     $("#stScreenBtn").addEventListener("click", screenStocks);
 
+    /* ---- 自动选股：从 WORKBENCH_DATA.stockScreen 加载今日结果 ---- */
+    function loadAutoScreen() {
+      if (_screenResults && _screenResults.length) return; // 用户已手动跑过，不覆盖
+      var ss = (window.WORKBENCH_DATA && window.WORKBENCH_DATA.stockScreen) || null;
+      if (!ss || !ss.date) return;
+      // 只加载今天的数据
+      var now = new Date();
+      var today = now.getFullYear() + "-" + String(now.getMonth() + 1).padStart(2, "0") + "-" + String(now.getDate()).padStart(2, "0");
+      if (ss.date !== today) return;
+
+      if (ss.results && ss.results.length) {
+        _screenResults = ss.results;
+        renderScreenResults(ss.results);
+        var statusEl = $("#stScreenStatus");
+        if (statusEl) {
+          statusEl.innerHTML = "📋 <strong>自动选股</strong>（" + (ss.time || "") + "）共 " + ss.count + " 只"
+            + ' · <button id="stReScreen" class="st-rescreen-btn">重新手动选股</button>';
+          var reBtn = $("#stReScreen");
+          if (reBtn) reBtn.addEventListener("click", function() {
+            _screenResults = [];
+            if (statusEl) statusEl.innerHTML = "";
+            screenStocks();
+          });
+        }
+      } else {
+        // 今日已自动选股但无结果
+        var statusEl2 = $("#stScreenStatus");
+        if (statusEl2) {
+          statusEl2.innerHTML = "📋 <strong>自动选股</strong>（" + (ss.time || "") + "）" + (ss.note || "无符合条件股票")
+            + ' · <button id="stReScreen2" class="st-rescreen-btn">重新手动选股</button>';
+          var reBtn2 = $("#stReScreen2");
+          if (reBtn2) reBtn2.addEventListener("click", function() {
+            _screenResults = [];
+            if (statusEl2) statusEl2.innerHTML = "";
+            screenStocks();
+          });
+        }
+      }
+    }
+
+    loadAutoScreen();
+
     // 监听侧边栏切到 stock 时刷新
     const link = document.querySelector('.menu a[data-page="stock"]');
     if (link) link.addEventListener("click", () => {
