@@ -6378,12 +6378,19 @@
         const mainS = fmtMoney(it.main);
         const mainPctS = (it.mainPct == null || isNaN(it.mainPct)) ? "--" : (it.mainPct > 0 ? "+" : "") + it.mainPct.toFixed(1) + "%";
         const mainColor = (it.main == null || it.main === 0) ? "flat" : (it.main > 0 ? "up" : "down");
-        return `<div class="st-index-row">
-          <div class="st-index-name">${it.name}<span class="st-index-code">${it.code}</span></div>
+        return `<div class="st-index-card3">
+          <div class="st-index-top">
+            <div class="st-index-badge st-${cls}">${pctS}</div>
+            <div class="st-index-nm">
+              <div class="st-index-name">${it.name}</div>
+              <div class="st-index-code">${it.code}</div>
+            </div>
+          </div>
           <div class="st-index-price st-${cls}">${(it.cur==null||isNaN(it.cur))?"--":it.cur.toFixed(2)}</div>
-          <div class="st-index-chg st-${cls}"><span>${chgS}</span><span>${pctS}</span></div>
-          <div class="st-index-amt"><label>成交额</label><span>${amtS}</span></div>
-          <div class="st-index-main st-${mainColor}"><label>主力净流入</label><span>${mainS} <em>${mainPctS}</em></span></div>
+          <div class="st-index-meta">
+            <div class="st-index-amt"><label>成交额</label><span>${amtS}</span></div>
+            <div class="st-index-main st-${mainColor}"><label>主力净流入</label><span>${mainS} <em>${mainPctS}</em></span></div>
+          </div>
         </div>`;
       }).join("");
     });
@@ -6431,37 +6438,35 @@
     const loading = $("#stBoardLoading");
     if (!list) return;
     if (loading) loading.style.display = "block";
-    fetchBoards(10).then(rows => {
+    fetchBoards(30).then(rows => {
       if (loading) loading.style.display = "none";
       if (!rows.length) {
         list.innerHTML = `<div class="st-board-empty">板块数据暂不可用，请稍后重试</div>`;
         return;
       }
-      const body = rows.map((b, i) => {
-        const pct = b.f3, pctS = (pct==null||isNaN(pct)) ? "--" : (pct>0?"+":"") + pct.toFixed(2) + "%";
+      // 按涨跌幅排序，生成热力图瓦片
+      rows.sort((a, b) => (b.f3 || -999) - (a.f3 || -999));
+      const maxAbs = Math.max(...rows.map(r => Math.abs(r.f3 || 0)), 1);
+      list.innerHTML = rows.map(b => {
+        const pct = b.f3;
+        const pctS = (pct==null||isNaN(pct)) ? "--" : (pct>0?"+":"") + pct.toFixed(2) + "%";
+        const intensity = Math.min(1, Math.abs(pct || 0) / maxAbs); // 0~1
         const cls = pct > 0 ? "up" : pct < 0 ? "down" : "flat";
-        const mainS = fmtMoney(b.f62);
-        const mainColor = (b.f62==null||b.f62===0) ? "flat" : (b.f62>0?"up":"down");
-        const leaderName = b.f128 || "--";
+        const leaderName = b.f128 || "";
         const leaderCode = b.f140 || "";
-        const leaderPct = (b.f136==null||isNaN(b.f136)) ? "--" : (b.f136>0?"+":"") + b.f136.toFixed(2) + "%";
-        const leaderCls = (b.f136||0) > 0 ? "up" : (b.f136||0) < 0 ? "down" : "flat";
-        return `<div class="st-board-row">
-          <div class="st-board-rank">${i+1}</div>
-          <div class="st-board-main"><div class="st-board-name">${b.f14||"--"}</div>
-            <div class="st-board-leader">领涨 <span class="st-${leaderCls}">${leaderName}</span> <span class="st-${leaderCls}">${leaderPct}</span>
-              <button class="st-board-add" type="button" data-code="${leaderCode}" data-name="${leaderName}">＋自选</button>
-            </div>
-          </div>
-          <div class="st-board-pct st-${cls}">${pctS}</div>
-          <div class="st-board-mainflow st-${mainColor}">${mainS}</div>
+        // 热力图色阶强度: opacity 0.15 ~ 0.85
+        const opacity = (0.15 + intensity * 0.7).toFixed(2);
+        return `<div class="st-tile st-tile-${cls}" style="--tile-opacity:${opacity}" data-code="${leaderCode}" data-name="${leaderName}">
+          <div class="st-tile-pct">${pctS}</div>
+          <div class="st-tile-name">${b.f14||"--"}</div>
+          ${leaderName ? `<div class="st-tile-leader">${leaderName}</div>` : ""}
         </div>`;
       }).join("");
-      list.innerHTML = `<div class="st-board-head"><span></span><span>板块</span><span>涨跌幅</span><span>主力净流入</span></div>` + body;
-      // 绑定领涨股加自选按钮
-      list.querySelectorAll(".st-board-add").forEach(btn => {
-        btn.addEventListener("click", () => {
-          const code = btn.getAttribute("data-code"); const nm = btn.getAttribute("data-name");
+      // 点击瓦片→领涨股加入自选
+      list.querySelectorAll(".st-tile").forEach(tile => {
+        tile.addEventListener("click", () => {
+          const code = tile.getAttribute("data-code");
+          const nm = tile.getAttribute("data-name");
           if (!code) { appToast("该板块暂无领涨股", 1800, "warn"); return; }
           addQuote(code, nm === "--" ? "" : nm, leaderMarketOf(code));
         });
@@ -7359,11 +7364,13 @@
           '</div>';
       }
 
-      // 概览区：计划完成 + 英语 + 心理学 三卡并列
+      // 概览区：计划完成 + 英语 + 心理学 三卡并列（移到每日一句话上方）
       var miniRow = document.createElement("div");
       miniRow.className = "ov-mini-row";
       miniRow.innerHTML = (planCard || "") + (enStatsHtml || "") + (psychStatsHtml || "");
-      ovBox.appendChild(miniRow);
+      var miniHost = document.getElementById("deskMiniStats");
+      if (miniHost) miniHost.appendChild(miniRow);
+      else ovBox.appendChild(miniRow);
     }
   })();
 

@@ -3383,23 +3383,38 @@ button:has(.hb-ic), .wl-play:has(.hb-ic) {
 #page-stock .st-news-row .sn a { color: var(--mint-deep); text-decoration: none; }
 #page-stock .st-news-row .sn a:hover { text-decoration: underline; }
 
-/* ---- 指数概览（沪深创科 + 成交额 + 主力资金） ---- */
-#page-stock .st-index-list { display: flex; flex-direction: column; gap: 8px; }
-#page-stock .st-index-row {
-  display: grid;
-  grid-template-columns: 1.6fr 0.9fr 1fr 0.9fr 1.4fr;
-  gap: 8px;
-  align-items: center;
+/* ---- 指数概览（卡片网格 × 大彩色涨跌幅徽章） ---- */
+#page-stock .st-index-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 10px; }
+#page-stock .st-index-card3 {
   background: #fffdf9;
   border: 1px solid var(--mint-line);
-  border-radius: 10px;
-  padding: 10px 12px;
-  font-size: 13px;
+  border-radius: 12px;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: transform .15s, box-shadow .15s;
 }
-#page-stock .st-index-name { font-weight: 700; color: var(--ink); display: flex; flex-direction: column; gap: 2px; }
+#page-stock .st-index-card3:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,.05); }
+#page-stock .st-index-top { display: flex; align-items: center; gap: 10px; }
+#page-stock .st-index-badge {
+  flex: 0 0 auto;
+  min-width: 64px;
+  text-align: center;
+  font-weight: 800;
+  font-size: 16px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  color: #fff;
+  background: #9aa0a6; /* flat 灰 */
+}
+#page-stock .st-index-badge.st-up { background: var(--st-up); }
+#page-stock .st-index-badge.st-down { background: var(--st-down); }
+#page-stock .st-index-nm { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+#page-stock .st-index-name { font-weight: 700; color: var(--ink); font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 #page-stock .st-index-code { font-size: 10px; color: var(--pink-dark); font-weight: 400; }
-#page-stock .st-index-price { font-weight: 800; font-size: 15px; }
-#page-stock .st-index-chg { display: flex; flex-direction: column; font-weight: 700; font-size: 12px; }
+#page-stock .st-index-price { font-weight: 800; font-size: 18px; letter-spacing: .3px; }
+#page-stock .st-index-meta { display: flex; justify-content: space-between; gap: 8px; border-top: 1px dashed var(--mint-line); padding-top: 8px; }
 #page-stock .st-index-amt, #page-stock .st-index-main { display: flex; flex-direction: column; gap: 2px; }
 #page-stock .st-index-amt label, #page-stock .st-index-main label { font-size: 10px; color: var(--pink-dark); }
 #page-stock .st-index-amt span { font-weight: 600; color: #4a4a44; }
@@ -3408,42 +3423,43 @@ button:has(.hb-ic), .wl-play:has(.hb-ic) {
 #page-stock .st-index-loading, #page-stock .st-board-loading { text-align: center; color: var(--pink-dark); font-size: 12px; padding: 16px 0; }
 #page-stock .st-board-empty { text-align: center; color: var(--pink-dark); font-size: 12px; padding: 24px 0; }
 
-/* ---- 行业板块涨跌幅排行 + 领涨股 ---- */
-#page-stock .st-board-list { display: flex; flex-direction: column; gap: 6px; }
-#page-stock .st-board-head,
-#page-stock .st-board-row {
+/* ---- 行业板块热力图瓦片 ---- */
+#page-stock .st-board-list {
   display: grid;
-  grid-template-columns: 28px 1fr 74px 84px;
-  gap: 8px;
-  align-items: center;
-  padding: 8px 12px;
-  font-size: 12px;
+  grid-template-columns: repeat(auto-fill, minmax(95px, 1fr));
+  gap: 6px;
 }
-#page-stock .st-board-head { color: var(--pink-dark); font-size: 11px; font-weight: 600; }
-#page-stock .st-board-row {
-  background: #fffdf9;
-  border: 1px solid var(--mint-line);
-  border-radius: 10px;
-}
-#page-stock .st-board-rank { color: var(--pink-dark); font-weight: 800; text-align: center; }
-#page-stock .st-board-main { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
-#page-stock .st-board-name { font-weight: 700; color: var(--ink); }
-#page-stock .st-board-leader { font-size: 11px; color: #4a4a44; display: flex; align-items: center; gap: 4px; flex-wrap: wrap; }
-#page-stock .st-board-add {
-  background: #eaf6ee;
-  color: #2f7d43;
-  border: 1px solid #bfe3c9;
-  border-radius: 20px;
-  font-size: 11px;
-  font-weight: 600;
-  padding: 3px 10px;
+#page-stock .st-tile {
+  border-radius: 8px;
+  padding: 10px 6px;
+  text-align: center;
   cursor: pointer;
-  white-space: nowrap;
-  transition: background .15s;
+  transition: transform .12s, filter .12s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  min-height: 72px;
 }
-#page-stock .st-board-add:hover { background: #d8eede; }
-#page-stock .st-board-pct { font-weight: 800; font-size: 14px; text-align: right; }
-#page-stock .st-board-mainflow { font-weight: 700; text-align: right; }
+#page-stock .st-tile:hover { transform: scale(1.04); filter: brightness(1.08); }
+#page-stock .st-tile-up {
+  background: rgba(224, 58, 58, var(--tile-opacity, .3));
+  border: 1px solid rgba(224, 58, 58, .3);
+}
+#page-stock .st-tile-down {
+  background: rgba(34, 160, 67, var(--tile-opacity, .3));
+  border: 1px solid rgba(34, 160, 67, .3);
+}
+#page-stock .st-tile-flat {
+  background: rgba(154, 160, 166, var(--tile-opacity, .15));
+  border: 1px solid var(--mint-line);
+}
+#page-stock .st-tile-pct { font-weight: 800; font-size: 13px; color: var(--ink); }
+#page-stock .st-tile-up .st-tile-pct { color: var(--st-up); }
+#page-stock .st-tile-down .st-tile-pct { color: var(--st-down); }
+#page-stock .st-tile-name { font-size: 11px; font-weight: 600; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; }
+#page-stock .st-tile-leader { font-size: 9px; color: var(--pink-dark); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; }
 
 /* 股票涨跌配色（涨红跌绿，沿用 st-up/st-down） */
 #page-stock .st-up { color: var(--st-up); }
@@ -3801,11 +3817,12 @@ button:has(.hb-ic), .wl-play:has(.hb-ic) {
   .dh-sun { width: 48px; height: 48px; }
 }
 
-/* 概览 计划完成+英语+心理 mini 卡片 */
+/* 概览 计划完成+英语+心理 mini 卡片（位于 hero 和每日一句话之间） */
+.desk-mini-stats { margin: 0 0 14px 0; }
 .ov-mini-row {
   display: flex;
   gap: 12px;
-  margin-top: 14px;
+  margin: 0;
   flex-wrap: wrap;
 }
 .ov-mini-card {
