@@ -3817,12 +3817,11 @@ button:has(.hb-ic), .wl-play:has(.hb-ic) {
   .dh-sun { width: 48px; height: 48px; }
 }
 
-/* 概览 计划完成+英语+心理 mini 卡片（位于 hero 和每日一句话之间） */
-.desk-mini-stats { margin: 0 0 14px 0; }
+/* 概览 计划完成+英语+心理 mini 卡片（概览第一部分） */
 .ov-mini-row {
   display: flex;
   gap: 12px;
-  margin: 0;
+  margin: 0 0 14px 0;
   flex-wrap: wrap;
 }
 .ov-mini-card {

@@ -7364,13 +7364,11 @@
           '</div>';
       }
 
-      // 概览区：计划完成 + 英语 + 心理学 三卡并列（移到每日一句话上方）
+      // 概览区：计划完成 + 英语 + 心理学 三卡并列（作为概览第一部分，置于柱状图之上）
       var miniRow = document.createElement("div");
       miniRow.className = "ov-mini-row";
       miniRow.innerHTML = (planCard || "") + (enStatsHtml || "") + (psychStatsHtml || "");
-      var miniHost = document.getElementById("deskMiniStats");
-      if (miniHost) miniHost.appendChild(miniRow);
-      else ovBox.appendChild(miniRow);
+      ovBox.insertBefore(miniRow, ovBox.firstChild);
     }
   })();
 
