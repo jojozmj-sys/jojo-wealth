@@ -1781,6 +1781,13 @@ button:has(.hb-ic), .wl-play:has(.hb-ic) {
 }
 .news-hl-src { font-size: 11px; color: var(--ink-soft); margin-top: 4px; }
 .news-hl-src .news-link { color: var(--pink-dark); }
+.news-hl-desc {
+  font-size: 12px; color: var(--ink-soft);
+  line-height: 1.55; margin-top: 4px;
+  word-break: break-word;
+  display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3;
+  overflow: hidden;
+}
 /* 折叠：非 open 项只显示标题行（收起详情），open 项显示完整 */
 .news-hl-item:not(.open) .news-hl-src { display: none; }
 @media (max-width: 720px) {

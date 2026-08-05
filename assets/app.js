@@ -1099,12 +1099,6 @@
       const now = new Date();
       const dateStr = d.date || `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,"0")}-${String(now.getDate()).padStart(2,"0")}`;
       const weekday = ["周日","周一","周二","周三","周四","周五","周六"][now.getDay()];
-      // 今日要闻（重要新闻优先，最多 10 条，不足则用其他新闻补齐）
-      const tops = list.filter(isTopNews);
-      const headlinePool = tops.length >= 2 ? [...tops, ...list.filter(t => !isTopNews(t))] : list;
-      const headline = headlinePool.slice(0, 10).map(t => ({
-        title: t, url: newsSearchUrl(t), source: "实时新闻", important: true
-      }));
       // 整理进版面：在现有版面基础上【增量合并 + 按标题去重】，新新闻 unshift 进对应版面，旧条目保留
       const base = (D.news && D.news.today && D.news.today.sections) || [];
       const sections = base.map(s => ({ name: s.name, items: filterUnread(s.items).slice() }));
@@ -1119,6 +1113,22 @@
       list.forEach(t => addToSection(classifyNewsSection(t), t));
       // 所有版面统一剔除已读条目（已看过的新闻从列表去掉）
       sections.forEach(s => { s.items = filterUnread(s.items); });
+      // 今日要闻：从已整理的 sections 中精选（带 desc 概览），重要新闻优先
+      var allItems = [];
+      sections.forEach(s => (s.items || []).forEach(it => {
+        const title = it.title || it;
+        allItems.push({
+          title: title, desc: it.desc || "",
+          url: it.url || newsSearchUrl(title),
+          source: it.source || "实时新闻",
+          section: s.name, important: isTopNews(title)
+        });
+      }));
+      // 重要新闻排前面，整体最多 10 条
+      var tops = allItems.filter(it => it.important);
+      var headline = tops.length >= 2 ?
+        [...tops, ...allItems.filter(it => !it.important)].slice(0, 10) :
+        allItems.slice(0, 10);
       const newsData = {
         mode: "live",
         updated: `${now.getHours()}:${String(now.getMinutes()).padStart(2,"0")}`,
@@ -1143,21 +1153,19 @@
     box.hidden = false;
     const $cnt = $("#newsHeadlineCount");
     if ($cnt) $cnt.textContent = items.length + " 条要闻 · 实时整理";
-    // 全部默认收起（只显示标题），点头部切换；列表项都是同一形态
+    // 每条要闻直接展示：标题 + 概览（desc）+ 原文链接，不再折叠
     $("#newsHeadlineList").innerHTML = items.map((it, i) => {
       return `
-      <div class="news-hl-item" data-hl="${i}" data-nt="${escapeHtml(newsHashKey(it.title || ""))}">
+      <div class="news-hl-item open" data-hl="${i}" data-nt="${escapeHtml(newsHashKey(it.title || ""))}">
         <span class="news-hl-rank">${i + 1}</span>
         <div class="news-hl-main">
-          <div class="news-hl-head">
-            <div class="news-hl-t">${escapeHtml(it.title)}</div>
-            <span class="news-hl-arr">▸</span>
-          </div>
-          <div class="news-hl-src">${it.source} · <a class="news-link" href="${it.url}" target="_blank" rel="noopener">查看原文 ↗</a></div>
+          <div class="news-hl-t">${escapeHtml(it.title)}</div>
+          ${it.desc ? `<div class="news-hl-desc">${escapeHtml(it.desc)}</div>` : ""}
+          <div class="news-hl-src">${escapeHtml(it.source || "今日新闻")}${it.section ? " · " + escapeHtml(it.section) : ""} · <a class="news-link" href="${it.url}" target="_blank" rel="noopener">查看原文 ↗</a></div>
         </div>
       </div>`;
     }).join("");
-    // 折叠交互：点击任一条目头部切换展开/收起；展开/查看原文即视为已读并移除
+    // 查看原文即视为已读并移除
     const listEl = $("#newsHeadlineList");
     const hlRemove = (item) => {
       const title = item.getAttribute("data-nt") || "";
@@ -1171,12 +1179,6 @@
       }
     };
     listEl.querySelectorAll(".news-hl-item").forEach(item => {
-      item.querySelector(".news-hl-head").addEventListener("click", () => {
-        const open = item.classList.contains("open");
-        item.classList.toggle("open", !open);
-        const arr = item.querySelector(".news-hl-arr");
-        if (arr) arr.textContent = open ? "▸" : "▾";
-      });
       const link = item.querySelector(".news-link");
       if (link) link.addEventListener("click", () => hlRemove(item));
     });
@@ -1269,10 +1271,12 @@
     const items = [];
     for (const s of sections) {
       for (const it of (s.items || [])) {
+        const title = (it && it.title) || it || "";
         items.push({
-          title: it.title || it,
-          url: it.url || newsSearchUrl(it.title || it),
-          source: it.source || "今日新闻",
+          title: title,
+          desc: (it && it.desc) || "",
+          url: (it && it.url) || newsSearchUrl(title),
+          source: (it && it.source) || "今日新闻",
           important: true
         });
         if (items.length >= 10) break;
