@@ -3786,6 +3786,78 @@ button:has(.hb-ic), .wl-play:has(.hb-ic) {
   .dh-sun { width: 48px; height: 48px; }
 }
 
+/* 概览英语+心理 mini 卡片 */
+.ov-mini-row {
+  display: flex;
+  gap: 12px;
+  margin-top: 14px;
+}
+.ov-mini-card {
+  flex: 1;
+  min-width: 0;
+  background: rgba(126,147,169,.06);
+  border: 1px solid rgba(126,147,169,.1);
+  border-radius: 14px;
+  padding: 12px 14px;
+}
+.ov-mini-hd {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+.ov-mini-ic { font-size: 16px; flex: none; }
+.ov-mini-title {
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--mint-line);
+}
+.ov-mini-body {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.ov-mini-ring {
+  flex: none;
+}
+.ov-mini-ring-num {
+  font-size: 15px;
+  font-weight: 900;
+  fill: var(--mint-line);
+}
+.ov-mini-ring-sub {
+  font-size: 7.5px;
+  font-weight: 700;
+  fill: var(--ink-soft);
+}
+.ov-mini-stats {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.ov-mini-stat {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+.ov-ms-num {
+  font-size: 16px;
+  font-weight: 900;
+  color: var(--rum);
+  min-width: 28px;
+}
+.ov-ms-lbl {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--ink-soft);
+}
+
+@media (max-width: 560px) {
+  .ov-mini-row { flex-direction: column; }
+  .ov-mini-body { gap: 10px; }
+}
+
 /* ================= 正念练习 ================= */
 .mf-card { margin-bottom: 18px; }
 .mf-card .card-head .ic { background: var(--mint-soft); border-radius: 12px; }

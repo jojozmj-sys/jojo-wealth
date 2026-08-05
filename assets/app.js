@@ -7242,6 +7242,92 @@
       }).join("");
 
       ovBox.innerHTML = ringSvg + '<div class="ov-bars">' + barsHtml + '</div>';
+
+      // 英语学习统计
+      var enStatsHtml = "";
+      if (D && D.englishDaily) {
+        var enDays = D.englishDaily.days || [];
+        var enVocabTotal = 0, enKeysTotal = 0;
+        enDays.forEach(function (d) {
+          enVocabTotal += (d.vocab || []).length;
+          if (d.spoken && d.spoken.keys) enKeysTotal += d.spoken.keys.length;
+        });
+        var enPct = enDays.length ? Math.round(Math.min(enDays.length / 7 * 100, 100)) : 0;
+        var enR2 = 28, enC2 = 2 * Math.PI * enR2, enDash2 = enC2 * enPct / 100;
+        enStatsHtml =
+          '<div class="ov-mini-card ov-mini-en">' +
+            '<div class="ov-mini-hd"><span class="ov-mini-ic">🔤</span><span class="ov-mini-title">英语学习</span></div>' +
+            '<div class="ov-mini-body">' +
+              '<svg class="ov-mini-ring" viewBox="0 0 72 72" width="72" height="72">' +
+                '<circle cx="36" cy="36" r="' + enR2 + '" fill="none" stroke="rgba(60,142,114,.12)" stroke-width="5"/>' +
+                '<circle cx="36" cy="36" r="' + enR2 + '" fill="none" stroke="#3C8E72" stroke-width="5" stroke-linecap="round" ' +
+                  'stroke-dasharray="' + enDash2 + ' ' + enC2 + '" transform="rotate(-90 36 36)"/>' +
+                '<text x="36" y="33" text-anchor="middle" class="ov-mini-ring-num">' + enPct + '%</text>' +
+                '<text x="36" y="48" text-anchor="middle" class="ov-mini-ring-sub">周进度</text>' +
+              '</svg>' +
+              '<div class="ov-mini-stats">' +
+                '<div class="ov-mini-stat"><span class="ov-ms-num">' + enVocabTotal + '</span><span class="ov-ms-lbl">单词</span></div>' +
+                '<div class="ov-mini-stat"><span class="ov-ms-num">' + enKeysTotal + '</span><span class="ov-ms-lbl">口语</span></div>' +
+                '<div class="ov-mini-stat"><span class="ov-ms-num">' + enDays.length + '</span><span class="ov-ms-lbl">课件</span></div>' +
+              '</div>' +
+            '</div>' +
+          '</div>';
+      }
+
+      // 心理学统计
+      var psychStatsHtml = "";
+      if (D && D.psychology) {
+        var psychCards = D.psychology.cards || [];
+        var psychTotal = psychCards.length;
+        var psychMastered = 0, psychUnderstood = 0;
+        try {
+          var psychProg = JSON.parse(localStorage.getItem("wb_psych_progress_v1")) || {};
+          psychCards.forEach(function (c) {
+            if (psychProg[c.id] && psychProg[c.id].applied) psychMastered++;
+            if (psychProg[c.id] && psychProg[c.id].understood) psychUnderstood++;
+          });
+        } catch (e) {}
+        // 今日测验进度
+        var quizProg = { done: 0, total: 0 };
+        try {
+          var quizDay = localStorage.getItem("wb_psych_quiz_day_v1");
+          if (quizDay === today) {
+            var qp = JSON.parse(localStorage.getItem("wb_psych_quiz_v1")) || {};
+            quizProg.done = (qp.done || []).length;
+            quizProg.total = (qp.questions || []).length;
+          }
+        } catch (e) {}
+        var psychPct = psychTotal ? Math.round(psychMastered / psychTotal * 100) : 0;
+        var prR = 28, prC = 2 * Math.PI * prR, prDash = prC * psychPct / 100;
+        psychStatsHtml =
+          '<div class="ov-mini-card ov-mini-psych">' +
+            '<div class="ov-mini-hd"><span class="ov-mini-ic">🧠</span><span class="ov-mini-title">心理学</span></div>' +
+            '<div class="ov-mini-body">' +
+              '<svg class="ov-mini-ring" viewBox="0 0 72 72" width="72" height="72">' +
+                '<circle cx="36" cy="36" r="' + prR + '" fill="none" stroke="rgba(201,138,94,.12)" stroke-width="5"/>' +
+                '<circle cx="36" cy="36" r="' + prR + '" fill="none" stroke="#C98A5E" stroke-width="5" stroke-linecap="round" ' +
+                  'stroke-dasharray="' + prDash + ' ' + prC + '" transform="rotate(-90 36 36)"/>' +
+                '<text x="36" y="33" text-anchor="middle" class="ov-mini-ring-num">' + psychPct + '%</text>' +
+                '<text x="36" y="48" text-anchor="middle" class="ov-mini-ring-sub">掌握率</text>' +
+              '</svg>' +
+              '<div class="ov-mini-stats">' +
+                '<div class="ov-mini-stat"><span class="ov-ms-num">' + psychMastered + '</span><span class="ov-ms-lbl">已掌握</span></div>' +
+                '<div class="ov-mini-stat"><span class="ov-ms-num">' + psychUnderstood + '</span><span class="ov-ms-lbl">已看懂</span></div>' +
+                (quizProg.total > 0
+                  ? '<div class="ov-mini-stat"><span class="ov-ms-num">' + quizProg.done + '/' + quizProg.total + '</span><span class="ov-ms-lbl">今日练习</span></div>'
+                  : '<div class="ov-mini-stat"><span class="ov-ms-num">' + psychTotal + '</span><span class="ov-ms-lbl">总知识点</span></div>') +
+              '</div>' +
+            '</div>' +
+          '</div>';
+      }
+
+      // 追加到概览区域
+      if (enStatsHtml || psychStatsHtml) {
+        var miniRow = document.createElement("div");
+        miniRow.className = "ov-mini-row";
+        miniRow.innerHTML = (enStatsHtml || "") + (psychStatsHtml || "");
+        ovBox.appendChild(miniRow);
+      }
     }
   })();
 
