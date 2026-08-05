@@ -5738,6 +5738,66 @@
     if (al === 0) return 100;
     return 100 - 100 / (1 + ag / al);
   }
+  function calcSTD(closes, n) {
+    if (closes.length < n) return null;
+    const slice = closes.slice(-n);
+    const mean = slice.reduce((a, b) => a + b, 0) / n;
+    const v = slice.reduce((s, x) => s + (x - mean) * (x - mean), 0) / n;
+    return Math.sqrt(v);
+  }
+  // BOLL 布林带（20 日均线 ± 2 倍标准差）
+  function calcBOLL(closes) {
+    if (closes.length < 20) return null;
+    const mid = calcMA(closes, 20);
+    const std = calcSTD(closes, 20);
+    return { mid, up: mid + 2 * std, low: mid - 2 * std };
+  }
+  // KDJ 随机指标（9,3,3），需 high/low
+  function calcKDJ(klines) {
+    const n = 9;
+    if (klines.length < n + 1) return null;
+    let k = 50, d = 50;
+    for (let i = 0; i < klines.length; i++) {
+      const win = klines.slice(Math.max(0, i - n + 1), i + 1);
+      const hh = Math.max(...win.map(x => x.high));
+      const ll = Math.min(...win.map(x => x.low));
+      const rsv = (hh - ll) === 0 ? 50 : ((klines[i].close - ll) / (hh - ll)) * 100;
+      k = (2 / 3) * k + (1 / 3) * rsv;
+      d = (2 / 3) * d + (1 / 3) * k;
+    }
+    const j = 3 * k - 2 * d;
+    return { k, d, j };
+  }
+  // 支撑位 / 压力位：近 60 日高低点 + MA20 动态支撑
+  function calcLevels(klines) {
+    if (klines.length < 20) return null;
+    const look = klines.slice(-60);
+    const highs = look.map(x => x.high);
+    const lows = look.map(x => x.low);
+    const price = klines[klines.length - 1].close;
+    const resist = Math.max(...highs);
+    const support = Math.min(...lows);
+    // 取 MA20 作为动态支撑参考
+    const ma20 = calcMA(klines.map(x => x.close), 20);
+    return { support, resist, ma20 };
+  }
+  // 量能研判：最近 5 日 vs 前 20 日均量
+  function calcVolumeTrend(klines) {
+    if (klines.length < 25) return null;
+    const vols = klines.map(x => x.vol);
+    const last5 = vols.slice(-5).reduce((a, b) => a + b, 0) / 5;
+    const prev20 = vols.slice(-25, -5).reduce((a, b) => a + b, 0) / 20;
+    if (prev20 === 0) return null;
+    return { ratio: last5 / prev20, last5, prev20 };
+  }
+  // 区间涨跌幅（近 5 / 20 日）
+  function calcChgPct(closes, n) {
+    if (closes.length < n + 1) return null;
+    const base = closes[closes.length - 1 - n];
+    const cur = closes[closes.length - 1];
+    if (base === 0) return null;
+    return (cur - base) / base * 100;
+  }
 
   /* ---------- 渲染：自选股列表 ---------- */
   async function renderQuotes() {
@@ -5818,32 +5878,152 @@
     const rsi = calcRSI(closes, 14);
     const last = closes[closes.length - 1];
 
-    const sig = (label, val, judge) => {
-      const c = judge.startsWith("超买") ? "st-up" : judge.startsWith("超卖") ? "st-down" : "st-flat";
+    const sig = (label, val, judge, c) => {
+      if (!c) {
+        c = (judge.includes("超买") || judge.includes("多头") || judge.includes("金叉") || judge.includes("在上方") || judge.includes("放量") || judge.includes("强")) ? "st-up"
+          : (judge.includes("超卖") || judge.includes("空头") || judge.includes("死叉") || judge.includes("在下方") || judge.includes("弱")) ? "st-down" : "st-flat";
+      }
       return `<div class="st-indi-box"><div class="lbl">${label}</div><div class="val ${c}">${val}</div><div class="sig">${judge}</div></div>`;
     };
 
     // 简易信号
     const maSig = !ma5 || !ma20 ? "数据不足" :
-      (last > ma5 && ma5 > ma20 ? "🟢 多头排列" : (last < ma5 && ma5 < ma20 ? "🔴 空头排列" : "🟡 震荡"));
+      (last > ma5 && ma5 > ma20 ? "多头排列" : (last < ma5 && ma5 < ma20 ? "空头排列" : "震荡纠结"));
     const macdSig = !macd ? "数据不足" :
-      (macd.dif > macd.dea && macd.macd > 0 ? "🟢 金叉" : (macd.dif < macd.dea && macd.macd < 0 ? "🔴 死叉" : "🟡 盘整"));
+      (macd.dif > macd.dea && macd.macd > 0 ? "金叉·多头动能" : (macd.dif < macd.dea && macd.macd < 0 ? "死叉·空头动能" : "盘整待变"));
     const rsiSig = rsi == null ? "数据不足" :
-      (rsi > alertCfg.rsiHi ? "🔴 超买" : (rsi < alertCfg.rsiLo ? "🟢 超卖" : "🟡 中性"));
+      (rsi > alertCfg.rsiHi ? "超买区" : (rsi < alertCfg.rsiLo ? "超卖区" : "中性区间"));
+
+    // —— 专业深度指标 ——
+    const boll = calcBOLL(closes);
+    const kdj = calcKDJ(klines);
+    const lv = calcLevels(klines);
+    const vt = calcVolumeTrend(klines);
+    const chg5 = calcChgPct(closes, 5);
+    const chg20 = calcChgPct(closes, 20);
+
+    const sigColor = (s) => s.includes("超买") || s.includes("多头") || s.includes("金叉") || s.includes("在上方") ? "st-up"
+      : (s.includes("超卖") || s.includes("空头") || s.includes("死叉") || s.includes("在下方") ? "st-down" : "st-flat");
+
+    const bollSig = !boll ? "数据不足" : (last > boll.up ? "触及上轨·短线超买" : (last < boll.low ? "触及下轨·短线超卖" : "中轨区间运行"));
+    const kdjSig = !kdj ? "数据不足" : (kdj.k > 80 || kdj.j > 100 ? "高位钝化·追高需谨慎" : (kdj.k < 20 ? "低位区域·超卖" : "中性区间"));
+    const volSig = !vt ? "数据不足" : (vt.ratio > 1.5 ? "明显放量" : (vt.ratio > 1.1 ? "温和放量" : (vt.ratio < 0.7 ? "明显缩量" : "量能平稳")));
 
     body.innerHTML = `
       <div class="st-indi-grid">
         ${sig("现价", last.toFixed(2), "—")}
-        ${sig("MA5", ma5 ? ma5.toFixed(2) : "--", maSig)}
-        ${sig("MA20", ma20 ? ma20.toFixed(2) : "--", maSig)}
-        ${sig("MA60", ma60 ? ma60.toFixed(2) : "--", ma60 ? (last > ma60 ? "🟢 在上方" : "🔴 在下方") : "数据不足")}
-        ${sig("MACD", macd ? `DIF ${macd.dif.toFixed(3)}` : "--", macdSig)}
-        ${sig("RSI(14)", rsi != null ? rsi.toFixed(1) : "--", rsiSig)}
+        ${sig("MA5", ma5 ? ma5.toFixed(2) : "--", maSig, sigColor(maSig))}
+        ${sig("MA20", ma20 ? ma20.toFixed(2) : "--", maSig, sigColor(maSig))}
+        ${sig("MA60", ma60 ? ma60.toFixed(2) : "--", ma60 ? (last > ma60 ? "在上方·强" : "在下方·弱") : "数据不足", sigColor(ma60 ? (last > ma60 ? "在上方·强" : "在下方·弱") : "数据不足"))}
+        ${sig("MACD", macd ? `DIF ${macd.dif.toFixed(3)}` : "--", macdSig, sigColor(macdSig))}
+        ${sig("RSI(14)", rsi != null ? rsi.toFixed(1) : "--", rsiSig, sigColor(rsiSig))}
+        ${sig("BOLL", boll ? `中轨 ${boll.mid.toFixed(2)}` : "--", bollSig, sigColor(bollSig))}
+        ${sig("KDJ", kdj ? `K ${kdj.k.toFixed(0)}` : "--", kdjSig, sigColor(kdjSig))}
+        ${sig("量能", vt ? `×${vt.ratio.toFixed(2)}` : "--", volSig, sigColor(volSig))}
       </div>
       <svg class="st-indi-svg" viewBox="0 0 600 120" preserveAspectRatio="none" id="stKLineSvg"></svg>
-      <div style="font-size:11px;color:var(--pink-dark);margin-top:6px;">最近 ${closes.length} 个交易日收盘价走势（简化图）</div>
+      <div style="font-size:11px;color:var(--pink-dark);margin-top:6px;">最近 ${closes.length} 个交易日收盘价走势（简化图）· 数据源：腾讯前复权日线</div>
+      ${buildStockAnalysis({
+        last, ma5, ma20, ma60, macd, rsi, boll, kdj, lv, vt, chg5, chg20, closes,
+        rsiHi: alertCfg.rsiHi, rsiLo: alertCfg.rsiLo
+      })}
     `;
     drawKLine(closes);
+  }
+
+  /* ---------- 专业财经分析引擎 ---------- */
+  // 综合趋势/动量/超买超卖/支撑压力/量能，输出结构化研判与操作建议
+  function buildStockAnalysis(a) {
+    const { last, ma5, ma20, ma60, macd, rsi, boll, kdj, lv, vt, chg5, chg20, rsiHi, rsiLo } = a;
+    const items = [];
+
+    // —— 1. 趋势研判 ——
+    let trend, trendTxt;
+    const bulls = (ma5 > ma20 ? 1 : 0) + (ma20 > ma60 ? 1 : 0) + (last > ma20 ? 1 : 0);
+    const bears = (ma5 < ma20 ? 1 : 0) + (ma20 < ma60 ? 1 : 0) + (last < ma20 ? 1 : 0);
+    if (bulls >= 2 && bears <= 1) { trend = "多头"; trendTxt = "均线呈多头排列（MA5>MA20>MA60），股价站上中期均线，中期趋势偏强，回踩不破 MA20 可视为强势整理。"; }
+    else if (bears >= 2 && bulls <= 1) { trend = "空头"; trendTxt = "均线呈空头排列（MA5<MA20<MA60），股价运行于中期均线下方，中期趋势偏弱，反弹至均线附近或遇明显抛压。"; }
+    else { trend = "震荡"; trendTxt = "均线交织、方向未明，股价在中期均线附近反复，市场处于多空平衡的箱体整理阶段，需等待方向性突破。"; }
+    items.push({ icon: "📈", tag: "趋势研判", state: trend, txt: trendTxt, tone: trend === "多头" ? "up" : trend === "空头" ? "down" : "flat" });
+
+    // —— 2. 动量（MACD）——
+    let mom, momTxt;
+    if (!macd) { mom = "数据不足"; momTxt = "K 线样本不足以计算 MACD，请保持自选股长期跟踪。"; }
+    else if (macd.dif > macd.dea && macd.macd > 0) { mom = "多头动能"; momTxt = "DIF 位于 DEA 上方且 MACD 红柱为正，表明短线多头动能占优；若 DIF 由下向上穿越零轴，中期动量进一步确认。"; }
+    else if (macd.dif < macd.dea && macd.macd < 0) { mom = "空头动能"; momTxt = "DIF 位于 DEA 下方且 MACD 绿柱为负，短线空头动能主导；需观察 DIF 能否上穿零轴以确认趋势转强。"; }
+    else { mom = "动能收敛"; momTxt = "DIF 与 DEA 靠拢、柱体收窄，动能正在衰竭，通常对应盘整或变盘前兆，方向待突破确认。"; }
+    items.push({ icon: "⚡", tag: "动量研判", state: mom, txt: momTxt, tone: mom === "多头动能" ? "up" : mom === "空头动能" ? "down" : "flat" });
+
+    // —— 3. 超买超卖（RSI）——
+    let os, osTxt;
+    if (rsi == null) { os = "数据不足"; osTxt = "RSI 样本不足。"; }
+    else if (rsi > rsiHi) { os = "超买"; osTxt = `RSI(${rsi.toFixed(1)}) 已高于 ${rsiHi}，短期买盘过热，存在回调或获利回吐压力，不宜盲目追高。`; }
+    else if (rsi < rsiLo) { os = "超卖"; osTxt = `RSI(${rsi.toFixed(1)}) 已低于 ${rsiLo}，短期卖盘透支，存在技术性反弹需求，可关注企稳信号。`; }
+    else { os = "中性"; osTxt = `RSI(${rsi.toFixed(1)}) 处于 ${rsiLo}-${rsiHi} 中性区间，多空力量相对均衡，短线方向不明朗。`; }
+    items.push({ icon: "🧭", tag: "超买超卖", state: os, txt: osTxt, tone: os === "超买" ? "up" : os === "超卖" ? "down" : "flat" });
+
+    // —— 4. 关键点位（支撑/压力）——
+    let lvTxt, supportTxt, resistTxt;
+    if (!lv) { lvTxt = "K 线样本不足以计算关键点位。"; supportTxt = "--"; resistTxt = "--"; }
+    else {
+      supportTxt = lv.support.toFixed(2);
+      resistTxt = lv.resist.toFixed(2);
+      lvTxt = `近 60 日低点 ${supportTxt} 为下方支撑，高点 ${resistTxt} 为上方压力；MA20（${lv.ma20.toFixed(2)}）为动态支撑/压力参考。当前价距支撑 ${Math.abs((last - lv.support) / last * 100).toFixed(1)}%，距压力 ${Math.abs((last - lv.resist) / last * 100).toFixed(1)}%。`;
+    }
+    items.push({ icon: "🎯", tag: "关键点位", state: `支撑 ${supportTxt} · 压力 ${resistTxt}`, txt: lvTxt, tone: "flat" });
+
+    // —— 5. 量能配合 ——
+    let vol, volTxt;
+    if (!vt) { vol = "数据不足"; volTxt = "K 线样本不足以判断量能。"; }
+    else if (vt.ratio > 1.5) { vol = "明显放量"; volTxt = `近 5 日均量约为前 20 日的 ${vt.ratio.toFixed(2)} 倍，量能显著放大。上涨放量确认突破有效性，下跌放量则警惕出货。`; }
+    else if (vt.ratio < 0.7) { vol = "明显缩量"; volTxt = `近 5 日均量仅约为前 20 日的 ${vt.ratio.toFixed(2)} 倍，交投清淡、观望情绪浓，趋势延续性需谨慎看待。`; }
+    else { vol = "量能平稳"; volTxt = `近 5 日均量约为前 20 日的 ${vt.ratio.toFixed(2)} 倍，量能维持常态，走势以存量博弈为主。`; }
+    items.push({ icon: "📊", tag: "量能配合", state: vol, txt: volTxt, tone: vol === "明显放量" ? "up" : vol === "明显缩量" ? "flat" : "flat" });
+
+    // —— 6. 区间表现 ——
+    let chgTxt = "";
+    const chgParts = [];
+    if (chg5 != null) chgParts.push(`近 5 日 ${chg5 >= 0 ? "+" : ""}${chg5.toFixed(2)}%`);
+    if (chg20 != null) chgParts.push(`近 20 日 ${chg20 >= 0 ? "+" : ""}${chg20.toFixed(2)}%`);
+    if (chgParts.length) { chgTxt = `短线与中线区间表现：${chgParts.join("、")}。`; items.push({ icon: "🕐", tag: "区间表现", state: chgParts.join(" / "), txt: chgTxt, tone: (chg5 || 0) >= 0 ? "up" : "down" }); }
+
+    // —— 综合打分（0-100）——
+    let score = 50;
+    score += bulls * 12; score -= bears * 12;              // 均线趋势 ±36
+    if (macd) { if (macd.dif > macd.dea) score += 8; else score -= 8; if (macd.macd > 0) score += 6; else score -= 6; }
+    if (rsi != null) { if (rsi > rsiHi) score -= 6; else if (rsi < rsiLo) score += 6; }
+    if (vt) { if (vt.ratio > 1.3 && last > ma20) score += 5; if (vt.ratio > 1.3 && last < ma20) score -= 5; }
+    score = Math.max(5, Math.min(95, score));
+
+    const verdict = score >= 65 ? "偏多" : score <= 35 ? "偏空" : "中性";
+    let action;
+    if (score >= 65) action = "多头信号占优，可考虑逢回踩 MA20 / 支撑位分批低吸，仓位控制在可承受范围，跌破关键支撑需止损。";
+    else if (score <= 35) action = "空头信号占优，宜轻仓或观望，等待企稳（缩量止跌 + MACD 金叉）后再介入，勿轻易抄底。";
+    else action = "多空信号均衡、趋势未明，建议观望或轻仓试探，以突破压力位/跌破支撑位作为加减仓触发条件。";
+
+    const risk = "以上基于技术面历史数据测算，未含基本面、消息面与宏观因素，技术信号存在滞后性与失效可能，不构成投资建议，据此操作风险自担。";
+
+    return `
+      <div class="st-anl">
+        <div class="st-anl-head">📋 专业财经分析 <span class="st-anl-sub">综合 ${items.length} 个维度 · 技术面测算</span></div>
+        <div class="st-anl-grid">
+          ${items.map(it => `
+            <div class="st-anl-card st-anl-${it.tone}">
+              <div class="st-anl-card-tag">${it.icon} ${it.tag}</div>
+              <div class="st-anl-state">${it.state}</div>
+              <div class="st-anl-txt">${it.txt}</div>
+            </div>`).join("")}
+        </div>
+        <div class="st-anl-score">
+          <div class="st-anl-score-num" data-score="${score}" style="--s:${score}"></div>
+          <div class="st-anl-score-info">
+            <div class="st-anl-score-verdict">技术面综合评分 <b>${score}/100</b> · 倾向 <b class="st-anl-v-${verdict === '偏多' ? 'up' : verdict === '偏空' ? 'down' : 'flat'}">${verdict}</b></div>
+            <div class="st-anl-score-bar"><span style="width:${score}%"></span></div>
+            <div class="st-anl-score-txt">${action}</div>
+          </div>
+        </div>
+        <div class="st-anl-risk">⚠️ ${risk}</div>
+      </div>`;
   }
   function drawKLine(closes) {
     const svg = $("#stKLineSvg");
