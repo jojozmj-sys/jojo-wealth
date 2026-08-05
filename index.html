@@ -17,11 +17,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/styles.css?v=20260805b173" />
+  <link rel="stylesheet" href="assets/styles.css?v=20260805b174" />
   <!-- 预加载：与 HTML 解析并行下载大 JS，避免启动时串行等待 -->
-  <link rel="preload" as="script" href="assets/data.js?v=20260805b173" fetchpriority="high" />
-  <link rel="preload" as="script" href="assets/lunar.js?v=20260805b173" />
-  <link rel="preload" as="script" href="assets/app.js?v=20260805b173" fetchpriority="high" />
+  <link rel="preload" as="script" href="assets/data.js?v=20260805b174" fetchpriority="high" />
+  <link rel="preload" as="script" href="assets/lunar.js?v=20260805b174" />
+  <link rel="preload" as="script" href="assets/app.js?v=20260805b174" fetchpriority="high" />
 </head>
 <body class="sidebar-collapsed">
   <!-- 手绘卡通 SVG 图标库（彩铅/水彩风格） -->
@@ -1282,13 +1282,11 @@
     <svg class="deco deco-flower" style="top:12%;left:45%;width:24px" viewBox="0 0 36 36" fill="none"><circle cx="18" cy="8" r="5" fill="var(--rose)"/><circle cx="28" cy="18" r="5" fill="var(--rose)"/><circle cx="18" cy="28" r="5" fill="var(--rose)"/><circle cx="8" cy="18" r="5" fill="var(--rose)"/><circle cx="18" cy="18" r="5" fill="var(--lemon)"/></svg>
   </div>
 
-  <script src="assets/data.js?v=20260805b173" defer></script>
-  <script src="assets/config.js?v=20260805b173" defer></script>
-  <script src="assets/sync.js?v=20260805b173" defer></script>
-  <script src="assets/manual-sync.js?v=20260805b173" defer></script>
-  <script src="assets/lunar.js?v=20260805b173" defer></script>
-  <script src="assets/dog_icons.js?v=20260805b173" defer></script>
-  <script src="assets/app.js?v=20260805b173" defer></script>
+  <!-- 轻脚本保持 defer 顺序（小体积，几乎无感；config 必须在 data 后依赖它） -->
+  <script src="assets/config.js?v=20260805b174" defer></script>
+  <script src="assets/sync.js?v=20260805b174" defer></script>
+  <script src="assets/manual-sync.js?v=20260805b174" defer></script>
+  <script src="assets/dog_icons.js?v=20260805b174" defer></script>
   <!-- 注册 Service Worker：离线可用 + 自动更新缓存，解决"看不到更新" -->
   <script>
     if ("serviceWorker" in navigator) {
@@ -1298,6 +1296,35 @@
         });
       });
     }
+
+    /* ---------- 启动速度优化：数据+主程序分帧加载，避免首屏阻塞 ----------
+       原方式：data.js(≈950KB)→lunar.js(≈440KB)→app.js(≈460KB) 三个大脚本在
+       defer 链里同步执行，且浏览器要等整条链跑完才绘制首帧；app.js 内部还会
+       一次性渲染全部 16 个页面。这里把它们移到 requestIdleCallback 分片注入，
+       先让浏览器画出桌面页骨架，再在空闲期顺序加载数据与逻辑。 */
+    (function () {
+      function load(src) {
+        return new Promise(function (resolve) {
+          var s = document.createElement("script");
+          s.src = src;
+          s.defer = false;
+          s.async = false;            /* 确保顺序执行 */
+          s.onload = resolve;
+          s.onerror = function () { try { console.warn("load fail", src); } catch (e) {} resolve(); };
+          document.head.appendChild(s);
+        });
+      }
+      function idle(fn) {
+        if ("requestIdleCallback" in window) requestIdleCallback(fn, { timeout: 1800 });
+        else setTimeout(fn, 300);
+      }
+      /* 先让浏览器完成首帧绘制，再拉数据链 */
+      idle(function () {
+        load("assets/data.js?v=20260805b174")
+          .then(function () { return load("assets/lunar.js?v=20260805b174"); })
+          .then(function () { return load("assets/app.js?v=20260805b174"); });
+      });
+    })();
   </script>
 </body>
 </html>
