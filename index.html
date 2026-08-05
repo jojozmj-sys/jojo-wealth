@@ -17,7 +17,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/styles.css?v=20260805b161" />
+  <link rel="stylesheet" href="assets/styles.css?v=20260805b162" />
 </head>
 <body class="sidebar-collapsed">
   <!-- 手绘卡通 SVG 图标库（彩铅/水彩风格） -->
@@ -820,6 +820,30 @@
 
         <!-- 股票 -->
         <section class="page" id="page-stock">
+          <!-- 0) 指数概览：沪深创科 + 资金流向 + 成交额 -->
+          <div class="card st-index-card">
+            <div class="card-head">
+              <div class="ic"><img src="assets/icons/icon-stock.png" alt="指数概览"></div>
+              <h2>指数概览 · 沪深创科</h2>
+              <span class="sub">主要指数 · 成交额 · 主力资金</span>
+              <button class="card-toggle" type="button" aria-label="折叠">▾</button>
+            </div>
+            <div class="st-index-list" id="stIndexList"></div>
+            <div class="st-index-loading" id="stIndexLoading">正在加载指数数据…</div>
+          </div>
+
+          <!-- 0.5) 行业板块涨跌幅排行：领涨股可一键加入自选 -->
+          <div class="card st-board-card">
+            <div class="card-head">
+              <div class="ic"><img src="assets/icons/icon-stock.png" alt="行业板块"></div>
+              <h2>行业板块 · 涨跌幅排行</h2>
+              <span class="sub">今日 Top10 · 点击领涨股加入自选</span>
+              <button class="card-toggle" type="button" aria-label="折叠">▾</button>
+            </div>
+            <div class="st-board-list" id="stBoardList"></div>
+            <div class="st-board-loading" id="stBoardLoading">正在加载板块数据…</div>
+          </div>
+
           <!-- 1) 实时行情 · 自选股 -->
           <div class="card st-quote-card">
             <div class="card-head">
@@ -1236,13 +1260,13 @@
     <svg class="deco deco-flower" style="top:12%;left:45%;width:24px" viewBox="0 0 36 36" fill="none"><circle cx="18" cy="8" r="5" fill="var(--rose)"/><circle cx="28" cy="18" r="5" fill="var(--rose)"/><circle cx="18" cy="28" r="5" fill="var(--rose)"/><circle cx="8" cy="18" r="5" fill="var(--rose)"/><circle cx="18" cy="18" r="5" fill="var(--lemon)"/></svg>
   </div>
 
-  <script src="assets/data.js?v=20260805b161" defer></script>
-  <script src="assets/config.js?v=20260805b161" defer></script>
-  <script src="assets/sync.js?v=20260805b161" defer></script>
-  <script src="assets/manual-sync.js?v=20260805b161" defer></script>
-  <script src="assets/lunar.js?v=20260805b161" defer></script>
-  <script src="assets/dog_icons.js?v=20260805b161" defer></script>
-  <script src="assets/app.js?v=20260805b161" defer></script>
+  <script src="assets/data.js?v=20260805b162" defer></script>
+  <script src="assets/config.js?v=20260805b162" defer></script>
+  <script src="assets/sync.js?v=20260805b162" defer></script>
+  <script src="assets/manual-sync.js?v=20260805b162" defer></script>
+  <script src="assets/lunar.js?v=20260805b162" defer></script>
+  <script src="assets/dog_icons.js?v=20260805b162" defer></script>
+  <script src="assets/app.js?v=20260805b162" defer></script>
   <!-- 注册 Service Worker：离线可用 + 自动更新缓存，解决"看不到更新" -->
   <script>
     if ("serviceWorker" in navigator) {
