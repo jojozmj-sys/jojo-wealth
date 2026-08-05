@@ -6560,7 +6560,7 @@
 
     /* ========== 尾盘选股：尾盘涨幅 + 量比/换手/市值 + 全天跑赢大盘 ==========
        第一步：clist 全A股初筛（量比>1 / 换手5-10% / 市值50-200亿 / 日涨幅≥1%）
-       第二步：trends2 分时数据 → 计算 14:30→收盘 段涨幅，筛选 3%-5%
+       第二步：trends2 分时数据 → 尾盘(14:30→15:00)整段时间当日涨幅保持 3%-5%
        第三步：个股分时全天走势 vs 上证综指 → 筛选跑赢大盘（≥60%时间跑赢） */
 
     let _screenResults = [];
@@ -6597,7 +6597,9 @@
       });
     }
 
-    /* ---- Step 2: trends2 分时 → 计算 14:30→收盘 段涨幅，筛选 3%-5% ---- */
+    /* ---- Step 2: trends2 分时 → 尾盘(14:30→15:00)整段时间内当日涨幅保持 3%-5% ---- */
+    /* 注意：这里衡量的是「相对昨收的当日涨跌幅」在整个尾盘时间段一直落在 3%-5% 区间内，
+     * 而非「尾盘段内的价格变化」。即 14:30 起每个时刻的 (price - preClose)/preClose 都 ∈ [3%,5%]。 */
     async function validateTailRise(candidates) {
       var passed = [];
       var batchSize = 8;
@@ -6623,29 +6625,42 @@
           if (!r || !r.trends || !r.trends.length || !r.preClose) continue;
 
           /* 分时数据格式："2026-08-05 14:30,price,avg,..."
-           * 找到 14:30 之后的第一个点（含）作为起始价，最后一点作为收盘价 */
-          var startIdx = -1;
+           * 收集 14:30(含) 之后所有点的价格，逐个计算相对昨收的当日涨幅，
+           * 要求所有点都落在 3%-5% 区间内 */
+          var tailPrices = [];
           for (var k = 0; k < r.trends.length; k++) {
             var timeStr = r.trends[k].split(",")[0];
             var hhmm = timeStr.split(" ")[1] || "";
-            if (hhmm >= "14:30") { startIdx = k; break; }
+            if (hhmm >= "14:30") {
+              var px = parseFloat(r.trends[k].split(",")[1]) || 0;
+              if (px) tailPrices.push(px);
+            }
           }
-          if (startIdx < 0 || startIdx >= r.trends.length - 1) continue;
+          /* 需要至少覆盖到收盘点，才算有完整尾盘段 */
+          if (tailPrices.length < 2) continue;
 
-          var startPrice = parseFloat(r.trends[startIdx].split(",")[1]) || 0;
-          var endPrice = parseFloat(r.trends[r.trends.length - 1].split(",")[1]) || 0;
-          if (!startPrice) continue;
+          /* 逐点检查：相对昨收的当日涨幅必须一直∈[3%,5%] */
+          var inRange = true;
+          var pctMin = Infinity, pctMax = -Infinity;
+          for (var m = 0; m < tailPrices.length; m++) {
+            var pct = (tailPrices[m] - r.preClose) / r.preClose * 100;
+            if (pct < pctMin) pctMin = pct;
+            if (pct > pctMax) pctMax = pct;
+            if (pct < 3 || pct > 5) { inRange = false; break; }
+          }
+          if (!inRange) continue;
 
-          var tailRise = (endPrice - startPrice) / startPrice * 100;
-          if (tailRise < 3 || tailRise > 5) continue;
+          /* 用收盘点的当日涨幅作为该股的代表涨幅 */
+          var closePrice = tailPrices[tailPrices.length - 1];
+          var tailRise = (closePrice - r.preClose) / r.preClose * 100;
 
           r.candidate.tailRise = tailRise;
-          r.candidate.tailStart = startPrice;
-          r.candidate.tailEnd = endPrice;
+          r.candidate.tailStart = (tailPrices[0] - r.preClose) / r.preClose * 100;
+          r.candidate.tailEnd = (tailPrices[tailPrices.length - 1] - r.preClose) / r.preClose * 100;
           passed.push(r.candidate);
         }
 
-        if (statusEl) statusEl.innerHTML = "<span class=\"st-screen-spin\"></span> 尾盘涨幅验证中 "
+        if (statusEl) statusEl.innerHTML = "<span class=\"st-screen-spin\"></span> 尾盘涨幅(14:30-15:00 保持 3-5%)验证中 "
           + Math.min(i + batchSize, total) + "/" + total + "，已通过 " + passed.length + " 只…";
       }
 
@@ -6752,7 +6767,7 @@
         // Step 2: 尾盘段（14:30→收盘）涨幅 3-5% 精确筛选
         var tailPassed = await validateTailRise(candidates);
         if (!tailPassed.length) {
-          if (statusEl) statusEl.innerHTML = "<span class=\"st-screen-empty\">尾盘(14:30-15:00)涨幅 3-5% 验证未通过，暂无符合条件的股票</span>";
+          if (statusEl) statusEl.innerHTML = "<span class=\"st-screen-empty\">尾盘(14:30-15:00)整段时间涨幅未保持在 3-5%，暂无符合条件的股票</span>";
           _screenRunning = false;
           if (btn) { btn.disabled = false; btn.textContent = "开始选股"; }
           return;
