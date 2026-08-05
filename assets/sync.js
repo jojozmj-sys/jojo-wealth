@@ -33,7 +33,30 @@
     return out;
   }
 
-  /* 合并：云端已有数据 + 本地数据（本地优先，云端独有 key 保留） */
+  /* 判断一个同步值是否为"空"（会被误认成数据被清空的形态） */
+  function isEmptyVal(v) {
+    if (v == null) return true;
+    if (v === "") return true;
+    if (typeof v === "string") {
+      var t = v.trim();
+      if (!t) return true;
+      if (t === "null" || t === "undefined") return true;
+      if (t === "[]" || t === "{}") return true;
+      return false;
+    }
+    if (typeof v === "object") {
+      if (Array.isArray(v)) return v.length === 0;
+      var ks = Object.keys(v);
+      if (ks.length === 0) return true;
+      // 仅含空串/空子对象等"空壳"也视为空
+      return ks.every(function (k) { return isEmptyVal(v[k]); });
+    }
+    return false;
+  }
+
+  /* 合并：云端已有数据 + 本地数据（本地优先，云端独有 key 保留）
+   * 关键保护：空值（""/[]/{}/null）永远不覆盖有值的一端，
+   * 避免「某台设备 localStorage 被清空后，把空数据推上云端、再传播到其他所有设备」的数据丢失。 */
   function mergeData(cloud, local) {
     var base = {};
     try {
@@ -41,7 +64,12 @@
     } catch (e) { base = {}; }
     var merged = {};
     Object.keys(base).forEach(function (k) { merged[k] = base[k]; });
-    Object.keys(local).forEach(function (k) { merged[k] = local[k]; });
+    Object.keys(local).forEach(function (k) {
+      var lv = local[k];
+      var cv = base[k];
+      if (isEmptyVal(lv) && !isEmptyVal(cv)) return; /* 本地空 + 云端有值 → 保留云端，防误清空 */
+      merged[k] = lv;
+    });
     return merged;
   }
 
@@ -111,6 +139,8 @@
       Object.keys(cloudData).forEach(function (k) {
         var cv = cloudData[k];
         var lv = localStorage.getItem(k);
+        /* 空值保护：云端某 key 为空而本地有值时，不覆盖本地（防云端被别的设备清空后传染到本端） */
+        if (isEmptyVal(cv) && !isEmptyVal(lv)) return;
         if (lv !== cv) { localStorage.setItem(k, cv); changed = true; }
       });
     } finally { _pushing = false; }
