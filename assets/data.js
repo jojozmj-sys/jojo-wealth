@@ -5318,7 +5318,7 @@ window.WORKBENCH_DATA = {
   },
   "dailyHot": {
     "mode": "daily",
-    "updated": "2026-08-06 04:13",
+    "updated": "2026-08-06 04:14",
     "platforms": [
       "微博",
       "抖音",
@@ -5668,15 +5668,6 @@ window.WORKBENCH_DATA = {
         {
           "platform": "抖音",
           "rank": 13,
-          "title": "汛期五大谣言套路曝光",
-          "hot": 8425642,
-          "url": "https://www.douyin.com/search/%E6%B1%9B%E6%9C%9F%E4%BA%94%E5%A4%A7%E8%B0%A3%E8%A8%80%E5%A5%97%E8%B7%AF%E6%9B%9D%E5%85%89",
-          "tag": "娱乐",
-          "desc": "3001"
-        },
-        {
-          "platform": "抖音",
-          "rank": 14,
           "title": "王者新英雄卢雅那即将上线",
           "hot": 8421958,
           "url": "https://www.douyin.com/search/%E7%8E%8B%E8%80%85%E6%96%B0%E8%8B%B1%E9%9B%84%E5%8D%A2%E9%9B%85%E9%82%A3%E5%8D%B3%E5%B0%86%E4%B8%8A%E7%BA%BF",
@@ -5685,7 +5676,7 @@ window.WORKBENCH_DATA = {
         },
         {
           "platform": "抖音",
-          "rank": 15,
+          "rank": 14,
           "title": "Seedance2.5满血版",
           "hot": 8138905,
           "url": "https://www.douyin.com/search/Seedance2.5%E6%BB%A1%E8%A1%80%E7%89%88",
@@ -5694,7 +5685,7 @@ window.WORKBENCH_DATA = {
         },
         {
           "platform": "抖音",
-          "rank": 16,
+          "rank": 15,
           "title": "浙江新昌对如是书院开展调查",
           "hot": 7796197,
           "url": "https://www.douyin.com/search/%E6%B5%99%E6%B1%9F%E6%96%B0%E6%98%8C%E5%AF%B9%E5%A6%82%E6%98%AF%E4%B9%A6%E9%99%A2%E5%BC%80%E5%B1%95%E8%B0%83%E6%9F%A5",
@@ -5703,7 +5694,7 @@ window.WORKBENCH_DATA = {
         },
         {
           "platform": "抖音",
-          "rank": 17,
+          "rank": 16,
           "title": "澜无双皮肤闪光海报",
           "hot": 7763387,
           "url": "https://www.douyin.com/search/%E6%BE%9C%E6%97%A0%E5%8F%8C%E7%9A%AE%E8%82%A4%E9%97%AA%E5%85%89%E6%B5%B7%E6%8A%A5",
@@ -5712,7 +5703,7 @@ window.WORKBENCH_DATA = {
         },
         {
           "platform": "抖音",
-          "rank": 18,
+          "rank": 17,
           "title": "小云雀seedance2.5故事大赛",
           "hot": 7741317,
           "url": "https://www.douyin.com/search/%E5%B0%8F%E4%BA%91%E9%9B%80seedance2.5%E6%95%85%E4%BA%8B%E5%A4%A7%E8%B5%9B",
@@ -5721,7 +5712,7 @@ window.WORKBENCH_DATA = {
         },
         {
           "platform": "抖音",
-          "rank": 19,
+          "rank": 18,
           "title": "人还生长着 人生还长着",
           "hot": 7736643,
           "url": "https://www.douyin.com/search/%E4%BA%BA%E8%BF%98%E7%94%9F%E9%95%BF%E7%9D%80%20%E4%BA%BA%E7%94%9F%E8%BF%98%E9%95%BF%E7%9D%80",
@@ -5730,7 +5721,7 @@ window.WORKBENCH_DATA = {
         },
         {
           "platform": "抖音",
-          "rank": 20,
+          "rank": 19,
           "title": "建议回避型都去看去你的岛",
           "hot": 7733600,
           "url": "https://www.douyin.com/search/%E5%BB%BA%E8%AE%AE%E5%9B%9E%E9%81%BF%E5%9E%8B%E9%83%BD%E5%8E%BB%E7%9C%8B%E5%8E%BB%E4%BD%A0%E7%9A%84%E5%B2%9B",
@@ -5739,7 +5730,7 @@ window.WORKBENCH_DATA = {
         },
         {
           "platform": "抖音",
-          "rank": 21,
+          "rank": 20,
           "title": "沈腾新片欢迎来龙餐馆官宣定档",
           "hot": 7731688,
           "url": "https://www.douyin.com/search/%E6%B2%88%E8%85%BE%E6%96%B0%E7%89%87%E6%AC%A2%E8%BF%8E%E6%9D%A5%E9%BE%99%E9%A4%90%E9%A6%86%E5%AE%98%E5%AE%A3%E5%AE%9A%E6%A1%A3",
@@ -5748,7 +5739,7 @@ window.WORKBENCH_DATA = {
         },
         {
           "platform": "抖音",
-          "rank": 22,
+          "rank": 21,
           "title": "抖音手瓦选秀大会",
           "hot": 7729660,
           "url": "https://www.douyin.com/search/%E6%8A%96%E9%9F%B3%E6%89%8B%E7%93%A6%E9%80%89%E7%A7%80%E5%A4%A7%E4%BC%9A",
@@ -5757,7 +5748,7 @@ window.WORKBENCH_DATA = {
         },
         {
           "platform": "抖音",
-          "rank": 23,
+          "rank": 22,
           "title": "张桂源好帅气的单人cha",
           "hot": 7723604,
           "url": "https://www.douyin.com/search/%E5%BC%A0%E6%A1%82%E6%BA%90%E5%A5%BD%E5%B8%85%E6%B0%94%E7%9A%84%E5%8D%95%E4%BA%BAcha",
@@ -5766,7 +5757,7 @@ window.WORKBENCH_DATA = {
         },
         {
           "platform": "抖音",
-          "rank": 24,
+          "rank": 23,
           "title": "蜘蛛侠官抖也在玩MJ梗",
           "hot": 7717940,
           "url": "https://www.douyin.com/search/%E8%9C%98%E8%9B%9B%E4%BE%A0%E5%AE%98%E6%8A%96%E4%B9%9F%E5%9C%A8%E7%8E%A9MJ%E6%A2%97",
@@ -5775,12 +5766,21 @@ window.WORKBENCH_DATA = {
         },
         {
           "platform": "抖音",
-          "rank": 25,
+          "rank": 24,
           "title": "导演称赞荷兰弟对肌肉的控制力",
           "hot": 7700869,
           "url": "https://www.douyin.com/search/%E5%AF%BC%E6%BC%94%E7%A7%B0%E8%B5%9E%E8%8D%B7%E5%85%B0%E5%BC%9F%E5%AF%B9%E8%82%8C%E8%82%89%E7%9A%84%E6%8E%A7%E5%88%B6%E5%8A%9B",
           "tag": "娱乐",
           "desc": "2001"
+        },
+        {
+          "platform": "抖音",
+          "rank": 25,
+          "title": "万万没想到切水果还可以这么玩",
+          "hot": 7700783,
+          "url": "https://www.douyin.com/search/%E4%B8%87%E4%B8%87%E6%B2%A1%E6%83%B3%E5%88%B0%E5%88%87%E6%B0%B4%E6%9E%9C%E8%BF%98%E5%8F%AF%E4%BB%A5%E8%BF%99%E4%B9%88%E7%8E%A9",
+          "tag": "娱乐",
+          "desc": "1001"
         },
         {
           "platform": "知乎",
@@ -6001,9 +6001,9 @@ window.WORKBENCH_DATA = {
         {
           "platform": "知乎",
           "rank": 25,
-          "title": "为什么健身房有很多会员宁愿自己练了很久没变化也不请教练？",
+          "title": "网上为什么对《天道》这部剧评价得像神一样？",
           "hot": 0,
-          "url": "https://www.zhihu.com/question/654217343",
+          "url": "https://www.zhihu.com/question/1991847067593745828",
           "tag": "知识",
           "desc": ""
         },
@@ -6029,7 +6029,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 3,
           "title": "当我被外星人取代",
-          "hot": 2685426,
+          "hot": 2685590,
           "url": "https://b23.tv/BV1RoMf6mEra",
           "tag": "影视",
           "desc": "@dy启航"
@@ -6038,7 +6038,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 4,
           "title": "完蛋！我被男同学包围了",
-          "hot": 4569234,
+          "hot": 4569454,
           "url": "https://b23.tv/BV1uPMZ6NEBb",
           "tag": "影视",
           "desc": "-"
@@ -6056,7 +6056,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 6,
           "title": "当黑客入侵我家摄像头将看到……",
-          "hot": 5015716,
+          "hot": 5015720,
           "url": "https://b23.tv/BV1Lg3R65EZn",
           "tag": "影视",
           "desc": "-"
@@ -6083,7 +6083,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 9,
           "title": "还来！！！！！！！！！！！",
-          "hot": 2308582,
+          "hot": 2308616,
           "url": "https://b23.tv/BV1xwMQ6GEix",
           "tag": "影视",
           "desc": "别催了，这不是已经发了吗？（哭哭）"
@@ -6092,7 +6092,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 10,
           "title": "你说偷吃零食被发现会死是吗？",
-          "hot": 4988748,
+          "hot": 4989083,
           "url": "https://b23.tv/BV1fGuc6xEmp",
           "tag": "影视",
           "desc": "游戏：机械狂欢 喜欢本期内容！欢迎各位点赞！投币！充电！"
@@ -6146,7 +6146,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 16,
           "title": "有些善意当时没有声音，但总有一天，你会听到它的回响。",
-          "hot": 1268404,
+          "hot": 1268453,
           "url": "https://b23.tv/BV1BG3f6bExg",
           "tag": "影视",
           "desc": "以前都是小唐把热饼递给这位黑人小哥，这一次，他却抱着一大瓶饮料专程回来。小哥说，自从这里开始免费送饼，街区不少人在最困难的时候，至少还能吃上一口热的。但这份感谢不该只属于小唐，因为每一张送出去的饼，背后还有很多人的共同支持。"
@@ -6182,7 +6182,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 20,
           "title": "你 吸 不 过 我 你 信 吗",
-          "hot": 3197933,
+          "hot": 3198004,
           "url": "https://b23.tv/BV1HA3o6ZEbL",
           "tag": "影视",
           "desc": "视频剪辑@若小璃ww ，可以多多指点"
@@ -6191,7 +6191,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 21,
           "title": "【Re0同人动画】魔法少女夏美·施瓦兹（附赠含各if线）",
-          "hot": 1268715,
+          "hot": 1268746,
           "url": "https://b23.tv/BV1iSMo6yEcy",
           "tag": "影视",
           "desc": "3天极限刷完226张原画 请大家支持菜月昴B萌请支持菜月昴谢谢喵B萌请支持菜月昴谢谢喵B萌请支持菜月昴谢谢喵B萌请支持菜月昴谢谢喵B萌请支持菜月昴谢谢喵B萌请支持菜月昴谢谢喵B萌请支持菜月昴谢谢喵B萌请支持菜月昴谢谢喵B萌请支持菜月昴谢谢喵B萌请支持菜月昴谢谢喵B萌请支持菜月昴谢谢喵B萌请支持菜月昴谢谢喵B萌请支持菜月昴谢谢喵B萌请支持菜月昴谢谢喵B萌请支持菜月昴谢谢喵B萌请支持菜月昴谢谢喵B萌请支持菜月昴谢谢喵B萌请支持菜月昴谢谢喵B萌请支持菜月昴谢谢喵B萌请支持菜月昴谢谢喵B萌请支持菜月昴谢谢喵B萌"
@@ -6200,7 +6200,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 22,
           "title": "鹰角嘉年华，我已就位！",
-          "hot": 1837650,
+          "hot": 1837671,
           "url": "https://b23.tv/BV1B33o6HE6P",
           "tag": "影视",
           "desc": "-"
@@ -6209,7 +6209,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 23,
           "title": "【非遗】AE特效——战斗鸡",
-          "hot": 3149174,
+          "hot": 3149193,
           "url": "https://b23.tv/BV1sR396sEx5",
           "tag": "影视",
           "desc": "传统特效，手工打造。"
@@ -6218,7 +6218,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 24,
           "title": "厕 所 大 师",
-          "hot": 2038872,
+          "hot": 2039383,
           "url": "https://b23.tv/BV11duF6TEfz",
           "tag": "影视",
           "desc": "这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了"
@@ -6227,7 +6227,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 25,
           "title": "顾客结账把钱扔地上服务员找零扔回，老板：双方没任何交流，服务员是我儿子，他没做错",
-          "hot": 3160602,
+          "hot": 3160748,
           "url": "https://b23.tv/BV1JDuc68EKr",
           "tag": "影视",
           "desc": ""
