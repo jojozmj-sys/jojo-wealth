@@ -17,11 +17,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/styles.css?v=20260805b190" />
+  <link rel="stylesheet" href="assets/styles.css?v=20260805b191" />
   <!-- 预加载：与 HTML 解析并行下载大 JS，避免启动时串行等待 -->
-  <link rel="preload" as="script" href="assets/data.js?v=20260805b190" fetchpriority="high" />
-  <link rel="preload" as="script" href="assets/lunar.js?v=20260805b190" />
-  <link rel="preload" as="script" href="assets/app.js?v=20260805b190" fetchpriority="high" />
+  <link rel="preload" as="script" href="assets/data.js?v=20260805b191" fetchpriority="high" />
+  <link rel="preload" as="script" href="assets/lunar.js?v=20260805b191" />
+  <link rel="preload" as="script" href="assets/app.js?v=20260805b191" fetchpriority="high" />
 </head>
 <body class="sidebar-collapsed">
   <!-- 手绘卡通 SVG 图标库（彩铅/水彩风格） -->
@@ -145,7 +145,7 @@
         <a href="#" data-page="excerpt"><span class="micon"><img class="micon-img" src="assets/icons/icon-excerpt.png" alt="摘抄笔记"></span><span class="mlabel">摘抄笔记</span><span class="mnum">11</span></a>
         <a href="#" data-page="manifest"><span class="micon"><img class="micon-img" src="assets/icons/icon-manifest.png" alt="显化日记"></span><span class="mlabel">显化日记</span><span class="mnum">12</span></a>
         <a href="#" data-page="stock"><span class="micon"><img class="micon-img" src="assets/icons/icon-stock.png" alt="股票"></span><span class="mlabel">股票</span><span class="mnum">13</span></a>
-        <a href="#" data-page="psych"><span class="micon"><img class="micon-img" src="assets/icons/icon-psych.png?v=b98" alt="心理学"></span><span class="mlabel">心理学</span><span class="mnum">14</span></a>
+        <a href="#" data-page="psych"><span class="micon"><img class="micon-img" src="assets/icons/icon-psych.png?v=b99" alt="心理学"></span><span class="mlabel">心理学</span><span class="mnum">14</span></a>
         <a href="#" data-page="mindful"><span class="micon"><img class="micon-img" src="assets/icons/icon-mindful.svg?v=b80" alt="正念练习"></span><span class="mlabel">正念练习</span><span class="mnum">15</span></a>
         <a href="#" data-page="kb"><span class="micon"><img class="micon-img" src="assets/icons/icon-kb.svg?v=b116" alt="知识库"></span><span class="mlabel">知识库</span><span class="mnum">16</span></a>
       </nav>
@@ -983,7 +983,7 @@
         <section class="page" id="page-psych">
           <div class="card psych-head-card">
             <div class="card-head">
-              <div class="ic"><img src="assets/icons/icon-psych.png?v=b98" alt="心理学"></div>
+              <div class="ic"><img src="assets/icons/icon-psych.png?v=b99" alt="心理学"></div>
               <h2>心理学 · 读懂人心，用得上</h2>
               <span class="sub" id="psychSub">由浅入深 · 看懂 → 会用</span>
               <button class="card-toggle" type="button" aria-label="折叠">▾</button>
@@ -1283,10 +1283,10 @@
   </div>
 
   <!-- 轻脚本保持 defer 顺序（小体积，几乎无感；config 必须在 data 后依赖它） -->
-  <script src="assets/config.js?v=20260805b190" defer></script>
-  <script src="assets/sync.js?v=20260805b190" defer></script>
-  <script src="assets/manual-sync.js?v=20260805b190" defer></script>
-  <script src="assets/dog_icons.js?v=20260805b190" defer></script>
+  <script src="assets/config.js?v=20260805b191" defer></script>
+  <script src="assets/sync.js?v=20260805b191" defer></script>
+  <script src="assets/manual-sync.js?v=20260805b191" defer></script>
+  <script src="assets/dog_icons.js?v=20260805b191" defer></script>
   <!-- 注册 Service Worker：离线可用 + 自动更新缓存，解决"看不到更新" -->
   <script>
     if ("serviceWorker" in navigator) {
@@ -1320,9 +1320,9 @@
       }
       /* 先让浏览器完成首帧绘制，再拉数据链 */
       idle(function () {
-        load("assets/data.js?v=20260805b190")
-          .then(function () { return load("assets/lunar.js?v=20260805b190"); })
-          .then(function () { return load("assets/app.js?v=20260805b190"); });
+        load("assets/data.js?v=20260805b191")
+          .then(function () { return load("assets/lunar.js?v=20260805b191"); })
+          .then(function () { return load("assets/app.js?v=20260805b191"); });
       });
     })();
   </script>
