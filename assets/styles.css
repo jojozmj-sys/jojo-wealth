@@ -3822,6 +3822,23 @@ button:has(.hb-ic), .wl-play:has(.hb-ic) {
 
 .kb-hint { font-size: 12px; color: var(--ink-faint); margin-top: 6px; }
 
+/* 社交平台反爬链接提示 */
+.kb-url-notice[hidden] { display: none; }
+.kb-url-notice {
+  margin-top: 12px; padding: 12px 14px; border-radius: 12px;
+  background: #fff8ec; border: 1px solid #f0d9a8;
+  font-size: 13px; line-height: 1.7; color: #5a4a2a;
+}
+.kb-url-notice .kb-un-title { font-weight: 700; margin-bottom: 6px; }
+.kb-url-notice .kb-un-body b { color: #b5692a; }
+.kb-url-notice .kb-un-btn {
+  margin-top: 10px; display: inline-block; padding: 7px 14px; border: none;
+  border-radius: 8px; background: linear-gradient(135deg, #4fb286, #2b8a6a);
+  color: #fff; font-size: 13px; font-weight: 600; cursor: pointer;
+  transition: filter .15s;
+}
+.kb-url-notice .kb-un-btn:hover { filter: brightness(1.08); }
+
 .kb-file-drop {
   border: 2px dashed var(--mint-deep); border-radius: 14px; padding: 32px 16px; text-align: center;
   cursor: pointer; transition: all .2s; background: var(--mint-soft);

@@ -7212,7 +7212,7 @@
 
     /* ---------- DOM 缓存 ---------- */
     var textPanel, urlPanel, filePanel;
-    var textArea, urlInput, fileInput, fileDrop;
+    var textArea, urlInput, urlNotice, fileInput, fileDrop;
     var titleInput, tagInput, catSelect, saveBtn;
     var listEl, countEl, searchBox, catFilter, sortSelect;
 
@@ -7226,6 +7226,7 @@
       filePanel  = document.querySelector('[data-kb-panel="file"]');
       textArea   = document.getElementById("kbTextInput");
       urlInput   = document.getElementById("kbUrlInput");
+      urlNotice  = document.getElementById("kbUrlNotice");
       fileInput  = document.getElementById("kbFileInput");
       fileDrop   = document.getElementById("kbFileDrop");
       titleInput = document.getElementById("kbTitleInput");
@@ -7371,6 +7372,13 @@
         }).catch(function () {
           saveBtn.disabled = false;
           saveBtn.textContent = "📥 归档";
+          var pn = detectSocialPlatform(url);
+          if (pn) {
+            /* 抖音/小红书：提示走对话流程，不落"提取失败"占位 */
+            updateUrlNotice(url);
+            appToast(pn === "douyin" ? "抖音链接请在对话中提取分析" : "小红书链接请在对话中提取分析", 3200, "warn");
+            return;
+          }
           /* 提取失败也保存 URL */
           content = "来源：" + url + "\n\n（内容提取失败，请手动打开链接查看）";
           doSave(content, sourceType, url, sourceFile);
@@ -7660,8 +7668,19 @@
             /* 自动提取标题 */
             var t = getDomain(u);
             if (!titleInput.value && t) titleInput.value = t;
-            appToast("链接已记录，点击「归档」提取内容", 1800, "info");
+            /* 检测抖音/小红书等反爬平台 */
+            updateUrlNotice(u);
+            if (!isSocialBlockedUrl(u)) {
+              appToast("链接已记录，点击「归档」提取内容", 1800, "info");
+            }
+          } else if (!u) {
+            hideUrlNotice();
           }
+        });
+        /* 输入变化时也实时检测提示 */
+        urlInput.addEventListener("input", function () {
+          var u = urlInput.value.trim();
+          if (u) updateUrlNotice(u); else hideUrlNotice();
         });
       }
 
@@ -7685,6 +7704,47 @@
 
     function getDomain(url) {
       try { return new URL(url).hostname.replace(/^www\./, ""); } catch (e) { return ""; }
+    }
+
+    /* 检测抖音/小红书等公共代理无法提取正文的社交平台 */
+    function detectSocialPlatform(url) {
+      var d = getDomain(url) + " " + url;
+      if (/v\.douyin\.com|douyin\.com|iesdouyin\.com/i.test(d)) return "douyin";
+      if (/xhslink\.com|xiaohongshu\.com/i.test(d)) return "xhs";
+      if (/weidian|taobao|tmall/i.test(d)) return "";
+      return "";
+    }
+    function isSocialBlockedUrl(url) { return !!detectSocialPlatform(url); }
+
+    function updateUrlNotice(url) {
+      if (!urlNotice) return;
+      var p = detectSocialPlatform(url);
+      var map = {
+        "douyin": {
+          color: "#2a2a2a",
+          html: '<div class="kb-un-title">🎬 抖音视频链接</div>' +
+                '<div class="kb-un-body">抖音为强反爬站点（<b>需登录短链跳转 + JS 渲染</b>），普通链接提取拿不到视频正文。' +
+                '<b>请点击下方按钮，在对话中由 AI 为你提取内容并深挖整理成笔记。</b></div>' +
+                '<button class="kb-un-btn" type="button" onclick="window.__kbOpenSocial&&window.__kbOpenSocial(\'douyin\')">与我对话提取·深度分析</button>'
+        },
+        "xhs": {
+          color: "#2a2a2a",
+          html: '<div class="kb-un-title">📕 小红书笔记链接</div>' +
+                '<div class="kb-un-body">小红书为强反爬站点（<b>需登录 + JS 渲染</b>），普通链接提取拿不到正文。' +
+                '<b>请复制笔记内容，或点击下方按钮，在对话中由 AI 为你提取内容并深挖整理成笔记。</b></div>' +
+                '<button class="kb-un-btn" type="button" onclick="window.__kbOpenSocial&&window.__kbOpenSocial(\'xhs\')">与我对话提取·深度分析</button>'
+        }
+      };
+      var info = map[p];
+      if (info) {
+        urlNotice.innerHTML = info.html;
+        urlNotice.hidden = false;
+      } else {
+        hideUrlNotice();
+      }
+    }
+    function hideUrlNotice() {
+      if (urlNotice) { urlNotice.hidden = true; urlNotice.innerHTML = ""; }
     }
 
     function debounce(fn, ms) {
@@ -7716,5 +7776,19 @@
 
     /* 暴露供调试 */
     window.__kb = { refresh: renderList, notes: function () { return lsGet(LS_KB, []); }, set: function (arr) { lsSet(LS_KB, arr); renderList(); } };
+    /* 供知识库链接提示"与我对话"按钮触发外部提取流程 */
+    window.__kbOpenSocial = function (platform) {
+      /* 复制提交流程说明到剪贴板，引导用户到对话 */
+      var msg = platform === "douyin"
+        ? "🎬 抖音视频链接处理流程：\n1. 请把抖音链接发给我；\n2. 我会尝试提取视频文案/简介；\n3. 深度分析内容脉络；\n4. 整理成结构化 Markdown 笔记给你，复制后到知识库「粘贴文本」归档。"
+        : "📕 小红书笔记处理流程：\n1. 请把小红书链接发给我；\n2. 我会尝试提取笔记正文/图片；\n3. 深度分析内容脉络；\n4. 整理成结构化 Markdown 笔记给你，复制后到知识库「粘贴文本」归档。";
+      var ta = document.createElement("textarea");
+      ta.value = msg;
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand("copy"); } catch (e) {}
+      document.body.removeChild(ta);
+      appToast("已复制处理说明，请在对话框粘贴@" + platform + "链接", 3200, "info");
+    };
   })();
 })();
