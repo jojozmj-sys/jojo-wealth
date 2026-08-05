@@ -6265,6 +6265,184 @@
     }
   }
 
+  // 通用 JSONP 请求（东财 push2 接口 fetch 不稳定时的兜底）———— 复用 _jsonpSeq
+  function jsonpFetch(urlBase, parseFn, timeoutMs = 8000) {
+    return new Promise(resolve => {
+      const cbName = "__stJp_" + (++_jsonpSeq) + "_" + Date.now();
+      const url = urlBase + (urlBase.includes("?") ? "&" : "?") + "cb=" + cbName;
+      const script = document.createElement("script");
+      let done = false;
+      function cleanup() {
+        if (done) return; done = true;
+        delete window[cbName];
+        if (script.parentNode) script.parentNode.removeChild(script);
+      }
+      window[cbName] = function(json) {
+        cleanup();
+        try { resolve(parseFn(json)); } catch (e) { resolve([]); }
+      };
+      script.onerror = function() { cleanup(); resolve([]); };
+      setTimeout(function() { cleanup(); resolve([]); }, timeoutMs);
+      script.src = url;
+      document.head.appendChild(script);
+    });
+  }
+
+  /* ========== 指数概览：沪深创科 + 资金流向 + 成交额 ==========
+     数据源：东财 push2 ulist.np（浏览器 fetch CORS 可用）
+     secids: 1.000001 上证指数 / 0.399001 深证成指 / 0.399006 创业板指 / 1.000688 科创50
+     f3 涨跌幅 f6 成交额(元) f12 代码 f14 名称 f62 主力净流入 f66 超大单净流入
+     f69 超大单占比 f184 主力净流入占比 */
+  const INDEX_SECIDS = {
+    "1.000001":  { name: "上证指数", code: "000001" },
+    "0.399001":  { name: "深证成指", code: "399001" },
+    "0.399006":  { name: "创业板指", code: "399006" },
+    "1.000688":  { name: "科创50",   code: "000688" }
+  };
+  async function fetchIndexData() {
+    const secids = Object.keys(INDEX_SECIDS).join(",");
+    const fields = "f2,f3,f4,f6,f12,f14,f62,f66,f69,f72,f75,f78,f184";
+    const url = `https://push2.eastmoney.com/api/qt/ulist.np/get?secids=${secids}&fields=${fields}&fltt=2&invt=2`;
+    const parseRows = (json) => {
+      if (json && json.data && Array.isArray(json.data.diff)) return json.data.diff;
+      if (json && json.data && json.data.diff && !Array.isArray(json.data.diff)) return [json.data.diff];
+      return [];
+    };
+    try {
+      const res = await fetch(url, { mode: "cors" });
+      return parseRows(await res.json());
+    } catch (e) {
+      console.warn("[stock] 指数 fetch 失败，尝试 JSONP：", e.message);
+      return jsonpFetch(url, parseRows);
+    }
+  }
+  function renderIndex() {
+    const list = $("#stIndexList");
+    const loading = $("#stIndexLoading");
+    if (!list) return;
+    const idx = INDEX_SECIDS;
+    const secidByName = {};
+    Object.keys(idx).forEach(s => { secidByName[idx[s].name] = s; });
+    if (loading) loading.style.display = "block";
+    fetchIndexData().then(rows => {
+      if (loading) loading.style.display = "none";
+      if (!rows.length) {
+        list.innerHTML = `<div class="st-board-empty">指数数据暂不可用，请稍后重试</div>`;
+        return;
+      }
+      // 组装成规范对象
+      const items = rows.map(r => {
+        const secid = String(r.f12 || "").length >= 6 && Object.keys(idx).find(s => s.endsWith(r.f12))
+                      || (r.f12 === "000001" ? "1.000001" : null) || (r.f12 === "399001" ? "0.399001" : null)
+                      || (r.f12 === "399006" ? "0.399006" : null) || (r.f12 === "000688" ? "1.000688" : "");
+        return {
+          name: r.f14 || idx[secid]?.name || r.f12,
+          code: r.f12,
+          cur: r.f2, chg: r.f4, pct: r.f3,
+          amount: r.f6,            // 成交额（元）
+          main: r.f62,             // 主力净流入（元）
+          mainPct: r.f184,         // 主力净流入占比 %
+        };
+      });
+      list.innerHTML = items.map(it => {
+        const cls = it.pct > 0 ? "up" : it.pct < 0 ? "down" : "flat";
+        const pctS = (it.pct == null || isNaN(it.pct)) ? "--" : (it.pct > 0 ? "+" : "") + it.pct.toFixed(2) + "%";
+        const chgS = (it.chg == null || isNaN(it.chg)) ? "--" : (it.chg > 0 ? "+" : "") + it.chg.toFixed(2);
+        const amtS = fmtMoney(it.amount);
+        const mainS = fmtMoney(it.main);
+        const mainPctS = (it.mainPct == null || isNaN(it.mainPct)) ? "--" : (it.mainPct > 0 ? "+" : "") + it.mainPct.toFixed(1) + "%";
+        const mainColor = (it.main == null || it.main === 0) ? "flat" : (it.main > 0 ? "up" : "down");
+        return `<div class="st-index-row">
+          <div class="st-index-name">${it.name}<span class="st-index-code">${it.code}</span></div>
+          <div class="st-index-price st-${cls}">${(it.cur==null||isNaN(it.cur))?"--":it.cur.toFixed(2)}</div>
+          <div class="st-index-chg st-${cls}"><span>${chgS}</span><span>${pctS}</span></div>
+          <div class="st-index-amt"><label>成交额</label><span>${amtS}</span></div>
+          <div class="st-index-main st-${mainColor}"><label>主力净流入</label><span>${mainS} <em>${mainPctS}</em></span></div>
+        </div>`;
+      }).join("");
+    });
+  }
+  function fmtMoney(v) {
+    if (v == null || isNaN(v) || v === 0) return "--";
+    const a = Math.abs(v), sign = v < 0 ? "-" : "";
+    if (a >= 1e12) return sign + (a / 1e12).toFixed(2) + "万亿";
+    if (a >= 1e8)  return sign + (a / 1e8).toFixed(2) + "亿";
+    if (a >= 1e4)  return sign + (a / 1e4).toFixed(2) + "万";
+    return sign + a.toFixed(0);
+  }
+
+  /* ========== 行业板块涨跌幅排行 + 领涨股加入自选 ==========
+     数据源：东财 push2 clist 行业板块 Top10（fs=m:90+t:2）
+     f3 板块涨幅 f6 板块成交额 f14 板块名 f62 板块主力净流入 f184 主力占比
+     领涨股：f128 名称 f140 代码 f136 涨幅；f141 市场标记(0/1 需结合代码判断) */
+  async function fetchBoards(pz = 10) {
+    const fields = "f2,f3,f4,f6,f8,f12,f14,f62,f184,f128,f136,f140,f141";
+    const url = `https://push2.eastmoney.com/api/qt/clist/get?pn=1&pz=${pz}&po=1&np=1&fltt=2&invt=2&fid=f3&fs=m:90+t:2&fields=${fields}`;
+    const parseRows = (json) => {
+      if (json && json.data && Array.isArray(json.data.diff)) return json.data.diff;
+      if (json && json.data && json.data.diff && !Array.isArray(json.data.diff)) return [json.data.diff];
+      return [];
+    };
+    try {
+      const res = await fetch(url, { mode: "cors" });
+      return parseRows(await res.json());
+    } catch (e) {
+      console.warn("[stock] 板块 fetch 失败，尝试 JSONP：", e.message);
+      return jsonpFetch(url, parseRows);
+    }
+  }
+  // 根据领涨股代码判断市场（字母 LSHB 前缀→去掉；数字开头按 A 股规则）
+  function leaderMarketOf(code) {
+    if (!code) return "a";
+    let c = String(code);
+    c = c.replace(/^(SH|SZ|HK|US)/i, "");
+    if (/^\d{6}$/.test(c)) return "a";
+    if (/^\d{5}$/.test(c)) return "hk";
+    return "a";
+  }
+  function renderBoards() {
+    const list = $("#stBoardList");
+    const loading = $("#stBoardLoading");
+    if (!list) return;
+    if (loading) loading.style.display = "block";
+    fetchBoards(10).then(rows => {
+      if (loading) loading.style.display = "none";
+      if (!rows.length) {
+        list.innerHTML = `<div class="st-board-empty">板块数据暂不可用，请稍后重试</div>`;
+        return;
+      }
+      const body = rows.map((b, i) => {
+        const pct = b.f3, pctS = (pct==null||isNaN(pct)) ? "--" : (pct>0?"+":"") + pct.toFixed(2) + "%";
+        const cls = pct > 0 ? "up" : pct < 0 ? "down" : "flat";
+        const mainS = fmtMoney(b.f62);
+        const mainColor = (b.f62==null||b.f62===0) ? "flat" : (b.f62>0?"up":"down");
+        const leaderName = b.f128 || "--";
+        const leaderCode = b.f140 || "";
+        const leaderPct = (b.f136==null||isNaN(b.f136)) ? "--" : (b.f136>0?"+":"") + b.f136.toFixed(2) + "%";
+        const leaderCls = (b.f136||0) > 0 ? "up" : (b.f136||0) < 0 ? "down" : "flat";
+        return `<div class="st-board-row">
+          <div class="st-board-rank">${i+1}</div>
+          <div class="st-board-main"><div class="st-board-name">${b.f14||"--"}</div>
+            <div class="st-board-leader">领涨 <span class="st-${leaderCls}">${leaderName}</span> <span class="st-${leaderCls}">${leaderPct}</span>
+              <button class="st-board-add" type="button" data-code="${leaderCode}" data-name="${leaderName}">＋自选</button>
+            </div>
+          </div>
+          <div class="st-board-pct st-${cls}">${pctS}</div>
+          <div class="st-board-mainflow st-${mainColor}">${mainS}</div>
+        </div>`;
+      }).join("");
+      list.innerHTML = `<div class="st-board-head"><span></span><span>板块</span><span>涨跌幅</span><span>主力净流入</span></div>` + body;
+      // 绑定领涨股加自选按钮
+      list.querySelectorAll(".st-board-add").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const code = btn.getAttribute("data-code"); const nm = btn.getAttribute("data-name");
+          if (!code) { appToast("该板块暂无领涨股", 1800, "warn"); return; }
+          addQuote(code, nm === "--" ? "" : nm, leaderMarketOf(code));
+        });
+      });
+    });
+  }
+
   /* ---------- 事件绑定 ---------- */
   function bind() {
     $("#stSearchBtn").addEventListener("click", () => renderSearchResult($("#stSearchInput").value.trim()));
@@ -6352,7 +6530,7 @@
     // 监听侧边栏切到 stock 时刷新
     const link = document.querySelector('.menu a[data-page="stock"]');
     if (link) link.addEventListener("click", () => {
-      setTimeout(() => { renderQuotes(); renderIndiSel(); renderTrades(); renderReviews(); renderNews(); }, 50);
+      setTimeout(() => { renderIndex(); renderBoards(); renderQuotes(); renderIndiSel(); renderTrades(); renderReviews(); renderNews(); }, 50);
     });
   }
 
@@ -6363,6 +6541,8 @@
   setInterval(() => {
     if (document.hidden) return;             // 页面在后台则不打扰
     if (!document.getElementById("stQuoteList")) return;
+    renderIndex();                            // 指数概览持续刷新
+    renderBoards();                           // 行业板块持续刷新
     if (!quotes.length) return;
     renderQuotes();
   }, 30 * 1000);

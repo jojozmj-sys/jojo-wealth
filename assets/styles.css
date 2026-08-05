@@ -3367,6 +3367,73 @@ button:has(.hb-ic), .wl-play:has(.hb-ic) {
 #page-stock .st-news-row .sn { font-size: 11px; color: var(--pink-dark); margin-top: 4px; }
 #page-stock .st-news-row .sn a { color: var(--mint-deep); text-decoration: none; }
 #page-stock .st-news-row .sn a:hover { text-decoration: underline; }
+
+/* ---- 指数概览（沪深创科 + 成交额 + 主力资金） ---- */
+#page-stock .st-index-list { display: flex; flex-direction: column; gap: 8px; }
+#page-stock .st-index-row {
+  display: grid;
+  grid-template-columns: 1.6fr 0.9fr 1fr 0.9fr 1.4fr;
+  gap: 8px;
+  align-items: center;
+  background: #fffdf9;
+  border: 1px solid var(--mint-line);
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-size: 13px;
+}
+#page-stock .st-index-name { font-weight: 700; color: var(--ink); display: flex; flex-direction: column; gap: 2px; }
+#page-stock .st-index-code { font-size: 10px; color: var(--pink-dark); font-weight: 400; }
+#page-stock .st-index-price { font-weight: 800; font-size: 15px; }
+#page-stock .st-index-chg { display: flex; flex-direction: column; font-weight: 700; font-size: 12px; }
+#page-stock .st-index-amt, #page-stock .st-index-main { display: flex; flex-direction: column; gap: 2px; }
+#page-stock .st-index-amt label, #page-stock .st-index-main label { font-size: 10px; color: var(--pink-dark); }
+#page-stock .st-index-amt span { font-weight: 600; color: #4a4a44; }
+#page-stock .st-index-main span { font-weight: 700; font-size: 12px; }
+#page-stock .st-index-main em { font-style: normal; font-size: 10px; opacity: .8; margin-left: 2px; }
+#page-stock .st-index-loading, #page-stock .st-board-loading { text-align: center; color: var(--pink-dark); font-size: 12px; padding: 16px 0; }
+#page-stock .st-board-empty { text-align: center; color: var(--pink-dark); font-size: 12px; padding: 24px 0; }
+
+/* ---- 行业板块涨跌幅排行 + 领涨股 ---- */
+#page-stock .st-board-list { display: flex; flex-direction: column; gap: 6px; }
+#page-stock .st-board-head,
+#page-stock .st-board-row {
+  display: grid;
+  grid-template-columns: 28px 1fr 74px 84px;
+  gap: 8px;
+  align-items: center;
+  padding: 8px 12px;
+  font-size: 12px;
+}
+#page-stock .st-board-head { color: var(--pink-dark); font-size: 11px; font-weight: 600; }
+#page-stock .st-board-row {
+  background: #fffdf9;
+  border: 1px solid var(--mint-line);
+  border-radius: 10px;
+}
+#page-stock .st-board-rank { color: var(--pink-dark); font-weight: 800; text-align: center; }
+#page-stock .st-board-main { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+#page-stock .st-board-name { font-weight: 700; color: var(--ink); }
+#page-stock .st-board-leader { font-size: 11px; color: #4a4a44; display: flex; align-items: center; gap: 4px; flex-wrap: wrap; }
+#page-stock .st-board-add {
+  background: #eaf6ee;
+  color: #2f7d43;
+  border: 1px solid #bfe3c9;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 10px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background .15s;
+}
+#page-stock .st-board-add:hover { background: #d8eede; }
+#page-stock .st-board-pct { font-weight: 800; font-size: 14px; text-align: right; }
+#page-stock .st-board-mainflow { font-weight: 700; text-align: right; }
+
+/* 股票涨跌配色（涨红跌绿，沿用 st-up/st-down） */
+#page-stock .st-up { color: var(--st-up); }
+#page-stock .st-down { color: var(--st-down); }
+#page-stock .st-flat { color: var(--st-flat); }
 @media (max-width: 640px) {
   #page-stock .st-quote-row { grid-template-columns: 1.4fr 1fr 0.9fr 48px; gap: 6px; font-size: 12px; }
   #page-stock .st-quote-price { font-size: 14px; }
@@ -3375,6 +3442,11 @@ button:has(.hb-ic), .wl-play:has(.hb-ic) {
   #page-stock .st-pos-summary { grid-template-columns: 1fr 1fr; }
   #page-stock .st-pos-row { grid-template-columns: 1.5fr 1fr 60px; font-size: 11px; }
   #page-stock .st-pos-row .qty, #page-stock .st-pos-row .act { display: none; }
+  #page-stock .st-index-row { grid-template-columns: 1.4fr 0.9fr 1fr 1.2fr; gap: 6px; font-size: 12px; }
+  #page-stock .st-index-main { grid-column: 3 / span 2; }
+  #page-stock .st-board-head, #page-stock .st-board-row { grid-template-columns: 24px 1fr 64px; }
+  #page-stock .st-board-mainflow { display: none; }
+  #page-stock .st-board-head span:nth-child(4), #page-stock .st-board-row .st-board-mainflow { display: none; }
 }
 
 /* ==========================================================================
