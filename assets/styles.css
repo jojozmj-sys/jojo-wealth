@@ -3801,15 +3801,16 @@ button:has(.hb-ic), .wl-play:has(.hb-ic) {
   .dh-sun { width: 48px; height: 48px; }
 }
 
-/* 概览英语+心理 mini 卡片 */
+/* 概览 计划完成+英语+心理 mini 卡片 */
 .ov-mini-row {
   display: flex;
   gap: 12px;
   margin-top: 14px;
+  flex-wrap: wrap;
 }
 .ov-mini-card {
-  flex: 1;
-  min-width: 0;
+  flex: 1 1 0;
+  min-width: 200px;
   background: rgba(126,147,169,.06);
   border: 1px solid rgba(126,147,169,.1);
   border-radius: 14px;
@@ -3872,6 +3873,17 @@ button:has(.hb-ic), .wl-play:has(.hb-ic) {
 @media (max-width: 560px) {
   .ov-mini-row { flex-direction: column; }
   .ov-mini-body { gap: 10px; }
+}
+.ov-mini-card.ov-mini-plan {
+  background: linear-gradient(135deg, rgba(60,142,114,.08), rgba(160,139,120,.06));
+  border-color: rgba(60,142,114,.18);
+}
+.ov-mini-card.ov-mini-en {
+  background: linear-gradient(135deg, rgba(60,142,114,.06), rgba(126,147,169,.04));
+}
+.ov-mini-card.ov-mini-psych {
+  background: linear-gradient(135deg, rgba(201,138,94,.06), rgba(126,147,169,.04));
+  border-color: rgba(201,138,94,.12);
 }
 
 /* ================= 正念练习 ================= */

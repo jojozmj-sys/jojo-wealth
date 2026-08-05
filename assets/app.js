@@ -7231,27 +7231,24 @@
       ];
       var maxNum = Math.max.apply(null, bars.map(function (b) { return b.num; }).concat([5]));
 
-      // 环形进度：计划完成率
+      // 计划完成 mini-card（与英语/心理同格式，三卡并列）
       var pct = planTotal > 0 ? Math.round(planDone / planTotal * 100) : 0;
-      var R = 42, C = 2 * Math.PI * R;
-      var dash = C * pct / 100;
-
-      var ringSvg =
-        '<div class="ov-ring-wrap">' +
-          '<svg class="ov-ring" viewBox="0 0 110 110" width="110" height="110">' +
-            '<circle cx="55" cy="55" r="' + R + '" fill="none" stroke="rgba(126,147,169,.15)" stroke-width="9"/>' +
-            '<circle cx="55" cy="55" r="' + R + '" fill="none" stroke="url(#ovGrad)" stroke-width="9" stroke-linecap="round" ' +
-              'stroke-dasharray="' + dash + ' ' + C + '" transform="rotate(-90 55 55)"/>' +
-            '<defs><linearGradient id="ovGrad" x1="0" y1="0" x2="1" y2="1">' +
-              '<stop offset="0" stop-color="#3C8E72"/><stop offset="1" stop-color="#A08B78"/>' +
-            '</linearGradient></defs>' +
-            '<text x="55" y="50" text-anchor="middle" class="ov-ring-num">' + pct + '%</text>' +
-            '<text x="55" y="68" text-anchor="middle" class="ov-ring-sub">计划完成</text>' +
-          '</svg>' +
-          '<div class="ov-ring-side">' +
-            '<div class="ov-ring-stat"><span class="ov-rs-num">' + planDone + '</span><span class="ov-rs-lbl">已完成</span></div>' +
-            '<div class="ov-ring-stat"><span class="ov-rs-num">' + planTotal + '</span><span class="ov-rs-lbl">今日任务</span></div>' +
-            '<div class="ov-ring-stat"><span class="ov-rs-num">💬</span><span class="ov-rs-lbl">每日好句 ♥︎</span></div>' +
+      var pR = 28, pCirc = 2 * Math.PI * pR, pDash = pCirc * pct / 100;
+      var planCard =
+        '<div class="ov-mini-card ov-mini-plan">' +
+          '<div class="ov-mini-hd"><span class="ov-mini-ic">📋</span><span class="ov-mini-title">计划完成</span></div>' +
+          '<div class="ov-mini-body">' +
+            '<svg class="ov-mini-ring" viewBox="0 0 72 72" width="72" height="72">' +
+              '<circle cx="36" cy="36" r="' + pR + '" fill="none" stroke="rgba(60,142,114,.12)" stroke-width="5"/>' +
+              '<circle cx="36" cy="36" r="' + pR + '" fill="none" stroke="#3C8E72" stroke-width="5" stroke-linecap="round" ' +
+                'stroke-dasharray="' + pDash + ' ' + pCirc + '" transform="rotate(-90 36 36)"/>' +
+              '<text x="36" y="33" text-anchor="middle" class="ov-mini-ring-num">' + pct + '%</text>' +
+              '<text x="36" y="48" text-anchor="middle" class="ov-mini-ring-sub">完成率</text>' +
+            '</svg>' +
+            '<div class="ov-mini-stats">' +
+              '<div class="ov-mini-stat"><span class="ov-ms-num">' + planDone + '</span><span class="ov-ms-lbl">已完成</span></div>' +
+              '<div class="ov-mini-stat"><span class="ov-ms-num">' + planTotal + '</span><span class="ov-ms-lbl">今日任务</span></div>' +
+            '</div>' +
           '</div>' +
         '</div>';
 
@@ -7267,7 +7264,7 @@
         '</div>';
       }).join("");
 
-      ovBox.innerHTML = ringSvg + '<div class="ov-bars">' + barsHtml + '</div>';
+      ovBox.innerHTML = '<div class="ov-bars">' + barsHtml + '</div>';
 
       // 英语学习统计
       var enStatsHtml = "";
@@ -7347,13 +7344,11 @@
           '</div>';
       }
 
-      // 追加到概览区域
-      if (enStatsHtml || psychStatsHtml) {
-        var miniRow = document.createElement("div");
-        miniRow.className = "ov-mini-row";
-        miniRow.innerHTML = (enStatsHtml || "") + (psychStatsHtml || "");
-        ovBox.appendChild(miniRow);
-      }
+      // 概览区：计划完成 + 英语 + 心理学 三卡并列
+      var miniRow = document.createElement("div");
+      miniRow.className = "ov-mini-row";
+      miniRow.innerHTML = (planCard || "") + (enStatsHtml || "") + (psychStatsHtml || "");
+      ovBox.appendChild(miniRow);
     }
   })();
 
