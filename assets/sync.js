@@ -131,9 +131,18 @@
   function setMeta(m) { try { localStorage.setItem(LS_KEY, JSON.stringify(m)); } catch (e) {} }
 
   var _pushing = false;
+  /* 记录本地 biz key 的写入时间，用于 applyCloud 判断本地是否比云端快照更新（避免 pull 用旧云端值覆盖本地刚写入的数据）
+   * catch: 应用云端数据期间（_pushing=true）的写入不记录，避免把"拉取结果"误判为本地新操作 */
+  var _localWrites = {};        // { key: timestamp }
+  /* 初始化期保护：sync 首次 pull 完成前发生的本地写入（如 stock IIFE 首次写入默认 5 只股票）不享受"本地优先"保护，
+   * 让云端真实数据能正常覆盖默认值恢复；首次 pull 完成后才记录用户交互写入 */
+  var _syncReady = false;
+  var INIT_GUARD_WINDOW = 10000;   // 本地写入保护窗口（毫秒）
+
   function applyCloud(cloudData) {
     if (!cloudData) return false;
     var changed = false;
+    var now = Date.now();
     _pushing = true;
     try {
       Object.keys(cloudData).forEach(function (k) {
@@ -141,6 +150,12 @@
         var lv = localStorage.getItem(k);
         /* 空值保护：云端某 key 为空而本地有值时，不覆盖本地（防云端被别的设备清空后传染到本端） */
         if (isEmptyVal(cv) && !isEmptyVal(lv)) return;
+        /* 本地近期写入保护：本地在该 key 上有 10s 内的修改（用户主动操作）且 push 可能尚未完成 →
+         * 保留本地值，不被云端旧快照覆盖。
+         * 这是"自选股无法储存"Bug 的根因修复：addQuote 写本地 → push 延迟 1.5s →
+         * pull 读到云端旧数据 → applyCloud 覆盖 → 刷新后自选股消失。
+         * 但初始化期（首次 pull 尚未完成）的本地写入不受保护，以便云端真实数据覆盖默认值完成恢复。 */
+        if (_syncReady && _localWrites[k] && (now - _localWrites[k] < INIT_GUARD_WINDOW)) return;
         if (lv !== cv) { localStorage.setItem(k, cv); changed = true; }
       });
     } finally { _pushing = false; }
@@ -305,6 +320,10 @@
       console.warn("[wb-sync] pull fail:", e);
       failState(e, "无法连接云端：");
       if (cb) cb(false, e);
+    } finally {
+      /* 首次拉取尝试结束（无论成败）：之后用户写入才受本地优先保护，
+       * 同时初始化期写下的默认数据已不再阻挡云端恢复 */
+      _syncReady = true;
     }
   }
 
@@ -315,12 +334,18 @@
     var origClear = Storage.prototype.clear;
     Storage.prototype.setItem = function (k, v) {
       var r = origSet.call(this, k, v);
-      if (this === window.localStorage && !_pushing && isBizKey(k)) schedulePush("检测到修改");
+      if (this === window.localStorage && !_pushing && isBizKey(k)) {
+        if (_syncReady) _localWrites[k] = Date.now();  /* 记录本地写入时间，applyCloud 据此跳过近期覆盖 */
+        schedulePush("检测到修改");
+      }
       return r;
     };
     Storage.prototype.removeItem = function (k) {
       var r = origRemove.call(this, k);
-      if (this === window.localStorage && !_pushing && isBizKey(k)) schedulePush("检测到删除");
+      if (this === window.localStorage && !_pushing && isBizKey(k)) {
+        if (_syncReady) _localWrites[k] = Date.now();
+        schedulePush("检测到删除");
+      }
       return r;
     };
     Storage.prototype.clear = function () {
