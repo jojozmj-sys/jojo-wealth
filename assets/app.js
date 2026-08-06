@@ -1030,11 +1030,13 @@
   window.__planAfterRender();
 
   /* ---------- Render content modules ---------- */
-  /* ---------- 每日新闻：多版面 + 每2小时自动更新 + 今日要闻 ---------- */
-  const NEWS_API = "https://60s.viki.moe/v2/60s";
+  /* ---------- 每日新闻：多版面 + 每10分钟自动更新 + 今日要闻 ---------- */
+  // 主源：东方财富快讯（分钟级滚动、CORS 开放）；60s 简讯仅作兜底
+  const NEWS_API = "https://np-listapi.eastmoney.com/comm/web/getNewsByColumns?client=web&biz=web_news_col&column=345&order=1&needInteractData=0&page_index=1&page_size=50&req_trace=wb";
+  const NEWS_API_BACKUP = "https://60s.viki.moe/v2/60s";
   const NEWS_CACHE_KEY = "wb_news_cache_v2";
   const NEWS_READ_KEY = "wb_news_read_v1";   // 已读新闻标题集合（去空格哈希）
-  const NEWS_INTERVAL_MS = 2 * 60 * 60 * 1000; // 每 2 小时
+  const NEWS_INTERVAL_MS = 10 * 60 * 1000; // 每 10 分钟
 
   /* ---------- 已读机制：已看过的新闻从列表去掉，未看的保留，新来的增量加入 ---------- */
   function newsHashKey(title) {
@@ -1087,30 +1089,62 @@
     return "https://www.baidu.com/s?wd=" + encodeURIComponent(t);
   }
 
-  /* 从 API 拉取实时新闻并整理 */
-  async function fetchLiveNews() {
+  /* 拉取实时新闻条目：优先东财快讯，失败回退 60s 简讯 */
+  async function fetchLiveItems() {
     try {
       const res = await fetch(NEWS_API, { signal: AbortSignal.timeout(12000) });
       if (!res.ok) throw new Error("http " + res.status);
       const j = await res.json();
+      const list = (j && j.data && j.data.list) || [];
+      const items = list.map(it => ({
+        title: String(it.title || "").trim(),
+        desc: String(it.summary || "").trim(),
+        source: String(it.mediaName || "东方财富").trim(),
+        url: String(it.url || "").replace(/^http:\/\//, "https://"),
+        time: String(it.showTime || "")
+      })).filter(it => it.title);
+      if (!items.length) throw new Error("empty eastmoney news");
+      return items;
+    } catch (e) {
+      const res = await fetch(NEWS_API_BACKUP, { signal: AbortSignal.timeout(12000) });
+      if (!res.ok) throw new Error("http " + res.status);
+      const j = await res.json();
       const d = (j && j.data) || {};
-      const list = (d.news || []).filter(Boolean).slice(0, 15);
-      if (!list.length) throw new Error("empty news");
+      return (d.news || []).filter(Boolean).slice(0, 20).map(t => ({
+        title: String(t).trim(),
+        desc: "",
+        source: "实时新闻",
+        url: newsSearchUrl(t)
+      }));
+    }
+  }
+
+  /* 从 API 拉取实时新闻并整理 */
+  async function fetchLiveNews() {
+    try {
+      const items = await fetchLiveItems();
+      if (!items.length) throw new Error("empty news");
       const now = new Date();
-      const dateStr = d.date || `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,"0")}-${String(now.getDate()).padStart(2,"0")}`;
+      const dateStr = `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,"0")}-${String(now.getDate()).padStart(2,"0")}`;
       const weekday = ["周日","周一","周二","周三","周四","周五","周六"][now.getDay()];
       // 整理进版面：在现有版面基础上【增量合并 + 按标题去重】，新新闻 unshift 进对应版面，旧条目保留
       const base = (D.news && D.news.today && D.news.today.sections) || [];
       const sections = base.map(s => ({ name: s.name, items: filterUnread(s.items).slice() }));
-      const addToSection = (name, title) => {
+      const addToSection = (name, item) => {
         const sec = sections.find(s => s.name === name) || sections[0];
         if (!sec) return;
+        const title = item.title || "";
         // 去重：原标题已存在则不重复加
         const dup = (sec.items || []).some(it => newsHashKey(it.title || it) === newsHashKey(title));
         if (dup) return;
-        sec.items.unshift({ title, desc: "", source: "实时新闻", url: newsSearchUrl(title) });
+        sec.items.unshift({
+          title,
+          desc: item.desc || "",
+          source: item.source || "实时新闻",
+          url: item.url || newsSearchUrl(title)
+        });
       };
-      list.forEach(t => addToSection(classifyNewsSection(t), t));
+      items.forEach(it => addToSection(classifyNewsSection(it.title), it));
       // 所有版面统一剔除已读条目（已看过的新闻从列表去掉）
       sections.forEach(s => { s.items = filterUnread(s.items); });
       // 今日要闻：从已整理的 sections 中精选（带 desc 概览），重要新闻优先
@@ -1299,7 +1333,7 @@
     } else {
       renderNewsUI(D.news, headlineFromData(D.news));
     }
-    // 每 2 小时检查：距上次更新超过 2 小时则拉取；且缓存数据日期≠今天时【跨天强制刷新】
+    // 每 10 分钟检查：距上次更新超过 10 分钟则拉取；且缓存数据日期≠今天时【跨天强制刷新】
     const tryRefresh = () => {
       let lastTs = 0, cachedDate = null;
       try {
@@ -1312,11 +1346,11 @@
       if (isStaleDate || !lastTs || (Date.now() - lastTs) >= NEWS_INTERVAL_MS) {
         fetchLiveNews().then(ok => {
           const badge = $("#newsLiveBadge");
-          if (badge) badge.textContent = ok ? "🟢 实时更新 · 每2小时" : "🔄 每2小时自动更新";
+          if (badge) badge.textContent = ok ? "🟢 实时更新 · 每10分钟" : "🔄 每10分钟自动更新";
         });
       } else {
         const badge = $("#newsLiveBadge");
-        if (badge) badge.textContent = "🟢 实时更新 · 每2小时";
+        if (badge) badge.textContent = "🟢 实时更新 · 每10分钟";
       }
     };
     tryRefresh();
