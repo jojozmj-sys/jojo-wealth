@@ -3795,6 +3795,45 @@ button:has(.hb-ic), .wl-play:has(.hb-ic) {
 .psych-reviewed { margin-top: 8px; font-size: 11px; color: var(--ink-faint); }
 .psych-empty { text-align: center; color: var(--ink-soft); padding: 40px 16px; font-size: 14px; }
 
+/* 心理学 · 今日学习 / 今日复习 常驻推送卡片 */
+.psych-heroes { display: flex; flex-direction: column; gap: 12px; margin: 0 0 12px; }
+.psych-today-hero, .psych-review-hero {
+  background: linear-gradient(135deg, rgba(60,142,114,.08), rgba(201,138,94,.06));
+  border: 1.5px solid rgba(60,142,114,.18);
+  border-radius: 16px; padding: 14px 16px;
+}
+.psych-review-hero { background: linear-gradient(135deg, rgba(201,138,94,.1), rgba(126,147,169,.05)); border-color: rgba(201,138,94,.2); }
+.psych-hero-head { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; margin-bottom: 10px; }
+.psych-hero-title-main { font-size: 15px; font-weight: 900; color: var(--mint-line); }
+.psych-hero-sub { font-size: 12px; font-weight: 700; color: var(--ink-soft); }
+.psych-hero-item {
+  display: flex; align-items: center; gap: 8px; padding: 9px 10px; margin: 6px 0;
+  background: var(--cream); border: 1px solid var(--line); border-radius: 12px; cursor: pointer;
+  transition: box-shadow .15s, transform .1s;
+}
+.psych-hero-item:hover { box-shadow: var(--shadow-hover); transform: translateY(-1px); }
+.psych-hero-item.done { opacity: .62; background: var(--mint-soft); }
+.psych-hero-no { width: 22px; height: 22px; flex: none; border-radius: 50%; background: var(--mint-deep); color: #fff; font-size: 12px; font-weight: 900; display: grid; place-items: center; }
+.psych-hero-cat { font-size: 11.5px; color: var(--ink-soft); font-weight: 700; flex: none; white-space: nowrap; }
+.psych-hero-title { font-size: 14px; font-weight: 900; color: var(--ink); }
+.psych-hero-one { flex: 1 1 100%; font-size: 12px; color: var(--ink-soft); line-height: 1.45; margin-top: 2px; }
+.psych-hero-check { margin-left: auto; color: var(--mint-deep); font-weight: 900; flex: none; }
+.psych-hero-go {
+  margin-top: 8px; border: 1.5px solid var(--mint-line); background: #fff; color: var(--rum);
+  border-radius: 10px; padding: 7px 14px; font-size: 13px; font-weight: 800; cursor: pointer; font-family: inherit;
+  transition: all .15s;
+}
+.psych-hero-go:hover { background: var(--mint-soft); }
+.psych-hero-empty { font-size: 13px; color: var(--ink-soft); padding: 6px 2px; }
+.psych-review-item {
+  display: flex; align-items: center; gap: 10px; padding: 9px 10px; margin: 6px 0;
+  background: var(--cream); border: 1px solid rgba(201,138,94,.22); border-radius: 12px;
+}
+.psych-review-info { display: flex; align-items: center; gap: 7px; flex-wrap: wrap; flex: 1; }
+.psych-review-last { font-size: 11px; color: var(--ink-faint); }
+.psych-review-btn { flex: none; }
+.psych-review-btn:hover { background: var(--rum); border-color: var(--rum); }
+
 /* 心理学练习 */
 .psych-quiz-card { margin-top: 12px; }
 .psych-quiz-body { padding: 0 16px 16px; }
@@ -4088,6 +4127,18 @@ button:has(.hb-ic), .wl-play:has(.hb-ic) {
   background: linear-gradient(135deg, rgba(201,138,94,.06), rgba(126,147,169,.04));
   border-color: rgba(201,138,94,.12);
 }
+
+/* 首页心理学卡：今日推送信息 */
+.ov-mini-card.ov-today-psych { cursor: pointer; transition: box-shadow .15s, transform .1s; }
+.ov-mini-card.ov-today-psych:hover { box-shadow: var(--shadow-hover); transform: translateY(-1px); }
+.ov-mini-card.ov-today-psych:focus-visible { outline: 2px solid var(--mint-deep); outline-offset: 2px; }
+.ov-mini-go { margin-left: auto; font-size: 11px; font-weight: 800; color: var(--mint-deep); }
+.ov-psych-today { margin-top: 10px; padding-top: 10px; border-top: 1px dashed rgba(201,138,94,.22); }
+.ov-psych-today-label { font-size: 12px; font-weight: 900; color: var(--rum); margin-bottom: 6px; }
+.ov-psych-chips { display: flex; flex-wrap: wrap; gap: 5px; }
+.ov-psych-chip { font-size: 11px; background: #fff; border: 1px solid var(--mint-line); color: var(--mint-line); border-radius: 999px; padding: 2px 9px; font-weight: 700; }
+.ov-psych-chip.done { background: var(--mint-soft); color: var(--mint-deep); border-color: var(--mint-deep); }
+.ov-psych-review { margin-top: 7px; font-size: 11.5px; font-weight: 700; color: var(--ink-soft); }
 
 /* ================= 正念练习 ================= */
 .mf-card { margin-bottom: 18px; }

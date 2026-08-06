@@ -5232,6 +5232,55 @@
     return CARDS_BASE.filter(c => !c.tier || c.tier !== 2);
   }
 
+  // ---------- 课程表：按 分类 → 难度 → id 系统递进 ----------
+  const DAILY_KEY = "wb_psych_daily_v1";
+  const REVIEW_INTERVALS = [1, 3, 7, 16, 30]; // 天：标记「会用上了」后安排的间隔复习轮次
+  function catOrderIndex(catId) { const i = CATS.findIndex(c => c.id === catId); return i < 0 ? 99 : i; }
+  function idNum(id) { const m = String(id).match(/(\d+)$/); return m ? parseInt(m[1], 10) : 0; }
+  function curriculum() {
+    return CARDS().slice().sort((a, b) =>
+      catOrderIndex(a.cat) - catOrderIndex(b.cat) ||
+      a.level - b.level ||
+      idNum(a.id) - idNum(b.id));
+  }
+  function cardById(id) { return CARDS().find(c => c.id === id); }
+  function todayStr() { const d = new Date(); return d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate(); }
+
+  // 今日学习计划（按天缓存，保证当天多次打开结果稳定）
+  // - learnIds：课程表里接下来 3 张「还没会用上」的卡（系统递进，无需手动翻找）
+  // - reviewIds：到期且今天还没复习的卡（间隔记忆曲线）
+  function dueReviewIds() {
+    const ts = todayStr(), now = Date.now();
+    return CARDS().filter(c => {
+      const st = prog[c.id];
+      if (!st || !st.nextReview) return false;
+      if (st.reviewedToday === ts) return false; // 今天已复习过
+      return st.nextReview <= now;
+    }).sort((a, b) => (prog[a.id].nextReview || 0) - (prog[b.id].nextReview || 0))
+      .slice(0, 6).map(c => c.id);
+  }
+  function finalizePlan(dateKey, learnIds, reviewIds) {
+    const learnCards = learnIds.map(cardById).filter(Boolean);
+    const reviewCards = reviewIds.map(cardById).filter(Boolean);
+    return { date: dateKey, learnIds, reviewIds, learnCards, reviewCards };
+  }
+  function computeDailyPlan() {
+    const dateKey = todayStr();
+    let cached = null;
+    try { cached = JSON.parse(localStorage.getItem(DAILY_KEY)); } catch (e) {}
+    if (cached && cached.date === dateKey && cached.learnIds && cached.learnIds.length) {
+      return finalizePlan(dateKey, cached.learnIds, dueReviewIds());
+    }
+    const cur = curriculum();
+    const notDone = cur.filter(c => !(prog[c.id] && prog[c.id].applied));
+    const learnIds = notDone.slice(0, 3).map(c => c.id);
+    const reviewIds = dueReviewIds();
+    try { localStorage.setItem(DAILY_KEY, JSON.stringify({ date: dateKey, learnIds })); } catch (e) {}
+    return finalizePlan(dateKey, learnIds, reviewIds);
+  }
+  // 暴露给首页概览复用，避免算法重复
+  window.psychComputeDailyPlan = computeDailyPlan;
+
   // 状态：当前筛选
   const state = { cat: "all", level: "all", view: "path", expanded: {} };
 
@@ -5353,17 +5402,26 @@
       e.stopPropagation();
       const id = b.dataset.id, kind = b.dataset.mark;
       if (!prog[id]) prog[id] = {};
+      const prevApplied = !!prog[id].applied;
       prog[id][kind] = !prog[id][kind];
       prog[id].lastReview = Date.now();
+      if (kind === "applied" && prog[id].applied && !prevApplied && !prog[id].nextReview) {
+        // 首次标记「会用上了」→ 排入 1 天后首次复习
+        prog[id].nextReview = Date.now() + 86400000;
+      }
+      if (kind === "applied" && !prog[id].applied) {
+        // 取消「会用上了」→ 清空复习计划
+        prog[id].nextReview = null; prog[id].schedule = []; prog[id].reviewComplete = false; prog[id].reviewedToday = "";
+      }
       saveProg(prog);
       render();
-      appToast(kind === "applied" && prog[id].applied ? "已标记「会用上了」🎉" : (kind === "understood" && prog[id].understood ? "已标记「看懂了」👍" : "已取消标记"), 1600, "ok");
+      renderHeroes();
+      appToast(kind === "applied" && prog[id].applied ? "已标记「会用上了」🎉 已排入复习计划" : (kind === "understood" && prog[id].understood ? "已标记「看懂了」👍" : "已取消标记"), 1800, "ok");
       checkTier2Unlock();
     }));
   }
 
-  // ---------- 今日学习：基于日期种子的确定性 3 张 ----------
-  // 同一天点击结果不变，次日自动更新
+  // ---------- 日期种子（供练习题选项打乱使用，与学习计划无关）----------
   function daySeed() {
     const d = new Date();
     return d.getFullYear() * 10000 + (d.getMonth() + 1) * 100 + d.getDate();
@@ -5376,18 +5434,6 @@
       t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
       return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
     };
-  }
-  function pickDaily3() {
-    const cards = CARDS();
-    const seed = daySeed();
-    const rng = mulberry32(seed);
-    const pool = cards.slice();
-    // Fisher-Yates shuffle with seeded RNG
-    for (let i = pool.length - 1; i > 0; i--) {
-      const j = Math.floor(rng() * (i + 1));
-      [pool[i], pool[j]] = [pool[j], pool[i]];
-    }
-    return pool.slice(0, Math.min(3, pool.length));
   }
 
   // ---------- tier2 自动解锁检测 ----------
@@ -5406,51 +5452,129 @@
     return false;
   }
 
-  const todayBtn = $("#psychToday");
-  if (todayBtn) todayBtn.addEventListener("click", () => {
-    const picks = pickDaily3();
-    if (!picks.length) { appToast("暂无卡片可用", 1800, "info"); return; }
+  function syncChips() {
+    const catBox = $("#psychCatChips"); if (catBox) catBox.querySelectorAll(".psych-chip").forEach(x => x.classList.toggle("active", x.dataset.cat === state.cat));
+    const lvBox = $("#psychLevelChips"); if (lvBox) lvBox.querySelectorAll(".psych-chip").forEach(x => x.classList.toggle("active", x.dataset.level === String(state.level)));
+    const vBox = $("#psychViewChips"); if (vBox) vBox.querySelectorAll(".psych-chip").forEach(x => x.classList.toggle("active", x.dataset.view === state.view));
+  }
+  function jumpToCard(id) {
     state.cat = "all"; state.level = "all"; state.view = "path";
-    picks.forEach(c => state.expanded[c.id] = true);
-    // 同步 chips 高亮
-    const catBox = $("#psychCatChips"); if (catBox) catBox.querySelectorAll(".psych-chip").forEach(x => x.classList.toggle("active", x.dataset.cat === "all"));
-    const lvBox = $("#psychLevelChips"); if (lvBox) lvBox.querySelectorAll(".psych-chip").forEach(x => x.classList.toggle("active", x.dataset.level === "all"));
-    const vBox = $("#psychViewChips"); if (vBox) vBox.querySelectorAll(".psych-chip").forEach(x => x.classList.toggle("active", x.dataset.view === "path"));
-    render();
-    listEl.scrollIntoView({ behavior: "smooth", block: "start" });
-    appToast(`今日 ${picks.length} 条已展开，学完记得标记 🎯`, 2000, "ok");
-  });
-
-  // 页面进入时自动展示今日 3 条
-  function autoShowDaily() {
-    const picks = pickDaily3();
-    if (!picks.length) return;
-    // 如果当前没有展开任何卡片，就自动展开今日 3 条
-    const hasExpanded = Object.values(state.expanded).some(v => v);
-    if (hasExpanded) return;
-    picks.forEach(c => state.expanded[c.id] = true);
+    state.expanded[id] = true;
+    syncChips(); render();
+    const card = listEl.querySelector(`.psych-card[data-id="${id}"]`);
+    if (card) card.scrollIntoView({ behavior: "smooth", block: "center" });
+  }
+  function expandTodayCards() {
+    const plan = computeDailyPlan();
+    plan.learnIds.forEach(id => state.expanded[id] = true);
+    state.cat = "all"; state.level = "all"; state.view = "path";
+    syncChips(); render();
+    const first = listEl.querySelector(`.psych-card[data-id="${plan.learnIds[0]}"]`);
+    if (first) first.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
-  const reviewBtn = $("#psychReview");
-  if (reviewBtn) reviewBtn.addEventListener("click", () => {
-    const pool = CARDS().filter(c => prog[c.id] && prog[c.id].understood);
-    const src = pool.length ? pool : CARDS();
-    const c = src[Math.floor(Math.random() * src.length)];
-    state.cat = "all"; state.level = "all";
-    state.expanded[c.id] = true;
-    // 标记本次复习
-    if (!prog[c.id]) prog[c.id] = {};
-    prog[c.id].lastReview = Date.now(); saveProg();
+  // 间隔复习：完成一次复习 → 推进到下一间隔（1→3→7→16→30 天）
+  function completeReview(id) {
+    if (!prog[id]) prog[id] = {};
+    const st = prog[id];
+    const sched = st.schedule || [];
+    const idx = sched.length;
+    const interval = REVIEW_INTERVALS[idx] != null ? REVIEW_INTERVALS[idx] : REVIEW_INTERVALS[REVIEW_INTERVALS.length - 1];
+    sched.push(interval);
+    st.schedule = sched;
+    st.reviewedToday = todayStr();
+    st.lastReview = Date.now();
+    const nextIdx = sched.length;
+    if (nextIdx < REVIEW_INTERVALS.length) {
+      st.nextReview = Date.now() + REVIEW_INTERVALS[nextIdx] * 86400000;
+    } else {
+      st.nextReview = null;
+      st.reviewComplete = true;
+    }
+    saveProg(prog);
+    renderHeroes();
     render();
-    const card = listEl.querySelector(`.psych-card[data-id="${c.id}"]`);
-    if (card) card.scrollIntoView({ behavior: "smooth", block: "center" });
-    appToast(`随机复习：${LV[c.level]} · ${c.title}`, 1800, "info");
-  });
+    const nextTxt = st.nextReview ? (REVIEW_INTERVALS[nextIdx] + " 天后") : "全部复习完成 🎉";
+    appToast("复习完成，下次 " + nextTxt, 1800, "ok");
+  }
+
+  // ---------- 常驻推送卡片：今日学习 + 今日复习 ----------
+  function renderHeroes() {
+    const plan = computeDailyPlan();
+
+    // 「📚 今日学习」hero：自动展示课程表里接下来的 3 张
+    const todayHero = $("#psychTodayHero");
+    if (todayHero) {
+      const learnDone = plan.learnCards.filter(c => prog[c.id] && prog[c.id].applied).length;
+      const allDone = plan.learnCards.length > 0 && learnDone === plan.learnCards.length;
+      const items = plan.learnCards.map((c, i) => {
+        const st = prog[c.id] || {};
+        const cat = catMap[c.cat] || { name: c.cat, icon: "📌" };
+        const done = st.applied;
+        return `<div class="psych-hero-item ${done ? "done" : ""}" data-jump="${c.id}">
+          <span class="psych-hero-no">${i + 1}</span>
+          <span class="psych-lv-badge lv${c.level}">${LV[c.level] || c.level}</span>
+          <span class="psych-hero-cat">${cat.icon} ${cat.name}</span>
+          <span class="psych-hero-title">${escapeHtml(c.title)}</span>
+          <span class="psych-hero-one">${escapeHtml(c.one)}</span>
+          <span class="psych-hero-check">${done ? "✓" : ""}</span>
+        </div>`;
+      }).join("");
+      todayHero.innerHTML =
+        `<div class="psych-hero-head">
+          <span class="psych-hero-title-main">📚 今日学习</span>
+          <span class="psych-hero-sub">${allDone ? "今日 3 张全部完成 🎉" : "系统递进 · 第 " + (learnDone + 1) + " 步"}</span>
+        </div>` +
+        (items || `<div class="psych-hero-empty">课程已全部学完，去复习巩固吧 💪</div>`) +
+        (allDone ? "" : `<button class="psych-hero-go" id="psychExpandToday" type="button">展开今日卡片 ↓</button>`);
+      const go = $("#psychExpandToday");
+      if (go) go.addEventListener("click", expandTodayCards);
+      todayHero.querySelectorAll("[data-jump]").forEach(el => el.addEventListener("click", () => jumpToCard(el.dataset.jump)));
+    }
+
+    // 「🔁 今日复习」hero：独立的间隔复习推送
+    const reviewHero = $("#psychReviewHero");
+    if (reviewHero) {
+      if (!plan.reviewCards.length) {
+        reviewHero.innerHTML = `<div class="psych-hero-head"><span class="psych-hero-title-main">🔁 今日复习</span><span class="psych-hero-sub">暂无待复习</span></div><div class="psych-hero-empty">记忆很牢，继续往前学 👍</div>`;
+      } else {
+        const items = plan.reviewCards.map(c => {
+          const st = prog[c.id] || {};
+          const cat = catMap[c.cat] || { name: c.cat, icon: "📌" };
+          const last = st.lastReview ? new Date(st.lastReview).toLocaleDateString("zh-CN") : "—";
+          return `<div class="psych-review-item">
+            <div class="psych-review-info">
+              <span class="psych-lv-badge lv${c.level}">${LV[c.level] || c.level}</span>
+              <span class="psych-hero-cat">${cat.icon} ${cat.name}</span>
+              <span class="psych-hero-title">${escapeHtml(c.title)}</span>
+              <span class="psych-review-last">上次 ${last}</span>
+            </div>
+            <button class="psych-btn primary psych-review-btn" data-review="${c.id}" type="button">完成复习</button>
+          </div>`;
+        }).join("");
+        reviewHero.innerHTML = `<div class="psych-hero-head"><span class="psych-hero-title-main">🔁 今日复习</span><span class="psych-hero-sub">${plan.reviewCards.length} 张到期</span></div>` + items;
+        reviewHero.querySelectorAll("[data-review]").forEach(b => b.addEventListener("click", () => completeReview(b.dataset.review)));
+      }
+    }
+  }
+
+  const todayBtn = $("#psychToday");
+  if (todayBtn) todayBtn.addEventListener("click", expandTodayCards);
+
+  // 页面进入时自动展开今日学习卡片（无需手动翻找）
+  function autoShowDaily() {
+    const plan = computeDailyPlan();
+    const hasExpanded = Object.values(state.expanded).some(v => v);
+    if (hasExpanded) return;
+    plan.learnIds.forEach(id => state.expanded[id] = true);
+  }
 
   const resetBtn = $("#psychReset");
   if (resetBtn) resetBtn.addEventListener("click", () => {
-    if (!confirm("确定清空心理学的学习进度吗？（进阶库解锁状态也会重置）")) return;
-    prog = {}; saveProg(prog); setTier2Unlocked(false); render();
+    if (!confirm("确定清空心理学的学习进度吗？（今日计划、复习计划与进阶库解锁状态都会重置）")) return;
+    prog = {}; saveProg(prog); setTier2Unlocked(false);
+    try { localStorage.removeItem(DAILY_KEY); } catch (e) {}
+    render(); renderHeroes();
     appToast("进度已重置", 1600, "warn");
   });
 
@@ -5474,13 +5598,14 @@
   function saveQuizProg(q) { try { localStorage.setItem(QKEY, JSON.stringify(q)); } catch (e) {} }
   let quizProg = loadQuizProg();
 
-  // 基于今日 pickDaily3() 的 3 张卡片，各生成一道选择题
+  // 基于今日学习卡片（computeDailyPlan().learnCards）生成练习题，与当天学习内容挂钩
   // 题干 = card.example（兜底 one）；选项 = 正确 title + 3 个干扰 title（打乱）
   // 解释 = card.concept + card.why
   function genDailyQuizzes() {
-    const picks = pickDaily3();
+    const plan = computeDailyPlan();
+    let picks = plan.learnCards;
+    if (!picks.length) picks = curriculum().filter(c => prog[c.id] && prog[c.id].understood).slice(0, 3);
     const all = CARDS();
-    // 使用与 pickDaily3 不同的种子流，避免 shuffle 相关性
     const rng = mulberry32(daySeed() * 7 + 13);
     return picks.map(card => {
       const scenario = (card.example || card.one || "").trim();
@@ -5591,6 +5716,7 @@
   renderChips();
   autoShowDaily();
   render();
+  renderHeroes();
   renderQuiz();
 })();
 
@@ -7888,21 +8014,38 @@
             if (psychProg[c.id] && psychProg[c.id].understood) psychUnderstood++;
           });
         } catch (e) {}
-        // 今日测验进度
+        // 今日测验进度（与心理学模块同结构：wb_psych_quiz_v1 为 {题id: 选项}）
         var quizProg = { done: 0, total: 0 };
         try {
           var quizDay = localStorage.getItem("wb_psych_quiz_day_v1");
-          if (quizDay === today) {
+          var dNow = new Date();
+          var dayKey = dNow.getFullYear() * 10000 + (dNow.getMonth() + 1) * 100 + dNow.getDate();
+          if (quizDay === String(dayKey)) {
             var qp = JSON.parse(localStorage.getItem("wb_psych_quiz_v1")) || {};
-            quizProg.done = (qp.done || []).length;
-            quizProg.total = (qp.questions || []).length;
+            quizProg.done = Object.keys(qp).length;
           }
         } catch (e) {}
+        // 今日学习计划（复用模块算法，保证首页与模块一致）
+        var psychPlan = (window.psychComputeDailyPlan ? window.psychComputeDailyPlan() : null);
+        if (psychPlan) quizProg.total = psychPlan.learnCards.length;
         var psychPct = psychTotal ? Math.round(psychMastered / psychTotal * 100) : 0;
         var prR = 28, prC = 2 * Math.PI * prR, prDash = prC * psychPct / 100;
+        function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+        var todayLearnHtml = "";
+        if (psychPlan && psychPlan.learnCards.length) {
+          todayLearnHtml = psychPlan.learnCards.map(function (c) {
+            var st = (psychProg[c.id] || {});
+            return '<span class="ov-psych-chip ' + (st.applied ? "done" : "") + '">' + esc(c.title) + (st.applied ? " ✓" : "") + '</span>';
+          }).join("");
+        } else {
+          todayLearnHtml = '<span class="ov-psych-chip">课程已学完 🎉</span>';
+        }
+        var reviewTxt = (psychPlan && psychPlan.reviewCards.length)
+          ? ('🔁 今日复习 ' + psychPlan.reviewCards.length + ' 张')
+          : "🔁 暂无待复习";
         psychStatsHtml =
-          '<div class="ov-mini-card ov-mini-psych">' +
-            '<div class="ov-mini-hd"><img class="ov-mini-ic-img" src="assets/icons/icon-psych.png?v=b97" alt="心理学"><span class="ov-mini-title">心理学</span></div>' +
+          '<div class="ov-mini-card ov-mini-psych ov-today-psych" role="button" tabindex="0" title="点击去学习">' +
+            '<div class="ov-mini-hd"><img class="ov-mini-ic-img" src="assets/icons/icon-psych.png?v=b99" alt="心理学"><span class="ov-mini-title">心理学</span><span class="ov-mini-go">去学习 →</span></div>' +
             '<div class="ov-mini-body">' +
               '<svg class="ov-mini-ring" viewBox="0 0 72 72" width="72" height="72">' +
                 '<circle cx="36" cy="36" r="' + prR + '" fill="none" stroke="rgba(201,138,94,.12)" stroke-width="5"/>' +
@@ -7919,6 +8062,11 @@
                   : '<div class="ov-mini-stat"><span class="ov-ms-num">' + psychTotal + '</span><span class="ov-ms-lbl">总知识点</span></div>') +
               '</div>' +
             '</div>' +
+            '<div class="ov-psych-today">' +
+              '<div class="ov-psych-today-label">📚 今日学习</div>' +
+              '<div class="ov-psych-chips">' + todayLearnHtml + '</div>' +
+              '<div class="ov-psych-review">' + reviewTxt + '</div>' +
+            '</div>' +
           '</div>';
       }
 
@@ -7927,6 +8075,13 @@
       miniRow.className = "ov-mini-row";
       miniRow.innerHTML = (planCard || "") + (enStatsHtml || "") + (psychStatsHtml || "");
       ovBox.insertBefore(miniRow, ovBox.firstChild);
+      // 首页心理学卡可点击进入「今日学习」
+      var psychGo = miniRow.querySelector(".ov-today-psych");
+      if (psychGo) {
+        var goPsych = function () { if (typeof showPage === "function") showPage("psych"); };
+        psychGo.addEventListener("click", goPsych);
+        psychGo.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); goPsych(); } });
+      }
     }
     }
 
