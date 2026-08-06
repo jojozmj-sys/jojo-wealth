@@ -5776,7 +5776,7 @@ window.WORKBENCH_DATA = {
           "platform": "微博",
           "rank": 1,
           "title": "周五下午弹性离岗",
-          "hot": 1166055,
+          "hot": 1166495,
           "url": "https://s.weibo.com/weibo?q=%E5%91%A8%E4%BA%94%E4%B8%8B%E5%8D%88%E5%BC%B9%E6%80%A7%E7%A6%BB%E5%B2%97",
           "tag": "社会",
           "desc": ""
@@ -5785,7 +5785,7 @@ window.WORKBENCH_DATA = {
           "platform": "微博",
           "rank": 2,
           "title": "被梅姨拐卖者称已被养父母删除",
-          "hot": 1142019,
+          "hot": 1145087,
           "url": "https://s.weibo.com/weibo?q=%E8%A2%AB%E6%A2%85%E5%A7%A8%E6%8B%90%E5%8D%96%E8%80%85%E7%A7%B0%E5%B7%B2%E8%A2%AB%E5%85%BB%E7%88%B6%E6%AF%8D%E5%88%A0%E9%99%A4",
           "tag": "社会",
           "desc": ""
@@ -5794,7 +5794,7 @@ window.WORKBENCH_DATA = {
           "platform": "微博",
           "rank": 3,
           "title": "数据看中国智造硬核实力",
-          "hot": 1120298,
+          "hot": 1110077,
           "url": "https://s.weibo.com/weibo?q=%E6%95%B0%E6%8D%AE%E7%9C%8B%E4%B8%AD%E5%9B%BD%E6%99%BA%E9%80%A0%E7%A1%AC%E6%A0%B8%E5%AE%9E%E5%8A%9B",
           "tag": "社会",
           "desc": ""
@@ -5803,7 +5803,7 @@ window.WORKBENCH_DATA = {
           "platform": "微博",
           "rank": 4,
           "title": "感觉全东北都在等7号",
-          "hot": 1102615,
+          "hot": 1088192,
           "url": "https://s.weibo.com/weibo?q=%E6%84%9F%E8%A7%89%E5%85%A8%E4%B8%9C%E5%8C%97%E9%83%BD%E5%9C%A8%E7%AD%897%E5%8F%B7",
           "tag": "社会",
           "desc": ""
@@ -5812,7 +5812,7 @@ window.WORKBENCH_DATA = {
           "platform": "微博",
           "rank": 5,
           "title": "双休",
-          "hot": 1059801,
+          "hot": 1061900,
           "url": "https://s.weibo.com/weibo?q=%E5%8F%8C%E4%BC%91",
           "tag": "社会",
           "desc": ""
@@ -5821,7 +5821,7 @@ window.WORKBENCH_DATA = {
           "platform": "微博",
           "rank": 6,
           "title": "白鹿回应开到荼蘼剧本",
-          "hot": 1054117,
+          "hot": 1051479,
           "url": "https://s.weibo.com/weibo?q=%E7%99%BD%E9%B9%BF%E5%9B%9E%E5%BA%94%E5%BC%80%E5%88%B0%E8%8D%BC%E8%98%BC%E5%89%A7%E6%9C%AC",
           "tag": "社会",
           "desc": ""
@@ -5830,7 +5830,7 @@ window.WORKBENCH_DATA = {
           "platform": "微博",
           "rank": 7,
           "title": "大白兔奶糖的包装纸火了",
-          "hot": 724995,
+          "hot": 730856,
           "url": "https://s.weibo.com/weibo?q=%E5%A4%A7%E7%99%BD%E5%85%94%E5%A5%B6%E7%B3%96%E7%9A%84%E5%8C%85%E8%A3%85%E7%BA%B8%E7%81%AB%E4%BA%86",
           "tag": "社会",
           "desc": ""
@@ -5839,7 +5839,7 @@ window.WORKBENCH_DATA = {
           "platform": "微博",
           "rank": 8,
           "title": "张雅琪中餐厅海报",
-          "hot": 715484,
+          "hot": 723447,
           "url": "https://s.weibo.com/weibo?q=%E5%BC%A0%E9%9B%85%E7%90%AA%E4%B8%AD%E9%A4%90%E5%8E%85%E6%B5%B7%E6%8A%A5",
           "tag": "社会",
           "desc": ""
@@ -5848,7 +5848,7 @@ window.WORKBENCH_DATA = {
           "platform": "微博",
           "rank": 9,
           "title": "C罗再次回应女友身材评论",
-          "hot": 714508,
+          "hot": 723344,
           "url": "https://s.weibo.com/weibo?q=C%E7%BD%97%E5%86%8D%E6%AC%A1%E5%9B%9E%E5%BA%94%E5%A5%B3%E5%8F%8B%E8%BA%AB%E6%9D%90%E8%AF%84%E8%AE%BA",
           "tag": "社会",
           "desc": ""
@@ -5857,7 +5857,7 @@ window.WORKBENCH_DATA = {
           "platform": "微博",
           "rank": 10,
           "title": "车企开始回归静默上市",
-          "hot": 710132,
+          "hot": 718096,
           "url": "https://s.weibo.com/weibo?q=%E8%BD%A6%E4%BC%81%E5%BC%80%E5%A7%8B%E5%9B%9E%E5%BD%92%E9%9D%99%E9%BB%98%E4%B8%8A%E5%B8%82",
           "tag": "社会",
           "desc": ""
@@ -5866,7 +5866,7 @@ window.WORKBENCH_DATA = {
           "platform": "微博",
           "rank": 11,
           "title": "田曦薇连续16部铁刘海剧",
-          "hot": 706337,
+          "hot": 714162,
           "url": "https://s.weibo.com/weibo?q=%E7%94%B0%E6%9B%A6%E8%96%87%E8%BF%9E%E7%BB%AD16%E9%83%A8%E9%93%81%E5%88%98%E6%B5%B7%E5%89%A7",
           "tag": "社会",
           "desc": ""
@@ -5875,7 +5875,7 @@ window.WORKBENCH_DATA = {
           "platform": "微博",
           "rank": 12,
           "title": "曝侯明昊违反交规被约谈",
-          "hot": 703567,
+          "hot": 710035,
           "url": "https://s.weibo.com/weibo?q=%E6%9B%9D%E4%BE%AF%E6%98%8E%E6%98%8A%E8%BF%9D%E5%8F%8D%E4%BA%A4%E8%A7%84%E8%A2%AB%E7%BA%A6%E8%B0%88",
           "tag": "社会",
           "desc": ""
@@ -5884,7 +5884,7 @@ window.WORKBENCH_DATA = {
           "platform": "微博",
           "rank": 13,
           "title": "海口 80吨危化品",
-          "hot": 699525,
+          "hot": 706887,
           "url": "https://s.weibo.com/weibo?q=%E6%B5%B7%E5%8F%A3%2080%E5%90%A8%E5%8D%B1%E5%8C%96%E5%93%81",
           "tag": "社会",
           "desc": ""
@@ -5893,7 +5893,7 @@ window.WORKBENCH_DATA = {
           "platform": "微博",
           "rank": 14,
           "title": "TFBOYS换置顶",
-          "hot": 696927,
+          "hot": 705133,
           "url": "https://s.weibo.com/weibo?q=TFBOYS%E6%8D%A2%E7%BD%AE%E9%A1%B6",
           "tag": "社会",
           "desc": ""
@@ -5902,7 +5902,7 @@ window.WORKBENCH_DATA = {
           "platform": "微博",
           "rank": 15,
           "title": "王俊凯王源易烊千玺未公开合照",
-          "hot": 691803,
+          "hot": 700965,
           "url": "https://s.weibo.com/weibo?q=%E7%8E%8B%E4%BF%8A%E5%87%AF%E7%8E%8B%E6%BA%90%E6%98%93%E7%83%8A%E5%8D%83%E7%8E%BA%E6%9C%AA%E5%85%AC%E5%BC%80%E5%90%88%E7%85%A7",
           "tag": "社会",
           "desc": ""
@@ -5910,27 +5910,27 @@ window.WORKBENCH_DATA = {
         {
           "platform": "微博",
           "rank": 16,
-          "title": "为什么年轻人更容易疲惫",
-          "hot": 688847,
-          "url": "https://s.weibo.com/weibo?q=%E4%B8%BA%E4%BB%80%E4%B9%88%E5%B9%B4%E8%BD%BB%E4%BA%BA%E6%9B%B4%E5%AE%B9%E6%98%93%E7%96%B2%E6%83%AB",
+          "title": "婚外胚胎案父亲已10个月没见过女儿",
+          "hot": 698544,
+          "url": "https://s.weibo.com/weibo?q=%E5%A9%9A%E5%A4%96%E8%83%9A%E8%83%8E%E6%A1%88%E7%88%B6%E4%BA%B2%E5%B7%B210%E4%B8%AA%E6%9C%88%E6%B2%A1%E8%A7%81%E8%BF%87%E5%A5%B3%E5%84%BF",
           "tag": "社会",
           "desc": ""
         },
         {
           "platform": "微博",
           "rank": 17,
-          "title": "2026刺激之夜节目单含金量",
-          "hot": 684938,
-          "url": "https://s.weibo.com/weibo?q=2026%E5%88%BA%E6%BF%80%E4%B9%8B%E5%A4%9C%E8%8A%82%E7%9B%AE%E5%8D%95%E5%90%AB%E9%87%91%E9%87%8F",
+          "title": "舒畅演短剧有种降维打击的感觉",
+          "hot": 695167,
+          "url": "https://s.weibo.com/weibo?q=%E8%88%92%E7%95%85%E6%BC%94%E7%9F%AD%E5%89%A7%E6%9C%89%E7%A7%8D%E9%99%8D%E7%BB%B4%E6%89%93%E5%87%BB%E7%9A%84%E6%84%9F%E8%A7%89",
           "tag": "社会",
           "desc": ""
         },
         {
           "platform": "微博",
           "rank": 18,
-          "title": "舒畅演短剧有种降维打击的感觉",
-          "hot": 683364,
-          "url": "https://s.weibo.com/weibo?q=%E8%88%92%E7%95%85%E6%BC%94%E7%9F%AD%E5%89%A7%E6%9C%89%E7%A7%8D%E9%99%8D%E7%BB%B4%E6%89%93%E5%87%BB%E7%9A%84%E6%84%9F%E8%A7%89",
+          "title": "2026刺激之夜节目单含金量",
+          "hot": 691559,
+          "url": "https://s.weibo.com/weibo?q=2026%E5%88%BA%E6%BF%80%E4%B9%8B%E5%A4%9C%E8%8A%82%E7%9B%AE%E5%8D%95%E5%90%AB%E9%87%91%E9%87%8F",
           "tag": "社会",
           "desc": ""
         },
@@ -5938,7 +5938,7 @@ window.WORKBENCH_DATA = {
           "platform": "微博",
           "rank": 19,
           "title": "金银狂飙原因",
-          "hot": 678011,
+          "hot": 686202,
           "url": "https://s.weibo.com/weibo?q=%E9%87%91%E9%93%B6%E7%8B%82%E9%A3%99%E5%8E%9F%E5%9B%A0",
           "tag": "社会",
           "desc": ""
@@ -5946,18 +5946,18 @@ window.WORKBENCH_DATA = {
         {
           "platform": "微博",
           "rank": 20,
-          "title": "理想i8发布",
-          "hot": 674319,
-          "url": "https://s.weibo.com/weibo?q=%E7%90%86%E6%83%B3i8%E5%8F%91%E5%B8%83",
+          "title": "为什么年轻人更容易疲惫",
+          "hot": 683503,
+          "url": "https://s.weibo.com/weibo?q=%E4%B8%BA%E4%BB%80%E4%B9%88%E5%B9%B4%E8%BD%BB%E4%BA%BA%E6%9B%B4%E5%AE%B9%E6%98%93%E7%96%B2%E6%83%AB",
           "tag": "社会",
           "desc": ""
         },
         {
           "platform": "微博",
           "rank": 21,
-          "title": "专家建议优化或取消调休",
-          "hot": 671406,
-          "url": "https://s.weibo.com/weibo?q=%E4%B8%93%E5%AE%B6%E5%BB%BA%E8%AE%AE%E4%BC%98%E5%8C%96%E6%88%96%E5%8F%96%E6%B6%88%E8%B0%83%E4%BC%91",
+          "title": "侯卓成前女友",
+          "hot": 679231,
+          "url": "https://s.weibo.com/weibo?q=%E4%BE%AF%E5%8D%93%E6%88%90%E5%89%8D%E5%A5%B3%E5%8F%8B",
           "tag": "社会",
           "desc": ""
         },
@@ -5965,7 +5965,7 @@ window.WORKBENCH_DATA = {
           "platform": "微博",
           "rank": 22,
           "title": "中山医院拒绝回应婚外胚胎案",
-          "hot": 669653,
+          "hot": 677048,
           "url": "https://s.weibo.com/weibo?q=%E4%B8%AD%E5%B1%B1%E5%8C%BB%E9%99%A2%E6%8B%92%E7%BB%9D%E5%9B%9E%E5%BA%94%E5%A9%9A%E5%A4%96%E8%83%9A%E8%83%8E%E6%A1%88",
           "tag": "社会",
           "desc": ""
@@ -5973,27 +5973,27 @@ window.WORKBENCH_DATA = {
         {
           "platform": "微博",
           "rank": 23,
-          "title": "侯卓成前女友",
-          "hot": 666875,
-          "url": "https://s.weibo.com/weibo?q=%E4%BE%AF%E5%8D%93%E6%88%90%E5%89%8D%E5%A5%B3%E5%8F%8B",
-          "tag": "社会",
-          "desc": ""
-        },
-        {
-          "platform": "微博",
-          "rank": 24,
           "title": "关之琳模特新男友才27岁",
-          "hot": 660903,
+          "hot": 674325,
           "url": "https://s.weibo.com/weibo?q=%E5%85%B3%E4%B9%8B%E7%90%B3%E6%A8%A1%E7%89%B9%E6%96%B0%E7%94%B7%E5%8F%8B%E6%89%8D27%E5%B2%81",
           "tag": "社会",
           "desc": ""
         },
         {
           "platform": "微博",
+          "rank": 24,
+          "title": "理想i8发布",
+          "hot": 668065,
+          "url": "https://s.weibo.com/weibo?q=%E7%90%86%E6%83%B3i8%E5%8F%91%E5%B8%83",
+          "tag": "社会",
+          "desc": ""
+        },
+        {
+          "platform": "微博",
           "rank": 25,
-          "title": "侯卓成 王垲智",
-          "hot": 659276,
-          "url": "https://s.weibo.com/weibo?q=%E4%BE%AF%E5%8D%93%E6%88%90%20%E7%8E%8B%E5%9E%B2%E6%99%BA",
+          "title": "专家建议优化或取消调休",
+          "hot": 666939,
+          "url": "https://s.weibo.com/weibo?q=%E4%B8%93%E5%AE%B6%E5%BB%BA%E8%AE%AE%E4%BC%98%E5%8C%96%E6%88%96%E5%8F%96%E6%B6%88%E8%B0%83%E4%BC%91",
           "tag": "社会",
           "desc": ""
         },
@@ -6541,7 +6541,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 11,
           "title": "美利坚糖门黄油大胃袋VS国产味真族良子板面长老",
-          "hot": 3457319,
+          "hot": 3457632,
           "url": "https://b23.tv/BV1JmMf69EZY",
           "tag": "影视",
           "desc": ""
@@ -6550,7 +6550,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 12,
           "title": "课桌山河1566 (1)",
-          "hot": 1598646,
+          "hot": 1598808,
           "url": "https://b23.tv/BV1MT3d6KEd1",
           "tag": "影视",
           "desc": ""
@@ -6577,7 +6577,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 15,
           "title": "柯洁VS党毅飞（不可能的逆转）",
-          "hot": 3845552,
+          "hot": 3846893,
           "url": "https://b23.tv/BV1kxuw6iEb2",
           "tag": "影视",
           "desc": ""
@@ -6613,7 +6613,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 19,
           "title": "老大，你的意思是我们抽烟抽的慢也得死吗？",
-          "hot": 9016375,
+          "hot": 9016943,
           "url": "https://b23.tv/BV126GG62E9G",
           "tag": "影视",
           "desc": "游戏：机械狂欢！ 好玩好玩好玩好玩好玩好玩好玩好玩好玩好玩好玩！"
@@ -6631,7 +6631,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 21,
           "title": "周 处 除 三 害 现实版",
-          "hot": 1743039,
+          "hot": 1745925,
           "url": "https://b23.tv/BV1bpM16eEAk",
           "tag": "影视",
           "desc": "在看《周处除三害》的时候，最震撼的就是尊者那一场戏，但我万万没想到，在那不久之后，我要和他的现实版对抗。 电影里，尊者是当地有名的罪犯。 现实中，赖泽平，也是曾上过焦点访谈的传销头目。 而过了二十年，他因为前科改名成了赖泽明，但依然放不下自己的平字，尊号如平大师，开了一家如是书院，在里面玩洗脑，暴力，享受信徒们送来的钱和女信徒，以及——开戒网瘾学校，抓成年人和未成年人进去折磨，来赚取高昂的钱财。 画面：《周处除三害》"
