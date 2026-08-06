@@ -2028,16 +2028,19 @@
   /* ---------- 收听：跳转到播客平台收听当期真实音频 ---------- */
   // 根据按钮取对应单期的音频外链
   function resolvePodAudioLink(btn) {
-    // 精选单期（data-i）：优先用自身 link，其次按 show 匹配 podcasts 列表的 latest.link
+    // 精选单期（data-i）：优先用自身 link；无直链时按「节目 + 单期标题」精确搜索该期
     const i = btn.getAttribute("data-i");
     if (i != null && i !== "") {
       const ep = D.podcastEpisodes[+i];
       if (!ep) return null;
       if (ep.link) return ep.link;
+      // 策划库单期多无单期直链：跳「最新一期」会指向别的期，故改为精确搜索该期本身
+      const q = ((ep.show || "") + " " + (ep.title || "")).trim();
+      if (q) return "search:" + q;
       const pod = (D.podcasts || []).find(x => x && x.name === ep.show);
       return (pod && pod.latest && pod.latest.link) || null;
     }
-    // 最新一期（data-latest）：直接用 latest.link
+    // 最新一期（data-latest）：卡片即最新一期，直接用 latest.link（匹配正确）
     const id = btn.getAttribute("data-latest");
     if (id != null && id !== "") {
       const showName = btn.closest(".pod-item")?.getAttribute("data-show");
@@ -2048,10 +2051,16 @@
   }
   function handlePodListen(btn) {
     const link = resolvePodAudioLink(btn);
+    // 精选单期无直链 → 精确搜索该期（search: 前缀）
+    if (typeof link === "string" && link.startsWith("search:")) {
+      const q = link.slice("search:".length);
+      window.open("https://www.xiaoyuzhoufm.com/search?q=" + encodeURIComponent(q), "_blank", "noopener,noreferrer");
+      return;
+    }
     if (link) {
       window.open(link, "_blank", "noopener,noreferrer");
     } else {
-      // 没有直接链接时，按节目名+标题搜索
+      // 没有任何链接时，按节目名+标题兜底搜索
       const i = btn.getAttribute("data-i");
       let q = "";
       if (i != null && i !== "") {
