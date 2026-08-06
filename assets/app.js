@@ -6933,8 +6933,7 @@
             appToast(name + " 已在自选中", 1800, "info");
             return;
           }
-          addQuote({ code: code, name: name || code });
-          appToast("✅ 已加入自选：" + name, 2000, "ok");
+          addQuote(code, name || code, /^(0|3)/.test(code) ? "sz" : "sh");
         });
       });
     }
