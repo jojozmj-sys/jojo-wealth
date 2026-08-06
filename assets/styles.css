@@ -3485,10 +3485,21 @@ button:has(.hb-ic), .wl-play:has(.hb-ic) {
   overflow: hidden;
 }
 #page-stock .st-tile-flowbar-fill {
+  position: relative;
   height: 100%;
   border-radius: 2px;
+  overflow: hidden;
   transition: width .5s cubic-bezier(.4,0,.2,1);
 }
+#page-stock .st-tile-flowbar-fill::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.6), transparent);
+  background-size: 220% 100%;
+  animation: st-flow-shimmer 1.6s linear infinite;
+}
+@keyframes st-flow-shimmer { 0% { background-position: 220% 0; } 100% { background-position: -220% 0; } }
 #page-stock .st-tile-flowbar-fill.up { background: var(--st-up); }
 #page-stock .st-tile-flowbar-fill.down { background: var(--st-down); }
 #page-stock .st-tile-flowbar-fill.flat { background: rgba(128,128,128,.35); }
