@@ -361,7 +361,11 @@
           var uiBusy = !!(window.__wbUiBusy); // 选股等长任务进行中，不自动刷新打断
           if (!editing && !uiBusy && rn < RELOAD_CAP_MAX) {
             try { sessionStorage.setItem(RELOAD_CAP_KEY, JSON.stringify({ n: rn + 1, t: now })); } catch (e) {}
-            setTimeout(function () { location.reload(); }, 400);
+            setTimeout(function () {
+              // 定时器触发前若长任务已开始，取消刷新，避免打断选股等流程
+              if (window.__wbUiBusy) return;
+              location.reload();
+            }, 400);
           } else {
             console.warn("[wb-sync] 云端数据已应用，自动刷新达到上限，跳过刷新（数据事件已派发）");
           }
