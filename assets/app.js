@@ -1030,13 +1030,13 @@
   window.__planAfterRender();
 
   /* ---------- Render content modules ---------- */
-  /* ---------- 每日新闻：多版面 + 每10分钟自动更新 + 今日要闻 ---------- */
+  /* ---------- 每日新闻：多版面 + 每3小时自动更新 + 今日要闻 ---------- */
   // 主源：东方财富快讯（分钟级滚动、CORS 开放）；60s 简讯仅作兜底
   const NEWS_API = "https://np-listapi.eastmoney.com/comm/web/getNewsByColumns?client=web&biz=web_news_col&column=345&order=1&needInteractData=0&page_index=1&page_size=50&req_trace=wb";
   const NEWS_API_BACKUP = "https://60s.viki.moe/v2/60s";
   const NEWS_CACHE_KEY = "wb_news_cache_v3";
   const NEWS_READ_KEY = "wb_news_read_v1";   // 已读新闻标题集合（去空格哈希）
-  const NEWS_INTERVAL_MS = 10 * 60 * 1000; // 每 10 分钟
+  const NEWS_INTERVAL_MS = 3 * 60 * 60 * 1000; // 每 3 小时
   const NEWS_SECTION_NAMES = ["头条", "国内", "国际", "财经", "科技", "社会", "体育", "文娱", "天气预警"];
 
   /* ---------- 已读机制：已看过的新闻从列表去掉，未看的保留，新来的增量加入 ---------- */
@@ -1337,7 +1337,7 @@
     } else {
       renderNewsUI(D.news, headlineFromData(D.news));
     }
-    // 每 10 分钟检查：距上次更新超过 10 分钟则拉取；且缓存数据日期≠今天时【跨天强制刷新】
+    // 每 3 小时检查：距上次更新超过 3 小时则拉取；且缓存数据日期≠今天时【跨天强制刷新】
     const tryRefresh = () => {
       let lastTs = 0, cachedDate = null;
       try {
@@ -1350,11 +1350,11 @@
       if (isStaleDate || !lastTs || (Date.now() - lastTs) >= NEWS_INTERVAL_MS) {
         fetchLiveNews().then(ok => {
           const badge = $("#newsLiveBadge");
-          if (badge) badge.textContent = ok ? "🟢 实时更新 · 每10分钟" : "🔄 每10分钟自动更新";
+          if (badge) badge.textContent = ok ? "🟢 实时更新 · 每3小时" : "🔄 每3小时自动更新";
         });
       } else {
         const badge = $("#newsLiveBadge");
-        if (badge) badge.textContent = "🟢 实时更新 · 每10分钟";
+        if (badge) badge.textContent = "🟢 实时更新 · 每3小时";
       }
     };
     tryRefresh();
