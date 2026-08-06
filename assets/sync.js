@@ -101,6 +101,11 @@
     }
   }
 
+  /* 同步看门狗：进入「同步中」后 30s 内必须离开该状态，否则强制转离线，
+   * 防止任何请求永久挂起导致芯片永远显示「同步中」。 */
+  var _watchdog = null;
+  var SYNC_WATCHDOG_MS = CFG.syncWatchdogMs || 30000;
+
   function setState(st, msg) {
     ensureUI();
     _curState = st || "idle";
@@ -116,6 +121,18 @@
     if (elBar.classList.contains("open")) elBar.style.display = "flex";
     if (elStatus) elStatus.textContent = msg || "";
     if (elText) elText.textContent = t.bar;
+    /* 看门狗只在 syncing 状态启动 */
+    if (_curState === "syncing") {
+      clearTimeout(_watchdog);
+      _watchdog = setTimeout(function () {
+        if (_curState === "syncing") {
+          console.warn("[wb-sync] 同步 30s 无响应，强制转离线（将自动重试）");
+          setState("offline", "云端长时间无响应 · 自动重试中");
+        }
+      }, SYNC_WATCHDOG_MS);
+    } else {
+      clearTimeout(_watchdog);
+    }
   }
 
   /* 未配置云同步：直接标红未连接，不再执行后续逻辑 */
@@ -167,9 +184,14 @@
   /**
    * 直接 fetch https://<项目>.supabase.co/rest/v1/<table>
    * 不再经过 server.js 代理（CORS 已放行 *）
+   * 关键防呆：请求带 AbortController 超时（默认 15s）。
+   * 此前无超时 → 移动网络下 supabase.co 偶发挂起时 Promise 永不落定，
+   * 状态芯片永远停在「同步中」。超时后抛 [Supabase timeout]，由 failState 转为错误态并自动重试。
    */
+  var REQ_TIMEOUT_MS = CFG.reqTimeoutMs || 15000;
   function apiRequest(method, restPath, body) {
     var url = API_BASE + restPath;
+    var ctl = (typeof AbortController !== "undefined") ? new AbortController() : null;
     var opts = {
       method: method,
       headers: {
@@ -180,7 +202,9 @@
         "Accept": "application/json"
       }
     };
+    if (ctl) opts.signal = ctl.signal;
     if (body) opts.body = JSON.stringify(body);
+    var timer = ctl ? setTimeout(function () { ctl.abort(); }, REQ_TIMEOUT_MS) : null;
     return fetch(url, opts).then(function (r) {
       var contentType = r.headers.get("content-type") || "";
       if (!r.ok) {
@@ -192,7 +216,13 @@
       }
       if (contentType.indexOf("application/json") === -1) return r.text();
       return r.json();
-    });
+    }, function (e) {
+      /* fetch 拒绝：区分「主动超时」与「网络层错误」 */
+      if (ctl && e && e.name === "AbortError") {
+        throw new Error("[Supabase timeout] 云端请求超时（" + (REQ_TIMEOUT_MS / 1000) + "s），已转入离线，将自动重试");
+      }
+      throw e;
+    }).finally(function () { if (timer) clearTimeout(timer); });
   }
 
   /**
@@ -244,11 +274,11 @@
     return new Date(ts).toLocaleTimeString("zh-CN", { hour: "2-digit", minute: "2-digit" });
   }
   /* 区分「连不上云端」和「云端接口报错」：
-     只有服务器真的响应了（消息以 [Supabase 状态码] 开头）才算接口异常，
+     只有服务器真的响应了（消息以 [Supabase 状态码] 开头）或明确超时（[Supabase timeout]）才算接口异常，
      其余一律视为未连接（断网 / DNS / CORS / 项目被暂停…）。 */
   function failState(e, prefix) {
     var m = (e && e.message ? e.message : String(e || ""));
-    if (/^\[Supabase \d+\]/.test(m)) { setState("error", prefix + m); return; }
+    if (/^\[Supabase (\d+|timeout)\]/.test(m)) { setState("error", prefix + m); return; }
     setState("offline", "连不上云端 · 会自动重试" + (_lastOkAt ? "（上次成功 " + hhmm(_lastOkAt) + "）" : ""));
   }
 
@@ -257,8 +287,12 @@
     if (_timer) clearTimeout(_timer);
     _timer = setTimeout(function () { doPush(reason); }, 1500);
   }
+  /* 单飞保护：一次只允许一个推送请求在途，防止频繁写入时多个读改写请求并发堆积 */
+  var _pushBusy = false;
   async function doPush(reason) {
     if (navigator.onLine === false) { setState("offline", "设备离线，恢复网络后自动上传"); return; }
+    if (_pushBusy) { _dirty = true; return; }   /* 已在途：标记脏，由在途推送收尾时补推 */
+    _pushBusy = true;
     setState("syncing", reason || "本地有改动，正在同步…");
     try {
       var local = snapshot();
@@ -275,6 +309,10 @@
     } catch (e) {
       console.warn("[wb-sync] push fail:", e);
       failState(e, "同步失败：");
+    } finally {
+      _pushBusy = false;
+      /* 推送期间又有新写入 → 收尾后再推一轮，避免漏传 */
+      if (_dirty) schedulePush("补传新改动");
     }
   }
 
@@ -287,8 +325,15 @@
 
   /**
    * 从云端拉取
+   * 单飞保护：避免 visibilitychange / 手动按钮并发触发多个 pull 堆积
    */
+  var _pullBusy = false;
+  var RELOAD_CAP_KEY = "wb_sync_reload_guard";   // sessionStorage 键：本次会话自动刷新次数（防无限刷新循环）
+  var RELOAD_CAP_WINDOW = 30000;                 // 时间窗 ms
+  var RELOAD_CAP_MAX = 2;                        // 时间窗内最多自动刷新次数
   async function pull(cb) {
+    if (_pullBusy) { if (cb) cb(false, new Error("busy")); return; }
+    _pullBusy = true;
     setState("syncing", "正在从云端加载…");
     try {
       var row = await readCloud();
@@ -303,11 +348,21 @@
         setState("ok", "云端已连接 · 数据更新于 " + (row.updated_at ? hhmm(row.updated_at) : hhmm(_lastOkAt)));
         if (changed) {
           try { window.dispatchEvent(new Event("wb-cloud-applied")); } catch (e) {}
-          // 拉到新数据后自动刷新页面以展示（正在输入则不刷新，等下次）
+          /* 拉到新数据后自动刷新页面以展示（正在输入则不刷新，等下次）。
+           * ⚠️ 防无限刷新：若存在「每次加载都会写差异 wb_ 键」的模块，本地与云端永远有差，
+           * 无限制 reload 会造成页面循环刷新、同步状态永远停在「同步中」。
+           * 这里用 sessionStorage 计数，30s 内最多自动刷新 2 次，达到上限后只派事件、不再刷新。 */
+          var rn = 0, rt = 0;
+          try { var rm = JSON.parse(sessionStorage.getItem(RELOAD_CAP_KEY) || "{}"); rn = rm.n || 0; rt = rm.t || 0; } catch (e) {}
+          var now = Date.now();
+          if (now - rt > RELOAD_CAP_WINDOW) rn = 0;
           var ae = document.activeElement;
           var editing = ae && (ae.tagName === "INPUT" || ae.tagName === "TEXTAREA" || ae.isContentEditable);
-          if (!editing) {
+          if (!editing && rn < RELOAD_CAP_MAX) {
+            try { sessionStorage.setItem(RELOAD_CAP_KEY, JSON.stringify({ n: rn + 1, t: now })); } catch (e) {}
             setTimeout(function () { location.reload(); }, 400);
+          } else {
+            console.warn("[wb-sync] 云端数据已应用，自动刷新达到上限，跳过刷新（数据事件已派发）");
           }
         }
         if (cb) cb(true);
@@ -324,6 +379,7 @@
       /* 首次拉取尝试结束（无论成败）：之后用户写入才受本地优先保护，
        * 同时初始化期写下的默认数据已不再阻挡云端恢复 */
       _syncReady = true;
+      _pullBusy = false;
     }
   }
 

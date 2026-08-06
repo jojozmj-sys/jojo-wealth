@@ -6318,26 +6318,41 @@
     });
   }
 
-  /* ========== 指数概览：沪深创科 + 成交额 ==========
-     数据源：腾讯行情 qt.gtimg.cn（东财 push2 当前网络不可用，2026-08 实测）
-     返回字段按 ~ 分隔：1 名称 / 2 代码 / 3 现价 / 4 昨收 / 5 今开
-     31 涨跌额 / 32 涨跌幅 / 33 最高 / 34 最低 / 37 成交额(万元) */
+  /* ========== 指数概览：沪深创科 + 成交额 + 主力资金流 ==========
+     行情源：腾讯行情 qt.gtimg.cn（GBK）；资金流源：东财 push2delay fflow
+     腾讯字段按 ~ 分隔：1 名称 / 2 代码 / 3 现价 / 4 昨收 / 5 今开
+     31 涨跌额 / 32 涨跌幅 / 33 最高 / 34 最低 / 37 成交额(万元)
+     东财 klines[0]：1 主力净流入(元) / 6 主力净流入占比(%) */
   const INDEX_CODES = [
     { q: "sh000001", name: "上证指数", code: "000001" },
     { q: "sz399001", name: "深证成指", code: "399001" },
     { q: "sz399006", name: "创业板指", code: "399006" },
     { q: "sh000688", name: "科创50",   code: "000688" }
   ];
+  const INDEX_FF_SECID = {
+    sh000001: "1.000001",
+    sz399001: "0.399001",
+    sz399006: "0.399006",
+    sh000688: "1.000688"
+  };
   async function fetchIndexData() {
     const url = "https://qt.gtimg.cn/q=" + INDEX_CODES.map(x => x.q).join(",");
+    const fflowBase = "https://push2delay.eastmoney.com/api/qt/stock/fflow/daykline/get?lmt=0&klt=1&fields1=f1,f2,f3,f7&fields2=f51,f52,f53,f54,f55,f56,f57,f58,f59,f60,f61&secid=";
     try {
-      const res = await fetch(url, { mode: "cors" });
-      const text = new TextDecoder("gbk").decode(await res.arrayBuffer());
-      return INDEX_CODES.map(def => {
+      const [text, flows] = await Promise.all([
+        fetch(url, { mode: "cors" }).then(res => new TextDecoder("gbk").decode(res.arrayBuffer())),
+        Promise.all(INDEX_CODES.map(def => jsonpFetch(fflowBase + INDEX_FF_SECID[def.q], json => {
+          if (!json || !json.data || !Array.isArray(json.data.klines) || !json.data.klines.length) return null;
+          const p = String(json.data.klines[0]).split(",");
+          return { main: parseFloat(p[1]), mainPct: parseFloat(p[6]) };
+        }, 6000)))
+      ]);
+      return INDEX_CODES.map((def, i) => {
         const m = text.match(new RegExp('v_' + def.q + '="([^"]*)"'));
         if (!m) return null;
         const p = m[1].split("~");
         if (p.length < 38) return null;
+        const flow = flows[i];
         return {
           name: p[1] || def.name,
           code: p[2] || def.code,
@@ -6345,8 +6360,8 @@
           chg: parseFloat(p[31]),
           pct: parseFloat(p[32]),
           amount: parseFloat(p[37]) * 10000, // 万元 → 元
-          main: null,   // 腾讯指数行情不提供主力净流入
-          mainPct: null
+          main: flow ? flow.main : null,     // 东财 push2delay 指数资金流
+          mainPct: flow ? flow.mainPct : null
         };
       }).filter(Boolean);
     } catch (e) {
@@ -6393,7 +6408,8 @@
     });
   }
   function fmtMoney(v) {
-    if (v == null || isNaN(v) || v === 0) return "--";
+    if (v == null || isNaN(v)) return "--";
+    if (v === 0) return "0.00亿";
     const a = Math.abs(v), sign = v < 0 ? "-" : "";
     if (a >= 1e12) return sign + (a / 1e12).toFixed(2) + "万亿";
     if (a >= 1e8)  return sign + (a / 1e8).toFixed(2) + "亿";
@@ -6401,20 +6417,27 @@
     return sign + a.toFixed(0);
   }
 
-  /* ========== 行业板块涨跌幅排行 + 领涨股加入自选 ==========
-     数据源：腾讯 ifzqgtimg 行业板块排行（东财 push2 当前网络不可用，2026-08 实测）
-     bd_name 板块名 / bd_zdf 涨跌幅 / nzg_name+nzg_code 领涨股 */
+  /* ========== 行业板块涨跌幅排行 + 主力资金流 + 领涨股 ==========
+     数据源：东财 push2delay clist（m:90+t:2 行业口径，2026-08 实测 CORS/JSONP 可用）
+     f3 涨跌幅 / f12 代码 / f14 名称 / f62 主力净流入 / f184 占比
+     f128 领涨股名 / f140 领涨股代码 / f141 市场标记(0 深市 / 1 沪市) */
   async function fetchBoards(pz = 30) {
-    const url = "https://proxy.finance.qq.com/ifzqgtimg/appstock/app/mktHs/rank?l=100&p=1&t=01/averatio";
+    const url = "https://push2delay.eastmoney.com/api/qt/clist/get?pn=1&pz=" + pz
+      + "&po=1&np=1&fltt=2&invt=2&fid=f3&fs=m:90+t:2+f:!50&fields=f3,f12,f14,f62,f128,f140,f141,f184";
     try {
-      const res = await fetch(url, { mode: "cors" });
-      const json = await res.json();
-      const list = (json && Array.isArray(json.data)) ? json.data : [];
-      return list.slice(0, pz).map(b => ({
-        f3: parseFloat(b.bd_zdf),
-        f14: b.bd_name || "--",
-        f128: b.nzg_name || "",
-        f140: b.nzg_code || ""
+      const rows = await jsonpFetch(url, json => {
+        if (json && json.data && Array.isArray(json.data.diff)) return json.data.diff;
+        return [];
+      }, 6000);
+      return rows.map(b => ({
+        f3: parseFloat(b.f3),
+        f12: b.f12 || "",
+        f14: b.f14 || "--",
+        f62: parseFloat(b.f62),
+        f128: b.f128 || "",
+        f140: b.f140 || "",
+        f141: b.f141,
+        f184: parseFloat(b.f184)
       }));
     } catch (e) {
       console.warn("[stock] 板块 fetch 失败：", e.message);
@@ -6451,11 +6474,17 @@
         const cls = pct > 0 ? "up" : pct < 0 ? "down" : "flat";
         const leaderName = b.f128 || "";
         const leaderCode = b.f140 || "";
+        const mainFlow = b.f62;
+        const mainS = (mainFlow == null || isNaN(mainFlow)) ? "--" : fmtMoney(mainFlow);
+        const mainPct = b.f184;
+        const mainPctS = (mainPct == null || isNaN(mainPct)) ? "--" : (mainPct > 0 ? "+" : "") + mainPct.toFixed(1) + "%";
+        const flowCls = (mainFlow == null || isNaN(mainFlow) || mainFlow === 0) ? "flat" : (mainFlow > 0 ? "up" : "down");
         // 热力图色阶强度: opacity 0.15 ~ 0.85
         const opacity = (0.15 + intensity * 0.7).toFixed(2);
-        return `<div class="st-tile st-tile-${cls}" style="--tile-opacity:${opacity}" data-code="${leaderCode}" data-name="${leaderName}">
+        return `<div class="st-tile st-tile-${cls}" style="--tile-opacity:${opacity}" data-code="${leaderCode}" data-name="${leaderName}" title="${b.f14||"--"} ${pctS}，主力净流入 ${mainS}">
           <div class="st-tile-pct">${pctS}</div>
           <div class="st-tile-name">${b.f14||"--"}</div>
+          <div class="st-tile-flow st-${flowCls}">主力 ${mainS} <em>${mainPctS}</em></div>
           ${leaderName ? `<div class="st-tile-leader">${leaderName}</div>` : ""}
         </div>`;
       }).join("");
@@ -6569,15 +6598,32 @@
 
     /* ---- Step 1: clist 全市场初筛（量比/换手/市值，涨幅放宽后续精筛） ---- */
     async function fetchScreenCandidates() {
-      const url = "https://push2.eastmoney.com/api/qt/clist/get?pn=1&pz=5000&po=1&np=1&fltt=2&invt=2&fid=f3&fs=m:0+t:6,m:0+t:80,m:1+t:2,m:1+t:23&fields=f2,f3,f8,f10,f12,f14,f21";
-      const parse = (json) => {
-        if (json && json.data && Array.isArray(json.data.diff)) return json.data.diff;
-        return [];
+      const base = "https://push2delay.eastmoney.com/api/qt/clist/get?po=1&np=1&fltt=2&invt=2&fid=f3"
+        + "&fs=m:0+t:6,m:0+t:80,m:1+t:2,m:1+t:23&fields=f2,f3,f8,f10,f12,f14,f21";
+      const parsePage = (json) => {
+        if (json && json.data && Array.isArray(json.data.diff)) {
+          return { rows: json.data.diff, total: parseInt(json.data.total, 10) || 0 };
+        }
+        return { rows: [], total: 0 };
       };
-      const rows = await jsonpFetch(url, parse);
+      const first = await jsonpFetch(base + "&pn=1&pz=100", parsePage, 8000);
+      const firstPage = (Array.isArray(first) || !first) ? { rows: [], total: 0 } : first;
+      const rows = firstPage.rows.slice();
+      const totalPages = Math.min(60, Math.ceil(firstPage.total / 100));
+      const batchSize = 8;
+      for (let start = 2; start <= totalPages; start += batchSize) {
+        const batch = [];
+        for (let pn = start; pn < start + batchSize && pn <= totalPages; pn++) {
+          batch.push(jsonpFetch(base + "&pn=" + pn + "&pz=100", parsePage, 8000));
+        }
+        const results = await Promise.all(batch);
+        results.forEach(function(r) {
+          if (r && Array.isArray(r.rows)) rows.push.apply(rows, r.rows);
+        });
+      }
       return rows.filter(function(s) {
         var chg = parseFloat(s.f3) || 0;
-        var volRatio = parseFloat(s.f10) || 0;
+        var volRatio = parseFloat(s.f10) || 0; // 新股可能返回 "-"，parseFloat 容错为 0
         var turnover = parseFloat(s.f8) || 0;
         var circMv = (parseFloat(s.f21) || 0) / 1e8;
         /* 初筛放宽涨幅至 ≥1%，后续用 14:30→收盘 精确涨幅 3-5% 筛选 */
@@ -6607,7 +6653,7 @@
         var batch = candidates.slice(i, i + batchSize);
         var promises = batch.map(function(c) {
           var secid = getSecId(c.code);
-          var url = "https://push2.eastmoney.com/api/qt/stock/trends2/get?secid=" + secid +
+          var url = "https://push2delay.eastmoney.com/api/qt/stock/trends2/get?secid=" + secid +
             "&fields1=f1,f2,f3,f4,f5,f6,f7,f8,f9,f10,f11,f12,f13" +
             "&fields2=f51,f52,f53,f54,f55,f56,f57,f58,f59,f60,f61&ndays=1";
           return jsonpFetch(url, function(json) {
@@ -6672,7 +6718,7 @@
 
       /* 获取上证综指分时 */
       var idxData = await jsonpFetch(
-        "https://push2.eastmoney.com/api/qt/stock/trends2/get?secid=1.000001&fields1=f1,f2,f3,f4,f5,f6,f7,f8,f9,f10,f11,f12,f13&fields2=f51,f52,f53,f54,f55,f56,f57,f58,f59,f60,f61&ndays=1",
+        "https://push2delay.eastmoney.com/api/qt/stock/trends2/get?secid=1.000001&fields1=f1,f2,f3,f4,f5,f6,f7,f8,f9,f10,f11,f12,f13&fields2=f51,f52,f53,f54,f55,f56,f57,f58,f59,f60,f61&ndays=1",
         function(json) {
           if (!json || !json.data || !json.data.trends) return null;
           return { trends: json.data.trends, preClose: parseFloat(json.data.preClose) || 0 };
@@ -6695,7 +6741,7 @@
         var promises = batch.map(function(s) {
           var secid = getSecId(s.code);
           return jsonpFetch(
-            "https://push2.eastmoney.com/api/qt/stock/trends2/get?secid=" + secid + "&fields1=f1,f2,f3,f4,f5,f6,f7,f8,f9,f10,f11,f12,f13&fields2=f51,f52,f53,f54,f55,f56,f57,f58,f59,f60,f61&ndays=1",
+            "https://push2delay.eastmoney.com/api/qt/stock/trends2/get?secid=" + secid + "&fields1=f1,f2,f3,f4,f5,f6,f7,f8,f9,f10,f11,f12,f13&fields2=f51,f52,f53,f54,f55,f56,f57,f58,f59,f60,f61&ndays=1",
             function(json) {
               if (!json || !json.data || !json.data.trends) return Object.assign({}, s, { trendsData: null });
               return Object.assign({}, s, { trendsData: { trends: json.data.trends, preClose: parseFloat(json.data.preClose) || 0 } });
@@ -6800,9 +6846,10 @@
         return;
       }
 
-      var sorted = results.slice().sort(function(a, b) { return b.tailRise - a.tailRise; });
-      var fmtMv = function(mv) { return mv >= 100 ? Math.round(mv) + "亿" : mv.toFixed(1) + "亿"; };
-      var fmtPct = function(v) { return (v >= 0 ? "+" : "") + v.toFixed(2) + "%"; };
+      var num = function(v) { v = parseFloat(v); return isNaN(v) ? 0 : v; };
+      var sorted = results.slice().sort(function(a, b) { return num(b.tailRise) - num(a.tailRise); });
+      var fmtMv = function(mv) { mv = num(mv); return mv >= 100 ? Math.round(mv) + "亿" : mv.toFixed(1) + "亿"; };
+      var fmtPct = function(v) { v = num(v); return (v >= 0 ? "+" : "") + v.toFixed(2) + "%"; };
       var vsClass = function(label) {
         if (label === "跑赢") return "st-up";
         if (label === "跑输") return "st-down";
@@ -6827,10 +6874,10 @@
             + '<span class="col-name">' + s.name + '</span>'
             + '<span class="col-chg st-up">' + fmtPct(s.tailRise) + '</span>'
             + '<span class="col-daychg st-up">' + fmtPct(s.dayChg) + '</span>'
-            + '<span class="col-vol">' + s.volRatio.toFixed(2) + '</span>'
-            + '<span class="col-turn">' + s.turnover.toFixed(2) + '%</span>'
+            + '<span class="col-vol">' + num(s.volRatio).toFixed(2) + '</span>'
+            + '<span class="col-turn">' + num(s.turnover).toFixed(2) + '%</span>'
             + '<span class="col-mv">' + fmtMv(s.circMv) + '</span>'
-            + '<span class="col-vs ' + vsClass(s.vsIndex) + '">' + s.vsIndex + " " + Math.round(s.vsPct * 100) + '%</span>'
+            + '<span class="col-vs ' + vsClass(s.vsIndex) + '">' + (s.vsIndex || "--") + (s.vsPct == null ? "" : " " + Math.round(num(s.vsPct) * 100) + '%') + '</span>'
             + '<span class="col-act"><button class="st-sc-add" data-code="' + s.code + '" data-name="' + s.name + '">＋自选</button></span>'
             + '</div>';
         }).join("")
