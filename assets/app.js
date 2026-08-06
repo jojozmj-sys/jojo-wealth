@@ -5733,7 +5733,6 @@
   const LS_KEYS = {
     quotes: "wb_stock_quotes_v1",       // 自选股 [{code, name, market}]
     trades: "wb_stock_trades_v1",       // 持仓/成交记录 [{id, code, name, type, price, qty, date, note}]
-    reviews: "wb_stock_reviews_v1",     // 复盘 [{id, date, market, pos, mind, plan}]
     alert: "wb_stock_alert_v1",         // 预警阈值 {drop, rise, rsiHi, rsiLo}
   };
 
@@ -5754,7 +5753,6 @@
     lsSet(LS_KEYS.quotes, quotes);
   }
   let trades = lsGet(LS_KEYS.trades, []);    // [{...}]
-  let reviews = lsGet(LS_KEYS.reviews, []);
   let alertCfg = lsGet(LS_KEYS.alert, { drop: 3, rise: 5, rsiHi: 70, rsiLo: 30 });
 
   /* ---------- 市场识别 ---------- */
@@ -6225,30 +6223,6 @@
     });
   }
 
-  /* ---------- 复盘 ---------- */
-  function renderReviews() {
-    const list = $("#stReviewList");
-    if (!reviews.length) { list.innerHTML = `<div style="text-align:center;color:var(--pink-dark);padding:20px;">还没有复盘，点上方表单写下今天的思考吧</div>`; return; }
-    list.innerHTML = reviews.slice().reverse().slice(0, 30).map(r => `
-      <div class="st-review-item">
-        <div class="dt">📅 ${r.date}</div>
-        ${r.market ? `<div class="sec"><b>📈 大盘：</b>${escape(r.market)}</div>` : ""}
-        ${r.pos ? `<div class="sec"><b>💼 持仓：</b>${escape(r.pos)}</div>` : ""}
-        ${r.mind ? `<div class="sec"><b>🧠 心态：</b>${escape(r.mind)}</div>` : ""}
-        ${r.plan ? `<div class="sec"><b>🎯 计划：</b>${escape(r.plan)}</div>` : ""}
-        <div style="text-align:right;margin-top:6px;"><button data-delrev="${r.id}" style="background:transparent;border:1px solid var(--pink-faint);color:var(--pink-dark);border-radius:6px;padding:2px 8px;font-size:10px;cursor:pointer;">删除</button></div>
-      </div>
-    `).join("");
-    $$("[data-delrev]", list).forEach(btn => {
-      btn.addEventListener("click", () => {
-        reviews = reviews.filter(r => r.id !== btn.getAttribute("data-delrev"));
-        lsSet(LS_KEYS.reviews, reviews);
-        renderReviews();
-      });
-    });
-  }
-  function escape(s) { return String(s || "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c])); }
-
   /* ---------- 舆情 + 预警 ---------- */
   function renderAlerts(data) {
     const list = $("#stAlertList");
@@ -6278,7 +6252,7 @@
       </div>
       <div class="st-news-row">
         <div class="tt">💡 如何用好舆情分析？</div>
-        <div class="sn">1) 每天开盘前看一遍自选股的公告与新闻；2) 重点关注「业绩预增/重大合同/股东减持」三类；3) 配合持仓复盘写进上面的「每日复盘」板块。</div>
+        <div class="sn">1) 每天开盘前看一遍自选股的公告与新闻；2) 重点关注「业绩预增/重大合同/股东减持」三类；3) 收盘后看上方自动生成的「每日复盘」结合持仓做计划。</div>
       </div>
     `;
   }
@@ -6977,23 +6951,6 @@
       renderTrades();
     });
     $("#stPosDate").value = new Date().toISOString().slice(0, 10);
-
-    // 复盘
-    $("#stReviewDate").value = new Date().toISOString().slice(0, 10);
-    $("#stReviewSave").addEventListener("click", () => {
-      const r = {
-        id: "r" + Date.now(),
-        date: $("#stReviewDate").value,
-        market: $("#stReviewMarket").value.trim(),
-        pos: $("#stReviewPos").value.trim(),
-        mind: $("#stReviewMind").value.trim(),
-        plan: $("#stReviewPlan").value.trim(),
-      };
-      reviews.push(r);
-      lsSet(LS_KEYS.reviews, reviews);
-      ["#stReviewMarket","#stReviewPos","#stReviewMind","#stReviewPlan"].forEach(s => $(s).value = "");
-      renderReviews();
-    });
 
     // 预警阈值
     $("#stAlertDrop").value = alertCfg.drop;
