@@ -6456,18 +6456,33 @@
   }
 
   /* ========== 行业板块涨跌幅排行 + 主力资金流 + 领涨股 ==========
-     数据源：东财 push2delay clist（m:90+t:2 行业口径，2026-08 实测 CORS/JSONP 可用）
+     主数据源：东财官方行业页口径 push2delay clist fs=m:90+s:4
+     （2026-08 实测为 128 个标准行业；旧的 m:90+t:2 是 496 个多级细分，
+      会把“钨/种子/焦煤”等子行业误当行业板块展示）
      f3 涨跌幅 / f12 代码 / f14 名称 / f62 主力净流入 / f184 占比
-     f128 领涨股名 / f140 领涨股代码 / f141 市场标记(0 深市 / 1 沪市) */
-  async function fetchBoards(pz = 30) {
-    const url = "https://push2delay.eastmoney.com/api/qt/clist/get?pn=1&pz=" + pz
-      + "&po=1&np=1&fltt=2&invt=2&fid=f3&fs=m:90+t:2+f:!50&fields=f3,f12,f14,f62,f128,f140,f141,f184";
-    try {
-      const rows = await jsonpFetch(url, json => {
-        if (json && json.data && Array.isArray(json.data.diff)) return json.data.diff;
-        return [];
-      }, 6000);
-      return rows.map(b => ({
+     f128 领涨股名 / f140 领涨股代码 / f141 市场标记(0 深市 / 1 沪市)
+     交叉校验：新浪行业 newSinaHy.php（GBK，script 注入无需 CORS），
+     按 SINA_BOARD_MAP 名称映射对比涨跌幅；差异/冲突仅提示，不改写主源 */
+  let _boardCheckSeq = 0;
+  function emBoardUrl(pn) {
+    return "https://push2delay.eastmoney.com/api/qt/clist/get?pn=" + pn
+      + "&pz=100&po=1&np=1&fltt=2&invt=2&fid=f3&fs=m:90+s:4&fields=f3,f12,f14,f62,f128,f140,f141,f184";
+  }
+  async function fetchBoards() {
+    const parse = json => {
+      if (json && json.data && Array.isArray(json.data.diff)) return json.data.diff;
+      return [];
+    };
+    const [p1, p2] = await Promise.all([
+      jsonpFetch(emBoardUrl(1), parse, 6000),
+      jsonpFetch(emBoardUrl(2), parse, 6000)
+    ]);
+    const seen = new Set();
+    const rows = [];
+    p1.concat(p2).forEach(b => {
+      if (!b || !b.f12 || seen.has(b.f12)) return;
+      seen.add(b.f12);
+      rows.push({
         f3: parseFloat(b.f3),
         f12: b.f12 || "",
         f14: b.f14 || "--",
@@ -6476,11 +6491,9 @@
         f140: b.f140 || "",
         f141: b.f141,
         f184: parseFloat(b.f184)
-      }));
-    } catch (e) {
-      console.warn("[stock] 板块 fetch 失败：", e.message);
-      return [];
-    }
+      });
+    });
+    return rows;
   }
   // 根据领涨股代码判断市场（字母 LSHB 前缀→去掉；数字开头按 A 股规则）
   function leaderMarketOf(code) {
@@ -6491,12 +6504,170 @@
     if (/^\d{5}$/.test(c)) return "hk";
     return "a";
   }
+  function parseSinaBoards(obj) {
+    if (!obj || typeof obj !== "object") return [];
+    return Object.keys(obj).map(k => {
+      const v = String(obj[k]).split(",");
+      if (v.length < 13) return null;
+      return {
+        name: v[1] || "",
+        pct: parseFloat(v[5]),
+        leaderCode: v[8] || "",
+        leaderPct: parseFloat(v[10]),
+        leaderName: v[12] || ""
+      };
+    }).filter(Boolean);
+  }
+  function fetchSinaBoards(timeoutMs = 6000) {
+    return new Promise(resolve => {
+      const varName = "S_Finance_bankuai_sinaindustry";
+      const oldVal = window[varName];
+      const script = document.createElement("script");
+      let done = false;
+      const finish = () => {
+        if (done) return; done = true;
+        clearTimeout(timer);
+        if (script.parentNode) script.parentNode.removeChild(script);
+        resolve(parseSinaBoards(window[varName]));
+      };
+      const timer = setTimeout(finish, timeoutMs);
+      script.onerror = finish;
+      script.src = "https://vip.stock.finance.sina.com.cn/q/view/newSinaHy.php?t=" + Date.now();
+      document.head.appendChild(script);
+      const start = Date.now();
+      (function poll() {
+        if (window[varName] && window[varName] !== oldVal) { finish(); return; }
+        if (Date.now() - start > 4500) { finish(); return; }
+        setTimeout(poll, 120);
+      })();
+    });
+  }
+  // 东财标准行业名 → 新浪粗粒度行业名（仅收录含义较稳的对应关系）
+  const SINA_BOARD_MAP = {
+    "煤炭开采": "煤炭行业",
+    "焦炭Ⅱ": "煤炭行业",
+    "水泥": "水泥行业",
+    "玻璃玻纤": "玻璃行业",
+    "化学纤维": "化纤行业",
+    "塑料": "塑料制品",
+    "化学原料": "化工行业",
+    "化学制品": "化工行业",
+    "电子化学品Ⅱ": "化工行业",
+    "橡胶": "化工行业",
+    "农化制品": "农药化肥",
+    "化学制药": "生物制药",
+    "生物制品": "生物制药",
+    "医疗器械": "医疗器械",
+    "食品加工": "食品行业",
+    "休闲食品": "食品行业",
+    "调味发酵品Ⅱ": "食品行业",
+    "白酒Ⅱ": "酿酒行业",
+    "非白酒": "酿酒行业",
+    "造纸": "造纸行业",
+    "包装印刷": "印刷包装",
+    "服装家纺": "服装鞋类",
+    "纺织制造": "纺织行业",
+    "家居用品": "家具行业",
+    "家电零部件Ⅱ": "家电行业",
+    "白色家电": "家电行业",
+    "黑色家电": "家电行业",
+    "厨卫电器": "家电行业",
+    "小家电": "家电行业",
+    "其他家电Ⅱ": "家电行业",
+    "照明设备Ⅱ": "电器行业",
+    "元件": "电子器件",
+    "半导体": "电子器件",
+    "消费电子": "电子器件",
+    "其他电子Ⅱ": "电子器件",
+    "光学光电子": "电子器件",
+    "通信设备": "电子信息",
+    "通信服务": "电子信息",
+    "计算机设备": "电子信息",
+    "IT服务Ⅱ": "电子信息",
+    "软件开发": "电子信息",
+    "游戏Ⅱ": "传媒娱乐",
+    "影视院线": "传媒娱乐",
+    "广告营销": "传媒娱乐",
+    "数字媒体": "传媒娱乐",
+    "电视广播Ⅱ": "传媒娱乐",
+    "出版": "传媒娱乐",
+    "房地产开发": "房地产",
+    "房地产服务": "房地产",
+    "房屋建设Ⅱ": "建筑建材",
+    "基础建设": "建筑建材",
+    "专业工程": "建筑建材",
+    "工程咨询服务Ⅱ": "建筑建材",
+    "装修装饰Ⅱ": "建筑建材",
+    "装修建材": "建筑建材",
+    "电力": "电力行业",
+    "燃气Ⅱ": "供水供气",
+    "风电设备": "发电设备",
+    "光伏设备": "发电设备",
+    "其他电源设备Ⅱ": "发电设备",
+    "乘用车": "汽车制造",
+    "商用车": "汽车制造",
+    "汽车零部件": "汽车制造",
+    "汽车服务": "汽车制造",
+    "摩托车及其他": "摩托车",
+    "航运港口": "交通运输",
+    "铁路公路": "交通运输",
+    "航空机场": "交通运输",
+    "物流": "交通运输",
+    "通用设备": "机械行业",
+    "专用设备": "机械行业",
+    "工程机械": "机械行业",
+    "自动化设备": "机械行业",
+    "航空装备Ⅱ": "飞机制造",
+    "航天装备Ⅱ": "飞机制造",
+    "航海装备Ⅱ": "船舶制造",
+    "证券Ⅱ": "金融行业",
+    "银行Ⅱ": "金融行业",
+    "保险Ⅱ": "金融行业",
+    "多元金融": "金融行业",
+    "一般零售": "商业百货",
+    "专业连锁Ⅱ": "商业百货",
+    "贸易Ⅱ": "物资外贸",
+    "酒店餐饮": "酒店旅游",
+    "旅游及景区": "酒店旅游",
+    "旅游零售Ⅱ": "酒店旅游",
+    "油气开采Ⅱ": "石油行业",
+    "油服工程": "石油行业",
+    "炼化及贸易": "石油行业",
+    "环境治理": "环保行业",
+    "环保设备Ⅱ": "环保行业",
+    "贵金属": "有色金属",
+    "工业金属": "有色金属",
+    "小金属": "有色金属",
+    "能源金属": "有色金属",
+    "金属新材料": "有色金属",
+    "冶钢原料": "钢铁行业",
+    "普钢": "钢铁行业",
+    "特钢Ⅱ": "钢铁行业",
+    "种植业": "农林牧渔",
+    "渔业": "农林牧渔",
+    "养殖业": "农林牧渔",
+    "饲料": "农林牧渔",
+    "农业综合Ⅱ": "农林牧渔",
+    "农产品加工": "农林牧渔",
+    "林业Ⅱ": "农林牧渔",
+    "综合Ⅱ": "综合行业"
+  };
+  function boardCheckStatus(emPct, sinaPct) {
+    if (emPct == null || isNaN(emPct) || sinaPct == null || isNaN(sinaPct)) return "none";
+    const d = Math.abs(emPct - sinaPct);
+    if (Math.abs(emPct) < 0.3 && Math.abs(sinaPct) < 0.3) return "ok";
+    if ((emPct >= 0) !== (sinaPct >= 0) && Math.max(Math.abs(emPct), Math.abs(sinaPct)) > 0.5) return "conflict";
+    if (d > 2.5) return "diff";
+    return "ok";
+  }
   function renderBoards() {
     const list = $("#stBoardList");
     const loading = $("#stBoardLoading");
     if (!list) return;
+    const seq = ++_boardCheckSeq;
     if (loading) loading.style.display = "block";
-    fetchBoards(30).then(rows => {
+    fetchBoards().then(rows => {
+      if (seq !== _boardCheckSeq) return;
       if (loading) loading.style.display = "none";
       if (!rows.length) {
         list.innerHTML = `<div class="st-board-empty">板块数据暂不可用，请稍后重试</div>`;
@@ -6504,8 +6675,9 @@
       }
       // 按涨跌幅排序，生成热力图瓦片
       rows.sort((a, b) => (b.f3 || -999) - (a.f3 || -999));
-      const maxAbs = Math.max(...rows.map(r => Math.abs(r.f3 || 0)), 1);
-      list.innerHTML = rows.map(b => {
+      const viewRows = rows.slice(0, 30);
+      const maxAbs = Math.max(...viewRows.map(r => Math.abs(r.f3 || 0)), 1);
+      list.innerHTML = viewRows.map(b => {
         const pct = b.f3;
         const pctS = (pct==null||isNaN(pct)) ? "--" : (pct>0?"+":"") + pct.toFixed(2) + "%";
         const intensity = Math.min(1, Math.abs(pct || 0) / maxAbs); // 0~1
@@ -6519,7 +6691,7 @@
         const flowCls = (mainFlow == null || isNaN(mainFlow) || mainFlow === 0) ? "flat" : (mainFlow > 0 ? "up" : "down");
         // 热力图色阶强度: opacity 0.15 ~ 0.85
         const opacity = (0.15 + intensity * 0.7).toFixed(2);
-        return `<div class="st-tile st-tile-${cls}" style="--tile-opacity:${opacity}" data-code="${leaderCode}" data-name="${leaderName}" title="${b.f14||"--"} ${pctS}，主力净流入 ${mainS}">
+        return `<div class="st-tile st-tile-${cls}" style="--tile-opacity:${opacity}" data-code="${leaderCode}" data-name="${leaderName}" data-sector="${b.f14||"--"}" data-em-pct="${pct}" title="${b.f14||"--"} ${pctS}，主力净流入 ${mainS}">
           <div class="st-tile-pct">${pctS}</div>
           <div class="st-tile-name">${b.f14||"--"}</div>
           <div class="st-tile-flow st-${flowCls}">主力 ${mainS} <em>${mainPctS}</em></div>
@@ -6535,6 +6707,39 @@
           addQuote(code, nm === "--" ? "" : nm, leaderMarketOf(code));
         });
       });
+      applySinaCheck(viewRows, list.querySelectorAll(".st-tile"), seq);
+    });
+  }
+  function applySinaCheck(viewRows, tiles, seq) {
+    const meta = $("#stBoardMeta");
+    if (meta) meta.textContent = "已加载东财官方 128 行业 · 正在新浪交叉核对…";
+    fetchSinaBoards().then(sinaRows => {
+      if (seq !== _boardCheckSeq) return;
+      if (!sinaRows.length) {
+        if (meta) meta.textContent = "已加载东财官方 128 行业 · 新浪交叉核对暂不可用";
+        return;
+      }
+      const sinaByName = {};
+      sinaRows.forEach(s => { if (s.name) sinaByName[s.name] = s; });
+      let ok = 0, diff = 0, conflict = 0, unmatched = 0;
+      tiles.forEach(tile => {
+        const sector = tile.getAttribute("data-sector") || "";
+        const emPct = parseFloat(tile.getAttribute("data-em-pct"));
+        const sinaName = SINA_BOARD_MAP[sector] || sector;
+        const s = sinaByName[sinaName];
+        if (!s || s.pct == null || isNaN(s.pct)) { unmatched++; return; }
+        const status = boardCheckStatus(emPct, s.pct);
+        const cls = status === "ok" ? "st-check-ok" : status === "diff" ? "st-check-warn" : "st-check-err";
+        const stateTxt = status === "ok" ? "双源一致" : status === "diff" ? "口径差异" : "方向冲突";
+        const badge = document.createElement("span");
+        badge.className = "st-check " + cls;
+        badge.title = stateTxt + "：东财 " + (isNaN(emPct) ? "--" : emPct.toFixed(2) + "%") + " / 新浪 " + s.pct.toFixed(2) + "%";
+        tile.appendChild(badge);
+        if (status === "ok") ok++; else if (status === "diff") diff++; else conflict++;
+      });
+      if (meta) {
+        meta.innerHTML = `东财官方 128 行业 · 新浪 49 行业交叉核对：<b class="ck-ok">一致 ${ok}</b> · <b class="ck-warn">口径差异 ${diff}</b> · <b class="ck-err">方向冲突 ${conflict}</b> · 未匹配 ${unmatched}`;
+      }
     });
   }
 

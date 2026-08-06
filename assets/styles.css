@@ -3429,6 +3429,10 @@ button:has(.hb-ic), .wl-play:has(.hb-ic) {
 #page-stock .st-index-main em { font-style: normal; font-size: 10px; opacity: .8; margin-left: 2px; }
 #page-stock .st-index-loading, #page-stock .st-board-loading { text-align: center; color: var(--pink-dark); font-size: 12px; padding: 16px 0; }
 #page-stock .st-board-empty { text-align: center; color: var(--pink-dark); font-size: 12px; padding: 24px 0; }
+#page-stock .st-board-meta { margin: 8px 2px 6px; font-size: 10px; line-height: 1.5; color: var(--pink-dark); }
+#page-stock .st-board-meta .ck-ok { color: #0a7d46; font-weight: 700; }
+#page-stock .st-board-meta .ck-warn { color: #9a6b00; font-weight: 700; }
+#page-stock .st-board-meta .ck-err { color: #c0392b; font-weight: 700; }
 
 /* ---- 行业板块热力图瓦片 ---- */
 #page-stock .st-board-list {
@@ -3437,6 +3441,7 @@ button:has(.hb-ic), .wl-play:has(.hb-ic) {
   gap: 6px;
 }
 #page-stock .st-tile {
+  position: relative;
   border-radius: 8px;
   padding: 10px 6px;
   text-align: center;
@@ -3466,9 +3471,23 @@ button:has(.hb-ic), .wl-play:has(.hb-ic) {
 #page-stock .st-tile-up .st-tile-pct { color: var(--st-up); }
 #page-stock .st-tile-down .st-tile-pct { color: var(--st-down); }
 #page-stock .st-tile-name { font-size: 11px; font-weight: 600; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; }
-#page-stock .st-tile-flow { font-size: 9px; font-weight: 700; color: var(--pink-dark); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; }
-#page-stock .st-tile-flow em { font-style: normal; opacity: .75; margin-left: 2px; }
+#page-stock .st-tile-flow { font-size: 8px; font-weight: 700; color: var(--pink-dark); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; letter-spacing: -.2px; }
+#page-stock .st-tile-flow em { font-style: normal; opacity: .8; margin-left: 1px; }
 #page-stock .st-tile-leader { font-size: 9px; color: var(--pink-dark); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; }
+/* 双源交叉核对状态圆点（左上角 6px，不遮挡内容；详情见 title） */
+#page-stock .st-check {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  padding: 0;
+  pointer-events: none;
+}
+#page-stock .st-check-ok { background: #0a7d46; }
+#page-stock .st-check-warn { background: #e6a800; }
+#page-stock .st-check-err { background: #c0392b; }
 
 /* 股票涨跌配色（涨红跌绿，沿用 st-up/st-down） */
 #page-stock .st-up { color: var(--st-up); }
