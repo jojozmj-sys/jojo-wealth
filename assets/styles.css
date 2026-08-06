@@ -3504,7 +3504,16 @@ button:has(.hb-ic), .wl-play:has(.hb-ic) {
 #page-stock .st-screen-err { color: #c0392b; }
 #page-stock .st-rescreen-btn { background: none; border: 1px solid var(--pink-dark); color: var(--pink-dark); font-size: 11px; padding: 2px 8px; border-radius: 6px; cursor: pointer; margin-left: 4px; }
 #page-stock .st-rescreen-btn:hover { background: var(--pink-dark); color: #fff; }
-#page-stock .st-screen-table { display: flex; flex-direction: column; gap: 4px; }
+#page-stock .st-screen-results {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-x;
+  padding-bottom: 4px;
+}
+#page-stock .st-screen-results::-webkit-scrollbar { height: 4px; }
+#page-stock .st-screen-results::-webkit-scrollbar-track { background: transparent; }
+#page-stock .st-screen-results::-webkit-scrollbar-thumb { background: var(--mint-line); border-radius: 999px; }
+#page-stock .st-screen-table { display: flex; flex-direction: column; gap: 4px; min-width: 500px; }
 #page-stock .st-screen-head,
 #page-stock .st-screen-row {
   display: grid;
