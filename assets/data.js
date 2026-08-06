@@ -5758,7 +5758,7 @@ window.WORKBENCH_DATA = {
   },
   "dailyHot": {
     "mode": "daily",
-    "updated": "2026-08-06 16:05",
+    "updated": "2026-08-06 16:06",
     "platforms": [
       "微博",
       "抖音",
@@ -5776,7 +5776,7 @@ window.WORKBENCH_DATA = {
           "platform": "微博",
           "rank": 1,
           "title": "女子用漏洞0元买了3千台电器",
-          "hot": 1431295,
+          "hot": 1439129,
           "url": "https://s.weibo.com/weibo?q=%E5%A5%B3%E5%AD%90%E7%94%A8%E6%BC%8F%E6%B4%9E0%E5%85%83%E4%B9%B0%E4%BA%863%E5%8D%83%E5%8F%B0%E7%94%B5%E5%99%A8",
           "tag": "社会",
           "desc": ""
@@ -5785,7 +5785,7 @@ window.WORKBENCH_DATA = {
           "platform": "微博",
           "rank": 2,
           "title": "工作其实是很养人的",
-          "hot": 1106759,
+          "hot": 1110860,
           "url": "https://s.weibo.com/weibo?q=%E5%B7%A5%E4%BD%9C%E5%85%B6%E5%AE%9E%E6%98%AF%E5%BE%88%E5%85%BB%E4%BA%BA%E7%9A%84",
           "tag": "社会",
           "desc": ""
@@ -5794,7 +5794,7 @@ window.WORKBENCH_DATA = {
           "platform": "微博",
           "rank": 3,
           "title": "6图看我国海洋经济稳步增长",
-          "hot": 878501,
+          "hot": 938176,
           "url": "https://s.weibo.com/weibo?q=6%E5%9B%BE%E7%9C%8B%E6%88%91%E5%9B%BD%E6%B5%B7%E6%B4%8B%E7%BB%8F%E6%B5%8E%E7%A8%B3%E6%AD%A5%E5%A2%9E%E9%95%BF",
           "tag": "社会",
           "desc": ""
@@ -5803,7 +5803,7 @@ window.WORKBENCH_DATA = {
           "platform": "微博",
           "rank": 4,
           "title": "双休",
-          "hot": 863982,
+          "hot": 857595,
           "url": "https://s.weibo.com/weibo?q=%E5%8F%8C%E4%BC%91",
           "tag": "社会",
           "desc": ""
@@ -5811,54 +5811,54 @@ window.WORKBENCH_DATA = {
         {
           "platform": "微博",
           "rank": 5,
-          "title": "大白兔奶糖的包装纸火了",
-          "hot": 863847,
-          "url": "https://s.weibo.com/weibo?q=%E5%A4%A7%E7%99%BD%E5%85%94%E5%A5%B6%E7%B3%96%E7%9A%84%E5%8C%85%E8%A3%85%E7%BA%B8%E7%81%AB%E4%BA%86",
+          "title": "苏泊尔 擦边",
+          "hot": 857568,
+          "url": "https://s.weibo.com/weibo?q=%E8%8B%8F%E6%B3%8A%E5%B0%94%20%E6%93%A6%E8%BE%B9",
           "tag": "社会",
           "desc": ""
         },
         {
           "platform": "微博",
           "rank": 6,
-          "title": "刺棠 郭虎",
-          "hot": 863727,
-          "url": "https://s.weibo.com/weibo?q=%E5%88%BA%E6%A3%A0%20%E9%83%AD%E8%99%8E",
+          "title": "大白兔奶糖的包装纸火了",
+          "hot": 857378,
+          "url": "https://s.weibo.com/weibo?q=%E5%A4%A7%E7%99%BD%E5%85%94%E5%A5%B6%E7%B3%96%E7%9A%84%E5%8C%85%E8%A3%85%E7%BA%B8%E7%81%AB%E4%BA%86",
           "tag": "社会",
           "desc": ""
         },
         {
           "platform": "微博",
           "rank": 7,
-          "title": "张凌赫左拥丁程鑫右抱周柯宇",
-          "hot": 863567,
-          "url": "https://s.weibo.com/weibo?q=%E5%BC%A0%E5%87%8C%E8%B5%AB%E5%B7%A6%E6%8B%A5%E4%B8%81%E7%A8%8B%E9%91%AB%E5%8F%B3%E6%8A%B1%E5%91%A8%E6%9F%AF%E5%AE%87",
+          "title": "刺棠 郭虎",
+          "hot": 857236,
+          "url": "https://s.weibo.com/weibo?q=%E5%88%BA%E6%A3%A0%20%E9%83%AD%E8%99%8E",
           "tag": "社会",
           "desc": ""
         },
         {
           "platform": "微博",
           "rank": 8,
-          "title": "曝Bin回BLG基地",
-          "hot": 863373,
-          "url": "https://s.weibo.com/weibo?q=%E6%9B%9DBin%E5%9B%9EBLG%E5%9F%BA%E5%9C%B0",
+          "title": "张启山抽了窄娘娘的脊梁骨",
+          "hot": 857095,
+          "url": "https://s.weibo.com/weibo?q=%E5%BC%A0%E5%90%AF%E5%B1%B1%E6%8A%BD%E4%BA%86%E7%AA%84%E5%A8%98%E5%A8%98%E7%9A%84%E8%84%8A%E6%A2%81%E9%AA%A8",
           "tag": "社会",
           "desc": ""
         },
         {
           "platform": "微博",
           "rank": 9,
-          "title": "律师称梅姨若满75岁或免死刑",
-          "hot": 863197,
-          "url": "https://s.weibo.com/weibo?q=%E5%BE%8B%E5%B8%88%E7%A7%B0%E6%A2%85%E5%A7%A8%E8%8B%A5%E6%BB%A175%E5%B2%81%E6%88%96%E5%85%8D%E6%AD%BB%E5%88%91",
+          "title": "曝Bin回BLG基地",
+          "hot": 857011,
+          "url": "https://s.weibo.com/weibo?q=%E6%9B%9DBin%E5%9B%9EBLG%E5%9F%BA%E5%9C%B0",
           "tag": "社会",
           "desc": ""
         },
         {
           "platform": "微博",
           "rank": 10,
-          "title": "苏泊尔 擦边",
-          "hot": 863056,
-          "url": "https://s.weibo.com/weibo?q=%E8%8B%8F%E6%B3%8A%E5%B0%94%20%E6%93%A6%E8%BE%B9",
+          "title": "DeepSeek推理到一半说自己饿了",
+          "hot": 856899,
+          "url": "https://s.weibo.com/weibo?q=DeepSeek%E6%8E%A8%E7%90%86%E5%88%B0%E4%B8%80%E5%8D%8A%E8%AF%B4%E8%87%AA%E5%B7%B1%E9%A5%BF%E4%BA%86",
           "tag": "社会",
           "desc": ""
         },
@@ -5866,7 +5866,7 @@ window.WORKBENCH_DATA = {
           "platform": "微博",
           "rank": 11,
           "title": "直播自杀日本女网红已身亡",
-          "hot": 20252381,
+          "hot": 20278363,
           "url": "https://s.weibo.com/weibo?q=%E7%9B%B4%E6%92%AD%E8%87%AA%E6%9D%80%E6%97%A5%E6%9C%AC%E5%A5%B3%E7%BD%91%E7%BA%A2%E5%B7%B2%E8%BA%AB%E4%BA%A1",
           "tag": "社会",
           "desc": ""
@@ -5874,36 +5874,36 @@ window.WORKBENCH_DATA = {
         {
           "platform": "微博",
           "rank": 12,
-          "title": "侯卓成已报案",
-          "hot": 862728,
-          "url": "https://s.weibo.com/weibo?q=%E4%BE%AF%E5%8D%93%E6%88%90%E5%B7%B2%E6%8A%A5%E6%A1%88",
+          "title": "律师称梅姨若满75岁或免死刑",
+          "hot": 856633,
+          "url": "https://s.weibo.com/weibo?q=%E5%BE%8B%E5%B8%88%E7%A7%B0%E6%A2%85%E5%A7%A8%E8%8B%A5%E6%BB%A175%E5%B2%81%E6%88%96%E5%85%8D%E6%AD%BB%E5%88%91",
           "tag": "社会",
           "desc": ""
         },
         {
           "platform": "微博",
           "rank": 13,
-          "title": "张启山抽了窄娘娘的脊梁骨",
-          "hot": 620115,
-          "url": "https://s.weibo.com/weibo?q=%E5%BC%A0%E5%90%AF%E5%B1%B1%E6%8A%BD%E4%BA%86%E7%AA%84%E5%A8%98%E5%A8%98%E7%9A%84%E8%84%8A%E6%A2%81%E9%AA%A8",
+          "title": "张凌赫左拥丁程鑫右抱周柯宇",
+          "hot": 856538,
+          "url": "https://s.weibo.com/weibo?q=%E5%BC%A0%E5%87%8C%E8%B5%AB%E5%B7%A6%E6%8B%A5%E4%B8%81%E7%A8%8B%E9%91%AB%E5%8F%B3%E6%8A%B1%E5%91%A8%E6%9F%AF%E5%AE%87",
           "tag": "社会",
           "desc": ""
         },
         {
           "platform": "微博",
           "rank": 14,
-          "title": "上海 床虱",
-          "hot": 590959,
-          "url": "https://s.weibo.com/weibo?q=%E4%B8%8A%E6%B5%B7%20%E5%BA%8A%E8%99%B1",
+          "title": "侯卓成已报案",
+          "hot": 856464,
+          "url": "https://s.weibo.com/weibo?q=%E4%BE%AF%E5%8D%93%E6%88%90%E5%B7%B2%E6%8A%A5%E6%A1%88",
           "tag": "社会",
           "desc": ""
         },
         {
           "platform": "微博",
           "rank": 15,
-          "title": "DeepSeek推理到一半说自己饿了",
-          "hot": 572863,
-          "url": "https://s.weibo.com/weibo?q=DeepSeek%E6%8E%A8%E7%90%86%E5%88%B0%E4%B8%80%E5%8D%8A%E8%AF%B4%E8%87%AA%E5%B7%B1%E9%A5%BF%E4%BA%86",
+          "title": "上海 床虱",
+          "hot": 623323,
+          "url": "https://s.weibo.com/weibo?q=%E4%B8%8A%E6%B5%B7%20%E5%BA%8A%E8%99%B1",
           "tag": "社会",
           "desc": ""
         },
@@ -5911,7 +5911,7 @@ window.WORKBENCH_DATA = {
           "platform": "微博",
           "rank": 16,
           "title": "田曦薇连续16部铁刘海剧",
-          "hot": 570125,
+          "hot": 616885,
           "url": "https://s.weibo.com/weibo?q=%E7%94%B0%E6%9B%A6%E8%96%87%E8%BF%9E%E7%BB%AD16%E9%83%A8%E9%93%81%E5%88%98%E6%B5%B7%E5%89%A7",
           "tag": "社会",
           "desc": ""
@@ -5920,7 +5920,7 @@ window.WORKBENCH_DATA = {
           "platform": "微博",
           "rank": 17,
           "title": "曝侯明昊违反交规被约谈",
-          "hot": 565499,
+          "hot": 567315,
           "url": "https://s.weibo.com/weibo?q=%E6%9B%9D%E4%BE%AF%E6%98%8E%E6%98%8A%E8%BF%9D%E5%8F%8D%E4%BA%A4%E8%A7%84%E8%A2%AB%E7%BA%A6%E8%B0%88",
           "tag": "社会",
           "desc": ""
@@ -5929,7 +5929,7 @@ window.WORKBENCH_DATA = {
           "platform": "微博",
           "rank": 18,
           "title": "妈妈偷改女儿高考志愿",
-          "hot": 474409,
+          "hot": 473048,
           "url": "https://s.weibo.com/weibo?q=%E5%A6%88%E5%A6%88%E5%81%B7%E6%94%B9%E5%A5%B3%E5%84%BF%E9%AB%98%E8%80%83%E5%BF%97%E6%84%BF",
           "tag": "社会",
           "desc": ""
@@ -5937,9 +5937,9 @@ window.WORKBENCH_DATA = {
         {
           "platform": "微博",
           "rank": 19,
-          "title": "陕西柞水泥石流1死2失联",
-          "hot": 470468,
-          "url": "https://s.weibo.com/weibo?q=%E9%99%95%E8%A5%BF%E6%9F%9E%E6%B0%B4%E6%B3%A5%E7%9F%B3%E6%B5%811%E6%AD%BB2%E5%A4%B1%E8%81%94",
+          "title": "张雅琪的性格",
+          "hot": 467971,
+          "url": "https://s.weibo.com/weibo?q=%E5%BC%A0%E9%9B%85%E7%90%AA%E7%9A%84%E6%80%A7%E6%A0%BC",
           "tag": "社会",
           "desc": ""
         },
@@ -5947,7 +5947,7 @@ window.WORKBENCH_DATA = {
           "platform": "微博",
           "rank": 20,
           "title": "车企开始回归静默上市",
-          "hot": 448992,
+          "hot": 453230,
           "url": "https://s.weibo.com/weibo?q=%E8%BD%A6%E4%BC%81%E5%BC%80%E5%A7%8B%E5%9B%9E%E5%BD%92%E9%9D%99%E9%BB%98%E4%B8%8A%E5%B8%82",
           "tag": "社会",
           "desc": ""
@@ -5955,45 +5955,45 @@ window.WORKBENCH_DATA = {
         {
           "platform": "微博",
           "rank": 21,
-          "title": "侯卓成前女友",
-          "hot": 440699,
-          "url": "https://s.weibo.com/weibo?q=%E4%BE%AF%E5%8D%93%E6%88%90%E5%89%8D%E5%A5%B3%E5%8F%8B",
+          "title": "陕西柞水泥石流1死2失联",
+          "hot": 438351,
+          "url": "https://s.weibo.com/weibo?q=%E9%99%95%E8%A5%BF%E6%9F%9E%E6%B0%B4%E6%B3%A5%E7%9F%B3%E6%B5%811%E6%AD%BB2%E5%A4%B1%E8%81%94",
           "tag": "社会",
           "desc": ""
         },
         {
           "platform": "微博",
           "rank": 22,
-          "title": "张雅琪的性格",
-          "hot": 431128,
-          "url": "https://s.weibo.com/weibo?q=%E5%BC%A0%E9%9B%85%E7%90%AA%E7%9A%84%E6%80%A7%E6%A0%BC",
+          "title": "侯卓成前女友",
+          "hot": 424502,
+          "url": "https://s.weibo.com/weibo?q=%E4%BE%AF%E5%8D%93%E6%88%90%E5%89%8D%E5%A5%B3%E5%8F%8B",
           "tag": "社会",
           "desc": ""
         },
         {
           "platform": "微博",
           "rank": 23,
-          "title": "感觉全东北都在等7号",
-          "hot": 416872,
-          "url": "https://s.weibo.com/weibo?q=%E6%84%9F%E8%A7%89%E5%85%A8%E4%B8%9C%E5%8C%97%E9%83%BD%E5%9C%A8%E7%AD%897%E5%8F%B7",
+          "title": "关之琳模特新男友才27岁",
+          "hot": 415804,
+          "url": "https://s.weibo.com/weibo?q=%E5%85%B3%E4%B9%8B%E7%90%B3%E6%A8%A1%E7%89%B9%E6%96%B0%E7%94%B7%E5%8F%8B%E6%89%8D27%E5%B2%81",
           "tag": "社会",
           "desc": ""
         },
         {
           "platform": "微博",
           "rank": 24,
-          "title": "白鹿回应开到荼蘼剧本",
-          "hot": 416156,
-          "url": "https://s.weibo.com/weibo?q=%E7%99%BD%E9%B9%BF%E5%9B%9E%E5%BA%94%E5%BC%80%E5%88%B0%E8%8D%BC%E8%98%BC%E5%89%A7%E6%9C%AC",
+          "title": "感觉全东北都在等7号",
+          "hot": 411900,
+          "url": "https://s.weibo.com/weibo?q=%E6%84%9F%E8%A7%89%E5%85%A8%E4%B8%9C%E5%8C%97%E9%83%BD%E5%9C%A8%E7%AD%897%E5%8F%B7",
           "tag": "社会",
           "desc": ""
         },
         {
           "platform": "微博",
           "rank": 25,
-          "title": "关之琳模特新男友才27岁",
-          "hot": 415837,
-          "url": "https://s.weibo.com/weibo?q=%E5%85%B3%E4%B9%8B%E7%90%B3%E6%A8%A1%E7%89%B9%E6%96%B0%E7%94%B7%E5%8F%8B%E6%89%8D27%E5%B2%81",
+          "title": "呵呵力挺白鹿",
+          "hot": 405181,
+          "url": "https://s.weibo.com/weibo?q=%E5%91%B5%E5%91%B5%E5%8A%9B%E6%8C%BA%E7%99%BD%E9%B9%BF",
           "tag": "社会",
           "desc": ""
         },
@@ -6460,7 +6460,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 2,
           "title": "《最讨厌复联の一集》",
-          "hot": 6138662,
+          "hot": 6139278,
           "url": "https://b23.tv/BV1KduF6ME4b",
           "tag": "影视",
           "desc": "-"
@@ -6478,7 +6478,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 4,
           "title": "大家还想看我搬空什么店",
-          "hot": 7690317,
+          "hot": 7693852,
           "url": "https://b23.tv/BV1bz3Q6oEMP",
           "tag": "影视",
           "desc": "-"
@@ -6496,7 +6496,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 6,
           "title": "你说偷吃零食被发现会死是吗？",
-          "hot": 5727902,
+          "hot": 5729393,
           "url": "https://b23.tv/BV1fGuc6xEmp",
           "tag": "影视",
           "desc": "游戏：机械狂欢 喜欢本期内容！欢迎各位点赞！投币！充电！"
@@ -6505,7 +6505,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 7,
           "title": "当黑客入侵我家摄像头将看到……",
-          "hot": 5025375,
+          "hot": 5025392,
           "url": "https://b23.tv/BV1Lg3R65EZn",
           "tag": "影视",
           "desc": "-"
@@ -6514,7 +6514,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 8,
           "title": "《雾海之下》首曝PV｜贪吃无罪，撤离万岁！",
-          "hot": 5459011,
+          "hot": 5462502,
           "url": "https://b23.tv/BV17vuw68E58",
           "tag": "影视",
           "desc": "《雾海之下》是网易首款吃打撤手游，俯视角战斗，会打团就能玩！您将和2名队友一起进入雾海，狩猎魔物、搜集宝藏，并带着食材和财宝撤离！ 在《雾海之下》，魔物是猎物，也是食材。 把它们做成料理吃下，就能获得来自魔物的力量！想要喷火？去猎杀那只火龙！ 当然，要喂饱猎人，光有美食还不够。 雾海深处还藏着宝藏，等着你和队友装进背包！ 魔雾正在逼近—— 现在撤离，带走收获； 再贪一次，可能全部留在雾海之下。 猎人协会的会训只有八个字： 贪吃无罪，撤离万岁！ ————————— 8月17日，《雾海之下》首测开启，"
@@ -6523,7 +6523,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 9,
           "title": "还来！！！！！！！！！！！",
-          "hot": 2466411,
+          "hot": 2466756,
           "url": "https://b23.tv/BV1xwMQ6GEix",
           "tag": "影视",
           "desc": "别催了，这不是已经发了吗？（哭哭）"
@@ -6532,7 +6532,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 10,
           "title": "完全看不懂中国网络梗的日本人，被40位中国人一人一句写出了一首神曲",
-          "hot": 3663516,
+          "hot": 3663749,
           "url": "https://b23.tv/BV1TY3o6TEqR",
           "tag": "影视",
           "desc": "感谢所有参与创作的朋友们！！ 这首独一无二的神曲终于完成啦！！ 【特别鸣谢】 帷幔彼岸的镜音 鲱鱼吃猫 圣诞老人的小助手 F111MZ 没有很好名字了啊 林村不咯困了 weirdbat ohh苦力怕 传说中的屑指 会法术的梨 博某人吖 一只厌子 016硫Sulfur"
@@ -6541,7 +6541,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 11,
           "title": "美利坚糖门黄油大胃袋VS国产味真族良子板面长老",
-          "hot": 3489906,
+          "hot": 3490162,
           "url": "https://b23.tv/BV1JmMf69EZY",
           "tag": "影视",
           "desc": ""
@@ -6550,7 +6550,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 12,
           "title": "课桌山河1566 (1)",
-          "hot": 1616357,
+          "hot": 1616612,
           "url": "https://b23.tv/BV1MT3d6KEd1",
           "tag": "影视",
           "desc": ""
@@ -6559,7 +6559,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 13,
           "title": "柯洁VS党毅飞（不可能的逆转）",
-          "hot": 3969509,
+          "hot": 3970876,
           "url": "https://b23.tv/BV1kxuw6iEb2",
           "tag": "影视",
           "desc": ""
@@ -6568,7 +6568,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 14,
           "title": "看完7月新番，我走火入魔！浑身燥热！【泛式】",
-          "hot": 1022534,
+          "hot": 1023171,
           "url": "https://b23.tv/BV1tcMy6fEEU",
           "tag": "影视",
           "desc": "这就是7月新番的大火猛炒！爆炒！狂炒！猛炒！爆炒！狂炒！猛炒！爆炒！狂炒！猛炒！爆炒！狂炒！猛炒！爆炒！狂炒！猛炒！爆炒！狂炒！猛炒！爆炒！狂炒！猛炒！爆炒！狂炒！猛炒！爆炒！狂炒！猛炒！爆炒！狂炒！猛炒！爆炒！狂炒！猛炒！爆炒！狂炒！2026年七月新番的猛炒！爆炒！狂炒！猛炒！爆炒！狂炒！猛炒！爆炒！狂炒！ 素材引用 宿敌美声 BV1Nm421K7px 游戏玩家 BV1E1KH6CEhk 巧虎唱歌 BV1USQUYsEMD"
@@ -6595,7 +6595,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 17,
           "title": "欢迎来到研究生的世界",
-          "hot": 4013476,
+          "hot": 4019077,
           "url": "https://b23.tv/BV1R53R6rE7a",
           "tag": "影视",
           "desc": "研究生的生活就是：时常怀揣着对未来的满腔期待，但也有深夜改不完的论文、说不清的焦虑，以及一次次自我怀疑。 论文会写完，组会会结束，猪脚饭也总有吃完的一天。但那些陪你熬过低谷、带你认识世界的人，会永远留在这段兵荒马乱又闪闪发光的青春里。 朋友们，欢迎来到研究生的世界！ 拍摄设备：Insta360 GoUltra、DJI Osmo Nano 感谢@ZZ小西_ 辅助制作我的世界和吃鸡部分的特效，感谢一起参与视频创作的小伙伴们~@超级繁星 @鱼KANG @谢谢谢谢呀- @ZZ小西_ @钰上Bob"
@@ -6613,7 +6613,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 19,
           "title": "当我梦到了一段很锈湖的音乐。",
-          "hot": 2507035,
+          "hot": 2507560,
           "url": "https://b23.tv/BV1eKMX6tERP",
           "tag": "影视",
           "desc": "当我梦到了一段很锈湖的音乐…"
@@ -6622,7 +6622,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 20,
           "title": "《原神》奥黛塔角色PV——「柔雪的幻象」",
-          "hot": 829504,
+          "hot": 831273,
           "url": "https://b23.tv/BV1wZMy6DE31",
           "tag": "影视",
           "desc": "她的一生如一只水鸟的舞。 等她不再困于湖冰的寒锋，才能将白羽带上苍穹。 中文CV： 奥黛塔——潘丹妮 日文CV： 奥黛塔——上坂堇 《原神》bilibili服下载地址： https://www.biligame.com/detail/?id=103496"
@@ -6640,7 +6640,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 22,
           "title": "非遗文化博大精深，非遗文化燃起来了#万物皆可跳梦的翅膀＃梦的翅膀受了伤",
-          "hot": 2387349,
+          "hot": 2390287,
           "url": "https://b23.tv/BV1cxuF6ZEq3",
           "tag": "影视",
           "desc": "-"
@@ -6649,7 +6649,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 23,
           "title": "厕 所 大 师",
-          "hot": 3028195,
+          "hot": 3029130,
           "url": "https://b23.tv/BV11duF6TEfz",
           "tag": "影视",
           "desc": "这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了这期拉了"
@@ -6667,7 +6667,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 25,
           "title": "顾客结账把钱扔地上服务员找零扔回，老板：双方没任何交流，服务员是我儿子，他没做错",
-          "hot": 3444475,
+          "hot": 3444846,
           "url": "https://b23.tv/BV1JDuc68EKr",
           "tag": "影视",
           "desc": ""
