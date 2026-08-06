@@ -3452,7 +3452,7 @@ button:has(.hb-ic), .wl-play:has(.hb-ic) {
   align-items: center;
   justify-content: center;
   gap: 3px;
-  min-height: 72px;
+  min-height: 84px;
 }
 #page-stock .st-tile:hover { transform: scale(1.04); filter: brightness(1.08); }
 #page-stock .st-tile-up {
@@ -3471,8 +3471,32 @@ button:has(.hb-ic), .wl-play:has(.hb-ic) {
 #page-stock .st-tile-up .st-tile-pct { color: var(--st-up); }
 #page-stock .st-tile-down .st-tile-pct { color: var(--st-down); }
 #page-stock .st-tile-name { font-size: 11px; font-weight: 600; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; }
-#page-stock .st-tile-flow { font-size: 8px; font-weight: 700; color: var(--pink-dark); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; letter-spacing: -.2px; }
-#page-stock .st-tile-flow em { font-style: normal; opacity: .8; margin-left: 1px; }
+#page-stock .st-tile-flow { font-size: 8px; font-weight: 700; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; letter-spacing: -.2px; }
+#page-stock .st-tile-flow.up { color: var(--st-up); }
+#page-stock .st-tile-flow.down { color: var(--st-down); }
+#page-stock .st-tile-flow em { font-style: normal; opacity: .75; margin-left: 1px; }
+#page-stock .st-tile-flow-tag { display: inline-block; font-size: 7px; font-weight: 600; opacity: .6; margin-right: 2px; vertical-align: middle; }
+/* 资金流向动图 bar */
+#page-stock .st-tile-flowbar {
+  width: 100%;
+  height: 4px;
+  border-radius: 2px;
+  background: rgba(128,128,128,.12);
+  overflow: hidden;
+}
+#page-stock .st-tile-flowbar-fill {
+  height: 100%;
+  border-radius: 2px;
+  transition: width .5s cubic-bezier(.4,0,.2,1);
+}
+#page-stock .st-tile-flowbar-fill.up { background: var(--st-up); }
+#page-stock .st-tile-flowbar-fill.down { background: var(--st-down); }
+#page-stock .st-tile-flowbar-fill.flat { background: rgba(128,128,128,.35); }
+/* 昨日对比行 */
+#page-stock .st-tile-yest { font-size: 7.5px; font-weight: 600; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; letter-spacing: -.2px; opacity: .8; }
+#page-stock .st-tile-yest.up { color: var(--st-up); }
+#page-stock .st-tile-yest.down { color: var(--st-down); }
+#page-stock .st-tile-yest-tag { display: inline-block; font-size: 7px; font-weight: 600; opacity: .55; margin-right: 2px; vertical-align: middle; }
 #page-stock .st-tile-leader { font-size: 9px; color: var(--pink-dark); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; }
 /* 双源交叉核对状态圆点（左上角 6px，不遮挡内容；详情见 title） */
 #page-stock .st-check {
@@ -3563,6 +3587,114 @@ button:has(.hb-ic), .wl-play:has(.hb-ic) {
   margin-right: 6px;
 }
 @keyframes stScreenSpin { to { transform: rotate(360deg); } }
+
+/* ==========================================================================
+   每日复盘模块
+   ========================================================================== */
+#page-stock .st-review-body { padding: 0 14px 14px; }
+#page-stock .st-review-empty { text-align: center; padding: 24px 0; color: var(--brown-fade); }
+#page-stock .st-review-hint { font-size: 12px; opacity: .65; margin-top: 4px; }
+
+#page-stock .st-review-section { margin-bottom: 18px; }
+#page-stock .st-review-sec-title {
+  font-size: 15px; font-weight: 700; color: var(--brown-deep, #5C4444);
+  margin: 0 0 10px; padding-bottom: 6px;
+  border-bottom: 2px solid var(--mint-line, #C4D9C4);
+}
+
+/* 四项核心指标 */
+#page-stock .st-review-metrics {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 8px; margin-bottom: 12px;
+}
+#page-stock .st-review-metric {
+  background: var(--mint-bg, #F0F7F0); border-radius: 8px; padding: 10px 12px;
+}
+#page-stock .st-review-metric .m-label { font-size: 11px; color: var(--brown-fade, #8B7B7B); }
+#page-stock .st-review-metric .m-value { font-size: 18px; font-weight: 700; color: var(--brown-deep, #5C4444); margin-top: 2px; }
+#page-stock .st-review-metric .m-sub { font-size: 11px; color: var(--brown-fade, #8B7B7B); margin-top: 2px; }
+
+/* 情绪周期 */
+#page-stock .st-review-cycle {
+  display: flex; align-items: center; gap: 10px; margin-bottom: 12px;
+  background: var(--mint-bg, #F0F7F0); border-radius: 8px; padding: 10px 14px;
+}
+#page-stock .st-cycle-badge {
+  font-size: 13px; font-weight: 700; padding: 4px 14px; border-radius: 999px;
+  min-width: 60px; text-align: center;
+}
+.st-cycle-badge.ice { background: #E8F4FD; color: #1A73E8; }
+.st-cycle-badge.recover { background: #FFF3E0; color: #E67E22; }
+.st-cycle-badge.accelerate { background: #FFEBEE; color: #D32F2F; }
+.st-cycle-badge.diverge { background: #F3E5F5; color: #7B1FA2; }
+#page-stock .st-cycle-desc { font-size: 13px; color: var(--brown-deep, #5C4444); line-height: 1.5; }
+
+/* 定调 */
+#page-stock .st-review-tone {
+  padding: 10px 14px; border-radius: 8px; font-size: 14px; font-weight: 600;
+  display: flex; align-items: center; gap: 8px;
+}
+.st-tone-attack { background: #FFEBEE; color: #C62828; }
+.st-tone-defend { background: #E8F5E9; color: #2E7D32; }
+.st-tone-watch { background: #FFF8E1; color: #F57F17; }
+#page-stock .st-tone-icon { font-size: 20px; }
+
+/* 主线资金 */
+#page-stock .st-review-flow-summary {
+  display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 10px;
+}
+#page-stock .st-flow-stat {
+  background: var(--mint-bg, #F0F7F0); border-radius: 8px; padding: 8px 14px;
+  text-align: center; min-width: 80px;
+}
+#page-stock .st-flow-stat .fs-num { font-size: 20px; font-weight: 700; color: var(--brown-deep, #5C4444); }
+#page-stock .st-flow-stat .fs-label { font-size: 11px; color: var(--brown-fade, #8B7B7B); }
+
+#page-stock .st-review-flow-detail { }
+#page-stock .st-flow-theme {
+  display: flex; align-items: center; gap: 8px; padding: 8px 12px;
+  border-radius: 6px; margin-bottom: 6px; font-size: 13px;
+}
+.st-flow-theme.top { background: #FFF5F5; border-left: 3px solid #D32F2F; }
+.st-flow-theme.secondary { background: #FFF8E1; border-left: 3px solid #F57F17; }
+.st-flow-theme.normal { background: #F5F5F5; border-left: 3px solid #9E9E9E; }
+#page-stock .st-flow-theme .ft-name { font-weight: 600; min-width: 70px; color: var(--brown-deep); }
+#page-stock .st-flow-theme .ft-count { font-size: 12px; color: var(--brown-fade); }
+#page-stock .st-flow-theme .ft-stocks { font-size: 12px; color: var(--brown-deep); flex: 1; }
+#page-stock .st-flow-theme .ft-cont { font-size: 11px; font-weight: 600; }
+.ft-cont.cont-yes { color: #D32F2F; }
+.ft-cont.cont-no { color: #9E9E9E; }
+
+/* 持续性结论 */
+#page-stock .st-flow-conclusion {
+  padding: 10px 14px; border-radius: 8px; margin-top: 10px;
+  font-size: 13px; line-height: 1.6; color: var(--brown-deep);
+  background: var(--mint-bg, #F0F7F0);
+}
+#page-stock .st-flow-conclusion strong { color: var(--mint-deep, #2D6A4F); }
+
+/* 投资建议 */
+#page-stock .st-review-advice-body { }
+#page-stock .st-advice-card {
+  padding: 12px 14px; border-radius: 8px; margin-bottom: 10px;
+  line-height: 1.6; font-size: 13px;
+}
+.st-advice-card.strategy { background: #FFF8E1; border-left: 4px solid #F57F17; }
+.st-advice-card.direction { background: #E8F5E9; border-left: 4px solid #2E7D32; }
+.st-advice-card.risk { background: #FFEBEE; border-left: 4px solid #C62828; }
+#page-stock .st-advice-card .ac-title { font-weight: 700; font-size: 14px; margin-bottom: 4px; }
+#page-stock .st-advice-card .ac-body { color: var(--brown-deep, #5C4444); }
+
+/* 移动端适配 */
+@media (max-width: 640px) {
+  #page-stock .st-review-metrics { grid-template-columns: 1fr 1fr; gap: 6px; }
+  #page-stock .st-review-metric { padding: 8px 10px; }
+  #page-stock .st-review-metric .m-value { font-size: 16px; }
+  #page-stock .st-review-flow-summary { gap: 6px; }
+  #page-stock .st-flow-stat { padding: 6px 10px; min-width: 60px; }
+  #page-stock .st-flow-stat .fs-num { font-size: 16px; }
+  #page-stock .st-flow-theme { flex-wrap: wrap; gap: 4px; font-size: 12px; }
+}
 
 @media (max-width: 640px) {
   #page-stock .st-quote-row { grid-template-columns: 1.4fr 1fr 0.9fr 48px; gap: 6px; font-size: 12px; }

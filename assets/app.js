@@ -6466,7 +6466,7 @@
   let _boardCheckSeq = 0;
   function emBoardUrl(pn) {
     return "https://push2delay.eastmoney.com/api/qt/clist/get?pn=" + pn
-      + "&pz=100&po=1&np=1&fltt=2&invt=2&fid=f3&fs=m:90+s:4&fields=f3,f12,f14,f62,f128,f140,f141,f184";
+      + "&pz=100&po=1&np=1&fltt=2&invt=2&fid=f3&fs=m:90+s:4&fields=f3,f12,f14,f62,f66,f128,f140,f141,f184";
   }
   async function fetchBoards() {
     const parse = json => {
@@ -6487,6 +6487,7 @@
         f12: b.f12 || "",
         f14: b.f14 || "--",
         f62: parseFloat(b.f62),
+        f66: parseFloat(b.f66),
         f128: b.f128 || "",
         f140: b.f140 || "",
         f141: b.f141,
@@ -6677,6 +6678,8 @@
       rows.sort((a, b) => (b.f3 || -999) - (a.f3 || -999));
       const viewRows = rows.slice(0, 30);
       const maxAbs = Math.max(...viewRows.map(r => Math.abs(r.f3 || 0)), 1);
+      // 资金流 bar 归一化基数：取 30 块中最大绝对值
+      const maxFlowAbs = Math.max(...viewRows.map(r => Math.abs(r.f62 || 0)), 1);
       list.innerHTML = viewRows.map(b => {
         const pct = b.f3;
         const pctS = (pct==null||isNaN(pct)) ? "--" : (pct>0?"+":"") + pct.toFixed(2) + "%";
@@ -6689,12 +6692,20 @@
         const mainPct = b.f184;
         const mainPctS = (mainPct == null || isNaN(mainPct)) ? "--" : (mainPct > 0 ? "+" : "") + mainPct.toFixed(1) + "%";
         const flowCls = (mainFlow == null || isNaN(mainFlow) || mainFlow === 0) ? "flat" : (mainFlow > 0 ? "up" : "down");
+        // 昨日主力净流入
+        const yestFlow = b.f66;
+        const yestS = (yestFlow == null || isNaN(yestFlow)) ? "--" : fmtMoney(yestFlow);
+        const yestCls = (yestFlow == null || isNaN(yestFlow) || yestFlow === 0) ? "flat" : (yestFlow > 0 ? "up" : "down");
+        // 资金流向 bar 宽度（今日相对强度）
+        const barPct = Math.min(100, Math.round(Math.abs(mainFlow || 0) / maxFlowAbs * 100));
         // 热力图色阶强度: opacity 0.15 ~ 0.85
         const opacity = (0.15 + intensity * 0.7).toFixed(2);
         return `<div class="st-tile st-tile-${cls}" style="--tile-opacity:${opacity}" data-code="${leaderCode}" data-name="${leaderName}" data-sector="${b.f14||"--"}" data-em-pct="${pct}" title="${b.f14||"--"} ${pctS}，主力净流入 ${mainS}">
           <div class="st-tile-pct">${pctS}</div>
           <div class="st-tile-name">${b.f14||"--"}</div>
-          <div class="st-tile-flow st-${flowCls}">主力 ${mainS} <em>${mainPctS}</em></div>
+          <div class="st-tile-flowbar"><div class="st-tile-flowbar-fill st-${flowCls}" style="width:${barPct}%"></div></div>
+          <div class="st-tile-flow st-${flowCls}"><span class="st-tile-flow-tag">今</span>${mainS} <em>${mainPctS}</em></div>
+          <div class="st-tile-yest st-${yestCls}"><span class="st-tile-yest-tag">昨</span>${yestS}</div>
           ${leaderName ? `<div class="st-tile-leader">${leaderName}</div>` : ""}
         </div>`;
       }).join("");
@@ -7188,10 +7199,161 @@
 
     loadAutoScreen();
 
+    // ===== 每日复盘渲染 =====
+    function renderReviews() {
+      const body = $("#stReviewBody");
+      const empty = $("#stReviewEmpty");
+      const struct = $("#stReviewStruct");
+      const flow = $("#stReviewFlow");
+      const advice = $("#stReviewAdvice");
+      if (!body || !empty) return;
+
+      const D = window.WORKBENCH_DATA || {};
+      const review = D.dailyReview;
+      if (!review || !review.date) {
+        if (empty) empty.style.display = "block";
+        if (struct) struct.style.display = "none";
+        if (flow) flow.style.display = "none";
+        if (advice) advice.style.display = "none";
+        return;
+      }
+
+      // 更新日期显示
+      const dateEl = $("#stReviewDate");
+      if (dateEl) dateEl.textContent = review.date + " 收盘复盘 · 市场结构 + 主线资金 + 策略建议";
+
+      if (empty) empty.style.display = "none";
+
+      // ---- 市场结构诊断 ----
+      if (struct && review.market) {
+        struct.style.display = "block";
+        const m = review.market;
+
+        // 四项核心指标
+        const metrics = $("#stReviewMetrics");
+        if (metrics) {
+          const idxCls = (m.indexPct || 0) >= 0 ? "up" : "down";
+          const idxSign = (m.indexPct || 0) >= 0 ? "+" : "";
+          const volLabel = m.volExpand ? "放量" : (m.volShrink ? "缩量" : "平量");
+          const volColor = m.volExpand ? "#C62828" : (m.volShrink ? "#2E7D32" : "#9E9E9E");
+          metrics.innerHTML = [
+            { l: "指数涨跌", v: idxSign + (m.indexPct||0).toFixed(2) + "%", s: volLabel, sc: volColor, cls: idxCls },
+            { l: "涨跌比", v: m.upCount||"--", s: "上涨 " + (m.upCount||"--") + " / 下跌 " + (m.dnCount||"--") },
+            { l: "涨停/跌停", v: (m.limitUp||"--") + " / " + (m.limitDn||"--"), s: "涨停" + (m.limitUp||"--") + "家 · 跌停" + (m.limitDn||"--") + "家" },
+            { l: "连板高度", v: m.maxBoard||"--" + "板", s: m.maxBoardStock || "" }
+          ].map(function(it) {
+            return '<div class="st-review-metric">' +
+              '<div class="m-label">' + it.l + '</div>' +
+              '<div class="m-value' + (it.cls ? ' st-' + it.cls : '') + '"' + (it.sc ? ' style="color:' + it.sc + '"' : '') + '>' + it.v + '</div>' +
+              (it.s ? '<div class="m-sub">' + it.s + '</div>' : '') +
+              '</div>';
+          }).join("");
+        }
+
+        // 情绪周期
+        const cycle = $("#stReviewCycle");
+        if (cycle && m.cycle) {
+          var cycleLabel = { ice: "冰点期 🧊", recover: "回暖期 🔥", accelerate: "加速期 🚀", diverge: "分歧期 ⚡" };
+          var cycleDesc = {
+            ice: "跌停多、无连板 → 只看低吸试错，不适合追高",
+            recover: "开始出现连板 → 可以试探性参与，轻仓验证",
+            accelerate: "连板扩散、情绪高涨 → 可主动进攻，但注意高位风险",
+            diverge: "高位炸板、多空分歧 → 控仓+去弱留强，收缩防线"
+          };
+          cycle.innerHTML = '<span class="st-cycle-badge ' + m.cycle + '">' + (cycleLabel[m.cycle] || m.cycle) + '</span>' +
+            '<span class="st-cycle-desc">' + (cycleDesc[m.cycle] || "") + '</span>';
+        }
+
+        // 定调
+        const tone = $("#stReviewTone");
+        if (tone && m.tone) {
+          var toneIcon = { attack: "⚔️", defend: "🛡️", watch: "👀" };
+          var toneText = {
+            attack: "明日策略：主动进攻 — 可积极参与主线方向",
+            defend: "明日策略：收缩防守 — 降低仓位，耐心等待信号",
+            watch: "明日策略：观望等待 — 多看少动，等确认再出手"
+          };
+          tone.innerHTML = '<span class="st-tone-icon">' + (toneIcon[m.tone] || "") + '</span>' +
+            (toneText[m.tone] || "");
+          tone.className = "st-review-tone st-tone-" + m.tone;
+        }
+      }
+
+      // ---- 主线资金追踪 ----
+      if (flow && review.capital) {
+        flow.style.display = "block";
+        const c = review.capital;
+
+        // 统计摘要
+        const sumEl = $("#stReviewFlowSum");
+        if (sumEl) {
+          sumEl.innerHTML = [
+            { n: c.limitUpTotal || "--", l: "涨停总数" },
+            { n: (c.leaderDriven ? "✅" : "❌") + " " + (c.leaderDriven ? "龙头带队" : "散沙"), l: "结构判断" },
+            { n: c.themeCount || "--", l: "活跃题材" },
+            { n: c.sustainDays || "--" + "天", l: "主线持续性" }
+          ].map(function(it) {
+            return '<div class="st-flow-stat"><div class="fs-num">' + it.n + '</div><div class="fs-label">' + it.l + '</div></div>';
+          }).join("");
+        }
+
+        // 题材分类详情
+        const detailEl = $("#stReviewFlowDetail");
+        if (detailEl && c.themes && c.themes.length) {
+          detailEl.innerHTML = c.themes.map(function(t) {
+            var level = t.level || "normal";
+            var levelLabel = { top: "🔥 主线", secondary: "📌 次主线", normal: "📎 一般" };
+            return '<div class="st-flow-theme ' + level + '">' +
+              '<span class="ft-name">' + (levelLabel[level] || "") + '</span>' +
+              '<span class="ft-count">' + (t.name || "") + '</span>' +
+              '<span class="ft-stocks">' + (t.stocks || "") + '</span>' +
+              '<span class="ft-cont ' + (t.sustained ? 'cont-yes' : 'cont-no') + '">' + (t.sustained ? "持续" : "新进") + '</span>' +
+              '</div>';
+          }).join("");
+        }
+
+        // 持续性结论
+        if (c.conclusion) {
+          const conclEl = document.createElement("div");
+          conclEl.className = "st-flow-conclusion";
+          conclEl.innerHTML = "<strong>🎯 明日预判：</strong>" + c.conclusion;
+          // Append after flow detail
+          const flowSection = $("#stReviewFlow");
+          if (flowSection && flowSection.lastChild !== conclEl) {
+            // Remove old conclusion if any
+            var old = flowSection.querySelector(".st-flow-conclusion");
+            if (old) old.remove();
+            flowSection.appendChild(conclEl);
+          }
+        }
+      }
+
+      // ---- 投资建议 ----
+      if (advice && review.advice) {
+        advice.style.display = "block";
+        const a = review.advice;
+        const adviceBody = $("#stReviewAdviceBody");
+        if (adviceBody) {
+          adviceBody.innerHTML = [
+            { cls: "strategy", title: "📋 操作策略", body: a.strategy || "" },
+            { cls: "direction", title: "🧭 关注方向", body: a.direction || "" },
+            { cls: "risk", title: "⚠️ 风险提示", body: a.risk || "" }
+          ].filter(function(x) { return x.body; }).map(function(x) {
+            return '<div class="st-advice-card ' + x.cls + '">' +
+              '<div class="ac-title">' + x.title + '</div>' +
+              '<div class="ac-body">' + x.body + '</div></div>';
+          }).join("");
+        }
+      }
+    }
+
+    // 初始渲染（若已有数据）
+    renderReviews();
+
     // 监听侧边栏切到 stock 时刷新
     const link = document.querySelector('.menu a[data-page="stock"]');
     if (link) link.addEventListener("click", () => {
-      setTimeout(() => { renderIndex(); renderBoards(); renderScreenResults(_screenResults); renderQuotes(); renderIndiSel(); renderTrades(); renderReviews(); renderNews(); }, 50);
+      setTimeout(() => { renderIndex(); renderBoards(); renderScreenResults(_screenResults); renderQuotes(); renderIndiSel(); renderTrades(); renderNews(); renderReviews(); }, 50);
     });
 
     // 每 30 秒自动刷新一次自选股行情（保持最新涨跌），页面在后台时不打扰
@@ -7201,6 +7363,7 @@
       renderIndex();                            // 指数概览持续刷新
       renderBoards();                           // 行业板块持续刷新
       renderScreenResults(_screenResults);      // 尾盘选股结果保持显示
+      renderReviews();                          // 每日复盘保持显示
       if (!quotes.length) return;
       renderQuotes();
     }, 30 * 1000);
