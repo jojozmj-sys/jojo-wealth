@@ -6340,7 +6340,7 @@
     const fflowBase = "https://push2delay.eastmoney.com/api/qt/stock/fflow/daykline/get?lmt=0&klt=1&fields1=f1,f2,f3,f7&fields2=f51,f52,f53,f54,f55,f56,f57,f58,f59,f60,f61&secid=";
     try {
       const [text, flows] = await Promise.all([
-        fetch(url, { mode: "cors" }).then(res => new TextDecoder("gbk").decode(res.arrayBuffer())),
+        fetch(url, { mode: "cors" }).then(async res => new TextDecoder("gbk").decode(await res.arrayBuffer())),
         Promise.all(INDEX_CODES.map(def => jsonpFetch(fflowBase + INDEX_FF_SECID[def.q], json => {
           if (!json || !json.data || !Array.isArray(json.data.klines) || !json.data.klines.length) return null;
           const p = String(json.data.klines[0]).split(",");
