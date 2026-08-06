@@ -6373,24 +6373,52 @@
     sz399006: "0.399006",
     sh000688: "1.000688"
   };
+  // 今日已交易分钟数（跳过午休 11:30-13:00），0~240
+  function tradingMinutesElapsed(d) {
+    const h = d.getHours(), m = d.getMinutes();
+    const t = h * 60 + m;
+    const open = 9 * 60 + 30, lunchStart = 11 * 60 + 30, lunchEnd = 13 * 60, close = 15 * 60;
+    if (t <= open) return 0;
+    if (t <= lunchStart) return t - open;
+    if (t <= lunchEnd) return lunchStart - open;       // 午休，停在 120
+    if (t <= close) return 120 + (t - lunchEnd);
+    return 240;
+  }
   async function fetchIndexData() {
     const url = "https://qt.gtimg.cn/q=" + INDEX_CODES.map(x => x.q).join(",");
     const fflowBase = "https://push2delay.eastmoney.com/api/qt/stock/fflow/daykline/get?lmt=0&klt=1&fields1=f1,f2,f3,f7&fields2=f51,f52,f53,f54,f55,f56,f57,f58,f59,f60,f61&secid=";
+    const yestBase = "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=";
     try {
-      const [text, flows] = await Promise.all([
+      const [text, flows, yests] = await Promise.all([
         fetch(url, { mode: "cors" }).then(async res => new TextDecoder("gbk").decode(await res.arrayBuffer())),
         Promise.all(INDEX_CODES.map(def => jsonpFetch(fflowBase + INDEX_FF_SECID[def.q], json => {
           if (!json || !json.data || !Array.isArray(json.data.klines) || !json.data.klines.length) return null;
           const p = String(json.data.klines[0]).split(",");
           return { main: parseFloat(p[1]), mainPct: parseFloat(p[6]) };
-        }, 6000)))
+        }, 6000))),
+        // 腾讯历史日线：取昨日总成交量(手)，用于量能比(较昨日同时段)
+        Promise.all(INDEX_CODES.map(def => fetch(yestBase + def.q + ",day,,,2,qfq", { mode: "cors" })
+          .then(r => r.json()).then(json => {
+            const node = json && json.data && json.data[def.q];
+            const day = node && (node.qfqday || node.day);
+            if (!Array.isArray(day) || day.length < 2) return null;
+            const y = day[day.length - 2]; // 倒数第二根 = 昨日
+            return y && y[5] != null ? parseFloat(y[5]) : null;
+          }).catch(() => null)))
       ]);
+      const elapsed = tradingMinutesElapsed(new Date());
+      const progress = Math.min(1, elapsed / 240); // 今日交易进度 0~1
       return INDEX_CODES.map((def, i) => {
         const m = text.match(new RegExp('v_' + def.q + '="([^"]*)"'));
         if (!m) return null;
         const p = m[1].split("~");
         if (p.length < 38) return null;
         const flow = flows[i];
+        const vol = parseFloat(p[36]);          // 今日累计成交量(手)
+        const yestVol = yests[i];               // 昨日总成交量(手)
+        const yestSameTime = (yestVol && yestVol > 0) ? yestVol * progress : null;
+        const volRatio = (vol != null && !isNaN(vol) && yestSameTime && yestSameTime > 0)
+          ? vol / yestSameTime : null;
         return {
           name: p[1] || def.name,
           code: p[2] || def.code,
@@ -6398,6 +6426,8 @@
           chg: parseFloat(p[31]),
           pct: parseFloat(p[32]),
           amount: parseFloat(p[37]) * 10000, // 万元 → 元
+          vol: vol,
+          volRatio: volRatio,
           main: flow ? flow.main : null,     // 东财 push2delay 指数资金流
           mainPct: flow ? flow.mainPct : null
         };
@@ -6428,6 +6458,13 @@
         const mainS = fmtMoney(it.main);
         const mainPctS = (it.mainPct == null || isNaN(it.mainPct)) ? "--" : (it.mainPct > 0 ? "+" : "") + it.mainPct.toFixed(1) + "%";
         const mainColor = (it.main == null || it.main === 0) ? "flat" : (it.main > 0 ? "up" : "down");
+        // 量能比（较昨日同时段）：今日累计量 ÷ (昨日总量 × 今日交易进度)
+        let volRatioS = "--", volRatioCls = "flat", volRatioTag = "";
+        if (it.volRatio != null && !isNaN(it.volRatio)) {
+          volRatioS = it.volRatio.toFixed(2);
+          if (it.volRatio >= 1.05) { volRatioCls = "up"; volRatioTag = "放量"; }
+          else if (it.volRatio <= 0.95) { volRatioCls = "down"; volRatioTag = "缩量"; }
+        }
         return `<div class="st-index-card3">
           <div class="st-index-top">
             <div class="st-index-badge st-${cls}">${pctS}</div>
@@ -6440,6 +6477,7 @@
           <div class="st-index-meta">
             <div class="st-index-amt"><label>成交额</label><span>${amtS}</span></div>
             <div class="st-index-main st-${mainColor}"><label>主力净流入</label><span>${mainS} <em>${mainPctS}</em></span></div>
+            <div class="st-index-vol st-${volRatioCls}"><label>量能比<small>较昨同时段</small></label><span>${volRatioS} ${volRatioTag ? `<em>${volRatioTag}</em>` : ""}</span></div>
           </div>
         </div>`;
       }).join("");

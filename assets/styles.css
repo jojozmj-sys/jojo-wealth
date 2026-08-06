@@ -3422,11 +3422,16 @@ button:has(.hb-ic), .wl-play:has(.hb-ic) {
 #page-stock .st-index-code { font-size: 10px; color: var(--pink-dark); font-weight: 400; }
 #page-stock .st-index-price { font-weight: 800; font-size: 18px; letter-spacing: .3px; }
 #page-stock .st-index-meta { display: flex; justify-content: space-between; gap: 8px; border-top: 1px dashed var(--mint-line); padding-top: 8px; }
-#page-stock .st-index-amt, #page-stock .st-index-main { display: flex; flex-direction: column; gap: 2px; }
-#page-stock .st-index-amt label, #page-stock .st-index-main label { font-size: 10px; color: var(--pink-dark); }
+#page-stock .st-index-amt, #page-stock .st-index-main, #page-stock .st-index-vol { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+#page-stock .st-index-amt label, #page-stock .st-index-main label, #page-stock .st-index-vol label { font-size: 10px; color: var(--pink-dark); display: flex; flex-direction: column; line-height: 1.1; }
+#page-stock .st-index-vol label small { font-size: 8px; opacity: .6; font-weight: 400; }
 #page-stock .st-index-amt span { font-weight: 600; color: #4a4a44; }
 #page-stock .st-index-main span { font-weight: 700; font-size: 12px; }
 #page-stock .st-index-main em { font-style: normal; font-size: 10px; opacity: .8; margin-left: 2px; }
+#page-stock .st-index-vol span { font-weight: 700; font-size: 12px; }
+#page-stock .st-index-vol em { font-style: normal; font-size: 9px; margin-left: 2px; opacity: .85; }
+#page-stock .st-index-vol.up span, #page-stock .st-index-vol.up em { color: var(--st-up); }
+#page-stock .st-index-vol.down span, #page-stock .st-index-vol.down em { color: var(--st-down); }
 #page-stock .st-index-loading, #page-stock .st-board-loading { text-align: center; color: var(--pink-dark); font-size: 12px; padding: 16px 0; }
 #page-stock .st-board-empty { text-align: center; color: var(--pink-dark); font-size: 12px; padding: 24px 0; }
 #page-stock .st-board-meta { margin: 8px 2px 6px; font-size: 10px; line-height: 1.5; color: var(--pink-dark); }
