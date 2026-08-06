@@ -1034,9 +1034,10 @@
   // 主源：东方财富快讯（分钟级滚动、CORS 开放）；60s 简讯仅作兜底
   const NEWS_API = "https://np-listapi.eastmoney.com/comm/web/getNewsByColumns?client=web&biz=web_news_col&column=345&order=1&needInteractData=0&page_index=1&page_size=50&req_trace=wb";
   const NEWS_API_BACKUP = "https://60s.viki.moe/v2/60s";
-  const NEWS_CACHE_KEY = "wb_news_cache_v2";
+  const NEWS_CACHE_KEY = "wb_news_cache_v3";
   const NEWS_READ_KEY = "wb_news_read_v1";   // 已读新闻标题集合（去空格哈希）
   const NEWS_INTERVAL_MS = 10 * 60 * 1000; // 每 10 分钟
+  const NEWS_SECTION_NAMES = ["头条", "国内", "国际", "财经", "科技", "社会", "体育", "文娱", "天气预警"];
 
   /* ---------- 已读机制：已看过的新闻从列表去掉，未看的保留，新来的增量加入 ---------- */
   function newsHashKey(title) {
@@ -1089,21 +1090,23 @@
     return "https://www.baidu.com/s?wd=" + encodeURIComponent(t);
   }
 
-  /* 拉取实时新闻条目：优先东财快讯，失败回退 60s 简讯 */
+  /* 拉取实时新闻条目：优先东财快讯（仅保留当日新闻），失败回退 60s 简讯 */
   async function fetchLiveItems() {
     try {
       const res = await fetch(NEWS_API, { signal: AbortSignal.timeout(12000) });
       if (!res.ok) throw new Error("http " + res.status);
       const j = await res.json();
       const list = (j && j.data && j.data.list) || [];
+      const now = new Date();
+      const ymd = `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,"0")}-${String(now.getDate()).padStart(2,"0")}`;
       const items = list.map(it => ({
         title: String(it.title || "").trim(),
         desc: String(it.summary || "").trim(),
         source: String(it.mediaName || "东方财富").trim(),
         url: String(it.url || "").replace(/^http:\/\//, "https://"),
         time: String(it.showTime || "")
-      })).filter(it => it.title);
-      if (!items.length) throw new Error("empty eastmoney news");
+      })).filter(it => it.title && String(it.time || "").slice(0, 10) === ymd);
+      if (!items.length) throw new Error("no today eastmoney news");
       return items;
     } catch (e) {
       const res = await fetch(NEWS_API_BACKUP, { signal: AbortSignal.timeout(12000) });
@@ -1127,9 +1130,8 @@
       const now = new Date();
       const dateStr = `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,"0")}-${String(now.getDate()).padStart(2,"0")}`;
       const weekday = ["周日","周一","周二","周三","周四","周五","周六"][now.getDay()];
-      // 整理进版面：在现有版面基础上【增量合并 + 按标题去重】，新新闻 unshift 进对应版面，旧条目保留
-      const base = (D.news && D.news.today && D.news.today.sections) || [];
-      const sections = base.map(s => ({ name: s.name, items: filterUnread(s.items).slice() }));
+      // 当日新闻：每次以实时源重建当天版面，不复用旧日期条目，避免列表混入昨日内容
+      const sections = NEWS_SECTION_NAMES.map(name => ({ name, items: [] }));
       const addToSection = (name, item) => {
         const sec = sections.find(s => s.name === name) || sections[0];
         if (!sec) return;
@@ -1145,11 +1147,12 @@
         });
       };
       items.forEach(it => addToSection(classifyNewsSection(it.title), it));
+      const sectionsWithNews = sections.filter(s => s.items.length);
       // 所有版面统一剔除已读条目（已看过的新闻从列表去掉）
-      sections.forEach(s => { s.items = filterUnread(s.items); });
-      // 今日要闻：从已整理的 sections 中精选（带 desc 概览），重要新闻优先
+      sectionsWithNews.forEach(s => { s.items = filterUnread(s.items); });
+      // 今日要闻：从已整理的 sectionsWithNews 中精选（带 desc 概览），重要新闻优先
       var allItems = [];
-      sections.forEach(s => (s.items || []).forEach(it => {
+      sectionsWithNews.forEach(s => (s.items || []).forEach(it => {
         const title = it.title || it;
         allItems.push({
           title: title, desc: it.desc || "",
@@ -1166,7 +1169,8 @@
       const newsData = {
         mode: "live",
         updated: `${now.getHours()}:${String(now.getMinutes()).padStart(2,"0")}`,
-        today: { date: dateStr, weekday, sections }
+        today: { date: dateStr, weekday, sections: sectionsWithNews },
+        days: []
       };
       D.news = newsData;
       // 缓存
