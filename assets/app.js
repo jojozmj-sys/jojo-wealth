@@ -6318,41 +6318,46 @@
     });
   }
 
-  /* ========== 指数概览：沪深创科 + 资金流向 + 成交额 ==========
-     数据源：东财 push2 ulist.np（浏览器 fetch CORS 可用）
-     secids: 1.000001 上证指数 / 0.399001 深证成指 / 0.399006 创业板指 / 1.000688 科创50
-     f3 涨跌幅 f6 成交额(元) f12 代码 f14 名称 f62 主力净流入 f66 超大单净流入
-     f69 超大单占比 f184 主力净流入占比 */
-  const INDEX_SECIDS = {
-    "1.000001":  { name: "上证指数", code: "000001" },
-    "0.399001":  { name: "深证成指", code: "399001" },
-    "0.399006":  { name: "创业板指", code: "399006" },
-    "1.000688":  { name: "科创50",   code: "000688" }
-  };
+  /* ========== 指数概览：沪深创科 + 成交额 ==========
+     数据源：腾讯行情 qt.gtimg.cn（东财 push2 当前网络不可用，2026-08 实测）
+     返回字段按 ~ 分隔：1 名称 / 2 代码 / 3 现价 / 4 昨收 / 5 今开
+     31 涨跌额 / 32 涨跌幅 / 33 最高 / 34 最低 / 37 成交额(万元) */
+  const INDEX_CODES = [
+    { q: "sh000001", name: "上证指数", code: "000001" },
+    { q: "sz399001", name: "深证成指", code: "399001" },
+    { q: "sz399006", name: "创业板指", code: "399006" },
+    { q: "sh000688", name: "科创50",   code: "000688" }
+  ];
   async function fetchIndexData() {
-    const secids = Object.keys(INDEX_SECIDS).join(",");
-    const fields = "f2,f3,f4,f6,f12,f14,f62,f66,f69,f72,f75,f78,f184";
-    const url = `https://push2.eastmoney.com/api/qt/ulist.np/get?secids=${secids}&fields=${fields}&fltt=2&invt=2`;
-    const parseRows = (json) => {
-      if (json && json.data && Array.isArray(json.data.diff)) return json.data.diff;
-      if (json && json.data && json.data.diff && !Array.isArray(json.data.diff)) return [json.data.diff];
-      return [];
-    };
+    const url = "https://qt.gtimg.cn/q=" + INDEX_CODES.map(x => x.q).join(",");
     try {
       const res = await fetch(url, { mode: "cors" });
-      return parseRows(await res.json());
+      const text = new TextDecoder("gbk").decode(await res.arrayBuffer());
+      return INDEX_CODES.map(def => {
+        const m = text.match(new RegExp('v_' + def.q + '="([^"]*)"'));
+        if (!m) return null;
+        const p = m[1].split("~");
+        if (p.length < 38) return null;
+        return {
+          name: p[1] || def.name,
+          code: p[2] || def.code,
+          cur: parseFloat(p[3]),
+          chg: parseFloat(p[31]),
+          pct: parseFloat(p[32]),
+          amount: parseFloat(p[37]) * 10000, // 万元 → 元
+          main: null,   // 腾讯指数行情不提供主力净流入
+          mainPct: null
+        };
+      }).filter(Boolean);
     } catch (e) {
-      console.warn("[stock] 指数 fetch 失败，尝试 JSONP：", e.message);
-      return jsonpFetch(url, parseRows);
+      console.warn("[stock] 指数 fetch 失败：", e.message);
+      return [];
     }
   }
   function renderIndex() {
     const list = $("#stIndexList");
     const loading = $("#stIndexLoading");
     if (!list) return;
-    const idx = INDEX_SECIDS;
-    const secidByName = {};
-    Object.keys(idx).forEach(s => { secidByName[idx[s].name] = s; });
     if (loading) loading.style.display = "block";
     fetchIndexData().then(rows => {
       if (loading) loading.style.display = "none";
@@ -6360,20 +6365,8 @@
         list.innerHTML = `<div class="st-board-empty">指数数据暂不可用，请稍后重试</div>`;
         return;
       }
-      // 组装成规范对象
-      const items = rows.map(r => {
-        const secid = String(r.f12 || "").length >= 6 && Object.keys(idx).find(s => s.endsWith(r.f12))
-                      || (r.f12 === "000001" ? "1.000001" : null) || (r.f12 === "399001" ? "0.399001" : null)
-                      || (r.f12 === "399006" ? "0.399006" : null) || (r.f12 === "000688" ? "1.000688" : "");
-        return {
-          name: r.f14 || idx[secid]?.name || r.f12,
-          code: r.f12,
-          cur: r.f2, chg: r.f4, pct: r.f3,
-          amount: r.f6,            // 成交额（元）
-          main: r.f62,             // 主力净流入（元）
-          mainPct: r.f184,         // 主力净流入占比 %
-        };
-      });
+      // fetchIndexData 已归一化，直接渲染
+      const items = rows;
       list.innerHTML = items.map(it => {
         const cls = it.pct > 0 ? "up" : it.pct < 0 ? "down" : "flat";
         const pctS = (it.pct == null || isNaN(it.pct)) ? "--" : (it.pct > 0 ? "+" : "") + it.pct.toFixed(2) + "%";
@@ -6409,23 +6402,23 @@
   }
 
   /* ========== 行业板块涨跌幅排行 + 领涨股加入自选 ==========
-     数据源：东财 push2 clist 行业板块 Top10（fs=m:90+t:2）
-     f3 板块涨幅 f6 板块成交额 f14 板块名 f62 板块主力净流入 f184 主力占比
-     领涨股：f128 名称 f140 代码 f136 涨幅；f141 市场标记(0/1 需结合代码判断) */
-  async function fetchBoards(pz = 10) {
-    const fields = "f2,f3,f4,f6,f8,f12,f14,f62,f184,f128,f136,f140,f141";
-    const url = `https://push2.eastmoney.com/api/qt/clist/get?pn=1&pz=${pz}&po=1&np=1&fltt=2&invt=2&fid=f3&fs=m:90+t:2&fields=${fields}`;
-    const parseRows = (json) => {
-      if (json && json.data && Array.isArray(json.data.diff)) return json.data.diff;
-      if (json && json.data && json.data.diff && !Array.isArray(json.data.diff)) return [json.data.diff];
-      return [];
-    };
+     数据源：腾讯 ifzqgtimg 行业板块排行（东财 push2 当前网络不可用，2026-08 实测）
+     bd_name 板块名 / bd_zdf 涨跌幅 / nzg_name+nzg_code 领涨股 */
+  async function fetchBoards(pz = 30) {
+    const url = "https://proxy.finance.qq.com/ifzqgtimg/appstock/app/mktHs/rank?l=100&p=1&t=01/averatio";
     try {
       const res = await fetch(url, { mode: "cors" });
-      return parseRows(await res.json());
+      const json = await res.json();
+      const list = (json && Array.isArray(json.data)) ? json.data : [];
+      return list.slice(0, pz).map(b => ({
+        f3: parseFloat(b.bd_zdf),
+        f14: b.bd_name || "--",
+        f128: b.nzg_name || "",
+        f140: b.nzg_code || ""
+      }));
     } catch (e) {
-      console.warn("[stock] 板块 fetch 失败，尝试 JSONP：", e.message);
-      return jsonpFetch(url, parseRows);
+      console.warn("[stock] 板块 fetch 失败：", e.message);
+      return [];
     }
   }
   // 根据领涨股代码判断市场（字母 LSHB 前缀→去掉；数字开头按 A 股规则）
