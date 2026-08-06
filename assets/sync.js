@@ -358,7 +358,8 @@
           if (now - rt > RELOAD_CAP_WINDOW) rn = 0;
           var ae = document.activeElement;
           var editing = ae && (ae.tagName === "INPUT" || ae.tagName === "TEXTAREA" || ae.isContentEditable);
-          if (!editing && rn < RELOAD_CAP_MAX) {
+          var uiBusy = !!(window.__wbUiBusy); // 选股等长任务进行中，不自动刷新打断
+          if (!editing && !uiBusy && rn < RELOAD_CAP_MAX) {
             try { sessionStorage.setItem(RELOAD_CAP_KEY, JSON.stringify({ n: rn + 1, t: now })); } catch (e) {}
             setTimeout(function () { location.reload(); }, 400);
           } else {

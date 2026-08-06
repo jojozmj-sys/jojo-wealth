@@ -6789,6 +6789,7 @@
     async function screenStocks() {
       if (_screenRunning) return;
       _screenRunning = true;
+      window.__wbUiBusy = true; // 长任务期间阻止云同步自动 reload 打断选股
       var statusEl = $("#stScreenStatus");
       var resultsEl = $("#stScreenResults");
       var btn = $("#stScreenBtn");
@@ -6834,6 +6835,7 @@
         console.error("[screen] error:", e);
       } finally {
         _screenRunning = false;
+        window.__wbUiBusy = false;
         if (btn) { btn.disabled = false; btn.textContent = "开始选股"; }
       }
     }
@@ -6949,21 +6951,21 @@
     if (link) link.addEventListener("click", () => {
       setTimeout(() => { renderIndex(); renderBoards(); renderScreenResults(_screenResults); renderQuotes(); renderIndiSel(); renderTrades(); renderReviews(); renderNews(); }, 50);
     });
+
+    // 每 30 秒自动刷新一次自选股行情（保持最新涨跌），页面在后台时不打扰
+    setInterval(() => {
+      if (document.hidden) return;             // 页面在后台则不打扰
+      if (!document.getElementById("stQuoteList")) return;
+      renderIndex();                            // 指数概览持续刷新
+      renderBoards();                           // 行业板块持续刷新
+      renderScreenResults(_screenResults);      // 尾盘选股结果保持显示
+      if (!quotes.length) return;
+      renderQuotes();
+    }, 30 * 1000);
   }
 
   bind();
   renderIndiSel();
-  // 初次进入不渲染行情，等切到页面再拉
-  // 每 30 秒自动刷新一次自选股行情（保持最新涨跌），页面在后台时不打扰
-  setInterval(() => {
-    if (document.hidden) return;             // 页面在后台则不打扰
-    if (!document.getElementById("stQuoteList")) return;
-    renderIndex();                            // 指数概览持续刷新
-    renderBoards();                           // 行业板块持续刷新
-    renderScreenResults(_screenResults);      // 尾盘选股结果保持显示
-    if (!quotes.length) return;
-    renderQuotes();
-  }, 30 * 1000);
 })();
 
 /* ==========================================================================
