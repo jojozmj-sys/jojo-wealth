@@ -6160,6 +6160,82 @@
     } catch (e) { console.warn("[stock] 行业拉取失败：", e); return null; }
   }
 
+  /* 拉取公司概况（A股，RPT_F10_BASIC_ORGINFO）：
+     提供公司简介 ORG_PROFILE、主营 MAIN_BUSINESS、实控人 ACTUAL_HOLDER、董事长/总经理、
+     员工数 EMP_NUM、成立/上市日期 FOUND_DATE/LISTING_DATE、业务范围 BUSINESS_SCOPE */
+  async function fetchCompanyProfile(code) {
+    const url = `https://datacenter-web.eastmoney.com/api/data/v1/get?reportName=RPT_F10_BASIC_ORGINFO&columns=ALL&filter=(SECUCODE%3D%22${code}.${(/^(0|3)/.test(code) ? "SZ" : "SH")}%22)&pageSize=1&source=HSF10&client=PC`;
+    try {
+      const res = await fetch(url, { mode: "cors" });
+      const j = await res.json();
+      if (!j || j.code !== 0 || !j.result || !j.result.data || !j.result.data.length) return null;
+      const d = j.result.data[0];
+      return {
+        name: d.ORG_NAME || "",
+        profile: d.ORG_PROFILE || "",
+        mainBusiness: d.MAIN_BUSINESS || "",
+        businessScope: d.BUSINESS_SCOPE || "",
+        actualHolder: d.ACTUAL_HOLDER || "",
+        chairman: d.CHAIRMAN || "",
+        president: d.PRESIDENT || "",
+        empNum: d.EMP_NUM || "",
+        foundDate: d.FOUND_DATE || "",
+        listDate: d.LISTING_DATE || "",
+        em: d.EM2016 || "",
+        csrc: d.INDUSTRYCSRC1 || "",
+      };
+    } catch (e) { console.warn("[stock] 公司概况拉取失败：", e); return null; }
+  }
+
+  /* 拉取主营构成（A股，RPT_F10_FN_MAINOP）：
+     按 MAINOP_TYPE 区分：1=按行业、2=按产品、3=按地区。
+     返回最近一期按各维度拆解的营收占比 MBI_RATIO / 毛利率 GROSS_RPOFIT_RATIO */
+  async function fetchMainBusiness(code) {
+    const url = `https://datacenter-web.eastmoney.com/api/data/v1/get?reportName=RPT_F10_FN_MAINOP&columns=ALL&filter=(SECUCODE%3D%22${code}.${(/^(0|3)/.test(code) ? "SZ" : "SH")}%22)&pageNumber=1&pageSize=80&sortColumns=REPORT_DATE&sortTypes=-1&source=HSF10&client=PC`;
+    try {
+      const res = await fetch(url, { mode: "cors" });
+      const j = await res.json();
+      if (!j || j.code !== 0 || !j.result || !j.result.data || !j.result.data.length) return null;
+      const rows = j.result.data;
+      // 按报告期分组，取最近一期
+      const byDate = {};
+      rows.forEach(r => { const d = String(r.REPORT_DATE || "").slice(0, 10); (byDate[d] = byDate[d] || []).push(r); });
+      const dates = Object.keys(byDate).sort().reverse();
+      const latest = byDate[dates[0]] || [];
+      // 汇总成 行业/产品/地区 三个维度（保留占比并降序）
+      const group = (type) => latest
+        .filter(r => r.MAINOP_TYPE === type)
+        .map(r => ({
+          name: r.ITEM_NAME || "",
+          income: r.MAIN_BUSINESS_INCOME || 0,
+          ratio: r.MBI_RATIO != null ? +r.MBI_RATIO : null,
+          gross: r.GROSS_RPOFIT_RATIO != null ? +r.GROSS_RPOFIT_RATIO : null,
+        }))
+        .filter(x => x.name)
+        .sort((a, b) => (b.ratio != null ? b.ratio : 0) - (a.ratio != null ? a.ratio : 0));
+      return {
+        date: dates[0] || "",
+        byIndustry: group(1),
+        byProduct: group(2),
+        byRegion: group(3),
+      };
+    } catch (e) { console.warn("[stock] 主营构成拉取失败：", e); return null; }
+  }
+
+  /* 拉取核心题材/所属板块（A股，RPT_F10_CORETHEME_BOARDTYPE）：
+     返回题材名 + 入选逻辑 SELECTED_BOARD_REASON */
+  async function fetchCoreThemes(code) {
+    const url = `https://datacenter-web.eastmoney.com/api/data/v1/get?reportName=RPT_F10_CORETHEME_BOARDTYPE&columns=ALL&filter=(SECUCODE%3D%22${code}.${(/^(0|3)/.test(code) ? "SZ" : "SH")}%22)&pageSize=30&source=HSF10&client=PC`;
+    try {
+      const res = await fetch(url, { mode: "cors" });
+      const j = await res.json();
+      if (!j || j.code !== 0 || !j.result || !j.result.data || !j.result.data.length) return null;
+      return j.result.data
+        .map(d => ({ name: d.BOARD_NAME || d.THEME_NAME || "", reason: d.SELECTED_BOARD_REASON || "" }))
+        .filter(x => x.name);
+    } catch (e) { console.warn("[stock] 核心题材拉取失败：", e); return null; }
+  }
+
   /* 东财财务字段 → 标准化指标对象 */
   function normFin(row) {
     const g = (x) => (x == null ? null : +x);
