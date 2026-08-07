@@ -7847,56 +7847,31 @@
       setTimeout(() => { renderIndex(); renderBoards(); renderScreenResults(_screenResults); renderQuotes(); renderIndiSel(); renderTrades(); renderNews(); renderSentiment(); renderReviews(); }, 50);
     });
 
-    // 每日复盘 / 市场情绪手动更新按钮：一键唤起 WorkBuddy 生成
-    // 前端是纯静态页面，无法直接执行 Node 脚本；点击后弹出引导浮层，
-    // 复制一句简短指令，用户粘贴到 WorkBuddy 对话框发送即可触发生成+上线。
-    function copyReviewCmd() {
+    // 每日复盘 / 市场情绪手动更新按钮：点击直接唤起 WorkBuddy，
+    // 通过 Task 深链预填「更新每日复盘」，无需复制粘贴口令。
+    function openReviewCmd() {
       var TRIGGER = "更新每日复盘";
-      // 复制简短触发指令（不是冗长的命令行）
+      var url = "workbuddy://task?action=start&prompt=" + encodeURIComponent(TRIGGER);
+      // 静默保留一份剪贴板兜底，深链在个别浏览器被拦截时仍可快速补发
       try {
         if (navigator.clipboard && navigator.clipboard.writeText) {
           navigator.clipboard.writeText(TRIGGER).catch(function(){});
         }
       } catch(e) {}
-      if (typeof console !== "undefined") console.log("[wb-review] 已复制触发指令:", TRIGGER);
-
-      // 弹出引导浮层
-      var guide = document.createElement("div");
-      guide.id = "wbReviewGuide";
-      guide.style.cssText = "position:fixed;inset:0;z-index:99999;background:rgba(20,25,20,.45);display:flex;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(2px);";
-      var box = document.createElement("div");
-      box.style.cssText = "background:#fff;max-width:430px;width:100%;border-radius:16px;padding:26px 24px;box-shadow:0 20px 60px rgba(0,0,0,.25);color:#2b3a2b;font-size:15px;line-height:1.7;";
-      box.innerHTML =
-        '<div style="font-size:18px;font-weight:700;margin-bottom:12px;">🔄 立即更新每日复盘</div>' +
-        '<div style="opacity:.92;margin-bottom:14px;">已为你复制一句指令 <b style="color:#1f7a44;">「更新每日复盘」</b>。</div>' +
-        '<div style="margin-bottom:16px;">在 <b>WorkBuddy 对话框</b> 粘贴发送这句话，我会立即执行：抓取市场数据 → 生成最新复盘与情绪 → 重新上线 → 你刷新本页即可看到。</div>' +
-        '<div style="background:#f0f7f1;border:1px solid #cfe8d5;border-radius:10px;padding:12px 14px;margin-bottom:18px;font-family:monospace;font-size:14px;color:#1f7a44;">更新每日复盘</div>' +
-        '<div style="display:flex;gap:10px;">' +
-          '<button type="button" id="wbReviewGuideCopy" style="flex:1;padding:11px;border:none;border-radius:10px;background:#1f7a44;color:#fff;font-size:15px;font-weight:600;cursor:pointer;">复制指令</button>' +
-          '<button type="button" id="wbReviewGuideClose" style="flex:1;padding:11px;border:1px solid #cfd9cf;border-radius:10px;background:#fff;color:#55605a;font-size:15px;cursor:pointer;">知道了</button>' +
-        '</div>';
-      guide.appendChild(box);
-      document.body.appendChild(guide);
-      var close = function(){ try { document.body.removeChild(guide); } catch(e){} };
-      var copyBtn = box.querySelector("#wbReviewGuideCopy");
-      var closeBtn = box.querySelector("#wbReviewGuideClose");
-      if (copyBtn) copyBtn.addEventListener("click", function(){
-        try { if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(TRIGGER).catch(function(){}); } catch(e){}
-        if (typeof appToast === "function") appToast("指令已复制，粘贴到 WorkBuddy 发送即可", 2500, "ok");
-      });
-      if (closeBtn) closeBtn.addEventListener("click", close);
-      guide.addEventListener("click", function(e){ if (e.target === guide) close(); });
-
+      try {
+        window.location.href = url;
+      } catch(e) {}
+      if (typeof console !== "undefined") console.log("[wb-review] 已唤起 WorkBuddy:", url);
       if (typeof appToast === "function") {
-        appToast("已复制「更新每日复盘」，请在 WorkBuddy 发送", 3500, "info");
+        appToast("已唤起 WorkBuddy，发送预填指令即可更新", 3000, "info");
       }
       // 设置标记，数据同步后自动刷新展示
       try { sessionStorage.setItem("wb_review_pending", "1"); } catch(e) {}
     }
     const reviewBtn = document.getElementById("stReviewRefresh");
     const sentimentBtn = document.getElementById("stSentimentRefresh");
-    if (reviewBtn) reviewBtn.addEventListener("click", copyReviewCmd);
-    if (sentimentBtn) sentimentBtn.addEventListener("click", copyReviewCmd);
+    if (reviewBtn) reviewBtn.addEventListener("click", openReviewCmd);
+    if (sentimentBtn) sentimentBtn.addEventListener("click", openReviewCmd);
 
     // 每 30 秒自动刷新一次自选股行情（保持最新涨跌），页面在后台时不打扰
     setInterval(() => {
