@@ -74,7 +74,7 @@
   }
 
   /* ---- UI ---- */
-  var elBar = null, elText = null, elBtn = null, elBtnPull = null, elStatus = null, elChip = null;
+  var elBar = null, elText = null, elBtn = null, elBtnPull = null, elBtnOverwrite = null, elStatus = null, elChip = null;
   var _curState = "";
   /* 四态文案：已连接 / 同步中 / 未连接 / 同步异常 */
   var STATE_TEXT = {
@@ -97,6 +97,7 @@
       elText = elBar.querySelector(".wb-sync-text");
       elBtn = elBar.querySelector(".wb-sync-btn");
       elBtnPull = elBar.querySelector(".wb-sync-btn-pull");
+      elBtnOverwrite = elBar.querySelector(".wb-sync-btn-overwrite");
       elStatus = elBar.querySelector(".wb-sync-status");
     }
   }
@@ -160,6 +161,12 @@
    * 让云端真实数据能正常覆盖默认值恢复；首次 pull 完成后才记录用户交互写入 */
   var _syncReady = false;
   var INIT_GUARD_WINDOW = 10000;   // 本地写入保护窗口（毫秒）
+  /* 首次拉取成功前处于初始化阶段：该阶段业务代码写入的默认值/空壳数据不推送到云端、
+   * 不记入本地近期写入保护，防止初始化竞态用默认值污染云端真实数据；
+   * 首次成功拉取结束后才放行自动推送。 */
+  var _initPhase = true;
+  var _cloudHasData = false;       // 最近一次成功拉取是否读到非空云端数据
+  var _firstPullDispatched = false;
 
   function applyCloud(cloudData) {
     if (!cloudData) return false;
@@ -356,11 +363,52 @@
     }
   }
 
+  /* ---- 本机覆盖云端（应急恢复） ----
+   * 不走 mergeData：直接用本机全部 wb_ 数据整体替换云端，
+   * 用于云端被默认值/空值污染、需要以某台可信设备为准的恢复场景。 */
+  var _overwriteBusy = false;
+  async function overwriteCloud(reason) {
+    if (navigator.onLine === false) { setState("offline", "设备离线，无法覆盖云端"); return false; }
+    if (_pushBusy || _overwriteBusy) {
+      if (window.appToast) window.appToast("同步进行中，请稍后再试", 2400, "warn");
+      return false;
+    }
+    _overwriteBusy = true;
+    setState("syncing", reason || "正在用本机数据覆盖云端…");
+    try {
+      var local = snapshot();
+      await writeCloud(local);
+      _lastOkAt = Date.now();
+      _dirty = false;
+      setMeta({ updatedAt: _lastOkAt, overwrittenAt: _lastOkAt });
+      setState("ok", "已用本机数据覆盖云端 " + hhmm(_lastOkAt));
+      return true;
+    } catch (e) {
+      console.warn("[wb-sync] overwrite fail:", e);
+      _lastFailAt = Date.now();
+      failState(e, "覆盖失败：");
+      return false;
+    } finally {
+      _overwriteBusy = false;
+    }
+  }
+
   /* ---- 定时自动备份 ---- */
   function autoBackup() {
     if (document.hidden) return;                    // 页面不可见时跳过，回来会补
     if (navigator.onLine === false) { setState("offline", "设备离线，恢复网络后自动上传"); return; }
     doPush("定时自动备份");
+  }
+
+  /* 首次成功拉取完成：通知业务模块云端结果，便于延迟初始化默认值（如自选股默认 5 只）。 */
+  function dispatchFirstPull() {
+    if (_firstPullDispatched) return;
+    _firstPullDispatched = true;
+    try {
+      window.dispatchEvent(new CustomEvent("wb-sync-first-pull", {
+        detail: { ok: true, hasCloud: _cloudHasData }
+      }));
+    } catch (e) {}
   }
 
   /**
@@ -378,6 +426,9 @@
     try {
       var row = await readCloud();
       _lastOkAt = Date.now();
+      /* 首次成功读到云端结果后结束初始化阶段：后续业务写入才允许自动推送 */
+      _initPhase = false;
+      _cloudHasData = !!(row && row.data && !isEmptyVal(row.data));
       if (row && row.data) {
         var changed = applyCloud(row.data);
         // 双向：若本地有云端没有的 key，补推一次（避免某设备不主动改动时数据滞留本地）
@@ -416,6 +467,7 @@
         doPush("首次初始化云端");
         if (cb) cb(false);
       }
+      dispatchFirstPull();
     } catch (e) {
       console.warn("[wb-sync] pull fail:", e);
       failState(e, "无法连接云端：");
@@ -436,22 +488,22 @@
     Storage.prototype.setItem = function (k, v) {
       var r = origSet.call(this, k, v);
       if (this === window.localStorage && !_pushing && isBizKey(k)) {
-        if (_syncReady) _localWrites[k] = Date.now();  /* 记录本地写入时间，applyCloud 据此跳过近期覆盖 */
-        schedulePush("检测到修改");
+        if (_syncReady && !_initPhase) _localWrites[k] = Date.now();  /* 记录本地写入时间，applyCloud 据此跳过近期覆盖 */
+        if (!_initPhase) schedulePush("检测到修改");
       }
       return r;
     };
     Storage.prototype.removeItem = function (k) {
       var r = origRemove.call(this, k);
       if (this === window.localStorage && !_pushing && isBizKey(k)) {
-        if (_syncReady) _localWrites[k] = Date.now();
-        schedulePush("检测到删除");
+        if (_syncReady && !_initPhase) _localWrites[k] = Date.now();
+        if (!_initPhase) schedulePush("检测到删除");
       }
       return r;
     };
     Storage.prototype.clear = function () {
       var r = origClear.call(this);
-      if (this === window.localStorage && !_pushing) schedulePush("检测到清空");
+      if (this === window.localStorage && !_pushing && !_initPhase) schedulePush("检测到清空");
       return r;
     };
   }
@@ -508,6 +560,11 @@
 
     if (elBtn) elBtn.addEventListener("click", function () { doPush("手动同步"); });
     if (elBtnPull) elBtnPull.addEventListener("click", function () { pull(); });
+    if (elBtnOverwrite) elBtnOverwrite.addEventListener("click", function () {
+      var sure = window.confirm("确认用本机数据覆盖云端？\n\n云端现有数据将被整体替换，只保留本机内容。请先确认本机自选股、知识库等数据无误后再执行。");
+      if (!sure) return;
+      overwriteCloud("手动覆盖云端");
+    });
     if (elChip && elBar) {
       elChip.addEventListener("click", function () {
         var open = elBar.classList.toggle("open");
@@ -521,8 +578,12 @@
 
   window.WBSync = {
     init: init,
-    push: function () { doPush("手动"); },
-    pull: pull,
-    state: function () { return _curState; }
+    push: function () { return doPush("手动"); },
+    pull: function () { return pull(); },
+    state: function () { return _curState; },
+    initialState: function () {
+      return { done: !_initPhase, ok: !_initPhase, hasCloud: _cloudHasData };
+    },
+    overwriteCloud: overwriteCloud
   };
 })();

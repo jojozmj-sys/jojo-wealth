@@ -3087,7 +3087,7 @@ button:has(.hb-ic), .wl-play:has(.hb-ic) {
 .wb-sync-bar.error .wb-sync-dot { background: #c62828; }
 .wb-sync-text { font-weight: 700; }
 .wb-sync-status { opacity: .85; }
-.wb-sync-btn, .wb-sync-btn-pull {
+.wb-sync-btn, .wb-sync-btn-pull, .wb-sync-btn-overwrite {
   background: var(--mint-deep); color: #fff;
   border: none; border-radius: 999px;
   font-size: 12px; padding: 4px 14px; cursor: pointer;
@@ -3097,6 +3097,8 @@ button:has(.hb-ic), .wl-play:has(.hb-ic) {
 .wb-sync-btn-pull:hover { background: #5aad8a; }
 .wb-sync-btn { margin-left: 8px; }
 .wb-sync-btn:hover { background: var(--pink-dark); }
+.wb-sync-btn-overwrite { margin-left: 8px; background: #b7791f; }
+.wb-sync-btn-overwrite:hover { background: #9a6416; }
 @media (max-width: 520px) {
   .wb-sync-bar { padding: 8px 14px; gap: 6px; }
   .wb-sync-status { width: 100%; order: 9; }

@@ -5761,6 +5761,7 @@
       ];
       lsSet(LS_KEYS.quotes, quotes);
       renderIndiSel();
+      if (document.getElementById("stQuoteList")) renderQuotes();
     }
     function afterFirstPull(e) {
       if (settled) return;
@@ -5781,6 +5782,11 @@
       window.addEventListener("wb-sync-first-pull", afterFirstPull);
       const st = window.WBSync.initialState ? window.WBSync.initialState() : null;
       if (st && st.done) afterFirstPull({ detail: st });
+      /* 兜底：云端首次拉取迟迟未完成（离线/超时）时，先在本机放默认值保证模块可用。
+       * 初始化阶段的这次写入不会自动推送，之后云端真实数据到达时仍可覆盖恢复。 */
+      setTimeout(function () {
+        if (!settled && quotes.length === 0) persistDefaultQuotes();
+      }, 8000);
     } else {
       persistDefaultQuotes();
     }
