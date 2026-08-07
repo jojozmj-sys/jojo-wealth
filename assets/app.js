@@ -5742,15 +5742,48 @@
   /* ---------- 状态 ---------- */
   let quotes = lsGet(LS_KEYS.quotes, null);
   if (quotes === null) {
-    // 首次使用给一个新手友好的默认自选股（5 只跨市场）
-    quotes = [
-      { code: "600519", name: "贵州茅台", market: "sh" },
-      { code: "000858", name: "五粮液",   market: "sz" },
-      { code: "300750", name: "宁德时代", market: "sz" },
-      { code: "00700",  name: "腾讯控股", market: "hk" },
-      { code: "TSLA",   name: "特斯拉",   market: "us" },
-    ];
-    lsSet(LS_KEYS.quotes, quotes);
+    quotes = [];
+    /* 云同步初始化保护：首次 pull 完成前不写入默认自选股，避免默认 5 只在竞态窗口内
+     * push 覆盖云端真实数据；只有确认云端没有自选股后才落默认值。
+     * 同步层会在首次成功拉取后派发 wb-sync-first-pull，detail.hasCloud 表示云端是否有数据。 */
+    const SYNC_CFG = window.WB_SYNC;
+    const syncEnabled = !!(SYNC_CFG && SYNC_CFG.enabled);
+    let settled = false;
+    function persistDefaultQuotes() {
+      if (settled) return;
+      settled = true;
+      quotes = [
+        { code: "600519", name: "贵州茅台", market: "sh" },
+        { code: "000858", name: "五粮液",   market: "sz" },
+        { code: "300750", name: "宁德时代", market: "sz" },
+        { code: "00700",  name: "腾讯控股", market: "hk" },
+        { code: "TSLA",   name: "特斯拉",   market: "us" },
+      ];
+      lsSet(LS_KEYS.quotes, quotes);
+      renderIndiSel();
+    }
+    function afterFirstPull(e) {
+      if (settled) return;
+      const st = (e && e.detail) || {};
+      if (st.hasCloud === true) {
+        const cloudQuotes = lsGet(LS_KEYS.quotes, null);
+        if (Array.isArray(cloudQuotes)) {
+          settled = true;
+          quotes = cloudQuotes;
+          renderIndiSel();
+          if (document.getElementById("stQuoteList")) renderQuotes();
+          return;
+        }
+      }
+      if (st.ok) persistDefaultQuotes();
+    }
+    if (syncEnabled && window.WBSync) {
+      window.addEventListener("wb-sync-first-pull", afterFirstPull);
+      const st = window.WBSync.initialState ? window.WBSync.initialState() : null;
+      if (st && st.done) afterFirstPull({ detail: st });
+    } else {
+      persistDefaultQuotes();
+    }
   }
   let trades = lsGet(LS_KEYS.trades, []);    // [{...}]
   let alertCfg = lsGet(LS_KEYS.alert, { drop: 3, rise: 5, rsiHi: 70, rsiLo: 30 });
