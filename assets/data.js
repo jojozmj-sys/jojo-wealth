@@ -7658,47 +7658,78 @@ window.WORKBENCH_DATA = {
     "indexPct": 1.017600984527031,
     "volExpand": false,
     "volShrink": true,
-    "upCount": 4185,
-    "dnCount": 1362,
-    "limitUp": 0,
-    "limitDn": 0,
-    "maxBoard": 0,
-    "maxBoardStock": "",
-    "cycle": "recover",
-    "tone": "watch"
+    "upCount": 2708,
+    "dnCount": 2427,
+    "limitUp": 74,
+    "limitDn": 4,
+    "maxBoard": 4,
+    "maxBoardStock": "汇绿生态",
+    "cycle": "accelerate",
+    "tone": "attack"
   },
   "sentiment": {
-    "score": 49,
-    "level": "neutral",
-    "levelLabel": "中性",
-    "upRatio": 75.4,
-    "trend": "flat",
-    "dataLimited": true,
-    "note": "涨跌停明细暂缺，当前温度按指数与量能估算，数据补全后自动更新。",
+    "score": 66,
+    "level": "warm",
+    "levelLabel": "回暖",
+    "upRatio": 52.7,
+    "trend": "up",
+    "dataLimited": false,
+    "note": "情绪回暖，可轻仓试错，关注连板高度能否继续打开。",
     "history": [
       {
         "date": "2026-08-07",
-        "score": 49,
-        "level": "neutral",
-        "upRatio": 75.4
+        "score": 66,
+        "level": "warm",
+        "upRatio": 52.7
       }
     ]
   },
   "capital": {
-    "limitUpTotal": 0,
-    "leaderDriven": false,
-    "themeCount": 0,
-    "sustainDays": 0,
-    "themes": []
+    "limitUpTotal": 74,
+    "leaderDriven": true,
+    "themeCount": 6,
+    "sustainDays": 2,
+    "themes": [
+      {
+        "name": "元件",
+        "level": "top",
+        "stocks": "11只涨停"
+      },
+      {
+        "name": "医疗服务",
+        "level": "top",
+        "stocks": "8只涨停"
+      },
+      {
+        "name": "化学制药",
+        "level": "secondary",
+        "stocks": "6只涨停"
+      },
+      {
+        "name": "通信设备",
+        "level": "secondary",
+        "stocks": "4只涨停"
+      },
+      {
+        "name": "半导体",
+        "level": "secondary",
+        "stocks": "4只涨停"
+      },
+      {
+        "name": "生物制品",
+        "level": "secondary",
+        "stocks": "3只涨停"
+      }
+    ]
   },
   "advice": [
     {
       "type": "仓位",
-      "content": "维持 4-5 成中性仓位"
+      "content": "可提升至 6-7 成"
     },
     {
       "type": "方向",
-      "content": "暂无明确主线，等板块轮动信号"
+      "content": "重点关注: 元件、医疗服务、化学制药"
     },
     {
       "type": "风险",
