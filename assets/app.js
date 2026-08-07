@@ -6102,6 +6102,261 @@
     drawKLine(closes);
   }
 
+  /* ==================================================================
+   * 基本面分析（技术面/基本面 Tab）
+   * 数据源（浏览器端 CORS 可用）：
+   *  - 财务主数据：datacenter-web.eastmoney.com RPT_F10_FINANCE_MAINFINADATA
+   *  - 行业归属：  datacenter-web.eastmoney.com RPT_F10_BASIC_ORGINFO
+   *  - 估值行情：  腾讯 qt.gtimg.cn（PE/PB/总市值/PE-TTM）
+   * A 股展示完整财务+估值+行业+综合评分；港股/美股仅展示估值字段并提示。
+   * ================================================================== */
+
+  /* 解析 qt.gtimg 估字段：f[39]PE动 f[46]PB f[47]总市值 f[48]流通市值 f[52]PE-TTM f[53]PE静 */
+  async function fetchValuation(code, market) {
+    const prefix = market === "hk" ? "hk" : market === "us" ? "us" : (/^(0|3)/.test(code) ? "sz" : "sh");
+    const url = `https://qt.gtimg.cn/q=${encodeURIComponent(prefix + code)}`;
+    try {
+      const res = await fetch(url, { mode: "cors" });
+      const buf = await res.arrayBuffer();
+      const text = new TextDecoder("gbk").decode(buf);
+      const m = /="([^"]*)"/.exec(text);
+      if (!m) return null;
+      const f = m[1].split("~");
+      return {
+        name: f[1],
+        price: +f[3] || 0,
+        pe: +f[39] || 0,          // 动态 PE
+        pb: +f[46] || 0,
+        totalMv: +f[47] || 0,     // 总市值（亿）
+        floatMv: +f[48] || 0,     // 流通市值（亿）
+        peTtm: +f[52] || 0,
+        peStatic: +f[53] || 0,
+        pct: +f[32] || 0,
+      };
+    } catch (e) { console.warn("[stock] 估值拉取失败：", e); return null; }
+  }
+
+  /* 拉取东财财务主数据（A股） */
+  async function fetchFundamentals(code) {
+    const secu = (/^(0|3)/.test(code) ? "0" : "1") + "." + code;
+    const url = `https://datacenter-web.eastmoney.com/api/data/v1/get?reportName=RPT_F10_FINANCE_MAINFINADATA&columns=ALL&filter=(SECUCODE%3D%22${code}.${(/^(0|3)/.test(code) ? "SZ" : "SH")}%22)&pageSize=3&source=HSF10&client=PC&sortColumns=REPORT_DATE&sortTypes=-1`;
+    try {
+      const res = await fetch(url, { mode: "cors" });
+      const j = await res.json();
+      if (!j || j.code !== 0 || !j.result || !j.result.data || !j.result.data.length) return null;
+      return j.result.data;
+    } catch (e) { console.warn("[stock] 财务拉取失败：", e); return null; }
+  }
+
+  /* 拉取行业归属（A股） */
+  async function fetchIndustry(code) {
+    const url = `https://datacenter-web.eastmoney.com/api/data/v1/get?reportName=RPT_F10_BASIC_ORGINFO&columns=ALL&filter=(SECUCODE%3D%22${code}.${(/^(0|3)/.test(code) ? "SZ" : "SH")}%22)&pageSize=1&source=HSF10&client=PC`;
+    try {
+      const res = await fetch(url, { mode: "cors" });
+      const j = await res.json();
+      if (!j || j.code !== 0 || !j.result || !j.result.data || !j.result.data.length) return null;
+      const d = j.result.data[0];
+      return { em: d.EM2016, csrc: d.INDUSTRYCSRC1, org: d.ORG_NAME };
+    } catch (e) { console.warn("[stock] 行业拉取失败：", e); return null; }
+  }
+
+  /* 东财财务字段 → 标准化指标对象 */
+  function normFin(row) {
+    const g = (x) => (x == null ? null : +x);
+    return {
+      date: row.REPORT_DATE ? String(row.REPORT_DATE).slice(0, 10) : "",
+      // 盈利能力
+      roe: g(row.ROEJQ),               // 加权 ROE %
+      netMargin: g(row.XSJLL),         // 净利率 %
+      grossMargin: g(row.XSMLL),       // 毛利率 %
+      eps: g(row.EPSJB),               // 基本 EPS
+      // 成长性
+      revYoY: g(row.TOTALOPERATEREVETZ), // 营收同比 %
+      profitYoY: g(row.PARENTNETPROFITTZ), // 净利同比 %
+      profitDeductYoY: g(row.KCFJCXSYJLRTZ), // 扣非净利同比 %
+      // 财务健康 / 偿债
+      debtRatio: g(row.ZCFZL),         // 资产负债率 %
+      currentRatio: g(row.LD),         // 流动比率
+      quickRatio: g(row.SD),           // 速动比率
+      interestDebtRatio: g(row.INTEREST_DEBT_RATIO), // 有息负债率 %
+      opCashToRev: g(row.JYXJLYYSR),   // 经营现金流/营收
+      invTurnover: g(row.CHZZTS),      // 存货周转天数
+    };
+  }
+
+  /* 基本面评分引擎（0-100） */
+  function scoreFundamental(f) {
+    if (!f) return null;
+    let s = 50, notes = [];
+    // 盈利能力（±18）
+    let p = 0;
+    if (f.roe != null) { if (f.roe >= 15) p += 8; else if (f.roe >= 8) p += 5; else if (f.roe >= 3) p += 2; else p -= 5; }
+    if (f.netMargin != null) { if (f.netMargin >= 20) p += 5; else if (f.netMargin >= 10) p += 3; else if (f.netMargin < 0) p -= 6; }
+    if (f.grossMargin != null) { if (f.grossMargin >= 40) p += 5; else if (f.grossMargin >= 20) p += 2; else p -= 2; }
+    s += Math.max(-18, Math.min(18, p));
+    // 成长性（±18）
+    let g = 0;
+    if (f.profitYoY != null) { if (f.profitYoY >= 30) g += 8; else if (f.profitYoY >= 15) g += 5; else if (f.profitYoY >= 0) g += 2; else g -= 8; }
+    if (f.revYoY != null) { if (f.revYoY >= 20) g += 6; else if (f.revYoY >= 10) g += 3; else if (f.revYoY < 0) g -= 5; }
+    if (f.profitDeductYoY != null && f.profitDeductYoY < 0) g -= 4;
+    s += Math.max(-18, Math.min(18, g));
+    // 财务健康 / 偿债（±14）
+    let h = 0;
+    if (f.debtRatio != null) { if (f.debtRatio <= 40) h += 6; else if (f.debtRatio <= 60) h += 3; else if (f.debtRatio > 80) h -= 8; else h -= 2; }
+    if (f.currentRatio != null) { if (f.currentRatio >= 1.5) h += 4; else if (f.currentRatio < 1) h -= 4; }
+    if (f.quickRatio != null) { if (f.quickRatio < 0.8) h -= 3; }
+    if (f.interestDebtRatio != null) { if (f.interestDebtRatio > 30) h -= 3; }
+    s += Math.max(-14, Math.min(14, h));
+    s = Math.max(5, Math.min(95, Math.round(s)));
+    const verdict = s >= 65 ? "质地优良" : s <= 35 ? "质地偏弱" : "质地中等";
+    return { score: s, verdict };
+  }
+
+  function fmtNum(v, digits = 2) {
+    if (v == null || isNaN(v)) return "--";
+    return Number(v).toFixed(digits);
+  }
+
+  /* 渲染：基本面分析 */
+  async function renderFundamental() {
+    const sel = $("#stIndiSel");
+    const body = $("#stIndiBody");
+    const code = sel.value;
+    if (!code) { body.innerHTML = `<div class="st-indi-empty">请先在「实时行情」里加一只股票</div>`; return; }
+    const q = quotes.find(x => x.code === code);
+    const market = q && q.market ? q.market : (/^(0|3)/.test(code) ? "sz" : (code.length === 6 ? "sh" : "hk"));
+    body.innerHTML = `<div class="st-indi-empty">⏳ 拉取基本面数据中...</div>`;
+
+    // 估值（腾讯，A/港/美通用）
+    const val = await fetchValuation(code, market);
+
+    if (market === "hk" || market === "us") {
+      // 港股/美股：仅估值字段，提示财务明细仅 A 股支持
+      body.innerHTML = `
+        <div class="st-fund-note">ℹ️ 港股/美股仅提供估值与行情字段；完整财务明细目前仅支持 A 股。</div>
+        <div class="st-fund-grid">
+          ${val ? `
+            <div class="st-fund-cell"><span class="lbl">现价</span><span class="val">¥${fmtNum(val.price)}</span></div>
+            <div class="st-fund-cell"><span class="lbl">PE(动态)</span><span class="val">${val.pe ? val.pe.toFixed(1) : "--"}</span></div>
+            <div class="st-fund-cell"><span class="lbl">PE(TTM)</span><span class="val">${val.peTtm ? val.peTtm.toFixed(1) : "--"}</span></div>
+            <div class="st-fund-cell"><span class="lbl">PB</span><span class="val">${val.pb ? val.pb.toFixed(2) : "--"}</span></div>
+            <div class="st-fund-cell"><span class="lbl">总市值</span><span class="val">${val.totalMv ? val.totalMv.toFixed(1) + "亿" : "--"}</span></div>
+            <div class="st-fund-cell"><span class="lbl">流通市值</span><span class="val">${val.floatMv ? val.floatMv.toFixed(1) + "亿" : "--"}</span></div>
+          ` : `<div class="st-indi-empty">⚠️ 估值数据暂不可用，请稍后重试</div>`}
+        </div>`;
+      return;
+    }
+
+    // A 股：财务 + 行业 + 估值 + 综合评分
+    const [finRows, ind] = await Promise.all([fetchFundamentals(code), fetchIndustry(code)]);
+    const fin = finRows && finRows.length ? normFin(finRows[0]) : null;
+    const score = scoreFundamental(fin);
+
+    const items = [];
+    // 估值
+    const peVerdict = val && val.peTtm ? (val.peTtm <= 0 ? "亏损/扭亏" : val.peTtm <= 20 ? "估值偏低" : val.peTtm <= 40 ? "估值合理" : val.peTtm <= 60 ? "估值偏高" : "高估") : "--";
+    items.push({
+      icon: "💰", tag: "估值水平",
+      state: val && val.peTtm ? `PE-TTM ${val.peTtm.toFixed(1)} · ${peVerdict}` : "--",
+      txt: val ? (val.peTtm <= 0 ? "当前市盈率为负，公司处于亏损或扭亏阶段，估值参考意义有限，需关注盈利拐点。" : `PE-TTM ${val.peTtm.toFixed(1)}、PB ${val.pb ? val.pb.toFixed(2) : "--"}、总市值 ${val.totalMv ? val.totalMv.toFixed(0) + " 亿" : "--"}。${peVerdict}区间，建议结合行业平均 PE 横向比较。`) : "估值数据暂不可用。",
+      tone: val && val.peTtm > 0 ? (val.peTtm <= 40 ? "up" : "flat") : "flat"
+    });
+    // 盈利能力
+    items.push({
+      icon: "📈", tag: "盈利能力",
+      state: fin ? `ROE ${fmtNum(fin.roe)}% · 净利率 ${fmtNum(fin.netMargin)}%` : "--",
+      txt: fin ? `加权 ROE ${fmtNum(fin.roe)}%、毛利率 ${fmtNum(fin.grossMargin)}%、净利率 ${fmtNum(fin.netMargin)}%、基本 EPS ${fmtNum(fin.eps)}。${fin.roe >= 15 ? "ROE 高于 15%，盈利能力优秀，具备较强资本回报能力。" : fin.roe >= 8 ? "ROE 处于 8%-15%，盈利能力良好。" : fin.roe >= 0 ? "ROE 偏低，盈利效率有待提升。" : "公司当前处于亏损状态，需重点跟踪扭亏进展。"}` : "财务数据暂不可用。",
+      tone: fin ? (fin.roe >= 15 ? "up" : fin.roe >= 8 ? "flat" : "down") : "flat"
+    });
+    // 成长性
+    const growthOk = fin && fin.profitYoY != null && fin.profitYoY >= 15;
+    items.push({
+      icon: "🚀", tag: "成长性",
+      state: fin ? `营收 ${fmtNum(fin.revYoY)}% · 净利 ${fmtNum(fin.profitYoY)}%` : "--",
+      txt: fin ? `营收同比 ${fmtNum(fin.revYoY)}%、净利同比 ${fmtNum(fin.profitYoY)}%、扣非净利同比 ${fmtNum(fin.profitDeductYoY)}%。${growthOk ? "净利保持两位数增长，成长动能较足；" : fin.profitYoY < 0 ? "净利同比下滑，成长面临压力；" : "业绩平稳增长，成长性中性。"}需警惕扣非净利与净利背离（依赖非经常损益）。` : "财务数据暂不可用。",
+      tone: fin ? (growthOk ? "up" : fin.profitYoY < 0 ? "down" : "flat") : "flat"
+    });
+    // 财务健康
+    const debtOk = fin && fin.debtRatio != null && fin.debtRatio <= 60;
+    items.push({
+      icon: "🏦", tag: "财务健康",
+      state: fin ? `资产负债率 ${fmtNum(fin.debtRatio)}% · 流动比率 ${fmtNum(fin.currentRatio)}` : "--",
+      txt: fin ? `资产负债率 ${fmtNum(fin.debtRatio)}%、有息负债率 ${fmtNum(fin.interestDebtRatio)}%、经营现金流/营收 ${fmtNum(fin.opCashToRev)}。${debtOk ? "资产负债结构稳健，偿债压力可控。" : "负债率偏高或现金流偏弱，需关注偿债能力。"}` : "财务数据暂不可用。",
+      tone: fin ? (debtOk ? "up" : "down") : "flat"
+    });
+    // 偿债能力
+    items.push({
+      icon: "🛡️", tag: "偿债能力",
+      state: fin ? `流动比率 ${fmtNum(fin.currentRatio)} · 速动比率 ${fmtNum(fin.quickRatio)}` : "--",
+      txt: fin ? `流动比率 ${fmtNum(fin.currentRatio)}、速动比率 ${fmtNum(fin.quickRatio)}（均 >1 表示短期偿债无忧）。${fin.currentRatio >= 1.5 ? "短期偿债能力充裕。" : fin.currentRatio < 1 ? "流动比率低于 1，短期偿债压力偏大，需关注资金链。" : "短期偿债能力尚可。"}` : "财务数据暂不可用。",
+      tone: fin ? (fin.currentRatio >= 1.5 ? "up" : fin.currentRatio < 1 ? "down" : "flat") : "flat"
+    });
+    // 行业分析
+    items.push({
+      icon: "🧭", tag: "行业分析",
+      state: ind && ind.em ? ind.em : "--",
+      txt: ind ? `东财行业：${ind.em}；证监会行业：${ind.csrc}。公司所属赛道 ${ind.em ? ind.em.split("-").pop() : "未知"}。建议将个股 ROE/PE 与同行业可比公司横向对比，判断相对竞争优势。` : "行业归属数据暂不可用。",
+      tone: "flat"
+    });
+
+    // 综合判断（评分）
+    const verdict = score ? score.verdict : "--";
+    const action = !score ? "数据不足，暂无法给出综合判断。" :
+      score.score >= 65 ? "基本面质地优良，盈利能力与成长性俱佳，适合作为中长期关注标的；仍建议结合估值与技术面择时介入。" :
+      score.score <= 35 ? "基本面质地偏弱，盈利或偿债压力较大，需谨慎对待，等待基本面改善信号。" :
+      "基本面质地中等，多空指标均衡，建议在估值合理区间分批布局，持续跟踪季度财报验证成长逻辑。";
+
+    body.innerHTML = `
+      <div class="st-fund-grid">
+        <div class="st-fund-cell"><span class="lbl">现价</span><span class="val">¥${fmtNum(val ? val.price : 0)}</span></div>
+        <div class="st-fund-cell"><span class="lbl">PE(动态)</span><span class="val">${val && val.pe ? val.pe.toFixed(1) : "--"}</span></div>
+        <div class="st-fund-cell"><span class="lbl">PE(TTM)</span><span class="val">${val && val.peTtm ? val.peTtm.toFixed(1) : "--"}</span></div>
+        <div class="st-fund-cell"><span class="lbl">PB</span><span class="val">${val && val.pb ? val.pb.toFixed(2) : "--"}</span></div>
+        <div class="st-fund-cell"><span class="lbl">总市值</span><span class="val">${val && val.totalMv ? val.totalMv.toFixed(0) + "亿" : "--"}</span></div>
+        <div class="st-fund-cell"><span class="lbl">流通市值</span><span class="val">${val && val.floatMv ? val.floatMv.toFixed(0) + "亿" : "--"}</span></div>
+      </div>
+      <div class="st-fund-report">最新财报期：${fin && fin.date ? fin.date : "--"}</div>
+      <div class="st-anl">
+        <div class="st-anl-head">📋 基本面专业分析 <span class="st-anl-sub">综合 ${items.length} 个维度 · 财务+估值+行业</span></div>
+        <div class="st-anl-grid">
+          ${items.map(it => `
+            <div class="st-anl-card st-anl-${it.tone}">
+              <div class="st-anl-card-tag">${it.icon} ${it.tag}</div>
+              <div class="st-anl-state">${it.state}</div>
+              <div class="st-anl-txt">${it.txt}</div>
+            </div>`).join("")}
+        </div>
+        <div class="st-anl-score">
+          <div class="st-anl-score-num" data-score="${score ? score.score : 0}" style="--s:${score ? score.score : 0}"></div>
+          <div class="st-anl-score-info">
+            <div class="st-anl-score-verdict">基本面综合评分 <b>${score ? score.score : "--"}/100</b> · 倾向 <b class="st-anl-v-${score ? (score.score >= 65 ? 'up' : score.score <= 35 ? 'down' : 'flat') : 'flat'}">${verdict}</b></div>
+            <div class="st-anl-score-bar"><span style="width:${score ? score.score : 0}%"></span></div>
+            <div class="st-anl-score-txt">${action}</div>
+          </div>
+        </div>
+        <div class="st-anl-risk">⚠️ 基本面分析基于公司定期财报（有滞后），未含最新业绩预告、审计调整与突发事件，不构成投资建议，据此操作风险自担。</div>
+      </div>
+      <div style="font-size:11px;color:var(--pink-dark);margin-top:8px;">数据源：东方财富 F10（财务/行业）+ 腾讯行情（估值），财报披露周期为季度。</div>
+    `;
+  }
+
+  /* 基本面/技术面 Tab 状态与切换 */
+  let stAnlTab = "tech";
+  function setStAnlTab(tab) {
+    stAnlTab = tab;
+    const title = $("#stAnlTitle");
+    const periodWrap = $("#stIndiPeriodWrap");
+    if (title) title.textContent = tab === "fund" ? "基本面分析 · 估值 / 成长 / 财务健康" : "技术指标 · MACD / RSI / 均线";
+    if (periodWrap) periodWrap.style.display = tab === "fund" ? "none" : "";
+    document.querySelectorAll("#stAnlTabs .st-anl-tab").forEach(b => b.classList.toggle("active", b.dataset.tab === tab));
+    if (tab === "fund") renderFundamental(); else renderIndi();
+  }
+
+  /* 按当前 Tab 渲染 */
+  function renderStAnl() {
+    if (stAnlTab === "fund") renderFundamental(); else renderIndi();
+  }
+
   /* ---------- 专业财经分析引擎 ---------- */
   // 综合趋势/动量/超买超卖/支撑压力/量能，输出结构化研判与操作建议
   function buildStockAnalysis(a) {
@@ -6967,8 +7222,13 @@
       }
     });
 
-    $("#stIndiSel").addEventListener("change", renderIndi);
-    $("#stIndiRefresh").addEventListener("click", renderIndi);
+    $("#stIndiSel").addEventListener("change", renderStAnl);
+    $("#stIndiRefresh").addEventListener("click", renderStAnl);
+    $("#stIndiPeriod").addEventListener("change", renderStAnl);
+    $("#stAnlTabs").addEventListener("click", (e) => {
+      const b = e.target.closest(".st-anl-tab");
+      if (b) setStAnlTab(b.dataset.tab);
+    });
 
     // 持仓
     $("#stPosAdd").addEventListener("click", () => {

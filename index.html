@@ -17,11 +17,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/styles.css?v=20260807b96" />
+  <link rel="stylesheet" href="assets/styles.css?v=20260807b97" />
   <!-- 预加载：与 HTML 解析并行下载大 JS，避免启动时串行等待 -->
-  <link rel="preload" as="script" href="assets/data.js?v=20260807b96" fetchpriority="high" />
-  <link rel="preload" as="script" href="assets/lunar.js?v=20260807b96" />
-  <link rel="preload" as="script" href="assets/app.js?v=20260807b96" fetchpriority="high" />
+  <link rel="preload" as="script" href="assets/data.js?v=20260807b97" fetchpriority="high" />
+  <link rel="preload" as="script" href="assets/lunar.js?v=20260807b97" />
+  <link rel="preload" as="script" href="assets/app.js?v=20260807b97" fetchpriority="high" />
 </head>
 <body class="sidebar-collapsed">
   <!-- 手绘卡通 SVG 图标库（彩铅/水彩风格） -->
@@ -955,19 +955,23 @@
             </div>
           </div>
 
-          <!-- 2) 技术指标 MACD / RSI / 均线 -->
+          <!-- 2) 股票分析：技术面 / 基本面 -->
           <div class="card st-indi-card">
             <div class="card-head">
-              <div class="ic"><img src="assets/icons/icon-stock.png" alt="技术指标"></div>
-              <h2>技术指标 · MACD / RSI / 均线</h2>
+              <div class="ic"><img src="assets/icons/icon-stock.png" alt="股票分析"></div>
+              <h2 id="stAnlTitle">技术指标 · MACD / RSI / 均线</h2>
               <span class="sub">选择一只自选股查看</span>
               <button class="card-toggle" type="button" aria-label="折叠">▾</button>
+            </div>
+            <div class="st-anl-tabs" id="stAnlTabs">
+              <button class="st-anl-tab active" type="button" data-tab="tech">📈 技术面</button>
+              <button class="st-anl-tab" type="button" data-tab="fund">📋 基本面</button>
             </div>
             <div class="st-indi-bar">
               <label>分析对象
                 <select id="stIndiSel"></select>
               </label>
-              <label>周期
+              <label id="stIndiPeriodWrap">周期
                 <select id="stIndiPeriod">
                   <option value="daily">日线</option>
                   <option value="weekly">周线</option>
@@ -1337,10 +1341,10 @@
   </div>
 
   <!-- 轻脚本保持 defer 顺序（小体积，几乎无感；config 必须在 data 后依赖它） -->
-  <script src="assets/config.js?v=20260807b96" defer></script>
-  <script src="assets/sync.js?v=20260807b96" defer></script>
-  <script src="assets/manual-sync.js?v=20260807b96" defer></script>
-  <script src="assets/dog_icons.js?v=20260807b96" defer></script>
+  <script src="assets/config.js?v=20260807b97" defer></script>
+  <script src="assets/sync.js?v=20260807b97" defer></script>
+  <script src="assets/manual-sync.js?v=20260807b97" defer></script>
+  <script src="assets/dog_icons.js?v=20260807b97" defer></script>
   <!-- 注册 Service Worker：离线可用 + 自动更新缓存，解决"看不到更新" -->
   <script>
     if ("serviceWorker" in navigator) {
@@ -1374,9 +1378,9 @@
       }
       /* 先让浏览器完成首帧绘制，再拉数据链 */
       idle(function () {
-        load("assets/data.js?v=20260807b96")
-          .then(function () { return load("assets/lunar.js?v=20260807b96"); })
-          .then(function () { return load("assets/app.js?v=20260807b96"); });
+        load("assets/data.js?v=20260807b97")
+          .then(function () { return load("assets/lunar.js?v=20260807b97"); })
+          .then(function () { return load("assets/app.js?v=20260807b97"); });
       });
     })();
   </script>
