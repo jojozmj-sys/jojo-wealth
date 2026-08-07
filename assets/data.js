@@ -7667,6 +7667,23 @@ window.WORKBENCH_DATA = {
     "cycle": "recover",
     "tone": "watch"
   },
+  "sentiment": {
+    "score": 49,
+    "level": "neutral",
+    "levelLabel": "中性",
+    "upRatio": 75.4,
+    "trend": "flat",
+    "dataLimited": true,
+    "note": "涨跌停明细暂缺，当前温度按指数与量能估算，数据补全后自动更新。",
+    "history": [
+      {
+        "date": "2026-08-07",
+        "score": 49,
+        "level": "neutral",
+        "upRatio": 75.4
+      }
+    ]
+  },
   "capital": {
     "limitUpTotal": 0,
     "leaderDriven": false,
@@ -7688,5 +7705,6 @@ window.WORKBENCH_DATA = {
       "content": "关注量价配合"
     }
   ]
-}
+},
+
 };

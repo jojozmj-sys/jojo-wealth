@@ -7329,6 +7329,96 @@
 
     loadAutoScreen();
 
+    // ===== 市场情绪渲染 =====
+    function renderSentiment() {
+      const main = $("#stSentimentMain");
+      const empty = $("#stSentimentEmpty");
+      const dateEl = $("#stSentimentDate");
+      if (!main || !empty) return;
+
+      const D = window.WORKBENCH_DATA || {};
+      const review = D.dailyReview;
+      const s = review && review.sentiment;
+      if (!s || typeof s.score !== "number") {
+        empty.style.display = "block";
+        main.style.display = "none";
+        if (dateEl) dateEl.textContent = "每日收盘后更新 · 情绪温度 + 赚钱效应 + 历史趋势";
+        return;
+      }
+
+      empty.style.display = "none";
+      main.style.display = "block";
+      if (dateEl && review.date) dateEl.textContent = review.date + " · 情绪温度 + 赚钱效应 + 历史趋势";
+
+      const scoreEl = $("#stSentimentScore");
+      if (scoreEl) {
+        scoreEl.innerHTML = '<span class="num">' + s.score + '</span><span class="unit">/ 100</span>';
+      }
+
+      const levelEl = $("#stSentimentLevel");
+      if (levelEl) {
+        const labels = { ice: "🧊 冰点", cold: "🌧️ 低迷", neutral: "⚖️ 中性", warm: "🔥 回暖", active: "🚀 活跃", hot: "💥 亢奋" };
+        levelEl.textContent = labels[s.level] || s.levelLabel || s.level;
+        levelEl.className = "st-sentiment-level level-" + (s.level || "neutral");
+      }
+
+      const trendEl = $("#stSentimentTrend");
+      if (trendEl) {
+        const map = { up: "较昨日升温 ↗", down: "较昨日降温 ↘", flat: "较昨日持平 →" };
+        trendEl.textContent = map[s.trend] || "";
+        trendEl.className = "st-sentiment-trend trend-" + (s.trend || "flat");
+      }
+
+      const gauge = $("#stSentimentGauge");
+      if (gauge) gauge.style.width = Math.max(2, Math.min(100, s.score)) + "%";
+
+      const chips = $("#stSentimentChips");
+      if (chips) {
+        const m = review.market || {};
+        const up = m.upCount != null ? m.upCount : "--";
+        const dn = m.dnCount != null ? m.dnCount : "--";
+        const upPct = s.upRatio != null ? s.upRatio + "%" : "--";
+        const zt = (m.limitUp != null ? m.limitUp : "--") + " / " + (m.limitDn != null ? m.limitDn : "--");
+        const board = (m.maxBoard != null ? m.maxBoard : "--") + "板";
+        const vol = m.volExpand ? "放量" : (m.volShrink ? "缩量" : "平量");
+        chips.innerHTML = [
+          { l: "赚钱效应", v: upPct, s: "上涨 " + up + " / 下跌 " + dn },
+          { l: "涨停 / 跌停", v: zt, s: "涨停家数 / 跌停家数" },
+          { l: "连板高度", v: board, s: m.maxBoardStock || "当前最高连板" },
+          { l: "量能", v: vol, s: "指数成交额状态" }
+        ].map(function(it) {
+          return '<div class="st-sentiment-chip">' +
+            '<div class="m-label">' + it.l + '</div>' +
+            '<div class="m-value">' + it.v + '</div>' +
+            (it.s ? '<div class="m-sub">' + it.s + '</div>' : '') +
+            '</div>';
+        }).join("");
+      }
+
+      const note = $("#stSentimentNote");
+      if (note) {
+        note.innerHTML = (s.dataLimited ? '<div class="st-sentiment-warn">⚠️ 涨跌停明细暂缺，当前温度按指数与量能估算</div>' : "") +
+          (s.note ? '<div class="st-sentiment-note-text">' + s.note + '</div>' : "");
+      }
+
+      const hist = $("#stSentimentHistory");
+      if (hist) {
+        const h = (s.history || []).slice(-10);
+        if (!h.length) {
+          hist.innerHTML = '<div class="st-sentiment-history-empty">暂无历史趋势，连续生成后自动积累</div>';
+        } else {
+          hist.innerHTML = h.map(function(it) {
+            const pct = Math.max(4, Math.min(100, it.score));
+            return '<div class="h-bar-wrap" title="' + it.date + ' ' + it.score + ' 分">' +
+              '<div class="h-bar"><div class="h-fill level-' + (it.level || "neutral") + '" style="height:' + pct + '%"></div></div>' +
+              '<div class="h-score">' + it.score + '</div>' +
+              '<div class="h-date">' + (it.date || "").slice(5) + '</div>' +
+              '</div>';
+          }).join("");
+        }
+      }
+    }
+
     // ===== 每日复盘渲染 =====
     function renderReviews() {
       const body = $("#stReviewBody");
@@ -7478,19 +7568,19 @@
     }
 
     // 初始渲染（若已有数据）
+    renderSentiment();
     renderReviews();
 
     // 监听侧边栏切到 stock 时刷新
     const link = document.querySelector('.menu a[data-page="stock"]');
     if (link) link.addEventListener("click", () => {
-      setTimeout(() => { renderIndex(); renderBoards(); renderScreenResults(_screenResults); renderQuotes(); renderIndiSel(); renderTrades(); renderNews(); renderReviews(); }, 50);
+      setTimeout(() => { renderIndex(); renderBoards(); renderScreenResults(_screenResults); renderQuotes(); renderIndiSel(); renderTrades(); renderNews(); renderSentiment(); renderReviews(); }, 50);
     });
 
-    // 每日复盘手动更新按钮
-    const reviewBtn = document.getElementById("stReviewRefresh");
-    if (reviewBtn) reviewBtn.addEventListener("click", () => {
+    // 每日复盘 / 市场情绪手动更新按钮（共用同一个生成脚本）
+    function copyReviewCmd() {
       var cmd = "NODE_OPTIONS='--dns-result-order=ipv4first' node tools/gen_dailyreview.js";
-      var tip = "请在 WorkBuddy 中运行复盘脚本：\n" + cmd + "\n\n运行完成后刷新页面即可看到最新复盘。";
+      var tip = "请在 WorkBuddy 中运行复盘脚本：\n" + cmd + "\n\n运行完成后刷新页面即可看到最新复盘与市场情绪。";
       if (typeof appToast === "function") {
         appToast("复盘指令已复制，请在 WorkBuddy 中粘贴运行", 4000, "info");
       }
@@ -7502,7 +7592,11 @@
       if (typeof console !== "undefined") console.log("[wb-review] 手动复盘指令:", cmd);
       // 同时设置一个标记，下次数据同步后自动刷新展示
       try { sessionStorage.setItem("wb_review_pending", "1"); } catch(e) {}
-    });
+    }
+    const reviewBtn = document.getElementById("stReviewRefresh");
+    const sentimentBtn = document.getElementById("stSentimentRefresh");
+    if (reviewBtn) reviewBtn.addEventListener("click", copyReviewCmd);
+    if (sentimentBtn) sentimentBtn.addEventListener("click", copyReviewCmd);
 
     // 每 30 秒自动刷新一次自选股行情（保持最新涨跌），页面在后台时不打扰
     setInterval(() => {
@@ -7511,6 +7605,7 @@
       renderIndex();                            // 指数概览持续刷新
       renderBoards();                           // 行业板块持续刷新
       renderScreenResults(_screenResults);      // 尾盘选股结果保持显示
+      renderSentiment();                        // 市场情绪保持显示
       renderReviews();                          // 每日复盘保持显示
       if (!quotes.length) return;
       renderQuotes();

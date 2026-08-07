@@ -3721,6 +3721,86 @@ button:has(.hb-ic), .wl-play:has(.hb-ic) {
   #page-stock .st-flow-theme { flex-wrap: wrap; gap: 4px; font-size: 12px; }
 }
 
+/* 市场情绪模块 */
+#page-stock .st-sentiment-body { padding: 0 14px 14px; }
+#page-stock .st-sentiment-empty { text-align: center; padding: 24px 0; color: var(--brown-fade); }
+#page-stock .st-sentiment-head { display: flex; align-items: center; gap: 16px; margin: 4px 0 14px; }
+#page-stock .st-sentiment-score {
+  width: 92px; height: 92px; border-radius: 50%;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  background: linear-gradient(135deg, #fff8f0, #fff0f0);
+  border: 3px solid #f5b7a4;
+  color: var(--brown-deep);
+  flex-shrink: 0;
+}
+#page-stock .st-sentiment-score .num { font-size: 30px; font-weight: 800; line-height: 1.1; font-variant-numeric: tabular-nums; }
+#page-stock .st-sentiment-score .unit { font-size: 10px; color: var(--brown-fade); margin-top: 2px; }
+#page-stock .st-sentiment-copy { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+#page-stock .st-sentiment-level {
+  display: inline-flex; align-items: center; width: fit-content;
+  font-size: 15px; font-weight: 800; padding: 5px 14px; border-radius: 999px;
+  white-space: nowrap;
+}
+#page-stock .st-sentiment-level.level-ice { background: #E8F4FD; color: #1A73E8; }
+#page-stock .st-sentiment-level.level-cold { background: #ECEFF1; color: #546E7A; }
+#page-stock .st-sentiment-level.level-neutral { background: #F5F5F5; color: #757575; }
+#page-stock .st-sentiment-level.level-warm { background: #FFF3E0; color: #E67E22; }
+#page-stock .st-sentiment-level.level-active { background: #FFEBEE; color: #D32F2F; }
+#page-stock .st-sentiment-level.level-hot { background: #F3E5F5; color: #7B1FA2; }
+#page-stock .st-sentiment-trend { font-size: 12px; color: var(--brown-deep); font-weight: 600; }
+#page-stock .st-sentiment-trend.trend-up { color: #D32F2F; }
+#page-stock .st-sentiment-trend.trend-down { color: #2E7D32; }
+#page-stock .st-sentiment-gauge { height: 14px; background: #F1EFEB; border-radius: 999px; overflow: hidden; }
+#page-stock .st-sentiment-gauge-fill {
+  height: 100%; width: 0; border-radius: 999px;
+  background: linear-gradient(90deg, #1A73E8, #E67E22 52%, #D32F2F);
+  transition: width .6s ease;
+}
+#page-stock .st-sentiment-chips {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 8px; margin: 12px 0;
+}
+#page-stock .st-sentiment-chip { background: var(--mint-bg, #F0F7F0); border-radius: 8px; padding: 10px 12px; }
+#page-stock .st-sentiment-chip .m-label { font-size: 11px; color: var(--brown-fade, #8B7B7B); }
+#page-stock .st-sentiment-chip .m-value { font-size: 18px; font-weight: 700; color: var(--brown-deep, #5C4444); margin-top: 2px; }
+#page-stock .st-sentiment-chip .m-sub { font-size: 11px; color: var(--brown-fade, #8B7B7B); margin-top: 2px; }
+#page-stock .st-sentiment-note {
+  padding: 10px 14px; border-radius: 8px; font-size: 13px; line-height: 1.6;
+  color: var(--brown-deep); background: var(--mint-bg, #F0F7F0);
+}
+#page-stock .st-sentiment-warn {
+  background: #FFF8E1; color: #B26A00; border: 1px solid #FFE2A0;
+  border-radius: 8px; padding: 8px 10px; margin-bottom: 8px; font-size: 12px;
+}
+#page-stock .st-sentiment-history { display: flex; align-items: flex-end; gap: 6px; margin-top: 14px; }
+#page-stock .st-sentiment-history .h-bar-wrap { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 3px; min-width: 0; }
+#page-stock .st-sentiment-history .h-bar {
+  width: 100%; max-width: 34px; height: 64px; border-radius: 5px 5px 0 0;
+  background: #F1EFEB; overflow: hidden; position: relative;
+}
+#page-stock .st-sentiment-history .h-fill {
+  position: absolute; left: 0; right: 0; bottom: 0; border-radius: 5px 5px 0 0;
+}
+#page-stock .st-sentiment-history .h-fill.level-ice { background: #64B5F6; }
+#page-stock .st-sentiment-history .h-fill.level-cold { background: #90A4AE; }
+#page-stock .st-sentiment-history .h-fill.level-neutral { background: #BDBDBD; }
+#page-stock .st-sentiment-history .h-fill.level-warm { background: #FFB74D; }
+#page-stock .st-sentiment-history .h-fill.level-active { background: #E57373; }
+#page-stock .st-sentiment-history .h-fill.level-hot { background: #BA68C8; }
+#page-stock .st-sentiment-history .h-score { font-size: 10px; font-weight: 700; color: var(--brown-deep); }
+#page-stock .st-sentiment-history .h-date { font-size: 10px; color: var(--brown-fade); }
+#page-stock .st-sentiment-history-empty { width: 100%; text-align: center; color: var(--brown-fade); font-size: 12px; padding: 8px 0; }
+
+@media (max-width: 640px) {
+  #page-stock .st-sentiment-head { gap: 12px; }
+  #page-stock .st-sentiment-score { width: 78px; height: 78px; }
+  #page-stock .st-sentiment-score .num { font-size: 26px; }
+  #page-stock .st-sentiment-chips { grid-template-columns: 1fr 1fr; gap: 6px; }
+  #page-stock .st-sentiment-chip { padding: 8px 10px; }
+  #page-stock .st-sentiment-chip .m-value { font-size: 16px; }
+  #page-stock .st-sentiment-history .h-bar { height: 52px; }
+}
+
 @media (max-width: 640px) {
   #page-stock .st-quote-row { grid-template-columns: 1.4fr 1fr 0.9fr 48px; gap: 6px; font-size: 12px; }
   #page-stock .st-quote-price { font-size: 14px; }
