@@ -6293,6 +6293,60 @@
     return Number(v).toFixed(digits);
   }
 
+  /* 商业模式解读引擎：基于主营构成 + 毛利率 归纳盈利模式与质量 */
+  function analyzeBusinessModel(mb) {
+    if (!mb) return null;
+    // 取按产品的占比第一项作为"核心单品"，按行业占比判断业务集中度
+    const topProduct = (mb.byProduct && mb.byProduct[0]) || null;
+    const topInd = (mb.byIndustry && mb.byIndustry[0]) || null;
+    const byInd = mb.byIndustry || [];
+    const byProd = mb.byProduct || [];
+    // 业务集中度：第一大业务收入占比
+    const topRatio = topInd && topInd.ratio != null ? topInd.ratio : (topProduct && topProduct.ratio != null ? topProduct.ratio : null);
+    const single = topRatio != null && topRatio >= 90;
+    const focus = topRatio != null && topRatio >= 60;
+    const scattered = topRatio != null && topRatio < 60;
+    // 综合毛利率（按产品均值加权，简化）
+    const grossArr = byProd.filter(x => x.gross != null).map(x => x.gross);
+    const avgGross = grossArr.length ? grossArr.reduce((s, g) => s + g, 0) / grossArr.length : null;
+
+    // 盈利模式判定
+    let model = "多元业务并行", modelDesc;
+    if (single) model = "高度聚焦型";
+    else if (focus) model = "核心聚焦型";
+    if (avgGross != null && avgGross >= 60) { model = "高毛利壁垒型"; modelDesc = "整体毛利率处于极高水位，产品或服务具备强定价权与品牌/技术护城河，盈利质量高。"; }
+    else if (avgGross != null && avgGross >= 35) { model = "中高毛利型"; modelDesc = "毛利率居行业中上水平，具备一定定价能力，但需关注成本与竞争压力对毛利的侵蚀。"; }
+    else if (avgGross != null && avgGross >= 15) { modelDesc = "毛利率中等，产品或服务标准化程度较高，议价能力一般，盈利更多靠规模效应与周转效率。"; }
+    else if (avgGross != null && avgGross < 15) { modelDesc = "毛利率偏低，处于薄利多销模式，规模与成本管控是盈利关键，抗风险能力相对偏弱。"; }
+
+    const topInfo = topInd && topInd.name ? `第一大业务「${topInd.name}」收入占比 ${topInd.ratio != null ? topInd.ratio.toFixed(1) + "%" : "--"}${topInd.gross != null ? `、毛利率 ${topInd.gross.toFixed(1)}%` : ""}。` : "";
+    const coreInfo = topProduct && topProduct.name ? `核心产品/业务为「${topProduct.name}」，占比 ${topProduct.ratio != null ? topProduct.ratio.toFixed(1) + "%" : "--"}${topProduct.gross != null ? `，毛利率 ${topProduct.gross.toFixed(1)}%` : ""}。` : "";
+    const conc = single ? "业务高度集中于单一主业，专注度与壁垒高，但抗单一市场周期波动的能力偏弱。" :
+      focus ? "业务集中于少数核心方向，结构清晰，具备较明确的成长主轴与定价话语权。" :
+      scattered ? "业务分布相对分散，多元化经营可分散风险，但需警惕资源分散、缺乏强势主业的问题。" : "";
+
+    const lines = [topInfo, coreInfo].filter(Boolean);
+    if (avgGross != null) lines.push(`按产品综合毛利率约 ${avgGross.toFixed(1)}%。`);
+    lines.push(conc);
+    lines.push(modelDesc || "");
+    return { model, lines: lines.filter(Boolean), avgGross, topRatio, topName: (topInd && topInd.name) || (topProduct && topProduct.name) || "" };
+  }
+
+  /* 主营构成条形条（复用资金面条样式，mint 主题） */
+  function mbBarHtml(list, labelMap) {
+    if (!list || !list.length) return `<div class="st-indi-empty">暂无数据</div>`;
+    const max = list[0].ratio != null ? list[0].ratio : 100;
+    return `<div class="st-mb-list">${list.map(x => {
+      const width = x.ratio != null ? Math.max(4, x.ratio / (max || 1) * 100) : 0;
+      const grossTxt = x.gross != null ? `<span class="st-mb-gross">毛利率 ${x.gross.toFixed(1)}%</span>` : "";
+      return `<div class="st-mb-item">
+        <div class="st-mb-top"><span class="st-mb-name">${x.name}</span><span class="st-mb-ratio">${x.ratio != null ? x.ratio.toFixed(1) + "%" : "--"}</span></div>
+        <div class="st-mb-bar"><span style="width:${width}%"></span></div>
+        <div class="st-mb-meta">${grossTxt}</div>
+      </div>`;
+    }).join("")}</div>`;
+  }
+
   /* 渲染：基本面分析 */
   async function renderFundamental() {
     const sel = $("#stIndiSel");
@@ -6324,9 +6378,13 @@
     }
 
     // A 股：财务 + 行业 + 估值 + 综合评分
-    const [finRows, ind] = await Promise.all([fetchFundamentals(code), fetchIndustry(code)]);
+    const [finRows, ind, profile, mb, themes] = await Promise.all([
+      fetchFundamentals(code), fetchIndustry(code),
+      fetchCompanyProfile(code), fetchMainBusiness(code), fetchCoreThemes(code)
+    ]);
     const fin = finRows && finRows.length ? normFin(finRows[0]) : null;
     const score = scoreFundamental(fin);
+    const biz = analyzeBusinessModel(mb);
 
     const items = [];
     // 估值
@@ -6367,6 +6425,49 @@
       txt: fin ? `流动比率 ${fmtNum(fin.currentRatio)}、速动比率 ${fmtNum(fin.quickRatio)}（均 >1 表示短期偿债无忧）。${fin.currentRatio >= 1.5 ? "短期偿债能力充裕。" : fin.currentRatio < 1 ? "流动比率低于 1，短期偿债压力偏大，需关注资金链。" : "短期偿债能力尚可。"}` : "财务数据暂不可用。",
       tone: fin ? (fin.currentRatio >= 1.5 ? "up" : fin.currentRatio < 1 ? "down" : "flat") : "flat"
     });
+    // 公司商业模式（简介 + 主营构成 + 核心题材）
+    if (profile || mb) {
+      // 概览行：公司名 + 成立/上市 + 实控人 + 员工
+      const overviewBits = [];
+      if (profile && profile.foundDate) overviewBits.push(`成立 ${String(profile.foundDate).slice(0, 4)} 年`);
+      if (profile && profile.listDate) overviewBits.push(`上市 ${String(profile.listDate).slice(0, 4)} 年`);
+      if (profile && profile.actualHolder) overviewBits.push(`实控人 ${profile.actualHolder}`);
+      if (profile && profile.empNum) overviewBits.push(`员工 ${Number(profile.empNum) >= 10000 ? (Number(profile.empNum) / 10000).toFixed(1) + " 万" : Number(profile.empNum).toLocaleString()} 人`);
+      const mainBizText = (profile && profile.mainBusiness) || "";
+      // 主营构成三栏
+      const indBar = mb ? mbBarHtml(mb.byIndustry) : "";
+      const prodBar = mb ? mbBarHtml(mb.byProduct) : "";
+      const regBar = mb ? mbBarHtml(mb.byRegion) : "";
+      // 题材标签（最多 12 个）
+      const themeChips = themes && themes.length ? themes.slice(0, 12).map(t =>
+        `<span class="st-theme-chip" title="${(t.reason || "").replace(/"/g, "&quot;")}">${t.name}</span>`).join("") : "";
+
+      let bizTxt = "";
+      if (biz) {
+        bizTxt = `<div class="st-biz-model">🏷️ 盈利模式判定：<b>${biz.model}</b>${biz.topName ? `（核心「${biz.topName}」）` : ""}</div>
+        <div class="st-biz-lines">${biz.lines.map(l => `<div>· ${l}</div>`).join("")}</div>`;
+      }
+
+      items.push({
+        icon: "🧩", tag: "公司商业模式",
+        state: biz ? biz.model : "--",
+        // txt 为扩展的富内容（简介 + 主营构成 + 题材）
+        rich: `
+          ${profile && mainBizText ? `<div class="st-biz-sec"><div class="st-biz-h">📌 主营业务</div><div class="st-biz-main">${mainBizText}</div></div>` : ""}
+          ${overviewBits.length ? `<div class="st-biz-overview">${overviewBits.map(o => `<span class="st-biz-chip">${o}</span>`).join("")}</div>` : ""}
+          ${mb ? `<div class="st-biz-sec"><div class="st-biz-h">🏭 主营构成 <span class="st-anl-sub">（截至 ${mb.date || "--"}）</span></div>
+            <div class="st-mb-cols">
+              ${mb.byIndustry.length ? `<div class="st-mb-col"><div class="st-mb-col-h">按行业</div>${indBar}</div>` : ""}
+              ${mb.byProduct.length ? `<div class="st-mb-col"><div class="st-mb-col-h">按产品</div>${prodBar}</div>` : ""}
+              ${mb.byRegion.length ? `<div class="st-mb-col"><div class="st-mb-col-h">按地区</div>${regBar}</div>` : ""}
+            </div></div>` : ""}
+          ${bizTxt}
+          ${themeChips ? `<div class="st-biz-sec"><div class="st-biz-h">🎯 核心题材</div><div class="st-theme-chips">${themeChips}</div></div>` : ""}
+        `,
+        tone: biz ? (biz.avgGross != null && biz.avgGross >= 35 ? "up" : biz.avgGross != null && biz.avgGross >= 15 ? "flat" : "down") : "flat"
+      });
+    }
+
     // 行业分析
     items.push({
       icon: "🧭", tag: "行业分析",
@@ -6393,13 +6494,13 @@
       </div>
       <div class="st-fund-report">最新财报期：${fin && fin.date ? fin.date : "--"}</div>
       <div class="st-anl">
-        <div class="st-anl-head">📋 基本面专业分析 <span class="st-anl-sub">综合 ${items.length} 个维度 · 财务+估值+行业</span></div>
+        <div class="st-anl-head">📋 基本面专业分析 <span class="st-anl-sub">综合 ${items.length} 个维度 · 财务+估值+行业+商业模式</span></div>
         <div class="st-anl-grid">
           ${items.map(it => `
             <div class="st-anl-card st-anl-${it.tone}">
               <div class="st-anl-card-tag">${it.icon} ${it.tag}</div>
               <div class="st-anl-state">${it.state}</div>
-              <div class="st-anl-txt">${it.txt}</div>
+              ${it.rich ? `<div class="st-anl-rich">${it.rich}</div>` : `<div class="st-anl-txt">${it.txt}</div>`}
             </div>`).join("")}
         </div>
         <div class="st-anl-score">
@@ -6412,7 +6513,7 @@
         </div>
         <div class="st-anl-risk">⚠️ 基本面分析基于公司定期财报（有滞后），未含最新业绩预告、审计调整与突发事件，不构成投资建议，据此操作风险自担。</div>
       </div>
-      <div style="font-size:11px;color:var(--pink-dark);margin-top:8px;">数据源：东方财富 F10（财务/行业）+ 腾讯行情（估值），财报披露周期为季度。</div>
+      <div style="font-size:11px;color:var(--pink-dark);margin-top:8px;">数据源：东方财富 F10（财务 / 行业 / 公司概况 / 主营构成 / 核心题材）+ 腾讯行情（估值），财报披露周期为季度。</div>
     `;
   }
 
@@ -6602,7 +6703,7 @@
     stAnlTab = tab;
     const title = $("#stAnlTitle");
     const periodWrap = $("#stIndiPeriodWrap");
-    if (title) title.textContent = tab === "fund" ? "基本面分析 · 估值 / 成长 / 财务健康" : tab === "money" ? "资金面分析 · 主力资金 / 大中小单" : "技术指标 · MACD / RSI / 均线";
+    if (title) title.textContent = tab === "fund" ? "基本面分析 · 估值 / 成长 / 财务健康 / 商业模式" : tab === "money" ? "资金面分析 · 主力资金 / 大中小单" : "技术指标 · MACD / RSI / 均线";
     if (periodWrap) periodWrap.style.display = tab === "fund" || tab === "money" ? "none" : "";
     document.querySelectorAll("#stAnlTabs .st-anl-tab").forEach(b => b.classList.toggle("active", b.dataset.tab === tab));
     if (tab === "fund") renderFundamental(); else if (tab === "money") renderFundFlow(); else renderIndi();
