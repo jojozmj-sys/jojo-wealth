@@ -516,7 +516,7 @@ body.sidebar-edit .menu a .mlabel { cursor: text; text-decoration: underline dot
 .card-toggle:hover { background: var(--mint); color: #fff; border-color: var(--mint); }
 .card.collapsed .card-toggle { transform: rotate(-180deg); color: #fff; background: var(--mint-deep); border-color: var(--mint-deep); }
 .card > *:not(.card-head) {
-  max-height: 6000px;
+  max-height: 100000px;
   opacity: 1;
   overflow: hidden;
   transition: max-height .45s ease, opacity .35s ease, margin .35s ease;
