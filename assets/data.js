@@ -7660,88 +7660,89 @@ window.WORKBENCH_DATA = {
     "results": []
   },
   "dailyReview": {
-    "date": "2026-08-07",
-    "market": {
-      "indexPct": 1.017600984527031,
-      "volExpand": false,
-      "volShrink": true,
-      "upCount": 2708,
-      "dnCount": 2427,
-      "limitUp": 74,
-      "limitDn": 4,
-      "maxBoard": 4,
-      "maxBoardStock": "汇绿生态",
-      "cycle": "accelerate",
-      "tone": "attack"
-    },
-    "sentiment": {
-      "score": 66,
-      "level": "warm",
-      "levelLabel": "回暖",
-      "upRatio": 52.7,
-      "trend": "up",
-      "dataLimited": false,
-      "note": "情绪回暖，可轻仓试错，关注连板高度能否继续打开。",
-      "history": [
-        {
-          "date": "2026-08-07",
-          "score": 66,
-          "level": "warm",
-          "upRatio": 52.7
-        }
-      ]
-    },
-    "capital": {
-      "limitUpTotal": 74,
-      "leaderDriven": true,
-      "themeCount": 6,
-      "sustainDays": 2,
-      "themes": [
-        {
-          "name": "元件",
-          "level": "top",
-          "stocks": "11只涨停"
-        },
-        {
-          "name": "医疗服务",
-          "level": "top",
-          "stocks": "8只涨停"
-        },
-        {
-          "name": "化学制药",
-          "level": "secondary",
-          "stocks": "6只涨停"
-        },
-        {
-          "name": "通信设备",
-          "level": "secondary",
-          "stocks": "4只涨停"
-        },
-        {
-          "name": "半导体",
-          "level": "secondary",
-          "stocks": "4只涨停"
-        },
-        {
-          "name": "生物制品",
-          "level": "secondary",
-          "stocks": "3只涨停"
-        }
-      ]
-    },
-    "advice": [
+  "date": "2026-08-07",
+  "market": {
+    "indexPct": 1.017600984527031,
+    "volExpand": false,
+    "volShrink": true,
+    "upCount": 2708,
+    "dnCount": 2427,
+    "limitUp": 74,
+    "limitDn": 4,
+    "maxBoard": 4,
+    "maxBoardStock": "汇绿生态",
+    "cycle": "accelerate",
+    "tone": "attack"
+  },
+  "sentiment": {
+    "score": 66,
+    "level": "warm",
+    "levelLabel": "回暖",
+    "upRatio": 52.7,
+    "trend": "flat",
+    "dataLimited": false,
+    "note": "情绪回暖，可轻仓试错，关注连板高度能否继续打开。",
+    "history": [
       {
-        "type": "仓位",
-        "content": "可提升至 6-7 成"
-      },
-      {
-        "type": "方向",
-        "content": "重点关注: 元件、医疗服务、化学制药"
-      },
-      {
-        "type": "风险",
-        "content": "关注量价配合"
+        "date": "2026-08-07",
+        "score": 66,
+        "level": "warm",
+        "upRatio": 52.7
       }
     ]
-  }
+  },
+  "capital": {
+    "limitUpTotal": 74,
+    "leaderDriven": true,
+    "themeCount": 6,
+    "sustainDays": 2,
+    "themes": [
+      {
+        "name": "元件",
+        "level": "top",
+        "stocks": "11只涨停"
+      },
+      {
+        "name": "医疗服务",
+        "level": "top",
+        "stocks": "8只涨停"
+      },
+      {
+        "name": "化学制药",
+        "level": "secondary",
+        "stocks": "6只涨停"
+      },
+      {
+        "name": "通信设备",
+        "level": "secondary",
+        "stocks": "4只涨停"
+      },
+      {
+        "name": "半导体",
+        "level": "secondary",
+        "stocks": "4只涨停"
+      },
+      {
+        "name": "生物制品",
+        "level": "secondary",
+        "stocks": "3只涨停"
+      }
+    ]
+  },
+  "advice": [
+    {
+      "type": "仓位",
+      "content": "可提升至 6-7 成"
+    },
+    {
+      "type": "方向",
+      "content": "重点关注: 元件、医疗服务、化学制药"
+    },
+    {
+      "type": "风险",
+      "content": "关注量价配合"
+    }
+  ]
+},
+
 };
