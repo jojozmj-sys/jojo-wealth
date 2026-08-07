@@ -7651,6 +7651,42 @@ window.WORKBENCH_DATA = {
   "note": "尾盘(14:30-15:00)整段时间涨幅未保持在3-5%",
   "count": 0,
   "results": []
+},
+  "dailyReview": {
+  "date": "2026-08-07",
+  "market": {
+    "indexPct": 1.017600984527031,
+    "volExpand": false,
+    "volShrink": true,
+    "upCount": 4185,
+    "dnCount": 1362,
+    "limitUp": 0,
+    "limitDn": 0,
+    "maxBoard": 0,
+    "maxBoardStock": "",
+    "cycle": "recover",
+    "tone": "watch"
+  },
+  "capital": {
+    "limitUpTotal": 0,
+    "leaderDriven": false,
+    "themeCount": 0,
+    "sustainDays": 0,
+    "themes": []
+  },
+  "advice": [
+    {
+      "type": "仓位",
+      "content": "维持 4-5 成中性仓位"
+    },
+    {
+      "type": "方向",
+      "content": "暂无明确主线，等板块轮动信号"
+    },
+    {
+      "type": "风险",
+      "content": "关注量价配合"
+    }
+  ]
 }
-,
 };

@@ -7486,6 +7486,24 @@
       setTimeout(() => { renderIndex(); renderBoards(); renderScreenResults(_screenResults); renderQuotes(); renderIndiSel(); renderTrades(); renderNews(); renderReviews(); }, 50);
     });
 
+    // 每日复盘手动更新按钮
+    const reviewBtn = document.getElementById("stReviewRefresh");
+    if (reviewBtn) reviewBtn.addEventListener("click", () => {
+      var cmd = "NODE_OPTIONS='--dns-result-order=ipv4first' node tools/gen_dailyreview.js";
+      var tip = "请在 WorkBuddy 中运行复盘脚本：\n" + cmd + "\n\n运行完成后刷新页面即可看到最新复盘。";
+      if (typeof appToast === "function") {
+        appToast("复盘指令已复制，请在 WorkBuddy 中粘贴运行", 4000, "info");
+      }
+      try {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(cmd).catch(function(){});
+        }
+      } catch(e) {}
+      if (typeof console !== "undefined") console.log("[wb-review] 手动复盘指令:", cmd);
+      // 同时设置一个标记，下次数据同步后自动刷新展示
+      try { sessionStorage.setItem("wb_review_pending", "1"); } catch(e) {}
+    });
+
     // 每 30 秒自动刷新一次自选股行情（保持最新涨跌），页面在后台时不打扰
     setInterval(() => {
       if (document.hidden) return;             // 页面在后台则不打扰

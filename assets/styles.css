@@ -3610,6 +3610,15 @@ button:has(.hb-ic), .wl-play:has(.hb-ic) {
 #page-stock .st-review-body { padding: 0 14px 14px; }
 #page-stock .st-review-empty { text-align: center; padding: 24px 0; color: var(--brown-fade); }
 #page-stock .st-review-hint { font-size: 12px; opacity: .65; margin-top: 4px; }
+.st-review-refresh {
+  margin-left: auto; margin-right: 6px;
+  font-size: 11px; font-weight: 700; color: var(--pink-dark);
+  background: var(--pink-faint); border: 1px solid var(--pink-light);
+  border-radius: 999px; padding: 3px 10px; cursor: pointer;
+  white-space: nowrap; transition: all .15s;
+}
+.st-review-refresh:hover { background: var(--pink); color: #fff; border-color: var(--pink); }
+.st-review-refresh:active { transform: scale(.95); }
 
 #page-stock .st-review-section { margin-bottom: 18px; }
 #page-stock .st-review-sec-title {

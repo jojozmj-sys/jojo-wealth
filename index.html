@@ -17,11 +17,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/styles.css?v=20260807b77" />
+  <link rel="stylesheet" href="assets/styles.css?v=20260807b79" />
   <!-- 预加载：与 HTML 解析并行下载大 JS，避免启动时串行等待 -->
-  <link rel="preload" as="script" href="assets/data.js?v=20260807b77" fetchpriority="high" />
-  <link rel="preload" as="script" href="assets/lunar.js?v=20260807b77" />
-  <link rel="preload" as="script" href="assets/app.js?v=20260807b77" fetchpriority="high" />
+  <link rel="preload" as="script" href="assets/data.js?v=20260807b79" fetchpriority="high" />
+  <link rel="preload" as="script" href="assets/lunar.js?v=20260807b79" />
+  <link rel="preload" as="script" href="assets/app.js?v=20260807b79" fetchpriority="high" />
 </head>
 <body class="sidebar-collapsed">
   <!-- 手绘卡通 SVG 图标库（彩铅/水彩风格） -->
@@ -855,6 +855,7 @@
               <div class="ic"><img src="assets/icons/icon-stock.png" alt="每日复盘"></div>
               <h2>每日复盘</h2>
               <span class="sub" id="stReviewDate">收盘后自动生成 · 市场结构 + 主线资金 + 策略建议</span>
+              <button class="st-review-refresh" id="stReviewRefresh" type="button" title="手动生成复盘（需在 WorkBuddy 中运行）">🔄 更新</button>
               <button class="card-toggle" type="button" aria-label="折叠">▾</button>
             </div>
             <div class="st-review-body" id="stReviewBody">
@@ -1305,10 +1306,10 @@
   </div>
 
   <!-- 轻脚本保持 defer 顺序（小体积，几乎无感；config 必须在 data 后依赖它） -->
-  <script src="assets/config.js?v=20260807b77" defer></script>
-  <script src="assets/sync.js?v=20260807b77" defer></script>
-  <script src="assets/manual-sync.js?v=20260807b77" defer></script>
-  <script src="assets/dog_icons.js?v=20260807b77" defer></script>
+  <script src="assets/config.js?v=20260807b79" defer></script>
+  <script src="assets/sync.js?v=20260807b79" defer></script>
+  <script src="assets/manual-sync.js?v=20260807b79" defer></script>
+  <script src="assets/dog_icons.js?v=20260807b79" defer></script>
   <!-- 注册 Service Worker：离线可用 + 自动更新缓存，解决"看不到更新" -->
   <script>
     if ("serviceWorker" in navigator) {
@@ -1342,9 +1343,9 @@
       }
       /* 先让浏览器完成首帧绘制，再拉数据链 */
       idle(function () {
-        load("assets/data.js?v=20260807b77")
-          .then(function () { return load("assets/lunar.js?v=20260807b77"); })
-          .then(function () { return load("assets/app.js?v=20260807b77"); });
+        load("assets/data.js?v=20260807b79")
+          .then(function () { return load("assets/lunar.js?v=20260807b79"); })
+          .then(function () { return load("assets/app.js?v=20260807b79"); });
       });
     })();
   </script>
