@@ -8483,14 +8483,19 @@
     }
 
     /* ---------- 文件读取 ---------- */
-    function readFileContent(file) {
+    function readFileAs(file, mode) {
       return new Promise(function (resolve, reject) {
         var reader = new FileReader();
         reader.onload = function (e) { resolve(e.target.result); };
         reader.onerror = function (e) { reject(e); };
-        reader.readAsText(file);
+        if (mode === "dataurl") reader.readAsDataURL(file);
+        else reader.readAsText(file);
       });
     }
+
+    var IMG_EXT = ["png", "jpg", "jpeg", "gif", "webp", "bmp"];
+    var TXT_EXT = ["txt", "md", "csv", "json", "html", "htm"];
+    var BIN_EXT = ["pdf", "doc", "docx", "ppt", "pptx", "xls", "xlsx"];
 
     function handleFileSelect(evt) {
       var files = evt.target.files;
@@ -8500,22 +8505,58 @@
 
     function handleFile(file) {
       if (!file) return;
-      var allowed = ["text/plain", "text/markdown", "text/csv", "application/json", "text/html", "application/xml"];
-      var ext = file.name.split(".").pop().toLowerCase();
-      var okExt = ["txt", "md", "csv", "json", "html", "htm"];
-      if (!okExt.includes(ext) && !allowed.includes(file.type)) {
-        appToast("不支持的文件类型：" + file.name, 2400, "warn");
+      var ext = (file.name.split(".").pop() || "").toLowerCase();
+      var okType = /^(text\/|application\/(json|xml|pdf|msword|vnd\.openxmlformats))/i.test(file.type || "");
+      if (!TXT_EXT.includes(ext) && !IMG_EXT.includes(ext) && !BIN_EXT.includes(ext) && !okType) {
+        appToast("暂不支持的文件类型：" + file.name, 2400, "warn");
         return;
       }
-      readFileContent(file).then(function (content) {
-        currentInput.type = "file";
-        currentInput.content = content;
-        currentInput.sourceFile = file.name;
-        if (!currentInput.title) currentInput.title = file.name.replace(/\.[^.]+$/, "") || "未命名笔记";
-        appToast("已加载文件：" + file.name, 2000, "ok");
-      }).catch(function () {
-        appToast("文件读取失败", 2400, "err");
-      });
+      /* 图片：读为 dataURL，供对话中视觉识别 */
+      if (IMG_EXT.includes(ext) || /^image\//i.test(file.type || "")) {
+        readFileAs(file, "dataurl").then(function (dataUrl) {
+          currentInput.type = "file";
+          currentInput.kind = "image";
+          currentInput.dataUrl = dataUrl;
+          currentInput.sourceFile = file.name;
+          if (!currentInput.title) currentInput.title = file.name.replace(/\.[^.]+$/, "") || "未命名笔记";
+          appToast("已加载图片：" + file.name + "（总结时请在对话附上此图）", 2600, "ok");
+          renderImagePreview();
+        }).catch(function () { appToast("图片读取失败", 2400, "err"); });
+        return;
+      }
+      /* 文本类：直接读文字 */
+      if (TXT_EXT.includes(ext) || /^(text\/|application\/(json|xml))/i.test(file.type || "")) {
+        readFileAs(file, "text").then(function (content) {
+          currentInput.type = "file";
+          currentInput.kind = "text";
+          currentInput.content = content;
+          currentInput.sourceFile = file.name;
+          if (!currentInput.title) currentInput.title = file.name.replace(/\.[^.]+$/, "") || "未命名笔记";
+          appToast("已加载文件：" + file.name, 2000, "ok");
+          renderImagePreview();
+        }).catch(function () { appToast("文件读取失败", 2400, "err"); });
+        return;
+      }
+      /* 二进制文档（pdf/docx 等）：本地无法解析，交给对话处理 */
+      currentInput.type = "file";
+      currentInput.kind = "binary";
+      currentInput.ext = ext;
+      currentInput.sourceFile = file.name;
+      if (!currentInput.title) currentInput.title = file.name.replace(/\.[^.]+$/, "") || "未命名笔记";
+      appToast("已识别文件：" + file.name + "（总结时请在对话附上此文件）", 2600, "ok");
+      renderImagePreview();
+    }
+
+    function renderImagePreview() {
+      var prev = document.getElementById("kbImagePreview");
+      if (!prev) return;
+      if (currentInput.kind === "image" && currentInput.dataUrl) {
+        prev.innerHTML = '<img class="kb-img-thumb" src="' + currentInput.dataUrl + '" alt="预览"><span class="kb-img-name">' + escapeHtml(currentInput.sourceFile || "") + "</span>";
+        prev.hidden = false;
+      } else {
+        prev.hidden = true;
+        prev.innerHTML = "";
+      }
     }
 
     /* ---------- 内容提取 (URL 文本) ---------- */
@@ -8562,6 +8603,7 @@
         saveBtn.textContent = "⏳ 提取中...";
         fetchUrlText(url).then(function (text) {
           content = text;
+          currentInput.extracted = text;
           saveBtn.disabled = false;
           saveBtn.textContent = "📥 归档";
           doSave(content, sourceType, url, sourceFile);
@@ -8851,6 +8893,8 @@
     /* ---------- 绑定主事件 ---------- */
     function bindMainEvents() {
       if (saveBtn) saveBtn.addEventListener("click", saveNote);
+      var sb = document.getElementById("kbSummarizeBtn");
+      if (sb) sb.addEventListener("click", summarizeSendToMe);
 
       /* URL 输入框回车 */
       if (urlInput) {
@@ -8952,6 +8996,154 @@
       };
     }
 
+    /* ---------- 智能总结：读取内容 → 打包发给对话中的 AI ---------- */
+    function detectVideoPlatform(url) {
+      var d = (getDomain(url) + " " + url).toLowerCase();
+      if (/youtube\.com|youtu\.be/i.test(d)) return "youtube";
+      if (/bilibili\.com|b23\.tv/i.test(d)) return "bilibili";
+      if (/v\.douyin\.com|douyin\.com|iesdouyin\.com/i.test(d)) return "douyin";
+      if (/xhslink\.com|xiaohongshu\.com/i.test(d)) return "xhs";
+      return "";
+    }
+
+    function buildSummaryPrompt(meta) {
+      var header = "请阅读以下资料，帮我整理成一份结构化知识笔记，用 Markdown 返回：\n\n";
+      header += "【资料来源】" + (meta.source || "未知") + "\n";
+      header += "【资料类型】" + (meta.type || "文本") + "\n";
+      if (meta.title) header += "【原标题】" + meta.title + "\n";
+      var body = "";
+      if (meta.kind === "image") {
+        body = "\n【图片】文件名：" + (meta.fileName || "图片") + "\n（图片已在本地加载，请在对话中把这张图片一并发给我，我会识别画面内容并总结）\n";
+      } else if (meta.kind === "video-link") {
+        if (meta.content && meta.content.length > 30) {
+          body = "\n【已提取的视频 / 页面文字】\n" + meta.content + "\n";
+        } else {
+          body = "\n【视频链接】" + (meta.url || "") + "\n（请在对话中处理此链接，提取字幕 / 文案后总结）\n";
+        }
+      } else {
+        body = "\n【原始内容】\n" + (meta.content || "（无正文，请基于来源链接处理）") + "\n";
+      }
+      var asks = "\n\n请按以下结构输出：\n" +
+        "## 一句话总结\n（一句话概括核心）\n\n" +
+        "## 核心要点\n（3-5 个要点，每条一句话 + 必要展开）\n\n" +
+        "## 关键方法 / 步骤\n（方法类内容列出可复用步骤 / 框架；否则写「不适用」）\n\n" +
+        "## 可复用金句 / 模板\n（2-3 条可直接用的话术 / 模板）\n\n" +
+        "## 我的行动清单\n（基于内容给我 3 条今天就能做的行动）\n\n" +
+        "## 建议标签\n（5 个以内，逗号分隔）\n";
+      return header + body + asks;
+    }
+
+    function gatherSummaryMeta(cb) {
+      var type = currentInput.type;
+      var meta = {
+        kind: "text",
+        source: "",
+        type: "文本",
+        title: (titleInput ? titleInput.value.trim() : "") || currentInput.title || "",
+        url: "",
+        content: "",
+        fileName: ""
+      };
+      if (type === "text") {
+        var t = textArea ? textArea.value.trim() : "";
+        if (!t) { appToast("请先在「粘贴文本」里放入内容", 2200, "warn"); return; }
+        meta.content = t; meta.source = "手动粘贴文本";
+        cb(meta);
+      } else if (type === "url") {
+        var u = (urlInput ? urlInput.value.trim() : "") || currentInput.url || "";
+        if (!u || !isValidUrl(u)) { appToast("请输入有效链接", 2200, "warn"); return; }
+        meta.url = u; meta.source = u; meta.type = "网页 / 视频链接";
+        var vp = detectVideoPlatform(u);
+        if (vp) meta.kind = "video-link";
+        /* 复用已提取正文 */
+        if (currentInput.extracted && currentInput.extracted.length > 30 && !isSocialBlockedUrl(u)) {
+          meta.content = currentInput.extracted; cb(meta); return;
+        }
+        var sb = document.getElementById("kbSummarizeBtn");
+        if (sb) { sb.disabled = true; sb.textContent = "⏳ 提取中..."; }
+        fetchUrlText(u).then(function (txt) {
+          currentInput.extracted = txt;
+          meta.content = txt;
+          cb(meta);
+        }).catch(function () {
+          /* 社交 / 失败：打包链接交对话处理 */
+          cb(meta);
+        }).then(function () {
+          if (sb) { sb.disabled = false; sb.textContent = "🤖 一键总结"; }
+        });
+      } else if (type === "file") {
+        if (currentInput.kind === "image") {
+          meta.kind = "image"; meta.fileName = currentInput.sourceFile || "图片";
+          meta.source = currentInput.sourceFile || "上传图片"; meta.type = "图片";
+          cb(meta);
+        } else if (currentInput.kind === "binary") {
+          meta.kind = "video-link";
+          meta.source = currentInput.sourceFile || "上传文件";
+          meta.type = "文件(" + (currentInput.ext || "未知") + ")";
+          cb(meta);
+        } else {
+          var c = currentInput.content || "";
+          if (!c) { appToast("请先选择文件", 2200, "warn"); return; }
+          meta.content = c; meta.source = currentInput.sourceFile || "上传文件"; meta.type = "文件";
+          cb(meta);
+        }
+      }
+    }
+
+    function summarizeSendToMe() {
+      gatherSummaryMeta(function (meta) {
+        var prompt = buildSummaryPrompt(meta);
+        showSendModal(prompt);
+      });
+    }
+
+    function showSendModal(prompt) {
+      var overlay = document.getElementById("kbSendModal");
+      if (!overlay) {
+        overlay = document.createElement("div");
+        overlay.id = "kbSendModal";
+        overlay.className = "mf-modal-overlay";
+        overlay.innerHTML = [
+          '<div class="mf-modal" role="dialog" aria-modal="true" aria-label="发给我总结">',
+          '  <div class="mf-modal-head">',
+          '    <div class="kb-modal-title">🤖 已打包，去对话粘贴</div>',
+          '    <button class="mf-modal-close" type="button" title="关闭">✕</button>',
+          "  </div>",
+          '  <div class="kb-modal-body">',
+          '    <p class="kb-send-tip">下面已按「要点 · 方法 · 行动清单」结构整理好提示词，并已复制到剪贴板。<b>去 WorkBuddy 对话里粘贴</b>；如果是图片 / 文件，请一并发送，我会返回笔记，你再回知识库「粘贴文本 → 归档」即可。</p>',
+          '    <textarea class="kb-send-text" id="kbSendText" readonly></textarea>',
+          '    <div class="kb-send-actions"><button class="btn primary" id="kbSendCopy" type="button">📋 再复制一次</button></div>',
+          "  </div>",
+          "</div>"
+        ].join("\n");
+        overlay.querySelector(".mf-modal-close").addEventListener("click", function () { overlay.hidden = true; });
+        overlay.addEventListener("click", function (e) { if (e.target === overlay) overlay.hidden = true; });
+        document.body.appendChild(overlay);
+        overlay.querySelector("#kbSendCopy").addEventListener("click", function () {
+          copyText(prompt); appToast("已复制", 1400, "ok");
+        });
+      }
+      overlay.querySelector("#kbSendText").value = prompt;
+      overlay.hidden = false;
+      copyText(prompt);
+      appToast("提示词已复制，去对话粘贴 👉", 2400, "ok");
+    }
+
+    function copyText(t) {
+      try {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(t).catch(function () { fallbackCopy(t); });
+        } else { fallbackCopy(t); }
+      } catch (e) { fallbackCopy(t); }
+    }
+    function fallbackCopy(t) {
+      var ta = document.createElement("textarea");
+      ta.value = t; ta.style.position = "fixed"; ta.style.opacity = "0";
+      document.body.appendChild(ta); ta.select();
+      try { document.execCommand("copy"); } catch (e) {}
+      document.body.removeChild(ta);
+    }
+
     /* ---------- 初始化 ---------- */
     function init() {
       initDOME();
@@ -8974,17 +9166,10 @@
     window.__kb = { refresh: renderList, notes: function () { return lsGet(LS_KB, []); }, set: function (arr) { lsSet(LS_KB, arr); renderList(); } };
     /* 供知识库链接提示"与我对话"按钮触发外部提取流程 */
     window.__kbOpenSocial = function (platform) {
-      /* 复制提交流程说明到剪贴板，引导用户到对话 */
-      var msg = platform === "douyin"
-        ? "🎬 抖音视频链接处理流程：\n1. 请把抖音链接发给我；\n2. 我会尝试提取视频文案/简介；\n3. 深度分析内容脉络；\n4. 整理成结构化 Markdown 笔记给你，复制后到知识库「粘贴文本」归档。"
-        : "📕 小红书笔记处理流程：\n1. 请把小红书链接发给我；\n2. 我会尝试提取笔记正文/图片；\n3. 深度分析内容脉络；\n4. 整理成结构化 Markdown 笔记给你，复制后到知识库「粘贴文本」归档。";
-      var ta = document.createElement("textarea");
-      ta.value = msg;
-      document.body.appendChild(ta);
-      ta.select();
-      try { document.execCommand("copy"); } catch (e) {}
-      document.body.removeChild(ta);
-      appToast("已复制处理说明，请在对话框粘贴@" + platform + "链接", 3200, "info");
+      /* 复用一键总结：把当前链接打包成结构化提示词发到对话 */
+      var u = (urlInput ? urlInput.value.trim() : "") || currentInput.url || "";
+      if (u) { currentInput.type = "url"; currentInput.url = u; }
+      summarizeSendToMe();
     };
   })();
 })();

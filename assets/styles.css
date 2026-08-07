@@ -4406,6 +4406,21 @@ button:has(.hb-ic), .wl-play:has(.hb-ic) {
 
 .kb-empty { text-align: center; padding: 40px 16px; color: var(--ink-faint); font-size: 14px; }
 
+/* 知识库 AI 总结 */
+.kb-ai-banner { background: linear-gradient(135deg, rgba(60,142,114,.08), rgba(201,138,94,.06)); border: 1px solid rgba(60,142,114,.18); border-radius: 12px; padding: 10px 14px; margin-bottom: 14px; font-size: 12.5px; color: var(--ink-soft); line-height: 1.6; }
+.kb-ai-banner b { color: var(--mint-line); }
+.kb-actions-row { display: flex; gap: 8px; flex-wrap: wrap; }
+.kb-summarize-btn { background: linear-gradient(135deg, var(--mint-line), #3a8f6e); color: #fff; border: none; }
+.kb-summarize-btn:hover { filter: brightness(1.06); transform: translateY(-1px); }
+.kb-summarize-btn:disabled { opacity: .6; cursor: default; transform: none; }
+.kb-image-preview { margin-top: 12px; display: flex; align-items: center; gap: 10px; }
+.kb-image-preview .kb-img-thumb { max-width: 84px; max-height: 84px; border-radius: 8px; border: 1px solid rgba(60,142,114,.2); object-fit: cover; }
+.kb-image-preview .kb-img-name { font-size: 12px; color: var(--ink-soft); }
+.kb-send-tip { font-size: 12.5px; color: var(--ink-soft); line-height: 1.7; margin-bottom: 12px; }
+.kb-send-tip b { color: var(--mint-line); }
+.kb-send-text { width: 100%; min-height: 270px; resize: vertical; border: 1px solid rgba(60,142,114,.25); border-radius: 10px; padding: 12px; font-size: 12.5px; line-height: 1.7; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; background: rgba(255,255,255,.6); color: var(--ink); }
+.kb-send-actions { margin-top: 12px; text-align: right; }
+
 .kb-modal-title { font-size: 18px; font-weight: 700; color: var(--rum); flex: 1; }
 .kb-modal-body { padding: 20px; max-height: 60vh; overflow-y: auto; }
 .kb-modal-meta { padding-bottom: 12px; margin-bottom: 12px; border-bottom: 1px solid rgba(60,142,114,.15); }

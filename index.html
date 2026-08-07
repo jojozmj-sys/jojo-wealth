@@ -17,11 +17,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/styles.css?v=20260807b67" />
+  <link rel="stylesheet" href="assets/styles.css?v=20260807b68" />
   <!-- 预加载：与 HTML 解析并行下载大 JS，避免启动时串行等待 -->
-  <link rel="preload" as="script" href="assets/data.js?v=20260807b67" fetchpriority="high" />
-  <link rel="preload" as="script" href="assets/lunar.js?v=20260807b67" />
-  <link rel="preload" as="script" href="assets/app.js?v=20260807b67" fetchpriority="high" />
+  <link rel="preload" as="script" href="assets/data.js?v=20260807b68" fetchpriority="high" />
+  <link rel="preload" as="script" href="assets/lunar.js?v=20260807b68" />
+  <link rel="preload" as="script" href="assets/app.js?v=20260807b68" fetchpriority="high" />
 </head>
 <body class="sidebar-collapsed">
   <!-- 手绘卡通 SVG 图标库（彩铅/水彩风格） -->
@@ -1141,10 +1141,11 @@
             <div class="card-head">
               <div class="ic"><img src="assets/icons/icon-kb.svg?v=b116" alt="添加知识"></div>
               <h2>添加知识</h2>
-              <span class="sub">粘贴文本、链接或上传文件，自动整理归档</span>
+              <span class="sub">粘贴文本、链接或上传文件，AI 自动整理成笔记</span>
               <button class="card-toggle" type="button" aria-label="折叠">▾</button>
             </div>
             <div class="kb-add-area">
+              <div class="kb-ai-banner">🤖 <b>智能总结</b>：给我链接 / 文件 / 图片 / 视频链接，点「一键总结」会读取内容并生成结构化笔记（要点 · 方法 · 行动清单）。总结在你与我的对话中完成，<b>无需任何配置</b>。</div>
               <div class="kb-tabs">
                 <button class="kb-tab active" data-kb-tab="text" type="button">📝 粘贴文本</button>
                 <button class="kb-tab" data-kb-tab="url" type="button">🔗 粘贴链接</button>
@@ -1169,10 +1170,11 @@
                   <div class="kb-file-drop-inner">
                     <span class="kb-file-drop-icon">📁</span>
                     <span class="kb-file-drop-text">点击选择或拖拽文件到此处</span>
-                    <span class="kb-file-drop-hint">支持 txt / md / csv / json / html</span>
-                    <input class="kb-file-input" id="kbFileInput" type="file" accept=".txt,.md,.csv,.json,.html,.htm" hidden>
+                    <span class="kb-file-drop-hint">支持 文本 / 图片 / PDF·Word（图片与文档将在对话中识别）</span>
+                    <input class="kb-file-input" id="kbFileInput" type="file" accept=".txt,.md,.csv,.json,.html,.htm,.png,.jpg,.jpeg,.gif,.webp,.pdf,.doc,.docx" hidden>
                   </div>
                 </div>
+                <div class="kb-image-preview" id="kbImagePreview" hidden></div>
               </div>
 
               <!-- Meta -->
@@ -1190,7 +1192,8 @@
                   <option value="灵感">灵感</option>
                   <option value="其他">其他</option>
                 </select>
-                <button class="btn kb-save-btn" id="kbSaveBtn" type="button">📥 归档</button>
+                <button class="btn kb-save-btn" id="kbSaveBtn" type="button">📥 归档原文</button>
+                <button class="btn primary kb-summarize-btn" id="kbSummarizeBtn" type="button">🤖 一键总结</button>
               </div>
             </div>
           </div>
@@ -1302,10 +1305,10 @@
   </div>
 
   <!-- 轻脚本保持 defer 顺序（小体积，几乎无感；config 必须在 data 后依赖它） -->
-  <script src="assets/config.js?v=20260807b67" defer></script>
-  <script src="assets/sync.js?v=20260807b67" defer></script>
-  <script src="assets/manual-sync.js?v=20260807b67" defer></script>
-  <script src="assets/dog_icons.js?v=20260807b67" defer></script>
+  <script src="assets/config.js?v=20260807b68" defer></script>
+  <script src="assets/sync.js?v=20260807b68" defer></script>
+  <script src="assets/manual-sync.js?v=20260807b68" defer></script>
+  <script src="assets/dog_icons.js?v=20260807b68" defer></script>
   <!-- 注册 Service Worker：离线可用 + 自动更新缓存，解决"看不到更新" -->
   <script>
     if ("serviceWorker" in navigator) {
@@ -1339,9 +1342,9 @@
       }
       /* 先让浏览器完成首帧绘制，再拉数据链 */
       idle(function () {
-        load("assets/data.js?v=20260807b67")
-          .then(function () { return load("assets/lunar.js?v=20260807b67"); })
-          .then(function () { return load("assets/app.js?v=20260807b67"); });
+        load("assets/data.js?v=20260807b68")
+          .then(function () { return load("assets/lunar.js?v=20260807b68"); })
+          .then(function () { return load("assets/app.js?v=20260807b68"); });
       });
     })();
   </script>
