@@ -6340,21 +6340,201 @@
     `;
   }
 
-  /* 基本面/技术面 Tab 状态与切换 */
+  /* ==================================================================
+   * 资金面分析（技术面/基本面/资金面 Tab）
+   * 数据源（浏览器端 JSONP 可用，东财 push2delay）：
+   *  - 实时汇总：/api/qt/stock/get  f135-f144（主力/超大/大/中/小单净额+占比）
+   *  - 日度历史：/api/qt/stock/fflow/daykline/get klt=101（近 30 日资金流）
+   * A 股展示完整资金流；港股/美股仅显示成交额/换手并提示。
+   * ================================================================== */
+
+  /* 拉取东财资金流：实时汇总 + 日度历史（JSONP） */
+  async function fetchFundFlow(code, market) {
+    if (market === "hk" || market === "us") return null; // 资金流明细仅 A 股
+    const secid = (/^(0|3)/.test(code) ? "0" : "1") + "." + code;
+    // 实时汇总：主力/超大/大/中/小单净额(f135-f139)+占比(f140-f144)+成交额(f84)+换手(f87)+现价(f43)
+    const real = await jsonpFetch(
+      `https://push2delay.eastmoney.com/api/qt/stock/get?secid=${secid}&fields=f43,f57,f58,f84,f87,f135,f136,f137,f138,f139,f140,f141,f142,f143,f144`,
+      (j) => j && j.data ? j.data : null
+    );
+    // 日度历史（近 5 日主力净额 f53 + 占比 f57）
+    const hist = await jsonpFetch(
+      `https://push2delay.eastmoney.com/api/qt/stock/fflow/daykline/get?secid=${secid}&lmt=5&klt=101&fields1=f1,f2,f3,f7&fields2=f51,f52,f53,f54,f55,f56,f57,f58,f59,f60,f61,f62,f63,f64,f65`,
+      (j) => j && j.data && j.data.klines ? j.data.klines : []
+    );
+    return { real, hist: hist.slice(0, 5) };
+  }
+
+  /* 金额格式化：>=1亿 显示 x.xx亿；>=1万 显示 x.xx万；否则原值 */
+  function fmtAmt(v) {
+    if (v == null || isNaN(v)) return "--";
+    const a = Math.abs(v);
+    if (a >= 1e8) return (v / 1e8).toFixed(2) + "亿";
+    if (a >= 1e4) return (v / 1e4).toFixed(1) + "万";
+    return v.toFixed(0);
+  }
+
+  /* 资金面渲染 */
+  async function renderFundFlow() {
+    const sel = $("#stIndiSel");
+    const body = $("#stIndiBody");
+    const code = sel.value;
+    if (!code) { body.innerHTML = `<div class="st-indi-empty">请先在「实时行情」里加一只股票</div>`; return; }
+    const q = quotes.find(x => x.code === code);
+    const market = q && q.market ? q.market : (/^(0|3)/.test(code) ? "sz" : (code.length === 6 ? "sh" : "hk"));
+    const name = q && q.name ? q.name : code;
+    body.innerHTML = `<div class="st-indi-empty">⏳ 拉取资金流数据中...</div>`;
+
+    if (market === "hk" || market === "us") {
+      body.innerHTML = `
+        <div class="st-fund-note">ℹ️ 港股/美股暂不提供主力资金流明细；资金面逐单拆解仅支持 A 股。可切回「📋 基本面」查看估值与行情字段。</div>`;
+      return;
+    }
+
+    const ff = await fetchFundFlow(code, market);
+    const r = ff && ff.real;
+    if (!r || (r.f135 == null && r.f136 == null)) {
+      body.innerHTML = `<div class="st-indi-empty">⚠️ 资金流数据暂不可用，请稍后重试（${name}）</div>`;
+      return;
+    }
+
+    // 实时各档净额 + 占比
+    const tiers = [
+      { key: "f136", pctKey: "f141", label: "超大单", icon: "🐋" },
+      { key: "f137", pctKey: "f142", label: "大单",   icon: "🦈" },
+      { key: "f138", pctKey: "f143", label: "中单",   icon: "🐟" },
+      { key: "f139", pctKey: "f144", label: "小单",   icon: "🦐" },
+    ];
+    const main = r.f135, mainPct = r.f140; // 主力净额 + 主力净占比%
+
+    // 资金面研判（基于主力净额 + 占比 + 5日趋势）
+    const hist = ff.hist.map(h => {
+      const p = h.split(",");
+      return { date: p[0], main: +p[2], pct: +p[6] }; // f53主力净额 f57主力占比
+    });
+    const trend5 = hist.filter(d => !isNaN(d.main) && d.main !== 0);
+    const avg5 = trend5.length ? trend5.reduce((s, d) => s + d.main, 0) / trend5.length : 0;
+    const mainPos = main != null && main > 0;
+    const score = calcFundFlowScore(main, mainPct, avg5);
+
+    // 今日 vs 5日均对比
+    const todayAmt = main != null ? main : 0;
+    const ratio5 = avg5 !== 0 ? todayAmt / avg5 : 0;
+
+    // 大中小单条
+    const tierBars = tiers.map(t => {
+      const v = r[t.key];
+      const pct = r[t.pctKey];
+      const neg = v != null && v < 0;
+      const width = v == null ? 0 : Math.min(100, Math.abs(v) / (Math.abs(main || 1) + 1e-6) * 100);
+      return `
+        <div class="st-mf-tier">
+          <div class="st-mf-tier-top">
+            <span class="st-mf-tier-lbl">${t.icon} ${t.label}</span>
+            <span class="st-mf-tier-val ${neg ? "down" : "up"}">${fmtAmt(v)}${pct != null ? ` · ${pct > 0 ? "+" : ""}${pct.toFixed(1)}%` : ""}</span>
+          </div>
+          <div class="st-mf-bar"><span class="${neg ? "neg" : "pos"}" style="width:${width}%"></span></div>
+        </div>`;
+    }).join("");
+
+    // 5日主力净额柱状图
+    const maxAbs = Math.max(1, ...trend5.map(d => Math.abs(d.main)));
+    const bars = hist.map(d => {
+      const neg = d.main < 0;
+      const h = Math.max(4, Math.abs(d.main) / maxAbs * 100);
+      const day = d.date ? String(d.date).slice(5) : "";
+      return `
+        <div class="st-mf-day">
+          <div class="st-mf-day-col">
+            <div class="st-mf-day-val ${neg ? "down" : "up"}">${fmtAmt(d.main)}</div>
+            <div class="st-mf-day-bar" style="height:${h}%"><span class="${neg ? "neg" : "pos"}"></span></div>
+          </div>
+          <div class="st-mf-day-label">${day}</div>
+        </div>`;
+    }).join("");
+
+    body.innerHTML = `
+      <div class="st-fund-grid">
+        <div class="st-fund-cell"><span class="lbl">现价</span><span class="val">¥${fmtNum(r.f43)}</span></div>
+        <div class="st-fund-cell"><span class="lbl">成交额</span><span class="val">${fmtAmt(r.f84)}</span></div>
+        <div class="st-fund-cell"><span class="lbl">换手率</span><span class="val">${r.f87 != null ? r.f87.toFixed(2) + "%" : "--"}</span></div>
+        <div class="st-fund-cell"><span class="lbl">主力净流入</span><span class="val ${mainPos ? "up" : "down"}">${mainPos ? "+" : ""}${fmtAmt(main)}</span></div>
+        <div class="st-fund-cell"><span class="lbl">主力净占比</span><span class="val ${mainPct != null && mainPct > 0 ? "up" : "down"}">${mainPct != null ? (mainPct > 0 ? "+" : "") + mainPct.toFixed(2) + "%" : "--"}</span></div>
+        <div class="st-fund-cell"><span class="lbl">5日均主力</span><span class="val ${avg5 >= 0 ? "up" : "down"}">${fmtAmt(avg5)}</span></div>
+      </div>
+
+      <div class="st-mf-section">
+        <div class="st-mf-head">🧩 大中小单拆解 <span class="st-anl-sub">净流入金额 · 占成交比</span></div>
+        <div class="st-mf-tiers">${tierBars}</div>
+      </div>
+
+      <div class="st-mf-section">
+        <div class="st-mf-head">📅 近5日主力净流入 <span class="st-anl-sub">${ratio5 >= 1.2 ? "今日明显放大" : ratio5 <= 0.7 ? "今日明显收敛" : "接近近期均值"}</span></div>
+        <div class="st-mf-days">${bars}</div>
+      </div>
+
+      <div class="st-anl">
+        <div class="st-anl-head">📊 资金面专业分析 <span class="st-anl-sub">主力 + 大中小单 + 5日趋势</span></div>
+        <div class="st-anl-score">
+          <div class="st-anl-score-num" data-score="${score}" style="--s:${score}"></div>
+          <div class="st-anl-score-info">
+            <div class="st-anl-score-verdict">资金面评分 <b>${score}/100</b> · 倾向 <b class="st-anl-v-${score >= 65 ? 'up' : score <= 35 ? 'down' : 'flat'}">${score >= 65 ? "资金积极" : score <= 35 ? "资金流出" : "资金中性"}</b></div>
+            <div class="st-anl-score-bar"><span style="width:${score}%"></span></div>
+            <div class="st-anl-score-txt">${fundFlowVerdict(main, mainPct, avg5)}</div>
+          </div>
+        </div>
+        <div class="st-anl-risk">⚠️ 资金流为盘中/收盘实时数据，大单与小单口径随交易所与统计规则略有差异；主力资金持续净流入不代表股价必然上涨，请结合技术面与基本面综合判断，不构成投资建议。</div>
+      </div>
+      <div style="font-size:11px;color:var(--pink-dark);margin-top:8px;">数据源：东方财富 push2delay 资金流（主力/超大/大/中/小单净额与占比），日度历史取近5个交易日。</div>
+    `;
+  }
+
+  /* 资金面评分引擎（0-100） */
+  function calcFundFlowScore(main, mainPct, avg5) {
+    let s = 50;
+    // 主力净额（±25）
+    if (main != null) {
+      if (main > 0) s += main / 1e8 > 3 ? 20 : main / 1e8 > 1 ? 14 : main / 1e8 > 0.3 ? 9 : 4;
+      else s -= Math.abs(main) / 1e8 > 3 ? 20 : Math.abs(main) / 1e8 > 1 ? 14 : Math.abs(main) / 1e8 > 0.3 ? 9 : 4;
+    }
+    // 主力占比（±20）
+    if (mainPct != null) {
+      if (mainPct > 10) s += 15; else if (mainPct > 5) s += 10; else if (mainPct > 0) s += 5;
+      else if (mainPct < -10) s -= 15; else if (mainPct < -5) s -= 10; else s -= 5;
+    }
+    // 5日均（±10）
+    if (avg5 != null) {
+      if (avg5 > 0) s += avg5 / 1e8 > 2 ? 8 : 5; else s -= Math.abs(avg5) / 1e8 > 2 ? 8 : 5;
+    }
+    return Math.max(5, Math.min(95, Math.round(s)));
+  }
+
+  /* 资金面研判文案 */
+  function fundFlowVerdict(main, mainPct, avg5) {
+    const t = (main != null ? main : 0);
+    const a = (avg5 != null ? avg5 : 0);
+    if (t > 0 && t > a * 1.2 && mainPct > 3) return "主力资金今日大幅净流入且占比可观，明显强于近5日均值，短线做多意愿强烈，资金面偏积极；需警惕冲高后的获利兑现，可结合量能持续性判断。";
+    if (t > 0 && t >= a * 0.7) return "主力资金今日净流入，力度与近期水平相当，资金面温和偏多；若后续净流入持续放大，或进一步打开上行空间。";
+    if (t < 0 && t < a * 0.8) return "主力资金今日显著净流出，弱于近5日均值，短线抛压偏重，资金面偏空；建议观望，等待资金回补信号，不宜盲目抄底。";
+    if (t < 0 && t >= a * 0.7) return "主力资金今日小幅净流出，与近期水平相近，资金面中性偏弱；多空胶着，需观察后续方向选择。";
+    return "今日主力资金流向与近5日均值基本一致，资金面中性。可结合大单与小单的背离（大单流入而小单流出常为机构吸筹）研判主力真实意图。";
+  }
+
+  /* 基本面/技术面/资金面 Tab 状态与切换 */
   let stAnlTab = "tech";
   function setStAnlTab(tab) {
     stAnlTab = tab;
     const title = $("#stAnlTitle");
     const periodWrap = $("#stIndiPeriodWrap");
-    if (title) title.textContent = tab === "fund" ? "基本面分析 · 估值 / 成长 / 财务健康" : "技术指标 · MACD / RSI / 均线";
-    if (periodWrap) periodWrap.style.display = tab === "fund" ? "none" : "";
+    if (title) title.textContent = tab === "fund" ? "基本面分析 · 估值 / 成长 / 财务健康" : tab === "money" ? "资金面分析 · 主力资金 / 大中小单" : "技术指标 · MACD / RSI / 均线";
+    if (periodWrap) periodWrap.style.display = tab === "fund" || tab === "money" ? "none" : "";
     document.querySelectorAll("#stAnlTabs .st-anl-tab").forEach(b => b.classList.toggle("active", b.dataset.tab === tab));
-    if (tab === "fund") renderFundamental(); else renderIndi();
+    if (tab === "fund") renderFundamental(); else if (tab === "money") renderFundFlow(); else renderIndi();
   }
 
   /* 按当前 Tab 渲染 */
   function renderStAnl() {
-    if (stAnlTab === "fund") renderFundamental(); else renderIndi();
+    if (stAnlTab === "fund") renderFundamental(); else if (stAnlTab === "money") renderFundFlow(); else renderIndi();
   }
 
   /* ---------- 专业财经分析引擎 ---------- */
