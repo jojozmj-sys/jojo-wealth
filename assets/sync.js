@@ -101,10 +101,11 @@
     }
   }
 
-  /* 同步看门狗：进入「同步中」后 30s 内必须离开该状态，否则强制转离线，
-   * 防止任何请求永久挂起导致芯片永远显示「同步中」。 */
+  /* 同步看门狗：进入「同步中」后若长时间未离开该状态（默认 60s，须大于请求超时，
+   * 避免慢网络下合法请求先被看门狗误判），强制转离线，防止任何请求永久挂起
+   * 导致芯片永远显示「同步中」。 */
   var _watchdog = null;
-  var SYNC_WATCHDOG_MS = CFG.syncWatchdogMs || 30000;
+  var SYNC_WATCHDOG_MS = CFG.syncWatchdogMs || (CFG.reqTimeoutMs || 30000) + 30000;
 
   function setState(st, msg) {
     ensureUI();
@@ -126,7 +127,11 @@
       clearTimeout(_watchdog);
       _watchdog = setTimeout(function () {
         if (_curState === "syncing") {
-          console.warn("[wb-sync] 同步 30s 无响应，强制转离线（将自动重试）");
+          console.warn("[wb-sync] 同步 " + (SYNC_WATCHDOG_MS / 1000) + "s 无响应，强制转离线（将自动重试）");
+          /* 转离线时也记失败时间：让后续 schedulePush 走失败退避，避免看门狗刚转 offline
+           * 又被 in-flight doPush 的 finally 立即重新调成 syncing → 用户永远看不到稳定 offline。 */
+          _lastFailAt = Date.now();
+          _dirty = false;   /* 放弃本次在途脏标记，等网络恢复事件/定时器再重试 */
           setState("offline", "云端长时间无响应 · 自动重试中");
         }
       }, SYNC_WATCHDOG_MS);
@@ -188,9 +193,22 @@
    * 此前无超时 → 移动网络下 supabase.co 偶发挂起时 Promise 永不落定，
    * 状态芯片永远停在「同步中」。超时后抛 [Supabase timeout]，由 failState 转为错误态并自动重试。
    */
-  var REQ_TIMEOUT_MS = CFG.reqTimeoutMs || 15000;
-  function apiRequest(method, restPath, body) {
+  /* 请求超时：默认 30s。此前 15s 在 supabase.co 延迟波动大的网络（TTFB 偶达 15s+ 甚至挂起）
+   * 下频繁误杀正常请求 → AbortError → 状态卡在「同步中/连接失败」。
+   * 放宽到 30s，让慢网络下也能等完一次读写；配合下方看门狗仍能兜底卡死。 */
+  var REQ_TIMEOUT_MS = CFG.reqTimeoutMs || 30000;
+  /* 单请求重试次数：网络偶发挂起/超时后，重试常能成功（实测同连接重试多为 200）。
+   * 避免一次偶发 stall 把整个同步打成失败态。 */
+  var REQ_RETRY = CFG.reqRetry || 2;
+  var REQ_RETRY_BACKOFF = CFG.reqRetryBackoffMs || 800;
+
+  function apiRequest(method, restPath, body, _attempt) {
+    var attempt = _attempt || 0;
     var url = API_BASE + restPath;
+    /* 重试超时递减：首试给足 30s 等待慢网络；重试时网络已被证明慢/挂起，
+     * 缩短到 8s 快速判定生死，避免 N 次重试每次都重新等满 30s →
+     * 2 次重试最多 16s，首试+重试总预算约 48s，配合看门狗 60s 能在网络差时及时收敛而不是卡 90s+。 */
+    var timeout = attempt === 0 ? REQ_TIMEOUT_MS : Math.min(REQ_TIMEOUT_MS, 8000);
     var ctl = (typeof AbortController !== "undefined") ? new AbortController() : null;
     var opts = {
       method: method,
@@ -204,7 +222,7 @@
     };
     if (ctl) opts.signal = ctl.signal;
     if (body) opts.body = JSON.stringify(body);
-    var timer = ctl ? setTimeout(function () { ctl.abort(); }, REQ_TIMEOUT_MS) : null;
+    var timer = ctl ? setTimeout(function () { ctl.abort(); }, timeout) : null;
     return fetch(url, opts).then(function (r) {
       var contentType = r.headers.get("content-type") || "";
       if (!r.ok) {
@@ -219,7 +237,19 @@
     }, function (e) {
       /* fetch 拒绝：区分「主动超时」与「网络层错误」 */
       if (ctl && e && e.name === "AbortError") {
-        throw new Error("[Supabase timeout] 云端请求超时（" + (REQ_TIMEOUT_MS / 1000) + "s），已转入离线，将自动重试");
+        throw new Error("[Supabase timeout] 云端请求超时（" + (timeout / 1000) + "s），已转入离线，将自动重试");
+      }
+      throw e;
+    }).catch(function (e) {
+      /* 幂等的读请求（GET / PATCH / 无 body 的 POST）在超时/网络闪断后重试，减少偶发失败。
+       * 注意：超时 abort 也重试，但靠上面「重试超时递减」保证不会每次重新等满 30s。 */
+      var retriable = method === "GET" || method === "PATCH" ||
+        (method === "POST" && !body) ||
+        /^\[Supabase (timeout|0)\]/.test((e && e.message) ? e.message : "");
+      if (retriable && attempt < REQ_RETRY) {
+        var wait = REQ_RETRY_BACKOFF * (attempt + 1);
+        return new Promise(function (resolve) { setTimeout(resolve, wait); })
+          .then(function () { return apiRequest(method, restPath, body, attempt + 1); });
       }
       throw e;
     }).finally(function () { if (timer) clearTimeout(timer); });
@@ -269,6 +299,7 @@
   var _timer = null;
   var _dirty = false;       // 有未上传的本地改动
   var _lastOkAt = 0;        // 上次同步成功时间戳
+  var _lastFailAt = 0;      // 上次同步失败时间戳（用于失败退避，防重试风暴）
 
   function hhmm(ts) {
     return new Date(ts).toLocaleTimeString("zh-CN", { hour: "2-digit", minute: "2-digit" });
@@ -285,7 +316,11 @@
   function schedulePush(reason) {
     _dirty = true;
     if (_timer) clearTimeout(_timer);
-    _timer = setTimeout(function () { doPush(reason); }, 1500);
+    var delay = 1500;
+    /* 失败退避：若刚发生过同步失败（网络不稳定），把重试间隔拉长，避免 1.5s 一次的重试风暴
+     * （每次失败都伴随一次最长 30s 的请求超时 abort，高频重试会持续占用资源、卡死状态） */
+    if (_lastFailAt && (Date.now() - _lastFailAt < 20000)) delay = 5000 + Math.min(15000, Date.now() - _lastFailAt);
+    _timer = setTimeout(function () { doPush(reason); }, delay);
   }
   /* 单飞保护：一次只允许一个推送请求在途，防止频繁写入时多个读改写请求并发堆积 */
   var _pushBusy = false;
@@ -297,8 +332,12 @@
     try {
       var local = snapshot();
       // 先读取云端当前数据，合并后再写回，避免覆盖另一台设备的数据
-      var row = null;
-      try { row = await readCloud(); } catch (e) { row = null; }
+      // ⚠️ 读取失败（超时/断网）时绝不可带着空 base 继续写云端——
+      //   1) 数据安全：会把云端已有的、本地没有的 key 覆盖丢失
+      //   2) 卡死放大：会再多等一次 POST 的 30s 超时，把单次同步拖到 60s+，
+      //      且 _pushBusy 未释放，看门狗转离线后无法快速重试收敛。
+      //   这里直接判定网络不可用、转离线返回，由 online 事件/定时器/回到页面时重试。
+      var row = await readCloud();
       var base = (row && row.data) ? row.data : {};
       var merged = mergeData(base, local);
       await writeCloud(merged);
@@ -308,6 +347,7 @@
       setState("ok", "已备份到云端 " + hhmm(_lastOkAt));
     } catch (e) {
       console.warn("[wb-sync] push fail:", e);
+      _lastFailAt = Date.now();
       failState(e, "同步失败：");
     } finally {
       _pushBusy = false;
