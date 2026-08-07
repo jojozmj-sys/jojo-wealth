@@ -7329,6 +7329,112 @@
 
     loadAutoScreen();
 
+    // ===== 市场情绪 · 盘中实时（9:30-15:00 交易时段动态计算） =====
+    // 数据源（浏览器端 jsonp 可用，绕开 Node 侧东财 push2 限流）：
+    //   涨跌家数  push2delay .../qt/ulist.np/get?fields=f104,f105,f106&secids=上证,深证
+    //   涨停/跌停 push2ex.getTopicZTPool / getTopicDTPool  → data.tc 全市场总数
+    //   最高连板  涨停池 pool 中 lbc 最大值
+    //   量能      复用 fetchIndexData() 的指数成交额
+    function isTradingHours(now) {
+      const d = now || new Date();
+      const day = d.getDay();
+      if (day === 0 || day === 6) return false;          // 周末休市
+      const h = d.getHours(), m = d.getMinutes();
+      const t = h * 60 + m;
+      return t >= 9 * 60 + 30 && t <= 15 * 60;            // 9:30 - 15:00
+    }
+    // 实时情绪等级映射（与 tools/gen_dailyreview.js 的 sentimentLevel 一致）
+    function liveSentimentLevel(score) {
+      if (score < 25) return { key: "ice", label: "冰点" };
+      if (score < 40) return { key: "cold", label: "低迷" };
+      if (score < 55) return { key: "neutral", label: "中性" };
+      if (score < 70) return { key: "warm", label: "回暖" };
+      if (score < 85) return { key: "active", label: "活跃" };
+      return { key: "hot", label: "亢奋" };
+    }
+    // 实时情绪计算（与 gen_dailyreview.js computeSentiment 权重一致）
+    function computeLiveSentiment(m) {
+      const total = ((m.upCount || 0) + (m.dnCount || 0)) || 5547;
+      const upRatio = (m.upCount || 0) / total;
+      const ratioScore = upRatio * 50;
+      const volumeScore = m.volExpand ? 15 : (m.volShrink ? 6 : 10);
+      const ztTotal = (m.limitUp || 0) + (m.limitDn || 0);
+      const ztScore = ztTotal > 0
+        ? (20 * (m.limitUp || 0) / ztTotal) + (5 * Math.min((m.limitUp || 0) / 50, 1))
+        : 5;
+      const boardScore = Math.min((m.maxBoard || 0) / 4, 1) * 10;
+      const score = Math.round(Math.max(0, Math.min(100, ratioScore + volumeScore + ztScore + boardScore)));
+      const lv = liveSentimentLevel(score);
+      return {
+        score: score,
+        level: lv.key,
+        levelLabel: lv.label,
+        upRatio: Math.round(upRatio * 1000) / 10,
+        dataLimited: ztTotal === 0,
+        market: m
+      };
+    }
+    // 拉取盘中实时情绪数据（带 60s 内存缓存，避免 30s 刷新反复打接口触发限流）
+    let _liveSentCache = null, _liveSentAt = 0;
+    async function fetchLiveSentiment() {
+      const now = Date.now();
+      if (_liveSentCache && now - _liveSentAt < 60000) return _liveSentCache;
+      try {
+        const today = new Date();
+        const ymd = today.getFullYear() * 10000 + (today.getMonth() + 1) * 100 + today.getDate();
+        // 1) 涨跌家数：上证 + 深证 合并（创业板已含于深证）
+        const upDn = await jsonpFetch(
+          "https://push2delay.eastmoney.com/api/qt/ulist.np/get?fltt=2&invt=2&fields=f104,f105,f106&secids=1.000001,0.399001",
+          json => {
+            if (!json || !json.data || !Array.isArray(json.data.diff)) return null;
+            let up = 0, dn = 0;
+            json.data.diff.forEach(r => { up += (r.f104 || 0); dn += (r.f105 || 0); });
+            return { up: up, dn: dn };
+          }, 6000);
+        // 2) 涨停 / 跌停 总数
+        const ztPool = await jsonpFetch(
+          "https://push2ex.eastmoney.com/getTopicZTPool?ut=7eea3edcaed734bea9cbfc24409ed989&dpt=wz.ztzt&Pageindex=0&pagesize=100&sort=zbc%3Adesc&date=" + ymd,
+          json => { if (json && json.data && typeof json.data.tc === "number") return json.data; return null; }, 6000);
+        const dtPool = await jsonpFetch(
+          "https://push2ex.eastmoney.com/getTopicDTPool?ut=7eea3edcaed734bea9cbfc24409ed989&dpt=wz.ztzt&Pageindex=0&pagesize=1&sort=fund%3Aasc&date=" + ymd,
+          json => { if (json && json.data && typeof json.data.tc === "number") return json.data; return null; }, 6000);
+        // 3) 量能：复用指数实时成交额（四指数合计，放量>12000亿 / 缩量<5000亿）
+        let volExpand = false, volShrink = false;
+        try {
+          const idx = await fetchIndexData();
+          const amtYi = idx.reduce((a, x) => a + (x.amount || 0), 0) / 1e8;
+          volExpand = amtYi > 12000;
+          volShrink = amtYi < 5000;
+        } catch (e) {}
+        // 4) 最高连板
+        let maxBoard = 0, maxBoardStock = "";
+        if (ztPool && Array.isArray(ztPool.pool)) {
+          ztPool.pool.forEach(p => {
+            const lb = p.lbc || p.zbc || 0;
+            if (lb > maxBoard) { maxBoard = lb; maxBoardStock = p.n || ""; }
+          });
+        }
+        const limitUp = ztPool ? ztPool.tc : 0;
+        const limitDn = dtPool ? dtPool.tc : 0;
+        const m = {
+          upCount: upDn ? upDn.up : 0,
+          dnCount: upDn ? upDn.dn : 0,
+          limitUp: limitUp, limitDn: limitDn,
+          maxBoard: maxBoard, maxBoardStock: maxBoardStock,
+          volExpand: volExpand, volShrink: volShrink
+        };
+        const s = computeLiveSentiment(m);
+        // 未拿到涨停/跌停且家数也为 0 → 视为实时数据不可用
+        const usable = (limitUp > 0 || limitDn > 0 || (upDn && upDn.up > 0));
+        _liveSentCache = usable ? s : null;
+        _liveSentAt = now;
+        return _liveSentCache;
+      } catch (e) {
+        console.warn("[stock] 盘中实时情绪获取失败：", e.message);
+        return null;
+      }
+    }
+
     // ===== 市场情绪渲染 =====
     function renderSentiment() {
       const main = $("#stSentimentMain");
@@ -7343,12 +7449,38 @@
         empty.style.display = "block";
         main.style.display = "none";
         if (dateEl) dateEl.textContent = "每日收盘后更新 · 情绪温度 + 赚钱效应 + 历史趋势";
+        // 即使静态缺数据，盘中仍尝试实时计算
+        if (isTradingHours()) {
+          fetchLiveSentiment().then(function(ls) {
+            if (ls) { renderSentimentLive(ls, null); }
+          });
+        }
         return;
       }
 
+      // 盘中（9:30-15:00）→ 用实时数据覆盖静态复盘；收盘后仅显示静态
+      if (isTradingHours()) {
+        fetchLiveSentiment().then(function(ls) {
+          if (ls) { renderSentimentLive(ls, s); }
+          else { renderSentimentStatic(s, review); }
+        });
+        // 先渲染静态兜底，实时数据回来前不空白
+        renderSentimentStatic(s, review);
+        return;
+      }
+
+      renderSentimentStatic(s, review);
+    }
+
+    // 渲染静态（收盘复盘）情绪
+    function renderSentimentStatic(s, review) {
+      const main = $("#stSentimentMain");
+      const empty = $("#stSentimentEmpty");
+      const dateEl = $("#stSentimentDate");
+      if (!s || typeof s.score !== "number") { return; }
       empty.style.display = "none";
       main.style.display = "block";
-      if (dateEl && review.date) dateEl.textContent = review.date + " · 情绪温度 + 赚钱效应 + 历史趋势";
+      if (dateEl && review && review.date) dateEl.textContent = review.date + " · 情绪温度 + 赚钱效应 + 历史趋势";
 
       const scoreEl = $("#stSentimentScore");
       if (scoreEl) {
@@ -7416,6 +7548,90 @@
               '</div>';
           }).join("");
         }
+      }
+    }
+
+    // 渲染盘中实时情绪（live 数据覆盖静态；hist 沿用静态历史）
+    function renderSentimentLive(ls, staticS) {
+      const main = $("#stSentimentMain");
+      const empty = $("#stSentimentEmpty");
+      const dateEl = $("#stSentimentDate");
+      if (!main || !empty || !ls) return;
+      empty.style.display = "none";
+      main.style.display = "block";
+      if (dateEl) dateEl.textContent = "盘中实时（9:30-15:00）· 每 30 秒自动刷新";
+
+      const scoreEl = $("#stSentimentScore");
+      if (scoreEl) scoreEl.innerHTML = '<span class="num">' + ls.score + '</span><span class="unit">/ 100</span>';
+
+      const levelEl = $("#stSentimentLevel");
+      if (levelEl) {
+        const labels = { ice: "🧊 冰点", cold: "🌧️ 低迷", neutral: "⚖️ 中性", warm: "🔥 回暖", active: "🚀 活跃", hot: "💥 亢奋" };
+        levelEl.textContent = labels[ls.level] || ls.levelLabel || ls.level;
+        levelEl.className = "st-sentiment-level level-" + (ls.level || "neutral");
+      }
+
+      const trendEl = $("#stSentimentTrend");
+      if (trendEl) {
+        // 盘中趋势：与静态/上一刻比较
+        let trend = "flat", trendTxt = "";
+        if (staticS && typeof staticS.score === "number") {
+          if (ls.score - staticS.score >= 5) { trend = "up"; trendTxt = "较收盘转暖 ↗"; }
+          else if (staticS.score - ls.score >= 5) { trend = "down"; trendTxt = "较收盘转冷 ↘"; }
+          else trendTxt = "较收盘基本持平 →";
+        } else {
+          trendTxt = "盘中动态情绪 →";
+        }
+        trendEl.textContent = trendTxt;
+        trendEl.className = "st-sentiment-trend trend-" + trend;
+      }
+
+      const gauge = $("#stSentimentGauge");
+      if (gauge) gauge.style.width = Math.max(2, Math.min(100, ls.score)) + "%";
+
+      const chips = $("#stSentimentChips");
+      if (chips) {
+        const m = ls.market || {};
+        const up = m.upCount != null ? m.upCount : "--";
+        const dn = m.dnCount != null ? m.dnCount : "--";
+        const upPct = ls.upRatio != null ? ls.upRatio + "%" : "--";
+        const zt = (m.limitUp != null ? m.limitUp : "--") + " / " + (m.limitDn != null ? m.limitDn : "--");
+        const board = (m.maxBoard != null ? m.maxBoard : "--") + "板";
+        const vol = m.volExpand ? "放量" : (m.volShrink ? "缩量" : "平量");
+        chips.innerHTML = [
+          { l: "赚钱效应", v: upPct, s: "上涨 " + up + " / 下跌 " + dn },
+          { l: "涨停 / 跌停", v: zt, s: "涨停家数 / 跌停家数" },
+          { l: "连板高度", v: board, s: m.maxBoardStock || "当前最高连板" },
+          { l: "量能", v: vol, s: "指数成交额状态" }
+        ].map(function(it) {
+          return '<div class="st-sentiment-chip">' +
+            '<div class="m-label">' + it.l + '</div>' +
+            '<div class="m-value">' + it.v + '</div>' +
+            (it.s ? '<div class="m-sub">' + it.s + '</div>' : '') +
+            '</div>';
+        }).join("");
+      }
+
+      const note = $("#stSentimentNote");
+      if (note) {
+        note.innerHTML = (ls.dataLimited ? '<div class="st-sentiment-warn">⚠️ 涨停/跌停明细暂缺，温度按家数估算</div>' : "") +
+          '<div class="st-sentiment-note-text">盘中实时数据，收盘后以复盘为准。</div>';
+      }
+
+      // 历史沿用静态数据（盘中不改写每日历史）
+      const hist = $("#stSentimentHistory");
+      if (hist && staticS && Array.isArray(staticS.history)) {
+        const h = staticS.history.slice(-10);
+        hist.innerHTML = h.length ? h.map(function(it) {
+          const pct = Math.max(4, Math.min(100, it.score));
+          return '<div class="h-bar-wrap" title="' + it.date + ' ' + it.score + ' 分">' +
+            '<div class="h-bar"><div class="h-fill level-' + (it.level || "neutral") + '" style="height:' + pct + '%"></div></div>' +
+            '<div class="h-score">' + it.score + '</div>' +
+            '<div class="h-date">' + (it.date || "").slice(5) + '</div>' +
+            '</div>';
+        }).join("") : '<div class="st-sentiment-history-empty">暂无历史趋势，连续生成后自动积累</div>';
+      } else if (hist) {
+        hist.innerHTML = '<div class="st-sentiment-history-empty">暂无历史趋势，连续生成后自动积累</div>';
       }
     }
 
