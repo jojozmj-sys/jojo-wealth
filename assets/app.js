@@ -6203,13 +6203,16 @@
       const dates = Object.keys(byDate).sort().reverse();
       const latest = byDate[dates[0]] || [];
       // 汇总成 行业/产品/地区 三个维度（保留占比并降序）
+      // 注意：MBI_RATIO / GROSS_RPOFIT_RATIO 为小数（如 0.9709 = 97.09%），统一转百分数
+      const pct = (v) => v == null ? null : +(v * 100);
       const group = (type) => latest
         .filter(r => r.MAINOP_TYPE === type)
+        .filter(r => !/(补充)/.test(r.ITEM_NAME || ""))  // 剔除东财"其他(补充)"占位行
         .map(r => ({
           name: r.ITEM_NAME || "",
           income: r.MAIN_BUSINESS_INCOME || 0,
-          ratio: r.MBI_RATIO != null ? +r.MBI_RATIO : null,
-          gross: r.GROSS_RPOFIT_RATIO != null ? +r.GROSS_RPOFIT_RATIO : null,
+          ratio: pct(r.MBI_RATIO),
+          gross: pct(r.GROSS_RPOFIT_RATIO),
         }))
         .filter(x => x.name)
         .sort((a, b) => (b.ratio != null ? b.ratio : 0) - (a.ratio != null ? a.ratio : 0));
