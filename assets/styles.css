@@ -3856,6 +3856,7 @@ button:has(.hb-ic), .wl-play:has(.hb-ic) {
   #page-stock .st-quote-row { grid-template-columns: 1.4fr 1fr 0.9fr 48px; gap: 6px; font-size: 12px; }
   #page-stock .st-quote-price { font-size: 14px; }
   #page-stock .st-indi-grid { grid-template-columns: 1fr; }
+  #page-stock .st-fund-grid { grid-template-columns: 1fr 1fr; }
   #page-stock .st-anl-grid { grid-template-columns: 1fr; }
   #page-stock .st-pos-summary { grid-template-columns: 1fr 1fr; }
   #page-stock .st-pos-row { grid-template-columns: 1.5fr 1fr 60px; font-size: 11px; }
