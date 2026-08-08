@@ -1775,15 +1775,24 @@
         mk("acc_vlog", "联动IP", "和卡通分身合拍：谁更社恐", "短视频", "两号互相导流", "联动,反差")
       ];
     }
-    const SEED_V = 2;
+    const SEED_V = 3;
+    // 小红书搜索兜底链接：找不到真实 user/profile/<id> 时，按账号名/标题搜，点开即定位原内容
+    const xhsSearch = kw => "https://www.xiaohongshu.com/search_result?keyword=" + encodeURIComponent(kw || "");
     function applySeedMigrations() {
       const v = parseInt(lsGet("wb_sm_seed_v") || "0", 10) || 0;
       if (v >= SEED_V) return;
+      let rivals = R(), breaks = B(), topics = T();
       if (v < 2) {
-        lsSet(SK.rivals, R().concat(researchRivals()));
-        lsSet(SK.breakdowns, B().concat(researchBreakdowns()));
-        lsSet(SK.topics, T().concat(researchTopics()));
+        rivals = rivals.concat(researchRivals());
+        breaks = breaks.concat(researchBreakdowns());
+        topics = topics.concat(researchTopics());
       }
+      // v3：给「对标账号 / 爆款拆解」补原链接（已有真实链接不覆盖，仅补空白项 → 小红书搜索兜底）
+      rivals = rivals.map(r => { if (!r.url) r.url = xhsSearch(r.name); return r; });
+      breaks = breaks.map(b => { if (!b.url) b.url = xhsSearch(b.title); return b; });
+      lsSet(SK.rivals, rivals);
+      lsSet(SK.breakdowns, breaks);
+      lsSet(SK.topics, topics);
       lsSet("wb_sm_seed_v", String(SEED_V));
     }
     function ensureSeed() {
@@ -1983,6 +1992,7 @@
           <label style="display:block;font-size:12px;color:#6b6256;margin-bottom:6px">爆点（为什么火）<input name="hitPoint"></label>
           <label style="display:block;font-size:12px;color:#6b6256;margin-bottom:6px">可借鉴点<input name="learn"></label>
           <label style="display:block;font-size:12px;color:#6b6256;margin-bottom:8px">我的改造方向<textarea name="myAdapt"></textarea></label>
+          <label style="display:block;font-size:12px;color:#6b6256;margin-bottom:8px">原视频链接<input name="url" placeholder="https://...（小红书/抖音等原视频地址，点开即看）"></label>
           <div class="actions"><button class="sm-mini primary" type="submit">保存</button>
             <button class="sm-mini" type="button" data-action="cancel-break">取消</button></div>
         </form>
@@ -1999,6 +2009,7 @@
           <div class="meta">${esc(b.source || "")} · ${esc(accName(b.accId))} · ${esc(b.form || "")} · ${esc(b.date || "")} · 👍${fmtN(b.likes)} 💾${fmtN(b.collects)} 💬${fmtN(b.comments)}</div></div>
           <span class="sm-status s${(stMap[b.source] != null ? stMap[b.source] : 0)}">${esc(b.source || "")}</span></div>
         <div class="body"><b>钩子</b>：${esc(b.hook)}<br><b>结构</b>：${esc(b.structure)}<br><b>爆点</b>：${esc(b.hitPoint)}<br><b>可借鉴</b>：${esc(b.learn)}<br><b>我的改造</b>：${esc(b.myAdapt)}</div>
+        ${b.url ? `<div class="sm-link-row"><a class="sm-link" href="${esc(b.url)}" target="_blank" rel="noopener">🔗 看原视频 ↗</a></div>` : ""}
         <div class="ops">
           <button class="sm-mini primary" data-action="gen-topic" data-id="${b.id}" type="button">→ 生成选题</button>
           <button class="sm-mini" data-action="edit-break" data-id="${b.id}" type="button">改</button>
@@ -2099,6 +2110,7 @@
           <div class="meta">${esc(r.platform)} · 对标${esc(accName(r.accId))} · ${esc(r.fansLevel || "")} · ${esc(r.freq || "")}</div></div></div>
         <div class="body"><b>定位</b>：${esc(r.position)}<br><b>人设</b>：${esc(r.persona)}<br><b>内容矩阵</b>：${esc(r.matrix)}<br><b>爆款特征</b>：${esc(r.hitFeature)}<br><b>标题套路</b>：${esc(r.titleTrick)}</div>
         <div class="chips"><span class="chip hit">可抄：${esc(r.learn)}</span><span class="chip">我的差异：${esc(r.diff)}</span>${r.risk ? `<span class="chip">⚠️ ${esc(r.risk)}</span>` : ""}</div>
+        ${r.url ? `<div class="sm-link-row"><a class="sm-link" href="${esc(r.url)}" target="_blank" rel="noopener">🔗 去原主页 ↗</a></div>` : ""}
         <div class="ops">
           <button class="sm-mini" data-action="edit-rival" data-id="${r.id}" type="button">改</button>
           <button class="sm-mini danger" data-action="del-rival" data-id="${r.id}" type="button">删</button>
@@ -2181,7 +2193,7 @@
       f.title.value = b.title || ""; f.form.value = b.form || "图文"; f.date.value = b.date || TODAY();
       f.likes.value = b.likes || ""; f.collects.value = b.collects || ""; f.comments.value = b.comments || ""; f.views.value = b.views || "";
       f.hook.value = b.hook || ""; f.structure.value = b.structure || ""; f.hitPoint.value = b.hitPoint || "";
-      f.learn.value = b.learn || ""; f.myAdapt.value = b.myAdapt || "";
+      f.learn.value = b.learn || ""; f.myAdapt.value = b.myAdapt || ""; f.url.value = b.url || "";
       f.querySelector('button[type="submit"]').textContent = "保存修改";
     }
     function editTopic(id) {
@@ -2226,7 +2238,7 @@
         item.title = f.title.value.trim(); item.form = f.form.value; item.date = f.date.value;
         item.likes = v("likes"); item.collects = v("collects"); item.comments = v("comments"); item.views = v("views");
         item.hook = f.hook.value.trim(); item.structure = f.structure.value.trim(); item.hitPoint = f.hitPoint.value.trim();
-        item.learn = f.learn.value.trim(); item.myAdapt = f.myAdapt.value.trim(); item.by = "我";
+        item.learn = f.learn.value.trim(); item.myAdapt = f.myAdapt.value.trim(); item.url = f.url.value.trim(); item.by = "我";
         const bs = B(); if (smEdit.break) { const i = bs.findIndex(x => x.id === smEdit.break); bs[i] = item; } else bs.push(item);
         lsSet(SK.breakdowns, bs); smEdit.break = null; f.reset(); f.classList.add("hidden"); renderBreakList(); return;
       }

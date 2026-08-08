@@ -4698,6 +4698,16 @@ button:has(.hb-ic), .wl-play:has(.hb-ic) {
 .sm-card .chip { font-size: 11px; background: #f4f1e8; color: #7a7163; border-radius: 6px; padding: 2px 8px; }
 .sm-card .chip.hit { background: #fde8e6; color: #c0392b; }
 .sm-card .ops { display: flex; gap: 6px; margin-top: 8px; flex-wrap: wrap; }
+.sm-link-row { margin: 6px 0 2px; }
+.sm-link {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-size: 12.5px; font-weight: 700; text-decoration: none;
+  color: #fff; background: linear-gradient(135deg, #ff5a7a, #ff8aa0);
+  border-radius: 999px; padding: 5px 14px;
+  box-shadow: 0 2px 8px rgba(255,90,122,.28); transition: transform .12s ease, box-shadow .12s ease;
+}
+.sm-link:active { transform: translateY(1px); }
+.sm-link:hover { box-shadow: 0 4px 12px rgba(255,90,122,.4); }
 
 .sm-stat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px,1fr)); gap: 10px; margin: 10px 0; }
 .sm-stat { background: #faf8f2; border: 1px solid var(--line,#ece8dd); border-radius: 10px; padding: 10px 12px; }
