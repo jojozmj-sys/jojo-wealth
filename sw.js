@@ -3,26 +3,29 @@
    - 页面/资源：网络优先（确保拿到最新版本），失败时回退缓存（离线可用）
    - 版本号变更时清理旧缓存，避免"看不到更新"
    - 更新版本号时只需改 CACHE_VERSION */
-const CACHE_VERSION = "jojo-v20260807b128";
+const CACHE_VERSION = "jojo-v20260807b129";
 const CACHE_NAME = CACHE_VERSION;
 const CORE_ASSETS = [
   "./",
   "./index.html",
   "./manifest.json",
-  "./assets/styles.css?v=20260807b128",
-  "./assets/app.js?v=20260807b128",
-  "./assets/data.js?v=20260807b128",
-  "./assets/config.js?v=20260807b128",
-  "./assets/sync.js?v=20260807b128",
-  "./assets/manual-sync.js?v=20260807b128",
-  "./assets/lunar.js?v=20260807b128",
-  "./assets/dog_icons.js?v=20260807b128"
+  "./assets/styles.css?v=20260807b129",
+  "./assets/app.js?v=20260807b129",
+  "./assets/data.js?v=20260807b129",
+  "./assets/config.js?v=20260807b129",
+  "./assets/sync.js?v=20260807b129",
+  "./assets/manual-sync.js?v=20260807b129",
+  "./assets/lunar.js?v=20260807b129",
+  "./assets/dog_icons.js?v=20260807b129"
 ];
 
-/* 安装：预缓存核心资源
-   注意：不再 install 阶段 skipWaiting，改为等待页面用 postMessage 主动触发，
-   以便弹出「新版本可用」横幅，用户点击后才激活，避免静默强刷导致输入丢失 */
+/* 安装：立刻接管（skipWaiting）+ 预缓存核心资源。
+   此前为支持「更新横幅」去掉了 skipWaiting，导致新 SW 长期 waiting、旧 SW 继续
+   用旧缓存控制页面，出现 线上 index.html 与 sw.js 版本错位、页面半加载。
+   恢复 skipWaiting + clients.claim 后，新版本必定立即生效、服务一致的资源，
+   杜绝混合缓存。横幅保留为「已更新」提示，必要时由 controllerchange 干净重载。 */
 self.addEventListener("install", (event) => {
+  self.skipWaiting();
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => cache.addAll(CORE_ASSETS)).catch(() => {})
   );
