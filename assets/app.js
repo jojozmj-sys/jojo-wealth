@@ -6000,7 +6000,10 @@
     }
     empty.style.display = "none";
     sub.textContent = `共 ${quotes.length} 只 · 行情约 30s 刷新一次`;
-    const data = await fetchQuotesBatch(quotes);
+    // 同时拉取持仓股行情，使预警可覆盖持仓（仅并入 data，不显示在自选列表）
+    const heldExtra = heldStockItems().filter(h => !quotes.some(q => q.code === h.code));
+    const data = await fetchQuotesBatch([...quotes, ...heldExtra]);
+    const alertSet = computeAlertCodes(data);
     /* 名称自动修正：如果自选股存的是占位名（A 股/港股/美股/空），用 API 返回的真实名覆盖 */
     let nameFixed = false;
     for (const q of quotes) {
@@ -6019,8 +6022,9 @@
       const chg = d ? d.chg : 0;
       const cls = pct > 0 ? "st-up" : pct < 0 ? "st-down" : "st-flat";
       const sign = pct > 0 ? "+" : "";
-      return `<div class="st-quote-row" data-code="${q.code}">
-        <div><div class="st-quote-name">${q.name || q.code}<span class="st-quote-code">${q.code}</span></div></div>
+      const alerted = alertSet.has(q.code);
+      return `<div class="st-quote-row${alerted ? ' alert-blue' : ''}" data-code="${q.code}">
+        <div><div class="st-quote-name">${alerted ? '<span class="st-alert-dot">🔔</span>' : ''}${q.name || q.code}<span class="st-quote-code">${q.code}</span></div></div>
         <div class="st-quote-price ${cls}">${cur ? cur.toFixed(2) : "--"}</div>
         <div class="st-quote-pct ${cls}">${pct ? sign + pct.toFixed(2) + "%" : "--"}</div>
         <div class="st-quote-act"><button data-del="${q.code}">删除</button></div>
@@ -6875,9 +6879,11 @@
 
     // 3) 逐只计算市值 / 浮动盈亏
     let totalMarket = 0, totalCostBase = 0, totalPL = 0;
+    const alertSet = computeAlertCodes(qmap);   // 持仓股触发预警 → 蓝色高亮
     held.forEach(s => {
       const q = qmap[s.code];
       s.cur = q ? q.cur : 0;
+      s.pct = q ? q.pct : 0;
       s.marketVal = s.cur * s.qty;
       s.avgCost = s.qty > 0 ? s.costBase / s.qty : 0;
       s.pl = s.marketVal - s.costBase;
@@ -6911,8 +6917,8 @@
           <span>名称 / 代码</span><span>持仓</span><span>成本价</span><span>现价</span><span>市值</span><span>盈亏</span><span>%</span>
         </div>
         ${held.map(s => `
-          <div class="st-pos-hold-row">
-            <span class="nm">${s.name || s.code}<br><i class="cd">${mk(s.market)}${s.code}</i></span>
+          <div class="st-pos-hold-row${alertSet.has(s.code) ? ' alert-blue' : ''}">
+            <span class="nm">${alertSet.has(s.code) ? '<span class="st-alert-dot">🔔</span>' : ''}${s.name || s.code}<br><i class="cd">${mk(s.market)}${s.code}</i></span>
             <span class="qty">${s.qty}</span>
             <span class="qty">${s.avgCost.toFixed(2)}</span>
             <span class="qty ${cls(s.cur - s.avgCost)}">${s.cur ? s.cur.toFixed(2) : "—"}</span>
@@ -6972,38 +6978,171 @@
     });
   }
 
+  /* ---------- 持仓股提取 + 预警集合（覆盖自选股 + 持仓股）---------- */
+  // 从 trades 聚合出当前持仓股（去重），用于预警 / 新闻覆盖持仓
+  function heldStockItems() {
+    const sum = {};
+    (trades || []).forEach(t => {
+      if (!sum[t.code]) sum[t.code] = { code: t.code, name: t.name, market: t.market };
+      if (t.market) sum[t.code].market = t.market;
+      if (t.name && !sum[t.code].name) sum[t.code].name = t.name;
+    });
+    return Object.values(sum).map(s => ({ code: s.code, name: s.name, market: s.market || detectMarket(s.code) || "sh" }));
+  }
+
+  // 合并「自选股 + 持仓股」并去重
+  function trackedStocks() {
+    return [...quotes, ...heldStockItems()].filter((v, i, a) => a.findIndex(x => x.code === v.code) === i);
+  }
+
+  // 计算触发预警阈值的股票代码集合（覆盖自选股 + 持仓股）
+  function computeAlertCodes(data) {
+    const set = new Set();
+    if (!data) return set;
+    trackedStocks().forEach(q => {
+      const d = data[q.code];
+      if (!d) return;
+      if (d.pct <= -alertCfg.drop || d.pct >= alertCfg.rise) set.add(q.code);
+    });
+    return set;
+  }
+
   /* ---------- 舆情 + 预警 ---------- */
   function renderAlerts(data) {
     const list = $("#stAlertList");
+    if (!list) return;
     const items = [];
-    quotes.forEach(q => {
+    trackedStocks().forEach(q => {
       const d = data[q.code];
       if (!d) return;
-      if (d.pct <= -alertCfg.drop) items.push({ type: "down", name: q.name || q.code, code: q.code, pct: d.pct, msg: `跌幅 ${d.pct.toFixed(2)}% 突破 ${alertCfg.drop}%` });
-      if (d.pct >= alertCfg.rise) items.push({ type: "up", name: q.name || q.code, code: q.code, pct: d.pct, msg: `涨幅 ${d.pct.toFixed(2)}% 突破 ${alertCfg.rise}%` });
+      const src = (trades || []).some(t => t.code === q.code) ? "持仓" : "自选";
+      if (d.pct <= -alertCfg.drop) items.push({ type: "down", name: q.name || q.code, code: q.code, pct: d.pct, src, msg: `跌幅 ${d.pct.toFixed(2)}% 突破 ${alertCfg.drop}%` });
+      if (d.pct >= alertCfg.rise) items.push({ type: "up", name: q.name || q.code, code: q.code, pct: d.pct, src, msg: `涨幅 ${d.pct.toFixed(2)}% 突破 ${alertCfg.rise}%` });
     });
-    if (!items.length) { list.innerHTML = ""; return; }
-    list.innerHTML = items.map(a => `<div class="st-alert-item">
-      <span>${a.type === "up" ? "🚀" : "⚠️"} <b>${a.name}</b> (${a.code}) — ${a.msg}</span>
+    if (!items.length) { list.innerHTML = `<div class="st-alert-empty">✅ 暂无股票触及预警阈值（已覆盖自选股 + 持仓股）</div>`; return; }
+    // 到达阈值的股票以蓝色高亮显示
+    list.innerHTML = items.map(a => `<div class="st-alert-item alert-blue">
+      <span class="st-alert-left"><span class="st-alert-badge">🔔 预警</span> <b>${escapeHtml(a.name)}</b> <i class="st-alert-code">${a.code}·${a.src}</i> — ${a.msg}</span>
       <span class="${a.type === 'up' ? 'st-up' : 'st-down'}">${a.pct > 0 ? "+" : ""}${a.pct.toFixed(2)}%</span>
     </div>`).join("");
   }
 
   // 新闻：浏览器 CORS 多被东财拦截。降级为「推荐入口」，并展示一个示例片段
+  /* ---------- 实时新闻流：自选股 + 持仓股 的「公告 + 新闻」---------- */
+  // 缓存键 + 时效（30s 自动刷新时复用，避免反复打接口）
+  const ST_NEWS_CACHE_KEY = "wb_stock_news_cache_v1";
+  const ST_NEWS_TTL = 5 * 60 * 1000;
+
+  // 把股票全名转成用于「新闻标题匹配」的关键词（去掉常见后缀）
+  function stockNameKw(name) {
+    return (name || "").replace(/(股份|集团|有限公司|有限责任公司|银行|证券|有限|公司|企业)$/, "");
+  }
+
+  // 拉取全部跟踪股的公告 + 市场新闻（按名称关联到各股）
+  async function fetchStockNews(tracked) {
+    // 1) 每只股票的公告（东财 np-anotice-stock，浏览器 CORS *）
+    const annPromises = tracked.map(async s => {
+      try {
+        const url = `https://np-anotice-stock.eastmoney.com/api/security/ann?sr=-1&page_size=6&page_index=1&ann_type=0&client_source=web&stock_list=${s.code}`;
+        const res = await fetch(url, { mode: "cors" });
+        const j = await res.json();
+        const items = (j && j.data && j.data.list) || [];
+        const kw = stockNameKw(s.name);
+        const lst = items.filter(x => {
+          const codes = x.codes || [];
+          if (codes.length && codes.some(c => String(c).includes(s.code))) return true;
+          const t = x.title || "";
+          return kw && kw.length >= 2 && t.includes(kw);
+        }).slice(0, 5).map(x => ({
+          title: x.title,
+          date: (x.notice_date || x.display_time || "").slice(0, 10),
+          url: `https://data.eastmoney.com/notices/stock/${s.code}.html`
+        }));
+        return { code: s.code, name: s.name, anns: lst };
+      } catch (e) { return { code: s.code, name: s.name, anns: [] }; }
+    });
+
+    // 2) 市场快讯（东财 getNewsByColumns，CORS *）—— 一次性拉取后按持仓/自选股名关联
+    let market = [];
+    try {
+      const url = `https://np-listapi.eastmoney.com/comm/web/getNewsByColumns?client=web&biz=web_news_col&column=345&order=1&needInteractData=0&page_index=1&page_size=30&req_trace=wb`;
+      const res = await fetch(url, { mode: "cors" });
+      const j = await res.json();
+      market = (j && j.data && j.data.list) || [];
+    } catch (e) { market = []; }
+
+    const related = {};
+    tracked.forEach(s => { related[s.code] = []; });
+    market.forEach(n => {
+      const txt = (n.title || "") + (n.summary || "");
+      tracked.forEach(s => {
+        const kw = stockNameKw(s.name);
+        if (kw && kw.length >= 2 && txt.includes(kw)) related[s.code].push(n);
+      });
+    });
+    Object.keys(related).forEach(k => { related[k] = related[k].slice(0, 5); });
+
+    const anns = await Promise.all(annPromises);
+    return { anns, market: market.slice(0, 12), related };
+  }
+
+  function renderStockNewsUI(list, tracked, cache) {
+    const annMap = {};
+    (cache.anns || []).forEach(a => { annMap[a.code] = a.anns; });
+    const srcOf = (code) => (trades || []).some(t => t.code === code) ? "持仓" : "自选";
+
+    const newsItemHtml = (n) => `<a class="st-news-link" href="${n.url || "#"}" target="_blank" rel="noopener">
+      <div class="st-nl-tt">${escapeHtml(n.title || "")}</div>
+      ${n.summary ? `<div class="st-nl-sum">${escapeHtml((n.summary || "").slice(0, 56))}${(n.summary || "").length > 56 ? "…" : ""}</div>` : ""}
+      <div class="st-nl-meta">${escapeHtml(n.mediaName || "东方财富")}${n.showTime ? " · " + escapeHtml(String(n.showTime)) : ""}</div>
+    </a>`;
+    const annHtml = (a) => `<a class="st-news-link" href="${a.url || "#"}" target="_blank" rel="noopener">
+      <div class="st-nl-tt">📋 ${escapeHtml(a.title || "")}</div>
+      ${a.date ? `<div class="st-nl-meta">公告 · ${escapeHtml(a.date)}</div>` : ""}
+    </a>`;
+
+    // 各跟踪股分块
+    const stockBlocks = tracked.map(s => {
+      const anns = annMap[s.code] || [];
+      const rel = cache.related[s.code] || [];
+      const hasAny = anns.length || rel.length;
+      return `<div class="st-news-stock">
+        <div class="st-news-stock-h"><span class="st-news-stock-nm">${escapeHtml(s.name || s.code)}</span><span class="st-news-code">${s.code}</span><span class="st-news-src ${srcOf(s.code) === "持仓" ? "is-pos" : ""}">${srcOf(s.code)}</span></div>
+        ${hasAny ? `
+          ${anns.length ? `<div class="st-news-sec"><div class="st-news-sec-h">📋 公告（${anns.length}）</div>${anns.map(annHtml).join("")}</div>` : ""}
+          ${rel.length ? `<div class="st-news-sec"><div class="st-news-sec-h">📰 相关新闻（${rel.length}）</div>${rel.map(newsItemHtml).join("")}</div>` : ""}
+        ` : `<div class="st-news-none">近暂无该股票公告 / 新闻</div>`}
+      </div>`;
+    }).join("");
+
+    // 市场快讯（始终展示，最新 12 条）
+    const marketBlock = `<div class="st-news-market">
+      <div class="st-news-market-h">📡 市场实时快讯</div>
+      ${(cache.market || []).map(newsItemHtml).join("")}
+    </div>`;
+
+    list.innerHTML = stockBlocks + marketBlock;
+  }
+
   async function renderNews() {
     const list = $("#stNewsList");
-    if (!quotes.length) { list.innerHTML = `<div style="text-align:center;color:var(--pink-dark);padding:20px;">加入自选股后这里会聚合相关新闻</div>`; return; }
-    const q = quotes[0];
-    list.innerHTML = `
-      <div class="st-news-row">
-        <div class="tt">📡 实时新闻流（受浏览器 CORS 限制）</div>
-        <div class="sn">推荐入口：<a href="https://data.eastmoney.com/notices/stock/${q.code}.html" target="_blank" rel="noopener">东方财富 · ${q.name || q.code} 公告全文</a> · <a href="https://xueqiu.com/S/${q.code}" target="_blank" rel="noopener">雪球 · ${q.code} 讨论</a></div>
-      </div>
-      <div class="st-news-row">
-        <div class="tt">💡 如何用好舆情分析？</div>
-        <div class="sn">1) 每天开盘前看一遍自选股的公告与新闻；2) 重点关注「业绩预增/重大合同/股东减持」三类；3) 收盘后看上方自动生成的「每日复盘」结合持仓做计划。</div>
-      </div>
-    `;
+    if (!list) return;
+    const tracked = trackedStocks();
+    if (!tracked.length) {
+      list.innerHTML = `<div class="st-news-row"><div class="tt">📡 实时新闻流</div><div class="sn">加入自选股或记录持仓后，这里会聚合相关公告与新闻</div></div>`;
+      return;
+    }
+    // 缓存：5 分钟内复用，避免 30s 自动刷新反复拉接口
+    const now = Date.now();
+    let cache = null;
+    try { const c = JSON.parse(localStorage.getItem(ST_NEWS_CACHE_KEY)); if (c && c.ts && now - c.ts < ST_NEWS_TTL) cache = c; } catch (e) {}
+    if (!cache) {
+      list.innerHTML = `<div class="st-news-loading">🔄 正在拉取 ${tracked.length} 只跟踪股的公告与新闻…</div>`;
+      cache = await fetchStockNews(tracked);
+      cache.ts = now;
+      try { localStorage.setItem(ST_NEWS_CACHE_KEY, JSON.stringify(cache)); } catch (e) {}
+    }
+    renderStockNewsUI(list, tracked, cache);
   }
 
   /* ---------- 搜索（本地字典即时匹配 + 腾讯/东财 suggest 全市场实时搜索）---------- */
@@ -8624,6 +8763,7 @@
       if (!quotes.length) return;
       renderQuotes();
       if (trades && trades.length) renderTrades();   // 持仓实时盈亏刷新
+      renderNews();                                  // 公告 + 新闻实时流（自带 5 分钟缓存）
     }, 30 * 1000);
   }
 
