@@ -4630,6 +4630,32 @@ button:has(.hb-ic), .wl-play:has(.hb-ic) {
 }
 .kb-url-notice .kb-un-title { font-weight: 700; margin-bottom: 6px; }
 .kb-url-notice .kb-un-body b { color: #b5692a; }
+
+/* ---------- Service Worker 更新提示横幅 ---------- */
+#swUpdateBanner {
+  display: none;                 /* 默认隐藏，检测到新版本才显示 */
+  position: fixed; top: 0; left: 0; right: 0; z-index: 9999;
+  align-items: center; gap: 8px;
+  padding: 10px 14px; cursor: pointer;
+  background: linear-gradient(90deg, #2e7d5b, #3aa676);
+  color: #fff; font-size: 13px; font-weight: 700;
+  box-shadow: 0 2px 10px rgba(0,0,0,.18);
+  -webkit-tap-highlight-color: transparent;
+}
+#swUpdateBanner .sw-ub-dot {
+  width: 8px; height: 8px; border-radius: 50%; background: #ffe082;
+  box-shadow: 0 0 0 0 rgba(255,224,130,.7); animation: swUbPulse 1.4s infinite;
+}
+#swUpdateBanner .sw-ub-txt { flex: 1; min-width: 0; }
+#swUpdateBanner .sw-ub-x {
+  font-size: 20px; line-height: 1; opacity: .85; padding: 0 2px;
+}
+#swUpdateBanner .sw-ub-x:hover { opacity: 1; }
+@keyframes swUbPulse {
+  0%   { box-shadow: 0 0 0 0 rgba(255,224,130,.7); }
+  70%  { box-shadow: 0 0 0 8px rgba(255,224,130,0); }
+  100% { box-shadow: 0 0 0 0 rgba(255,224,130,0); }
+}
 .kb-url-notice .kb-un-btn {
   margin-top: 10px; display: inline-block; padding: 7px 14px; border: none;
   border-radius: 8px; background: linear-gradient(135deg, #4fb286, #2b8a6a);

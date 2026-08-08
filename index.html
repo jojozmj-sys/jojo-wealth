@@ -17,11 +17,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/styles.css?v=20260807b119" />
+  <link rel="stylesheet" href="assets/styles.css?v=20260807b120" />
   <!-- 预加载：与 HTML 解析并行下载大 JS，避免启动时串行等待 -->
-  <link rel="preload" as="script" href="assets/data.js?v=20260807b119" fetchpriority="high" />
-  <link rel="preload" as="script" href="assets/lunar.js?v=20260807b119" />
-  <link rel="preload" as="script" href="assets/app.js?v=20260807b119" fetchpriority="high" />
+  <link rel="preload" as="script" href="assets/data.js?v=20260807b120" fetchpriority="high" />
+  <link rel="preload" as="script" href="assets/lunar.js?v=20260807b120" />
+  <link rel="preload" as="script" href="assets/app.js?v=20260807b120" fetchpriority="high" />
 </head>
 <body class="sidebar-collapsed">
   <!-- 手绘卡通 SVG 图标库（彩铅/水彩风格） -->
@@ -1358,19 +1358,53 @@
   </div>
 
   <!-- 轻脚本保持 defer 顺序（小体积，几乎无感；config 必须在 data 后依赖它） -->
-  <script src="assets/config.js?v=20260807b119" defer></script>
-  <script src="assets/sync.js?v=20260807b119" defer></script>
-  <script src="assets/manual-sync.js?v=20260807b119" defer></script>
-  <script src="assets/dog_icons.js?v=20260807b119" defer></script>
-  <!-- 注册 Service Worker：离线可用 + 自动更新缓存，解决"看不到更新" -->
+  <script src="assets/config.js?v=20260807b120" defer></script>
+  <script src="assets/sync.js?v=20260807b120" defer></script>
+  <script src="assets/manual-sync.js?v=20260807b120" defer></script>
+  <script src="assets/dog_icons.js?v=20260807b120" defer></script>
+  <!-- Service Worker 更新提示横幅：新版本就绪时显示，点击刷新加载新功能 -->
+  <div id="swUpdateBanner" role="button" tabindex="0" aria-label="新版本可用，点击刷新">
+    <span class="sw-ub-dot"></span>
+    <span class="sw-ub-txt">🎉 新版本已就绪，点击此处立即更新（含最新功能）</span>
+    <span class="sw-ub-x" aria-hidden="true">×</span>
+  </div>
+
+  <!-- 注册 Service Worker：离线可用 + 更新提示，彻底解决"看不到更新" -->
   <script>
-    if ("serviceWorker" in navigator) {
-      window.addEventListener("load", function () {
-        navigator.serviceWorker.register("sw.js").catch(function (e) {
-          console.warn("SW register failed:", e);
+    (function () {
+      function showUpdateBanner(sw) {
+        var b = document.getElementById("swUpdateBanner");
+        if (!b) return;
+        b.style.display = "flex";
+        var go = function () { b.style.display = "none"; try { sw.postMessage({ type: "SKIP_WAITING" }); } catch (e) {} };
+        b.onclick = go;
+        b.onkeydown = function (e) { if (e.key === "Enter" || e.key === " ") go(); };
+      }
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", function () {
+          navigator.serviceWorker.register("sw.js").then(function (reg) {
+            // 首次访问（无 controller）不弹横幅，让 SW 在下次访问接管即可
+            if (!navigator.serviceWorker.controller) return;
+            // 已有版本：检测到新版本
+            if (reg.waiting) { showUpdateBanner(reg.waiting); return; }
+            reg.addEventListener("updatefound", function () {
+              var nw = reg.installing;
+              if (!nw) return;
+              nw.addEventListener("statechange", function () {
+                // 仅当存在旧版本被替换时才提示（排除首次安装）
+                if (nw.state === "installed" && navigator.serviceWorker.controller) showUpdateBanner(nw);
+              });
+            });
+          }).catch(function (e) { console.warn("SW register failed:", e); });
         });
-      });
-    }
+        // 新 SW 接管后自动重载，加载新资源（点击横幅触发）
+        navigator.serviceWorker.addEventListener("controllerchange", function () {
+          if (window.__swReloading) return;
+          window.__swReloading = true;
+          window.location.reload();
+        });
+      }
+    })();
 
     /* ---------- 启动速度优化：数据+主程序分帧加载，避免首屏阻塞 ----------
        原方式：data.js(≈950KB)→lunar.js(≈440KB)→app.js(≈460KB) 三个大脚本在
@@ -1395,9 +1429,9 @@
       }
       /* 先让浏览器完成首帧绘制，再拉数据链 */
       idle(function () {
-        load("assets/data.js?v=20260807b119")
-          .then(function () { return load("assets/lunar.js?v=20260807b119"); })
-          .then(function () { return load("assets/app.js?v=20260807b119"); });
+        load("assets/data.js?v=20260807b120")
+          .then(function () { return load("assets/lunar.js?v=20260807b120"); })
+          .then(function () { return load("assets/app.js?v=20260807b120"); });
       });
     })();
   </script>
