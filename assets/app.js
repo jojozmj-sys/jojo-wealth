@@ -97,9 +97,24 @@
     const target = document.getElementById("page-" + page);
     if (target) target.classList.add("active");
     pageTitle.textContent = title || document.querySelector(`[data-page="${page}"] .mlabel`)?.textContent || "";
+    /* 记住当前页：云端同步触发 location.reload 后能恢复到原页面（而非默认工作台） */
+    try { sessionStorage.setItem("jojo_active_page", page); } catch (e2) {}
     /* 派发页面切换事件，各模块可监听并清理状态（如停止语音） */
     document.dispatchEvent(new CustomEvent("wb:pagechange", { detail: { page } }));
     window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  /* 恢复上次停留的页面（reload / 云端同步刷新后不再跳回工作台） */
+  function restoreActivePage() {
+    try {
+      const p = sessionStorage.getItem("jojo_active_page");
+      if (!p) return;
+      const link = document.querySelector('.menu a[data-page="' + p + '"]');
+      if (!link || !document.getElementById("page-" + p)) return;
+      $$(".menu a").forEach(a => a.classList.remove("active"));
+      link.classList.add("active");
+      showPage(p, link.querySelector(".mlabel").textContent);
+    } catch (e) {}
   }
 
   menu.addEventListener("click", e => {
@@ -238,6 +253,8 @@
     a.insertBefore(h, a.firstChild);
   });
   loadMenuPrefs();
+  /* 启动后恢复上次停留页面（云端同步 reload 后不再跳回工作台） */
+  restoreActivePage();
 
   // 行内改名
   function startRename(a) {
