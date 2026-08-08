@@ -1659,6 +1659,13 @@
       breakdowns: "wb_sm_breakdowns",
       rivals: "wb_sm_rivals"
     };
+    // 自媒体模块独立 localStorage 读写（避免依赖其他 IIFE 的局部 lsGet/lsSet）
+    const lsGet = function (k, fb) {
+      try { const v = JSON.parse(localStorage.getItem(k)); return v == null ? fb : v; } catch (e) { return fb; }
+    };
+    const lsSet = function (k, v) {
+      try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {}
+    };
     const TODAY = () => new Date().toISOString().slice(0, 10);
     const uid = () => "sm" + Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
     const fmtN = n => (n == null || isNaN(n)) ? "0" : (n >= 10000 ? (n / 10000).toFixed(1) + "w" : String(n));
