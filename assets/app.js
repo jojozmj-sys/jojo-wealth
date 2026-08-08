@@ -1649,6 +1649,584 @@
       </div>`).join("");
   })();
 
+  /* ============ 自媒体运营中心（3 个小红书账号 · 起号期） ============ */
+  (function selfMedia() {
+    if (typeof $ === "undefined" || !$) return;
+    const SK = {
+      accounts: "wb_sm_accounts",
+      posts: "wb_sm_posts",
+      topics: "wb_sm_topics",
+      breakdowns: "wb_sm_breakdowns",
+      rivals: "wb_sm_rivals"
+    };
+    const TODAY = () => new Date().toISOString().slice(0, 10);
+    const uid = () => "sm" + Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
+    const fmtN = n => (n == null || isNaN(n)) ? "0" : (n >= 10000 ? (n / 10000).toFixed(1) + "w" : String(n));
+    const pct = n => (n == null || isNaN(n)) ? "0" : (n * 100).toFixed(1) + "%";
+    const esc = s => (typeof escapeHtml === "function") ? escapeHtml(s == null ? "" : String(s)) : String(s == null ? "" : s);
+    const cap = s => s.charAt(0).toUpperCase() + s.slice(1);
+    const smEdit = { post: null, break: null, topic: null, rival: null, acc: null };
+
+    /* ---------- 默认种子（首次/无账号时载入，为 3 个账号定制策略） ---------- */
+    function seedAccounts() {
+      const t = TODAY();
+      return [
+        { id: "acc_cartoon", name: "卡通IP账号", type: "cartoon", color: "#7FB77E",
+          position: "原创卡通IP日常/情绪/梗图 —— 做一个有记忆点的虚拟角色",
+          persona: "软萌但有态度的卡通小人：会吐槽拖延、会搞钱妄想、会安慰你",
+          stage: "起号期", fans: 0, notes: 0, milestones: [{ date: t, fans: 0 }],
+          pillars: ["IP日常小剧场（条漫/短视频）", "情绪共鸣梗图（打工人·拖延·搞钱）", "IP衍生表情包·壁纸（引流文创）", "创作幕后/人设故事"],
+          addedDate: t },
+        { id: "acc_wenchuang", name: "文创产品账号", type: "wenchuang", color: "#C8A15A",
+          position: "手作/设计类文创（明信片·贴纸·周边）—— 把好物变成情绪载体",
+          persona: "有点强迫症的设计师手作娘，审美在线、会讲故事",
+          stage: "起号期", fans: 0, notes: 0, milestones: [{ date: t, fans: 0 }],
+          pillars: ["产品诞生记（灵感→打样→成品）", "使用场景/送礼种草", "设计干货（配色/排版/材料）", "粉丝共创/开箱"],
+          addedDate: t },
+        { id: "acc_vlog", name: "vlog账号", type: "vlog", color: "#6E8FB0",
+          position: "真实生活vlog —— 普通人的发光日常（创作/独居/搞钱）",
+          stage: "起号期", fans: 0, notes: 0, milestones: [{ date: t, fans: 0 }],
+          pillars: ["一日vlog（学习/工作/生活）", "主题记录（攒钱/断舍离/城市walk）", "吐槽感悟（真实情绪）", "与IP联动（真人+卡通）"],
+          addedDate: t }
+      ];
+    }
+    function seedTopics() {
+      const t = TODAY();
+      const mk = (acc, dir, title, form, note, tags) => ({ id: uid(), accId: acc, direction: dir, titleDraft: title, form: form || "图文", status: "灵感", hook: "", relBreak: "", tags: tags || "", note: note || "", createdAt: t });
+      return [
+        mk("acc_cartoon", "拖延症", "当拖延症猫遇到周一：身体很诚实地躺平", "条漫", "共鸣强，适合做成系列", "拖延,共鸣"),
+        mk("acc_cartoon", "搞钱妄想", "卡通小人搞钱妄想实录：今天也要财务自由", "短视频", "情绪+反差，易传播", "搞钱,反差"),
+        mk("acc_cartoon", "安慰系", "深夜emo被卡通小人一句话治愈", "条漫", "评论区容易刷共鸣", "治愈,情绪"),
+        mk("acc_cartoon", "二创互动", "发起「给你的卡通分身起名」投票", "图文", "涨互动、攒人设", "互动,人设"),
+        mk("acc_cartoon", "表情包", "把爆款金句做成表情包（附领取方式）", "图文", "引流到文创账号", "表情包,引流"),
+        mk("acc_wenchuang", "诞生记", "一张贴纸的诞生：从一句话灵感到打样", "图文", "过程感强，易种草", "过程,种草"),
+        mk("acc_wenchuang", "翻车实录", "打样翻车但意外好看？记录真实", "短视频", "真实感拉满，人设立住", "真实,幕后"),
+        mk("acc_wenchuang", "送礼场景", "用一张明信片搞定「不知道送啥」", "图文", "场景化，转化高", "场景,转化"),
+        mk("acc_wenchuang", "设计干货", "配色灵感墙：3 组适合文创的莫兰迪配色", "图文", "干货收藏率高", "干货,审美"),
+        mk("acc_vlog", "一日vlog", "一个人的周末：慢动作版", "短视频", "松弛感，完播高", "松弛,日常"),
+        mk("acc_vlog", "攒钱主题", "攒钱第 100 天，我买到了什么", "短视频", "目标感，易追更", "攒钱,目标"),
+        mk("acc_vlog", "联动IP", "当真人遇上卡通分身：合拍挑战", "短视频", "两号互相导流", "联动,导流"),
+        mk("acc_vlog", "真实情绪", "深夜emo实录：但明天还是要搞钱", "短视频", "真实共鸣", "情绪,真实")
+      ];
+    }
+    function seedBreakdowns() {
+      const t = TODAY();
+      return [
+        { id: uid(), source: "热帖", accId: "acc_cartoon", platform: "小红书", account: "（示例）情绪梗图号", title: "「成年人的崩溃，都是静音的」9图条漫", form: "图文", date: t, likes: 12800, collects: 9600, comments: 840, views: 240000, hook: "标题戳中「静音崩溃」情绪，首图大字+卡通哭脸", structure: "9张图：场景铺垫→情绪递进→反转治愈→互动提问", hitPoint: "强共鸣+可收藏+评论区故事接龙", learn: "情绪标签要具体（静音/成年人的），别写空泛的「致郁」", myAdapt: "套用我的卡通小人讲「周一静音崩溃」", by: "示例", createdAt: t },
+        { id: uid(), source: "对标", accId: "acc_wenchuang", platform: "小红书", account: "（示例）手作娘账号", title: "打样翻车但成品意外的好看", form: "短视频", date: t, likes: 6200, collects: 4100, comments: 520, views: 130000, hook: "开头3秒直接放「翻车」画面反差", structure: "翻车→补救→成品惊喜→求建议", hitPoint: "真实不完美>精致摆拍，互动高", learn: "别只发成品，过程/翻车更有人味", myAdapt: "我的打样翻车也发，结尾问「你们要哪个配色」", by: "示例", createdAt: t }
+      ];
+    }
+    function seedRivals() {
+      const t = TODAY();
+      return [
+        { id: uid(), platform: "小红书", name: "（示例）卡通IP标杆号", url: "", accId: "acc_cartoon", fansLevel: "5w-20w", position: "治愈系卡通日常", persona: "软萌画风+扎心文案", matrix: "日常条漫,表情包,壁纸", freq: "日更", hitFeature: "固定开场白+统一封面+系列化", titleTrick: "「当XX遇到XX」句式", learn: "系列化降低创作成本，强化记忆点", diff: "我的IP要有更鲜明的「搞钱/拖延」人设", risk: "画风同质化，需强化角色辨识", createdAt: t },
+        { id: uid(), platform: "小红书", name: "（示例）文创手作标杆号", url: "", accId: "acc_wenchuang", fansLevel: "10w+", position: "设计感文创种草", persona: "审美在线的设计师", matrix: "诞生记,好物种草,干货", freq: "隔日更", hitFeature: "高审美封面+过程感", titleTrick: "「把XX做成贴纸」", learn: "封面即产品，审美即转化", diff: "我的故事感更强，可加「用户共创」", risk: "纯审美易审美疲劳，需内容深度", createdAt: t }
+      ];
+    }
+    function ensureSeed() {
+      if (!lsGet(SK.accounts)) lsSet(SK.accounts, seedAccounts());
+      if (!lsGet(SK.topics)) lsSet(SK.topics, seedTopics());
+      if (!lsGet(SK.breakdowns)) lsSet(SK.breakdowns, seedBreakdowns());
+      if (!lsGet(SK.rivals)) lsSet(SK.rivals, seedRivals());
+      if (!lsGet(SK.posts)) lsSet(SK.posts, []);
+    }
+    const A = () => lsGet(SK.accounts) || [];
+    const P = () => lsGet(SK.posts) || [];
+    const T = () => lsGet(SK.topics) || [];
+    const B = () => lsGet(SK.breakdowns) || [];
+    const R = () => lsGet(SK.rivals) || [];
+    const accName = id => { const a = A().find(x => x.id === id); return a ? a.name : id; };
+    const accColor = id => { const a = A().find(x => x.id === id); return a ? a.color : "#999"; };
+    const accOpts = sel => A().map(a => `<option value="${a.id}" ${sel === a.id ? "selected" : ""}>${esc(a.name)}</option>`).join("");
+    const breakOpts = sel => B().map(b => `<option value="${b.id}" ${sel === b.id ? "selected" : ""}>${esc(b.title.slice(0, 18))}</option>`).join("");
+
+    /* ---------- 小图表 ---------- */
+    function sparkLine(vals, w, h, color) {
+      if (!vals || vals.length < 2) return `<div class="sm-nodata">记录 2 个以上粉丝里程碑即可生成曲线</div>`;
+      const max = Math.max.apply(null, vals), min = Math.min.apply(null, vals), range = (max - min) || 1;
+      const pts = vals.map((v, i) => { const x = (i / (vals.length - 1)) * w; const y = h - ((v - min) / range) * (h - 12) - 6; return x.toFixed(1) + "," + y.toFixed(1); }).join(" ");
+      const last = pts.split(" ").pop().split(",");
+      return `<svg class="sm-spark" viewBox="0 0 ${w} ${h}" width="100%" height="${h}" preserveAspectRatio="none"><polyline points="${pts}" fill="none" stroke="${color}" stroke-width="2"/><circle cx="${last[0]}" cy="${last[1]}" r="3" fill="${color}"/></svg>`;
+    }
+    function barRow(label, val, max, color) {
+      const w = max > 0 ? Math.min(100, Math.round(val / max * 100)) : 0;
+      return `<div class="sm-bar"><span class="sm-bar-l">${esc(label)}</span><span class="sm-bar-track"><i style="width:${w}%;background:${color}"></i></span><span class="sm-bar-v">${esc(val)}</span></div>`;
+    }
+
+    /* ---------- 总览 ---------- */
+    function renderOverview() {
+      const el = $("#smOverview"); if (!el) return;
+      const accs = A();
+      const posts = P();
+      const totalFans = accs.reduce((s, a) => s + (+a.fans || 0), 0);
+      const totalNotes = accs.reduce((s, a) => s + (+a.notes || 0), 0);
+      const hitCount = posts.filter(p => p.isHit).length;
+      const hitRate = posts.length ? hitCount / posts.length : 0;
+      const weekAgo = new Date(Date.now() - 7 * 864e5).toISOString().slice(0, 10);
+      const weekPosts = posts.filter(p => p.date && p.date >= weekAgo).length;
+      const kpis = `
+        <div class="sm-kpi"><div class="v">${fmtN(totalFans)}</div><div class="l">总粉丝</div></div>
+        <div class="sm-kpi"><div class="v">${totalNotes}</div><div class="l">总笔记数</div></div>
+        <div class="sm-kpi"><div class="v">${pct(hitRate)}</div><div class="l">爆款率(${hitCount}/${posts.length})</div></div>
+        <div class="sm-kpi"><div class="v">${weekPosts}</div><div class="l">近7天发布</div></div>`;
+      const accCards = accs.map(a => {
+        const fansVals = (a.milestones || []).slice().sort((x, y) => x.date < y.date ? -1 : 1).map(m => +m.fans || 0);
+        return `<div class="sm-acc" style="--ac:${a.color}">
+          <div class="nm">${esc(a.name)} <span class="tag">${esc(a.stage || "起号期")}</span></div>
+          <div class="pos">${esc(a.position)}</div>
+          <div class="pillars">${(a.pillars || []).map(p => `<span class="pillar">${esc(p)}</span>`).join("")}</div>
+          <div class="metrics"><span>粉丝 <b>${fmtN(a.fans)}</b></span><span>笔记 <b>${a.notes || 0}</b></span></div>
+          <div class="spark">${sparkLine(fansVals, 240, 56, a.color)}</div>
+        </div>`;
+      }).join("");
+      const method = `<div class="sm-method"><h4>📌 小红书起号核心逻辑（起号期一定要看）</h4>
+        <ul>
+          <li><b>三阶段</b>：0–500粉「定调性，前10篇最关键」→ 500–5000「找爆款公式」→ 5000–2w「稳定人设」</li>
+          <li><b>优先级</b>：人设 &gt; 内容 &gt; 频率；封面统一、开场固定、互动率 &gt; 涨粉</li>
+          <li><b>爆款笔记公式</b>：强情绪标题 + 高信息密度/强共鸣 + 首图吸睛 + 评论区引导</li>
+          <li><b>每天该看的数据</b>：互动率(赞藏评/阅读)、主页访问、涨粉来源、完播率</li>
+          <li><b>3 个账号协同</b>：卡通IP做流量与人格、文创做转化、vlog做真实信任，互相导流</li>
+        </ul></div>`;
+      el.innerHTML = `<div class="sm-kpis">${kpis}</div>
+        <div class="sm-acc-grid">${accCards}</div>
+        ${renderAccEditor()}
+        ${method}
+        <div class="sm-ov-actions"><button class="sm-mini danger" data-action="reset-seed" type="button">↺ 重置为示例数据</button></div>`;
+      const _as = el.querySelector("#smAccSel");
+      if (_as) _as.addEventListener("change", () => { smEdit.acc = _as.value; renderOverview(); });
+    }
+    function renderAccEditor() {
+      const accs = A();
+      const sel = smEdit.acc || (accs[0] && accs[0].id);
+      const a = accs.find(x => x.id === sel) || {};
+      return `<div class="sm-acc-editor">
+        <div class="row">
+          <label>编辑账号<select id="smAccSel">${accOpts(sel)}</select></label>
+        </div>
+        <div class="row">
+          <label>账号名<input id="smAccName" value="${esc(a.name || "")}"></label>
+          <label>阶段<input id="smAccStage" value="${esc(a.stage || "起号期")}"></label>
+          <label>粉丝数<input id="smAccFans" type="number" value="${a.fans || 0}"></label>
+          <label>笔记数<input id="smAccNotes" type="number" value="${a.notes || 0}"></label>
+        </div>
+        <label style="display:block;font-size:12px;color:#6b6256;margin-bottom:8px">定位一句话
+          <input id="smAccPos" value="${esc(a.position || "")}"></label>
+        <label style="display:block;font-size:12px;color:#6b6256;margin-bottom:8px">人设
+          <input id="smAccPersona" value="${esc(a.persona || "")}"></label>
+        <label style="display:block;font-size:12px;color:#6b6256;margin-bottom:8px">内容支柱（逗号分隔）
+          <textarea id="smAccPillars">${esc((a.pillars || []).join("，"))}</textarea></label>
+        <div class="actions"><button class="sm-mini primary" data-action="save-acc" type="button">保存账号资料</button>
+          <span class="hint">改粉丝数会追加一个增长里程碑（用于曲线）</span></div>
+      </div>`;
+    }
+
+    /* ---------- 数据分析 ---------- */
+    function renderData() {
+      const el = $("#smData"); if (!el) return;
+      const accs = A();
+      const curAcc = (el.querySelector("#smDataAcc") || {}).value || (accs[0] && accs[0].id);
+      const form = `
+        <div class="sm-sec-head"><h3>笔记数据（每发一篇记录，自动算爆款率/互动率）</h3>
+          <button class="sm-add-btn" data-action="show-post" type="button">➕ 记一篇</button></div>
+        <form class="sm-form hidden" id="smPostForm">
+          <div class="row">
+            <label>账号<select name="accId">${accOpts(curAcc)}</select></label>
+            <label>形式<select name="form"><option>图文</option><option>视频</option></select></label>
+            <label>发布日期<input name="date" type="date" value="${TODAY()}"></label>
+            <label>标题<input name="title" placeholder="笔记标题"></label>
+          </div>
+          <div class="row">
+            <label>阅读/播放<input name="views" type="number" placeholder="0"></label>
+            <label>赞<input name="likes" type="number" placeholder="0"></label>
+            <label>藏<input name="collects" type="number" placeholder="0"></label>
+            <label>评<input name="comments" type="number" placeholder="0"></label>
+          </div>
+          <div class="row">
+            <label>选题标签<input name="topic" placeholder="如 拖延,共鸣"></label>
+            <label style="flex:0 0 auto"><span>&nbsp;</span><span style="display:flex;align-items:center;gap:5px;margin-top:18px"><input type="checkbox" name="isHit"> 标记为爆款</span></label>
+          </div>
+          <div class="actions"><button class="sm-mini primary" type="submit">保存</button>
+            <button class="sm-mini" type="button" data-action="cancel-post">取消</button></div>
+        </form>`;
+      el.innerHTML = form + `<div id="smDataBody"></div>`;
+      renderDataBody(curAcc);
+    }
+    function renderDataBody(accId) {
+      const body = $("#smDataBody"); if (!body) return;
+      const accs = A();
+      const posts = P().filter(p => !accId || p.accId === accId);
+      if (!posts.length) { body.innerHTML = `<div class="sm-nodata">还没有笔记数据。选账号后点「➕ 记一篇」，把每篇的阅读/赞藏评填进来，系统自动算爆款率与最佳发布时间。</div>`; return; }
+      const eng = p => (+p.likes || 0) + (+p.collects || 0) + (+p.comments || 0);
+      const rate = p => (+p.views > 0) ? eng(p) / (+p.views) : null;
+      const hit = posts.filter(p => p.isHit).length;
+      const avgRate = (() => { const rs = posts.map(rate).filter(r => r != null); return rs.length ? rs.reduce((s, r) => s + r, 0) / rs.length : null; })();
+      const avgEng = posts.reduce((s, p) => s + eng(p), 0) / posts.length;
+      const wd = ["日", "一", "二", "三", "四", "五", "六"];
+      const byWd = {};
+      posts.forEach(p => { if (!p.date) return; const d = new Date(p.date); const k = wd[d.getDay()]; (byWd[k] = byWd[k] || []).push(rate(p) != null ? rate(p) : eng(p)); });
+      let bestWd = "—", bestV = -1;
+      Object.keys(byWd).forEach(k => { const v = byWd[k].reduce((s, x) => s + x, 0) / byWd[k].length; if (v > bestV) { bestV = v; bestWd = k; } });
+      const forms = {};
+      posts.forEach(p => { const f = p.form || "其他"; (forms[f] = forms[f] || []).push(rate(p) != null ? rate(p) : eng(p)); });
+      const hasRate = rate(posts[0]) != null;
+      const formBars = Object.keys(forms).map(f => { const v = forms[f].reduce((s, x) => s + x, 0) / forms[f].length; return `<div class="sm-stat"><div class="v">${v >= 1 ? pct(v) : fmtN(Math.round(v))}</div><div class="l">${f}平均${hasRate ? "互动率" : "互动量"}</div></div>`; }).join("");
+      const table = `<table class="sm-table"><thead><tr><th>标题</th><th>形式</th><th>日期</th><th>阅读</th><th>赞</th><th>藏</th><th>评</th><th>互动率</th><th></th></tr></thead><tbody>
+        ${posts.slice().sort((a, b) => (b.date || "").localeCompare(a.date || "")).map(p => `<tr class="${p.isHit ? "hit" : ""}">
+          <td>${esc(p.title || "未命名")}${p.isHit ? " 🔥" : ""}</td><td>${esc(p.form || "")}</td><td>${esc(p.date || "")}</td>
+          <td>${fmtN(p.views)}</td><td>${fmtN(p.likes)}</td><td>${fmtN(p.collects)}</td><td>${fmtN(p.comments)}</td>
+          <td>${rate(p) != null ? pct(rate(p)) : "—"}</td>
+          <td><button class="sm-mini" data-action="edit-post" data-id="${p.id}" type="button">改</button> <button class="sm-mini danger" data-action="del-post" data-id="${p.id}" type="button">删</button></td>
+        </tr>`).join("")}
+      </tbody></table>`;
+      body.innerHTML = `
+        <div class="sm-stat-grid">
+          <div class="sm-stat"><div class="v">${posts.length}</div><div class="l">记录笔记</div></div>
+          <div class="sm-stat"><div class="v">${hit}</div><div class="l">爆款数</div></div>
+          <div class="sm-stat"><div class="v">${pct(posts.length ? hit / posts.length : 0)}</div><div class="l">爆款率</div></div>
+          <div class="sm-stat"><div class="v">${avgRate != null ? pct(avgRate) : fmtN(Math.round(avgEng))}</div><div class="l">平均互动${avgRate != null ? "率" : "量"}</div></div>
+          <div class="sm-stat"><div class="v">周${esc(bestWd)}</div><div class="l">最佳发布日</div></div>
+        </div>
+        ${formBars ? `<div style="font-size:12px;color:#6b6256;margin:6px 0">形式表现对比</div><div class="sm-stat-grid">${formBars}</div>` : ""}
+        <div class="sm-filter" style="margin-top:10px"><label style="font-size:12px;color:#6b6256">只看账号 <select id="smDataAcc">${accOpts(accId)}</select></label></div>
+        ${table}`;
+      const sel = body.querySelector("#smDataAcc");
+      if (sel) sel.addEventListener("change", () => renderDataBody(sel.value));
+    }
+
+    /* ---------- 爆款拆解 ---------- */
+    function renderBreak() {
+      const el = $("#smBreak"); if (!el) return;
+      el.innerHTML = `<div class="sm-sec-head"><h3>爆款拆解库（自己/对标/平台热帖）</h3>
+          <button class="sm-add-btn" data-action="show-break" type="button">➕ 拆一篇</button></div>
+        <form class="sm-form hidden" id="smBreakForm">
+          <div class="row">
+            <label>来源<select name="source"><option>自己</option><option>对标</option><option>热帖</option></select></label>
+            <label>关联账号<select name="accId">${accOpts("")}</select></label>
+            <label>平台<input name="platform" value="小红书"></label>
+            <label>原账号<input name="account" placeholder="原帖账号名"></label>
+          </div>
+          <div class="row">
+            <label>标题<input name="title" placeholder="爆款标题"></label>
+            <label>形式<select name="form"><option>图文</option><option>视频</option></select></label>
+            <label>日期<input name="date" type="date" value="${TODAY()}"></label>
+          </div>
+          <div class="row">
+            <label>赞<input name="likes" type="number"></label><label>藏<input name="collects" type="number"></label>
+            <label>评<input name="comments" type="number"></label><label>阅读<input name="views" type="number"></label>
+          </div>
+          <label style="display:block;font-size:12px;color:#6b6256;margin-bottom:6px">钩子（前3秒/首图）<input name="hook"></label>
+          <label style="display:block;font-size:12px;color:#6b6256;margin-bottom:6px">内容结构<input name="structure"></label>
+          <label style="display:block;font-size:12px;color:#6b6256;margin-bottom:6px">爆点（为什么火）<input name="hitPoint"></label>
+          <label style="display:block;font-size:12px;color:#6b6256;margin-bottom:6px">可借鉴点<input name="learn"></label>
+          <label style="display:block;font-size:12px;color:#6b6256;margin-bottom:8px">我的改造方向<textarea name="myAdapt"></textarea></label>
+          <div class="actions"><button class="sm-mini primary" type="submit">保存</button>
+            <button class="sm-mini" type="button" data-action="cancel-break">取消</button></div>
+        </form>
+        <div class="sm-list" id="smBreakList"></div>`;
+      renderBreakList();
+    }
+    function renderBreakList() {
+      const el = $("#smBreakList"); if (!el) return;
+      const list = B();
+      if (!list.length) { el.innerHTML = `<div class="sm-nodata">还没有拆解。看到好内容就拆：钩子→结构→爆点→可借鉴→我的改造。</div>`; return; }
+      const stMap = { 自己: 0, 对标: 1, 热帖: 2 };
+      el.innerHTML = list.slice().reverse().map(b => `<div class="sm-card">
+        <div class="top"><div><div class="ti">${esc(b.title)}</div>
+          <div class="meta">${esc(b.source || "")} · ${esc(accName(b.accId))} · ${esc(b.form || "")} · ${esc(b.date || "")} · 👍${fmtN(b.likes)} 💾${fmtN(b.collects)} 💬${fmtN(b.comments)}</div></div>
+          <span class="sm-status s${(stMap[b.source] != null ? stMap[b.source] : 0)}">${esc(b.source || "")}</span></div>
+        <div class="body"><b>钩子</b>：${esc(b.hook)}<br><b>结构</b>：${esc(b.structure)}<br><b>爆点</b>：${esc(b.hitPoint)}<br><b>可借鉴</b>：${esc(b.learn)}<br><b>我的改造</b>：${esc(b.myAdapt)}</div>
+        <div class="ops">
+          <button class="sm-mini primary" data-action="gen-topic" data-id="${b.id}" type="button">→ 生成选题</button>
+          <button class="sm-mini" data-action="edit-break" data-id="${b.id}" type="button">改</button>
+          <button class="sm-mini danger" data-action="del-break" data-id="${b.id}" type="button">删</button>
+        </div></div>`).join("");
+    }
+
+    /* ---------- 选题库 ---------- */
+    const TOPIC_ST = ["灵感", "已选", "脚本", "已发", "回收"];
+    function renderTopic() {
+      const el = $("#smTopic"); if (!el) return;
+      el.innerHTML = `<div class="sm-sec-head"><h3>选题库（灵感→已选→脚本→已发→回收）</h3>
+          <button class="sm-add-btn" data-action="show-topic" type="button">➕ 新选题</button></div>
+        <form class="sm-form hidden" id="smTopicForm">
+          <div class="row">
+            <label>关联账号<select name="accId">${accOpts("")}</select></label>
+            <label>方向<input name="direction" placeholder="如 拖延症"></label>
+            <label>形式<select name="form"><option>图文</option><option>视频</option></select></label>
+            <label>状态<select name="status">${TOPIC_ST.map(s => `<option>${s}</option>`).join("")}</select></label>
+          </div>
+          <label style="display:block;font-size:12px;color:#6b6256;margin-bottom:6px">标题草案<input name="titleDraft"></label>
+          <div class="row">
+            <label>钩子/卖点<input name="hook"></label>
+            <label>关联爆款拆解<select name="relBreak"><option value="">—</option>${breakOpts("")}</select></label>
+            <label>标签<input name="tags" placeholder="逗号分隔"></label>
+          </div>
+          <label style="display:block;font-size:12px;color:#6b6256;margin-bottom:8px">备注<textarea name="note"></textarea></label>
+          <div class="actions"><button class="sm-mini primary" type="submit">保存</button>
+            <button class="sm-mini" type="button" data-action="cancel-topic">取消</button></div>
+        </form>
+        <div class="sm-filter"><label style="font-size:12px;color:#6b6256">账号 <select id="smTopicAcc"><option value="">全部</option>${accOpts("")}</select></label>
+          <label style="font-size:12px;color:#6b6256">状态 <select id="smTopicSt"><option value="">全部</option>${TOPIC_ST.map(s => `<option>${s}</option>`).join("")}</select></label></div>
+        <div class="sm-list" id="smTopicList"></div>`;
+      bindTopicFilter();
+      renderTopicList();
+    }
+    function bindTopicFilter() {
+      const acc = $("#smTopicAcc"), st = $("#smTopicSt");
+      if (acc) acc.addEventListener("change", renderTopicList);
+      if (st) st.addEventListener("change", renderTopicList);
+    }
+    function renderTopicList() {
+      const el = $("#smTopicList"); if (!el) return;
+      const accF = ($("#smTopicAcc") || {}).value || "";
+      const stF = ($("#smTopicSt") || {}).value || "";
+      let list = T().filter(t => (!accF || t.accId === accF) && (!stF || t.status === stF));
+      if (!list.length) { el.innerHTML = `<div class="sm-nodata">还没有选题。从爆款拆解点「→ 生成选题」最快，或手动➕新选题。</div>`; return; }
+      el.innerHTML = list.slice().reverse().map(t => `<div class="sm-card">
+        <div class="top"><div><div class="ti">${esc(t.titleDraft)}</div>
+          <div class="meta">${esc(accName(t.accId))} · ${esc(t.direction || "")} · ${esc(t.form || "")}</div></div>
+          <span class="sm-status s${TOPIC_ST.indexOf(t.status)}">${esc(t.status || "灵感")}</span></div>
+        ${t.hook ? `<div class="body"><b>钩子</b>：${esc(t.hook)}</div>` : ""}
+        <div class="chips">${(t.tags ? t.tags.split(/[,，]/).filter(Boolean).map(x => `<span class="chip">${esc(x.trim())}</span>`).join("") : "")}${t.relBreak ? `<span class="chip hit">↩ 关联拆解</span>` : ""}</div>
+        ${t.note ? `<div class="body" style="color:#8a8073">${esc(t.note)}</div>` : ""}
+        <div class="ops">
+          <button class="sm-mini" data-action="topic-next" data-id="${t.id}" type="button">推进状态</button>
+          <button class="sm-mini" data-action="edit-topic" data-id="${t.id}" type="button">改</button>
+          <button class="sm-mini danger" data-action="del-topic" data-id="${t.id}" type="button">删</button>
+        </div></div>`).join("");
+    }
+
+    /* ---------- 对标拆解 ---------- */
+    function renderRival() {
+      const el = $("#smRival"); if (!el) return;
+      el.innerHTML = `<div class="sm-sec-head"><h3>对标账号拆解（找内容公式·可抄作业点）</h3>
+          <button class="sm-add-btn" data-action="show-rival" type="button">➕ 加对标</button></div>
+        <form class="sm-form hidden" id="smRivalForm">
+          <div class="row">
+            <label>平台<input name="platform" value="小红书"></label>
+            <label>账号名<input name="name"></label>
+            <label>主页<input name="url" placeholder="https://..."></label>
+            <label>对标我的<select name="accId">${accOpts("")}</select></label>
+          </div>
+          <div class="row">
+            <label>粉丝量级<input name="fansLevel" placeholder="如 5w-20w"></label>
+            <label>更新频率<input name="freq" placeholder="日更/隔日更"></label>
+          </div>
+          <label style="display:block;font-size:12px;color:#6b6256;margin-bottom:6px">定位<input name="position"></label>
+          <label style="display:block;font-size:12px;color:#6b6256;margin-bottom:6px">人设<input name="persona"></label>
+          <label style="display:block;font-size:12px;color:#6b6256;margin-bottom:6px">内容矩阵（逗号）<input name="matrix"></label>
+          <label style="display:block;font-size:12px;color:#6b6256;margin-bottom:6px">爆款特征<input name="hitFeature"></label>
+          <label style="display:block;font-size:12px;color:#6b6256;margin-bottom:6px">标题套路<input name="titleTrick"></label>
+          <label style="display:block;font-size:12px;color:#6b6256;margin-bottom:6px">可抄作业点<input name="learn"></label>
+          <label style="display:block;font-size:12px;color:#6b6256;margin-bottom:6px">我的差异点<input name="diff"></label>
+          <label style="display:block;font-size:12px;color:#6b6256;margin-bottom:8px">风险/警惕<input name="risk"></label>
+          <div class="actions"><button class="sm-mini primary" type="submit">保存</button>
+            <button class="sm-mini" type="button" data-action="cancel-rival">取消</button></div>
+        </form>
+        <div class="sm-list" id="smRivalList"></div>`;
+      renderRivalList();
+    }
+    function renderRivalList() {
+      const el = $("#smRivalList"); if (!el) return;
+      const list = R();
+      if (!list.length) { el.innerHTML = `<div class="sm-nodata">还没有对标账号。起号期建议每个账号找 2-3 个对标，提炼它们的内容公式。</div>`; return; }
+      el.innerHTML = list.slice().reverse().map(r => `<div class="sm-card">
+        <div class="top"><div><div class="ti">${esc(r.name)}</div>
+          <div class="meta">${esc(r.platform)} · 对标${esc(accName(r.accId))} · ${esc(r.fansLevel || "")} · ${esc(r.freq || "")}</div></div></div>
+        <div class="body"><b>定位</b>：${esc(r.position)}<br><b>人设</b>：${esc(r.persona)}<br><b>内容矩阵</b>：${esc(r.matrix)}<br><b>爆款特征</b>：${esc(r.hitFeature)}<br><b>标题套路</b>：${esc(r.titleTrick)}</div>
+        <div class="chips"><span class="chip hit">可抄：${esc(r.learn)}</span><span class="chip">我的差异：${esc(r.diff)}</span>${r.risk ? `<span class="chip">⚠️ ${esc(r.risk)}</span>` : ""}</div>
+        <div class="ops">
+          <button class="sm-mini" data-action="edit-rival" data-id="${r.id}" type="button">改</button>
+          <button class="sm-mini danger" data-action="del-rival" data-id="${r.id}" type="button">删</button>
+        </div></div>`).join("");
+    }
+
+    /* ---------- 构建骨架 + 刷新列表 ---------- */
+    function smBuild() {
+      renderOverview(); renderData(); renderBreak(); renderTopic(); renderRival();
+    }
+    function fillLists() {
+      renderOverview(); renderDataBody((A()[0] || {}).id);
+      renderBreakList(); renderTopicList(); renderRivalList();
+    }
+
+    /* ---------- 交互：点击委托 ---------- */
+    function onPanelClick(e) {
+      const btn = e.target.closest("[data-action]"); if (!btn) return;
+      const action = btn.dataset.action, id = btn.dataset.id;
+      if (action === "show-post") { const f = $("#smPostForm"); if (f) f.classList.remove("hidden"); return; }
+      if (action === "cancel-post") { const f = $("#smPostForm"); if (f) { f.reset(); f.classList.add("hidden"); } smEdit.post = null; return; }
+      if (action === "show-break") { const f = $("#smBreakForm"); if (f) f.classList.remove("hidden"); return; }
+      if (action === "cancel-break") { const f = $("#smBreakForm"); if (f) { f.reset(); f.classList.add("hidden"); } smEdit.break = null; return; }
+      if (action === "show-topic") { const f = $("#smTopicForm"); if (f) f.classList.remove("hidden"); return; }
+      if (action === "cancel-topic") { const f = $("#smTopicForm"); if (f) { f.reset(); f.classList.add("hidden"); } smEdit.topic = null; return; }
+      if (action === "show-rival") { const f = $("#smRivalForm"); if (f) f.classList.remove("hidden"); return; }
+      if (action === "cancel-rival") { const f = $("#smRivalForm"); if (f) { f.reset(); f.classList.add("hidden"); } smEdit.rival = null; return; }
+      if (action === "reset-seed") {
+        if (!window.confirm("重置为示例数据？\n会清空你现有的账号/笔记/选题/拆解/对标，恢复成初始示例。")) return;
+        [SK.accounts, SK.posts, SK.topics, SK.breakdowns, SK.rivals].forEach(k => lsSet(k, []));
+        ensureSeed(); smBuild(); if (appToast) appToast("已重置为示例数据", 1800, "ok"); return;
+      }
+      if (action === "save-acc") {
+        const accs = A(); const a = accs.find(x => x.id === (smEdit.acc || (accs[0] && accs[0].id))); if (!a) return;
+        const nf = +($("#smAccFans").value || 0);
+        a.name = $("#smAccName").value.trim() || a.name;
+        a.stage = $("#smAccStage").value.trim() || a.stage;
+        a.position = $("#smAccPos").value.trim();
+        a.persona = $("#smAccPersona").value.trim();
+        a.pillars = $("#smAccPillars").value.split(/[,，]/).map(s => s.trim()).filter(Boolean);
+        if (nf !== (+a.fans || 0)) { a.fans = nf; (a.milestones = a.milestones || []).push({ date: TODAY(), fans: nf }); }
+        a.notes = +($("#smAccNotes").value || 0);
+        lsSet(SK.accounts, accs); smBuild(); if (appToast) appToast("账号已保存", 1500, "ok"); return;
+      }
+      if (action === "edit-post") { editPost(id); return; }
+      if (action === "del-post") { lsSet(SK.posts, P().filter(x => x.id !== id)); fillLists(); return; }
+      if (action === "edit-break") { editBreak(id); return; }
+      if (action === "del-break") { lsSet(SK.breakdowns, B().filter(x => x.id !== id)); renderBreakList(); return; }
+      if (action === "edit-topic") { editTopic(id); return; }
+      if (action === "del-topic") { lsSet(SK.topics, T().filter(x => x.id !== id)); renderTopicList(); return; }
+      if (action === "edit-rival") { editRival(id); return; }
+      if (action === "del-rival") { lsSet(SK.rivals, R().filter(x => x.id !== id)); renderRivalList(); return; }
+      if (action === "topic-next") {
+        const ts = T(); const t = ts.find(x => x.id === id); if (!t) return;
+        const i = TOPIC_ST.indexOf(t.status); t.status = TOPIC_ST[Math.min(i + 1, TOPIC_ST.length - 1)];
+        lsSet(SK.topics, ts); renderTopicList(); return;
+      }
+      if (action === "gen-topic") {
+        const b = B().find(x => x.id === id); if (!b) return;
+        const t = { id: uid(), accId: b.accId, direction: "来自爆款拆解", titleDraft: b.title, form: b.form || "图文", status: "灵感", hook: "", relBreak: b.id, tags: "", note: "可借鉴：" + (b.learn || ""), createdAt: TODAY() };
+        const ts = T(); ts.push(t); lsSet(SK.topics, ts);
+        const tab = document.querySelector('.sm-tab[data-tab="topic"]'); if (tab) tab.click();
+        if (appToast) appToast("已从拆解生成选题 → 选题库", 1800, "ok"); return;
+      }
+    }
+    function editPost(id) {
+      const p = P().find(x => x.id === id); if (!p) return;
+      smEdit.post = id; const f = $("#smPostForm"); if (!f) return;
+      f.classList.remove("hidden");
+      f.accId.value = p.accId; f.form.value = p.form || "图文"; f.date.value = p.date || TODAY(); f.title.value = p.title || "";
+      f.views.value = p.views || ""; f.likes.value = p.likes || ""; f.collects.value = p.collects || ""; f.comments.value = p.comments || "";
+      f.topic.value = p.topic || ""; f.isHit.checked = !!p.isHit;
+      f.querySelector('button[type="submit"]').textContent = "保存修改";
+    }
+    function editBreak(id) {
+      const b = B().find(x => x.id === id); if (!b) return;
+      smEdit.break = id; const f = $("#smBreakForm"); if (!f) return;
+      f.classList.remove("hidden");
+      f.source.value = b.source || "热帖"; f.accId.value = b.accId || ""; f.platform.value = b.platform || "小红书"; f.account.value = b.account || "";
+      f.title.value = b.title || ""; f.form.value = b.form || "图文"; f.date.value = b.date || TODAY();
+      f.likes.value = b.likes || ""; f.collects.value = b.collects || ""; f.comments.value = b.comments || ""; f.views.value = b.views || "";
+      f.hook.value = b.hook || ""; f.structure.value = b.structure || ""; f.hitPoint.value = b.hitPoint || "";
+      f.learn.value = b.learn || ""; f.myAdapt.value = b.myAdapt || "";
+      f.querySelector('button[type="submit"]').textContent = "保存修改";
+    }
+    function editTopic(id) {
+      const t = T().find(x => x.id === id); if (!t) return;
+      smEdit.topic = id; const f = $("#smTopicForm"); if (!f) return;
+      f.classList.remove("hidden");
+      f.accId.value = t.accId || ""; f.direction.value = t.direction || ""; f.form.value = t.form || "图文"; f.status.value = t.status || "灵感";
+      f.titleDraft.value = t.titleDraft || ""; f.hook.value = t.hook || ""; f.relBreak.value = t.relBreak || ""; f.tags.value = t.tags || "";
+      f.note.value = t.note || "";
+      f.querySelector('button[type="submit"]').textContent = "保存修改";
+    }
+    function editRival(id) {
+      const r = R().find(x => x.id === id); if (!r) return;
+      smEdit.rival = id; const f = $("#smRivalForm"); if (!f) return;
+      f.classList.remove("hidden");
+      f.platform.value = r.platform || "小红书"; f.name.value = r.name || ""; f.url.value = r.url || ""; f.accId.value = r.accId || "";
+      f.fansLevel.value = r.fansLevel || ""; f.freq.value = r.freq || ""; f.position.value = r.position || "";
+      f.persona.value = r.persona || ""; f.matrix.value = r.matrix || ""; f.hitFeature.value = r.hitFeature || "";
+      f.titleTrick.value = r.titleTrick || ""; f.learn.value = r.learn || ""; f.diff.value = r.diff || ""; f.risk.value = r.risk || "";
+      f.querySelector('button[type="submit"]').textContent = "保存修改";
+    }
+
+    /* ---------- 交互：表单提交委托 ---------- */
+    function onPanelSubmit(e) {
+      const f = e.target; if (!f || !f.id) return;
+      if (f.id === "smPostForm") {
+        e.preventDefault();
+        const v = n => +f[n].value || 0;
+        const item = smEdit.post ? P().find(x => x.id === smEdit.post) : { id: uid() };
+        item.accId = f.accId.value; item.form = f.form.value; item.date = f.date.value; item.title = f.title.value.trim();
+        item.views = v("views"); item.likes = v("likes"); item.collects = v("collects"); item.comments = v("comments");
+        item.topic = f.topic.value.trim(); item.isHit = f.isHit.checked;
+        const ps = P(); if (smEdit.post) { const i = ps.findIndex(x => x.id === smEdit.post); ps[i] = item; } else ps.push(item);
+        lsSet(SK.posts, ps); smEdit.post = null; f.reset(); f.classList.add("hidden");
+        renderDataBody(item.accId); return;
+      }
+      if (f.id === "smBreakForm") {
+        e.preventDefault();
+        const item = smEdit.break ? B().find(x => x.id === smEdit.break) : { id: uid(), createdAt: TODAY() };
+        const v = n => +f[n].value || 0;
+        item.source = f.source.value; item.accId = f.accId.value; item.platform = f.platform.value; item.account = f.account.value;
+        item.title = f.title.value.trim(); item.form = f.form.value; item.date = f.date.value;
+        item.likes = v("likes"); item.collects = v("collects"); item.comments = v("comments"); item.views = v("views");
+        item.hook = f.hook.value.trim(); item.structure = f.structure.value.trim(); item.hitPoint = f.hitPoint.value.trim();
+        item.learn = f.learn.value.trim(); item.myAdapt = f.myAdapt.value.trim(); item.by = "我";
+        const bs = B(); if (smEdit.break) { const i = bs.findIndex(x => x.id === smEdit.break); bs[i] = item; } else bs.push(item);
+        lsSet(SK.breakdowns, bs); smEdit.break = null; f.reset(); f.classList.add("hidden"); renderBreakList(); return;
+      }
+      if (f.id === "smTopicForm") {
+        e.preventDefault();
+        const item = smEdit.topic ? T().find(x => x.id === smEdit.topic) : { id: uid(), createdAt: TODAY() };
+        item.accId = f.accId.value; item.direction = f.direction.value.trim(); item.form = f.form.value; item.status = f.status.value;
+        item.titleDraft = f.titleDraft.value.trim(); item.hook = f.hook.value.trim(); item.relBreak = f.relBreak.value; item.tags = f.tags.value.trim(); item.note = f.note.value.trim();
+        const ts = T(); if (smEdit.topic) { const i = ts.findIndex(x => x.id === smEdit.topic); ts[i] = item; } else ts.push(item);
+        lsSet(SK.topics, ts); smEdit.topic = null; f.reset(); f.classList.add("hidden"); renderTopicList(); return;
+      }
+      if (f.id === "smRivalForm") {
+        e.preventDefault();
+        const item = smEdit.rival ? R().find(x => x.id === smEdit.rival) : { id: uid(), createdAt: TODAY() };
+        item.platform = f.platform.value; item.name = f.name.value.trim(); item.url = f.url.value.trim(); item.accId = f.accId.value;
+        item.fansLevel = f.fansLevel.value.trim(); item.freq = f.freq.value.trim(); item.position = f.position.value.trim();
+        item.persona = f.persona.value.trim(); item.matrix = f.matrix.value.trim(); item.hitFeature = f.hitFeature.value.trim();
+        item.titleTrick = f.titleTrick.value.trim(); item.learn = f.learn.value.trim(); item.diff = f.diff.value.trim(); item.risk = f.risk.value.trim();
+        const rs = R(); if (smEdit.rival) { const i = rs.findIndex(x => x.id === smEdit.rival); rs[i] = item; } else rs.push(item);
+        lsSet(SK.rivals, rs); smEdit.rival = null; f.reset(); f.classList.add("hidden"); renderRivalList(); return;
+      }
+    }
+
+    /* ---------- Tab 切换 ---------- */
+    function bindTabs() {
+      const tabs = $("#smTabs"); if (!tabs) return;
+      tabs.addEventListener("click", e => {
+        const b = e.target.closest(".sm-tab"); if (!b) return;
+        $$(".sm-tab").forEach(x => x.classList.remove("active")); b.classList.add("active");
+        $$(".sm-panel").forEach(p => p.classList.remove("active"));
+        const panel = $("#sm" + cap(b.dataset.tab)); if (panel) panel.classList.add("active");
+        fillLists();
+      });
+    }
+    function bindPanels() {
+      ["Overview", "Data", "Break", "Topic", "Rival"].forEach(t => {
+        const panel = $("#sm" + t); if (!panel) return;
+        panel.addEventListener("click", onPanelClick);
+        panel.addEventListener("submit", onPanelSubmit);
+      });
+      const accSel = $("#smAccSel");
+      if (accSel) accSel.addEventListener("change", () => { smEdit.acc = accSel.value; renderOverview(); });
+    }
+
+    /* ---------- 初始化 ---------- */
+    function init() {
+      ensureSeed();
+      smBuild();
+      bindTabs();
+      bindPanels();
+      document.addEventListener("wb:pagechange", e => {
+        if (e.detail && e.detail.page === "selfmedia") { ensureSeed(); smBuild(); }
+      });
+      document.addEventListener("wb-cloud-applied", () => {
+        if ($("#page-selfmedia") && $("#page-selfmedia").classList.contains("active")) fillLists();
+      });
+      document.addEventListener("wb-cloud-applied-all", () => {
+        if ($("#page-selfmedia") && $("#page-selfmedia").classList.contains("active")) fillLists();
+      });
+    }
+    if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
+    else init();
+  })();
+
   // podcast content整理
   const upEl = document.getElementById("podcastUpdate");
   if (upEl && D.podcastUpdateTime) upEl.textContent = "更新于 " + D.podcastUpdateTime;
