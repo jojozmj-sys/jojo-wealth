@@ -8433,11 +8433,11 @@
         market: m
       };
     }
-    // 拉取盘中实时情绪数据（带 60s 内存缓存，避免 30s 刷新反复打接口触发限流）
+    // 拉取盘中实时情绪数据（带 22s 内存缓存，配合 30s 定时刷新：既贴近实时又避免限流）
     let _liveSentCache = null, _liveSentAt = 0;
     async function fetchLiveSentiment() {
       const now = Date.now();
-      if (_liveSentCache && now - _liveSentAt < 60000) return _liveSentCache;
+      if (_liveSentCache && now - _liveSentAt < 22000) return _liveSentCache;
       try {
         const today = new Date();
         const ymd = today.getFullYear() * 10000 + (today.getMonth() + 1) * 100 + today.getDate();
@@ -8523,8 +8523,8 @@
           if (ls) { renderSentimentLive(ls, s); }
           else { renderSentimentStatic(s, review); }
         });
-        // 先渲染静态兜底，实时数据回来前不空白
-        renderSentimentStatic(s, review);
+        // 已有实时缓存则直接等实时覆盖，避免每个 30s 节拍先闪一下静态复盘
+        if (!_liveSentCache) renderSentimentStatic(s, review);
         return;
       }
 
@@ -8618,7 +8618,15 @@
       if (!main || !empty || !ls) return;
       empty.style.display = "none";
       main.style.display = "block";
-      if (dateEl) dateEl.textContent = "盘中实时（9:30-15:00）· 每 30 秒自动刷新";
+      if (dateEl) {
+        const lt = new Date(_liveSentAt || Date.now());
+        const hh = String(lt.getHours()).padStart(2, "0");
+        const mm = String(lt.getMinutes()).padStart(2, "0");
+        const ss = String(lt.getSeconds()).padStart(2, "0");
+        const age = Math.max(0, Math.round((Date.now() - (_liveSentAt || 0)) / 1000));
+        dateEl.innerHTML = '<span class="st-live-dot"></span>盘中实时 · ' + hh + ':' + mm + ':' + ss + ' · ' + age + '秒前更新';
+        dateEl.classList.add("st-sentiment-live");
+      }
 
       const scoreEl = $("#stSentimentScore");
       if (scoreEl) scoreEl.innerHTML = '<span class="num">' + ls.score + '</span><span class="unit">/ 100</span>';

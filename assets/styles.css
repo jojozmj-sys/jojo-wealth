@@ -3948,6 +3948,17 @@ button:has(.hb-ic), .wl-play:has(.hb-ic) {
 #page-stock .st-sentiment-trend { font-size: 12px; color: var(--brown-deep); font-weight: 600; }
 #page-stock .st-sentiment-trend.trend-up { color: #D32F2F; }
 #page-stock .st-sentiment-trend.trend-down { color: #2E7D32; }
+#page-stock .st-sentiment-live { color: #1E8E3E !important; font-weight: 700; display: inline-flex; align-items: center; gap: 6px; }
+#page-stock .st-live-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: #1E8E3E; display: inline-block;
+  animation: stLivePulse 1.6s infinite;
+}
+@keyframes stLivePulse {
+  0% { box-shadow: 0 0 0 0 rgba(30,142,62,.55); }
+  70% { box-shadow: 0 0 0 7px rgba(30,142,62,0); }
+  100% { box-shadow: 0 0 0 0 rgba(30,142,62,0); }
+}
 #page-stock .st-sentiment-gauge { height: 14px; background: #F1EFEB; border-radius: 999px; overflow: hidden; }
 #page-stock .st-sentiment-gauge-fill {
   height: 100%; width: 0; border-radius: 999px;
