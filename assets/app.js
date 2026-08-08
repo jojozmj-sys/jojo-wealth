@@ -6849,30 +6849,82 @@
     `;
   }
 
-  /* ---------- 持仓管理 ---------- */
-  function renderTrades() {
+  /* ---------- 持仓管理（联网实时盈亏）---------- */
+  async function renderTrades() {
+    const summary = $("#stPosSummary");
+    const holdingsEl = $("#stPosHoldings");
     const list = $("#stPosList");
-    // 汇总：按 code 聚合
+
+    // 1) 按 code 聚合：成本基数 = 买入金额 - 卖出金额（卖出冲减成本基数，正确反映浮动盈亏）
     const sum = {};
     trades.forEach(t => {
-      if (!sum[t.code]) sum[t.code] = { name: t.name, code: t.code, qty: 0, cost: 0, realized: 0 };
+      if (!sum[t.code]) sum[t.code] = { name: t.name, code: t.code, market: t.market, qty: 0, costBase: 0, realized: 0 };
       const sign = t.type === "buy" ? 1 : -1;
       sum[t.code].qty += sign * t.qty;
-      if (t.type === "buy") sum[t.code].cost += t.qty * t.price;
-      else sum[t.code].realized += t.qty * t.price;
+      sum[t.code].costBase += sign * t.qty * t.price;
+      if (t.type === "sell") sum[t.code].realized += t.qty * t.price;
+      if (t.market) sum[t.code].market = t.market;
     });
-
-    const summary = $("#stPosSummary");
     const held = Object.values(sum).filter(s => s.qty > 0);
-    const totalCost = held.reduce((a, s) => a + s.cost, 0);
+
+    // 2) 联网拉实时现价（腾讯 qt.gtimg）
+    let qmap = {};
+    try {
+      qmap = await fetchQuotesBatch(held.map(s => ({ code: s.code, market: s.market || detectMarket(s.code) || "sh" })));
+    } catch (e) { qmap = {}; }
+
+    // 3) 逐只计算市值 / 浮动盈亏
+    let totalMarket = 0, totalCostBase = 0, totalPL = 0;
+    held.forEach(s => {
+      const q = qmap[s.code];
+      s.cur = q ? q.cur : 0;
+      s.marketVal = s.cur * s.qty;
+      s.avgCost = s.qty > 0 ? s.costBase / s.qty : 0;
+      s.pl = s.marketVal - s.costBase;
+      s.plPct = s.costBase > 0 ? (s.pl / s.costBase * 100) : 0;
+      totalMarket += s.marketVal;
+      totalCostBase += s.costBase;
+      totalPL += s.pl;
+    });
+    const totalPLPct = totalCostBase > 0 ? (totalPL / totalCostBase * 100) : 0;
+    const realizedTotal = Object.values(sum).reduce((a, s) => a + s.realized, 0);
+
+    const fmt = (n) => (n > 0 ? "+" : n < 0 ? "-" : "") + "¥" + Math.abs(n).toFixed(0);
+    const cls = (n) => n > 0 ? "st-up" : n < 0 ? "st-down" : "st-flat";
+    const mk = (m) => ({ sh: "沪", sz: "深", hk: "港", us: "美" })[m] || "";
+
+    // 4) 概览
     summary.innerHTML = `
       <div class="st-pos-stat"><div class="lbl">持仓只数</div><div class="val">${held.length}</div></div>
-      <div class="st-pos-stat"><div class="lbl">总成本</div><div class="val">¥${totalCost.toFixed(0)}</div></div>
-      <div class="st-pos-stat"><div class="lbl">已实现盈亏</div><div class="val">¥${Object.values(sum).reduce((a, s) => a + s.realized - s.cost * 0, 0).toFixed(0)}</div></div>
+      <div class="st-pos-stat"><div class="lbl">总市值</div><div class="val">¥${totalMarket.toFixed(0)}</div></div>
+      <div class="st-pos-stat"><div class="lbl">浮动盈亏</div><div class="val ${cls(totalPL)}">${fmt(totalPL)}<span style="font-size:10px;"> (${totalPLPct >= 0 ? "+" : ""}${totalPLPct.toFixed(1)}%)</span></div></div>
+      <div class="st-pos-stat"><div class="lbl">已实现盈亏</div><div class="val ${cls(realizedTotal)}">${fmt(realizedTotal)}</div></div>
       <div class="st-pos-stat"><div class="lbl">总交易笔数</div><div class="val">${trades.length}</div></div>
     `;
 
-    // 列表
+    // 5) 实时持仓明细
+    if (!held.length) {
+      holdingsEl.innerHTML = `<div style="text-align:center;color:var(--pink-dark);padding:12px;font-size:12px;">暂无持仓（已清仓或未买入）</div>`;
+    } else {
+      holdingsEl.innerHTML = `
+        <div class="st-pos-hold-h">
+          <span>名称 / 代码</span><span>持仓</span><span>成本价</span><span>现价</span><span>市值</span><span>盈亏</span><span>%</span>
+        </div>
+        ${held.map(s => `
+          <div class="st-pos-hold-row">
+            <span class="nm">${s.name || s.code}<br><i class="cd">${mk(s.market)}${s.code}</i></span>
+            <span class="qty">${s.qty}</span>
+            <span class="qty">${s.avgCost.toFixed(2)}</span>
+            <span class="qty ${cls(s.cur - s.avgCost)}">${s.cur ? s.cur.toFixed(2) : "—"}</span>
+            <span class="qty">${s.marketVal ? "¥" + s.marketVal.toFixed(0) : "—"}</span>
+            <span class="pl ${cls(s.pl)}">${fmt(s.pl)}</span>
+            <span class="pl ${cls(s.plPct)}">${s.plPct >= 0 ? "+" : ""}${s.plPct.toFixed(1)}%</span>
+          </div>
+        `).join("")}
+      `;
+    }
+
+    // 6) 交易记录（原列表）
     if (!trades.length) { list.innerHTML = `<div style="text-align:center;color:var(--pink-dark);padding:20px;">还没有交易记录</div>`; return; }
     list.innerHTML = trades.slice().reverse().map(t => `
       <div class="st-pos-row">
@@ -6890,6 +6942,32 @@
         trades = trades.filter(t => t.id !== id);
         lsSet(LS_KEYS.trades, trades);
         renderTrades();
+      });
+    });
+  }
+
+  /* ---------- 持仓：名称 → 代码（联网联想）---------- */
+  function renderPosSearch(q) {
+    const box = $("#stPosSearchResult");
+    if (!q) { box.innerHTML = ""; return; }
+    const local = searchLocal(q);                       // 本地字典即时命中
+    const my = ++searchSeq;                             // 防竞态
+    box.innerHTML = `<span class="st-searching">🔍 正在搜索「${q}」...</span>`;
+    searchOnline(q).then(online => {                     // 东财 suggest JSONP（联网）
+      if (my !== searchSeq) return;
+      const seen = new Set(local.map(x => x.market + "|" + x.code));
+      const all = [...local];
+      online.forEach(o => { const k = o.market + "|" + o.code; if (!seen.has(k)) { seen.add(k); all.push(o); } });
+      if (!all.length) { box.innerHTML = `<span class="st-hint-inline">无匹配 A 股，试试 茅台 / 600519</span>`; return; }
+      const mt = { sh: "沪", sz: "深" };
+      box.innerHTML = all.map(a => `<span class="st-search-chip" data-pcode="${a.code}" data-pname="${a.name}" data-pmkt="${a.market}">
+        <span class="st-chip-mkt">${mt[a.market] || "A"}</span>${a.name} <b>${a.code}</b></span>`).join("");
+      $$(".st-search-chip", box).forEach(chip => {
+        chip.addEventListener("click", () => {
+          $("#stPosCode").value = chip.getAttribute("data-pcode");
+          $("#stPosName").value = chip.getAttribute("data-pname");
+          box.innerHTML = "";
+        });
       });
     });
   }
@@ -7609,24 +7687,48 @@
 
     // 持仓
     $("#stPosAdd").addEventListener("click", () => {
+      const code = $("#stPosCode").value.trim();
+      const name = $("#stPosName").value.trim();
+      const price = +$("#stPosPrice").value;
+      const qty = +$("#stPosQty").value;
+      if (!code || !price || !qty) { appToast("请填写代码、价格、数量（名称可联网搜索）", 2400, "warn"); return; }
       const t = {
         id: "t" + Date.now() + Math.random().toString(36).slice(-4),
-        code: $("#stPosCode").value.trim(),
-        name: $("#stPosName").value.trim(),
-        price: +$("#stPosPrice").value,
-        qty: +$("#stPosQty").value,
+        code,
+        name: name || NAME_HINT[code] || code,
+        price,
+        qty,
         type: $("#stPosType").value,
         date: $("#stPosDate").value || new Date().toISOString().slice(0, 10),
         note: $("#stPosNote").value.trim(),
+        market: detectMarket(code) || "sh",
       };
-      if (!t.code || !t.price || !t.qty) { appToast("请填写代码、价格、数量", 2400, "warn"); return; }
-      if (!t.name) t.name = NAME_HINT[t.code] || t.code;
       trades.push(t);
       lsSet(LS_KEYS.trades, trades);
       ["#stPosCode","#stPosName","#stPosPrice","#stPosQty","#stPosNote"].forEach(s => $(s).value = "");
       renderTrades();
     });
     $("#stPosDate").value = new Date().toISOString().slice(0, 10);
+
+    // 持仓：名称输入 → 联网联想代码（点击候选回填代码+名称）
+    let _posDebounce;
+    $("#stPosName").addEventListener("input", e => {
+      clearTimeout(_posDebounce);
+      const v = e.target.value.trim();
+      _posDebounce = setTimeout(() => renderPosSearch(v), 250);
+    });
+    $("#stPosName").addEventListener("keydown", e => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        const v = $("#stPosName").value.trim();
+        const r = resolveInputToCode(v);
+        if (r) { $("#stPosCode").value = r.code; $("#stPosName").value = r.name; $("#stPosSearchResult").innerHTML = ""; }
+        else renderPosSearch(v);
+      }
+    });
+    document.addEventListener("click", e => {
+      if (!e.target.closest("#stPosName") && !e.target.closest("#stPosSearchResult")) $("#stPosSearchResult").innerHTML = "";
+    });
 
     // 预警阈值
     $("#stAlertDrop").value = alertCfg.drop;
@@ -8521,6 +8623,7 @@
       renderReviews();                          // 每日复盘保持显示
       if (!quotes.length) return;
       renderQuotes();
+      if (trades && trades.length) renderTrades();   // 持仓实时盈亏刷新
     }, 30 * 1000);
   }
 

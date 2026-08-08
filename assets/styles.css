@@ -3450,6 +3450,26 @@ button:has(.hb-ic), .wl-play:has(.hb-ic) {
 }
 #page-stock .st-pos-stat .lbl { font-size: 10px; color: var(--pink-dark); }
 #page-stock .st-pos-stat .val { font-size: 14px; font-weight: 800; margin-top: 2px; font-variant-numeric: tabular-nums; }
+#page-stock .st-pos-holdings { margin-bottom: 12px; }
+#page-stock .st-pos-hold-h,
+#page-stock .st-pos-hold-row {
+  display: grid;
+  grid-template-columns: 1.5fr 46px 64px 64px 78px 78px 56px;
+  gap: 6px; align-items: center;
+  font-size: 12px; font-variant-numeric: tabular-nums;
+}
+#page-stock .st-pos-hold-h {
+  color: var(--pink-dark); font-size: 10px; font-weight: 700;
+  padding: 4px 10px; border-bottom: 1px dashed var(--mint-line);
+}
+#page-stock .st-pos-hold-row {
+  padding: 7px 10px; background: #fffdf9; border: 1px solid var(--mint-line);
+  border-radius: 10px; margin-top: 6px;
+}
+#page-stock .st-pos-hold-row .nm { font-weight: 700; line-height: 1.2; }
+#page-stock .st-pos-hold-row .nm .cd { font-weight: 400; font-style: normal; color: var(--pink-dark); font-size: 10px; }
+#page-stock .st-pos-hold-row .qty { text-align: right; }
+#page-stock .st-pos-hold-row .pl { text-align: right; font-weight: 800; }
 #page-stock .st-pos-row {
   display: grid;
   grid-template-columns: 1.4fr 80px 1fr 80px 80px;
