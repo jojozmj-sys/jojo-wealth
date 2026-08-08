@@ -4156,7 +4156,7 @@ window.WORKBENCH_DATA = {
   },
   "dailyHot": {
     "mode": "daily",
-    "updated": "2026-08-08 23:59",
+    "updated": "2026-08-09 00:01",
     "platforms": [
       "微博",
       "抖音",
@@ -4167,14 +4167,14 @@ window.WORKBENCH_DATA = {
       "知乎"
     ],
     "today": {
-      "date": "2026-08-08",
-      "weekday": "周六",
+      "date": "2026-08-09",
+      "weekday": "周日",
       "items": [
         {
           "platform": "微博",
           "rank": 1,
           "title": "微博文化之夜之这是谁",
-          "hot": 1129179,
+          "hot": 1122043,
           "url": "https://s.weibo.com/weibo?q=%E5%BE%AE%E5%8D%9A%E6%96%87%E5%8C%96%E4%B9%8B%E5%A4%9C%E4%B9%8B%E8%BF%99%E6%98%AF%E8%B0%81",
           "tag": "社会",
           "desc": ""
@@ -4183,7 +4183,7 @@ window.WORKBENCH_DATA = {
           "platform": "微博",
           "rank": 2,
           "title": "台风白海豚",
-          "hot": 798043,
+          "hot": 804899,
           "url": "https://s.weibo.com/weibo?q=%E5%8F%B0%E9%A3%8E%E7%99%BD%E6%B5%B7%E8%B1%9A",
           "tag": "社会",
           "desc": ""
@@ -4192,7 +4192,7 @@ window.WORKBENCH_DATA = {
           "platform": "微博",
           "rank": 3,
           "title": "黄土高原上的绿色长征",
-          "hot": 667285,
+          "hot": 656177,
           "url": "https://s.weibo.com/weibo?q=%E9%BB%84%E5%9C%9F%E9%AB%98%E5%8E%9F%E4%B8%8A%E7%9A%84%E7%BB%BF%E8%89%B2%E9%95%BF%E5%BE%81",
           "tag": "社会",
           "desc": ""
@@ -4200,18 +4200,18 @@ window.WORKBENCH_DATA = {
         {
           "platform": "微博",
           "rank": 4,
-          "title": "只有小时候发烧才有这种感觉",
-          "hot": 603018,
-          "url": "https://s.weibo.com/weibo?q=%E5%8F%AA%E6%9C%89%E5%B0%8F%E6%97%B6%E5%80%99%E5%8F%91%E7%83%A7%E6%89%8D%E6%9C%89%E8%BF%99%E7%A7%8D%E6%84%9F%E8%A7%89",
+          "title": "殡仪馆回应情侣平潭拍日出坠崖",
+          "hot": 611296,
+          "url": "https://s.weibo.com/weibo?q=%E6%AE%A1%E4%BB%AA%E9%A6%86%E5%9B%9E%E5%BA%94%E6%83%85%E4%BE%A3%E5%B9%B3%E6%BD%AD%E6%8B%8D%E6%97%A5%E5%87%BA%E5%9D%A0%E5%B4%96",
           "tag": "社会",
           "desc": ""
         },
         {
           "platform": "微博",
           "rank": 5,
-          "title": "殡仪馆回应情侣平潭拍日出坠崖",
-          "hot": 506108,
-          "url": "https://s.weibo.com/weibo?q=%E6%AE%A1%E4%BB%AA%E9%A6%86%E5%9B%9E%E5%BA%94%E6%83%85%E4%BE%A3%E5%B9%B3%E6%BD%AD%E6%8B%8D%E6%97%A5%E5%87%BA%E5%9D%A0%E5%B4%96",
+          "title": "只有小时候发烧才有这种感觉",
+          "hot": 587921,
+          "url": "https://s.weibo.com/weibo?q=%E5%8F%AA%E6%9C%89%E5%B0%8F%E6%97%B6%E5%80%99%E5%8F%91%E7%83%A7%E6%89%8D%E6%9C%89%E8%BF%99%E7%A7%8D%E6%84%9F%E8%A7%89",
           "tag": "社会",
           "desc": ""
         },
@@ -4219,7 +4219,7 @@ window.WORKBENCH_DATA = {
           "platform": "微博",
           "rank": 6,
           "title": "情侣平潭翻墙拍日出坠崖",
-          "hot": 473545,
+          "hot": 474643,
           "url": "https://s.weibo.com/weibo?q=%E6%83%85%E4%BE%A3%E5%B9%B3%E6%BD%AD%E7%BF%BB%E5%A2%99%E6%8B%8D%E6%97%A5%E5%87%BA%E5%9D%A0%E5%B4%96",
           "tag": "社会",
           "desc": ""
@@ -4227,18 +4227,18 @@ window.WORKBENCH_DATA = {
         {
           "platform": "微博",
           "rank": 7,
-          "title": "沈腾演技",
-          "hot": 448659,
-          "url": "https://s.weibo.com/weibo?q=%E6%B2%88%E8%85%BE%E6%BC%94%E6%8A%80",
+          "title": "这种手机壳可能是医疗垃圾做的",
+          "hot": 445263,
+          "url": "https://s.weibo.com/weibo?q=%E8%BF%99%E7%A7%8D%E6%89%8B%E6%9C%BA%E5%A3%B3%E5%8F%AF%E8%83%BD%E6%98%AF%E5%8C%BB%E7%96%97%E5%9E%83%E5%9C%BE%E5%81%9A%E7%9A%84",
           "tag": "社会",
           "desc": ""
         },
         {
           "platform": "微博",
           "rank": 8,
-          "title": "这种手机壳可能是医疗垃圾做的",
-          "hot": 446680,
-          "url": "https://s.weibo.com/weibo?q=%E8%BF%99%E7%A7%8D%E6%89%8B%E6%9C%BA%E5%A3%B3%E5%8F%AF%E8%83%BD%E6%98%AF%E5%8C%BB%E7%96%97%E5%9E%83%E5%9C%BE%E5%81%9A%E7%9A%84",
+          "title": "沈腾演技",
+          "hot": 443554,
+          "url": "https://s.weibo.com/weibo?q=%E6%B2%88%E8%85%BE%E6%BC%94%E6%8A%80",
           "tag": "社会",
           "desc": ""
         },
@@ -4246,7 +4246,7 @@ window.WORKBENCH_DATA = {
           "platform": "微博",
           "rank": 9,
           "title": "国乒围剿张本美和",
-          "hot": 325267,
+          "hot": 428413,
           "url": "https://s.weibo.com/weibo?q=%E5%9B%BD%E4%B9%92%E5%9B%B4%E5%89%BF%E5%BC%A0%E6%9C%AC%E7%BE%8E%E5%92%8C",
           "tag": "社会",
           "desc": ""
@@ -4255,7 +4255,7 @@ window.WORKBENCH_DATA = {
           "platform": "微博",
           "rank": 10,
           "title": "千亿巨头清仓英伟达",
-          "hot": 323521,
+          "hot": 423717,
           "url": "https://s.weibo.com/weibo?q=%E5%8D%83%E4%BA%BF%E5%B7%A8%E5%A4%B4%E6%B8%85%E4%BB%93%E8%8B%B1%E4%BC%9F%E8%BE%BE",
           "tag": "社会",
           "desc": ""
@@ -4264,7 +4264,7 @@ window.WORKBENCH_DATA = {
           "platform": "微博",
           "rank": 11,
           "title": "柬埔寨一园区围殴中国人致1死3伤",
-          "hot": 322047,
+          "hot": 400326,
           "url": "https://s.weibo.com/weibo?q=%E6%9F%AC%E5%9F%94%E5%AF%A8%E4%B8%80%E5%9B%AD%E5%8C%BA%E5%9B%B4%E6%AE%B4%E4%B8%AD%E5%9B%BD%E4%BA%BA%E8%87%B41%E6%AD%BB3%E4%BC%A4",
           "tag": "社会",
           "desc": ""
@@ -4273,7 +4273,7 @@ window.WORKBENCH_DATA = {
           "platform": "微博",
           "rank": 12,
           "title": "成毅扔伞和粉丝一起淋雨",
-          "hot": 321660,
+          "hot": 372650,
           "url": "https://s.weibo.com/weibo?q=%E6%88%90%E6%AF%85%E6%89%94%E4%BC%9E%E5%92%8C%E7%B2%89%E4%B8%9D%E4%B8%80%E8%B5%B7%E6%B7%8B%E9%9B%A8",
           "tag": "社会",
           "desc": ""
@@ -4281,90 +4281,90 @@ window.WORKBENCH_DATA = {
         {
           "platform": "微博",
           "rank": 13,
-          "title": "AG对战KSG",
-          "hot": 318970,
-          "url": "https://s.weibo.com/weibo?q=AG%E5%AF%B9%E6%88%98KSG",
-          "tag": "社会",
-          "desc": ""
-        },
-        {
-          "platform": "微博",
-          "rank": 14,
           "title": "敖瑞鹏王玉雯正太扭腰来了",
-          "hot": 317456,
+          "hot": 370757,
           "url": "https://s.weibo.com/weibo?q=%E6%95%96%E7%91%9E%E9%B9%8F%E7%8E%8B%E7%8E%89%E9%9B%AF%E6%AD%A3%E5%A4%AA%E6%89%AD%E8%85%B0%E6%9D%A5%E4%BA%86",
           "tag": "社会",
           "desc": ""
         },
         {
           "platform": "微博",
-          "rank": 15,
-          "title": "奥德赛",
-          "hot": 316279,
-          "url": "https://s.weibo.com/weibo?q=%E5%A5%A5%E5%BE%B7%E8%B5%9B",
-          "tag": "社会",
-          "desc": ""
-        },
-        {
-          "platform": "微博",
-          "rank": 16,
-          "title": "苹果AI 千问",
-          "hot": 316269,
-          "url": "https://s.weibo.com/weibo?q=%E8%8B%B9%E6%9E%9CAI%20%E5%8D%83%E9%97%AE",
-          "tag": "社会",
-          "desc": ""
-        },
-        {
-          "platform": "微博",
-          "rank": 17,
-          "title": "和平精英年度返场",
-          "hot": 315697,
-          "url": "https://s.weibo.com/weibo?q=%E5%92%8C%E5%B9%B3%E7%B2%BE%E8%8B%B1%E5%B9%B4%E5%BA%A6%E8%BF%94%E5%9C%BA",
-          "tag": "社会",
-          "desc": ""
-        },
-        {
-          "platform": "微博",
-          "rank": 18,
+          "rank": 14,
           "title": "华晨宇刺激之夜COS童趣迷兔",
-          "hot": 315608,
+          "hot": 342069,
           "url": "https://s.weibo.com/weibo?q=%E5%8D%8E%E6%99%A8%E5%AE%87%E5%88%BA%E6%BF%80%E4%B9%8B%E5%A4%9CCOS%E7%AB%A5%E8%B6%A3%E8%BF%B7%E5%85%94",
           "tag": "社会",
           "desc": ""
         },
         {
           "platform": "微博",
+          "rank": 15,
+          "title": "和平精英年度返场",
+          "hot": 341226,
+          "url": "https://s.weibo.com/weibo?q=%E5%92%8C%E5%B9%B3%E7%B2%BE%E8%8B%B1%E5%B9%B4%E5%BA%A6%E8%BF%94%E5%9C%BA",
+          "tag": "社会",
+          "desc": ""
+        },
+        {
+          "platform": "微博",
+          "rank": 16,
+          "title": "AG对战KSG",
+          "hot": 341198,
+          "url": "https://s.weibo.com/weibo?q=AG%E5%AF%B9%E6%88%98KSG",
+          "tag": "社会",
+          "desc": ""
+        },
+        {
+          "platform": "微博",
+          "rank": 17,
+          "title": "网传张凌赫准备考研了",
+          "hot": 340650,
+          "url": "https://s.weibo.com/weibo?q=%E7%BD%91%E4%BC%A0%E5%BC%A0%E5%87%8C%E8%B5%AB%E5%87%86%E5%A4%87%E8%80%83%E7%A0%94%E4%BA%86",
+          "tag": "社会",
+          "desc": ""
+        },
+        {
+          "platform": "微博",
+          "rank": 18,
+          "title": "奥德赛",
+          "hot": 334144,
+          "url": "https://s.weibo.com/weibo?q=%E5%A5%A5%E5%BE%B7%E8%B5%9B",
+          "tag": "社会",
+          "desc": ""
+        },
+        {
+          "platform": "微博",
           "rank": 19,
-          "title": "小区核载13人电梯8个人就超载",
-          "hot": 315071,
-          "url": "https://s.weibo.com/weibo?q=%E5%B0%8F%E5%8C%BA%E6%A0%B8%E8%BD%BD13%E4%BA%BA%E7%94%B5%E6%A2%AF8%E4%B8%AA%E4%BA%BA%E5%B0%B1%E8%B6%85%E8%BD%BD",
+          "title": "苹果AI 千问",
+          "hot": 330231,
+          "url": "https://s.weibo.com/weibo?q=%E8%8B%B9%E6%9E%9CAI%20%E5%8D%83%E9%97%AE",
           "tag": "社会",
           "desc": ""
         },
         {
           "platform": "微博",
           "rank": 20,
-          "title": "BLG战胜EDG",
-          "hot": 314867,
-          "url": "https://s.weibo.com/weibo?q=BLG%E6%88%98%E8%83%9CEDG",
+          "title": "河南三支一扶成绩全部作废公平吗",
+          "hot": 324359,
+          "url": "https://s.weibo.com/weibo?q=%E6%B2%B3%E5%8D%97%E4%B8%89%E6%94%AF%E4%B8%80%E6%89%B6%E6%88%90%E7%BB%A9%E5%85%A8%E9%83%A8%E4%BD%9C%E5%BA%9F%E5%85%AC%E5%B9%B3%E5%90%97",
           "tag": "社会",
           "desc": ""
         },
         {
           "platform": "微博",
           "rank": 21,
-          "title": "小夜灯 性早熟",
-          "hot": 314423,
-          "url": "https://s.weibo.com/weibo?q=%E5%B0%8F%E5%A4%9C%E7%81%AF%20%E6%80%A7%E6%97%A9%E7%86%9F",
+          "title": "小区核载13人电梯8个人就超载",
+          "hot": 320583,
+          "url": "https://s.weibo.com/weibo?q=%E5%B0%8F%E5%8C%BA%E6%A0%B8%E8%BD%BD13%E4%BA%BA%E7%94%B5%E6%A2%AF8%E4%B8%AA%E4%BA%BA%E5%B0%B1%E8%B6%85%E8%BD%BD",
           "tag": "社会",
           "desc": ""
         },
         {
           "platform": "微博",
           "rank": 22,
-          "title": "网传张凌赫准备考研了",
-          "hot": 314124,
-          "url": "https://s.weibo.com/weibo?q=%E7%BD%91%E4%BC%A0%E5%BC%A0%E5%87%8C%E8%B5%AB%E5%87%86%E5%A4%87%E8%80%83%E7%A0%94%E4%BA%86",
+          "title": "小夜灯 性早熟",
+          "hot": 315179,
+          "url": "https://s.weibo.com/weibo?q=%E5%B0%8F%E5%A4%9C%E7%81%AF%20%E6%80%A7%E6%97%A9%E7%86%9F",
           "tag": "社会",
           "desc": ""
         },
@@ -4372,7 +4372,7 @@ window.WORKBENCH_DATA = {
           "platform": "微博",
           "rank": 23,
           "title": "曾辉韩雨彤红毯状态",
-          "hot": 314110,
+          "hot": 310486,
           "url": "https://s.weibo.com/weibo?q=%E6%9B%BE%E8%BE%89%E9%9F%A9%E9%9B%A8%E5%BD%A4%E7%BA%A2%E6%AF%AF%E7%8A%B6%E6%80%81",
           "tag": "社会",
           "desc": ""
@@ -4380,18 +4380,18 @@ window.WORKBENCH_DATA = {
         {
           "platform": "微博",
           "rank": 24,
-          "title": "日媒称华为领先日本整整一代",
-          "hot": 305689,
-          "url": "https://s.weibo.com/weibo?q=%E6%97%A5%E5%AA%92%E7%A7%B0%E5%8D%8E%E4%B8%BA%E9%A2%86%E5%85%88%E6%97%A5%E6%9C%AC%E6%95%B4%E6%95%B4%E4%B8%80%E4%BB%A3",
+          "title": "王源 巡演看一场少一场",
+          "hot": 302376,
+          "url": "https://s.weibo.com/weibo?q=%E7%8E%8B%E6%BA%90%20%E5%B7%A1%E6%BC%94%E7%9C%8B%E4%B8%80%E5%9C%BA%E5%B0%91%E4%B8%80%E5%9C%BA",
           "tag": "社会",
           "desc": ""
         },
         {
           "platform": "微博",
           "rank": 25,
-          "title": "王源 巡演看一场少一场",
-          "hot": 304213,
-          "url": "https://s.weibo.com/weibo?q=%E7%8E%8B%E6%BA%90%20%E5%B7%A1%E6%BC%94%E7%9C%8B%E4%B8%80%E5%9C%BA%E5%B0%91%E4%B8%80%E5%9C%BA",
+          "title": "常吃4种食物不易得胃癌",
+          "hot": 284860,
+          "url": "https://s.weibo.com/weibo?q=%E5%B8%B8%E5%90%834%E7%A7%8D%E9%A3%9F%E7%89%A9%E4%B8%8D%E6%98%93%E5%BE%97%E8%83%83%E7%99%8C",
           "tag": "社会",
           "desc": ""
         },
@@ -4849,7 +4849,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 1,
           "title": "发烧梗",
-          "hot": 2087904,
+          "hot": 2089205,
           "url": "https://b23.tv/BV1Unub69EpX",
           "tag": "影视",
           "desc": "发烧梗，Fever Meme ⛔请勿相信其他任何自称是我（鲤鱼Ace）的言论或求助 ⛔我不会在任何社交平台上创建官方社群或添加好友 ⛔请勿相信由人为模仿或人工智能生成关于我（鲤鱼Ace）的任何内容 ⛔内容仅供娱乐，与现实中任何事件无关，请勿代入并联想，请勿模仿 ⛔未经授权，禁止转载"
@@ -4858,7 +4858,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 2,
           "title": "聪明猫在一起久了也会有一些共同点……",
-          "hot": 3465420,
+          "hot": 3465890,
           "url": "https://b23.tv/BV1Guu46sEkA",
           "tag": "影视",
           "desc": ""
@@ -4867,7 +4867,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 3,
           "title": "《死》死亡是什么？",
-          "hot": 2770114,
+          "hot": 2770594,
           "url": "https://b23.tv/BV115un6dE9a",
           "tag": "影视",
           "desc": ""
@@ -4876,7 +4876,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 4,
           "title": "《原神》奥黛塔角色PV——「柔雪的幻象」",
-          "hot": 2064475,
+          "hot": 2064665,
           "url": "https://b23.tv/BV1wZMy6DE31",
           "tag": "影视",
           "desc": "她的一生如一只水鸟的舞。 等她不再困于湖冰的寒锋，才能将白羽带上苍穹。 中文CV： 奥黛塔——潘丹妮 日文CV： 奥黛塔——上坂堇 《原神》bilibili服下载地址： https://www.biligame.com/detail/?id=103496"
@@ -4885,7 +4885,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 5,
           "title": "欢迎来到研究生的世界",
-          "hot": 8723015,
+          "hot": 8723752,
           "url": "https://b23.tv/BV1R53R6rE7a",
           "tag": "影视",
           "desc": "研究生的生活就是：时常怀揣着对未来的满腔期待，但也有深夜改不完的论文、说不清的焦虑，以及一次次自我怀疑。 论文会写完，组会会结束，猪脚饭也总有吃完的一天。但那些陪你熬过低谷、带你认识世界的人，会永远留在这段兵荒马乱又闪闪发光的青春里。 朋友们，欢迎来到研究生的世界！ 拍摄设备：Insta360 GoUltra、DJI Osmo Nano 感谢@ZZ小西_ 辅助制作我的世界和吃鸡部分的特效，感谢一起参与视频创作的小伙伴们~@超级繁星 @鱼KANG @谢谢谢谢呀- @ZZ小西_ @钰上Bob"
@@ -4894,7 +4894,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 6,
           "title": "犯罪高手",
-          "hot": 3162607,
+          "hot": 3164791,
           "url": "https://b23.tv/BV1LbMy66EWf",
           "tag": "影视",
           "desc": "房间音乐会 smooth criminal ，声音有点滑。"
@@ -4903,7 +4903,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 7,
           "title": "哈哈哈哈哈哈哈！！！",
-          "hot": 2152033,
+          "hot": 2155069,
           "url": "https://b23.tv/BV1NRun6bEgv",
           "tag": "影视",
           "desc": "-"
@@ -4912,7 +4912,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 8,
           "title": "不要“做”挑战？（第二十一期）",
-          "hot": 2451916,
+          "hot": 2453625,
           "url": "https://b23.tv/BV18Jub6sECJ",
           "tag": "影视",
           "desc": "希望观众朋友们喜欢这个系列！ （希望你们喜欢，记得素质三连！）"
@@ -4921,7 +4921,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 9,
           "title": "青春没有售价！面包车？ 直达拉萨！！",
-          "hot": 2538660,
+          "hot": 2540997,
           "url": "https://b23.tv/BV1CLuE67Ep9",
           "tag": "影视",
           "desc": ""
@@ -4930,7 +4930,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 10,
           "title": "当和你一起玩的那个兄弟延迟过高：",
-          "hot": 6512642,
+          "hot": 6513138,
           "url": "https://b23.tv/BV1JQuc6fEsA",
           "tag": "影视",
           "desc": "-"
@@ -4939,7 +4939,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 11,
           "title": "住宅低频噪音现场溯源-山东4家",
-          "hot": 1969356,
+          "hot": 1971560,
           "url": "https://b23.tv/BV19juJ6vEqh",
           "tag": "影视",
           "desc": "在山东进行了4家现场低频噪音溯源，各家噪音源各不相同，在此记录。"
@@ -4948,7 +4948,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 12,
           "title": "怪兽中 出了一个奥特曼的卧底",
-          "hot": 3936300,
+          "hot": 3939667,
           "url": "https://b23.tv/BV1gnub6REqy",
           "tag": "影视",
           "desc": "没想到，怪兽中出了一个奥特曼的卧底"
@@ -4957,7 +4957,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 13,
           "title": "“那些只打高端局的神级串烧”",
-          "hot": 2020656,
+          "hot": 2021784,
           "url": "https://b23.tv/BV1J4un6mEV1",
           "tag": "影视",
           "desc": "第一首歌原作品bv号：BV1RZ786dEot"
@@ -4966,7 +4966,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 14,
           "title": "本想简单吃个见手青小炒，却被云南厨师火焰魔法吓晕了...",
-          "hot": 3497194,
+          "hot": 3497376,
           "url": "https://b23.tv/BV1e8Mk6wEWZ",
           "tag": "影视",
           "desc": "这是我吃了见手青之后看到的幻觉吗？"
@@ -4975,7 +4975,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 15,
           "title": "在东方明珠玩100人躲猫猫！奖金10万元",
-          "hot": 2735601,
+          "hot": 2736545,
           "url": "https://b23.tv/BV1ocu46fE1z",
           "tag": "影视",
           "desc": "躲猫猫全球巡回第三站，我们来到了东方明珠！抓捕者分组对决，获胜队伍将与幸存玩家瓜分10万元奖金！更有惊喜嘉宾——正在热映的《蜘蛛侠：崭新之日》的主演汤姆·赫兰德！找到他带来的特别道具能获得蜘蛛侠的帮助？如果喜欢本期节目，记得多多点赞支持我们！"
@@ -4984,7 +4984,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 16,
           "title": "高中尊者？本科圣人？小明修仙传25分钟优化纯享版【AI全民制作人】",
-          "hot": 2753301,
+          "hot": 2754886,
           "url": "https://b23.tv/BV1U8MS65Efm",
           "tag": "影视",
           "desc": "当学历对应网文中的战力境界，小明修仙传25分钟优化纯享版。"
@@ -4993,7 +4993,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 17,
           "title": "用一万斤青铜复刻2400年前的顶级音响-曾侯乙编钟",
-          "hot": 823980,
+          "hot": 824885,
           "url": "https://b23.tv/BV1k1MS6PEzA",
           "tag": "影视",
           "desc": ""
@@ -5002,7 +5002,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 18,
           "title": "改画哪有不疯的！（第26期）",
-          "hot": 1983631,
+          "hot": 1987745,
           "url": "https://b23.tv/BV1oxut6hEMH",
           "tag": "影视",
           "desc": "-"
@@ -5011,7 +5011,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 19,
           "title": "《别接我，我改！》",
-          "hot": 8689752,
+          "hot": 8690818,
           "url": "https://b23.tv/BV1v1Mr6wEiP",
           "tag": "影视",
           "desc": "差点被黑白无常“接走”的瞬间，你经历过几个？油锅起火、微波炉起火、湿手用电、卧室吸烟、电瓶入户充电、电动车堵通道…… 很多时候我们只是“图个方便”，但真出事时，代价真的承受不起！用一点荒诞，讲一点安全。 别等黑白无常来接，能改的习惯，现在、立刻、马上改！ @天津消防"
@@ -5020,7 +5020,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 20,
           "title": "家里的旧光盘，为什么播不出来了？",
-          "hot": 3016998,
+          "hot": 3018338,
           "url": "https://b23.tv/BV1ymux6BEFU",
           "tag": "影视",
           "desc": "光盘，这个曾经记录了我们这么多童年回忆的东西，为什么好像在我们日常生活中消失了？那假如哪一天，我从柜子里翻出了一张旧光盘，我该怎样重新复原里面的影像呢？如果你喜欢这期视频，请多多支持我们，并把视频分享给你的朋友们一起看看！"
@@ -5029,7 +5029,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 21,
           "title": "周 处 除 三 害 现实版",
-          "hot": 5510524,
+          "hot": 5511253,
           "url": "https://b23.tv/BV1bpM16eEAk",
           "tag": "影视",
           "desc": "在看《周处除三害》的时候，最震撼的就是尊者那一场戏，但我万万没想到，在那不久之后，我要和他的现实版对抗。 电影里，尊者是当地有名的罪犯。 现实中，赖泽平，也是曾上过焦点访谈的传销头目。 而过了二十年，他因为前科改名成了赖泽明，但依然放不下自己的平字，尊号如平大师，开了一家如是书院，在里面玩洗脑，暴力，享受信徒们送来的钱和女信徒，以及——开戒网瘾学校，抓成年人和未成年人进去折磨，来赚取高昂的钱财。 画面：《周处除三害》"
@@ -5038,7 +5038,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 22,
           "title": "Who is the Boss?",
-          "hot": 3568858,
+          "hot": 3570909,
           "url": "https://b23.tv/BV1TAut67EKg",
           "tag": "影视",
           "desc": "-"
@@ -5047,7 +5047,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 23,
           "title": "非遗文化博大精深，非遗文化燃起来了#万物皆可跳梦的翅膀＃梦的翅膀受了伤",
-          "hot": 4520678,
+          "hot": 4521286,
           "url": "https://b23.tv/BV1cxuF6ZEq3",
           "tag": "影视",
           "desc": "-"
@@ -5056,7 +5056,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 24,
           "title": "拍铃铛四人版~",
-          "hot": 4852240,
+          "hot": 4854551,
           "url": "https://b23.tv/BV13eMk6bESU",
           "tag": "影视",
           "desc": ""
@@ -5065,7 +5065,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 25,
           "title": "3种发圈正确戴法！轻松解锁夏日氛围感造型",
-          "hot": 2180732,
+          "hot": 2181177,
           "url": "https://b23.tv/BV1CBuJ6nE33",
           "tag": "影视",
           "desc": "-"
