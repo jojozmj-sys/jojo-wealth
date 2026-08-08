@@ -3450,11 +3450,13 @@ button:has(.hb-ic), .wl-play:has(.hb-ic) {
 }
 #page-stock .st-pos-stat .lbl { font-size: 10px; color: var(--pink-dark); }
 #page-stock .st-pos-stat .val { font-size: 14px; font-weight: 800; margin-top: 2px; font-variant-numeric: tabular-nums; }
-#page-stock .st-pos-holdings { margin-bottom: 12px; }
+#page-stock .st-pos-holdings { margin-bottom: 12px; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+#page-stock .st-pos-swipe-hint { display: none; font-size: 10px; color: var(--pink-dark); text-align: center; padding: 2px 0 6px; letter-spacing: .5px; opacity: .8; }
 #page-stock .st-pos-hold-h,
 #page-stock .st-pos-hold-row {
   display: grid;
-  grid-template-columns: 1.5fr 46px 64px 64px 78px 78px 56px;
+  grid-template-columns: 104px 44px 62px 62px 76px 76px 54px;
+  min-width: 478px;
   gap: 6px; align-items: center;
   font-size: 12px; font-variant-numeric: tabular-nums;
 }
@@ -4021,6 +4023,7 @@ button:has(.hb-ic), .wl-play:has(.hb-ic) {
   #page-stock .st-pos-summary { grid-template-columns: 1fr 1fr; }
   #page-stock .st-pos-row { grid-template-columns: 1.5fr 1fr 60px; font-size: 11px; }
   #page-stock .st-pos-row .qty, #page-stock .st-pos-row .act { display: none; }
+  #page-stock .st-pos-swipe-hint { display: block; }
   #page-stock .st-index-row { grid-template-columns: 1.4fr 0.9fr 1fr 1.2fr; gap: 6px; font-size: 12px; }
   #page-stock .st-index-main { grid-column: 3 / span 2; }
   #page-stock .st-board-head, #page-stock .st-board-row { grid-template-columns: 24px 1fr 64px; }
