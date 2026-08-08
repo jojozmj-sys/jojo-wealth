@@ -3547,6 +3547,29 @@ button:has(.hb-ic), .wl-play:has(.hb-ic) {
 #page-stock .st-quote-row.alert-blue { border-left: 3px solid #1a73e8; background: #f5f9ff; }
 #page-stock .st-pos-hold-row.alert-blue { border-left: 3px solid #1a73e8; background: #f5f9ff; }
 
+/* ---- 持仓实时标识 + 行情失败提示 ---- */
+#page-stock .st-live-tag { font-size: 11px; color: #1a9e6b; background: rgba(26,158,107,.12); padding: 2px 8px; border-radius: 10px; white-space: nowrap; }
+#page-stock .st-pos-refresh { font-size: 11px; padding: 3px 10px; margin-left: 2px; }
+#page-stock .st-qfail { background: rgba(220,80,60,.1); color: #b3402c; font-size: 12px; padding: 8px 10px; border-radius: 8px; margin-bottom: 8px; }
+
+/* ---- 专业交易建议 · 持仓诊断 ---- */
+#page-stock .st-advice-list { display: flex; flex-direction: column; gap: 10px; padding: 12px; }
+#page-stock .st-advice-empty { text-align: center; color: var(--pink-dark); font-size: 12px; padding: 16px; }
+#page-stock .st-advice-card { border: 1px solid rgba(0,0,0,.06); border-radius: 12px; padding: 12px 14px; background: linear-gradient(180deg,#fff, #fafdfb); }
+#page-stock .st-advice-card .sa-head { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
+#page-stock .st-advice-card .sa-nm { font-weight: 800; font-size: 14px; }
+#page-stock .st-advice-card .sa-nm .sa-code { font-style: normal; color: var(--pink-dark); font-size: 11px; margin-left: 4px; }
+#page-stock .st-advice-card .sa-action { font-size: 12px; font-weight: 800; padding: 2px 10px; border-radius: 10px; white-space: nowrap; }
+#page-stock .st-advice-card .sa-action.st-up { color: #c0392b; background: rgba(192,57,43,.1); }
+#page-stock .st-advice-card .sa-action.st-down { color: #1a73e8; background: rgba(26,115,232,.1); }
+#page-stock .st-advice-card .sa-action.st-flat { color: #8a6d3b; background: rgba(138,109,59,.12); }
+#page-stock .st-advice-card .sa-score { margin-left: auto; font-size: 12px; color: var(--pink-dark); font-weight: 700; white-space: nowrap; }
+#page-stock .st-advice-card .sa-signals { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
+#page-stock .st-advice-card .sa-sig { font-size: 11px; background: rgba(0,0,0,.04); padding: 3px 8px; border-radius: 8px; color: #444; }
+#page-stock .st-advice-card .sa-reasons { font-size: 12px; color: #333; line-height: 1.6; }
+#page-stock .st-advice-card .sa-reason { margin: 2px 0; }
+#page-stock .st-advice-card .sa-risk { margin-top: 8px; font-size: 11px; color: #b3402c; background: rgba(220,80,60,.07); padding: 6px 8px; border-radius: 8px; line-height: 1.5; }
+
 /* ---- 实时新闻流（自选股 + 持仓股 公告 + 新闻）---- */
 #page-stock .st-news-loading, #page-stock .st-news-none { font-size: 12px; color: var(--pink-dark); padding: 8px 2px; }
 #page-stock .st-news-stock { border: 1px solid var(--mint-line); border-radius: 10px; padding: 8px 10px; margin-top: 10px; background: #fffdf9; }

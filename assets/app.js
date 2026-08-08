@@ -6876,6 +6876,7 @@
     try {
       qmap = await fetchQuotesBatch(held.map(s => ({ code: s.code, market: s.market || detectMarket(s.code) || "sh" })));
     } catch (e) { qmap = {}; }
+    const qFail = held.length > 0 && Object.keys(qmap).length === 0;   // 行情获取失败 → 给明确提示而非静默「—」
 
     // 3) 逐只计算市值 / 浮动盈亏
     let totalMarket = 0, totalCostBase = 0, totalPL = 0;
@@ -6892,6 +6893,16 @@
       totalCostBase += s.costBase;
       totalPL += s.pl;
     });
+
+    // 3.5) 实时更新时间 + 专业交易建议（技术面 + 成本）
+    const liveEl = $("#stPosLive");
+    if (liveEl) liveEl.textContent = "🟢 实时 · " + new Date().toLocaleTimeString("zh-CN", { hour: "2-digit", minute: "2-digit", second: "2-digit" });
+    const adviceEl = $("#stPosAdvice");
+    let advices = [];
+    if (held.length) {
+      try { advices = await Promise.all(held.map(s => analyzeTradeAdvice(s))); } catch (e) { advices = []; }
+    }
+
     const totalPLPct = totalCostBase > 0 ? (totalPL / totalCostBase * 100) : 0;
     const realizedTotal = Object.values(sum).reduce((a, s) => a + s.realized, 0);
 
@@ -6929,6 +6940,24 @@
         `).join("")}
       `;
     }
+    if (qFail) holdingsEl.insertAdjacentHTML("afterbegin", `<div class="st-qfail">⚠️ 实时行情获取失败（网络受限或接口被拦截），盈亏暂按「—」显示，点上方「↻ 刷新盈亏」重试。</div>`);
+
+    // 5.5) 专业交易建议渲染
+    if (adviceEl) {
+      if (!held.length) adviceEl.innerHTML = `<div class="st-advice-empty">暂无持仓，添加交易记录后可获得专业交易建议。</div>`;
+      else if (!advices.length) adviceEl.innerHTML = `<div class="st-advice-empty">⏳ 正在研判交易建议...</div>`;
+      else adviceEl.innerHTML = advices.map(a => `
+        <div class="st-advice-card">
+          <div class="sa-head">
+            <span class="sa-nm">${escapeHtml(a.name || a.code)} <i class="sa-code">${a.code}</i></span>
+            <span class="sa-action ${a.actionCls}">${a.action}</span>
+            <span class="sa-score">综合 ${a.score > 0 ? "+" : ""}${a.score}</span>
+          </div>
+          <div class="sa-signals">${a.signals.map(x => `<span class="sa-sig">${x}</span>`).join("")}</div>
+          <div class="sa-reasons">${a.reasons.map(r => `<div class="sa-reason">· ${r}</div>`).join("")}</div>
+          <div class="sa-risk">${a.risk}</div>
+        </div>`).join("");
+    }
 
     // 6) 交易记录（原列表）
     if (!trades.length) { list.innerHTML = `<div style="text-align:center;color:var(--pink-dark);padding:20px;">还没有交易记录</div>`; return; }
@@ -6950,6 +6979,112 @@
         renderTrades();
       });
     });
+  }
+
+  // K 线缓存（30s 自动刷新时复用，避免重复打接口；A 股日线变化慢）
+  const _klineCache = {};
+  async function getKLineCached(code) {
+    const now = Date.now();
+    if (_klineCache[code] && now - _klineCache[code].t < 5 * 60 * 1000) return _klineCache[code].data;
+    const d = await fetchKLineA(code, 90);
+    _klineCache[code] = { t: now, data: d };
+    return d;
+  }
+
+  // 专业交易建议：技术面（MACD/RSI/KDJ/均线/BOLL）+ 持仓成本 + 综合研判
+  async function analyzeTradeAdvice(s) {
+    const code = s.code;
+    const isA = /^\d{6}$/.test(code);
+    const out = { code, name: s.name, action: "持有", actionCls: "st-flat", score: 0, signals: [], reasons: [], risk: "" };
+
+    // 港股 / 美股：仅按持仓成本给建议（无 A 股 K 线）
+    if (!isA) {
+      out.signals.push("🌐 市场: 港股/美股（技术面暂不支持）");
+      if (s.plPct >= 25) { out.action = "止盈参考"; out.actionCls = "st-up"; out.score = 2; out.reasons.push(`当前浮盈 ${s.plPct.toFixed(1)}%，可考虑分批止盈锁定利润。`); }
+      else if (s.plPct <= -12) { out.action = "关注止损"; out.actionCls = "st-down"; out.score = -2; out.reasons.push(`当前浮亏 ${Math.abs(s.plPct).toFixed(1)}%，已触及止损观察区，建议设定明确止损线。`); }
+      else { out.reasons.push(`当前${s.plPct >= 0 ? "浮盈" : "浮亏"} ${Math.abs(s.plPct).toFixed(1)}%，成本附近震荡，建议持有观察。`); }
+      out.risk = "港股/美股暂无技术面信号，请结合基本面与汇率风险决策。";
+      return out;
+    }
+
+    const klines = await getKLineCached(code);
+    if (!klines || klines.length < 30) {
+      out.signals.push("📉 数据不足: K线样本<30");
+      out.reasons.push(`持仓${s.plPct >= 0 ? "浮盈" : "浮亏"} ${Math.abs(s.plPct).toFixed(1)}%，技术面样本不足，暂以成本为准持有。`);
+      out.risk = "日线样本不足，无法计算技术指标，建议保持现有仓位观察。";
+      return out;
+    }
+    const closes = klines.map(k => k.close);
+    const macd = calcMACD(closes);
+    const rsi = calcRSI(closes, 14);
+    const kdj = calcKDJ(klines);
+    const ma20 = calcMA(closes, 20);
+    const ma60 = calcMA(closes, 60);
+    const boll = calcBOLL(closes);
+    const cur = s.cur || closes[closes.length - 1];
+    let score = 0;
+
+    // 1) 趋势 MACD
+    if (macd) {
+      if (macd.dif > macd.dea && macd.macd > 0) { out.signals.push("📈 趋势: 多头动能(MACD金叉·红柱)"); score += 2; }
+      else if (macd.dif < macd.dea && macd.macd < 0) { out.signals.push("📉 趋势: 空头动能(MACD死叉·绿柱)"); score -= 2; }
+      else { out.signals.push("➖ 趋势: 盘整(MACD粘合)"); }
+    }
+    // 2) 动量 RSI
+    if (rsi != null) {
+      if (rsi > 70) { out.signals.push(`🌊 RSI: ${rsi.toFixed(0)} 超买`); score -= 1; }
+      else if (rsi < 30) { out.signals.push(`🌊 RSI: ${rsi.toFixed(0)} 超卖`); score += 1; }
+      else { out.signals.push(`🌊 RSI: ${rsi.toFixed(0)} 中性`); }
+    }
+    // 3) 均线排列
+    if (ma20 && ma60) {
+      if (cur > ma20 && ma20 > ma60) { out.signals.push("📊 均线: 多头排列(价>MA20>MA60)"); score += 1; }
+      else if (cur < ma20 && ma20 < ma60) { out.signals.push("📊 均线: 空头排列(价<MA20<MA60)"); score -= 1; }
+      else { out.signals.push("📊 均线: 交错(无明确排列)"); }
+    }
+    // 4) BOLL 位置
+    if (boll) {
+      if (cur >= boll.up) { out.signals.push("🎯 BOLL: 触及上轨(短期偏热)"); score -= 1; }
+      else if (cur <= boll.low) { out.signals.push("🎯 BOLL: 触及下轨(短期偏冷)"); score += 1; }
+      else { out.signals.push("🎯 BOLL: 中轨区间"); }
+    }
+    // 5) 持仓成本（核心维度）
+    const pl = s.plPct;
+    if (pl >= 30) { out.signals.push(`💰 成本: 浮盈+${pl.toFixed(0)}%(丰厚)`); score -= 1; }
+    else if (pl >= 0) { out.signals.push(`💰 成本: 浮盈+${pl.toFixed(1)}%`); }
+    else if (pl > -8) { out.signals.push(`💰 成本: 微亏${pl.toFixed(1)}%`); }
+    else if (pl > -15) { out.signals.push(`💰 成本: 浮亏${pl.toFixed(1)}%(关注止损)`); score -= 1; }
+    else { out.signals.push(`💰 成本: 深套${pl.toFixed(1)}%(止损区)`); score -= 2; }
+
+    // 综合动作
+    let action, actionCls;
+    if (score >= 3) { action = "积极持有/可加仓"; actionCls = "st-up"; }
+    else if (score >= 1) { action = "持有"; actionCls = "st-up"; }
+    else if (score === 0) { action = "持有观察"; actionCls = "st-flat"; }
+    else if (score >= -1) { action = "观望/减仓"; actionCls = "st-flat"; }
+    else if (score >= -3) { action = "减仓"; actionCls = "st-down"; }
+    else { action = "止损"; actionCls = "st-down"; }
+
+    // 特殊强化：深套 + 空头 → 止损；大赚 + 超买 → 止盈
+    if (pl <= -15 && score <= -2) {
+      action = "建议止损"; actionCls = "st-down";
+      out.reasons.push(`技术面空头且浮亏 ${Math.abs(pl).toFixed(1)}% 已超止损线，建议严格止损或大幅减仓，避免情绪化摊平。`);
+    }
+    if (pl >= 30 && rsi != null && rsi > 70) {
+      action = "分批止盈"; actionCls = "st-up";
+      out.reasons.push(`浮盈丰厚且 RSI 超买，建议分批止盈、锁定利润，不宜追高。`);
+    }
+    out.action = action; out.actionCls = actionCls; out.score = score;
+
+    // 理由（基于信号）
+    if (macd && macd.dif > macd.dea && macd.macd > 0) out.reasons.push("MACD 金叉、红柱放大，短线多头动能占优，可顺势持有。");
+    else if (macd && macd.dif < macd.dea && macd.macd < 0) out.reasons.push("MACD 死叉、绿柱放大，短线空头主导，宜控制仓位、等待企稳。");
+    if (rsi != null && rsi > 70) out.reasons.push(`RSI ${rsi.toFixed(0)} 超买，短期追高性价比低，注意回撤。`);
+    else if (rsi != null && rsi < 30) out.reasons.push(`RSI ${rsi.toFixed(0)} 超卖，存在技术性反弹机会，可关注企稳信号。`);
+    if (!out.reasons.length) out.reasons.push("多空信号交织，建议持有并关注量能与均线方向变化。");
+    if (kdj) out.signals.push(`🌀 KDJ: K${kdj.k.toFixed(0)}/D${kdj.d.toFixed(0)}/J${kdj.j.toFixed(0)}`);
+    out.risk = "以上为技术指标+持仓成本的量化参考，非投资建议；请结合大盘、行业与自身风险承受能力决策。";
+    return out;
   }
 
   /* ---------- 持仓：名称 → 代码（联网联想）---------- */
@@ -7848,6 +7983,13 @@
       renderTrades();
     });
     $("#stPosDate").value = new Date().toISOString().slice(0, 10);
+
+    // 手动刷新持仓实时盈亏 + 交易建议
+    const rp = $("#stPosRefresh");
+    if (rp) rp.addEventListener("click", () => {
+      rp.disabled = true; rp.textContent = "↻ 刷新中…";
+      Promise.resolve(renderTrades()).finally(() => { rp.disabled = false; rp.textContent = "↻ 刷新盈亏"; });
+    });
 
     // 持仓：名称输入 → 联网联想代码（点击候选回填代码+名称）
     let _posDebounce;
