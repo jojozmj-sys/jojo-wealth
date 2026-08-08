@@ -17,11 +17,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/styles.css?v=20260807b107" />
+  <link rel="stylesheet" href="assets/styles.css?v=20260807b109" />
   <!-- 预加载：与 HTML 解析并行下载大 JS，避免启动时串行等待 -->
-  <link rel="preload" as="script" href="assets/data.js?v=20260807b107" fetchpriority="high" />
-  <link rel="preload" as="script" href="assets/lunar.js?v=20260807b107" />
-  <link rel="preload" as="script" href="assets/app.js?v=20260807b107" fetchpriority="high" />
+  <link rel="preload" as="script" href="assets/data.js?v=20260807b109" fetchpriority="high" />
+  <link rel="preload" as="script" href="assets/lunar.js?v=20260807b109" />
+  <link rel="preload" as="script" href="assets/app.js?v=20260807b109" fetchpriority="high" />
 </head>
 <body class="sidebar-collapsed">
   <!-- 手绘卡通 SVG 图标库（彩铅/水彩风格） -->
@@ -991,10 +991,11 @@
             <div class="card-head">
               <div class="ic"><img src="assets/icons/icon-stock.png" alt="持仓管理"></div>
               <h2>持仓管理</h2>
-              <span class="sub" id="stPosSub">买入 / 卖出 / 盈亏 · 自动算成本</span>
+              <span class="sub" id="stPosSub">联网搜代码 · 实时盈亏 · 自动算成本</span>
               <button class="card-toggle" type="button" aria-label="折叠">▾</button>
             </div>
             <div class="st-pos-summary" id="stPosSummary"></div>
+            <div class="st-pos-holdings" id="stPosHoldings"></div>
             <div class="st-pos-form">
               <input id="stPosCode" type="text" placeholder="代码" />
               <input id="stPosName" type="text" placeholder="名称" />
@@ -1008,6 +1009,7 @@
               <input id="stPosNote" type="text" placeholder="备注（可选）" />
               <button class="btn primary" id="stPosAdd" type="button">+ 记一笔</button>
             </div>
+            <div class="st-search-result" id="stPosSearchResult"></div>
             <div class="st-pos-list" id="stPosList"></div>
           </div>
 
@@ -1342,10 +1344,10 @@
   </div>
 
   <!-- 轻脚本保持 defer 顺序（小体积，几乎无感；config 必须在 data 后依赖它） -->
-  <script src="assets/config.js?v=20260807b107" defer></script>
-  <script src="assets/sync.js?v=20260807b107" defer></script>
-  <script src="assets/manual-sync.js?v=20260807b107" defer></script>
-  <script src="assets/dog_icons.js?v=20260807b107" defer></script>
+  <script src="assets/config.js?v=20260807b109" defer></script>
+  <script src="assets/sync.js?v=20260807b109" defer></script>
+  <script src="assets/manual-sync.js?v=20260807b109" defer></script>
+  <script src="assets/dog_icons.js?v=20260807b109" defer></script>
   <!-- 注册 Service Worker：离线可用 + 自动更新缓存，解决"看不到更新" -->
   <script>
     if ("serviceWorker" in navigator) {
@@ -1379,9 +1381,9 @@
       }
       /* 先让浏览器完成首帧绘制，再拉数据链 */
       idle(function () {
-        load("assets/data.js?v=20260807b107")
-          .then(function () { return load("assets/lunar.js?v=20260807b107"); })
-          .then(function () { return load("assets/app.js?v=20260807b107"); });
+        load("assets/data.js?v=20260807b109")
+          .then(function () { return load("assets/lunar.js?v=20260807b109"); })
+          .then(function () { return load("assets/app.js?v=20260807b109"); });
       });
     })();
   </script>
