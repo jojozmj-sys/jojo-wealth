@@ -6900,7 +6900,15 @@
     const adviceEl = $("#stPosAdvice");
     let advices = [];
     if (held.length) {
-      try { advices = await Promise.all(held.map(s => analyzeTradeAdvice(s))); } catch (e) { advices = []; }
+      // 单票容错：任一只持仓建议计算异常（如 K 线拉取失败）不影响其余，且不整体变空
+      advices = await Promise.all(held.map(s =>
+        analyzeTradeAdvice(s).catch(err => {
+          console.warn("[stock] 单只持仓建议计算失败:", s.code, err);
+          return { code: s.code, name: s.name || s.code, action: "持有观察", actionCls: "st-flat", score: 0,
+                   signals: ["⚠️ 技术面计算异常"], reasons: ["指标计算出现意外，暂以成本为准持有观察；可点「↻ 刷新盈亏」重试。"],
+                   risk: "如持续异常，请检查网络或稍后重试。" };
+        })
+      ));
     }
 
     const totalPLPct = totalCostBase > 0 ? (totalPL / totalCostBase * 100) : 0;
@@ -6945,7 +6953,7 @@
     // 5.5) 专业交易建议渲染
     if (adviceEl) {
       if (!held.length) adviceEl.innerHTML = `<div class="st-advice-empty">暂无持仓，添加交易记录后可获得专业交易建议。</div>`;
-      else if (!advices.length) adviceEl.innerHTML = `<div class="st-advice-empty">⏳ 正在研判交易建议...</div>`;
+      else if (!advices.length) adviceEl.innerHTML = `<div class="st-advice-empty">⏳ 建议加载中或暂不可用，请稍候或点「↻ 刷新盈亏」重试。</div>`;
       else adviceEl.innerHTML = advices.map(a => `
         <div class="st-advice-card">
           <div class="sa-head">
