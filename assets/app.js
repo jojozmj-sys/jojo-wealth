@@ -1723,12 +1723,69 @@
         { id: uid(), platform: "小红书", name: "（示例）文创手作标杆号", url: "", accId: "acc_wenchuang", fansLevel: "10w+", position: "设计感文创种草", persona: "审美在线的设计师", matrix: "诞生记,好物种草,干货", freq: "隔日更", hitFeature: "高审美封面+过程感", titleTrick: "「把XX做成贴纸」", learn: "封面即产品，审美即转化", diff: "我的故事感更强，可加「用户共创」", risk: "纯审美易审美疲劳，需内容深度", createdAt: t }
       ];
     }
+    /* ---------- 研究包（2025 标杆/爆款，起号期可抄作业，不覆盖用户已有数据） ---------- */
+    function researchRivals() {
+      const t = TODAY();
+      return [
+        { id: uid(), platform: "小红书", name: "线条小狗", url: "", accId: "acc_cartoon", fansLevel: "100w+", position: "极简线条小狗讲打工人日常", persona: "软萌线条+扎心文案", matrix: "日常条漫,表情包,壁纸,周边", freq: "日更", hitFeature: "统一线条风格+系列化情绪场景", titleTrick: "「小狗的XX瞬间」", learn: "极简画风降制作门槛，系列化情绪场景易收藏", diff: "我的IP要有更鲜明的搞钱/拖延人设和剧情线", risk: "纯表情包难沉淀人设，需加剧情", createdAt: t },
+        { id: uid(), platform: "小红书", name: "星星人(泡泡玛特IP)", url: "", accId: "acc_cartoon", fansLevel: "50w+", position: "萌系IP+情绪收纳", persona: "可爱+情绪价值", matrix: "表情包,头像,周边,二创", freq: "周更", hitFeature: "强情绪符号+开放二创", titleTrick: "「XX人的一天」", learn: "用低成本情感代餐做陪伴，开放二创激活社群", diff: "我从小红书图文/条漫起家，重剧情而非盲盒", risk: "依赖单一形象，需拓展角色矩阵", createdAt: t },
+        { id: uid(), platform: "小红书", name: "黄油小熊", url: "", accId: "acc_cartoon", fansLevel: "200w+", position: "黄油色小熊治愈日常", persona: "呆萌+治愈动作", matrix: "短视频,表情包,壁纸", freq: "日更", hitFeature: "统一暖色+可循环治愈动作", titleTrick: "「被XX治愈的一刻」", learn: "固定视觉符号(暖黄)+可循环治愈动作", diff: "我需加入打工人吐槽反差", risk: "治愈同质化，需人设反差", createdAt: t },
+        { id: uid(), platform: "小红书", name: "闫不闲", url: "", accId: "acc_wenchuang", fansLevel: "50w+", position: "电子闺蜜人设+旧物改造", persona: "帮闺蜜解决问题的手作娘", matrix: "旧物改造,送礼,剧情", freq: "隔日更", hitFeature: "剧情+情感连接", titleTrick: "「帮闺蜜把XX改成XX」", learn: "电子闺蜜人设单月涨粉44万，情感连接>技术", diff: "我加用户共创/开箱，强化故事感", risk: "剧情过重易偏离产品", createdAt: t },
+        { id: uid(), platform: "小红书", name: "莫西爱手工", url: "", accId: "acc_wenchuang", fansLevel: "30w+", position: "高审美统一视觉文创种草", persona: "审美在线的设计师", matrix: "诞生记,好物种草,干货", freq: "日更", hitFeature: "统一视觉月涨粉12万", titleTrick: "「把XX做成贴纸」", learn: "封面即产品，审美即转化；统一滤镜+治愈文案", diff: "我的故事感更强，加共创", risk: "纯审美易疲劳，需内容深度", createdAt: t },
+        { id: uid(), platform: "小红书", name: "钩针诗人", url: "", accId: "acc_wenchuang", fansLevel: "10w+", position: "失败日记系列手作", persona: "记录真实失败的手作人", matrix: "失败日记,教程,干货", freq: "周更", hitFeature: "失败比完美更动人", titleTrick: "「起针总歪斜的第N天」", learn: "痛点共鸣+真实失败>完美作品，收藏率高", diff: "我加打样翻车但好看的真实记录", risk: "失败内容需有正向落点", createdAt: t },
+        { id: uid(), platform: "小红书", name: "红围巾的手帐日常", url: "", accId: "acc_vlog", fansLevel: "20w+", position: "固定红围巾视觉符号的vlog", persona: "手帐/日常记录者", matrix: "一日vlog,手帐,好物", freq: "日更", hitFeature: "视觉符号强化记忆(辨识度+70%)", titleTrick: "「戴着红围巾的XX天」", learn: "固定视觉符号(道具/配色)形成辨识度", diff: "我用卡通分身贴纸做视觉符号联动", risk: "符号需自然不刻意", createdAt: t },
+        { id: uid(), platform: "小红书", name: "轮椅上的旅行家", url: "", accId: "acc_vlog", fansLevel: "15w+", position: "残障人士环球攻略稀缺身份", persona: "坐轮椅的旅行博主", matrix: "旅行攻略,日常,观点", freq: "周更", hitFeature: "稀缺身份自带搜索流量", titleTrick: "「坐轮椅也能XX」", learn: "独特身份+差异化场景=稀缺搜索流量", diff: "我用创作者+卡通分身双身份", risk: "身份标签需真实不消费", createdAt: t },
+        { id: uid(), platform: "小红书", name: "治愈系小陈", url: "", accId: "acc_vlog", fansLevel: "30w+", position: "金句结尾治愈vlog", persona: "温柔治愈叙事者", matrix: "一日vlog,感悟,好物", freq: "日更", hitFeature: "标志性金句增强情感连接(评论率+60%)", titleTrick: "「就冲这句话关注」式金句", learn: "设计专属金句/口头禅，留存率>45%", diff: "我把金句和卡通IP结合", risk: "金句需真诚不鸡汤", createdAt: t }
+      ];
+    }
+    function researchBreakdowns() {
+      const t = TODAY();
+      const mk = (src, accId, acct, title, form, likes, collects, comments, views, hook, structure, hit, learn, adapt) =>
+        ({ id: uid(), source: src, accId: accId, platform: "小红书", account: acct, title: title, form: form, date: t, likes: likes, collects: collects, comments: comments, views: views, hook: hook, structure: structure, hitPoint: hit, learn: learn, myAdapt: adapt, by: "研究参考", createdAt: t });
+      return [
+        mk("对标", "acc_cartoon", "线条小狗", "当打工人的周一遇到线条小狗", "图文", 56000, 42000, 3100, 980000, "首图大字「周一，但小狗在躺平」+小狗瘫倒", "场景铺垫(周一焦虑)→小狗反应(躺平)→反转(小狗也摸鱼)→互动(你是哪种打工人)", "强共鸣+可收藏表情+评论区打工人接龙", "把抽象情绪具象成IP动作，系列化", "套我的卡通小人讲「周一静音崩溃」"),
+        mk("热帖", "acc_cartoon", "星星人", "成年人的崩溃都是静音的（9图条漫）", "图文", 128000, 96000, 8400, 2400000, "标题戳中「静音崩溃」情绪，首图大字+卡通哭脸", "9图：场景铺垫→情绪递进→反转治愈→互动提问", "强共鸣+可收藏+评论区故事接龙", "情绪标签要具体(静音/成年人)，别空泛", "套我的卡通小人讲「周一静音崩溃」"),
+        mk("对标", "acc_wenchuang", "闫不闲", "帮闺蜜把破伞改成汉服云肩", "短视频", 440000, 310000, 22000, 5200000, "开头3秒：破伞vs云肩反差", "闺蜜痛点→改造过程→成品惊艳→求建议", "情感连接+实用价值，互动暴涨", "剧情+情感>纯技术展示", "我的旧物改造+用户投稿"),
+        mk("热帖", "acc_wenchuang", "莫西爱手工", "3毛钱成本被闺蜜追着要链接", "短视频", 120000, 88000, 6400, 1500000, "标题数字反差「3毛钱」激发好奇", "成本曝光→制作过程→成品种草→求链接", "数字反差标题点击率+40%", "标题用数字反差激发好奇", "我的「9.9元做贴纸」系列"),
+        mk("对标", "acc_wenchuang", "钩针诗人", "起针总歪斜的第33天（失败日记）", "图文", 36000, 28000, 2100, 600000, "用「失败」代替「完美」做标题", "失败现场→自嘲→小技巧→征集", "真实失败比完美更动人，收藏率高", "痛点共鸣>完美展示", "我的打样翻车日记"),
+        mk("对标", "acc_vlog", "红围巾的手帐日常", "戴着红围巾的第100天vlog", "短视频", 88000, 52000, 4100, 1200000, "固定红围巾视觉符号一眼识别", "开场符号→一日记录→结尾金句", "视觉符号强化记忆，辨识度+70%", "固定视觉符号形成账号辨识度", "我的卡通分身贴纸做视觉符号"),
+        mk("热帖", "acc_vlog", "西装革履的吃货", "穿正装探店却用学生优惠", "短视频", 150000, 70000, 9800, 2100000, "反差：正装vs学生优惠", "人设铺垫→反差行为→幽默吐槽→互动", "反差感互动率暴涨200%", "适度反差让人设更立体", "我真人+卡通分身的反差合拍"),
+        mk("热帖", "acc_vlog", "凌晨5点的早餐摊", "凌晨5点的早餐摊，人间烟火", "短视频", 200000, 110000, 8600, 3000000, "治愈系日常+原声烟火气", "清晨场景→摊主对话→温情收尾", "真实原声+人间烟火最戳心", "保留生活原声提升沉浸感", "我的周末慢生活vlog加原声")
+      ];
+    }
+    function researchTopics() {
+      const t = TODAY();
+      const mk = (acc, dir, title, form, note, tags) => ({ id: uid(), accId: acc, direction: dir, titleDraft: title, form: form || "图文", status: "灵感", hook: "", relBreak: "", tags: tags || "", note: note || "", createdAt: t });
+      return [
+        mk("acc_cartoon", "摆烂共鸣", "打工人的100种摆烂瞬间（线条小狗式）", "条漫", "系列化情绪场景，易收藏", "摆烂,共鸣"),
+        mk("acc_cartoon", "人设", "我的IP人设辩论：搞钱派vs躺平派", "短视频", "强化人设反差", "人设,反差"),
+        mk("acc_cartoon", "二创互动", "把粉丝的破防瞬间画成条漫（征集）", "图文", "涨互动、攒素材", "互动,征集"),
+        mk("acc_wenchuang", "旧物改造", "帮粉丝把旧物改成文创（投稿改造）", "短视频", "真实+征集，互动高", "改造,征集"),
+        mk("acc_wenchuang", "诞生记", "9.9元做一张贴纸的全流程", "短视频", "成本反差，种草强", "成本,种草"),
+        mk("acc_wenchuang", "翻车实录", "打样翻车日记第N天", "图文", "真实感拉满", "真实,幕后"),
+        mk("acc_vlog", "视觉符号", "戴卡通徽章的第30天（视觉符号实验）", "短视频", "测试固定符号辨识度", "符号,人设"),
+        mk("acc_vlog", "真实人设", "穿睡衣出门被认出？素颜日常挑战", "短视频", "反精致，真实感", "真实,反差"),
+        mk("acc_vlog", "联动IP", "和卡通分身合拍：谁更社恐", "短视频", "两号互相导流", "联动,反差")
+      ];
+    }
+    const SEED_V = 2;
+    function applySeedMigrations() {
+      const v = parseInt(lsGet("wb_sm_seed_v") || "0", 10) || 0;
+      if (v >= SEED_V) return;
+      if (v < 2) {
+        lsSet(SK.rivals, R().concat(researchRivals()));
+        lsSet(SK.breakdowns, B().concat(researchBreakdowns()));
+        lsSet(SK.topics, T().concat(researchTopics()));
+      }
+      lsSet("wb_sm_seed_v", String(SEED_V));
+    }
     function ensureSeed() {
       if (!lsGet(SK.accounts)) lsSet(SK.accounts, seedAccounts());
       if (!lsGet(SK.topics)) lsSet(SK.topics, seedTopics());
       if (!lsGet(SK.breakdowns)) lsSet(SK.breakdowns, seedBreakdowns());
       if (!lsGet(SK.rivals)) lsSet(SK.rivals, seedRivals());
       if (!lsGet(SK.posts)) lsSet(SK.posts, []);
+      applySeedMigrations();
     }
     const A = () => lsGet(SK.accounts) || [];
     const P = () => lsGet(SK.posts) || [];
