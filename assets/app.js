@@ -7883,6 +7883,12 @@
     return { anns, market: market.slice(0, 12), related };
   }
 
+  // 股票模块独立的 escapeHtml（本 IIFE 作用域内此前未定义，renderStockNewsUI / renderAlerts 等依赖它）
+  function escapeHtml(s) {
+    if (s == null) return "";
+    return String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  }
+
   function renderStockNewsUI(list, tracked, cache) {
     const annMap = {};
     (cache.anns || []).forEach(a => { annMap[a.code] = a.anns; });
@@ -7918,23 +7924,23 @@
       ${(cache.market || []).map(newsItemHtml).join("")}
     </div>`;
 
-    list.innerHTML = stockBlocks + marketBlock;
+    // 无跟踪股时给出引导提示（市场快讯仍展示，卡片不空白）
+    const headBlock = tracked.length ? stockBlocks
+      : `<div class="st-news-row"><div class="tt">📡 实时新闻流</div><div class="sn">加入自选股或记录持仓后，这里会聚合「该股票的公告 + 相关新闻」。下方为市场实时快讯。</div></div>`;
+
+    list.innerHTML = headBlock + marketBlock;
   }
 
   async function renderNews() {
     const list = $("#stNewsList");
     if (!list) return;
     const tracked = trackedStocks();
-    if (!tracked.length) {
-      list.innerHTML = `<div class="st-news-row"><div class="tt">📡 实时新闻流</div><div class="sn">加入自选股或记录持仓后，这里会聚合相关公告与新闻</div></div>`;
-      return;
-    }
     // 缓存：5 分钟内复用，避免 30s 自动刷新反复拉接口
     const now = Date.now();
     let cache = null;
     try { const c = JSON.parse(localStorage.getItem(ST_NEWS_CACHE_KEY)); if (c && c.ts && now - c.ts < ST_NEWS_TTL) cache = c; } catch (e) {}
     if (!cache) {
-      list.innerHTML = `<div class="st-news-loading">🔄 正在拉取 ${tracked.length} 只跟踪股的公告与新闻…</div>`;
+      if (tracked.length) list.innerHTML = `<div class="st-news-loading">🔄 正在拉取 ${tracked.length} 只跟踪股的公告与新闻…</div>`;
       cache = await fetchStockNews(tracked);
       cache.ts = now;
       try { localStorage.setItem(ST_NEWS_CACHE_KEY, JSON.stringify(cache)); } catch (e) {}
@@ -9531,11 +9537,22 @@
     renderSentiment();
     renderReviews();
 
-    // 监听侧边栏切到 stock 时刷新
-    const link = document.querySelector('.menu a[data-page="stock"]');
-    if (link) link.addEventListener("click", () => {
-      setTimeout(() => { renderIndex(); renderBoards(); renderScreenResults(_screenResults); renderQuotes(); renderIndiSel(); renderTrades(); renderNews(); renderSentiment(); renderReviews(); }, 50);
+    // 切到 / 恢复股票页时的完整渲染（含公告与新闻）
+    // 用 wb:pagechange 而非菜单 click：restoreActivePage 直接 showPage 不会触发 click，
+    // 否则刷新后停在股票页时 renderNews 永不执行 → 公告与新闻卡片空白
+    const renderStockPageAll = () => {
+      const safe = (fn) => { try { fn(); } catch (e) { if (typeof console !== "undefined") console.warn("[stock] render skipped:", e && e.message); } };
+      setTimeout(() => {
+        safe(renderIndex); safe(renderBoards); safe(() => renderScreenResults(_screenResults));
+        safe(renderQuotes); safe(renderIndiSel); safe(renderTrades);
+        safe(renderNews); safe(renderSentiment); safe(renderReviews);
+      }, 50);
+    };
+    document.addEventListener("wb:pagechange", (e) => {
+      if (e && e.detail && e.detail.page === "stock") renderStockPageAll();
     });
+    // 启动即停在股票页（刷新恢复）：pagechange 在 bind 之前已派发，监听不到，主动补一次
+    try { if ((sessionStorage.getItem("jojo_active_page") || "desk") === "stock") renderStockPageAll(); } catch (e) {}
 
     // 每日复盘 / 市场情绪手动更新按钮：点击直接唤起 WorkBuddy，
     // 通过 Task 深链预填「更新每日复盘」，无需复制粘贴口令。
@@ -9575,6 +9592,7 @@
       if (!quotes.length) return;
       renderQuotes();
       if (trades && trades.length) renderTrades();   // 持仓实时盈亏刷新
+      if (!quotes.length && !(trades && trades.length)) return; // 无跟踪股则不刷新闻
       renderNews();                                  // 公告 + 新闻实时流（自带 5 分钟缓存）
     }, 30 * 1000);
   }
