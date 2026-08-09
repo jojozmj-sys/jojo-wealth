@@ -3,20 +3,20 @@
    - 页面/资源：网络优先（确保拿到最新版本），失败时回退缓存（离线可用）
    - 版本号变更时清理旧缓存，避免"看不到更新"
    - 更新版本号时只需改 CACHE_VERSION */
-const CACHE_VERSION = "jojo-v20260809b177";
+const CACHE_VERSION = "jojo-v20260809b178";
 const CACHE_NAME = CACHE_VERSION;
 const CORE_ASSETS = [
   "./",
   "./index.html",
   "./manifest.json",
-  "./assets/styles.css?v=20260809b177",
-  "./assets/app.js?v=20260809b177",
-  "./assets/data.js?v=20260809b177",
-  "./assets/config.js?v=20260809b177",
-  "./assets/sync.js?v=20260809b177",
-  "./assets/manual-sync.js?v=20260809b177",
-  "./assets/lunar.js?v=20260809b177",
-  "./assets/dog_icons.js?v=20260809b177"
+  "./assets/styles.css?v=20260809b178",
+  "./assets/app.js?v=20260809b178",
+  "./assets/data.js?v=20260809b178",
+  "./assets/config.js?v=20260809b178",
+  "./assets/sync.js?v=20260809b178",
+  "./assets/manual-sync.js?v=20260809b178",
+  "./assets/lunar.js?v=20260809b178",
+  "./assets/dog_icons.js?v=20260809b178"
 ];
 
 /* 安装：立刻接管（skipWaiting）+ 预缓存核心资源。
