@@ -97,7 +97,7 @@
     const target = document.getElementById("page-" + page);
     if (target) target.classList.add("active");
     pageTitle.textContent = title || document.querySelector(`[data-page="${page}"] .mlabel`)?.textContent || "";
-    /* 记住当前页：云端同步触发 location.reload 后能恢复到原页面（而非默认工作台） */
+    /* 记住当前页：云端同步软刷新 / 整页 reload 后均能恢复到原页面（而非默认工作台） */
     try { sessionStorage.setItem("jojo_active_page", page); } catch (e2) {}
     /* 派发页面切换事件，各模块可监听并清理状态（如停止语音） */
     document.dispatchEvent(new CustomEvent("wb:pagechange", { detail: { page } }));
@@ -116,6 +116,22 @@
       showPage(p, link.querySelector(".mlabel").textContent);
     } catch (e) {}
   }
+
+  /* 云端数据就地刷新：替代 sync.js 的整页 location.reload()
+   * 仅重新渲染当前页（派发 wb:pagechange，各模块重读 localStorage 并刷新展示），
+   * 不再重载整页 → 不重跑 846KB data.js、不重新进入工作台、不跳顶、不丢正在填的表单。 */
+  window.__wbSoftRefresh = function () {
+    var cur = null;
+    try { cur = sessionStorage.getItem("jojo_active_page"); } catch (e2) {}
+    if (!cur) {
+      var active = document.querySelector(".page.active");
+      cur = (active && active.id) ? active.id.replace(/^page-/, "") : "desk";
+    }
+    if (!cur) cur = "desk";
+    var y = window.scrollY || (document.scrollingElement && document.scrollingElement.scrollTop) || 0;
+    showPage(cur);
+    window.scrollTo(0, y);
+  };
 
   menu.addEventListener("click", e => {
     if (isEditMode) { e.preventDefault(); return; }

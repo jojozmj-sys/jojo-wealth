@@ -610,6 +610,11 @@
             try { sessionStorage.setItem(RELOAD_CAP_KEY, JSON.stringify({ n: rn + 1, t: now })); } catch (e) {}
             setTimeout(function () {
               if (window.__wbUiBusy) return;
+              /* 就地刷新当前页（替代整页 reload：不重新进入工作台、不重跑 data.js）
+               * 由 app.js 的 window.__wbSoftRefresh 完成；旧版 app.js 未提供时回退整页 reload。 */
+              if (typeof window.__wbSoftRefresh === "function") {
+                try { window.__wbSoftRefresh(); return; } catch (err) { console.warn("[wb-sync] 软刷新失败，回退整页 reload：", err); }
+              }
               location.reload();
             }, 400);
           }
