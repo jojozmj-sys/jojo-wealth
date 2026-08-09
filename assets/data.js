@@ -7501,8 +7501,8 @@ window.WORKBENCH_DATA = {
     ]
   },
   "stockScreen": {
-    "date": "2026-08-07",
-    "time": "15:10",
+    "date": "2026-08-09",
+    "time": "14:51",
     "note": "尾盘(14:30-15:00)整段时间涨幅未保持在3-5%",
     "count": 0,
     "results": []
