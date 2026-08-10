@@ -9596,21 +9596,43 @@
     if (reviewBtn) reviewBtn.addEventListener("click", openReviewCmd);
     if (sentimentBtn) sentimentBtn.addEventListener("click", openReviewCmd);
 
-    // 每 30 秒自动刷新一次自选股行情（保持最新涨跌），页面在后台时不打扰
-    setInterval(() => {
-      if (document.hidden) return;             // 页面在后台则不打扰
-      if (!document.getElementById("stQuoteList")) return;
-      renderIndex();                            // 指数概览持续刷新
-      renderBoards();                           // 行业板块持续刷新
-      renderScreenResults(_screenResults);      // 尾盘选股结果保持显示
-      renderSentiment();                        // 市场情绪保持显示
-      renderReviews();                          // 每日复盘保持显示
-      if (!quotes.length) return;
-      renderQuotes();
-      if (trades && trades.length) renderTrades();   // 持仓实时盈亏刷新
-      if (!quotes.length && !(trades && trades.length)) return; // 无跟踪股则不刷新闻
-      renderNews();                                  // 公告 + 新闻实时流（自带 5 分钟缓存）
-    }, 30 * 1000);
+    // A 股开盘时段（决定实时刷新节奏）：周一~周五 9:30-11:30 / 13:00-15:00
+    function isMarketOpen() {
+      const d = new Date();
+      const day = d.getDay();
+      if (day === 0 || day === 6) return false;        // 周末
+      const hm = d.getHours() * 60 + d.getMinutes();
+      const morning = hm >= 9 * 60 + 30 && hm <= 11 * 60 + 30;
+      const afternoon = hm >= 13 * 60 && hm <= 15 * 60;
+      return morning || afternoon;
+    }
+
+    // 行情 + 持仓交易建议 自动刷新：开盘期间 15s 实时、非开盘 60s，后台不打扰
+    // 此前用 setInterval + `if (!quotes.length) return`：只录持仓、没加自选股的用户
+    // 其交易建议（renderTrades 内）在自动路径里被提前 return 拦截 → 永远空白。
+    function scheduleStockTick() {
+      const open = isMarketOpen();
+      setTimeout(async () => {
+        try {
+          if (!document.hidden && document.getElementById("stQuoteList")) {
+            const safe = (fn) => { try { fn(); } catch (e) { if (typeof console !== "undefined") console.warn("[stock] tick:", e && e.message); } };
+            safe(renderIndex); safe(renderBoards); safe(() => renderScreenResults(_screenResults));
+            safe(renderSentiment); safe(renderReviews);
+            if (quotes && quotes.length) safe(renderQuotes);
+            // 关键修复：持仓有记录即刷新 盈亏 + 专业交易建议（不受是否有自选股影响）
+            if (trades && trades.length) {
+              renderTrades().catch(e => { if (typeof console !== "undefined") console.warn("[stock] trades tick:", e && e.message); });
+            }
+            if ((quotes && quotes.length) || (trades && trades.length)) safe(renderNews);  // 公告 + 新闻（自带 5 分钟缓存）
+          }
+        } catch (e) {
+          if (typeof console !== "undefined") console.warn("[stock] tick error:", e && e.message);
+        } finally {
+          scheduleStockTick();
+        }
+      }, open ? 15 * 1000 : 60 * 1000);
+    }
+    scheduleStockTick();
   }
 
   bind();
