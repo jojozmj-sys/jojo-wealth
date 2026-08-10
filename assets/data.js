@@ -1915,2315 +1915,2315 @@ window.WORKBENCH_DATA = {
     }
   ],
   "englishDaily": {
-  "label": "每日成人日常口语 + 必记词汇（4 周轮换）",
-  "updated": "2026-08-10",
-  "weeks": [
-    [
-      {
-        "theme": "职场寒暄 & 买咖啡",
-        "spoken": {
-          "title": "上班路上 / 点咖啡怎么说才自然",
-          "key": "I'll have a latte, please — and could you make it a little less sweet?",
-          "keyTrans": "请给我一杯拿铁——能稍微少甜一点吗？",
-          "keys": [
+    "label": "每日成人日常口语 + 必记词汇（4 周轮换）",
+    "updated": "2026-08-10",
+    "weeks": [
+      [
+        {
+          "theme": "职场寒暄 & 买咖啡",
+          "spoken": {
+            "title": "上班路上 / 点咖啡怎么说才自然",
+            "key": "I'll have a latte, please — and could you make it a little less sweet?",
+            "keyTrans": "请给我一杯拿铁——能稍微少甜一点吗？",
+            "keys": [
+              {
+                "en": "I'll have a latte, please — and could you make it a little less sweet?",
+                "cn": "请给我一杯拿铁——能稍微少甜一点吗？"
+              },
+              {
+                "en": "Can I get that with oat milk instead of regular milk? Sure, and make it a triple.",
+                "cn": "能帮我把普通牛奶换成燕麦奶吗？好，再来个三份浓缩的。"
+              },
+              {
+                "en": "Had I known how packed this place gets at noon, I'd have ordered ahead — the queue is already out the door.",
+                "cn": "早知道这家店中午会这么挤，我就提前下单了——队伍已经排到门外了。"
+              }
+            ],
+            "transcript": "A: What can I get for you?\nB: I'll have a latte, please — and could you make it a little less sweet?\nA: Sure, for here or to go?\nB: To go, thanks.\n\n【要点】上班族最常说 \"I'll have…\" 而不是 \"I want…\"，更礼貌自然。\"less sweet\" = 少糖；\"to go\" = 外带，\"for here\" = 堂食。",
+            "video": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
+            "platform": "演示"
+          },
+          "vocab": [
             {
-              "en": "I'll have a latte, please — and could you make it a little less sweet?",
-              "cn": "请给我一杯拿铁——能稍微少甜一点吗？"
+              "word": "order",
+              "phonetic": "/ˈɔːrdər/",
+              "senses": [
+                {
+                  "pos": "v.",
+                  "meaning": "点（餐/饮料）",
+                  "example": "I'll order a sandwich for lunch."
+                }
+              ]
             },
             {
-              "en": "Can I get that with oat milk instead of regular milk? Sure, and make it a triple.",
-              "cn": "能帮我把普通牛奶换成燕麦奶吗？好，再来个三份浓缩的。"
+              "word": "regular",
+              "phonetic": "/ˈreɡjələr/",
+              "senses": [
+                {
+                  "pos": "adj.",
+                  "meaning": "普通的、常规的",
+                  "example": "I'd like regular milk, not skim."
+                }
+              ]
             },
             {
-              "en": "Had I known how packed this place gets at noon, I'd have ordered ahead — the queue is already out the door.",
-              "cn": "早知道这家店中午会这么挤，我就提前下单了——队伍已经排到门外了。"
+              "word": "oat",
+              "phonetic": "/oʊt/",
+              "senses": [
+                {
+                  "pos": "n.",
+                  "meaning": "燕麦",
+                  "example": "Oat milk is popular these days."
+                }
+              ]
+            },
+            {
+              "word": "packed",
+              "phonetic": "/pækt/",
+              "senses": [
+                {
+                  "pos": "adj.",
+                  "meaning": "拥挤的、满是人的",
+                  "example": "The café is packed at noon."
+                }
+              ]
+            },
+            {
+              "word": "ahead",
+              "phonetic": "/əˈhed/",
+              "senses": [
+                {
+                  "pos": "adv.",
+                  "meaning": "提前、在前方",
+                  "example": "Order ahead to skip the line."
+                }
+              ]
             }
-          ],
-          "transcript": "A: What can I get for you?\nB: I'll have a latte, please — and could you make it a little less sweet?\nA: Sure, for here or to go?\nB: To go, thanks.\n\n【要点】上班族最常说 \"I'll have…\" 而不是 \"I want…\"，更礼貌自然。\"less sweet\" = 少糖；\"to go\" = 外带，\"for here\" = 堂食。",
-          "video": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
-          "platform": "演示"
+          ]
         },
-        "vocab": [
-          {
-            "word": "order",
-            "phonetic": "/ˈɔːrdər/",
-            "senses": [
+        {
+          "theme": "餐厅点餐",
+          "spoken": {
+            "title": "进餐厅怎么自然点单、要调料、买单",
+            "key": "Could we get the menu, and a glass of water to start?",
+            "keyTrans": "能先给我们菜单，再来杯水吗？",
+            "keys": [
               {
-                "pos": "v.",
-                "meaning": "点（餐/饮料）",
-                "example": "I'll order a sandwich for lunch."
+                "en": "Could we get the menu, and a glass of water to start?",
+                "cn": "能先给我们菜单，再来杯水吗？"
+              },
+              {
+                "en": "What do you recommend that's not too spicy?",
+                "cn": "有什么不太辣的你们推荐的？"
+              },
+              {
+                "en": "Could we have the bill, please? We're in a bit of a rush.",
+                "cn": "麻烦买单好吗？我们有点赶时间。"
               }
-            ]
+            ],
+            "transcript": "A: Welcome! Table for two?\nB: Yes, could we get the menu, and a glass of water to start?\nA: Sure, I'll be right back.\n\n【要点】\"Could we get…\" 比 \"Give me…\" 礼貌；\"the bill\" = 账单（美式也常用 \"check\"）；\"in a rush\" = 赶时间。",
+            "video": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
+            "platform": "演示"
           },
-          {
-            "word": "regular",
-            "phonetic": "/ˈreɡjələr/",
-            "senses": [
-              {
-                "pos": "adj.",
-                "meaning": "普通的、常规的",
-                "example": "I'd like regular milk, not skim."
-              }
-            ]
-          },
-          {
-            "word": "oat",
-            "phonetic": "/oʊt/",
-            "senses": [
-              {
-                "pos": "n.",
-                "meaning": "燕麦",
-                "example": "Oat milk is popular these days."
-              }
-            ]
-          },
-          {
-            "word": "packed",
-            "phonetic": "/pækt/",
-            "senses": [
-              {
-                "pos": "adj.",
-                "meaning": "拥挤的、满是人的",
-                "example": "The café is packed at noon."
-              }
-            ]
-          },
-          {
-            "word": "ahead",
-            "phonetic": "/əˈhed/",
-            "senses": [
-              {
-                "pos": "adv.",
-                "meaning": "提前、在前方",
-                "example": "Order ahead to skip the line."
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "theme": "餐厅点餐",
-        "spoken": {
-          "title": "进餐厅怎么自然点单、要调料、买单",
-          "key": "Could we get the menu, and a glass of water to start?",
-          "keyTrans": "能先给我们菜单，再来杯水吗？",
-          "keys": [
+          "vocab": [
             {
-              "en": "Could we get the menu, and a glass of water to start?",
-              "cn": "能先给我们菜单，再来杯水吗？"
+              "word": "menu",
+              "phonetic": "/ˈmenjuː/",
+              "senses": [
+                {
+                  "pos": "n.",
+                  "meaning": "菜单",
+                  "example": "Can I see the menu, please?"
+                }
+              ]
             },
             {
-              "en": "What do you recommend that's not too spicy?",
-              "cn": "有什么不太辣的你们推荐的？"
+              "word": "recommend",
+              "phonetic": "/ˌrekəˈmend/",
+              "senses": [
+                {
+                  "pos": "v.",
+                  "meaning": "推荐",
+                  "example": "Which dish do you recommend?"
+                }
+              ]
             },
             {
-              "en": "Could we have the bill, please? We're in a bit of a rush.",
-              "cn": "麻烦买单好吗？我们有点赶时间。"
+              "word": "spicy",
+              "phonetic": "/ˈspaɪsi/",
+              "senses": [
+                {
+                  "pos": "adj.",
+                  "meaning": "辣的",
+                  "example": "I can't eat anything too spicy."
+                }
+              ]
+            },
+            {
+              "word": "bill",
+              "phonetic": "/bɪl/",
+              "senses": [
+                {
+                  "pos": "n.",
+                  "meaning": "账单",
+                  "example": "Could we have the bill, please?"
+                }
+              ]
+            },
+            {
+              "word": "rush",
+              "phonetic": "/rʌʃ/",
+              "senses": [
+                {
+                  "pos": "n.",
+                  "meaning": "匆忙、赶时间",
+                  "example": "We're in a bit of a rush."
+                }
+              ]
             }
-          ],
-          "transcript": "A: Welcome! Table for two?\nB: Yes, could we get the menu, and a glass of water to start?\nA: Sure, I'll be right back.\n\n【要点】\"Could we get…\" 比 \"Give me…\" 礼貌；\"the bill\" = 账单（美式也常用 \"check\"）；\"in a rush\" = 赶时间。",
-          "video": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
-          "platform": "演示"
+          ]
         },
-        "vocab": [
-          {
-            "word": "menu",
-            "phonetic": "/ˈmenjuː/",
-            "senses": [
+        {
+          "theme": "购物退换",
+          "spoken": {
+            "title": "买错尺码、要退货怎么说",
+            "key": "I'd like to return this — it doesn't fit and I have the receipt.",
+            "keyTrans": "我想退这件——不合身，而且我有小票。",
+            "keys": [
               {
-                "pos": "n.",
-                "meaning": "菜单",
-                "example": "Can I see the menu, please?"
+                "en": "I'd like to return this — it doesn't fit and I have the receipt.",
+                "cn": "我想退这件——不合身，而且我有小票。"
+              },
+              {
+                "en": "Do you offer exchanges, or store credit only?",
+                "cn": "你们可以换货吗，还是只能退到储值卡？"
+              },
+              {
+                "en": "Could I try a smaller size before I decide?",
+                "cn": "我决定前能先试一件小一号的吗？"
               }
-            ]
+            ],
+            "transcript": "A: How can I help?\nB: I'd like to return this — it doesn't fit and I have the receipt.\nA: No problem, I'll process that for you.\n\n【要点】\"it doesn't fit\" = 不合身；\"receipt\" = 小票；\"exchange\" = 换货；\"store credit\" = 店铺储值额度。",
+            "video": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
+            "platform": "演示"
           },
-          {
-            "word": "recommend",
-            "phonetic": "/ˌrekəˈmend/",
-            "senses": [
-              {
-                "pos": "v.",
-                "meaning": "推荐",
-                "example": "Which dish do you recommend?"
-              }
-            ]
-          },
-          {
-            "word": "spicy",
-            "phonetic": "/ˈspaɪsi/",
-            "senses": [
-              {
-                "pos": "adj.",
-                "meaning": "辣的",
-                "example": "I can't eat anything too spicy."
-              }
-            ]
-          },
-          {
-            "word": "bill",
-            "phonetic": "/bɪl/",
-            "senses": [
-              {
-                "pos": "n.",
-                "meaning": "账单",
-                "example": "Could we have the bill, please?"
-              }
-            ]
-          },
-          {
-            "word": "rush",
-            "phonetic": "/rʌʃ/",
-            "senses": [
-              {
-                "pos": "n.",
-                "meaning": "匆忙、赶时间",
-                "example": "We're in a bit of a rush."
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "theme": "购物退换",
-        "spoken": {
-          "title": "买错尺码、要退货怎么说",
-          "key": "I'd like to return this — it doesn't fit and I have the receipt.",
-          "keyTrans": "我想退这件——不合身，而且我有小票。",
-          "keys": [
+          "vocab": [
             {
-              "en": "I'd like to return this — it doesn't fit and I have the receipt.",
-              "cn": "我想退这件——不合身，而且我有小票。"
+              "word": "return",
+              "phonetic": "/rɪˈtɜːrn/",
+              "senses": [
+                {
+                  "pos": "v.",
+                  "meaning": "退货",
+                  "example": "Can I return this without a receipt?"
+                }
+              ]
             },
             {
-              "en": "Do you offer exchanges, or store credit only?",
-              "cn": "你们可以换货吗，还是只能退到储值卡？"
+              "word": "fit",
+              "phonetic": "/fɪt/",
+              "senses": [
+                {
+                  "pos": "v.",
+                  "meaning": "合身",
+                  "example": "These shoes don't fit me."
+                }
+              ]
             },
             {
-              "en": "Could I try a smaller size before I decide?",
-              "cn": "我决定前能先试一件小一号的吗？"
+              "word": "receipt",
+              "phonetic": "/rɪˈsiːt/",
+              "senses": [
+                {
+                  "pos": "n.",
+                  "meaning": "收据、小票",
+                  "example": "Keep your receipt just in case."
+                }
+              ]
+            },
+            {
+              "word": "exchange",
+              "phonetic": "/ɪksˈtʃeɪndʒ/",
+              "senses": [
+                {
+                  "pos": "v.",
+                  "meaning": "交换、换货",
+                  "example": "I'd like to exchange it for a larger size."
+                }
+              ]
+            },
+            {
+              "word": "credit",
+              "phonetic": "/ˈkredɪt/",
+              "senses": [
+                {
+                  "pos": "n.",
+                  "meaning": "信用额、储值",
+                  "example": "We can give you store credit."
+                }
+              ]
             }
-          ],
-          "transcript": "A: How can I help?\nB: I'd like to return this — it doesn't fit and I have the receipt.\nA: No problem, I'll process that for you.\n\n【要点】\"it doesn't fit\" = 不合身；\"receipt\" = 小票；\"exchange\" = 换货；\"store credit\" = 店铺储值额度。",
-          "video": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
-          "platform": "演示"
+          ]
         },
-        "vocab": [
-          {
-            "word": "return",
-            "phonetic": "/rɪˈtɜːrn/",
-            "senses": [
+        {
+          "theme": "电话沟通",
+          "spoken": {
+            "title": "接电话、留口信、转接",
+            "key": "Could you take a message? She's not at her desk right now.",
+            "keyTrans": "能帮忙留个口信吗？她现在不在座位上。",
+            "keys": [
               {
-                "pos": "v.",
-                "meaning": "退货",
-                "example": "Can I return this without a receipt?"
+                "en": "Could you take a message? She's not at her desk right now.",
+                "cn": "能帮忙留个口信吗？她现在不在座位上。"
+              },
+              {
+                "en": "May I ask who's calling, and your number?",
+                "cn": "请问您是哪位，方便留个电话吗？"
+              },
+              {
+                "en": "I'll have her call you back as soon as she's free.",
+                "cn": "她一有空我就让她回您电话。"
               }
-            ]
+            ],
+            "transcript": "A: Hello, may I speak to Lisa?\nB: She's not at her desk — could you take a message?\nA: Sure, tell her Tom called.\n\n【要点】\"take a message\" = 记口信；\"call you back\" = 回电话；\"at one's desk\" = 在工位。",
+            "video": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
+            "platform": "演示"
           },
-          {
-            "word": "fit",
-            "phonetic": "/fɪt/",
-            "senses": [
-              {
-                "pos": "v.",
-                "meaning": "合身",
-                "example": "These shoes don't fit me."
-              }
-            ]
-          },
-          {
-            "word": "receipt",
-            "phonetic": "/rɪˈsiːt/",
-            "senses": [
-              {
-                "pos": "n.",
-                "meaning": "收据、小票",
-                "example": "Keep your receipt just in case."
-              }
-            ]
-          },
-          {
-            "word": "exchange",
-            "phonetic": "/ɪksˈtʃeɪndʒ/",
-            "senses": [
-              {
-                "pos": "v.",
-                "meaning": "交换、换货",
-                "example": "I'd like to exchange it for a larger size."
-              }
-            ]
-          },
-          {
-            "word": "credit",
-            "phonetic": "/ˈkredɪt/",
-            "senses": [
-              {
-                "pos": "n.",
-                "meaning": "信用额、储值",
-                "example": "We can give you store credit."
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "theme": "电话沟通",
-        "spoken": {
-          "title": "接电话、留口信、转接",
-          "key": "Could you take a message? She's not at her desk right now.",
-          "keyTrans": "能帮忙留个口信吗？她现在不在座位上。",
-          "keys": [
+          "vocab": [
             {
-              "en": "Could you take a message? She's not at her desk right now.",
-              "cn": "能帮忙留个口信吗？她现在不在座位上。"
+              "word": "message",
+              "phonetic": "/ˈmesɪdʒ/",
+              "senses": [
+                {
+                  "pos": "n.",
+                  "meaning": "口信、消息",
+                  "example": "Could you take a message?"
+                }
+              ]
             },
             {
-              "en": "May I ask who's calling, and your number?",
-              "cn": "请问您是哪位，方便留个电话吗？"
+              "word": "desk",
+              "phonetic": "/desk/",
+              "senses": [
+                {
+                  "pos": "n.",
+                  "meaning": "办公桌、工位",
+                  "example": "She's not at her desk."
+                }
+              ]
             },
             {
-              "en": "I'll have her call you back as soon as she's free.",
-              "cn": "她一有空我就让她回您电话。"
+              "word": "call back",
+              "phonetic": "/ˈkɔːl bæk/",
+              "senses": [
+                {
+                  "pos": "phr.",
+                  "meaning": "回电话",
+                  "example": "I'll call you back later."
+                }
+              ]
+            },
+            {
+              "word": "number",
+              "phonetic": "/ˈnʌmbər/",
+              "senses": [
+                {
+                  "pos": "n.",
+                  "meaning": "号码",
+                  "example": "What's your number?"
+                }
+              ]
+            },
+            {
+              "word": "free",
+              "phonetic": "/friː/",
+              "senses": [
+                {
+                  "pos": "adj.",
+                  "meaning": "有空的",
+                  "example": "Call me when you're free."
+                }
+              ]
             }
-          ],
-          "transcript": "A: Hello, may I speak to Lisa?\nB: She's not at her desk — could you take a message?\nA: Sure, tell her Tom called.\n\n【要点】\"take a message\" = 记口信；\"call you back\" = 回电话；\"at one's desk\" = 在工位。",
-          "video": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
-          "platform": "演示"
+          ]
         },
-        "vocab": [
-          {
-            "word": "message",
-            "phonetic": "/ˈmesɪdʒ/",
-            "senses": [
+        {
+          "theme": "旅行出行",
+          "spoken": {
+            "title": "问路、买票、赶车",
+            "key": "Excuse me, which platform does the train to the airport leave from?",
+            "keyTrans": "打扰一下，去机场的火车从哪个站台出发？",
+            "keys": [
               {
-                "pos": "n.",
-                "meaning": "口信、消息",
-                "example": "Could you take a message?"
+                "en": "Excuse me, which platform does the train to the airport leave from?",
+                "cn": "打扰一下，去机场的火车从哪个站台出发？"
+              },
+              {
+                "en": "Is this seat taken, or is it free?",
+                "cn": "这个座位有人坐吗，还是空的？"
+              },
+              {
+                "en": "We'd better hurry — the gate closes in ten minutes.",
+                "cn": "我们得抓紧了——登机口十分钟后关闭。"
               }
-            ]
+            ],
+            "transcript": "A: Excuse me, which platform for the airport train?\nB: Platform 4, but it leaves in five minutes.\nA: Thanks, we'd better hurry!\n\n【要点】\"platform\" = 站台；\"gate\" = 登机口/闸口；\"hurry\" = 快点。",
+            "video": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4",
+            "platform": "演示"
           },
-          {
-            "word": "desk",
-            "phonetic": "/desk/",
-            "senses": [
-              {
-                "pos": "n.",
-                "meaning": "办公桌、工位",
-                "example": "She's not at her desk."
-              }
-            ]
-          },
-          {
-            "word": "call back",
-            "phonetic": "/ˈkɔːl bæk/",
-            "senses": [
-              {
-                "pos": "phr.",
-                "meaning": "回电话",
-                "example": "I'll call you back later."
-              }
-            ]
-          },
-          {
-            "word": "number",
-            "phonetic": "/ˈnʌmbər/",
-            "senses": [
-              {
-                "pos": "n.",
-                "meaning": "号码",
-                "example": "What's your number?"
-              }
-            ]
-          },
-          {
-            "word": "free",
-            "phonetic": "/friː/",
-            "senses": [
-              {
-                "pos": "adj.",
-                "meaning": "有空的",
-                "example": "Call me when you're free."
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "theme": "旅行出行",
-        "spoken": {
-          "title": "问路、买票、赶车",
-          "key": "Excuse me, which platform does the train to the airport leave from?",
-          "keyTrans": "打扰一下，去机场的火车从哪个站台出发？",
-          "keys": [
+          "vocab": [
             {
-              "en": "Excuse me, which platform does the train to the airport leave from?",
-              "cn": "打扰一下，去机场的火车从哪个站台出发？"
+              "word": "platform",
+              "phonetic": "/ˈplætfɔːrm/",
+              "senses": [
+                {
+                  "pos": "n.",
+                  "meaning": "站台",
+                  "example": "Which platform is it?"
+                }
+              ]
             },
             {
-              "en": "Is this seat taken, or is it free?",
-              "cn": "这个座位有人坐吗，还是空的？"
+              "word": "airport",
+              "phonetic": "/ˈerpɔːrt/",
+              "senses": [
+                {
+                  "pos": "n.",
+                  "meaning": "机场",
+                  "example": "I'm heading to the airport."
+                }
+              ]
             },
             {
-              "en": "We'd better hurry — the gate closes in ten minutes.",
-              "cn": "我们得抓紧了——登机口十分钟后关闭。"
+              "word": "hurry",
+              "phonetic": "/ˈhɜːri/",
+              "senses": [
+                {
+                  "pos": "v.",
+                  "meaning": "赶紧、匆忙",
+                  "example": "We'd better hurry."
+                }
+              ]
+            },
+            {
+              "word": "gate",
+              "phonetic": "/ɡeɪt/",
+              "senses": [
+                {
+                  "pos": "n.",
+                  "meaning": "登机口、闸口",
+                  "example": "The gate closes soon."
+                }
+              ]
+            },
+            {
+              "word": "taken",
+              "phonetic": "/ˈteɪkən/",
+              "senses": [
+                {
+                  "pos": "adj.",
+                  "meaning": "被占用的",
+                  "example": "Is this seat taken?"
+                }
+              ]
             }
-          ],
-          "transcript": "A: Excuse me, which platform for the airport train?\nB: Platform 4, but it leaves in five minutes.\nA: Thanks, we'd better hurry!\n\n【要点】\"platform\" = 站台；\"gate\" = 登机口/闸口；\"hurry\" = 快点。",
-          "video": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4",
-          "platform": "演示"
+          ]
         },
-        "vocab": [
-          {
-            "word": "platform",
-            "phonetic": "/ˈplætfɔːrm/",
-            "senses": [
+        {
+          "theme": "职场沟通",
+          "spoken": {
+            "title": "开会、对齐进度、提请求",
+            "key": "Can we sync on this before the deadline, or should I just proceed?",
+            "keyTrans": "我们能在截止前先对齐一下吗，还是我直接推进？",
+            "keys": [
               {
-                "pos": "n.",
-                "meaning": "站台",
-                "example": "Which platform is it?"
+                "en": "Can we sync on this before the deadline, or should I just proceed?",
+                "cn": "我们能在截止前先对齐一下吗，还是我直接推进？"
+              },
+              {
+                "en": "I'll loop you in on the email so you're in the loop.",
+                "cn": "我把你加进邮件，让你也知情。"
+              },
+              {
+                "en": "Do you mind if we move the meeting up by half an hour?",
+                "cn": "我们把会议提前半小时你介意吗？"
               }
-            ]
+            ],
+            "transcript": "A: Can we sync before Friday's deadline?\nB: Sure — I'll loop you in on the thread.\nA: Great, thanks for the quick turnaround.\n\n【要点】\"sync\" = 对齐/同步；\"loop someone in\" = 把某人拉进沟通；\"turnaround\" = 周转/交付速度。",
+            "video": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+            "platform": "演示"
           },
-          {
-            "word": "airport",
-            "phonetic": "/ˈerpɔːrt/",
-            "senses": [
-              {
-                "pos": "n.",
-                "meaning": "机场",
-                "example": "I'm heading to the airport."
-              }
-            ]
-          },
-          {
-            "word": "hurry",
-            "phonetic": "/ˈhɜːri/",
-            "senses": [
-              {
-                "pos": "v.",
-                "meaning": "赶紧、匆忙",
-                "example": "We'd better hurry."
-              }
-            ]
-          },
-          {
-            "word": "gate",
-            "phonetic": "/ɡeɪt/",
-            "senses": [
-              {
-                "pos": "n.",
-                "meaning": "登机口、闸口",
-                "example": "The gate closes soon."
-              }
-            ]
-          },
-          {
-            "word": "taken",
-            "phonetic": "/ˈteɪkən/",
-            "senses": [
-              {
-                "pos": "adj.",
-                "meaning": "被占用的",
-                "example": "Is this seat taken?"
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "theme": "职场沟通",
-        "spoken": {
-          "title": "开会、对齐进度、提请求",
-          "key": "Can we sync on this before the deadline, or should I just proceed?",
-          "keyTrans": "我们能在截止前先对齐一下吗，还是我直接推进？",
-          "keys": [
+          "vocab": [
             {
-              "en": "Can we sync on this before the deadline, or should I just proceed?",
-              "cn": "我们能在截止前先对齐一下吗，还是我直接推进？"
+              "word": "sync",
+              "phonetic": "/sɪŋk/",
+              "senses": [
+                {
+                  "pos": "v.",
+                  "meaning": "对齐、同步",
+                  "example": "Let's sync on this tomorrow."
+                }
+              ]
             },
             {
-              "en": "I'll loop you in on the email so you're in the loop.",
-              "cn": "我把你加进邮件，让你也知情。"
+              "word": "deadline",
+              "phonetic": "/ˈdedlaɪn/",
+              "senses": [
+                {
+                  "pos": "n.",
+                  "meaning": "截止日期",
+                  "example": "The deadline is Friday."
+                }
+              ]
             },
             {
-              "en": "Do you mind if we move the meeting up by half an hour?",
-              "cn": "我们把会议提前半小时你介意吗？"
+              "word": "proceed",
+              "phonetic": "/proʊˈsiːd/",
+              "senses": [
+                {
+                  "pos": "v.",
+                  "meaning": "推进、继续",
+                  "example": "Should I proceed as planned?"
+                }
+              ]
+            },
+            {
+              "word": "meeting",
+              "phonetic": "/ˈmiːtɪŋ/",
+              "senses": [
+                {
+                  "pos": "n.",
+                  "meaning": "会议",
+                  "example": "Can we move the meeting?"
+                }
+              ]
+            },
+            {
+              "word": "thread",
+              "phonetic": "/θred/",
+              "senses": [
+                {
+                  "pos": "n.",
+                  "meaning": "（邮件）对话串",
+                  "example": "I'll loop you into the thread."
+                }
+              ]
             }
-          ],
-          "transcript": "A: Can we sync before Friday's deadline?\nB: Sure — I'll loop you in on the thread.\nA: Great, thanks for the quick turnaround.\n\n【要点】\"sync\" = 对齐/同步；\"loop someone in\" = 把某人拉进沟通；\"turnaround\" = 周转/交付速度。",
-          "video": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
-          "platform": "演示"
+          ]
         },
-        "vocab": [
-          {
-            "word": "sync",
-            "phonetic": "/sɪŋk/",
-            "senses": [
+        {
+          "theme": "日常闲聊",
+          "spoken": {
+            "title": "和邻居/同事破冰寒暄",
+            "key": "So, how long have you been living around here?",
+            "keyTrans": "对了，你在这儿住多久了？",
+            "keys": [
               {
-                "pos": "v.",
-                "meaning": "对齐、同步",
-                "example": "Let's sync on this tomorrow."
+                "en": "So, how long have you been living around here?",
+                "cn": "对了，你在这儿住多久了？"
+              },
+              {
+                "en": "The weather's been wild lately, hasn't it?",
+                "cn": "最近天气真够折腾的，是不是？"
+              },
+              {
+                "en": "Anyway, it was great running into you — we should grab coffee sometime.",
+                "cn": "总之，碰到你真高兴——有空咱们喝杯咖啡。"
               }
-            ]
+            ],
+            "transcript": "A: Hi! I don't think we've met — I'm Jo.\nB: Nice to meet you, I just moved in next door.\nA: Oh, how long have you been here?\n\n【要点】\"run into someone\" = 偶遇；\"grab coffee\" = 约喝咖啡（社交邀约）；\"lately\" = 最近。",
+            "video": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
+            "platform": "演示"
           },
-          {
-            "word": "deadline",
-            "phonetic": "/ˈdedlaɪn/",
-            "senses": [
-              {
-                "pos": "n.",
-                "meaning": "截止日期",
-                "example": "The deadline is Friday."
-              }
-            ]
-          },
-          {
-            "word": "proceed",
-            "phonetic": "/proʊˈsiːd/",
-            "senses": [
-              {
-                "pos": "v.",
-                "meaning": "推进、继续",
-                "example": "Should I proceed as planned?"
-              }
-            ]
-          },
-          {
-            "word": "meeting",
-            "phonetic": "/ˈmiːtɪŋ/",
-            "senses": [
-              {
-                "pos": "n.",
-                "meaning": "会议",
-                "example": "Can we move the meeting?"
-              }
-            ]
-          },
-          {
-            "word": "thread",
-            "phonetic": "/θred/",
-            "senses": [
-              {
-                "pos": "n.",
-                "meaning": "（邮件）对话串",
-                "example": "I'll loop you into the thread."
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "theme": "日常闲聊",
-        "spoken": {
-          "title": "和邻居/同事破冰寒暄",
-          "key": "So, how long have you been living around here?",
-          "keyTrans": "对了，你在这儿住多久了？",
-          "keys": [
+          "vocab": [
             {
-              "en": "So, how long have you been living around here?",
-              "cn": "对了，你在这儿住多久了？"
+              "word": "around",
+              "phonetic": "/əˈraʊnd/",
+              "senses": [
+                {
+                  "pos": "adv.",
+                  "meaning": "在附近",
+                  "example": "Have you lived around here long?"
+                }
+              ]
             },
             {
-              "en": "The weather's been wild lately, hasn't it?",
-              "cn": "最近天气真够折腾的，是不是？"
+              "word": "weather",
+              "phonetic": "/ˈweðər/",
+              "senses": [
+                {
+                  "pos": "n.",
+                  "meaning": "天气",
+                  "example": "The weather's been wild."
+                }
+              ]
             },
             {
-              "en": "Anyway, it was great running into you — we should grab coffee sometime.",
-              "cn": "总之，碰到你真高兴——有空咱们喝杯咖啡。"
+              "word": "lately",
+              "phonetic": "/ˈleɪtli/",
+              "senses": [
+                {
+                  "pos": "adv.",
+                  "meaning": "最近",
+                  "example": "I've been busy lately."
+                }
+              ]
+            },
+            {
+              "word": "grab",
+              "phonetic": "/ɡræb/",
+              "senses": [
+                {
+                  "pos": "v.",
+                  "meaning": "顺手拿、抽空做",
+                  "example": "Let's grab coffee."
+                }
+              ]
+            },
+            {
+              "word": "sometime",
+              "phonetic": "/ˈsʌmtaɪm/",
+              "senses": [
+                {
+                  "pos": "adv.",
+                  "meaning": "改天、有空时",
+                  "example": "We should meet sometime."
+                }
+              ]
             }
-          ],
-          "transcript": "A: Hi! I don't think we've met — I'm Jo.\nB: Nice to meet you, I just moved in next door.\nA: Oh, how long have you been here?\n\n【要点】\"run into someone\" = 偶遇；\"grab coffee\" = 约喝咖啡（社交邀约）；\"lately\" = 最近。",
-          "video": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
-          "platform": "演示"
-        },
-        "vocab": [
-          {
-            "word": "around",
-            "phonetic": "/əˈraʊnd/",
-            "senses": [
+          ]
+        }
+      ],
+      [
+        {
+          "theme": "租房看房",
+          "spoken": {
+            "title": "约看房、问条件、谈租期",
+            "key": "Is the rent inclusive of utilities, or do I pay those separately?",
+            "keyTrans": "房租包水电吗，还是这些要另外付？",
+            "keys": [
               {
-                "pos": "adv.",
-                "meaning": "在附近",
-                "example": "Have you lived around here long?"
+                "en": "Is the rent inclusive of utilities, or do I pay those separately?",
+                "cn": "房租包水电吗，还是这些要另外付？"
+              },
+              {
+                "en": "How long is the lease, and is a deposit required?",
+                "cn": "租期多久，需要押金吗？"
+              },
+              {
+                "en": "Would it be okay to visit again this weekend with my roommate?",
+                "cn": "这周末我带室友再来看一次可以吗？"
               }
-            ]
+            ],
+            "transcript": "A: The rent is $1,200 a month.\nB: Is it inclusive of utilities?\nA: Water's included; electricity is separate.\n\n【要点】\"inclusive of\" = 包含；\"utilities\" = 水电网等公共费用；\"lease\" = 租约；\"deposit\" = 押金。",
+            "video": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4",
+            "platform": "演示"
           },
-          {
-            "word": "weather",
-            "phonetic": "/ˈweðər/",
-            "senses": [
-              {
-                "pos": "n.",
-                "meaning": "天气",
-                "example": "The weather's been wild."
-              }
-            ]
-          },
-          {
-            "word": "lately",
-            "phonetic": "/ˈleɪtli/",
-            "senses": [
-              {
-                "pos": "adv.",
-                "meaning": "最近",
-                "example": "I've been busy lately."
-              }
-            ]
-          },
-          {
-            "word": "grab",
-            "phonetic": "/ɡræb/",
-            "senses": [
-              {
-                "pos": "v.",
-                "meaning": "顺手拿、抽空做",
-                "example": "Let's grab coffee."
-              }
-            ]
-          },
-          {
-            "word": "sometime",
-            "phonetic": "/ˈsʌmtaɪm/",
-            "senses": [
-              {
-                "pos": "adv.",
-                "meaning": "改天、有空时",
-                "example": "We should meet sometime."
-              }
-            ]
-          }
-        ]
-      }
-    ],
-    [
-      {
-        "theme": "租房看房",
-        "spoken": {
-          "title": "约看房、问条件、谈租期",
-          "key": "Is the rent inclusive of utilities, or do I pay those separately?",
-          "keyTrans": "房租包水电吗，还是这些要另外付？",
-          "keys": [
+          "vocab": [
             {
-              "en": "Is the rent inclusive of utilities, or do I pay those separately?",
-              "cn": "房租包水电吗，还是这些要另外付？"
+              "word": "rent",
+              "phonetic": "/rent/",
+              "senses": [
+                {
+                  "pos": "n.",
+                  "meaning": "房租",
+                  "example": "How much is the rent?"
+                }
+              ]
             },
             {
-              "en": "How long is the lease, and is a deposit required?",
-              "cn": "租期多久，需要押金吗？"
+              "word": "inclusive",
+              "phonetic": "/ɪnˈkluːsɪv/",
+              "senses": [
+                {
+                  "pos": "adj.",
+                  "meaning": "包含的",
+                  "example": "Is it inclusive of bills?"
+                }
+              ]
             },
             {
-              "en": "Would it be okay to visit again this weekend with my roommate?",
-              "cn": "这周末我带室友再来看一次可以吗？"
+              "word": "utilities",
+              "phonetic": "/juːˈtɪlətiz/",
+              "senses": [
+                {
+                  "pos": "n.",
+                  "meaning": "公用事业费（水电网）",
+                  "example": "Utilities are extra."
+                }
+              ]
+            },
+            {
+              "word": "lease",
+              "phonetic": "/liːs/",
+              "senses": [
+                {
+                  "pos": "n.",
+                  "meaning": "租约",
+                  "example": "The lease is one year."
+                }
+              ]
+            },
+            {
+              "word": "deposit",
+              "phonetic": "/dɪˈpɑːzɪt/",
+              "senses": [
+                {
+                  "pos": "n.",
+                  "meaning": "押金",
+                  "example": "We need a deposit."
+                }
+              ]
             }
-          ],
-          "transcript": "A: The rent is $1,200 a month.\nB: Is it inclusive of utilities?\nA: Water's included; electricity is separate.\n\n【要点】\"inclusive of\" = 包含；\"utilities\" = 水电网等公共费用；\"lease\" = 租约；\"deposit\" = 押金。",
-          "video": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4",
-          "platform": "演示"
+          ]
         },
-        "vocab": [
-          {
-            "word": "rent",
-            "phonetic": "/rent/",
-            "senses": [
+        {
+          "theme": "医院就诊",
+          "spoken": {
+            "title": "挂号、描述症状、取药",
+            "key": "I've had a sore throat and a bit of a fever since yesterday.",
+            "keyTrans": "从昨天起我嗓子疼，还有点发烧。",
+            "keys": [
               {
-                "pos": "n.",
-                "meaning": "房租",
-                "example": "How much is the rent?"
+                "en": "I've had a sore throat and a bit of a fever since yesterday.",
+                "cn": "从昨天起我嗓子疼，还有点发烧。"
+              },
+              {
+                "en": "Should I take this on an empty stomach, or after meals?",
+                "cn": "这个药是空腹吃，还是饭后吃？"
+              },
+              {
+                "en": "How often should I take it, and for how many days?",
+                "cn": "这药多久吃一次，要吃几天？"
               }
-            ]
+            ],
+            "transcript": "A: What seems to be the problem?\nB: I've had a sore throat and a fever since yesterday.\nA: Let me take a look — open wide.\n\n【要点】\"sore throat\" = 嗓子疼；\"fever\" = 发烧；\"on an empty stomach\" = 空腹；\"after meals\" = 饭后。",
+            "video": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
+            "platform": "演示"
           },
-          {
-            "word": "inclusive",
-            "phonetic": "/ɪnˈkluːsɪv/",
-            "senses": [
-              {
-                "pos": "adj.",
-                "meaning": "包含的",
-                "example": "Is it inclusive of bills?"
-              }
-            ]
-          },
-          {
-            "word": "utilities",
-            "phonetic": "/juːˈtɪlətiz/",
-            "senses": [
-              {
-                "pos": "n.",
-                "meaning": "公用事业费（水电网）",
-                "example": "Utilities are extra."
-              }
-            ]
-          },
-          {
-            "word": "lease",
-            "phonetic": "/liːs/",
-            "senses": [
-              {
-                "pos": "n.",
-                "meaning": "租约",
-                "example": "The lease is one year."
-              }
-            ]
-          },
-          {
-            "word": "deposit",
-            "phonetic": "/dɪˈpɑːzɪt/",
-            "senses": [
-              {
-                "pos": "n.",
-                "meaning": "押金",
-                "example": "We need a deposit."
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "theme": "医院就诊",
-        "spoken": {
-          "title": "挂号、描述症状、取药",
-          "key": "I've had a sore throat and a bit of a fever since yesterday.",
-          "keyTrans": "从昨天起我嗓子疼，还有点发烧。",
-          "keys": [
+          "vocab": [
             {
-              "en": "I've had a sore throat and a bit of a fever since yesterday.",
-              "cn": "从昨天起我嗓子疼，还有点发烧。"
+              "word": "sore",
+              "phonetic": "/sɔːr/",
+              "senses": [
+                {
+                  "pos": "adj.",
+                  "meaning": "疼痛的",
+                  "example": "I have a sore throat."
+                }
+              ]
             },
             {
-              "en": "Should I take this on an empty stomach, or after meals?",
-              "cn": "这个药是空腹吃，还是饭后吃？"
+              "word": "throat",
+              "phonetic": "/θroʊt/",
+              "senses": [
+                {
+                  "pos": "n.",
+                  "meaning": "喉咙",
+                  "example": "My throat hurts."
+                }
+              ]
             },
             {
-              "en": "How often should I take it, and for how many days?",
-              "cn": "这药多久吃一次，要吃几天？"
+              "word": "fever",
+              "phonetic": "/ˈfiːvər/",
+              "senses": [
+                {
+                  "pos": "n.",
+                  "meaning": "发烧",
+                  "example": "Do you have a fever?"
+                }
+              ]
+            },
+            {
+              "word": "stomach",
+              "phonetic": "/ˈstʌmək/",
+              "senses": [
+                {
+                  "pos": "n.",
+                  "meaning": "胃、肚子",
+                  "example": "Take it on an empty stomach."
+                }
+              ]
+            },
+            {
+              "word": "meal",
+              "phonetic": "/miːl/",
+              "senses": [
+                {
+                  "pos": "n.",
+                  "meaning": "餐、饭",
+                  "example": "Take it after meals."
+                }
+              ]
             }
-          ],
-          "transcript": "A: What seems to be the problem?\nB: I've had a sore throat and a fever since yesterday.\nA: Let me take a look — open wide.\n\n【要点】\"sore throat\" = 嗓子疼；\"fever\" = 发烧；\"on an empty stomach\" = 空腹；\"after meals\" = 饭后。",
-          "video": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
-          "platform": "演示"
+          ]
         },
-        "vocab": [
-          {
-            "word": "sore",
-            "phonetic": "/sɔːr/",
-            "senses": [
+        {
+          "theme": "银行办事",
+          "spoken": {
+            "title": "开卡、问手续费、挂失",
+            "key": "I'd like to open a checking account with no monthly fee.",
+            "keyTrans": "我想开一个没有月费的活期账户。",
+            "keys": [
               {
-                "pos": "adj.",
-                "meaning": "疼痛的",
-                "example": "I have a sore throat."
+                "en": "I'd like to open a checking account with no monthly fee.",
+                "cn": "我想开一个没有月费的活期账户。"
+              },
+              {
+                "en": "What's the fee for using another bank's ATM?",
+                "cn": "用别家银行的 ATM 要收多少手续费？"
+              },
+              {
+                "en": "I think my card was lost — can you freeze it, please?",
+                "cn": "我卡好像丢了——能帮我冻结吗？"
               }
-            ]
+            ],
+            "transcript": "A: How can I help you today?\nB: I'd like to open a checking account.\nA: Sure, do you want one with a monthly fee or without?\n\n【要点】\"checking account\" = 活期/支票账户；\"monthly fee\" = 月费；\"ATM\" = 自动取款机；\"freeze\" = 冻结。",
+            "video": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
+            "platform": "演示"
           },
-          {
-            "word": "throat",
-            "phonetic": "/θroʊt/",
-            "senses": [
-              {
-                "pos": "n.",
-                "meaning": "喉咙",
-                "example": "My throat hurts."
-              }
-            ]
-          },
-          {
-            "word": "fever",
-            "phonetic": "/ˈfiːvər/",
-            "senses": [
-              {
-                "pos": "n.",
-                "meaning": "发烧",
-                "example": "Do you have a fever?"
-              }
-            ]
-          },
-          {
-            "word": "stomach",
-            "phonetic": "/ˈstʌmək/",
-            "senses": [
-              {
-                "pos": "n.",
-                "meaning": "胃、肚子",
-                "example": "Take it on an empty stomach."
-              }
-            ]
-          },
-          {
-            "word": "meal",
-            "phonetic": "/miːl/",
-            "senses": [
-              {
-                "pos": "n.",
-                "meaning": "餐、饭",
-                "example": "Take it after meals."
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "theme": "银行办事",
-        "spoken": {
-          "title": "开卡、问手续费、挂失",
-          "key": "I'd like to open a checking account with no monthly fee.",
-          "keyTrans": "我想开一个没有月费的活期账户。",
-          "keys": [
+          "vocab": [
             {
-              "en": "I'd like to open a checking account with no monthly fee.",
-              "cn": "我想开一个没有月费的活期账户。"
+              "word": "checking",
+              "phonetic": "/ˈtʃekɪŋ/",
+              "senses": [
+                {
+                  "pos": "n.",
+                  "meaning": "活期账户",
+                  "example": "Open a checking account."
+                }
+              ]
             },
             {
-              "en": "What's the fee for using another bank's ATM?",
-              "cn": "用别家银行的 ATM 要收多少手续费？"
+              "word": "monthly",
+              "phonetic": "/ˈmʌnθli/",
+              "senses": [
+                {
+                  "pos": "adj.",
+                  "meaning": "每月的",
+                  "example": "Is there a monthly fee?"
+                }
+              ]
             },
             {
-              "en": "I think my card was lost — can you freeze it, please?",
-              "cn": "我卡好像丢了——能帮我冻结吗？"
+              "word": "fee",
+              "phonetic": "/fiː/",
+              "senses": [
+                {
+                  "pos": "n.",
+                  "meaning": "费用",
+                  "example": "What's the ATM fee?"
+                }
+              ]
+            },
+            {
+              "word": "freeze",
+              "phonetic": "/friːz/",
+              "senses": [
+                {
+                  "pos": "v.",
+                  "meaning": "冻结",
+                  "example": "Freeze my card, please."
+                }
+              ]
+            },
+            {
+              "word": "account",
+              "phonetic": "/əˈkaʊnt/",
+              "senses": [
+                {
+                  "pos": "n.",
+                  "meaning": "账户",
+                  "example": "I opened a new account."
+                }
+              ]
             }
-          ],
-          "transcript": "A: How can I help you today?\nB: I'd like to open a checking account.\nA: Sure, do you want one with a monthly fee or without?\n\n【要点】\"checking account\" = 活期/支票账户；\"monthly fee\" = 月费；\"ATM\" = 自动取款机；\"freeze\" = 冻结。",
-          "video": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
-          "platform": "演示"
+          ]
         },
-        "vocab": [
-          {
-            "word": "checking",
-            "phonetic": "/ˈtʃekɪŋ/",
-            "senses": [
+        {
+          "theme": "约朋友聚会",
+          "spoken": {
+            "title": "发起邀约、定时间地点",
+            "key": "Are you free this Saturday? A few of us are getting together for hot pot.",
+            "keyTrans": "这周六有空吗？我们几个打算聚一下吃火锅。",
+            "keys": [
               {
-                "pos": "n.",
-                "meaning": "活期账户",
-                "example": "Open a checking account."
+                "en": "Are you free this Saturday? A few of us are getting together for hot pot.",
+                "cn": "这周六有空吗？我们几个打算聚一下吃火锅。"
+              },
+              {
+                "en": "Does seven work, or would eight be better for you?",
+                "cn": "七点行吗，还是八点对你更合适？"
+              },
+              {
+                "en": "I'll send you the location — it's near the subway exit.",
+                "cn": "我把位置发你——就在地铁口附近。"
               }
-            ]
+            ],
+            "transcript": "A: Are you free this Saturday?\nB: I think so — what's the plan?\nA: Hot pot with a few friends, around seven.\n\n【要点】\"get together\" = 聚一下；\"work\" 在这里 = 行得通/合适；\"location\" = 位置。",
+            "video": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
+            "platform": "演示"
           },
-          {
-            "word": "monthly",
-            "phonetic": "/ˈmʌnθli/",
-            "senses": [
-              {
-                "pos": "adj.",
-                "meaning": "每月的",
-                "example": "Is there a monthly fee?"
-              }
-            ]
-          },
-          {
-            "word": "fee",
-            "phonetic": "/fiː/",
-            "senses": [
-              {
-                "pos": "n.",
-                "meaning": "费用",
-                "example": "What's the ATM fee?"
-              }
-            ]
-          },
-          {
-            "word": "freeze",
-            "phonetic": "/friːz/",
-            "senses": [
-              {
-                "pos": "v.",
-                "meaning": "冻结",
-                "example": "Freeze my card, please."
-              }
-            ]
-          },
-          {
-            "word": "account",
-            "phonetic": "/əˈkaʊnt/",
-            "senses": [
-              {
-                "pos": "n.",
-                "meaning": "账户",
-                "example": "I opened a new account."
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "theme": "约朋友聚会",
-        "spoken": {
-          "title": "发起邀约、定时间地点",
-          "key": "Are you free this Saturday? A few of us are getting together for hot pot.",
-          "keyTrans": "这周六有空吗？我们几个打算聚一下吃火锅。",
-          "keys": [
+          "vocab": [
             {
-              "en": "Are you free this Saturday? A few of us are getting together for hot pot.",
-              "cn": "这周六有空吗？我们几个打算聚一下吃火锅。"
+              "word": "free",
+              "phonetic": "/friː/",
+              "senses": [
+                {
+                  "pos": "adj.",
+                  "meaning": "有空的",
+                  "example": "Are you free Saturday?"
+                }
+              ]
             },
             {
-              "en": "Does seven work, or would eight be better for you?",
-              "cn": "七点行吗，还是八点对你更合适？"
+              "word": "together",
+              "phonetic": "/təˈɡeðər/",
+              "senses": [
+                {
+                  "pos": "adv.",
+                  "meaning": "一起",
+                  "example": "Let's get together."
+                }
+              ]
             },
             {
-              "en": "I'll send you the location — it's near the subway exit.",
-              "cn": "我把位置发你——就在地铁口附近。"
+              "word": "location",
+              "phonetic": "/loʊˈkeɪʃn/",
+              "senses": [
+                {
+                  "pos": "n.",
+                  "meaning": "位置、地点",
+                  "example": "I'll send the location."
+                }
+              ]
+            },
+            {
+              "word": "near",
+              "phonetic": "/nɪr/",
+              "senses": [
+                {
+                  "pos": "prep.",
+                  "meaning": "在…附近",
+                  "example": "It's near the subway."
+                }
+              ]
+            },
+            {
+              "word": "exit",
+              "phonetic": "/ˈeɡzɪt/",
+              "senses": [
+                {
+                  "pos": "n.",
+                  "meaning": "出口",
+                  "example": "Meet at the exit."
+                }
+              ]
             }
-          ],
-          "transcript": "A: Are you free this Saturday?\nB: I think so — what's the plan?\nA: Hot pot with a few friends, around seven.\n\n【要点】\"get together\" = 聚一下；\"work\" 在这里 = 行得通/合适；\"location\" = 位置。",
-          "video": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
-          "platform": "演示"
+          ]
         },
-        "vocab": [
-          {
-            "word": "free",
-            "phonetic": "/friː/",
-            "senses": [
+        {
+          "theme": "健身运动",
+          "spoken": {
+            "title": "问教练、约课、说身体感受",
+            "key": "Could you show me how to use this machine without hurting my back?",
+            "keyTrans": "能教我怎么用这台机器又不伤腰吗？",
+            "keys": [
               {
-                "pos": "adj.",
-                "meaning": "有空的",
-                "example": "Are you free Saturday?"
+                "en": "Could you show me how to use this machine without hurting my back?",
+                "cn": "能教我怎么用这台机器又不伤腰吗？"
+              },
+              {
+                "en": "I'm pretty sore from yesterday's class — is that normal?",
+                "cn": "昨天课上完我浑身酸痛——这正常吗？"
+              },
+              {
+                "en": "Do you have any beginner sessions on weekday mornings?",
+                "cn": "工作日上午有适合新手的课吗？"
               }
-            ]
+            ],
+            "transcript": "A: First time here?\nB: Yeah, could you show me this machine?\nA: Sure — keep your back straight, don't round your shoulders.\n\n【要点】\"sore\" = 酸痛；\"session\" = 一节（课/训练）；\"beginner\" = 初学者；\"straight\" = 直的。",
+            "video": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
+            "platform": "演示"
           },
-          {
-            "word": "together",
-            "phonetic": "/təˈɡeðər/",
-            "senses": [
-              {
-                "pos": "adv.",
-                "meaning": "一起",
-                "example": "Let's get together."
-              }
-            ]
-          },
-          {
-            "word": "location",
-            "phonetic": "/loʊˈkeɪʃn/",
-            "senses": [
-              {
-                "pos": "n.",
-                "meaning": "位置、地点",
-                "example": "I'll send the location."
-              }
-            ]
-          },
-          {
-            "word": "near",
-            "phonetic": "/nɪr/",
-            "senses": [
-              {
-                "pos": "prep.",
-                "meaning": "在…附近",
-                "example": "It's near the subway."
-              }
-            ]
-          },
-          {
-            "word": "exit",
-            "phonetic": "/ˈeɡzɪt/",
-            "senses": [
-              {
-                "pos": "n.",
-                "meaning": "出口",
-                "example": "Meet at the exit."
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "theme": "健身运动",
-        "spoken": {
-          "title": "问教练、约课、说身体感受",
-          "key": "Could you show me how to use this machine without hurting my back?",
-          "keyTrans": "能教我怎么用这台机器又不伤腰吗？",
-          "keys": [
+          "vocab": [
             {
-              "en": "Could you show me how to use this machine without hurting my back?",
-              "cn": "能教我怎么用这台机器又不伤腰吗？"
+              "word": "machine",
+              "phonetic": "/məˈʃiːn/",
+              "senses": [
+                {
+                  "pos": "n.",
+                  "meaning": "器械",
+                  "example": "How do I use this machine?"
+                }
+              ]
             },
             {
-              "en": "I'm pretty sore from yesterday's class — is that normal?",
-              "cn": "昨天课上完我浑身酸痛——这正常吗？"
+              "word": "sore",
+              "phonetic": "/sɔːr/",
+              "senses": [
+                {
+                  "pos": "adj.",
+                  "meaning": "酸痛的",
+                  "example": "I'm sore from yesterday."
+                }
+              ]
             },
             {
-              "en": "Do you have any beginner sessions on weekday mornings?",
-              "cn": "工作日上午有适合新手的课吗？"
+              "word": "session",
+              "phonetic": "/ˈseʃn/",
+              "senses": [
+                {
+                  "pos": "n.",
+                  "meaning": "一节（训练/课）",
+                  "example": "A morning session works."
+                }
+              ]
+            },
+            {
+              "word": "beginner",
+              "phonetic": "/bɪˈɡɪnər/",
+              "senses": [
+                {
+                  "pos": "n.",
+                  "meaning": "初学者",
+                  "example": "I'm a beginner."
+                }
+              ]
+            },
+            {
+              "word": "straight",
+              "phonetic": "/streɪt/",
+              "senses": [
+                {
+                  "pos": "adj.",
+                  "meaning": "直的",
+                  "example": "Keep your back straight."
+                }
+              ]
             }
-          ],
-          "transcript": "A: First time here?\nB: Yeah, could you show me this machine?\nA: Sure — keep your back straight, don't round your shoulders.\n\n【要点】\"sore\" = 酸痛；\"session\" = 一节（课/训练）；\"beginner\" = 初学者；\"straight\" = 直的。",
-          "video": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
-          "platform": "演示"
+          ]
         },
-        "vocab": [
-          {
-            "word": "machine",
-            "phonetic": "/məˈʃiːn/",
-            "senses": [
+        {
+          "theme": "面试求职",
+          "spoken": {
+            "title": "自我介绍、谈经验、问福利",
+            "key": "I've spent the last three years leading small product teams.",
+            "keyTrans": "过去三年我一直在带小型产品团队。",
+            "keys": [
               {
-                "pos": "n.",
-                "meaning": "器械",
-                "example": "How do I use this machine?"
+                "en": "I've spent the last three years leading small product teams.",
+                "cn": "过去三年我一直在带小型产品团队。"
+              },
+              {
+                "en": "What does the typical career path look like in this role?",
+                "cn": "这个岗位通常的职业发展路径是怎样的？"
+              },
+              {
+                "en": "Is there flexibility to work remotely a couple of days a week?",
+                "cn": "每周有几天可以远程办公吗？"
               }
-            ]
+            ],
+            "transcript": "A: Tell me a bit about yourself.\nB: I've led product teams for three years.\nA: Great — why are you interested in us?\n\n【要点】\"lead\" = 带领/领导；\"career path\" = 职业路径；\"remotely\" = 远程；\"flexibility\" = 灵活性。",
+            "video": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4",
+            "platform": "演示"
           },
-          {
-            "word": "sore",
-            "phonetic": "/sɔːr/",
-            "senses": [
-              {
-                "pos": "adj.",
-                "meaning": "酸痛的",
-                "example": "I'm sore from yesterday."
-              }
-            ]
-          },
-          {
-            "word": "session",
-            "phonetic": "/ˈseʃn/",
-            "senses": [
-              {
-                "pos": "n.",
-                "meaning": "一节（训练/课）",
-                "example": "A morning session works."
-              }
-            ]
-          },
-          {
-            "word": "beginner",
-            "phonetic": "/bɪˈɡɪnər/",
-            "senses": [
-              {
-                "pos": "n.",
-                "meaning": "初学者",
-                "example": "I'm a beginner."
-              }
-            ]
-          },
-          {
-            "word": "straight",
-            "phonetic": "/streɪt/",
-            "senses": [
-              {
-                "pos": "adj.",
-                "meaning": "直的",
-                "example": "Keep your back straight."
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "theme": "面试求职",
-        "spoken": {
-          "title": "自我介绍、谈经验、问福利",
-          "key": "I've spent the last three years leading small product teams.",
-          "keyTrans": "过去三年我一直在带小型产品团队。",
-          "keys": [
+          "vocab": [
             {
-              "en": "I've spent the last three years leading small product teams.",
-              "cn": "过去三年我一直在带小型产品团队。"
+              "word": "lead",
+              "phonetic": "/liːd/",
+              "senses": [
+                {
+                  "pos": "v.",
+                  "meaning": "带领、领导",
+                  "example": "I lead a small team."
+                }
+              ]
             },
             {
-              "en": "What does the typical career path look like in this role?",
-              "cn": "这个岗位通常的职业发展路径是怎样的？"
+              "word": "career",
+              "phonetic": "/kəˈrɪr/",
+              "senses": [
+                {
+                  "pos": "n.",
+                  "meaning": "职业、事业",
+                  "example": "What's the career path?"
+                }
+              ]
             },
             {
-              "en": "Is there flexibility to work remotely a couple of days a week?",
-              "cn": "每周有几天可以远程办公吗？"
+              "word": "path",
+              "phonetic": "/pæθ/",
+              "senses": [
+                {
+                  "pos": "n.",
+                  "meaning": "路径",
+                  "example": "A clear growth path."
+                }
+              ]
+            },
+            {
+              "word": "remote",
+              "phonetic": "/rɪˈmoʊt/",
+              "senses": [
+                {
+                  "pos": "adj.",
+                  "meaning": "远程的",
+                  "example": "Work remotely sometimes."
+                }
+              ]
+            },
+            {
+              "word": "flexibility",
+              "phonetic": "/ˌfleksəˈbɪləti/",
+              "senses": [
+                {
+                  "pos": "n.",
+                  "meaning": "灵活性",
+                  "example": "We offer flexibility."
+                }
+              ]
             }
-          ],
-          "transcript": "A: Tell me a bit about yourself.\nB: I've led product teams for three years.\nA: Great — why are you interested in us?\n\n【要点】\"lead\" = 带领/领导；\"career path\" = 职业路径；\"remotely\" = 远程；\"flexibility\" = 灵活性。",
-          "video": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4",
-          "platform": "演示"
+          ]
         },
-        "vocab": [
-          {
-            "word": "lead",
-            "phonetic": "/liːd/",
-            "senses": [
+        {
+          "theme": "点外卖",
+          "spoken": {
+            "title": "下单、备注、催单",
+            "key": "Can you add a note — no peanuts, and sauce on the side?",
+            "keyTrans": "能加个备注吗——不要花生，酱料分开装？",
+            "keys": [
               {
-                "pos": "v.",
-                "meaning": "带领、领导",
-                "example": "I lead a small team."
+                "en": "Can you add a note — no peanuts, and sauce on the side?",
+                "cn": "能加个备注吗——不要花生，酱料分开装？"
+              },
+              {
+                "en": "It's been forty minutes — is my order on the way?",
+                "cn": "已经四十分钟了——我点的餐是在路上了吗？"
+              },
+              {
+                "en": "The rider left it at the door, but I got no call.",
+                "cn": "骑手放门口了，但我没接到电话。"
               }
-            ]
+            ],
+            "transcript": "A: Anything else?\nB: Yes, no peanuts and sauce on the side, please.\nA: Got it — I'll add the note.\n\n【要点】\"on the side\" = 分开放/另装；\"rider\" = 骑手；\"on the way\" = 在路上；\"door\" = 门。",
+            "video": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+            "platform": "演示"
           },
-          {
-            "word": "career",
-            "phonetic": "/kəˈrɪr/",
-            "senses": [
-              {
-                "pos": "n.",
-                "meaning": "职业、事业",
-                "example": "What's the career path?"
-              }
-            ]
-          },
-          {
-            "word": "path",
-            "phonetic": "/pæθ/",
-            "senses": [
-              {
-                "pos": "n.",
-                "meaning": "路径",
-                "example": "A clear growth path."
-              }
-            ]
-          },
-          {
-            "word": "remote",
-            "phonetic": "/rɪˈmoʊt/",
-            "senses": [
-              {
-                "pos": "adj.",
-                "meaning": "远程的",
-                "example": "Work remotely sometimes."
-              }
-            ]
-          },
-          {
-            "word": "flexibility",
-            "phonetic": "/ˌfleksəˈbɪləti/",
-            "senses": [
-              {
-                "pos": "n.",
-                "meaning": "灵活性",
-                "example": "We offer flexibility."
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "theme": "点外卖",
-        "spoken": {
-          "title": "下单、备注、催单",
-          "key": "Can you add a note — no peanuts, and sauce on the side?",
-          "keyTrans": "能加个备注吗——不要花生，酱料分开装？",
-          "keys": [
+          "vocab": [
             {
-              "en": "Can you add a note — no peanuts, and sauce on the side?",
-              "cn": "能加个备注吗——不要花生，酱料分开装？"
+              "word": "note",
+              "phonetic": "/noʊt/",
+              "senses": [
+                {
+                  "pos": "n.",
+                  "meaning": "备注",
+                  "example": "Add a note, please."
+                }
+              ]
             },
             {
-              "en": "It's been forty minutes — is my order on the way?",
-              "cn": "已经四十分钟了——我点的餐是在路上了吗？"
+              "word": "peanut",
+              "phonetic": "/ˈpiːnʌt/",
+              "senses": [
+                {
+                  "pos": "n.",
+                  "meaning": "花生",
+                  "example": "No peanuts, thanks."
+                }
+              ]
             },
             {
-              "en": "The rider left it at the door, but I got no call.",
-              "cn": "骑手放门口了，但我没接到电话。"
+              "word": "sauce",
+              "phonetic": "/sɔːs/",
+              "senses": [
+                {
+                  "pos": "n.",
+                  "meaning": "酱料",
+                  "example": "Sauce on the side."
+                }
+              ]
+            },
+            {
+              "word": "rider",
+              "phonetic": "/ˈraɪdər/",
+              "senses": [
+                {
+                  "pos": "n.",
+                  "meaning": "骑手",
+                  "example": "The rider is nearby."
+                }
+              ]
+            },
+            {
+              "word": "door",
+              "phonetic": "/dɔːr/",
+              "senses": [
+                {
+                  "pos": "n.",
+                  "meaning": "门",
+                  "example": "Left it at the door."
+                }
+              ]
             }
-          ],
-          "transcript": "A: Anything else?\nB: Yes, no peanuts and sauce on the side, please.\nA: Got it — I'll add the note.\n\n【要点】\"on the side\" = 分开放/另装；\"rider\" = 骑手；\"on the way\" = 在路上；\"door\" = 门。",
-          "video": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
-          "platform": "演示"
-        },
-        "vocab": [
-          {
-            "word": "note",
-            "phonetic": "/noʊt/",
-            "senses": [
+          ]
+        }
+      ],
+      [
+        {
+          "theme": "飞机值机",
+          "spoken": {
+            "title": "办登机牌、托运行李、选座",
+            "key": "I'd like a window seat if there's one left, and one bag to check.",
+            "keyTrans": "如果还有靠窗的座位我想要，还有一件要托运。",
+            "keys": [
               {
-                "pos": "n.",
-                "meaning": "备注",
-                "example": "Add a note, please."
+                "en": "I'd like a window seat if there's one left, and one bag to check.",
+                "cn": "如果还有靠窗的座位我想要，还有一件要托运。"
+              },
+              {
+                "en": "Is my connection tight? I have an hour between flights.",
+                "cn": "我转机时间紧吗？两班之间只有一小时。"
+              },
+              {
+                "en": "Can I board early? I'm traveling with a toddler.",
+                "cn": "我能提前登机吗？我带着个幼儿。"
               }
-            ]
+            ],
+            "transcript": "A: Window or aisle?\nB: Window, if possible, and one bag to check.\nA: Sure, that'll be at the belt over there.\n\n【要点】\"window seat\" = 靠窗座；\"aisle\" = 过道座；\"connection\" = 转机；\"toddler\" = 幼儿。",
+            "video": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
+            "platform": "演示"
           },
-          {
-            "word": "peanut",
-            "phonetic": "/ˈpiːnʌt/",
-            "senses": [
-              {
-                "pos": "n.",
-                "meaning": "花生",
-                "example": "No peanuts, thanks."
-              }
-            ]
-          },
-          {
-            "word": "sauce",
-            "phonetic": "/sɔːs/",
-            "senses": [
-              {
-                "pos": "n.",
-                "meaning": "酱料",
-                "example": "Sauce on the side."
-              }
-            ]
-          },
-          {
-            "word": "rider",
-            "phonetic": "/ˈraɪdər/",
-            "senses": [
-              {
-                "pos": "n.",
-                "meaning": "骑手",
-                "example": "The rider is nearby."
-              }
-            ]
-          },
-          {
-            "word": "door",
-            "phonetic": "/dɔːr/",
-            "senses": [
-              {
-                "pos": "n.",
-                "meaning": "门",
-                "example": "Left it at the door."
-              }
-            ]
-          }
-        ]
-      }
-    ],
-    [
-      {
-        "theme": "飞机值机",
-        "spoken": {
-          "title": "办登机牌、托运行李、选座",
-          "key": "I'd like a window seat if there's one left, and one bag to check.",
-          "keyTrans": "如果还有靠窗的座位我想要，还有一件要托运。",
-          "keys": [
+          "vocab": [
             {
-              "en": "I'd like a window seat if there's one left, and one bag to check.",
-              "cn": "如果还有靠窗的座位我想要，还有一件要托运。"
+              "word": "window",
+              "phonetic": "/ˈwɪndoʊ/",
+              "senses": [
+                {
+                  "pos": "n.",
+                  "meaning": "窗户",
+                  "example": "A window seat, please."
+                }
+              ]
             },
             {
-              "en": "Is my connection tight? I have an hour between flights.",
-              "cn": "我转机时间紧吗？两班之间只有一小时。"
+              "word": "aisle",
+              "phonetic": "/aɪl/",
+              "senses": [
+                {
+                  "pos": "n.",
+                  "meaning": "过道",
+                  "example": "An aisle seat is fine."
+                }
+              ]
             },
             {
-              "en": "Can I board early? I'm traveling with a toddler.",
-              "cn": "我能提前登机吗？我带着个幼儿。"
+              "word": "check",
+              "phonetic": "/tʃek/",
+              "senses": [
+                {
+                  "pos": "v.",
+                  "meaning": "托运",
+                  "example": "One bag to check."
+                }
+              ]
+            },
+            {
+              "word": "connection",
+              "phonetic": "/kəˈnekʃn/",
+              "senses": [
+                {
+                  "pos": "n.",
+                  "meaning": "转机",
+                  "example": "Is my connection tight?"
+                }
+              ]
+            },
+            {
+              "word": "board",
+              "phonetic": "/bɔːrd/",
+              "senses": [
+                {
+                  "pos": "v.",
+                  "meaning": "登机、上（车船）",
+                  "example": "When do we board?"
+                }
+              ]
             }
-          ],
-          "transcript": "A: Window or aisle?\nB: Window, if possible, and one bag to check.\nA: Sure, that'll be at the belt over there.\n\n【要点】\"window seat\" = 靠窗座；\"aisle\" = 过道座；\"connection\" = 转机；\"toddler\" = 幼儿。",
-          "video": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
-          "platform": "演示"
+          ]
         },
-        "vocab": [
-          {
-            "word": "window",
-            "phonetic": "/ˈwɪndoʊ/",
-            "senses": [
+        {
+          "theme": "酒店入住",
+          "spoken": {
+            "title": "办入住、要用品、投诉",
+            "key": "I have a reservation under the name Jo — just checking in for two nights.",
+            "keyTrans": "我用 Jo 的名字订了房——来办两晚的入住。",
+            "keys": [
               {
-                "pos": "n.",
-                "meaning": "窗户",
-                "example": "A window seat, please."
+                "en": "I have a reservation under the name Jo — just checking in for two nights.",
+                "cn": "我用 Jo 的名字订了房——来办两晚的入住。"
+              },
+              {
+                "en": "Could we get an extra pillow and a toothbrush, please?",
+                "cn": "能再给一个枕头和一把牙刷吗？"
+              },
+              {
+                "en": "The AC in my room isn't working — could someone take a look?",
+                "cn": "我房间的空调不制冷——能派人看一下吗？"
               }
-            ]
+            ],
+            "transcript": "A: Name, please?\nB: Reservation under Jo, two nights.\nA: Great, here's your key — room 612.\n\n【要点】\"reservation\" = 预订；\"under the name\" = 以…名字；\"extra\" = 额外的；\"AC\" = 空调。",
+            "video": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4",
+            "platform": "演示"
           },
-          {
-            "word": "aisle",
-            "phonetic": "/aɪl/",
-            "senses": [
-              {
-                "pos": "n.",
-                "meaning": "过道",
-                "example": "An aisle seat is fine."
-              }
-            ]
-          },
-          {
-            "word": "check",
-            "phonetic": "/tʃek/",
-            "senses": [
-              {
-                "pos": "v.",
-                "meaning": "托运",
-                "example": "One bag to check."
-              }
-            ]
-          },
-          {
-            "word": "connection",
-            "phonetic": "/kəˈnekʃn/",
-            "senses": [
-              {
-                "pos": "n.",
-                "meaning": "转机",
-                "example": "Is my connection tight?"
-              }
-            ]
-          },
-          {
-            "word": "board",
-            "phonetic": "/bɔːrd/",
-            "senses": [
-              {
-                "pos": "v.",
-                "meaning": "登机、上（车船）",
-                "example": "When do we board?"
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "theme": "酒店入住",
-        "spoken": {
-          "title": "办入住、要用品、投诉",
-          "key": "I have a reservation under the name Jo — just checking in for two nights.",
-          "keyTrans": "我用 Jo 的名字订了房——来办两晚的入住。",
-          "keys": [
+          "vocab": [
             {
-              "en": "I have a reservation under the name Jo — just checking in for two nights.",
-              "cn": "我用 Jo 的名字订了房——来办两晚的入住。"
+              "word": "reservation",
+              "phonetic": "/ˌrezərˈveɪʃn/",
+              "senses": [
+                {
+                  "pos": "n.",
+                  "meaning": "预订",
+                  "example": "I have a reservation."
+                }
+              ]
             },
             {
-              "en": "Could we get an extra pillow and a toothbrush, please?",
-              "cn": "能再给一个枕头和一把牙刷吗？"
+              "word": "check in",
+              "phonetic": "/ˈtʃek ɪn/",
+              "senses": [
+                {
+                  "pos": "phr.",
+                  "meaning": "办理入住",
+                  "example": "We're checking in."
+                }
+              ]
             },
             {
-              "en": "The AC in my room isn't working — could someone take a look?",
-              "cn": "我房间的空调不制冷——能派人看一下吗？"
+              "word": "extra",
+              "phonetic": "/ˈekstrə/",
+              "senses": [
+                {
+                  "pos": "adj.",
+                  "meaning": "额外的",
+                  "example": "An extra pillow, please."
+                }
+              ]
+            },
+            {
+              "word": "pillow",
+              "phonetic": "/ˈpɪloʊ/",
+              "senses": [
+                {
+                  "pos": "n.",
+                  "meaning": "枕头",
+                  "example": "Could we get a pillow?"
+                }
+              ]
+            },
+            {
+              "word": "toothbrush",
+              "phonetic": "/ˈtuːθbrʌʃ/",
+              "senses": [
+                {
+                  "pos": "n.",
+                  "meaning": "牙刷",
+                  "example": "I need a toothbrush."
+                }
+              ]
             }
-          ],
-          "transcript": "A: Name, please?\nB: Reservation under Jo, two nights.\nA: Great, here's your key — room 612.\n\n【要点】\"reservation\" = 预订；\"under the name\" = 以…名字；\"extra\" = 额外的；\"AC\" = 空调。",
-          "video": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4",
-          "platform": "演示"
+          ]
         },
-        "vocab": [
-          {
-            "word": "reservation",
-            "phonetic": "/ˌrezərˈveɪʃn/",
-            "senses": [
+        {
+          "theme": "问路导航",
+          "spoken": {
+            "title": "问地铁、步行、附近地标",
+            "key": "Excuse me, how do I get to the museum from here on foot?",
+            "keyTrans": "打扰一下，从这儿走路怎么去博物馆？",
+            "keys": [
               {
-                "pos": "n.",
-                "meaning": "预订",
-                "example": "I have a reservation."
+                "en": "Excuse me, how do I get to the museum from here on foot?",
+                "cn": "打扰一下，从这儿走路怎么去博物馆？"
+              },
+              {
+                "en": "Is it within walking distance, or should I take the subway?",
+                "cn": "走路能到吗，还是我得坐地铁？"
+              },
+              {
+                "en": "Go straight, take the second left, and it's right across from the park.",
+                "cn": "直走，第二个路口左转，就在公园正对面。"
               }
-            ]
+            ],
+            "transcript": "A: How do I get to the museum?\nB: Go straight, second left — it's across from the park.\nA: Perfect, thanks!\n\n【要点】\"on foot\" = 步行；\"within walking distance\" = 步行可达；\"take the second left\" = 第二个路口左转；\"across from\" = 在…正对面。",
+            "video": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
+            "platform": "演示"
           },
-          {
-            "word": "check in",
-            "phonetic": "/ˈtʃek ɪn/",
-            "senses": [
-              {
-                "pos": "phr.",
-                "meaning": "办理入住",
-                "example": "We're checking in."
-              }
-            ]
-          },
-          {
-            "word": "extra",
-            "phonetic": "/ˈekstrə/",
-            "senses": [
-              {
-                "pos": "adj.",
-                "meaning": "额外的",
-                "example": "An extra pillow, please."
-              }
-            ]
-          },
-          {
-            "word": "pillow",
-            "phonetic": "/ˈpɪloʊ/",
-            "senses": [
-              {
-                "pos": "n.",
-                "meaning": "枕头",
-                "example": "Could we get a pillow?"
-              }
-            ]
-          },
-          {
-            "word": "toothbrush",
-            "phonetic": "/ˈtuːθbrʌʃ/",
-            "senses": [
-              {
-                "pos": "n.",
-                "meaning": "牙刷",
-                "example": "I need a toothbrush."
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "theme": "问路导航",
-        "spoken": {
-          "title": "问地铁、步行、附近地标",
-          "key": "Excuse me, how do I get to the museum from here on foot?",
-          "keyTrans": "打扰一下，从这儿走路怎么去博物馆？",
-          "keys": [
+          "vocab": [
             {
-              "en": "Excuse me, how do I get to the museum from here on foot?",
-              "cn": "打扰一下，从这儿走路怎么去博物馆？"
+              "word": "museum",
+              "phonetic": "/mjuˈziːəm/",
+              "senses": [
+                {
+                  "pos": "n.",
+                  "meaning": "博物馆",
+                  "example": "How to get to the museum?"
+                }
+              ]
             },
             {
-              "en": "Is it within walking distance, or should I take the subway?",
-              "cn": "走路能到吗，还是我得坐地铁？"
+              "word": "foot",
+              "phonetic": "/fʊt/",
+              "senses": [
+                {
+                  "pos": "n.",
+                  "meaning": "脚（on foot=步行）",
+                  "example": "We went on foot."
+                }
+              ]
             },
             {
-              "en": "Go straight, take the second left, and it's right across from the park.",
-              "cn": "直走，第二个路口左转，就在公园正对面。"
+              "word": "distance",
+              "phonetic": "/ˈdɪstəns/",
+              "senses": [
+                {
+                  "pos": "n.",
+                  "meaning": "距离",
+                  "example": "It's within walking distance."
+                }
+              ]
+            },
+            {
+              "word": "straight",
+              "phonetic": "/streɪt/",
+              "senses": [
+                {
+                  "pos": "adv.",
+                  "meaning": "直地",
+                  "example": "Go straight ahead."
+                }
+              ]
+            },
+            {
+              "word": "across",
+              "phonetic": "/əˈkrɔːs/",
+              "senses": [
+                {
+                  "pos": "prep.",
+                  "meaning": "在…对面",
+                  "example": "It's across from the park."
+                }
+              ]
             }
-          ],
-          "transcript": "A: How do I get to the museum?\nB: Go straight, second left — it's across from the park.\nA: Perfect, thanks!\n\n【要点】\"on foot\" = 步行；\"within walking distance\" = 步行可达；\"take the second left\" = 第二个路口左转；\"across from\" = 在…正对面。",
-          "video": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
-          "platform": "演示"
+          ]
         },
-        "vocab": [
-          {
-            "word": "museum",
-            "phonetic": "/mjuˈziːəm/",
-            "senses": [
+        {
+          "theme": "理发美容",
+          "spoken": {
+            "title": "说发型、长度、风格",
+            "key": "Just a trim, please — keep the length, but tidy up the sides.",
+            "keyTrans": "就修一下吧——长度保留，两边修整齐。",
+            "keys": [
               {
-                "pos": "n.",
-                "meaning": "博物馆",
-                "example": "How to get to the museum?"
+                "en": "Just a trim, please — keep the length, but tidy up the sides.",
+                "cn": "就修一下吧——长度保留，两边修整齐。"
+              },
+              {
+                "en": "Can you thin it out a bit? It's been feeling heavy.",
+                "cn": "能打薄一点吗？总觉得太厚了。"
+              },
+              {
+                "en": "Not too short on top — I still want to style it.",
+                "cn": "上面别太短——我还想能造型。"
               }
-            ]
+            ],
+            "transcript": "A: What are we doing today?\nB: Just a trim, keep the length.\nA: Sure, and tidy the sides?\nB: Yes, please.\n\n【要点】\"trim\" = 修剪；\"keep the length\" = 保留长度；\"thin it out\" = 打薄；\"on top\" = 上面（头顶）。",
+            "video": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
+            "platform": "演示"
           },
-          {
-            "word": "foot",
-            "phonetic": "/fʊt/",
-            "senses": [
-              {
-                "pos": "n.",
-                "meaning": "脚（on foot=步行）",
-                "example": "We went on foot."
-              }
-            ]
-          },
-          {
-            "word": "distance",
-            "phonetic": "/ˈdɪstəns/",
-            "senses": [
-              {
-                "pos": "n.",
-                "meaning": "距离",
-                "example": "It's within walking distance."
-              }
-            ]
-          },
-          {
-            "word": "straight",
-            "phonetic": "/streɪt/",
-            "senses": [
-              {
-                "pos": "adv.",
-                "meaning": "直地",
-                "example": "Go straight ahead."
-              }
-            ]
-          },
-          {
-            "word": "across",
-            "phonetic": "/əˈkrɔːs/",
-            "senses": [
-              {
-                "pos": "prep.",
-                "meaning": "在…对面",
-                "example": "It's across from the park."
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "theme": "理发美容",
-        "spoken": {
-          "title": "说发型、长度、风格",
-          "key": "Just a trim, please — keep the length, but tidy up the sides.",
-          "keyTrans": "就修一下吧——长度保留，两边修整齐。",
-          "keys": [
+          "vocab": [
             {
-              "en": "Just a trim, please — keep the length, but tidy up the sides.",
-              "cn": "就修一下吧——长度保留，两边修整齐。"
+              "word": "trim",
+              "phonetic": "/trɪm/",
+              "senses": [
+                {
+                  "pos": "n./v.",
+                  "meaning": "修剪",
+                  "example": "Just a trim, thanks."
+                }
+              ]
             },
             {
-              "en": "Can you thin it out a bit? It's been feeling heavy.",
-              "cn": "能打薄一点吗？总觉得太厚了。"
+              "word": "length",
+              "phonetic": "/leŋkθ/",
+              "senses": [
+                {
+                  "pos": "n.",
+                  "meaning": "长度",
+                  "example": "Keep the length."
+                }
+              ]
             },
             {
-              "en": "Not too short on top — I still want to style it.",
-              "cn": "上面别太短——我还想能造型。"
+              "word": "tidy",
+              "phonetic": "/ˈtaɪdi/",
+              "senses": [
+                {
+                  "pos": "v.",
+                  "meaning": "整理、收拾",
+                  "example": "Tidy up the sides."
+                }
+              ]
+            },
+            {
+              "word": "thin",
+              "phonetic": "/θɪn/",
+              "senses": [
+                {
+                  "pos": "v.",
+                  "meaning": "打薄",
+                  "example": "Can you thin it out?"
+                }
+              ]
+            },
+            {
+              "word": "style",
+              "phonetic": "/staɪl/",
+              "senses": [
+                {
+                  "pos": "v.",
+                  "meaning": "做造型",
+                  "example": "I want to style it."
+                }
+              ]
             }
-          ],
-          "transcript": "A: What are we doing today?\nB: Just a trim, keep the length.\nA: Sure, and tidy the sides?\nB: Yes, please.\n\n【要点】\"trim\" = 修剪；\"keep the length\" = 保留长度；\"thin it out\" = 打薄；\"on top\" = 上面（头顶）。",
-          "video": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
-          "platform": "演示"
+          ]
         },
-        "vocab": [
-          {
-            "word": "trim",
-            "phonetic": "/trɪm/",
-            "senses": [
+        {
+          "theme": "看电影",
+          "spoken": {
+            "title": "买票、选场次、评论",
+            "key": "Two for the seven-thirty showing, preferably not too close to the screen.",
+            "keyTrans": "两张七点半的场，最好别太靠近银幕。",
+            "keys": [
               {
-                "pos": "n./v.",
-                "meaning": "修剪",
-                "example": "Just a trim, thanks."
+                "en": "Two for the seven-thirty showing, preferably not too close to the screen.",
+                "cn": "两张七点半的场，最好别太靠近银幕。"
+              },
+              {
+                "en": "Is this seat reclining, or fixed?",
+                "cn": "这个座位能往后仰吗，还是固定的？"
+              },
+              {
+                "en": "Honestly, the plot was thin but the visuals were stunning.",
+                "cn": "说实话剧情单薄，但画面很惊艳。"
               }
-            ]
+            ],
+            "transcript": "A: Which showing?\nB: The seven-thirty, two tickets.\nA: Aisle or middle?\nB: Middle, not too close, please.\n\n【要点】\"showing\" = 场次；\"reclining\" = 可后仰的；\"plot\" = 剧情；\"stunning\" = 惊艳的。",
+            "video": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
+            "platform": "演示"
           },
-          {
-            "word": "length",
-            "phonetic": "/leŋkθ/",
-            "senses": [
-              {
-                "pos": "n.",
-                "meaning": "长度",
-                "example": "Keep the length."
-              }
-            ]
-          },
-          {
-            "word": "tidy",
-            "phonetic": "/ˈtaɪdi/",
-            "senses": [
-              {
-                "pos": "v.",
-                "meaning": "整理、收拾",
-                "example": "Tidy up the sides."
-              }
-            ]
-          },
-          {
-            "word": "thin",
-            "phonetic": "/θɪn/",
-            "senses": [
-              {
-                "pos": "v.",
-                "meaning": "打薄",
-                "example": "Can you thin it out?"
-              }
-            ]
-          },
-          {
-            "word": "style",
-            "phonetic": "/staɪl/",
-            "senses": [
-              {
-                "pos": "v.",
-                "meaning": "做造型",
-                "example": "I want to style it."
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "theme": "看电影",
-        "spoken": {
-          "title": "买票、选场次、评论",
-          "key": "Two for the seven-thirty showing, preferably not too close to the screen.",
-          "keyTrans": "两张七点半的场，最好别太靠近银幕。",
-          "keys": [
+          "vocab": [
             {
-              "en": "Two for the seven-thirty showing, preferably not too close to the screen.",
-              "cn": "两张七点半的场，最好别太靠近银幕。"
+              "word": "showing",
+              "phonetic": "/ˈʃoʊɪŋ/",
+              "senses": [
+                {
+                  "pos": "n.",
+                  "meaning": "放映场次",
+                  "example": "The seven-thirty showing."
+                }
+              ]
             },
             {
-              "en": "Is this seat reclining, or fixed?",
-              "cn": "这个座位能往后仰吗，还是固定的？"
+              "word": "screen",
+              "phonetic": "/skriːn/",
+              "senses": [
+                {
+                  "pos": "n.",
+                  "meaning": "银幕",
+                  "example": "Not too close to the screen."
+                }
+              ]
             },
             {
-              "en": "Honestly, the plot was thin but the visuals were stunning.",
-              "cn": "说实话剧情单薄，但画面很惊艳。"
+              "word": "reclining",
+              "phonetic": "/rɪˈklaɪnɪŋ/",
+              "senses": [
+                {
+                  "pos": "adj.",
+                  "meaning": "可后仰的",
+                  "example": "A reclining seat."
+                }
+              ]
+            },
+            {
+              "word": "plot",
+              "phonetic": "/plɑːt/",
+              "senses": [
+                {
+                  "pos": "n.",
+                  "meaning": "剧情",
+                  "example": "The plot was thin."
+                }
+              ]
+            },
+            {
+              "word": "stunning",
+              "phonetic": "/ˈstʌnɪŋ/",
+              "senses": [
+                {
+                  "pos": "adj.",
+                  "meaning": "惊艳的",
+                  "example": "The visuals were stunning."
+                }
+              ]
             }
-          ],
-          "transcript": "A: Which showing?\nB: The seven-thirty, two tickets.\nA: Aisle or middle?\nB: Middle, not too close, please.\n\n【要点】\"showing\" = 场次；\"reclining\" = 可后仰的；\"plot\" = 剧情；\"stunning\" = 惊艳的。",
-          "video": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
-          "platform": "演示"
+          ]
         },
-        "vocab": [
-          {
-            "word": "showing",
-            "phonetic": "/ˈʃoʊɪŋ/",
-            "senses": [
+        {
+          "theme": "超市采购",
+          "spoken": {
+            "title": "找商品、看保质期、结账",
+            "key": "Where can I find the gluten-free section, please?",
+            "keyTrans": "请问无麸质食品区在哪儿？",
+            "keys": [
               {
-                "pos": "n.",
-                "meaning": "放映场次",
-                "example": "The seven-thirty showing."
+                "en": "Where can I find the gluten-free section, please?",
+                "cn": "请问无麸质食品区在哪儿？"
+              },
+              {
+                "en": "This one's expired — do you have a fresher batch?",
+                "cn": "这个过期了——有更新鲜的一批吗？"
+              },
+              {
+                "en": "Do you take mobile pay, or is it card only?",
+                "cn": "你们收移动支付吗，还是只能刷卡？"
               }
-            ]
+            ],
+            "transcript": "A: Can I help you find something?\nB: Where's the gluten-free section?\nA: Aisle five, on your left.\n\n【要点】\"gluten-free\" = 无麸质；\"expired\" = 过期的；\"batch\" = 批次；\"mobile pay\" = 移动支付。",
+            "video": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
+            "platform": "演示"
           },
-          {
-            "word": "screen",
-            "phonetic": "/skriːn/",
-            "senses": [
-              {
-                "pos": "n.",
-                "meaning": "银幕",
-                "example": "Not too close to the screen."
-              }
-            ]
-          },
-          {
-            "word": "reclining",
-            "phonetic": "/rɪˈklaɪnɪŋ/",
-            "senses": [
-              {
-                "pos": "adj.",
-                "meaning": "可后仰的",
-                "example": "A reclining seat."
-              }
-            ]
-          },
-          {
-            "word": "plot",
-            "phonetic": "/plɑːt/",
-            "senses": [
-              {
-                "pos": "n.",
-                "meaning": "剧情",
-                "example": "The plot was thin."
-              }
-            ]
-          },
-          {
-            "word": "stunning",
-            "phonetic": "/ˈstʌnɪŋ/",
-            "senses": [
-              {
-                "pos": "adj.",
-                "meaning": "惊艳的",
-                "example": "The visuals were stunning."
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "theme": "超市采购",
-        "spoken": {
-          "title": "找商品、看保质期、结账",
-          "key": "Where can I find the gluten-free section, please?",
-          "keyTrans": "请问无麸质食品区在哪儿？",
-          "keys": [
+          "vocab": [
             {
-              "en": "Where can I find the gluten-free section, please?",
-              "cn": "请问无麸质食品区在哪儿？"
+              "word": "gluten",
+              "phonetic": "/ˈɡluːtn/",
+              "senses": [
+                {
+                  "pos": "n.",
+                  "meaning": "麸质",
+                  "example": "Is it gluten-free?"
+                }
+              ]
             },
             {
-              "en": "This one's expired — do you have a fresher batch?",
-              "cn": "这个过期了——有更新鲜的一批吗？"
+              "word": "section",
+              "phonetic": "/ˈsekʃn/",
+              "senses": [
+                {
+                  "pos": "n.",
+                  "meaning": "区、区域",
+                  "example": "Which section is it?"
+                }
+              ]
             },
             {
-              "en": "Do you take mobile pay, or is it card only?",
-              "cn": "你们收移动支付吗，还是只能刷卡？"
+              "word": "expired",
+              "phonetic": "/ɪkˈspaɪərd/",
+              "senses": [
+                {
+                  "pos": "adj.",
+                  "meaning": "过期的",
+                  "example": "This one's expired."
+                }
+              ]
+            },
+            {
+              "word": "batch",
+              "phonetic": "/bætʃ/",
+              "senses": [
+                {
+                  "pos": "n.",
+                  "meaning": "批次",
+                  "example": "A fresher batch, please."
+                }
+              ]
+            },
+            {
+              "word": "mobile",
+              "phonetic": "/ˈmoʊbl/",
+              "senses": [
+                {
+                  "pos": "adj.",
+                  "meaning": "移动的",
+                  "example": "Mobile pay works here."
+                }
+              ]
             }
-          ],
-          "transcript": "A: Can I help you find something?\nB: Where's the gluten-free section?\nA: Aisle five, on your left.\n\n【要点】\"gluten-free\" = 无麸质；\"expired\" = 过期的；\"batch\" = 批次；\"mobile pay\" = 移动支付。",
-          "video": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
-          "platform": "演示"
+          ]
         },
-        "vocab": [
-          {
-            "word": "gluten",
-            "phonetic": "/ˈɡluːtn/",
-            "senses": [
+        {
+          "theme": "天气闲聊",
+          "spoken": {
+            "title": "聊天气、做计划、吐槽",
+            "key": "It's supposed to clear up by the afternoon — we might still go hiking.",
+            "keyTrans": "下午应该会放晴——我们说不定还能去徒步。",
+            "keys": [
               {
-                "pos": "n.",
-                "meaning": "麸质",
-                "example": "Is it gluten-free?"
+                "en": "It's supposed to clear up by the afternoon — we might still go hiking.",
+                "cn": "下午应该会放晴——我们说不定还能去徒步。"
+              },
+              {
+                "en": "They're calling for rain all weekend — so much for the picnic.",
+                "cn": "预报说整个周末都下雨——野餐算是泡汤了。"
+              },
+              {
+                "en": "It's been drizzling on and off since morning.",
+                "cn": "从早上起就时断时续地下着毛毛雨。"
               }
-            ]
+            ],
+            "transcript": "A: Weather's awful today.\nB: Yeah, but it should clear up this afternoon.\nA: Fingers crossed — I want to hike.\n\n【要点】\"clear up\" = 放晴；\"call for rain\" = 预报有雨；\"so much for…\" = …泡汤了；\"drizzle\" = 毛毛雨。",
+            "video": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4",
+            "platform": "演示"
           },
-          {
-            "word": "section",
-            "phonetic": "/ˈsekʃn/",
-            "senses": [
-              {
-                "pos": "n.",
-                "meaning": "区、区域",
-                "example": "Which section is it?"
-              }
-            ]
-          },
-          {
-            "word": "expired",
-            "phonetic": "/ɪkˈspaɪərd/",
-            "senses": [
-              {
-                "pos": "adj.",
-                "meaning": "过期的",
-                "example": "This one's expired."
-              }
-            ]
-          },
-          {
-            "word": "batch",
-            "phonetic": "/bætʃ/",
-            "senses": [
-              {
-                "pos": "n.",
-                "meaning": "批次",
-                "example": "A fresher batch, please."
-              }
-            ]
-          },
-          {
-            "word": "mobile",
-            "phonetic": "/ˈmoʊbl/",
-            "senses": [
-              {
-                "pos": "adj.",
-                "meaning": "移动的",
-                "example": "Mobile pay works here."
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "theme": "天气闲聊",
-        "spoken": {
-          "title": "聊天气、做计划、吐槽",
-          "key": "It's supposed to clear up by the afternoon — we might still go hiking.",
-          "keyTrans": "下午应该会放晴——我们说不定还能去徒步。",
-          "keys": [
+          "vocab": [
             {
-              "en": "It's supposed to clear up by the afternoon — we might still go hiking.",
-              "cn": "下午应该会放晴——我们说不定还能去徒步。"
+              "word": "clear",
+              "phonetic": "/klɪr/",
+              "senses": [
+                {
+                  "pos": "v.",
+                  "meaning": "放晴",
+                  "example": "It should clear up."
+                }
+              ]
             },
             {
-              "en": "They're calling for rain all weekend — so much for the picnic.",
-              "cn": "预报说整个周末都下雨——野餐算是泡汤了。"
+              "word": "hiking",
+              "phonetic": "/ˈhaɪkɪŋ/",
+              "senses": [
+                {
+                  "pos": "n.",
+                  "meaning": "徒步",
+                  "example": "Let's go hiking."
+                }
+              ]
             },
             {
-              "en": "It's been drizzling on and off since morning.",
-              "cn": "从早上起就时断时续地下着毛毛雨。"
+              "word": "picnic",
+              "phonetic": "/ˈpɪknɪk/",
+              "senses": [
+                {
+                  "pos": "n.",
+                  "meaning": "野餐",
+                  "example": "The picnic is off."
+                }
+              ]
+            },
+            {
+              "word": "drizzle",
+              "phonetic": "/ˈdrɪzl/",
+              "senses": [
+                {
+                  "pos": "n.",
+                  "meaning": "毛毛雨",
+                  "example": "It's been drizzling."
+                }
+              ]
+            },
+            {
+              "word": "forecast",
+              "phonetic": "/ˈfɔːrkæst/",
+              "senses": [
+                {
+                  "pos": "n.",
+                  "meaning": "预报",
+                  "example": "The forecast says rain."
+                }
+              ]
             }
-          ],
-          "transcript": "A: Weather's awful today.\nB: Yeah, but it should clear up this afternoon.\nA: Fingers crossed — I want to hike.\n\n【要点】\"clear up\" = 放晴；\"call for rain\" = 预报有雨；\"so much for…\" = …泡汤了；\"drizzle\" = 毛毛雨。",
-          "video": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4",
-          "platform": "演示"
-        },
-        "vocab": [
-          {
-            "word": "clear",
-            "phonetic": "/klɪr/",
-            "senses": [
+          ]
+        }
+      ],
+      [
+        {
+          "theme": "投诉维权",
+          "spoken": {
+            "title": "商品有问题、要求解决",
+            "key": "This stopped working after a week — I'd like a refund, not a repair.",
+            "keyTrans": "这个用了一个星期就坏了——我要退款，不是维修。",
+            "keys": [
               {
-                "pos": "v.",
-                "meaning": "放晴",
-                "example": "It should clear up."
+                "en": "This stopped working after a week — I'd like a refund, not a repair.",
+                "cn": "这个用了一个星期就坏了——我要退款，不是维修。"
+              },
+              {
+                "en": "That's not what I ordered — I expected the larger size.",
+                "cn": "这不是我订的——我要的是大一号。"
+              },
+              {
+                "en": "If we can't sort this out, I'll need to speak to a manager.",
+                "cn": "如果这事解决不了，我得找经理谈。"
               }
-            ]
+            ],
+            "transcript": "A: What seems to be the issue?\nB: It broke after a week — I want a refund.\nA: Let me see the warranty.\n\n【要点】\"refund\" = 退款；\"repair\" = 维修；\"sort out\" = 解决；\"manager\" = 经理。",
+            "video": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+            "platform": "演示"
           },
-          {
-            "word": "hiking",
-            "phonetic": "/ˈhaɪkɪŋ/",
-            "senses": [
-              {
-                "pos": "n.",
-                "meaning": "徒步",
-                "example": "Let's go hiking."
-              }
-            ]
-          },
-          {
-            "word": "picnic",
-            "phonetic": "/ˈpɪknɪk/",
-            "senses": [
-              {
-                "pos": "n.",
-                "meaning": "野餐",
-                "example": "The picnic is off."
-              }
-            ]
-          },
-          {
-            "word": "drizzle",
-            "phonetic": "/ˈdrɪzl/",
-            "senses": [
-              {
-                "pos": "n.",
-                "meaning": "毛毛雨",
-                "example": "It's been drizzling."
-              }
-            ]
-          },
-          {
-            "word": "forecast",
-            "phonetic": "/ˈfɔːrkæst/",
-            "senses": [
-              {
-                "pos": "n.",
-                "meaning": "预报",
-                "example": "The forecast says rain."
-              }
-            ]
-          }
-        ]
-      }
-    ],
-    [
-      {
-        "theme": "投诉维权",
-        "spoken": {
-          "title": "商品有问题、要求解决",
-          "key": "This stopped working after a week — I'd like a refund, not a repair.",
-          "keyTrans": "这个用了一个星期就坏了——我要退款，不是维修。",
-          "keys": [
+          "vocab": [
             {
-              "en": "This stopped working after a week — I'd like a refund, not a repair.",
-              "cn": "这个用了一个星期就坏了——我要退款，不是维修。"
+              "word": "refund",
+              "phonetic": "/ˈriːfʌnd/",
+              "senses": [
+                {
+                  "pos": "n.",
+                  "meaning": "退款",
+                  "example": "I'd like a refund."
+                }
+              ]
             },
             {
-              "en": "That's not what I ordered — I expected the larger size.",
-              "cn": "这不是我订的——我要的是大一号。"
+              "word": "repair",
+              "phonetic": "/rɪˈper/",
+              "senses": [
+                {
+                  "pos": "v.",
+                  "meaning": "修理",
+                  "example": "Not a repair, a refund."
+                }
+              ]
             },
             {
-              "en": "If we can't sort this out, I'll need to speak to a manager.",
-              "cn": "如果这事解决不了，我得找经理谈。"
+              "word": "warranty",
+              "phonetic": "/ˈwɔːrənti/",
+              "senses": [
+                {
+                  "pos": "n.",
+                  "meaning": "保修",
+                  "example": "Is it under warranty?"
+                }
+              ]
+            },
+            {
+              "word": "manager",
+              "phonetic": "/ˈmænɪdʒər/",
+              "senses": [
+                {
+                  "pos": "n.",
+                  "meaning": "经理",
+                  "example": "I'll speak to the manager."
+                }
+              ]
+            },
+            {
+              "word": "issue",
+              "phonetic": "/ˈɪʃuː/",
+              "senses": [
+                {
+                  "pos": "n.",
+                  "meaning": "问题",
+                  "example": "What's the issue?"
+                }
+              ]
             }
-          ],
-          "transcript": "A: What seems to be the issue?\nB: It broke after a week — I want a refund.\nA: Let me see the warranty.\n\n【要点】\"refund\" = 退款；\"repair\" = 维修；\"sort out\" = 解决；\"manager\" = 经理。",
-          "video": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
-          "platform": "演示"
+          ]
         },
-        "vocab": [
-          {
-            "word": "refund",
-            "phonetic": "/ˈriːfʌnd/",
-            "senses": [
+        {
+          "theme": "参加婚礼",
+          "spoken": {
+            "title": "道贺、聊新人、上祝福",
+            "key": "Congratulations to both of you — you two make such a great pair.",
+            "keyTrans": "祝贺你们俩——你们真是绝配。",
+            "keys": [
               {
-                "pos": "n.",
-                "meaning": "退款",
-                "example": "I'd like a refund."
+                "en": "Congratulations to both of you — you two make such a great pair.",
+                "cn": "祝贺你们俩——你们真是绝配。"
+              },
+              {
+                "en": "How do you know the couple, if you don't mind my asking?",
+                "cn": "方便的话，你跟这对新人怎么认识的？"
+              },
+              {
+                "en": "The vows were beautiful — not a dry eye in the room.",
+                "cn": "誓言太动人了——全场没有不落泪的。"
               }
-            ]
+            ],
+            "transcript": "A: Congratulations!\nB: Thanks for coming — how do you know the bride?\nA: We worked together years ago.\n\n【要点】\"congratulations\" = 恭喜；\"couple\" = 一对/新人；\"vows\" = 誓言；\"bride\" = 新娘。",
+            "video": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
+            "platform": "演示"
           },
-          {
-            "word": "repair",
-            "phonetic": "/rɪˈper/",
-            "senses": [
-              {
-                "pos": "v.",
-                "meaning": "修理",
-                "example": "Not a repair, a refund."
-              }
-            ]
-          },
-          {
-            "word": "warranty",
-            "phonetic": "/ˈwɔːrənti/",
-            "senses": [
-              {
-                "pos": "n.",
-                "meaning": "保修",
-                "example": "Is it under warranty?"
-              }
-            ]
-          },
-          {
-            "word": "manager",
-            "phonetic": "/ˈmænɪdʒər/",
-            "senses": [
-              {
-                "pos": "n.",
-                "meaning": "经理",
-                "example": "I'll speak to the manager."
-              }
-            ]
-          },
-          {
-            "word": "issue",
-            "phonetic": "/ˈɪʃuː/",
-            "senses": [
-              {
-                "pos": "n.",
-                "meaning": "问题",
-                "example": "What's the issue?"
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "theme": "参加婚礼",
-        "spoken": {
-          "title": "道贺、聊新人、上祝福",
-          "key": "Congratulations to both of you — you two make such a great pair.",
-          "keyTrans": "祝贺你们俩——你们真是绝配。",
-          "keys": [
+          "vocab": [
             {
-              "en": "Congratulations to both of you — you two make such a great pair.",
-              "cn": "祝贺你们俩——你们真是绝配。"
+              "word": "congratulations",
+              "phonetic": "/kənˌɡrætʃuˈleɪʃnz/",
+              "senses": [
+                {
+                  "pos": "n.",
+                  "meaning": "祝贺",
+                  "example": "Congratulations to you both!"
+                }
+              ]
             },
             {
-              "en": "How do you know the couple, if you don't mind my asking?",
-              "cn": "方便的话，你跟这对新人怎么认识的？"
+              "word": "pair",
+              "phonetic": "/per/",
+              "senses": [
+                {
+                  "pos": "n.",
+                  "meaning": "一对",
+                  "example": "You make a great pair."
+                }
+              ]
             },
             {
-              "en": "The vows were beautiful — not a dry eye in the room.",
-              "cn": "誓言太动人了——全场没有不落泪的。"
+              "word": "couple",
+              "phonetic": "/ˈkʌpl/",
+              "senses": [
+                {
+                  "pos": "n.",
+                  "meaning": "夫妻、一对",
+                  "example": "How do you know the couple?"
+                }
+              ]
+            },
+            {
+              "word": "vow",
+              "phonetic": "/vaʊ/",
+              "senses": [
+                {
+                  "pos": "n.",
+                  "meaning": "誓言",
+                  "example": "The vows were beautiful."
+                }
+              ]
+            },
+            {
+              "word": "bride",
+              "phonetic": "/braɪd/",
+              "senses": [
+                {
+                  "pos": "n.",
+                  "meaning": "新娘",
+                  "example": "She's the bride."
+                }
+              ]
             }
-          ],
-          "transcript": "A: Congratulations!\nB: Thanks for coming — how do you know the bride?\nA: We worked together years ago.\n\n【要点】\"congratulations\" = 恭喜；\"couple\" = 一对/新人；\"vows\" = 誓言；\"bride\" = 新娘。",
-          "video": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
-          "platform": "演示"
+          ]
         },
-        "vocab": [
-          {
-            "word": "congratulations",
-            "phonetic": "/kənˌɡrætʃuˈleɪʃnz/",
-            "senses": [
+        {
+          "theme": "宠物相关",
+          "spoken": {
+            "title": "看病、寄养、遛狗闲聊",
+            "key": "He's been scratching a lot lately — could it be allergies?",
+            "keyTrans": "它最近老是挠——会不会是过敏？",
+            "keys": [
               {
-                "pos": "n.",
-                "meaning": "祝贺",
-                "example": "Congratulations to you both!"
+                "en": "He's been scratching a lot lately — could it be allergies?",
+                "cn": "它最近老是挠——会不会是过敏？"
+              },
+              {
+                "en": "Do you offer boarding over the holiday weekend?",
+                "cn": "节假日周末你们接收寄养吗？"
+              },
+              {
+                "en": "What's the recommended feeding schedule for a puppy?",
+                "cn": "小狗建议怎么安排喂食时间？"
               }
-            ]
+            ],
+            "transcript": "A: What's going on with him?\nB: He scratches a lot — maybe allergies?\nA: Let's check his skin.\n\n【要点】\"scratch\" = 抓挠；\"allergies\" = 过敏；\"boarding\" = 寄养；\"puppy\" = 小狗。",
+            "video": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4",
+            "platform": "演示"
           },
-          {
-            "word": "pair",
-            "phonetic": "/per/",
-            "senses": [
-              {
-                "pos": "n.",
-                "meaning": "一对",
-                "example": "You make a great pair."
-              }
-            ]
-          },
-          {
-            "word": "couple",
-            "phonetic": "/ˈkʌpl/",
-            "senses": [
-              {
-                "pos": "n.",
-                "meaning": "夫妻、一对",
-                "example": "How do you know the couple?"
-              }
-            ]
-          },
-          {
-            "word": "vow",
-            "phonetic": "/vaʊ/",
-            "senses": [
-              {
-                "pos": "n.",
-                "meaning": "誓言",
-                "example": "The vows were beautiful."
-              }
-            ]
-          },
-          {
-            "word": "bride",
-            "phonetic": "/braɪd/",
-            "senses": [
-              {
-                "pos": "n.",
-                "meaning": "新娘",
-                "example": "She's the bride."
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "theme": "宠物相关",
-        "spoken": {
-          "title": "看病、寄养、遛狗闲聊",
-          "key": "He's been scratching a lot lately — could it be allergies?",
-          "keyTrans": "它最近老是挠——会不会是过敏？",
-          "keys": [
+          "vocab": [
             {
-              "en": "He's been scratching a lot lately — could it be allergies?",
-              "cn": "它最近老是挠——会不会是过敏？"
+              "word": "scratch",
+              "phonetic": "/skrætʃ/",
+              "senses": [
+                {
+                  "pos": "v.",
+                  "meaning": "抓挠",
+                  "example": "He scratches a lot."
+                }
+              ]
             },
             {
-              "en": "Do you offer boarding over the holiday weekend?",
-              "cn": "节假日周末你们接收寄养吗？"
+              "word": "allergy",
+              "phonetic": "/ˈælərdʒi/",
+              "senses": [
+                {
+                  "pos": "n.",
+                  "meaning": "过敏",
+                  "example": "Could it be allergies?"
+                }
+              ]
             },
             {
-              "en": "What's the recommended feeding schedule for a puppy?",
-              "cn": "小狗建议怎么安排喂食时间？"
+              "word": "boarding",
+              "phonetic": "/ˈbɔːrdɪŋ/",
+              "senses": [
+                {
+                  "pos": "n.",
+                  "meaning": "寄养",
+                  "example": "Do you offer boarding?"
+                }
+              ]
+            },
+            {
+              "word": "puppy",
+              "phonetic": "/ˈpʌpi/",
+              "senses": [
+                {
+                  "pos": "n.",
+                  "meaning": "小狗",
+                  "example": "A feeding schedule for a puppy."
+                }
+              ]
+            },
+            {
+              "word": "feeding",
+              "phonetic": "/ˈfiːdɪŋ/",
+              "senses": [
+                {
+                  "pos": "n.",
+                  "meaning": "喂食",
+                  "example": "The feeding time is set."
+                }
+              ]
             }
-          ],
-          "transcript": "A: What's going on with him?\nB: He scratches a lot — maybe allergies?\nA: Let's check his skin.\n\n【要点】\"scratch\" = 抓挠；\"allergies\" = 过敏；\"boarding\" = 寄养；\"puppy\" = 小狗。",
-          "video": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4",
-          "platform": "演示"
+          ]
         },
-        "vocab": [
-          {
-            "word": "scratch",
-            "phonetic": "/skrætʃ/",
-            "senses": [
+        {
+          "theme": "快递物流",
+          "spoken": {
+            "title": "查件、催派、改地址",
+            "key": "My package shows delivered, but I never got it — can you check?",
+            "keyTrans": "我的包裹显示已送达，但我没收到——能查一下吗？",
+            "keys": [
               {
-                "pos": "v.",
-                "meaning": "抓挠",
-                "example": "He scratches a lot."
+                "en": "My package shows delivered, but I never got it — can you check?",
+                "cn": "我的包裹显示已送达，但我没收到——能查一下吗？"
+              },
+              {
+                "en": "Could you redirect it to my office instead of my home?",
+                "cn": "能改送到我办公室而不是家里吗？"
+              },
+              {
+                "en": "It's been stuck in transit for three days — any update?",
+                "cn": "它卡在运输途中三天了——有进展吗？"
               }
-            ]
+            ],
+            "transcript": "A: How can I help?\nB: My package says delivered, but I didn't get it.\nA: Let me track the barcode.\n\n【要点】\"delivered\" = 已送达；\"redirect\" = 改址；\"stuck in transit\" = 卡在运输中；\"barcode\" = 条码。",
+            "video": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
+            "platform": "演示"
           },
-          {
-            "word": "allergy",
-            "phonetic": "/ˈælərdʒi/",
-            "senses": [
-              {
-                "pos": "n.",
-                "meaning": "过敏",
-                "example": "Could it be allergies?"
-              }
-            ]
-          },
-          {
-            "word": "boarding",
-            "phonetic": "/ˈbɔːrdɪŋ/",
-            "senses": [
-              {
-                "pos": "n.",
-                "meaning": "寄养",
-                "example": "Do you offer boarding?"
-              }
-            ]
-          },
-          {
-            "word": "puppy",
-            "phonetic": "/ˈpʌpi/",
-            "senses": [
-              {
-                "pos": "n.",
-                "meaning": "小狗",
-                "example": "A feeding schedule for a puppy."
-              }
-            ]
-          },
-          {
-            "word": "feeding",
-            "phonetic": "/ˈfiːdɪŋ/",
-            "senses": [
-              {
-                "pos": "n.",
-                "meaning": "喂食",
-                "example": "The feeding time is set."
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "theme": "快递物流",
-        "spoken": {
-          "title": "查件、催派、改地址",
-          "key": "My package shows delivered, but I never got it — can you check?",
-          "keyTrans": "我的包裹显示已送达，但我没收到——能查一下吗？",
-          "keys": [
+          "vocab": [
             {
-              "en": "My package shows delivered, but I never got it — can you check?",
-              "cn": "我的包裹显示已送达，但我没收到——能查一下吗？"
+              "word": "package",
+              "phonetic": "/ˈpækɪdʒ/",
+              "senses": [
+                {
+                  "pos": "n.",
+                  "meaning": "包裹",
+                  "example": "Where's my package?"
+                }
+              ]
             },
             {
-              "en": "Could you redirect it to my office instead of my home?",
-              "cn": "能改送到我办公室而不是家里吗？"
+              "word": "delivered",
+              "phonetic": "/dɪˈlɪvərd/",
+              "senses": [
+                {
+                  "pos": "adj.",
+                  "meaning": "已送达的",
+                  "example": "It shows delivered."
+                }
+              ]
             },
             {
-              "en": "It's been stuck in transit for three days — any update?",
-              "cn": "它卡在运输途中三天了——有进展吗？"
+              "word": "redirect",
+              "phonetic": "/ˌriːdəˈrekt/",
+              "senses": [
+                {
+                  "pos": "v.",
+                  "meaning": "改投、改址",
+                  "example": "Redirect to my office."
+                }
+              ]
+            },
+            {
+              "word": "transit",
+              "phonetic": "/ˈtrænzɪt/",
+              "senses": [
+                {
+                  "pos": "n.",
+                  "meaning": "运输途中",
+                  "example": "Stuck in transit."
+                }
+              ]
+            },
+            {
+              "word": "update",
+              "phonetic": "/ˈʌpdeɪt/",
+              "senses": [
+                {
+                  "pos": "n.",
+                  "meaning": "进展、更新",
+                  "example": "Any update on it?"
+                }
+              ]
             }
-          ],
-          "transcript": "A: How can I help?\nB: My package says delivered, but I didn't get it.\nA: Let me track the barcode.\n\n【要点】\"delivered\" = 已送达；\"redirect\" = 改址；\"stuck in transit\" = 卡在运输中；\"barcode\" = 条码。",
-          "video": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
-          "platform": "演示"
+          ]
         },
-        "vocab": [
-          {
-            "word": "package",
-            "phonetic": "/ˈpækɪdʒ/",
-            "senses": [
+        {
+          "theme": "修理报修",
+          "spoken": {
+            "title": "报修、说故障、约时间",
+            "key": "The sink's been leaking since this morning — could someone come by?",
+            "keyTrans": "水槽从今早就开始漏水——能派人来看看吗？",
+            "keys": [
               {
-                "pos": "n.",
-                "meaning": "包裹",
-                "example": "Where's my package?"
+                "en": "The sink's been leaking since this morning — could someone come by?",
+                "cn": "水槽从今早就开始漏水——能派人来看看吗？"
+              },
+              {
+                "en": "Is there a slot this afternoon, or is tomorrow better?",
+                "cn": "今天下午有空档吗，还是明天更合适？"
+              },
+              {
+                "en": "It's flickering on and off — I think it's the wiring.",
+                "cn": "它忽明忽暗的——我猜是线路问题。"
               }
-            ]
+            ],
+            "transcript": "A: What's the problem?\nB: The sink's leaking since morning.\nA: I can send someone this afternoon.\n\n【要点】\"leak\" = 漏；\"come by\" = 顺路过来；\"slot\" = 空档；\"flicker\" = 闪烁；\"wiring\" = 线路。",
+            "video": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
+            "platform": "演示"
           },
-          {
-            "word": "delivered",
-            "phonetic": "/dɪˈlɪvərd/",
-            "senses": [
-              {
-                "pos": "adj.",
-                "meaning": "已送达的",
-                "example": "It shows delivered."
-              }
-            ]
-          },
-          {
-            "word": "redirect",
-            "phonetic": "/ˌriːdəˈrekt/",
-            "senses": [
-              {
-                "pos": "v.",
-                "meaning": "改投、改址",
-                "example": "Redirect to my office."
-              }
-            ]
-          },
-          {
-            "word": "transit",
-            "phonetic": "/ˈtrænzɪt/",
-            "senses": [
-              {
-                "pos": "n.",
-                "meaning": "运输途中",
-                "example": "Stuck in transit."
-              }
-            ]
-          },
-          {
-            "word": "update",
-            "phonetic": "/ˈʌpdeɪt/",
-            "senses": [
-              {
-                "pos": "n.",
-                "meaning": "进展、更新",
-                "example": "Any update on it?"
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "theme": "修理报修",
-        "spoken": {
-          "title": "报修、说故障、约时间",
-          "key": "The sink's been leaking since this morning — could someone come by?",
-          "keyTrans": "水槽从今早就开始漏水——能派人来看看吗？",
-          "keys": [
+          "vocab": [
             {
-              "en": "The sink's been leaking since this morning — could someone come by?",
-              "cn": "水槽从今早就开始漏水——能派人来看看吗？"
+              "word": "sink",
+              "phonetic": "/sɪŋk/",
+              "senses": [
+                {
+                  "pos": "n.",
+                  "meaning": "水槽",
+                  "example": "The sink is leaking."
+                }
+              ]
             },
             {
-              "en": "Is there a slot this afternoon, or is tomorrow better?",
-              "cn": "今天下午有空档吗，还是明天更合适？"
+              "word": "leak",
+              "phonetic": "/liːk/",
+              "senses": [
+                {
+                  "pos": "v.",
+                  "meaning": "漏",
+                  "example": "It's been leaking."
+                }
+              ]
             },
             {
-              "en": "It's flickering on and off — I think it's the wiring.",
-              "cn": "它忽明忽暗的——我猜是线路问题。"
+              "word": "slot",
+              "phonetic": "/slɑːt/",
+              "senses": [
+                {
+                  "pos": "n.",
+                  "meaning": "空档、时段",
+                  "example": "Any slot today?"
+                }
+              ]
+            },
+            {
+              "word": "flicker",
+              "phonetic": "/ˈflɪkər/",
+              "senses": [
+                {
+                  "pos": "v.",
+                  "meaning": "闪烁",
+                  "example": "The light flickers."
+                }
+              ]
+            },
+            {
+              "word": "wiring",
+              "phonetic": "/ˈwaɪərɪŋ/",
+              "senses": [
+                {
+                  "pos": "n.",
+                  "meaning": "线路",
+                  "example": "It's the wiring."
+                }
+              ]
             }
-          ],
-          "transcript": "A: What's the problem?\nB: The sink's leaking since morning.\nA: I can send someone this afternoon.\n\n【要点】\"leak\" = 漏；\"come by\" = 顺路过来；\"slot\" = 空档；\"flicker\" = 闪烁；\"wiring\" = 线路。",
-          "video": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
-          "platform": "演示"
+          ]
         },
-        "vocab": [
-          {
-            "word": "sink",
-            "phonetic": "/sɪŋk/",
-            "senses": [
+        {
+          "theme": "生日派对",
+          "spoken": {
+            "title": "邀约、带礼物、现场寒暄",
+            "key": "Happy birthday! I got you this little something — hope you like it.",
+            "keyTrans": "生日快乐！我给你带了点小东西——希望你喜欢。",
+            "keys": [
               {
-                "pos": "n.",
-                "meaning": "水槽",
-                "example": "The sink is leaking."
+                "en": "Happy birthday! I got you this little something — hope you like it.",
+                "cn": "生日快乐！我给你带了点小东西——希望你喜欢。"
+              },
+              {
+                "en": "Make a wish and blow out the candles — all twelve of them!",
+                "cn": "许个愿，把蜡烛吹灭——足足十二根呢！"
+              },
+              {
+                "en": "Thanks for having us over — the cake was amazing.",
+                "cn": "谢谢邀请我们来——蛋糕太赞了。"
               }
-            ]
+            ],
+            "transcript": "A: Happy birthday!\nB: Aw, you shouldn't have — thank you!\nA: Make a wish!\n\n【要点】\"make a wish\" = 许愿；\"blow out\" = 吹灭；\"candles\" = 蜡烛；\"have someone over\" = 邀请某人来家里。",
+            "video": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
+            "platform": "演示"
           },
-          {
-            "word": "leak",
-            "phonetic": "/liːk/",
-            "senses": [
-              {
-                "pos": "v.",
-                "meaning": "漏",
-                "example": "It's been leaking."
-              }
-            ]
-          },
-          {
-            "word": "slot",
-            "phonetic": "/slɑːt/",
-            "senses": [
-              {
-                "pos": "n.",
-                "meaning": "空档、时段",
-                "example": "Any slot today?"
-              }
-            ]
-          },
-          {
-            "word": "flicker",
-            "phonetic": "/ˈflɪkər/",
-            "senses": [
-              {
-                "pos": "v.",
-                "meaning": "闪烁",
-                "example": "The light flickers."
-              }
-            ]
-          },
-          {
-            "word": "wiring",
-            "phonetic": "/ˈwaɪərɪŋ/",
-            "senses": [
-              {
-                "pos": "n.",
-                "meaning": "线路",
-                "example": "It's the wiring."
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "theme": "生日派对",
-        "spoken": {
-          "title": "邀约、带礼物、现场寒暄",
-          "key": "Happy birthday! I got you this little something — hope you like it.",
-          "keyTrans": "生日快乐！我给你带了点小东西——希望你喜欢。",
-          "keys": [
+          "vocab": [
             {
-              "en": "Happy birthday! I got you this little something — hope you like it.",
-              "cn": "生日快乐！我给你带了点小东西——希望你喜欢。"
+              "word": "birthday",
+              "phonetic": "/ˈbɜːrθdeɪ/",
+              "senses": [
+                {
+                  "pos": "n.",
+                  "meaning": "生日",
+                  "example": "Happy birthday!"
+                }
+              ]
             },
             {
-              "en": "Make a wish and blow out the candles — all twelve of them!",
-              "cn": "许个愿，把蜡烛吹灭——足足十二根呢！"
+              "word": "wish",
+              "phonetic": "/wɪʃ/",
+              "senses": [
+                {
+                  "pos": "n.",
+                  "meaning": "愿望",
+                  "example": "Make a wish."
+                }
+              ]
             },
             {
-              "en": "Thanks for having us over — the cake was amazing.",
-              "cn": "谢谢邀请我们来——蛋糕太赞了。"
+              "word": "candle",
+              "phonetic": "/ˈkændl/",
+              "senses": [
+                {
+                  "pos": "n.",
+                  "meaning": "蜡烛",
+                  "example": "Blow out the candles."
+                }
+              ]
+            },
+            {
+              "word": "cake",
+              "phonetic": "/keɪk/",
+              "senses": [
+                {
+                  "pos": "n.",
+                  "meaning": "蛋糕",
+                  "example": "The cake was great."
+                }
+              ]
+            },
+            {
+              "word": "amazing",
+              "phonetic": "/əˈmeɪzɪŋ/",
+              "senses": [
+                {
+                  "pos": "adj.",
+                  "meaning": "太棒的",
+                  "example": "That's amazing!"
+                }
+              ]
             }
-          ],
-          "transcript": "A: Happy birthday!\nB: Aw, you shouldn't have — thank you!\nA: Make a wish!\n\n【要点】\"make a wish\" = 许愿；\"blow out\" = 吹灭；\"candles\" = 蜡烛；\"have someone over\" = 邀请某人来家里。",
-          "video": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
-          "platform": "演示"
+          ]
         },
-        "vocab": [
-          {
-            "word": "birthday",
-            "phonetic": "/ˈbɜːrθdeɪ/",
-            "senses": [
+        {
+          "theme": "读书分享",
+          "spoken": {
+            "title": "聊书、推荐、谈感悟",
+            "key": "I just finished a book that completely changed how I see habits.",
+            "keyTrans": "我刚读完一本书，彻底改变了我对习惯的看法。",
+            "keys": [
               {
-                "pos": "n.",
-                "meaning": "生日",
-                "example": "Happy birthday!"
+                "en": "I just finished a book that completely changed how I see habits.",
+                "cn": "我刚读完一本书，彻底改变了我对习惯的看法。"
+              },
+              {
+                "en": "Would you recommend it, or is it a bit dense?",
+                "cn": "你会推荐吗，还是说有点难啃？"
+              },
+              {
+                "en": "The part that stuck with me was the chapter on small wins.",
+                "cn": "最让我念念不忘的是讲「小胜」那一章。"
               }
-            ]
+            ],
+            "transcript": "A: Read anything good lately?\nB: Yeah, a book that changed how I see habits.\nA: I'm curious — what's it called?\n\n【要点】\"finish\" = 读完；\"dense\" = 艰涩难啃的；\"stuck with me\" = 让我念念不忘；\"chapter\" = 章节。",
+            "video": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
+            "platform": "演示"
           },
-          {
-            "word": "wish",
-            "phonetic": "/wɪʃ/",
-            "senses": [
-              {
-                "pos": "n.",
-                "meaning": "愿望",
-                "example": "Make a wish."
-              }
-            ]
-          },
-          {
-            "word": "candle",
-            "phonetic": "/ˈkændl/",
-            "senses": [
-              {
-                "pos": "n.",
-                "meaning": "蜡烛",
-                "example": "Blow out the candles."
-              }
-            ]
-          },
-          {
-            "word": "cake",
-            "phonetic": "/keɪk/",
-            "senses": [
-              {
-                "pos": "n.",
-                "meaning": "蛋糕",
-                "example": "The cake was great."
-              }
-            ]
-          },
-          {
-            "word": "amazing",
-            "phonetic": "/əˈmeɪzɪŋ/",
-            "senses": [
-              {
-                "pos": "adj.",
-                "meaning": "太棒的",
-                "example": "That's amazing!"
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "theme": "读书分享",
-        "spoken": {
-          "title": "聊书、推荐、谈感悟",
-          "key": "I just finished a book that completely changed how I see habits.",
-          "keyTrans": "我刚读完一本书，彻底改变了我对习惯的看法。",
-          "keys": [
+          "vocab": [
             {
-              "en": "I just finished a book that completely changed how I see habits.",
-              "cn": "我刚读完一本书，彻底改变了我对习惯的看法。"
+              "word": "finish",
+              "phonetic": "/ˈfɪnɪʃ/",
+              "senses": [
+                {
+                  "pos": "v.",
+                  "meaning": "读完、完成",
+                  "example": "I finished the book."
+                }
+              ]
             },
             {
-              "en": "Would you recommend it, or is it a bit dense?",
-              "cn": "你会推荐吗，还是说有点难啃？"
+              "word": "habit",
+              "phonetic": "/ˈhæbɪt/",
+              "senses": [
+                {
+                  "pos": "n.",
+                  "meaning": "习惯",
+                  "example": "It changed my habits."
+                }
+              ]
             },
             {
-              "en": "The part that stuck with me was the chapter on small wins.",
-              "cn": "最让我念念不忘的是讲「小胜」那一章。"
+              "word": "recommend",
+              "phonetic": "/ˌrekəˈmend/",
+              "senses": [
+                {
+                  "pos": "v.",
+                  "meaning": "推荐",
+                  "example": "Would you recommend it?"
+                }
+              ]
+            },
+            {
+              "word": "dense",
+              "phonetic": "/dens/",
+              "senses": [
+                {
+                  "pos": "adj.",
+                  "meaning": "艰涩的",
+                  "example": "The book is a bit dense."
+                }
+              ]
+            },
+            {
+              "word": "chapter",
+              "phonetic": "/ˈtʃæptər/",
+              "senses": [
+                {
+                  "pos": "n.",
+                  "meaning": "章节",
+                  "example": "My favorite chapter."
+                }
+              ]
             }
-          ],
-          "transcript": "A: Read anything good lately?\nB: Yeah, a book that changed how I see habits.\nA: I'm curious — what's it called?\n\n【要点】\"finish\" = 读完；\"dense\" = 艰涩难啃的；\"stuck with me\" = 让我念念不忘；\"chapter\" = 章节。",
-          "video": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
-          "platform": "演示"
-        },
-        "vocab": [
-          {
-            "word": "finish",
-            "phonetic": "/ˈfɪnɪʃ/",
-            "senses": [
-              {
-                "pos": "v.",
-                "meaning": "读完、完成",
-                "example": "I finished the book."
-              }
-            ]
-          },
-          {
-            "word": "habit",
-            "phonetic": "/ˈhæbɪt/",
-            "senses": [
-              {
-                "pos": "n.",
-                "meaning": "习惯",
-                "example": "It changed my habits."
-              }
-            ]
-          },
-          {
-            "word": "recommend",
-            "phonetic": "/ˌrekəˈmend/",
-            "senses": [
-              {
-                "pos": "v.",
-                "meaning": "推荐",
-                "example": "Would you recommend it?"
-              }
-            ]
-          },
-          {
-            "word": "dense",
-            "phonetic": "/dens/",
-            "senses": [
-              {
-                "pos": "adj.",
-                "meaning": "艰涩的",
-                "example": "The book is a bit dense."
-              }
-            ]
-          },
-          {
-            "word": "chapter",
-            "phonetic": "/ˈtʃæptər/",
-            "senses": [
-              {
-                "pos": "n.",
-                "meaning": "章节",
-                "example": "My favorite chapter."
-              }
-            ]
-          }
-        ]
-      }
+          ]
+        }
+      ]
     ]
-  ]
-},
+  },
   "fragmentReading": {
     "label": "碎片阅读 · 提升文笔",
     "updated": "2026-08-04",
@@ -5716,7 +5716,7 @@ window.WORKBENCH_DATA = {
   },
   "dailyHot": {
     "mode": "daily",
-    "updated": "2026-08-10 22:27",
+    "updated": "2026-08-10 23:13",
     "platforms": [
       "微博",
       "抖音",
@@ -5734,7 +5734,7 @@ window.WORKBENCH_DATA = {
           "platform": "微博",
           "rank": 1,
           "title": "王宝强0票",
-          "hot": 22255393,
+          "hot": 16987546,
           "url": "https://s.weibo.com/weibo?q=%E7%8E%8B%E5%AE%9D%E5%BC%BA0%E7%A5%A8",
           "tag": "社会",
           "desc": ""
@@ -5743,7 +5743,7 @@ window.WORKBENCH_DATA = {
           "platform": "微博",
           "rank": 2,
           "title": "易烊千玺百花奖最佳男主",
-          "hot": 9225322,
+          "hot": 3122947,
           "url": "https://s.weibo.com/weibo?q=%E6%98%93%E7%83%8A%E5%8D%83%E7%8E%BA%E7%99%BE%E8%8A%B1%E5%A5%96%E6%9C%80%E4%BD%B3%E7%94%B7%E4%B8%BB",
           "tag": "社会",
           "desc": ""
@@ -5752,7 +5752,7 @@ window.WORKBENCH_DATA = {
           "platform": "微博",
           "rank": 3,
           "title": "深圳向世界展示中国开放活力",
-          "hot": 6443782,
+          "hot": 2649636,
           "url": "https://s.weibo.com/weibo?q=%E6%B7%B1%E5%9C%B3%E5%90%91%E4%B8%96%E7%95%8C%E5%B1%95%E7%A4%BA%E4%B8%AD%E5%9B%BD%E5%BC%80%E6%94%BE%E6%B4%BB%E5%8A%9B",
           "tag": "社会",
           "desc": ""
@@ -5760,9 +5760,9 @@ window.WORKBENCH_DATA = {
         {
           "platform": "微博",
           "rank": 4,
-          "title": "卫诗雅百花奖最佳女主",
-          "hot": 4497239,
-          "url": "https://s.weibo.com/weibo?q=%E5%8D%AB%E8%AF%97%E9%9B%85%E7%99%BE%E8%8A%B1%E5%A5%96%E6%9C%80%E4%BD%B3%E5%A5%B3%E4%B8%BB",
+          "title": "刘耀文看到易烊千玺拿影帝的反应",
+          "hot": 2272546,
+          "url": "https://s.weibo.com/weibo?q=%E5%88%98%E8%80%80%E6%96%87%E7%9C%8B%E5%88%B0%E6%98%93%E7%83%8A%E5%8D%83%E7%8E%BA%E6%8B%BF%E5%BD%B1%E5%B8%9D%E7%9A%84%E5%8F%8D%E5%BA%94",
           "tag": "社会",
           "desc": ""
         },
@@ -5770,7 +5770,7 @@ window.WORKBENCH_DATA = {
           "platform": "微博",
           "rank": 5,
           "title": "泰国 电诈园区",
-          "hot": 1966557,
+          "hot": 1543692,
           "url": "https://s.weibo.com/weibo?q=%E6%B3%B0%E5%9B%BD%20%E7%94%B5%E8%AF%88%E5%9B%AD%E5%8C%BA",
           "tag": "社会",
           "desc": ""
@@ -5778,9 +5778,9 @@ window.WORKBENCH_DATA = {
         {
           "platform": "微博",
           "rank": 6,
-          "title": "百花奖获奖名单",
-          "hot": 1928823,
-          "url": "https://s.weibo.com/weibo?q=%E7%99%BE%E8%8A%B1%E5%A5%96%E8%8E%B7%E5%A5%96%E5%90%8D%E5%8D%95",
+          "title": "卫诗雅百花奖最佳女主",
+          "hot": 1461156,
+          "url": "https://s.weibo.com/weibo?q=%E5%8D%AB%E8%AF%97%E9%9B%85%E7%99%BE%E8%8A%B1%E5%A5%96%E6%9C%80%E4%BD%B3%E5%A5%B3%E4%B8%BB",
           "tag": "社会",
           "desc": ""
         },
@@ -5788,7 +5788,7 @@ window.WORKBENCH_DATA = {
           "platform": "微博",
           "rank": 7,
           "title": "白海豚突然大拐弯",
-          "hot": 1304844,
+          "hot": 1239130,
           "url": "https://s.weibo.com/weibo?q=%E7%99%BD%E6%B5%B7%E8%B1%9A%E7%AA%81%E7%84%B6%E5%A4%A7%E6%8B%90%E5%BC%AF",
           "tag": "社会",
           "desc": ""
@@ -5797,7 +5797,7 @@ window.WORKBENCH_DATA = {
           "platform": "微博",
           "rank": 8,
           "title": "原来这才是金项链的正确戴法",
-          "hot": 1094896,
+          "hot": 1179057,
           "url": "https://s.weibo.com/weibo?q=%E5%8E%9F%E6%9D%A5%E8%BF%99%E6%89%8D%E6%98%AF%E9%87%91%E9%A1%B9%E9%93%BE%E7%9A%84%E6%AD%A3%E7%A1%AE%E6%88%B4%E6%B3%95",
           "tag": "社会",
           "desc": ""
@@ -5805,36 +5805,36 @@ window.WORKBENCH_DATA = {
         {
           "platform": "微博",
           "rank": 9,
-          "title": "男乒世界前十仅2名中国选手",
-          "hot": 1090370,
-          "url": "https://s.weibo.com/weibo?q=%E7%94%B7%E4%B9%92%E4%B8%96%E7%95%8C%E5%89%8D%E5%8D%81%E4%BB%852%E5%90%8D%E4%B8%AD%E5%9B%BD%E9%80%89%E6%89%8B",
+          "title": "iPhone18Pro等7款新品彻底泄密",
+          "hot": 1164036,
+          "url": "https://s.weibo.com/weibo?q=iPhone18Pro%E7%AD%897%E6%AC%BE%E6%96%B0%E5%93%81%E5%BD%BB%E5%BA%95%E6%B3%84%E5%AF%86",
           "tag": "社会",
           "desc": ""
         },
         {
           "platform": "微博",
           "rank": 10,
-          "title": "5万元以下小车销量暴跌55%",
-          "hot": 1086019,
-          "url": "https://s.weibo.com/weibo?q=5%E4%B8%87%E5%85%83%E4%BB%A5%E4%B8%8B%E5%B0%8F%E8%BD%A6%E9%94%80%E9%87%8F%E6%9A%B4%E8%B7%8C55%25",
+          "title": "男乒世界前十仅2名中国选手",
+          "hot": 1137736,
+          "url": "https://s.weibo.com/weibo?q=%E7%94%B7%E4%B9%92%E4%B8%96%E7%95%8C%E5%89%8D%E5%8D%81%E4%BB%852%E5%90%8D%E4%B8%AD%E5%9B%BD%E9%80%89%E6%89%8B",
           "tag": "社会",
           "desc": ""
         },
         {
           "platform": "微博",
           "rank": 11,
-          "title": "竟然不是高叶",
-          "hot": 1080562,
-          "url": "https://s.weibo.com/weibo?q=%E7%AB%9F%E7%84%B6%E4%B8%8D%E6%98%AF%E9%AB%98%E5%8F%B6",
+          "title": "百花奖获奖名单",
+          "hot": 1117460,
+          "url": "https://s.weibo.com/weibo?q=%E7%99%BE%E8%8A%B1%E5%A5%96%E8%8E%B7%E5%A5%96%E5%90%8D%E5%8D%95",
           "tag": "社会",
           "desc": ""
         },
         {
           "platform": "微博",
           "rank": 12,
-          "title": "喜剧人 拿奖难",
-          "hot": 1077123,
-          "url": "https://s.weibo.com/weibo?q=%E5%96%9C%E5%89%A7%E4%BA%BA%20%E6%8B%BF%E5%A5%96%E9%9A%BE",
+          "title": "陈思诚在家里气哭了",
+          "hot": 1088376,
+          "url": "https://s.weibo.com/weibo?q=%E9%99%88%E6%80%9D%E8%AF%9A%E5%9C%A8%E5%AE%B6%E9%87%8C%E6%B0%94%E5%93%AD%E4%BA%86",
           "tag": "社会",
           "desc": ""
         },
@@ -5842,7 +5842,7 @@ window.WORKBENCH_DATA = {
           "platform": "微博",
           "rank": 13,
           "title": "泰国旅游 失联",
-          "hot": 1070611,
+          "hot": 1061500,
           "url": "https://s.weibo.com/weibo?q=%E6%B3%B0%E5%9B%BD%E6%97%85%E6%B8%B8%20%E5%A4%B1%E8%81%94",
           "tag": "社会",
           "desc": ""
@@ -5850,99 +5850,99 @@ window.WORKBENCH_DATA = {
         {
           "platform": "微博",
           "rank": 14,
-          "title": "刘耀文看到易烊千玺拿影帝的反应",
-          "hot": 1064731,
-          "url": "https://s.weibo.com/weibo?q=%E5%88%98%E8%80%80%E6%96%87%E7%9C%8B%E5%88%B0%E6%98%93%E7%83%8A%E5%8D%83%E7%8E%BA%E6%8B%BF%E5%BD%B1%E5%B8%9D%E7%9A%84%E5%8F%8D%E5%BA%94",
-          "tag": "社会",
-          "desc": ""
-        },
-        {
-          "platform": "微博",
-          "rank": 15,
-          "title": "AppleWatch产品线重大调整",
-          "hot": 1061497,
-          "url": "https://s.weibo.com/weibo?q=AppleWatch%E4%BA%A7%E5%93%81%E7%BA%BF%E9%87%8D%E5%A4%A7%E8%B0%83%E6%95%B4",
-          "tag": "社会",
-          "desc": ""
-        },
-        {
-          "platform": "微博",
-          "rank": 16,
-          "title": "大鹏最佳导演",
-          "hot": 1055684,
-          "url": "https://s.weibo.com/weibo?q=%E5%A4%A7%E9%B9%8F%E6%9C%80%E4%BD%B3%E5%AF%BC%E6%BC%94",
-          "tag": "社会",
-          "desc": ""
-        },
-        {
-          "platform": "微博",
-          "rank": 17,
-          "title": "哥伦比亚发生7.5级地震",
-          "hot": 1050344,
-          "url": "https://s.weibo.com/weibo?q=%E5%93%A5%E4%BC%A6%E6%AF%94%E4%BA%9A%E5%8F%91%E7%94%9F7.5%E7%BA%A7%E5%9C%B0%E9%9C%87",
-          "tag": "社会",
-          "desc": ""
-        },
-        {
-          "platform": "微博",
-          "rank": 18,
-          "title": "ai漫剧顶流已经出了8季了",
-          "hot": 1043780,
-          "url": "https://s.weibo.com/weibo?q=ai%E6%BC%AB%E5%89%A7%E9%A1%B6%E6%B5%81%E5%B7%B2%E7%BB%8F%E5%87%BA%E4%BA%868%E5%AD%A3%E4%BA%86",
-          "tag": "社会",
-          "desc": ""
-        },
-        {
-          "platform": "微博",
-          "rank": 19,
-          "title": "刘耀文票数",
-          "hot": 1040033,
-          "url": "https://s.weibo.com/weibo?q=%E5%88%98%E8%80%80%E6%96%87%E7%A5%A8%E6%95%B0",
-          "tag": "社会",
-          "desc": ""
-        },
-        {
-          "platform": "微博",
-          "rank": 20,
-          "title": "郑丽文说台湾从来不是一个国家",
-          "hot": 1034447,
-          "url": "https://s.weibo.com/weibo?q=%E9%83%91%E4%B8%BD%E6%96%87%E8%AF%B4%E5%8F%B0%E6%B9%BE%E4%BB%8E%E6%9D%A5%E4%B8%8D%E6%98%AF%E4%B8%80%E4%B8%AA%E5%9B%BD%E5%AE%B6",
-          "tag": "社会",
-          "desc": ""
-        },
-        {
-          "platform": "微博",
-          "rank": 21,
-          "title": "河南大暴雨特大暴雨",
-          "hot": 1027458,
-          "url": "https://s.weibo.com/weibo?q=%E6%B2%B3%E5%8D%97%E5%A4%A7%E6%9A%B4%E9%9B%A8%E7%89%B9%E5%A4%A7%E6%9A%B4%E9%9B%A8",
-          "tag": "社会",
-          "desc": ""
-        },
-        {
-          "platform": "微博",
-          "rank": 22,
           "title": "杨幂百花奖24票",
-          "hot": 1022592,
+          "hot": 1048935,
           "url": "https://s.weibo.com/weibo?q=%E6%9D%A8%E5%B9%82%E7%99%BE%E8%8A%B1%E5%A5%9624%E7%A5%A8",
           "tag": "社会",
           "desc": ""
         },
         {
           "platform": "微博",
+          "rank": 15,
+          "title": "梁家辉安慰马丽不要哭",
+          "hot": 1030583,
+          "url": "https://s.weibo.com/weibo?q=%E6%A2%81%E5%AE%B6%E8%BE%89%E5%AE%89%E6%85%B0%E9%A9%AC%E4%B8%BD%E4%B8%8D%E8%A6%81%E5%93%AD",
+          "tag": "社会",
+          "desc": ""
+        },
+        {
+          "platform": "微博",
+          "rank": 16,
+          "title": "哥伦比亚发生7.5级地震",
+          "hot": 1004661,
+          "url": "https://s.weibo.com/weibo?q=%E5%93%A5%E4%BC%A6%E6%AF%94%E4%BA%9A%E5%8F%91%E7%94%9F7.5%E7%BA%A7%E5%9C%B0%E9%9C%87",
+          "tag": "社会",
+          "desc": ""
+        },
+        {
+          "platform": "微博",
+          "rank": 17,
+          "title": "ai漫剧顶流已经出了8季了",
+          "hot": 983514,
+          "url": "https://s.weibo.com/weibo?q=ai%E6%BC%AB%E5%89%A7%E9%A1%B6%E6%B5%81%E5%B7%B2%E7%BB%8F%E5%87%BA%E4%BA%868%E5%AD%A3%E4%BA%86",
+          "tag": "社会",
+          "desc": ""
+        },
+        {
+          "platform": "微博",
+          "rank": 18,
+          "title": "旅游发朋友圈为什么要带定位",
+          "hot": 962702,
+          "url": "https://s.weibo.com/weibo?q=%E6%97%85%E6%B8%B8%E5%8F%91%E6%9C%8B%E5%8F%8B%E5%9C%88%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%B8%A6%E5%AE%9A%E4%BD%8D",
+          "tag": "社会",
+          "desc": ""
+        },
+        {
+          "platform": "微博",
+          "rank": 19,
+          "title": "马丽2票",
+          "hot": 924679,
+          "url": "https://s.weibo.com/weibo?q=%E9%A9%AC%E4%B8%BD2%E7%A5%A8",
+          "tag": "社会",
+          "desc": ""
+        },
+        {
+          "platform": "微博",
+          "rank": 20,
+          "title": "13114元机票退旧买新需扣13010元",
+          "hot": 900934,
+          "url": "https://s.weibo.com/weibo?q=13114%E5%85%83%E6%9C%BA%E7%A5%A8%E9%80%80%E6%97%A7%E4%B9%B0%E6%96%B0%E9%9C%80%E6%89%A313010%E5%85%83",
+          "tag": "社会",
+          "desc": ""
+        },
+        {
+          "platform": "微博",
+          "rank": 21,
+          "title": "竟然不是高叶",
+          "hot": 883164,
+          "url": "https://s.weibo.com/weibo?q=%E7%AB%9F%E7%84%B6%E4%B8%8D%E6%98%AF%E9%AB%98%E5%8F%B6",
+          "tag": "社会",
+          "desc": ""
+        },
+        {
+          "platform": "微博",
+          "rank": 22,
+          "title": "刘耀文票数",
+          "hot": 871738,
+          "url": "https://s.weibo.com/weibo?q=%E5%88%98%E8%80%80%E6%96%87%E7%A5%A8%E6%95%B0",
+          "tag": "社会",
+          "desc": ""
+        },
+        {
+          "platform": "微博",
           "rank": 23,
-          "title": "易烊千玺身上没有展示位了",
-          "hot": 1017283,
-          "url": "https://s.weibo.com/weibo?q=%E6%98%93%E7%83%8A%E5%8D%83%E7%8E%BA%E8%BA%AB%E4%B8%8A%E6%B2%A1%E6%9C%89%E5%B1%95%E7%A4%BA%E4%BD%8D%E4%BA%86",
+          "title": "河南大暴雨特大暴雨",
+          "hot": 818272,
+          "url": "https://s.weibo.com/weibo?q=%E6%B2%B3%E5%8D%97%E5%A4%A7%E6%9A%B4%E9%9B%A8%E7%89%B9%E5%A4%A7%E6%9A%B4%E9%9B%A8",
           "tag": "社会",
           "desc": ""
         },
         {
           "platform": "微博",
           "rank": 24,
-          "title": "经常旅游的人都有一个共性",
-          "hot": 1012702,
-          "url": "https://s.weibo.com/weibo?q=%E7%BB%8F%E5%B8%B8%E6%97%85%E6%B8%B8%E7%9A%84%E4%BA%BA%E9%83%BD%E6%9C%89%E4%B8%80%E4%B8%AA%E5%85%B1%E6%80%A7",
+          "title": "沈腾 王宝强",
+          "hot": 785335,
+          "url": "https://s.weibo.com/weibo?q=%E6%B2%88%E8%85%BE%20%E7%8E%8B%E5%AE%9D%E5%BC%BA",
           "tag": "社会",
           "desc": ""
         },
@@ -5950,7 +5950,7 @@ window.WORKBENCH_DATA = {
           "platform": "微博",
           "rank": 25,
           "title": "小小的我导演0票",
-          "hot": 1005284,
+          "hot": 752003,
           "url": "https://s.weibo.com/weibo?q=%E5%B0%8F%E5%B0%8F%E7%9A%84%E6%88%91%E5%AF%BC%E6%BC%940%E7%A5%A8",
           "tag": "社会",
           "desc": ""
@@ -5959,7 +5959,7 @@ window.WORKBENCH_DATA = {
           "platform": "抖音",
           "rank": 1,
           "title": "上海暴雨",
-          "hot": 11699302,
+          "hot": 11602693,
           "url": "https://www.douyin.com/search/%E4%B8%8A%E6%B5%B7%E6%9A%B4%E9%9B%A8",
           "tag": "娱乐",
           "desc": "22001"
@@ -5968,7 +5968,7 @@ window.WORKBENCH_DATA = {
           "platform": "抖音",
           "rank": 2,
           "title": "台风白海豚实时路径",
-          "hot": 11646246,
+          "hot": 11303303,
           "url": "https://www.douyin.com/search/%E5%8F%B0%E9%A3%8E%E7%99%BD%E6%B5%B7%E8%B1%9A%E5%AE%9E%E6%97%B6%E8%B7%AF%E5%BE%84",
           "tag": "娱乐",
           "desc": "22001"
@@ -5977,7 +5977,7 @@ window.WORKBENCH_DATA = {
           "platform": "抖音",
           "rank": 3,
           "title": "暑期档电影市场增势向好",
-          "hot": 11460895,
+          "hot": 11248106,
           "url": "https://www.douyin.com/search/%E6%9A%91%E6%9C%9F%E6%A1%A3%E7%94%B5%E5%BD%B1%E5%B8%82%E5%9C%BA%E5%A2%9E%E5%8A%BF%E5%90%91%E5%A5%BD",
           "tag": "娱乐",
           "desc": "7000"
@@ -5986,7 +5986,7 @@ window.WORKBENCH_DATA = {
           "platform": "抖音",
           "rank": 4,
           "title": "易烊千玺百花奖最佳男主角",
-          "hot": 11446432,
+          "hot": 11157123,
           "url": "https://www.douyin.com/search/%E6%98%93%E7%83%8A%E5%8D%83%E7%8E%BA%E7%99%BE%E8%8A%B1%E5%A5%96%E6%9C%80%E4%BD%B3%E7%94%B7%E4%B8%BB%E8%A7%92",
           "tag": "娱乐",
           "desc": "2001"
@@ -5995,7 +5995,7 @@ window.WORKBENCH_DATA = {
           "platform": "抖音",
           "rank": 5,
           "title": "南太行失联22岁女孩遗体被发现",
-          "hot": 10758942,
+          "hot": 10591720,
           "url": "https://www.douyin.com/search/%E5%8D%97%E5%A4%AA%E8%A1%8C%E5%A4%B1%E8%81%9422%E5%B2%81%E5%A5%B3%E5%AD%A9%E9%81%97%E4%BD%93%E8%A2%AB%E5%8F%91%E7%8E%B0",
           "tag": "娱乐",
           "desc": "4003"
@@ -6004,7 +6004,7 @@ window.WORKBENCH_DATA = {
           "platform": "抖音",
           "rank": 6,
           "title": "演员秦焰去世",
-          "hot": 10564906,
+          "hot": 10567710,
           "url": "https://www.douyin.com/search/%E6%BC%94%E5%91%98%E7%A7%A6%E7%84%B0%E5%8E%BB%E4%B8%96",
           "tag": "娱乐",
           "desc": "4007"
@@ -6013,7 +6013,7 @@ window.WORKBENCH_DATA = {
           "platform": "抖音",
           "rank": 7,
           "title": "开封夜市好吃到停不下来",
-          "hot": 9447828,
+          "hot": 9437448,
           "url": "https://www.douyin.com/search/%E5%BC%80%E5%B0%81%E5%A4%9C%E5%B8%82%E5%A5%BD%E5%90%83%E5%88%B0%E5%81%9C%E4%B8%8D%E4%B8%8B%E6%9D%A5",
           "tag": "娱乐",
           "desc": "9000"
@@ -6022,7 +6022,7 @@ window.WORKBENCH_DATA = {
           "platform": "抖音",
           "rank": 8,
           "title": "穿搭天才依旧稳定发挥",
-          "hot": 9435411,
+          "hot": 9437289,
           "url": "https://www.douyin.com/search/%E7%A9%BF%E6%90%AD%E5%A4%A9%E6%89%8D%E4%BE%9D%E6%97%A7%E7%A8%B3%E5%AE%9A%E5%8F%91%E6%8C%A5",
           "tag": "娱乐",
           "desc": "16000"
@@ -6031,7 +6031,7 @@ window.WORKBENCH_DATA = {
           "platform": "抖音",
           "rank": 9,
           "title": "经销商：雪佛兰暂停在华新车销售",
-          "hot": 9247999,
+          "hot": 9370723,
           "url": "https://www.douyin.com/search/%E7%BB%8F%E9%94%80%E5%95%86%EF%BC%9A%E9%9B%AA%E4%BD%9B%E5%85%B0%E6%9A%82%E5%81%9C%E5%9C%A8%E5%8D%8E%E6%96%B0%E8%BD%A6%E9%94%80%E5%94%AE",
           "tag": "娱乐",
           "desc": "11000"
@@ -6040,7 +6040,7 @@ window.WORKBENCH_DATA = {
           "platform": "抖音",
           "rank": 10,
           "title": "卫诗雅获百花奖最佳女主角",
-          "hot": 9181142,
+          "hot": 9211733,
           "url": "https://www.douyin.com/search/%E5%8D%AB%E8%AF%97%E9%9B%85%E8%8E%B7%E7%99%BE%E8%8A%B1%E5%A5%96%E6%9C%80%E4%BD%B3%E5%A5%B3%E4%B8%BB%E8%A7%92",
           "tag": "娱乐",
           "desc": "2001"
@@ -6048,35 +6048,35 @@ window.WORKBENCH_DATA = {
         {
           "platform": "抖音",
           "rank": 11,
+          "title": "一口气看懂万达现状",
+          "hot": 9209903,
+          "url": "https://www.douyin.com/search/%E4%B8%80%E5%8F%A3%E6%B0%94%E7%9C%8B%E6%87%82%E4%B8%87%E8%BE%BE%E7%8E%B0%E7%8A%B6",
+          "tag": "娱乐",
+          "desc": "7000"
+        },
+        {
+          "platform": "抖音",
+          "rank": 12,
           "title": "遗忘之海章鱼哥太难听了",
-          "hot": 9127070,
+          "hot": 9168660,
           "url": "https://www.douyin.com/search/%E9%81%97%E5%BF%98%E4%B9%8B%E6%B5%B7%E7%AB%A0%E9%B1%BC%E5%93%A5%E5%A4%AA%E9%9A%BE%E5%90%AC%E4%BA%86",
           "tag": "娱乐",
           "desc": "12000"
         },
         {
           "platform": "抖音",
-          "rank": 12,
-          "title": "以色列士兵把枪口对准中国记者",
-          "hot": 9085848,
-          "url": "https://www.douyin.com/search/%E4%BB%A5%E8%89%B2%E5%88%97%E5%A3%AB%E5%85%B5%E6%8A%8A%E6%9E%AA%E5%8F%A3%E5%AF%B9%E5%87%86%E4%B8%AD%E5%9B%BD%E8%AE%B0%E8%80%85",
-          "tag": "娱乐",
-          "desc": "3002"
-        },
-        {
-          "platform": "抖音",
           "rank": 13,
-          "title": "王骁萨日娜百花奖最佳男女配",
-          "hot": 9084975,
-          "url": "https://www.douyin.com/search/%E7%8E%8B%E9%AA%81%E8%90%A8%E6%97%A5%E5%A8%9C%E7%99%BE%E8%8A%B1%E5%A5%96%E6%9C%80%E4%BD%B3%E7%94%B7%E5%A5%B3%E9%85%8D",
+          "title": "哥伦比亚发生7.5级地震",
+          "hot": 9102808,
+          "url": "https://www.douyin.com/search/%E5%93%A5%E4%BC%A6%E6%AF%94%E4%BA%9A%E5%8F%91%E7%94%9F7.5%E7%BA%A7%E5%9C%B0%E9%9C%87",
           "tag": "娱乐",
-          "desc": "2006"
+          "desc": "22002"
         },
         {
           "platform": "抖音",
           "rank": 14,
           "title": "百花奖获奖名单",
-          "hot": 8720602,
+          "hot": 8966258,
           "url": "https://www.douyin.com/search/%E7%99%BE%E8%8A%B1%E5%A5%96%E8%8E%B7%E5%A5%96%E5%90%8D%E5%8D%95",
           "tag": "娱乐",
           "desc": "2001"
@@ -6084,35 +6084,35 @@ window.WORKBENCH_DATA = {
         {
           "platform": "抖音",
           "rank": 15,
-          "title": "哥伦比亚发生7.5级地震",
-          "hot": 8552100,
-          "url": "https://www.douyin.com/search/%E5%93%A5%E4%BC%A6%E6%AF%94%E4%BA%9A%E5%8F%91%E7%94%9F7.5%E7%BA%A7%E5%9C%B0%E9%9C%87",
+          "title": "以色列士兵把枪口对准中国记者",
+          "hot": 8748379,
+          "url": "https://www.douyin.com/search/%E4%BB%A5%E8%89%B2%E5%88%97%E5%A3%AB%E5%85%B5%E6%8A%8A%E6%9E%AA%E5%8F%A3%E5%AF%B9%E5%87%86%E4%B8%AD%E5%9B%BD%E8%AE%B0%E8%80%85",
           "tag": "娱乐",
-          "desc": "22002"
+          "desc": "3002"
         },
         {
           "platform": "抖音",
           "rank": 16,
+          "title": "河北发布暴雨橙色预警信号",
+          "hot": 8706534,
+          "url": "https://www.douyin.com/search/%E6%B2%B3%E5%8C%97%E5%8F%91%E5%B8%83%E6%9A%B4%E9%9B%A8%E6%A9%99%E8%89%B2%E9%A2%84%E8%AD%A6%E4%BF%A1%E5%8F%B7",
+          "tag": "娱乐",
+          "desc": "22001"
+        },
+        {
+          "platform": "抖音",
+          "rank": 17,
           "title": "苹果被曝探索无屏Apple Watch",
-          "hot": 8389046,
+          "hot": 8562993,
           "url": "https://www.douyin.com/search/%E8%8B%B9%E6%9E%9C%E8%A2%AB%E6%9B%9D%E6%8E%A2%E7%B4%A2%E6%97%A0%E5%B1%8FApple%20Watch",
           "tag": "娱乐",
           "desc": "6000"
         },
         {
           "platform": "抖音",
-          "rank": 17,
-          "title": "宇树科技今日申购",
-          "hot": 8178428,
-          "url": "https://www.douyin.com/search/%E5%AE%87%E6%A0%91%E7%A7%91%E6%8A%80%E4%BB%8A%E6%97%A5%E7%94%B3%E8%B4%AD",
-          "tag": "娱乐",
-          "desc": "7000"
-        },
-        {
-          "platform": "抖音",
           "rank": 18,
           "title": "电视剧重器开播",
-          "hot": 7945933,
+          "hot": 8105247,
           "url": "https://www.douyin.com/search/%E7%94%B5%E8%A7%86%E5%89%A7%E9%87%8D%E5%99%A8%E5%BC%80%E6%92%AD",
           "tag": "娱乐",
           "desc": "2002"
@@ -6120,17 +6120,17 @@ window.WORKBENCH_DATA = {
         {
           "platform": "抖音",
           "rank": 19,
-          "title": "台军“汉光演习”再出意外",
-          "hot": 7808127,
-          "url": "https://www.douyin.com/search/%E5%8F%B0%E5%86%9B%E2%80%9C%E6%B1%89%E5%85%89%E6%BC%94%E4%B9%A0%E2%80%9D%E5%86%8D%E5%87%BA%E6%84%8F%E5%A4%96",
+          "title": "王骁萨日娜百花奖最佳男女配",
+          "hot": 8101012,
+          "url": "https://www.douyin.com/search/%E7%8E%8B%E9%AA%81%E8%90%A8%E6%97%A5%E5%A8%9C%E7%99%BE%E8%8A%B1%E5%A5%96%E6%9C%80%E4%BD%B3%E7%94%B7%E5%A5%B3%E9%85%8D",
           "tag": "娱乐",
-          "desc": "3001"
+          "desc": "2006"
         },
         {
           "platform": "抖音",
           "rank": 20,
           "title": "我的暑假漫展日记",
-          "hot": 7797593,
+          "hot": 7802065,
           "url": "https://www.douyin.com/search/%E6%88%91%E7%9A%84%E6%9A%91%E5%81%87%E6%BC%AB%E5%B1%95%E6%97%A5%E8%AE%B0",
           "tag": "娱乐",
           "desc": "13000"
@@ -6138,35 +6138,35 @@ window.WORKBENCH_DATA = {
         {
           "platform": "抖音",
           "rank": 21,
-          "title": "中国用竹子造无人机",
-          "hot": 7793131,
-          "url": "https://www.douyin.com/search/%E4%B8%AD%E5%9B%BD%E7%94%A8%E7%AB%B9%E5%AD%90%E9%80%A0%E6%97%A0%E4%BA%BA%E6%9C%BA",
-          "tag": "娱乐",
-          "desc": "6000"
-        },
-        {
-          "platform": "抖音",
-          "rank": 22,
-          "title": "河北发布暴雨橙色预警信号",
-          "hot": 7776884,
-          "url": "https://www.douyin.com/search/%E6%B2%B3%E5%8C%97%E5%8F%91%E5%B8%83%E6%9A%B4%E9%9B%A8%E6%A9%99%E8%89%B2%E9%A2%84%E8%AD%A6%E4%BF%A1%E5%8F%B7",
-          "tag": "娱乐",
-          "desc": "22001"
-        },
-        {
-          "platform": "抖音",
-          "rank": 23,
           "title": "媒体评雪佛兰退出中国市场",
-          "hot": 7763410,
+          "hot": 7789407,
           "url": "https://www.douyin.com/search/%E5%AA%92%E4%BD%93%E8%AF%84%E9%9B%AA%E4%BD%9B%E5%85%B0%E9%80%80%E5%87%BA%E4%B8%AD%E5%9B%BD%E5%B8%82%E5%9C%BA",
           "tag": "娱乐",
           "desc": "11000"
         },
         {
           "platform": "抖音",
+          "rank": 22,
+          "title": "欢迎来龙餐馆沈腾演技",
+          "hot": 7787054,
+          "url": "https://www.douyin.com/search/%E6%AC%A2%E8%BF%8E%E6%9D%A5%E9%BE%99%E9%A4%90%E9%A6%86%E6%B2%88%E8%85%BE%E6%BC%94%E6%8A%80",
+          "tag": "娱乐",
+          "desc": "2001"
+        },
+        {
+          "platform": "抖音",
+          "rank": 23,
+          "title": "大海真的好美呀",
+          "hot": 7777020,
+          "url": "https://www.douyin.com/search/%E5%A4%A7%E6%B5%B7%E7%9C%9F%E7%9A%84%E5%A5%BD%E7%BE%8E%E5%91%80",
+          "tag": "娱乐",
+          "desc": "1001"
+        },
+        {
+          "platform": "抖音",
           "rank": 24,
           "title": "火影手游百战虎皮全爆料",
-          "hot": 7759757,
+          "hot": 7772342,
           "url": "https://www.douyin.com/search/%E7%81%AB%E5%BD%B1%E6%89%8B%E6%B8%B8%E7%99%BE%E6%88%98%E8%99%8E%E7%9A%AE%E5%85%A8%E7%88%86%E6%96%99",
           "tag": "娱乐",
           "desc": "12000"
@@ -6174,11 +6174,11 @@ window.WORKBENCH_DATA = {
         {
           "platform": "抖音",
           "rank": 25,
-          "title": "第38届百花奖闭幕式",
-          "hot": 7757887,
-          "url": "https://www.douyin.com/search/%E7%AC%AC38%E5%B1%8A%E7%99%BE%E8%8A%B1%E5%A5%96%E9%97%AD%E5%B9%95%E5%BC%8F",
+          "title": "赵鹏皓官宣加入众星时代",
+          "hot": 7755915,
+          "url": "https://www.douyin.com/search/%E8%B5%B5%E9%B9%8F%E7%9A%93%E5%AE%98%E5%AE%A3%E5%8A%A0%E5%85%A5%E4%BC%97%E6%98%9F%E6%97%B6%E4%BB%A3",
           "tag": "娱乐",
-          "desc": "2006"
+          "desc": "2011"
         },
         {
           "platform": "知乎",
@@ -6192,15 +6192,6 @@ window.WORKBENCH_DATA = {
         {
           "platform": "知乎",
           "rank": 2,
-          "title": "同济大学取消教师长期聘任，科研教职岗位面临更大的压力，为什么行政工作相对更简单反而没有这种不稳定性？",
-          "hot": 0,
-          "url": "https://www.zhihu.com/question/2067683991218607726",
-          "tag": "知识",
-          "desc": ""
-        },
-        {
-          "platform": "知乎",
-          "rank": 3,
           "title": "河南22岁女孩南太行山失联，手机最后信号不在山林，现已确认遇难，遗体在悬崖被找到，有哪些信息值得关注？",
           "hot": 0,
           "url": "https://www.zhihu.com/question/2068484771710293896",
@@ -6209,7 +6200,7 @@ window.WORKBENCH_DATA = {
         },
         {
           "platform": "知乎",
-          "rank": 4,
+          "rank": 3,
           "title": "特斯拉将建史上最大芯片厂，这对全球芯片产业有何影响？",
           "hot": 0,
           "url": "https://www.zhihu.com/question/2068943667189002947",
@@ -6218,7 +6209,7 @@ window.WORKBENCH_DATA = {
         },
         {
           "platform": "知乎",
-          "rank": 5,
+          "rank": 4,
           "title": "于东来回应关闭胖东来生活广场店，因早年租约失误造成租户租金失衡，门店盈利上亿仍闭店，如何看待他的选择？",
           "hot": 0,
           "url": "https://www.zhihu.com/question/2069799083045287916",
@@ -6227,10 +6218,19 @@ window.WORKBENCH_DATA = {
         },
         {
           "platform": "知乎",
-          "rank": 6,
-          "title": "《欢迎来龙餐馆》为啥不叫《欢迎来到龙餐馆》？",
+          "rank": 5,
+          "title": "易烊千玺、卫诗雅分封影帝、影后，如何评价第 38届大众电影百花奖获奖名单？",
           "hot": 0,
-          "url": "https://www.zhihu.com/question/2069800142161687384",
+          "url": "https://www.zhihu.com/question/2070241074514224234",
+          "tag": "知识",
+          "desc": ""
+        },
+        {
+          "platform": "知乎",
+          "rank": 6,
+          "title": "沈腾新片《欢迎来龙餐馆》点映口碑爆棚，如何评价沈腾此番演技？喜剧演员要打破观众的固有印象难度在哪？",
+          "hot": 0,
+          "url": "https://www.zhihu.com/question/2069917740303737208",
           "tag": "知识",
           "desc": ""
         },
@@ -6246,9 +6246,9 @@ window.WORKBENCH_DATA = {
         {
           "platform": "知乎",
           "rank": 8,
-          "title": "易烊千玺、卫诗雅分封影帝、影后，如何评价第 38届大众电影百花奖获奖名单？",
+          "title": "《欢迎来龙餐馆》为啥不叫《欢迎来到龙餐馆》？",
           "hot": 0,
-          "url": "https://www.zhihu.com/question/2070241074514224234",
+          "url": "https://www.zhihu.com/question/2069800142161687384",
           "tag": "知识",
           "desc": ""
         },
@@ -6273,15 +6273,6 @@ window.WORKBENCH_DATA = {
         {
           "platform": "知乎",
           "rank": 11,
-          "title": "沈腾新片《欢迎来龙餐馆》点映口碑爆棚，如何评价沈腾此番演技？喜剧演员要打破观众的固有印象难度在哪？",
-          "hot": 0,
-          "url": "https://www.zhihu.com/question/2069917740303737208",
-          "tag": "知识",
-          "desc": ""
-        },
-        {
-          "platform": "知乎",
-          "rank": 12,
           "title": "多地高分生扎堆填报「3+4」中本贯通，为什么会这样？中本贯通有哪些优势？",
           "hot": 0,
           "url": "https://www.zhihu.com/question/2070067547102082665",
@@ -6290,16 +6281,16 @@ window.WORKBENCH_DATA = {
         },
         {
           "platform": "知乎",
-          "rank": 13,
-          "title": "台风「白海豚」疯狂倒水，上海内涝严重，地铁多条线路停运，你的出行和生活受影响了吗？今天有居家办公吗？",
+          "rank": 12,
+          "title": "同济大学取消教师长期聘任，科研教职岗位面临更大的压力，为什么行政工作相对更简单反而没有这种不稳定性？",
           "hot": 0,
-          "url": "https://www.zhihu.com/question/2070054600602642235",
+          "url": "https://www.zhihu.com/question/2067683991218607726",
           "tag": "知识",
           "desc": ""
         },
         {
           "platform": "知乎",
-          "rank": 14,
+          "rank": 13,
           "title": "硬盘、内存价格还会降回去吗？",
           "hot": 0,
           "url": "https://www.zhihu.com/question/2011092640041570925",
@@ -6308,7 +6299,7 @@ window.WORKBENCH_DATA = {
         },
         {
           "platform": "知乎",
-          "rank": 15,
+          "rank": 14,
           "title": "如果你只能传送一次1KB的数据到三年前的自己面前，你会传什么？",
           "hot": 0,
           "url": "https://www.zhihu.com/question/2009080099056661232",
@@ -6317,16 +6308,7 @@ window.WORKBENCH_DATA = {
         },
         {
           "platform": "知乎",
-          "rank": 16,
-          "title": "杨紫琼《流浪地球 3》剧照首度曝光，从中能看出哪些信息？",
-          "hot": 0,
-          "url": "https://www.zhihu.com/question/2068659312583340153",
-          "tag": "知识",
-          "desc": ""
-        },
-        {
-          "platform": "知乎",
-          "rank": 17,
+          "rank": 15,
           "title": "伯克希尔Q2净利润256.67亿美元，时隔3年首次净买入股票，现金储备降至3655亿美元，如何解读？",
           "hot": 0,
           "url": "https://www.zhihu.com/question/2069534898092762051",
@@ -6335,16 +6317,16 @@ window.WORKBENCH_DATA = {
         },
         {
           "platform": "知乎",
-          "rank": 18,
-          "title": "前勇士传奇主教练唐尼尔森去世，如何评价他的执教生涯，他跟库里有哪些渊源？",
+          "rank": 16,
+          "title": "山东一中学让新生填家长职务和车价，校方称用于贫困补助甄别，学校该不该收集这类信息？你遇到过类似情况吗？",
           "hot": 0,
-          "url": "https://www.zhihu.com/question/2070055271376986737",
+          "url": "https://www.zhihu.com/question/2069476448205812044",
           "tag": "知识",
           "desc": ""
         },
         {
           "platform": "知乎",
-          "rank": 19,
+          "rank": 17,
           "title": "作为U17国足核心球员，17岁的赵松源能不能在如今的北京国安踢主力？",
           "hot": 0,
           "url": "https://www.zhihu.com/question/2069906858593227838",
@@ -6353,7 +6335,7 @@ window.WORKBENCH_DATA = {
         },
         {
           "platform": "知乎",
-          "rank": 20,
+          "rank": 18,
           "title": "电影《奥德赛》中，奥德修斯为什么不想回家？",
           "hot": 0,
           "url": "https://www.zhihu.com/question/2069853384363059013",
@@ -6362,25 +6344,7 @@ window.WORKBENCH_DATA = {
         },
         {
           "platform": "知乎",
-          "rank": 21,
-          "title": "网传数据显示广东人吃肉量是山西的4倍以上，是真是假？",
-          "hot": 0,
-          "url": "https://www.zhihu.com/question/1933674150620271789",
-          "tag": "知识",
-          "desc": ""
-        },
-        {
-          "platform": "知乎",
-          "rank": 22,
-          "title": "诺兰《奥德赛》引发古典文学论战，荷马史诗译者狠批，两作家反击其傲慢刻薄，你觉得改编自由与批评边界在哪？",
-          "hot": 0,
-          "url": "https://www.zhihu.com/question/2067555688826365819",
-          "tag": "知识",
-          "desc": ""
-        },
-        {
-          "platform": "知乎",
-          "rank": 23,
+          "rank": 19,
           "title": "中国足球几十年都没有冲出亚洲，不是不努力，是不是中国人的体质不适合踢足球？",
           "hot": 0,
           "url": "https://www.zhihu.com/question/1917135578203399143",
@@ -6389,7 +6353,16 @@ window.WORKBENCH_DATA = {
         },
         {
           "platform": "知乎",
-          "rank": 24,
+          "rank": 20,
+          "title": "诺兰《奥德赛》引发古典文学论战，荷马史诗译者狠批，两作家反击其傲慢刻薄，你觉得改编自由与批评边界在哪？",
+          "hot": 0,
+          "url": "https://www.zhihu.com/question/2067555688826365819",
+          "tag": "知识",
+          "desc": ""
+        },
+        {
+          "platform": "知乎",
+          "rank": 21,
           "title": "若曦和如懿，谁才是待遇最差的皇帝真爱？",
           "hot": 0,
           "url": "https://www.zhihu.com/question/2061842835394114592",
@@ -6398,7 +6371,25 @@ window.WORKBENCH_DATA = {
         },
         {
           "platform": "知乎",
-          "rank": 25,
+          "rank": 22,
+          "title": "JeffDean 称「AI agent 编写代码，品味成稀缺技能」，你如何理解「品味」？",
+          "hot": 0,
+          "url": "https://www.zhihu.com/question/2066610730116421630",
+          "tag": "知识",
+          "desc": ""
+        },
+        {
+          "platform": "知乎",
+          "rank": 23,
+          "title": "前勇士传奇主教练唐尼尔森去世，如何评价他的执教生涯，他跟库里有哪些渊源？",
+          "hot": 0,
+          "url": "https://www.zhihu.com/question/2070055271376986737",
+          "tag": "知识",
+          "desc": ""
+        },
+        {
+          "platform": "知乎",
+          "rank": 24,
           "title": "搜打撤的乐趣是什么，为什么二游流行起了做搜打撤？",
           "hot": 0,
           "url": "https://www.zhihu.com/question/2069366582434959737",
@@ -6406,227 +6397,236 @@ window.WORKBENCH_DATA = {
           "desc": ""
         },
         {
+          "platform": "知乎",
+          "rank": 25,
+          "title": "如何构建一套完整的数学知识体系？",
+          "hot": 0,
+          "url": "https://www.zhihu.com/question/37613872",
+          "tag": "知识",
+          "desc": ""
+        },
+        {
           "platform": "B站",
           "rank": 1,
-          "title": "发烧梗",
-          "hot": 4280704,
-          "url": "https://b23.tv/BV1Unub69EpX",
+          "title": "感谢朋友们的硬币之力，为我买了1600的药！又续了一个月的命，有这么多药吃老幸福！",
+          "hot": 688898,
+          "url": "https://b23.tv/BV12BuG6MEtM",
           "tag": "影视",
-          "desc": "发烧梗，Fever Meme ⛔请勿相信其他任何自称是我（鲤鱼Ace）的言论或求助 ⛔我不会在任何社交平台上创建官方社群或添加好友 ⛔请勿相信由人为模仿或人工智能生成关于我（鲤鱼Ace）的任何内容 ⛔内容仅供娱乐，与现实中任何事件无关，请勿代入并联想，请勿模仿 ⛔未经授权，禁止转载"
+          "desc": "出生唇裂，13年初二做三次胃镜误诊为胃病，后面吃胃药一直没好，医生要给我切胃，16年我高二去协和医院确诊为怪病 克罗恩病，无法治愈终生吃药！18年运气爆棚感谢耐药肺结核，爸妈又生三胎小我20的弟弟，走投无路不得不抗病生活"
         },
         {
           "platform": "B站",
           "rank": 2,
-          "title": "哈哈哈哈哈哈哈！！！",
-          "hot": 3648417,
-          "url": "https://b23.tv/BV1NRun6bEgv",
-          "tag": "影视",
-          "desc": "-"
-        },
-        {
-          "platform": "B站",
-          "rank": 3,
-          "title": "怪兽中 出了一个奥特曼的卧底",
-          "hot": 6947191,
-          "url": "https://b23.tv/BV1gnub6REqy",
-          "tag": "影视",
-          "desc": "没想到，怪兽中出了一个奥特曼的卧底"
-        },
-        {
-          "platform": "B站",
-          "rank": 4,
-          "title": "😨\"后室里的乌鲁鲁\"😰",
-          "hot": 2498981,
-          "url": "https://b23.tv/BV1YYuN6tEWC",
-          "tag": "影视",
-          "desc": "片名-《后室里的乌鲁鲁》 导演-沙雕Sanscul 编剧-沙雕Sanscul 剪辑-沙雕Sanscul Ai素材-沙雕Sanscul 美术设计-沙雕Sanscul 执行制作-沙雕Sanscul 赞助鸣谢-@追核电竞-同头像正版 3000元资金支持 本视频由updream执行Ai资产生成，仅Ai成本部分成本预估于1w元左右（不包含人力等其他成本），除赞助外完全由主播自费完成，视频后期问题均为个人资金不足导致还请见谅，本视频世界观沿用三角洲行动世界观+K版后室（请勿带入其他版本后室世界观进行论战），本视频的"
-        },
-        {
-          "platform": "B站",
-          "rank": 5,
-          "title": "【同人动画】致以辉煌的人 【奥特曼光之创想季】",
-          "hot": 1251933,
-          "url": "https://b23.tv/BV1tCuT6bE8q",
-          "tag": "影视",
-          "desc": "bgm： 彳文xow——Brave Love ,Tiga（彳文xow remix） LINE——永远的奥特曼"
-        },
-        {
-          "platform": "B站",
-          "rank": 6,
-          "title": "住宅低频噪音现场溯源-山东4家",
-          "hot": 3061867,
-          "url": "https://b23.tv/BV19juJ6vEqh",
-          "tag": "影视",
-          "desc": "在山东进行了4家现场低频噪音溯源，各家噪音源各不相同，在此记录。"
-        },
-        {
-          "platform": "B站",
-          "rank": 7,
-          "title": "[我的世界怪物学院] 逗逗小乐魂",
-          "hot": 2003019,
-          "url": "https://b23.tv/BV1quug6JE11",
-          "tag": "影视",
-          "desc": "Tips:乐魂复活需要水源 成分复杂"
-        },
-        {
-          "platform": "B站",
-          "rank": 8,
-          "title": "青春没有售价！面包车？ 直达拉萨！！",
-          "hot": 4273316,
-          "url": "https://b23.tv/BV1CLuE67Ep9",
-          "tag": "影视",
-          "desc": ""
-        },
-        {
-          "platform": "B站",
-          "rank": 9,
-          "title": "聪明猫在一起久了也会有一些共同点……",
-          "hot": 4097011,
-          "url": "https://b23.tv/BV1Guu46sEkA",
-          "tag": "影视",
-          "desc": ""
-        },
-        {
-          "platform": "B站",
-          "rank": 10,
-          "title": "改画哪有不疯的！（第26期）",
-          "hot": 2935429,
-          "url": "https://b23.tv/BV1oxut6hEMH",
-          "tag": "影视",
-          "desc": "-"
-        },
-        {
-          "platform": "B站",
-          "rank": 11,
-          "title": "妈妈，你不能单挑大棕熊，坐坦克打枪吧！？！",
-          "hot": 2587611,
-          "url": "https://b23.tv/BV1mDuu6aEDF",
-          "tag": "影视",
-          "desc": "这一期还是俄罗斯之行！！我们将会带大家体验最最纯粹的俄罗斯当地土特产——枪炮，也会带大家看看最不“俄罗斯”的地方，独属于他们的伟大文化与浪漫。"
-        },
-        {
-          "platform": "B站",
-          "rank": 12,
-          "title": "在贵州按猪遇见羡慕的婚礼",
-          "hot": 3831211,
-          "url": "https://b23.tv/BV1Bbun6jEaJ",
-          "tag": "影视",
-          "desc": ""
-        },
-        {
-          "platform": "B站",
-          "rank": 13,
-          "title": "王从天降",
-          "hot": 6581136,
-          "url": "https://b23.tv/BV1vtMy63E4G",
-          "tag": "影视",
-          "desc": ""
-        },
-        {
-          "platform": "B站",
-          "rank": 14,
-          "title": "史上最难！只有一块黑曜石该如何通关？",
-          "hot": 2035804,
-          "url": "https://b23.tv/BV1dcuV6HEig",
-          "tag": "影视",
-          "desc": "鸣谢： @阿玮是人 @巫山云玩家 @肆柒_sIqI @吃年糕的安sir @节操Pro 提供灵感和指导 @无处可去的愚者 @文绪 @野生的矿泉水 @花野大猫猫 @阿怪说不来话 提供素材 ———————————————————————————— 啊啊啊啊啊啊！终于做出来了，从五月底到现在，打磨好久才端上来，希望各位看的满意 另外回答几个问题 1.不会断更，每个系列都会玩到结束，答应各位的圆明园第二期也会做的 2.up即将步入高三，更新将会减少，不会轻易整这么大的活了，但是我会一直活着的"
-        },
-        {
-          "platform": "B站",
-          "rank": 15,
-          "title": "在洛杉矶喝200%糖蜜雪冰城，吃全球最古早麦当劳，有不胖的风险吗",
-          "hot": 5013856,
-          "url": "https://b23.tv/BV1rRut6rEGS",
-          "tag": "影视",
-          "desc": "bgm列表： Ricky Nelson - Travelin' Man Janelle Monáe - Make Me Feel Laidback - Happy Dreamer Chinese Man - Miss Chang Bob Marley; Bob Marley & The Wailers - One Drop Alabama Shakes - This Feeling Greyson Chance - shut up 88rising; Rich Brian; NIKI; 王嘉尔; War"
-        },
-        {
-          "platform": "B站",
-          "rank": 16,
-          "title": "“那些只打高端局的神级串烧”",
-          "hot": 3422149,
-          "url": "https://b23.tv/BV1J4un6mEV1",
-          "tag": "影视",
-          "desc": "第一首歌原作品bv号：BV1RZ786dEot"
-        },
-        {
-          "platform": "B站",
-          "rank": 17,
-          "title": "四代同框",
-          "hot": 2282376,
-          "url": "https://b23.tv/BV1Bqum6dET6",
-          "tag": "影视",
-          "desc": "-"
-        },
-        {
-          "platform": "B站",
-          "rank": 18,
-          "title": "不要“做”挑战？（第二十一期）",
-          "hot": 4391679,
-          "url": "https://b23.tv/BV18Jub6sECJ",
-          "tag": "影视",
-          "desc": "希望观众朋友们喜欢这个系列！ （希望你们喜欢，记得素质三连！）"
-        },
-        {
-          "platform": "B站",
-          "rank": 19,
-          "title": "《青春期土豆幻想物语》",
-          "hot": 1960323,
-          "url": "https://b23.tv/BV1viun6rELr",
-          "tag": "影视",
-          "desc": "正在和土豆匹配宇宙电波......"
-        },
-        {
-          "platform": "B站",
-          "rank": 20,
-          "title": "滑铲全向移动？自动吸附瞄准！原神射击玩法太爽了吧！",
-          "hot": 3127924,
-          "url": "https://b23.tv/BV1kWup6tEgL",
-          "tag": "影视",
-          "desc": "手柄哥不要锁我了... 视频演示枪械均为满配，场景演示在大世界副本，靶场有高难副本挑战 视频最后有枪械与配件展示 枪与枪的配件可在大世界探索获得，部分配件在靶场高难副本获取"
-        },
-        {
-          "platform": "B站",
-          "rank": 21,
-          "title": "我变成赖泽平最痛恨的人！【如是书院】",
-          "hot": 2299121,
-          "url": "https://b23.tv/BV1rvub65EZe",
-          "tag": "影视",
-          "desc": "我们慢慢来，我一定会把你和你的如是书院连根拔起的， 你曾经在珠海和北海，从全国各地骗人过去，骗的人家破人亡，被逼到去抢劫，偷盗来给你的传销送钱，变成当地的一大犯罪来源和社会不稳定因素。 自己在那里开豪车，出狱后一次次在演讲里宣传，教育那些孩子们，不要尊重法律。"
-        },
-        {
-          "platform": "B站",
-          "rank": 22,
           "title": "球球了，我平时好像不长这样啊啊！！",
-          "hot": 3529701,
+          "hot": 3584759,
           "url": "https://b23.tv/BV1EVu26pEj3",
           "tag": "影视",
           "desc": "最近的拍摄花絮嘿嘿！！可以只记得我后面几张图的样子哦～"
         },
         {
           "platform": "B站",
-          "rank": 23,
-          "title": "【自制动画】《赤霄·绝影-驰！！！！！！！！》",
-          "hot": 1453325,
-          "url": "https://b23.tv/BV1j5uG69EQQ",
+          "rank": 3,
+          "title": "这么高的跟还在椅子上跳舞？",
+          "hot": 388807,
+          "url": "https://b23.tv/BV1Qmu36GEPF",
           "tag": "影视",
-          "desc": "哈哈哈 这次画了超大杯近卫火陈，还有我超级喜欢的艾丽妮 ，不过赤霄剑法还是太厉害了 。。。 当然还有最后登场的予愿安洁莉娜，安洁帮艾利妮打浮空应该有一战之力吧 哈哈哈 最后再补一句 是的 我60发就出杰哥了 希望大家也都欧皇附体 冲冲冲冲！！！！"
+          "desc": "嘎嘎嘎 好性感的一支舞 武汉的姐妹们都好有韵味哦 录制当天可坎坷了 又是停电又是蚊子叮叮 我还生理期 呜呜呜 必须三连"
         },
         {
           "platform": "B站",
-          "rank": 24,
-          "title": "《死》死亡是什么？",
-          "hot": 3701934,
-          "url": "https://b23.tv/BV115un6dE9a",
+          "rank": 4,
+          "title": "《没人感觉柯洁其实很好嬷吗》",
+          "hot": 290043,
+          "url": "https://b23.tv/BV1LCum6QE1S",
+          "tag": "影视",
+          "desc": "-"
+        },
+        {
+          "platform": "B站",
+          "rank": 5,
+          "title": "当人脉哥请同学回家吃饭！",
+          "hot": 204872,
+          "url": "https://b23.tv/BV1JMud6mE6T",
+          "tag": "影视",
+          "desc": "厉不厉害你极哥？"
+        },
+        {
+          "platform": "B站",
+          "rank": 6,
+          "title": "麦当劳也出自助餐？四种炸鸡不限量畅吃，45分钟从头吃到尾！",
+          "hot": 1176679,
+          "url": "https://b23.tv/BV1CtuS6zE2x",
+          "tag": "影视",
+          "desc": "本期视频由妙界r9揉捶肩颈按摩仪赞助播出 麦当劳推出了一个39.9元的炸鸡畅吃活动，需要提前抢名额， 但是全国只有608个名额。全国只有38个餐厅有畅吃活动。 连三秒都不到，就被抢光了。导致很多想吃没吃到的人，骂声一片。 有幸抢到了一个名额。 经过体验，与其说是一次自助畅吃，不如说是欢乐派队。 因为大多数人确实吃不了几口。但是餐厅准备了各种活动。 （跟别的城市伙伴讨论，好像准备的游戏还不一样） 可谓是情绪价值拉满。 没有长时间不出餐，确实畅吃管饱， 但是名额太少确实是最大的槽点。"
+        },
+        {
+          "platform": "B站",
+          "rank": 7,
+          "title": "暑期档最佳？恭喜沈腾可以称影帝了!《欢迎来龙餐馆》诚实观后感",
+          "hot": 274091,
+          "url": "https://b23.tv/BV1ZTu96zEwg",
+          "tag": "影视",
+          "desc": "本视频素材来自网络，由文西激情解说！"
+        },
+        {
+          "platform": "B站",
+          "rank": 8,
+          "title": "你可曾听过洛圣都的叫声？",
+          "hot": 2064687,
+          "url": "https://b23.tv/BV1Upu76XEt7",
+          "tag": "影视",
+          "desc": "二创音乐作者是@DJPrin4"
+        },
+        {
+          "platform": "B站",
+          "rank": 9,
+          "title": "“木叶飞舞之处，霸之意志生生不息”",
+          "hot": 460175,
+          "url": "https://b23.tv/BV1Bzum6WEMs",
+          "tag": "影视",
+          "desc": "这简直部诗人啊 希望所有的霸凌者都能遇到属于他们自己的人形高达"
+        },
+        {
+          "platform": "B站",
+          "rank": 10,
+          "title": "王健林现在怎么样了? 万达什么情况?",
+          "hot": 378123,
+          "url": "https://b23.tv/BV1XPuo6uES8",
+          "tag": "影视",
+          "desc": "万达商管、万达商业、珠海万达、大连万达 ......万达这个庞然大物，商业结构极其复杂。 而这些名字背后盘根错节的资本游戏，才是压垮万达的关键。 今天咱们就来聊一聊：万达到底经历了什么？昔日的中国首富，是怎么被一步一步逼到了今天的境地？"
+        },
+        {
+          "platform": "B站",
+          "rank": 11,
+          "title": "古巴的现状有多崩溃？人们靠喝水续命，女性靠特殊方式换钱",
+          "hot": 2279874,
+          "url": "https://b23.tv/BV1Ugup6TEYH",
+          "tag": "影视",
+          "desc": "经过60多年的制裁和封锁，古巴老百姓的真实生活到底怎么样？今天我们采访到了古巴不同人群，了解到了共产主义制度下他们的真实生活状态。 据小钟实地采访了解到，古巴人的工作分为体制内和体制外，体制内的医生、工程师、教师工资只有10-20美元一个月，而从事旅游行业挣美元的则可以达到几百美元，二者差异之大，这也造就了古巴社会的不同形态，二者的生活像是两个并行的不同世界。 在古巴但大部分的人都没有挣美元的机会，很多人都在挣扎地活着，吃饱饭是一件很不容易的事。 而所谓的免费医疗、教育，在物资和能源短缺面前，也有点难以为"
+        },
+        {
+          "platform": "B站",
+          "rank": 12,
+          "title": "沈腾影帝？年度神作？反战题材？我看未必",
+          "hot": 648269,
+          "url": "https://b23.tv/BV1Nku26YEg3",
           "tag": "影视",
           "desc": ""
         },
         {
           "platform": "B站",
+          "rank": 13,
+          "title": "南宫×新朋友 ☁️白日梦",
+          "hot": 499978,
+          "url": "https://b23.tv/BV124ub6SEce",
+          "tag": "影视",
+          "desc": "✨ POV: 刷了三天运镜教程终于成功实战了—— 南宫×新朋友 ☁️白日梦 运镜：我 妄想天使official摄影师今天正式上岗！！"
+        },
+        {
+          "platform": "B站",
+          "rank": 14,
+          "title": "忍术回战 中篇",
+          "hot": 83078,
+          "url": "https://b23.tv/BV1f3ud6yEeK",
+          "tag": "影视",
+          "desc": "-"
+        },
+        {
+          "platform": "B站",
+          "rank": 15,
+          "title": "古巴奇迹：四年太阳能发电飙增近十倍",
+          "hot": 208723,
+          "url": "https://b23.tv/BV1LYuR6rEdg",
+          "tag": "影视",
+          "desc": ""
+        },
+        {
+          "platform": "B站",
+          "rank": 16,
+          "title": "外网爆火的恐怖神作！《Endacopia》全结局收集",
+          "hot": 66546,
+          "url": "https://b23.tv/BV1Xwuo66EzP",
+          "tag": "影视",
+          "desc": "游戏名：《Endacopia》全结局/全隐藏BOSS收集 汉化地址：BV1LsGG6ZE9y"
+        },
+        {
+          "platform": "B站",
+          "rank": 17,
+          "title": "KiiiKiii 'Pop Off Pop Off' MV",
+          "hot": 238681,
+          "url": "https://b23.tv/BV11VuR6sEdf",
+          "tag": "影视",
+          "desc": "KiiiKiii EP [WhyKiiiKiii] is out! : https://orcd.co/kiiikiii_whykiiikiii KiiiKiii Official Official Website ▶ https://kiiikiii.kr YouTube ▶ / @kiiikiii_starship Berriz ▶ https://berriz.in/kiiikiii Instagram ▶ / kiiikiii.official X(Twitter) ▶ https:"
+        },
+        {
+          "platform": "B站",
+          "rank": 18,
+          "title": "带张伟丽姐自律的一天！",
+          "hot": 366602,
+          "url": "https://b23.tv/BV1vZud6VEYo",
+          "tag": "影视",
+          "desc": "-"
+        },
+        {
+          "platform": "B站",
+          "rank": 19,
+          "title": "信息量很大！中国可控核聚变最新进展来了",
+          "hot": 225996,
+          "url": "https://b23.tv/BV1vfud6kEiq",
+          "tag": "影视",
+          "desc": "随着人们对“人造太阳”和可控核聚变技术越来越关注，在社会上掀起了一股“聚变热”。“人造太阳”到底是什么？可控核聚变技术何时能落地？中国的“人造太阳”造到什么程度了？中核集团聚变领域首席科学家段旭如，披露我国“人造太阳”最新进展。（开讲啦）"
+        },
+        {
+          "platform": "B站",
+          "rank": 20,
+          "title": "比张杰更好笑的是以前的张杰！【爆笑考古】",
+          "hot": 2157263,
+          "url": "https://b23.tv/BV1rJuu6XEpN",
+          "tag": "影视",
+          "desc": ""
+        },
+        {
+          "platform": "B站",
+          "rank": 21,
+          "title": "《Sweet boy》发一下库存吧，有点忙最近",
+          "hot": 1323918,
+          "url": "https://b23.tv/BV1UYMS6GEWa",
+          "tag": "影视",
+          "desc": "(⌒_⌒;)(⌒_⌒;)(⌒_⌒;)(⌒_⌒;)(´∀｀)♡(⌒_⌒;)(⌒_⌒;)(⌒_⌒;)(⌒_⌒;)(⌒_⌒;)(⌒_⌒;)(⌒_⌒;)(⌒_⌒;)(⌒_⌒;)(⌒_⌒;)(⌒_⌒;)(⌒_⌒;)(⌒_⌒;)(⌒_⌒;)(⌒_⌒;)(⌒_⌒;)(⌒_⌒;)(⌒_⌒;)(⌒_⌒;)(⌒_⌒;)(⌒_⌒;)(⌒_⌒;)(⌒_⌒;)(⌒_⌒;)(⌒_⌒;)(⌒_⌒;)(⌒_⌒;)(⌒_⌒;)(⌒_⌒;)(⌒_⌒;)(⌒_⌒;)(⌒_⌒;)(⌒_⌒;)(⌒_⌒;)(⌒_⌒;)(⌒_⌒;)(⌒_⌒;)(⌒_"
+        },
+        {
+          "platform": "B站",
+          "rank": 22,
+          "title": "“东亚小孩的青春是一场永远不会停歇的雨季”",
+          "hot": 506401,
+          "url": "https://b23.tv/BV1g1un6vEoB",
+          "tag": "影视",
+          "desc": "东亚小孩-M3mo"
+        },
+        {
+          "platform": "B站",
+          "rank": 23,
+          "title": "“那些只打高端局的神级串烧”",
+          "hot": 3445125,
+          "url": "https://b23.tv/BV1J4un6mEV1",
+          "tag": "影视",
+          "desc": "第一首歌原作品bv号：BV1RZ786dEot"
+        },
+        {
+          "platform": "B站",
+          "rank": 24,
+          "title": "【僵毁TV第二季】B42多人联机体验Be like: S2E2【TapNow制作】",
+          "hot": 131791,
+          "url": "https://b23.tv/BV1cAu96VEtv",
+          "tag": "影视",
+          "desc": "本作品在TapNow制作。 简单测试了一下Seedance2.5的性能。"
+        },
+        {
+          "platform": "B站",
           "rank": 25,
-          "title": "如果出了非洲之心，我们明天就结婚！",
-          "hot": 1666947,
-          "url": "https://b23.tv/BV1oput6YEGo",
+          "title": "【重大医疗事故】日本一医院错把患者脑部当肿瘤切除，手术后脑干被切除，脑肿瘤完好无损。",
+          "hot": 1348248,
+          "url": "https://b23.tv/BV1ZFu76BEoU",
           "tag": "影视",
           "desc": ""
         },
