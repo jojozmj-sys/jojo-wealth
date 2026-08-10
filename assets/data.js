@@ -4155,7 +4155,7 @@ window.WORKBENCH_DATA = {
   },
   "dailyHot": {
     "mode": "daily",
-    "updated": "2026-08-10 18:29",
+    "updated": "2026-08-10 18:30",
     "platforms": [
       "微博",
       "抖音",
@@ -4586,6 +4586,15 @@ window.WORKBENCH_DATA = {
         {
           "platform": "抖音",
           "rank": 22,
+          "title": "我的暑假漫展日记",
+          "hot": 7726179,
+          "url": "https://www.douyin.com/search/%E6%88%91%E7%9A%84%E6%9A%91%E5%81%87%E6%BC%AB%E5%B1%95%E6%97%A5%E8%AE%B0",
+          "tag": "娱乐",
+          "desc": "13000"
+        },
+        {
+          "platform": "抖音",
+          "rank": 23,
           "title": "北京市发布暴雨橙色预警",
           "hot": 7725912,
           "url": "https://www.douyin.com/search/%E5%8C%97%E4%BA%AC%E5%B8%82%E5%8F%91%E5%B8%83%E6%9A%B4%E9%9B%A8%E6%A9%99%E8%89%B2%E9%A2%84%E8%AD%A6",
@@ -4594,7 +4603,7 @@ window.WORKBENCH_DATA = {
         },
         {
           "platform": "抖音",
-          "rank": 23,
+          "rank": 24,
           "title": "和短剧演员一起勇闯百花奖",
           "hot": 7723314,
           "url": "https://www.douyin.com/search/%E5%92%8C%E7%9F%AD%E5%89%A7%E6%BC%94%E5%91%98%E4%B8%80%E8%B5%B7%E5%8B%87%E9%97%AF%E7%99%BE%E8%8A%B1%E5%A5%96",
@@ -4603,21 +4612,12 @@ window.WORKBENCH_DATA = {
         },
         {
           "platform": "抖音",
-          "rank": 24,
+          "rank": 25,
           "title": "用海盐星星妆抓住夏天的尾巴",
           "hot": 7721177,
           "url": "https://www.douyin.com/search/%E7%94%A8%E6%B5%B7%E7%9B%90%E6%98%9F%E6%98%9F%E5%A6%86%E6%8A%93%E4%BD%8F%E5%A4%8F%E5%A4%A9%E7%9A%84%E5%B0%BE%E5%B7%B4",
           "tag": "娱乐",
           "desc": "1001"
-        },
-        {
-          "platform": "抖音",
-          "rank": 25,
-          "title": "KiiiKiii回归",
-          "hot": 7719613,
-          "url": "https://www.douyin.com/search/KiiiKiii%E5%9B%9E%E5%BD%92",
-          "tag": "娱乐",
-          "desc": "2005"
         },
         {
           "platform": "知乎",
@@ -4784,9 +4784,9 @@ window.WORKBENCH_DATA = {
         {
           "platform": "知乎",
           "rank": 19,
-          "title": "请问大家平时都如何保持自己的精力？",
+          "title": "《红楼梦》中，贾宝玉为什么不和晴雯发生云雨情？晴雯不是最漂亮吗？",
           "hot": 0,
-          "url": "https://www.zhihu.com/question/650311888",
+          "url": "https://www.zhihu.com/question/2036409841296619170",
           "tag": "知识",
           "desc": ""
         },
@@ -4802,27 +4802,27 @@ window.WORKBENCH_DATA = {
         {
           "platform": "知乎",
           "rank": 21,
-          "title": "《红楼梦》中，贾宝玉为什么不和晴雯发生云雨情？晴雯不是最漂亮吗？",
+          "title": "请问大家平时都如何保持自己的精力？",
           "hot": 0,
-          "url": "https://www.zhihu.com/question/2036409841296619170",
+          "url": "https://www.zhihu.com/question/650311888",
           "tag": "知识",
           "desc": ""
         },
         {
           "platform": "知乎",
           "rank": 22,
-          "title": "「懒」驱动了哪些科技进步？",
+          "title": "如果你只能传送一次1KB的数据到三年前的自己面前，你会传什么？",
           "hot": 0,
-          "url": "https://www.zhihu.com/question/2068822447529226506",
+          "url": "https://www.zhihu.com/question/2009080099056661232",
           "tag": "知识",
           "desc": ""
         },
         {
           "platform": "知乎",
           "rank": 23,
-          "title": "如果你只能传送一次1KB的数据到三年前的自己面前，你会传什么？",
+          "title": "「懒」驱动了哪些科技进步？",
           "hot": 0,
-          "url": "https://www.zhihu.com/question/2009080099056661232",
+          "url": "https://www.zhihu.com/question/2068822447529226506",
           "tag": "知识",
           "desc": ""
         },
@@ -4848,7 +4848,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 1,
           "title": "发烧梗",
-          "hot": 4080653,
+          "hot": 4081909,
           "url": "https://b23.tv/BV1Unub69EpX",
           "tag": "影视",
           "desc": "发烧梗，Fever Meme ⛔请勿相信其他任何自称是我（鲤鱼Ace）的言论或求助 ⛔我不会在任何社交平台上创建官方社群或添加好友 ⛔请勿相信由人为模仿或人工智能生成关于我（鲤鱼Ace）的任何内容 ⛔内容仅供娱乐，与现实中任何事件无关，请勿代入并联想，请勿模仿 ⛔未经授权，禁止转载"
@@ -4875,7 +4875,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 4,
           "title": "怪兽中 出了一个奥特曼的卧底",
-          "hot": 6756299,
+          "hot": 6757237,
           "url": "https://b23.tv/BV1gnub6REqy",
           "tag": "影视",
           "desc": "没想到，怪兽中出了一个奥特曼的卧底"
@@ -4902,7 +4902,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 7,
           "title": "住宅低频噪音现场溯源-山东4家",
-          "hot": 3000528,
+          "hot": 3000828,
           "url": "https://b23.tv/BV19juJ6vEqh",
           "tag": "影视",
           "desc": "在山东进行了4家现场低频噪音溯源，各家噪音源各不相同，在此记录。"
@@ -4911,7 +4911,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 8,
           "title": "【同人动画】致以辉煌的人 【奥特曼光之创想季】",
-          "hot": 1193716,
+          "hot": 1194006,
           "url": "https://b23.tv/BV1tCuT6bE8q",
           "tag": "影视",
           "desc": "bgm： 彳文xow——Brave Love ,Tiga（彳文xow remix） LINE——永远的奥特曼"
@@ -4929,7 +4929,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 10,
           "title": "[我的世界怪物学院] 逗逗小乐魂",
-          "hot": 1953288,
+          "hot": 1953593,
           "url": "https://b23.tv/BV1quug6JE11",
           "tag": "影视",
           "desc": "Tips:乐魂复活需要水源 成分复杂"
@@ -4947,7 +4947,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 12,
           "title": "在贵州按猪遇见羡慕的婚礼",
-          "hot": 3653444,
+          "hot": 3654018,
           "url": "https://b23.tv/BV1Bbun6jEaJ",
           "tag": "影视",
           "desc": ""
@@ -4956,7 +4956,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 13,
           "title": "王从天降",
-          "hot": 6382847,
+          "hot": 6383820,
           "url": "https://b23.tv/BV1vtMy63E4G",
           "tag": "影视",
           "desc": ""
@@ -4974,7 +4974,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 15,
           "title": "妈妈，你不能单挑大棕熊，坐坦克打枪吧！？！",
-          "hot": 2474131,
+          "hot": 2474645,
           "url": "https://b23.tv/BV1mDuu6aEDF",
           "tag": "影视",
           "desc": "这一期还是俄罗斯之行！！我们将会带大家体验最最纯粹的俄罗斯当地土特产——枪炮，也会带大家看看最不“俄罗斯”的地方，独属于他们的伟大文化与浪漫。"
@@ -5019,7 +5019,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 20,
           "title": "《青春期土豆幻想物语》",
-          "hot": 1922115,
+          "hot": 1922272,
           "url": "https://b23.tv/BV1viun6rELr",
           "tag": "影视",
           "desc": "正在和土豆匹配宇宙电波......"
@@ -5028,7 +5028,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 21,
           "title": "我变成赖泽平最痛恨的人！【如是书院】",
-          "hot": 2231648,
+          "hot": 2232008,
           "url": "https://b23.tv/BV1rvub65EZe",
           "tag": "影视",
           "desc": "我们慢慢来，我一定会把你和你的如是书院连根拔起的， 你曾经在珠海和北海，从全国各地骗人过去，骗的人家破人亡，被逼到去抢劫，偷盗来给你的传销送钱，变成当地的一大犯罪来源和社会不稳定因素。 自己在那里开豪车，出狱后一次次在演讲里宣传，教育那些孩子们，不要尊重法律。"
