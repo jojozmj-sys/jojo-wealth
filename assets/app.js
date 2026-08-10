@@ -9607,6 +9607,68 @@
       return morning || afternoon;
     }
 
+    // ===== 收盘后自动拉取最新复盘 =====
+    // 根因：每日复盘由 15:10 自动化写入 data.js 并部署，但已打开的标签页
+    // 只在「页面加载时」把 dailyReview 快照进 window.WORKBENCH_DATA，
+    // scheduleStockTick 的 renderReviews 只是重复渲染这份陈旧内存对象，
+    // 不会重新请求 data.js → 收盘后复盘永远停在加载时的旧内容，必须手动刷新。
+    // 修复：收盘后（15:05 起）由前端主动拉取最新 data.js，提取 dailyReview，
+    // 若比内存中的新则就地更新并重渲染，已开页面无需整页刷新即可看到当日复盘。
+    var _reviewPulledFor = null;
+    function _reviewToday() { var d = new Date(); return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0"); }
+
+    // 从 data.js 文本提取 dailyReview 对象（括号配对，避免非贪婪正则在内层 } 截断嵌套）
+    function extractDailyReview(text) {
+      var keyIdx = text.search(/"dailyReview"\s*:/);
+      if (keyIdx < 0) return null;
+      var braceStart = text.indexOf("{", keyIdx);
+      if (braceStart < 0) return null;
+      var depth = 0, end = -1;
+      for (var i = braceStart; i < text.length; i++) {
+        if (text[i] === "{") depth++;
+        else if (text[i] === "}") { depth--; if (depth === 0) { end = i; break; } }
+      }
+      if (end < 0) return null;
+      try { return JSON.parse(text.slice(braceStart, end + 1)); } catch (e) { return null; }
+    }
+
+    async function maybePullDailyReview() {
+      var today = _reviewToday();
+      if (_reviewPulledFor === today) return;            // 今日已拉到，不再重复
+      var now = new Date();
+      var hm = now.getHours() * 60 + now.getMinutes();
+      if (hm < 15 * 60 + 5) return;                       // 收盘前复盘未生成，拉取无意义
+      try {
+        var url = new URL("assets/data.js", document.baseURI).href + "?nc=" + Date.now();
+        var res = await fetch(url, { cache: "no-store" });
+        if (!res.ok) throw new Error("HTTP " + res.status);
+        var dr = extractDailyReview(await res.text());
+        if (!dr) return;                                  // 解析失败，下一轮重试（不置位）
+        if (dr.date !== today) return;                    // 今日复盘尚未生成，本轮回退重试
+        var cur = (window.WORKBENCH_DATA || {}).dailyReview;
+        var changed = !cur || cur.date !== today || JSON.stringify(cur) !== JSON.stringify(dr);
+        _reviewPulledFor = today;                         // 已确认拿到今日复盘，今日不再拉
+        if (changed) {
+          window.WORKBENCH_DATA.dailyReview = dr;
+          try { renderSentiment(); renderReviews(); } catch (e) {}
+          if (typeof console !== "undefined") console.log("[stock] 收盘复盘已自动更新为 " + today);
+        }
+      } catch (e) {
+        if (typeof console !== "undefined") console.warn("[stock] 复盘自动拉取失败（下一轮重试）:", e && e.message);
+        _reviewPulledFor = null;                          // 失败则允许下一轮重试
+      }
+    }
+
+    // 独立定时器：收盘后每分钟尝试一次（轻量，仅判断时间与是否已拉过），
+    // 不依赖是否停留在股票页，也不依赖手动点「更新」或整页刷新。
+    (function scheduleReviewPull() {
+      function tick() {
+        if (!document.hidden) { maybePullDailyReview().catch(function () {}); }
+        setTimeout(tick, 60 * 1000);
+      }
+      setTimeout(tick, 60 * 1000);
+    })();
+
     // 行情 + 持仓交易建议 自动刷新：开盘期间 15s 实时、非开盘 60s，后台不打扰
     // 此前用 setInterval + `if (!quotes.length) return`：只录持仓、没加自选股的用户
     // 其交易建议（renderTrades 内）在自动路径里被提前 return 拦截 → 永远空白。
@@ -9615,6 +9677,7 @@
       setTimeout(async () => {
         try {
           if (!document.hidden && document.getElementById("stQuoteList")) {
+            if (!open) { try { await maybePullDailyReview(); } catch (e) {} } // 收盘后先拉最新复盘
             const safe = (fn) => { try { fn(); } catch (e) { if (typeof console !== "undefined") console.warn("[stock] tick:", e && e.message); } };
             safe(renderIndex); safe(renderBoards); safe(() => renderScreenResults(_screenResults));
             safe(renderSentiment); safe(renderReviews);
