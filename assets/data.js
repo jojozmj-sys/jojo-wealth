@@ -1915,9 +1915,10 @@ window.WORKBENCH_DATA = {
     }
   ],
   "englishDaily": {
-    "label": "每日成人日常口语 + 必记词汇",
-    "updated": "2026-08-01",
-    "days": [
+  "label": "每日成人日常口语 + 必记词汇（4 周轮换）",
+  "updated": "2026-08-10",
+  "weeks": [
+    [
       {
         "theme": "职场寒暄 & 买咖啡",
         "spoken": {
@@ -1948,18 +1949,11 @@ window.WORKBENCH_DATA = {
             "phonetic": "/ˈɔːrdər/",
             "senses": [
               {
-                "pos": "n.",
-                "meaning": "订单；次序",
-                "example": "I placed an order online and it arrived the next day.（我在网上下单，第二天就到了。）"
-              },
-              {
                 "pos": "v.",
-                "meaning": "点（餐/酒水）；命令",
-                "example": "Have you ordered your lunch yet?（你点午餐了吗？）"
+                "meaning": "点（餐/饮料）",
+                "example": "I'll order a sandwich for lunch."
               }
-            ],
-            "meaning": "订单；次序；点（餐/酒水）；命令",
-            "example": "I placed an order online and it arrived the next day.（我在网上下单，第二天就到了。） Have you ordered your lunch yet?（你点午餐了吗？）"
+            ]
           },
           {
             "word": "regular",
@@ -1967,119 +1961,103 @@ window.WORKBENCH_DATA = {
             "senses": [
               {
                 "pos": "adj.",
-                "meaning": "常规的；经常的",
-                "example": "This is my regular order — a latte, no sugar.（这是我的固定搭配——拿铁，不加糖。）"
-              },
-              {
-                "pos": "n.",
-                "meaning": "老顾客；常客",
-                "example": "I'm a regular at this café, so the barista knows my name.（我是这家咖啡馆的常客，咖啡师都认识我。）"
+                "meaning": "普通的、常规的",
+                "example": "I'd like regular milk, not skim."
               }
-            ],
-            "meaning": "常规的；经常的；老顾客；常客",
-            "example": "This is my regular order — a latte, no sugar.（这是我的固定搭配——拿铁，不加糖。） I'm a regular at this café, so the barista knows my name.（我是这家咖啡馆的常客，咖啡师都认识我。）"
+            ]
           },
           {
-            "word": "to go",
-            "phonetic": "/tə ɡoʊ/",
-            "senses": [
-              {
-                "pos": "phr.",
-                "meaning": "外带（不是堂食）",
-                "example": "One cappuccino, to go, please.（一杯卡布奇诺，外带，谢谢。）"
-              }
-            ],
-            "meaning": "外带（不是堂食）",
-            "example": "One cappuccino, to go, please.（一杯卡布奇诺，外带，谢谢。）"
-          },
-          {
-            "word": "brew",
-            "phonetic": "/bruː/",
-            "senses": [
-              {
-                "pos": "v.",
-                "meaning": "冲泡；煮（咖啡/茶）",
-                "example": "This blend is brewed fresh every morning.（这款拼配每天早上现冲。）"
-              },
-              {
-                "pos": "n.",
-                "meaning": "（咖啡/茶的）一杯，冲好的饮品",
-                "example": "Grab me a brew on your way back, will you?（回来路上帮我带杯咖啡，行吗？）"
-              }
-            ],
-            "meaning": "冲泡；煮（咖啡/茶）；（咖啡/茶的）一杯，冲好的饮品",
-            "example": "This blend is brewed fresh every morning.（这款拼配每天早上现冲。） Grab me a brew on your way back, will you?（回来路上帮我带杯咖啡，行吗？）"
-          },
-          {
-            "word": "tip",
-            "phonetic": "/tɪp/",
+            "word": "oat",
+            "phonetic": "/oʊt/",
             "senses": [
               {
                 "pos": "n.",
-                "meaning": "小费；小窍门",
-                "example": "In the US, leaving a 15–20% tip is common.（在美国，留 15–20% 小费很常见。）"
-              },
-              {
-                "pos": "v.",
-                "meaning": "给小费",
-                "example": "We tipped the waiter generously for great service.（服务很好，我们多给了服务员小费。）"
+                "meaning": "燕麦",
+                "example": "Oat milk is popular these days."
               }
-            ],
-            "meaning": "小费；小窍门；给小费",
-            "example": "In the US, leaving a 15–20% tip is common.（在美国，留 15–20% 小费很常见。） We tipped the waiter generously for great service.（服务很好，我们多给了服务员小费。）"
+            ]
+          },
+          {
+            "word": "packed",
+            "phonetic": "/pækt/",
+            "senses": [
+              {
+                "pos": "adj.",
+                "meaning": "拥挤的、满是人的",
+                "example": "The café is packed at noon."
+              }
+            ]
+          },
+          {
+            "word": "ahead",
+            "phonetic": "/əˈhed/",
+            "senses": [
+              {
+                "pos": "adv.",
+                "meaning": "提前、在前方",
+                "example": "Order ahead to skip the line."
+              }
+            ]
           }
         ]
       },
       {
         "theme": "餐厅点餐",
         "spoken": {
-          "title": "等位、点菜、买单一条龙",
-          "key": "Could we get a table for two? And the bill, please.",
-          "keyTrans": "能给我们一张两人桌吗？另外请结账。",
+          "title": "进餐厅怎么自然点单、要调料、买单",
+          "key": "Could we get the menu, and a glass of water to start?",
+          "keyTrans": "能先给我们菜单，再来杯水吗？",
           "keys": [
             {
-              "en": "Could we get a table for two? And the bill, please.",
-              "cn": "能给我们一张两人桌吗？另外请结账。"
+              "en": "Could we get the menu, and a glass of water to start?",
+              "cn": "能先给我们菜单，再来杯水吗？"
             },
             {
-              "en": "Could you box up the leftovers? And would you mind keeping the change?",
-              "cn": "能把剩菜打包吗？零钱就不用找了。"
+              "en": "What do you recommend that's not too spicy?",
+              "cn": "有什么不太辣的你们推荐的？"
             },
             {
-              "en": "If it weren't for the reservation, we'd have been waiting forever — I'd suggest booking ahead next time.",
-              "cn": "要不是提前订了位，我们怕是要等很久——我建议下次提前订座。"
+              "en": "Could we have the bill, please? We're in a bit of a rush.",
+              "cn": "麻烦买单好吗？我们有点赶时间。"
             }
           ],
-          "transcript": "A: Do you have a table for two?\nB: Sure, follow me.\nA: What do you recommend?\nB: The grilled fish is popular.\n\n【买单】\"Could we have the bill, please?\" 比 \"I want to pay\" 更自然。recommend 读作 /ˌrekəˈmend/。",
+          "transcript": "A: Welcome! Table for two?\nB: Yes, could we get the menu, and a glass of water to start?\nA: Sure, I'll be right back.\n\n【要点】\"Could we get…\" 比 \"Give me…\" 礼貌；\"the bill\" = 账单（美式也常用 \"check\"）；\"in a rush\" = 赶时间。",
           "video": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
           "platform": "演示"
         },
         "vocab": [
+          {
+            "word": "menu",
+            "phonetic": "/ˈmenjuː/",
+            "senses": [
+              {
+                "pos": "n.",
+                "meaning": "菜单",
+                "example": "Can I see the menu, please?"
+              }
+            ]
+          },
           {
             "word": "recommend",
             "phonetic": "/ˌrekəˈmend/",
             "senses": [
               {
                 "pos": "v.",
-                "meaning": "推荐；建议",
-                "example": "Can you recommend a good movie?（能推荐部好电影吗？）"
+                "meaning": "推荐",
+                "example": "Which dish do you recommend?"
               }
-            ],
-            "meaning": "推荐；建议",
-            "example": "Can you recommend a good movie?（能推荐部好电影吗？）"
+            ]
           },
           {
-            "word": "reservation",
-            "phonetic": "/ˌrezərˈveɪʃn/",
+            "word": "spicy",
+            "phonetic": "/ˈspaɪsi/",
             "senses": [
               {
-                "pos": "n.",
-                "meaning": "预订；预约（座位/房间）",
-                "example": "I made a reservation under the name Li.（我用李的名字订了位。）"
+                "pos": "adj.",
+                "meaning": "辣的",
+                "example": "I can't eat anything too spicy."
               }
-            ],
-            "meaning": "预订；预约（座位/房间）",
-            "example": "I made a reservation under the name Li.（我用李的名字订了位。）"
+            ]
           },
           {
             "word": "bill",
@@ -2088,105 +2066,80 @@ window.WORKBENCH_DATA = {
               {
                 "pos": "n.",
                 "meaning": "账单",
-                "example": "Let's split the bill.（我们AA吧。）"
-              },
-              {
-                "pos": "v.",
-                "meaning": "给…开账单",
-                "example": "The hotel billed us for the extra night.（酒店就多住的那晚给我们开了账单。）"
+                "example": "Could we have the bill, please?"
               }
-            ],
-            "meaning": "账单；给…开账单",
-            "example": "Let's split the bill.（我们AA吧。） The hotel billed us for the extra night.（酒店就多住的那晚给我们开了账单。）"
+            ]
           },
           {
-            "word": "appetizer",
-            "phonetic": "/ˈæpɪtaɪzər/",
+            "word": "rush",
+            "phonetic": "/rʌʃ/",
             "senses": [
               {
                 "pos": "n.",
-                "meaning": "开胃菜；前菜",
-                "example": "The calamari appetizer is amazing.（鱿鱼圈前菜超赞。）"
+                "meaning": "匆忙、赶时间",
+                "example": "We're in a bit of a rush."
               }
-            ],
-            "meaning": "开胃菜；前菜",
-            "example": "The calamari appetizer is amazing.（鱿鱼圈前菜超赞。）"
-          },
-          {
-            "word": "split",
-            "phonetic": "/splɪt/",
-            "senses": [
-              {
-                "pos": "v.",
-                "meaning": "分摊；AA（账单）",
-                "example": "Let's split it — you get the next one.（这次AA，下次你请。）"
-              },
-              {
-                "pos": "n.",
-                "meaning": "（账单的）均分",
-                "example": "Let's do a fifty-fifty split on dinner.（晚饭我们五五平分吧。）"
-              }
-            ],
-            "meaning": "分摊；AA（账单）；（账单的）均分",
-            "example": "Let's split it — you get the next one.（这次AA，下次你请。） Let's do a fifty-fifty split on dinner.（晚饭我们五五平分吧。）"
+            ]
           }
         ]
       },
       {
         "theme": "购物退换",
         "spoken": {
-          "title": "退换货 & 讲价：维权也能很礼貌",
-          "key": "I'd like to return this — it doesn't fit me.",
-          "keyTrans": "我想退掉这个——它不合身。",
+          "title": "买错尺码、要退货怎么说",
+          "key": "I'd like to return this — it doesn't fit and I have the receipt.",
+          "keyTrans": "我想退这件——不合身，而且我有小票。",
           "keys": [
             {
-              "en": "I'd like to return this — it doesn't fit me.",
-              "cn": "我想退掉这个——它不合身。"
+              "en": "I'd like to return this — it doesn't fit and I have the receipt.",
+              "cn": "我想退这件——不合身，而且我有小票。"
             },
             {
-              "en": "Can I exchange it for a different size? And is this covered by the store's return policy?",
-              "cn": "能给我换个尺码吗？这在店铺的退换政策范围内吗？"
+              "en": "Do you offer exchanges, or store credit only?",
+              "cn": "你们可以换货吗，还是只能退到储值卡？"
             },
             {
-              "en": "Unless you can knock a bit off the price, I'm afraid I'll have to walk away on this one.",
-              "cn": "除非你能把价格降一些，否则恐怕这单我就不买了。"
+              "en": "Could I try a smaller size before I decide?",
+              "cn": "我决定前能先试一件小一号的吗？"
             }
           ],
-          "transcript": "A: I'd like to return this shirt.\nB: Do you have the receipt?\nA: Yes, here it is.\n\n【要点】尺码不合适：\"It doesn't fit.\" 想换：\"Can I exchange it for a different size?\" 市场讲价：\"Is there any discount?\"",
+          "transcript": "A: How can I help?\nB: I'd like to return this — it doesn't fit and I have the receipt.\nA: No problem, I'll process that for you.\n\n【要点】\"it doesn't fit\" = 不合身；\"receipt\" = 小票；\"exchange\" = 换货；\"store credit\" = 店铺储值额度。",
           "video": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
           "platform": "演示"
         },
         "vocab": [
+          {
+            "word": "return",
+            "phonetic": "/rɪˈtɜːrn/",
+            "senses": [
+              {
+                "pos": "v.",
+                "meaning": "退货",
+                "example": "Can I return this without a receipt?"
+              }
+            ]
+          },
+          {
+            "word": "fit",
+            "phonetic": "/fɪt/",
+            "senses": [
+              {
+                "pos": "v.",
+                "meaning": "合身",
+                "example": "These shoes don't fit me."
+              }
+            ]
+          },
           {
             "word": "receipt",
             "phonetic": "/rɪˈsiːt/",
             "senses": [
               {
                 "pos": "n.",
-                "meaning": "收据；小票",
-                "example": "Keep the receipt in case you need to return it.（留着小票以便退换。）"
+                "meaning": "收据、小票",
+                "example": "Keep your receipt just in case."
               }
-            ],
-            "meaning": "收据；小票",
-            "example": "Keep the receipt in case you need to return it.（留着小票以便退换。）"
-          },
-          {
-            "word": "refund",
-            "phonetic": "/ˈriːfʌnd/",
-            "senses": [
-              {
-                "pos": "n.",
-                "meaning": "退款；退还的钱",
-                "example": "Can I get a full refund?（能全额退款吗？）"
-              },
-              {
-                "pos": "v.",
-                "meaning": "退还（款项）",
-                "example": "They refunded my money within a week.（他们一周内就把钱退给我了。）"
-              }
-            ],
-            "meaning": "退款；退还的钱；退还（款项）",
-            "example": "Can I get a full refund?（能全额退款吗？） They refunded my money within a week.（他们一周内就把钱退给我了。）"
+            ]
           },
           {
             "word": "exchange",
@@ -2194,185 +2147,1151 @@ window.WORKBENCH_DATA = {
             "senses": [
               {
                 "pos": "v.",
-                "meaning": "换货；交换",
-                "example": "I'd like to exchange it for a larger size.（我想换成大一号。）"
-              },
-              {
-                "pos": "n.",
-                "meaning": "交换；兑换",
-                "example": "The store allows free exchanges within 30 days.（这家店30天内免费换货。）"
+                "meaning": "交换、换货",
+                "example": "I'd like to exchange it for a larger size."
               }
-            ],
-            "meaning": "换货；交换；交换；兑换",
-            "example": "I'd like to exchange it for a larger size.（我想换成大一号。） The store allows free exchanges within 30 days.（这家店30天内免费换货。）"
+            ]
           },
           {
-            "word": "discount",
-            "phonetic": "/ˈdɪskaʊnt/",
+            "word": "credit",
+            "phonetic": "/ˈkredɪt/",
             "senses": [
               {
                 "pos": "n.",
-                "meaning": "折扣；打折",
-                "example": "Can I get a student discount?（能给学生折扣吗？）"
-              },
-              {
-                "pos": "v.",
-                "meaning": "打折出售",
-                "example": "The store discounted all winter coats by 20%.（这家店所有冬衣打八折。）"
+                "meaning": "信用额、储值",
+                "example": "We can give you store credit."
               }
-            ],
-            "meaning": "折扣；打折；打折出售",
-            "example": "Can I get a student discount?（能给学生折扣吗？） The store discounted all winter coats by 20%.（这家店所有冬衣打八折。）"
-          },
-          {
-            "word": "warranty",
-            "phonetic": "/ˈwɒrənti/",
-            "senses": [
-              {
-                "pos": "n.",
-                "meaning": "保修；保单",
-                "example": "This laptop comes with a two-year warranty.（这台笔电两年保修。）"
-              }
-            ],
-            "meaning": "保修；保单",
-            "example": "This laptop comes with a two-year warranty.（这台笔电两年保修。）"
+            ]
           }
         ]
       },
       {
         "theme": "电话沟通",
         "spoken": {
-          "title": "打电话：请假、改约、留言",
-          "key": "I'm calling to reschedule our meeting — is tomorrow afternoon OK?",
-          "keyTrans": "我打电话来想改一下会议时间——明天下午方便吗？",
+          "title": "接电话、留口信、转接",
+          "key": "Could you take a message? She's not at her desk right now.",
+          "keyTrans": "能帮忙留个口信吗？她现在不在座位上。",
           "keys": [
             {
-              "en": "I'm calling to reschedule our meeting — is tomorrow afternoon OK?",
-              "cn": "我打电话来想改一下会议时间——明天下午方便吗？"
+              "en": "Could you take a message? She's not at her desk right now.",
+              "cn": "能帮忙留个口信吗？她现在不在座位上。"
             },
             {
-              "en": "Could you put me through to the manager? I'd like to leave her a message.",
-              "cn": "能帮我转接经理吗？我想给她留个口信。"
+              "en": "May I ask who's calling, and your number?",
+              "cn": "请问您是哪位，方便留个电话吗？"
             },
             {
-              "en": "Had it not been for the network glitch, I'd have joined the call on time — apologies for the confusion.",
-              "cn": "要不是网络故障，我会准时加入会议——抱歉造成困扰。"
+              "en": "I'll have her call you back as soon as she's free.",
+              "cn": "她一有空我就让她回您电话。"
             }
           ],
-          "transcript": "A: Hi, this is Jojo. I'm calling to reschedule our meeting.\nB: Sure, is tomorrow afternoon OK?\nA: Perfect, thanks.\n\n【要点】请假：\"I need to take a sick day.\" 留言：\"Could you tell her I called?\"",
+          "transcript": "A: Hello, may I speak to Lisa?\nB: She's not at her desk — could you take a message?\nA: Sure, tell her Tom called.\n\n【要点】\"take a message\" = 记口信；\"call you back\" = 回电话；\"at one's desk\" = 在工位。",
           "video": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
           "platform": "演示"
         },
         "vocab": [
-          {
-            "word": "reschedule",
-            "phonetic": "/ˌriːˈskedʒuːl/",
-            "senses": [
-              {
-                "pos": "v.",
-                "meaning": "改期；重新安排",
-                "example": "Let's reschedule to next week.（改到下周吧。）"
-              }
-            ],
-            "meaning": "改期；重新安排",
-            "example": "Let's reschedule to next week.（改到下周吧。）"
-          },
-          {
-            "word": "available",
-            "phonetic": "/əˈveɪləbl/",
-            "senses": [
-              {
-                "pos": "adj.",
-                "meaning": "有空的；可用的",
-                "example": "Are you available this Friday?（你这周五有空吗？）"
-              }
-            ],
-            "meaning": "有空的；可用的",
-            "example": "Are you available this Friday?（你这周五有空吗？）"
-          },
           {
             "word": "message",
             "phonetic": "/ˈmesɪdʒ/",
             "senses": [
               {
                 "pos": "n.",
-                "meaning": "口信；信息",
-                "example": "Could you leave him a message?（能给他留个口信吗？）"
-              },
-              {
-                "pos": "v.",
-                "meaning": "给…发消息",
-                "example": "Message me when you're free.（你有空时给我发消息。）"
+                "meaning": "口信、消息",
+                "example": "Could you take a message?"
               }
-            ],
-            "meaning": "口信；信息；给…发消息",
-            "example": "Could you leave him a message?（能给他留个口信吗？） Message me when you're free.（你有空时给我发消息。）"
+            ]
           },
           {
-            "word": "voicemail",
-            "phonetic": "/ˈvɔɪsmeɪl/",
+            "word": "desk",
+            "phonetic": "/desk/",
             "senses": [
               {
                 "pos": "n.",
-                "meaning": "语音留言",
-                "example": "I left you a voicemail — please call back.（我给你留了语音留言，请回电。）"
+                "meaning": "办公桌、工位",
+                "example": "She's not at her desk."
               }
-            ],
-            "meaning": "语音留言",
-            "example": "I left you a voicemail — please call back.（我给你留了语音留言，请回电。）"
+            ]
           },
           {
-            "word": "confirm",
-            "phonetic": "/kənˈfɜːrm/",
+            "word": "call back",
+            "phonetic": "/ˈkɔːl bæk/",
             "senses": [
               {
-                "pos": "v.",
-                "meaning": "确认；证实",
-                "example": "Please confirm the appointment by email.（请邮件确认预约。）"
+                "pos": "phr.",
+                "meaning": "回电话",
+                "example": "I'll call you back later."
               }
-            ],
-            "meaning": "确认；证实",
-            "example": "Please confirm the appointment by email.（请邮件确认预约。）"
+            ]
+          },
+          {
+            "word": "number",
+            "phonetic": "/ˈnʌmbər/",
+            "senses": [
+              {
+                "pos": "n.",
+                "meaning": "号码",
+                "example": "What's your number?"
+              }
+            ]
+          },
+          {
+            "word": "free",
+            "phonetic": "/friː/",
+            "senses": [
+              {
+                "pos": "adj.",
+                "meaning": "有空的",
+                "example": "Call me when you're free."
+              }
+            ]
           }
         ]
       },
       {
         "theme": "旅行出行",
         "spoken": {
-          "title": "旅行：问路、入住、求助",
-          "key": "Excuse me, how do I get to the subway station?",
-          "keyTrans": "打扰一下，请问去地铁站怎么走？",
+          "title": "问路、买票、赶车",
+          "key": "Excuse me, which platform does the train to the airport leave from?",
+          "keyTrans": "打扰一下，去机场的火车从哪个站台出发？",
           "keys": [
             {
-              "en": "Excuse me, how do I get to the subway station?",
-              "cn": "打扰一下，请问去地铁站怎么走？"
+              "en": "Excuse me, which platform does the train to the airport leave from?",
+              "cn": "打扰一下，去机场的火车从哪个站台出发？"
             },
             {
-              "en": "I have a reservation under Li. Could you call a taxi for me in the morning?",
-              "cn": "我用李的名字订了房。明早能帮我叫辆出租车吗？"
+              "en": "Is this seat taken, or is it free?",
+              "cn": "这个座位有人坐吗，还是空的？"
             },
             {
-              "en": "Should you ever find yourself lost in this city, the metro map at every station is your best friend.",
-              "cn": "万一你在这座城市里迷路，每个地铁站里的线路图就是你最好的帮手。"
+              "en": "We'd better hurry — the gate closes in ten minutes.",
+              "cn": "我们得抓紧了——登机口十分钟后关闭。"
             }
           ],
-          "transcript": "A: Excuse me, how do I get to the subway station?\nB: Go straight and turn left at the corner.\nA: Thank you!\n\n【要点】入住：\"I have a reservation under Li.\" 求助：\"Could you call a taxi for me?\"",
+          "transcript": "A: Excuse me, which platform for the airport train?\nB: Platform 4, but it leaves in five minutes.\nA: Thanks, we'd better hurry!\n\n【要点】\"platform\" = 站台；\"gate\" = 登机口/闸口；\"hurry\" = 快点。",
           "video": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4",
           "platform": "演示"
         },
         "vocab": [
           {
-            "word": "direction",
-            "phonetic": "/dəˈrekʃn/",
+            "word": "platform",
+            "phonetic": "/ˈplætfɔːrm/",
             "senses": [
               {
                 "pos": "n.",
-                "meaning": "方向；指引（常复数）",
-                "example": "Can you give me directions?（能给我指个路吗？）"
+                "meaning": "站台",
+                "example": "Which platform is it?"
               }
-            ],
-            "meaning": "方向；指引（常复数）",
-            "example": "Can you give me directions?（能给我指个路吗？）"
+            ]
+          },
+          {
+            "word": "airport",
+            "phonetic": "/ˈerpɔːrt/",
+            "senses": [
+              {
+                "pos": "n.",
+                "meaning": "机场",
+                "example": "I'm heading to the airport."
+              }
+            ]
+          },
+          {
+            "word": "hurry",
+            "phonetic": "/ˈhɜːri/",
+            "senses": [
+              {
+                "pos": "v.",
+                "meaning": "赶紧、匆忙",
+                "example": "We'd better hurry."
+              }
+            ]
+          },
+          {
+            "word": "gate",
+            "phonetic": "/ɡeɪt/",
+            "senses": [
+              {
+                "pos": "n.",
+                "meaning": "登机口、闸口",
+                "example": "The gate closes soon."
+              }
+            ]
+          },
+          {
+            "word": "taken",
+            "phonetic": "/ˈteɪkən/",
+            "senses": [
+              {
+                "pos": "adj.",
+                "meaning": "被占用的",
+                "example": "Is this seat taken?"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "theme": "职场沟通",
+        "spoken": {
+          "title": "开会、对齐进度、提请求",
+          "key": "Can we sync on this before the deadline, or should I just proceed?",
+          "keyTrans": "我们能在截止前先对齐一下吗，还是我直接推进？",
+          "keys": [
+            {
+              "en": "Can we sync on this before the deadline, or should I just proceed?",
+              "cn": "我们能在截止前先对齐一下吗，还是我直接推进？"
+            },
+            {
+              "en": "I'll loop you in on the email so you're in the loop.",
+              "cn": "我把你加进邮件，让你也知情。"
+            },
+            {
+              "en": "Do you mind if we move the meeting up by half an hour?",
+              "cn": "我们把会议提前半小时你介意吗？"
+            }
+          ],
+          "transcript": "A: Can we sync before Friday's deadline?\nB: Sure — I'll loop you in on the thread.\nA: Great, thanks for the quick turnaround.\n\n【要点】\"sync\" = 对齐/同步；\"loop someone in\" = 把某人拉进沟通；\"turnaround\" = 周转/交付速度。",
+          "video": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+          "platform": "演示"
+        },
+        "vocab": [
+          {
+            "word": "sync",
+            "phonetic": "/sɪŋk/",
+            "senses": [
+              {
+                "pos": "v.",
+                "meaning": "对齐、同步",
+                "example": "Let's sync on this tomorrow."
+              }
+            ]
+          },
+          {
+            "word": "deadline",
+            "phonetic": "/ˈdedlaɪn/",
+            "senses": [
+              {
+                "pos": "n.",
+                "meaning": "截止日期",
+                "example": "The deadline is Friday."
+              }
+            ]
+          },
+          {
+            "word": "proceed",
+            "phonetic": "/proʊˈsiːd/",
+            "senses": [
+              {
+                "pos": "v.",
+                "meaning": "推进、继续",
+                "example": "Should I proceed as planned?"
+              }
+            ]
+          },
+          {
+            "word": "meeting",
+            "phonetic": "/ˈmiːtɪŋ/",
+            "senses": [
+              {
+                "pos": "n.",
+                "meaning": "会议",
+                "example": "Can we move the meeting?"
+              }
+            ]
+          },
+          {
+            "word": "thread",
+            "phonetic": "/θred/",
+            "senses": [
+              {
+                "pos": "n.",
+                "meaning": "（邮件）对话串",
+                "example": "I'll loop you into the thread."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "theme": "日常闲聊",
+        "spoken": {
+          "title": "和邻居/同事破冰寒暄",
+          "key": "So, how long have you been living around here?",
+          "keyTrans": "对了，你在这儿住多久了？",
+          "keys": [
+            {
+              "en": "So, how long have you been living around here?",
+              "cn": "对了，你在这儿住多久了？"
+            },
+            {
+              "en": "The weather's been wild lately, hasn't it?",
+              "cn": "最近天气真够折腾的，是不是？"
+            },
+            {
+              "en": "Anyway, it was great running into you — we should grab coffee sometime.",
+              "cn": "总之，碰到你真高兴——有空咱们喝杯咖啡。"
+            }
+          ],
+          "transcript": "A: Hi! I don't think we've met — I'm Jo.\nB: Nice to meet you, I just moved in next door.\nA: Oh, how long have you been here?\n\n【要点】\"run into someone\" = 偶遇；\"grab coffee\" = 约喝咖啡（社交邀约）；\"lately\" = 最近。",
+          "video": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
+          "platform": "演示"
+        },
+        "vocab": [
+          {
+            "word": "around",
+            "phonetic": "/əˈraʊnd/",
+            "senses": [
+              {
+                "pos": "adv.",
+                "meaning": "在附近",
+                "example": "Have you lived around here long?"
+              }
+            ]
+          },
+          {
+            "word": "weather",
+            "phonetic": "/ˈweðər/",
+            "senses": [
+              {
+                "pos": "n.",
+                "meaning": "天气",
+                "example": "The weather's been wild."
+              }
+            ]
+          },
+          {
+            "word": "lately",
+            "phonetic": "/ˈleɪtli/",
+            "senses": [
+              {
+                "pos": "adv.",
+                "meaning": "最近",
+                "example": "I've been busy lately."
+              }
+            ]
+          },
+          {
+            "word": "grab",
+            "phonetic": "/ɡræb/",
+            "senses": [
+              {
+                "pos": "v.",
+                "meaning": "顺手拿、抽空做",
+                "example": "Let's grab coffee."
+              }
+            ]
+          },
+          {
+            "word": "sometime",
+            "phonetic": "/ˈsʌmtaɪm/",
+            "senses": [
+              {
+                "pos": "adv.",
+                "meaning": "改天、有空时",
+                "example": "We should meet sometime."
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    [
+      {
+        "theme": "租房看房",
+        "spoken": {
+          "title": "约看房、问条件、谈租期",
+          "key": "Is the rent inclusive of utilities, or do I pay those separately?",
+          "keyTrans": "房租包水电吗，还是这些要另外付？",
+          "keys": [
+            {
+              "en": "Is the rent inclusive of utilities, or do I pay those separately?",
+              "cn": "房租包水电吗，还是这些要另外付？"
+            },
+            {
+              "en": "How long is the lease, and is a deposit required?",
+              "cn": "租期多久，需要押金吗？"
+            },
+            {
+              "en": "Would it be okay to visit again this weekend with my roommate?",
+              "cn": "这周末我带室友再来看一次可以吗？"
+            }
+          ],
+          "transcript": "A: The rent is $1,200 a month.\nB: Is it inclusive of utilities?\nA: Water's included; electricity is separate.\n\n【要点】\"inclusive of\" = 包含；\"utilities\" = 水电网等公共费用；\"lease\" = 租约；\"deposit\" = 押金。",
+          "video": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4",
+          "platform": "演示"
+        },
+        "vocab": [
+          {
+            "word": "rent",
+            "phonetic": "/rent/",
+            "senses": [
+              {
+                "pos": "n.",
+                "meaning": "房租",
+                "example": "How much is the rent?"
+              }
+            ]
+          },
+          {
+            "word": "inclusive",
+            "phonetic": "/ɪnˈkluːsɪv/",
+            "senses": [
+              {
+                "pos": "adj.",
+                "meaning": "包含的",
+                "example": "Is it inclusive of bills?"
+              }
+            ]
+          },
+          {
+            "word": "utilities",
+            "phonetic": "/juːˈtɪlətiz/",
+            "senses": [
+              {
+                "pos": "n.",
+                "meaning": "公用事业费（水电网）",
+                "example": "Utilities are extra."
+              }
+            ]
+          },
+          {
+            "word": "lease",
+            "phonetic": "/liːs/",
+            "senses": [
+              {
+                "pos": "n.",
+                "meaning": "租约",
+                "example": "The lease is one year."
+              }
+            ]
+          },
+          {
+            "word": "deposit",
+            "phonetic": "/dɪˈpɑːzɪt/",
+            "senses": [
+              {
+                "pos": "n.",
+                "meaning": "押金",
+                "example": "We need a deposit."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "theme": "医院就诊",
+        "spoken": {
+          "title": "挂号、描述症状、取药",
+          "key": "I've had a sore throat and a bit of a fever since yesterday.",
+          "keyTrans": "从昨天起我嗓子疼，还有点发烧。",
+          "keys": [
+            {
+              "en": "I've had a sore throat and a bit of a fever since yesterday.",
+              "cn": "从昨天起我嗓子疼，还有点发烧。"
+            },
+            {
+              "en": "Should I take this on an empty stomach, or after meals?",
+              "cn": "这个药是空腹吃，还是饭后吃？"
+            },
+            {
+              "en": "How often should I take it, and for how many days?",
+              "cn": "这药多久吃一次，要吃几天？"
+            }
+          ],
+          "transcript": "A: What seems to be the problem?\nB: I've had a sore throat and a fever since yesterday.\nA: Let me take a look — open wide.\n\n【要点】\"sore throat\" = 嗓子疼；\"fever\" = 发烧；\"on an empty stomach\" = 空腹；\"after meals\" = 饭后。",
+          "video": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
+          "platform": "演示"
+        },
+        "vocab": [
+          {
+            "word": "sore",
+            "phonetic": "/sɔːr/",
+            "senses": [
+              {
+                "pos": "adj.",
+                "meaning": "疼痛的",
+                "example": "I have a sore throat."
+              }
+            ]
+          },
+          {
+            "word": "throat",
+            "phonetic": "/θroʊt/",
+            "senses": [
+              {
+                "pos": "n.",
+                "meaning": "喉咙",
+                "example": "My throat hurts."
+              }
+            ]
+          },
+          {
+            "word": "fever",
+            "phonetic": "/ˈfiːvər/",
+            "senses": [
+              {
+                "pos": "n.",
+                "meaning": "发烧",
+                "example": "Do you have a fever?"
+              }
+            ]
+          },
+          {
+            "word": "stomach",
+            "phonetic": "/ˈstʌmək/",
+            "senses": [
+              {
+                "pos": "n.",
+                "meaning": "胃、肚子",
+                "example": "Take it on an empty stomach."
+              }
+            ]
+          },
+          {
+            "word": "meal",
+            "phonetic": "/miːl/",
+            "senses": [
+              {
+                "pos": "n.",
+                "meaning": "餐、饭",
+                "example": "Take it after meals."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "theme": "银行办事",
+        "spoken": {
+          "title": "开卡、问手续费、挂失",
+          "key": "I'd like to open a checking account with no monthly fee.",
+          "keyTrans": "我想开一个没有月费的活期账户。",
+          "keys": [
+            {
+              "en": "I'd like to open a checking account with no monthly fee.",
+              "cn": "我想开一个没有月费的活期账户。"
+            },
+            {
+              "en": "What's the fee for using another bank's ATM?",
+              "cn": "用别家银行的 ATM 要收多少手续费？"
+            },
+            {
+              "en": "I think my card was lost — can you freeze it, please?",
+              "cn": "我卡好像丢了——能帮我冻结吗？"
+            }
+          ],
+          "transcript": "A: How can I help you today?\nB: I'd like to open a checking account.\nA: Sure, do you want one with a monthly fee or without?\n\n【要点】\"checking account\" = 活期/支票账户；\"monthly fee\" = 月费；\"ATM\" = 自动取款机；\"freeze\" = 冻结。",
+          "video": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
+          "platform": "演示"
+        },
+        "vocab": [
+          {
+            "word": "checking",
+            "phonetic": "/ˈtʃekɪŋ/",
+            "senses": [
+              {
+                "pos": "n.",
+                "meaning": "活期账户",
+                "example": "Open a checking account."
+              }
+            ]
+          },
+          {
+            "word": "monthly",
+            "phonetic": "/ˈmʌnθli/",
+            "senses": [
+              {
+                "pos": "adj.",
+                "meaning": "每月的",
+                "example": "Is there a monthly fee?"
+              }
+            ]
+          },
+          {
+            "word": "fee",
+            "phonetic": "/fiː/",
+            "senses": [
+              {
+                "pos": "n.",
+                "meaning": "费用",
+                "example": "What's the ATM fee?"
+              }
+            ]
+          },
+          {
+            "word": "freeze",
+            "phonetic": "/friːz/",
+            "senses": [
+              {
+                "pos": "v.",
+                "meaning": "冻结",
+                "example": "Freeze my card, please."
+              }
+            ]
+          },
+          {
+            "word": "account",
+            "phonetic": "/əˈkaʊnt/",
+            "senses": [
+              {
+                "pos": "n.",
+                "meaning": "账户",
+                "example": "I opened a new account."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "theme": "约朋友聚会",
+        "spoken": {
+          "title": "发起邀约、定时间地点",
+          "key": "Are you free this Saturday? A few of us are getting together for hot pot.",
+          "keyTrans": "这周六有空吗？我们几个打算聚一下吃火锅。",
+          "keys": [
+            {
+              "en": "Are you free this Saturday? A few of us are getting together for hot pot.",
+              "cn": "这周六有空吗？我们几个打算聚一下吃火锅。"
+            },
+            {
+              "en": "Does seven work, or would eight be better for you?",
+              "cn": "七点行吗，还是八点对你更合适？"
+            },
+            {
+              "en": "I'll send you the location — it's near the subway exit.",
+              "cn": "我把位置发你——就在地铁口附近。"
+            }
+          ],
+          "transcript": "A: Are you free this Saturday?\nB: I think so — what's the plan?\nA: Hot pot with a few friends, around seven.\n\n【要点】\"get together\" = 聚一下；\"work\" 在这里 = 行得通/合适；\"location\" = 位置。",
+          "video": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
+          "platform": "演示"
+        },
+        "vocab": [
+          {
+            "word": "free",
+            "phonetic": "/friː/",
+            "senses": [
+              {
+                "pos": "adj.",
+                "meaning": "有空的",
+                "example": "Are you free Saturday?"
+              }
+            ]
+          },
+          {
+            "word": "together",
+            "phonetic": "/təˈɡeðər/",
+            "senses": [
+              {
+                "pos": "adv.",
+                "meaning": "一起",
+                "example": "Let's get together."
+              }
+            ]
+          },
+          {
+            "word": "location",
+            "phonetic": "/loʊˈkeɪʃn/",
+            "senses": [
+              {
+                "pos": "n.",
+                "meaning": "位置、地点",
+                "example": "I'll send the location."
+              }
+            ]
+          },
+          {
+            "word": "near",
+            "phonetic": "/nɪr/",
+            "senses": [
+              {
+                "pos": "prep.",
+                "meaning": "在…附近",
+                "example": "It's near the subway."
+              }
+            ]
+          },
+          {
+            "word": "exit",
+            "phonetic": "/ˈeɡzɪt/",
+            "senses": [
+              {
+                "pos": "n.",
+                "meaning": "出口",
+                "example": "Meet at the exit."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "theme": "健身运动",
+        "spoken": {
+          "title": "问教练、约课、说身体感受",
+          "key": "Could you show me how to use this machine without hurting my back?",
+          "keyTrans": "能教我怎么用这台机器又不伤腰吗？",
+          "keys": [
+            {
+              "en": "Could you show me how to use this machine without hurting my back?",
+              "cn": "能教我怎么用这台机器又不伤腰吗？"
+            },
+            {
+              "en": "I'm pretty sore from yesterday's class — is that normal?",
+              "cn": "昨天课上完我浑身酸痛——这正常吗？"
+            },
+            {
+              "en": "Do you have any beginner sessions on weekday mornings?",
+              "cn": "工作日上午有适合新手的课吗？"
+            }
+          ],
+          "transcript": "A: First time here?\nB: Yeah, could you show me this machine?\nA: Sure — keep your back straight, don't round your shoulders.\n\n【要点】\"sore\" = 酸痛；\"session\" = 一节（课/训练）；\"beginner\" = 初学者；\"straight\" = 直的。",
+          "video": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
+          "platform": "演示"
+        },
+        "vocab": [
+          {
+            "word": "machine",
+            "phonetic": "/məˈʃiːn/",
+            "senses": [
+              {
+                "pos": "n.",
+                "meaning": "器械",
+                "example": "How do I use this machine?"
+              }
+            ]
+          },
+          {
+            "word": "sore",
+            "phonetic": "/sɔːr/",
+            "senses": [
+              {
+                "pos": "adj.",
+                "meaning": "酸痛的",
+                "example": "I'm sore from yesterday."
+              }
+            ]
+          },
+          {
+            "word": "session",
+            "phonetic": "/ˈseʃn/",
+            "senses": [
+              {
+                "pos": "n.",
+                "meaning": "一节（训练/课）",
+                "example": "A morning session works."
+              }
+            ]
+          },
+          {
+            "word": "beginner",
+            "phonetic": "/bɪˈɡɪnər/",
+            "senses": [
+              {
+                "pos": "n.",
+                "meaning": "初学者",
+                "example": "I'm a beginner."
+              }
+            ]
+          },
+          {
+            "word": "straight",
+            "phonetic": "/streɪt/",
+            "senses": [
+              {
+                "pos": "adj.",
+                "meaning": "直的",
+                "example": "Keep your back straight."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "theme": "面试求职",
+        "spoken": {
+          "title": "自我介绍、谈经验、问福利",
+          "key": "I've spent the last three years leading small product teams.",
+          "keyTrans": "过去三年我一直在带小型产品团队。",
+          "keys": [
+            {
+              "en": "I've spent the last three years leading small product teams.",
+              "cn": "过去三年我一直在带小型产品团队。"
+            },
+            {
+              "en": "What does the typical career path look like in this role?",
+              "cn": "这个岗位通常的职业发展路径是怎样的？"
+            },
+            {
+              "en": "Is there flexibility to work remotely a couple of days a week?",
+              "cn": "每周有几天可以远程办公吗？"
+            }
+          ],
+          "transcript": "A: Tell me a bit about yourself.\nB: I've led product teams for three years.\nA: Great — why are you interested in us?\n\n【要点】\"lead\" = 带领/领导；\"career path\" = 职业路径；\"remotely\" = 远程；\"flexibility\" = 灵活性。",
+          "video": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4",
+          "platform": "演示"
+        },
+        "vocab": [
+          {
+            "word": "lead",
+            "phonetic": "/liːd/",
+            "senses": [
+              {
+                "pos": "v.",
+                "meaning": "带领、领导",
+                "example": "I lead a small team."
+              }
+            ]
+          },
+          {
+            "word": "career",
+            "phonetic": "/kəˈrɪr/",
+            "senses": [
+              {
+                "pos": "n.",
+                "meaning": "职业、事业",
+                "example": "What's the career path?"
+              }
+            ]
+          },
+          {
+            "word": "path",
+            "phonetic": "/pæθ/",
+            "senses": [
+              {
+                "pos": "n.",
+                "meaning": "路径",
+                "example": "A clear growth path."
+              }
+            ]
+          },
+          {
+            "word": "remote",
+            "phonetic": "/rɪˈmoʊt/",
+            "senses": [
+              {
+                "pos": "adj.",
+                "meaning": "远程的",
+                "example": "Work remotely sometimes."
+              }
+            ]
+          },
+          {
+            "word": "flexibility",
+            "phonetic": "/ˌfleksəˈbɪləti/",
+            "senses": [
+              {
+                "pos": "n.",
+                "meaning": "灵活性",
+                "example": "We offer flexibility."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "theme": "点外卖",
+        "spoken": {
+          "title": "下单、备注、催单",
+          "key": "Can you add a note — no peanuts, and sauce on the side?",
+          "keyTrans": "能加个备注吗——不要花生，酱料分开装？",
+          "keys": [
+            {
+              "en": "Can you add a note — no peanuts, and sauce on the side?",
+              "cn": "能加个备注吗——不要花生，酱料分开装？"
+            },
+            {
+              "en": "It's been forty minutes — is my order on the way?",
+              "cn": "已经四十分钟了——我点的餐是在路上了吗？"
+            },
+            {
+              "en": "The rider left it at the door, but I got no call.",
+              "cn": "骑手放门口了，但我没接到电话。"
+            }
+          ],
+          "transcript": "A: Anything else?\nB: Yes, no peanuts and sauce on the side, please.\nA: Got it — I'll add the note.\n\n【要点】\"on the side\" = 分开放/另装；\"rider\" = 骑手；\"on the way\" = 在路上；\"door\" = 门。",
+          "video": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+          "platform": "演示"
+        },
+        "vocab": [
+          {
+            "word": "note",
+            "phonetic": "/noʊt/",
+            "senses": [
+              {
+                "pos": "n.",
+                "meaning": "备注",
+                "example": "Add a note, please."
+              }
+            ]
+          },
+          {
+            "word": "peanut",
+            "phonetic": "/ˈpiːnʌt/",
+            "senses": [
+              {
+                "pos": "n.",
+                "meaning": "花生",
+                "example": "No peanuts, thanks."
+              }
+            ]
+          },
+          {
+            "word": "sauce",
+            "phonetic": "/sɔːs/",
+            "senses": [
+              {
+                "pos": "n.",
+                "meaning": "酱料",
+                "example": "Sauce on the side."
+              }
+            ]
+          },
+          {
+            "word": "rider",
+            "phonetic": "/ˈraɪdər/",
+            "senses": [
+              {
+                "pos": "n.",
+                "meaning": "骑手",
+                "example": "The rider is nearby."
+              }
+            ]
+          },
+          {
+            "word": "door",
+            "phonetic": "/dɔːr/",
+            "senses": [
+              {
+                "pos": "n.",
+                "meaning": "门",
+                "example": "Left it at the door."
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    [
+      {
+        "theme": "飞机值机",
+        "spoken": {
+          "title": "办登机牌、托运行李、选座",
+          "key": "I'd like a window seat if there's one left, and one bag to check.",
+          "keyTrans": "如果还有靠窗的座位我想要，还有一件要托运。",
+          "keys": [
+            {
+              "en": "I'd like a window seat if there's one left, and one bag to check.",
+              "cn": "如果还有靠窗的座位我想要，还有一件要托运。"
+            },
+            {
+              "en": "Is my connection tight? I have an hour between flights.",
+              "cn": "我转机时间紧吗？两班之间只有一小时。"
+            },
+            {
+              "en": "Can I board early? I'm traveling with a toddler.",
+              "cn": "我能提前登机吗？我带着个幼儿。"
+            }
+          ],
+          "transcript": "A: Window or aisle?\nB: Window, if possible, and one bag to check.\nA: Sure, that'll be at the belt over there.\n\n【要点】\"window seat\" = 靠窗座；\"aisle\" = 过道座；\"connection\" = 转机；\"toddler\" = 幼儿。",
+          "video": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
+          "platform": "演示"
+        },
+        "vocab": [
+          {
+            "word": "window",
+            "phonetic": "/ˈwɪndoʊ/",
+            "senses": [
+              {
+                "pos": "n.",
+                "meaning": "窗户",
+                "example": "A window seat, please."
+              }
+            ]
+          },
+          {
+            "word": "aisle",
+            "phonetic": "/aɪl/",
+            "senses": [
+              {
+                "pos": "n.",
+                "meaning": "过道",
+                "example": "An aisle seat is fine."
+              }
+            ]
+          },
+          {
+            "word": "check",
+            "phonetic": "/tʃek/",
+            "senses": [
+              {
+                "pos": "v.",
+                "meaning": "托运",
+                "example": "One bag to check."
+              }
+            ]
+          },
+          {
+            "word": "connection",
+            "phonetic": "/kəˈnekʃn/",
+            "senses": [
+              {
+                "pos": "n.",
+                "meaning": "转机",
+                "example": "Is my connection tight?"
+              }
+            ]
+          },
+          {
+            "word": "board",
+            "phonetic": "/bɔːrd/",
+            "senses": [
+              {
+                "pos": "v.",
+                "meaning": "登机、上（车船）",
+                "example": "When do we board?"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "theme": "酒店入住",
+        "spoken": {
+          "title": "办入住、要用品、投诉",
+          "key": "I have a reservation under the name Jo — just checking in for two nights.",
+          "keyTrans": "我用 Jo 的名字订了房——来办两晚的入住。",
+          "keys": [
+            {
+              "en": "I have a reservation under the name Jo — just checking in for two nights.",
+              "cn": "我用 Jo 的名字订了房——来办两晚的入住。"
+            },
+            {
+              "en": "Could we get an extra pillow and a toothbrush, please?",
+              "cn": "能再给一个枕头和一把牙刷吗？"
+            },
+            {
+              "en": "The AC in my room isn't working — could someone take a look?",
+              "cn": "我房间的空调不制冷——能派人看一下吗？"
+            }
+          ],
+          "transcript": "A: Name, please?\nB: Reservation under Jo, two nights.\nA: Great, here's your key — room 612.\n\n【要点】\"reservation\" = 预订；\"under the name\" = 以…名字；\"extra\" = 额外的；\"AC\" = 空调。",
+          "video": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4",
+          "platform": "演示"
+        },
+        "vocab": [
+          {
+            "word": "reservation",
+            "phonetic": "/ˌrezərˈveɪʃn/",
+            "senses": [
+              {
+                "pos": "n.",
+                "meaning": "预订",
+                "example": "I have a reservation."
+              }
+            ]
+          },
+          {
+            "word": "check in",
+            "phonetic": "/ˈtʃek ɪn/",
+            "senses": [
+              {
+                "pos": "phr.",
+                "meaning": "办理入住",
+                "example": "We're checking in."
+              }
+            ]
+          },
+          {
+            "word": "extra",
+            "phonetic": "/ˈekstrə/",
+            "senses": [
+              {
+                "pos": "adj.",
+                "meaning": "额外的",
+                "example": "An extra pillow, please."
+              }
+            ]
+          },
+          {
+            "word": "pillow",
+            "phonetic": "/ˈpɪloʊ/",
+            "senses": [
+              {
+                "pos": "n.",
+                "meaning": "枕头",
+                "example": "Could we get a pillow?"
+              }
+            ]
+          },
+          {
+            "word": "toothbrush",
+            "phonetic": "/ˈtuːθbrʌʃ/",
+            "senses": [
+              {
+                "pos": "n.",
+                "meaning": "牙刷",
+                "example": "I need a toothbrush."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "theme": "问路导航",
+        "spoken": {
+          "title": "问地铁、步行、附近地标",
+          "key": "Excuse me, how do I get to the museum from here on foot?",
+          "keyTrans": "打扰一下，从这儿走路怎么去博物馆？",
+          "keys": [
+            {
+              "en": "Excuse me, how do I get to the museum from here on foot?",
+              "cn": "打扰一下，从这儿走路怎么去博物馆？"
+            },
+            {
+              "en": "Is it within walking distance, or should I take the subway?",
+              "cn": "走路能到吗，还是我得坐地铁？"
+            },
+            {
+              "en": "Go straight, take the second left, and it's right across from the park.",
+              "cn": "直走，第二个路口左转，就在公园正对面。"
+            }
+          ],
+          "transcript": "A: How do I get to the museum?\nB: Go straight, second left — it's across from the park.\nA: Perfect, thanks!\n\n【要点】\"on foot\" = 步行；\"within walking distance\" = 步行可达；\"take the second left\" = 第二个路口左转；\"across from\" = 在…正对面。",
+          "video": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
+          "platform": "演示"
+        },
+        "vocab": [
+          {
+            "word": "museum",
+            "phonetic": "/mjuˈziːəm/",
+            "senses": [
+              {
+                "pos": "n.",
+                "meaning": "博物馆",
+                "example": "How to get to the museum?"
+              }
+            ]
+          },
+          {
+            "word": "foot",
+            "phonetic": "/fʊt/",
+            "senses": [
+              {
+                "pos": "n.",
+                "meaning": "脚（on foot=步行）",
+                "example": "We went on foot."
+              }
+            ]
+          },
+          {
+            "word": "distance",
+            "phonetic": "/ˈdɪstəns/",
+            "senses": [
+              {
+                "pos": "n.",
+                "meaning": "距离",
+                "example": "It's within walking distance."
+              }
+            ]
           },
           {
             "word": "straight",
@@ -2380,280 +3299,931 @@ window.WORKBENCH_DATA = {
             "senses": [
               {
                 "pos": "adv.",
-                "meaning": "径直地；一直",
-                "example": "Go straight ahead until you see the bank.（一直往前走，直到看到银行。）"
-              },
-              {
-                "pos": "adj.",
-                "meaning": "笔直的；直的",
-                "example": "The road is straight and easy to follow.（这条路笔直，很好走。）"
+                "meaning": "直地",
+                "example": "Go straight ahead."
               }
-            ],
-            "meaning": "径直地；一直；笔直的；直的",
-            "example": "Go straight ahead until you see the bank.（一直往前走，直到看到银行。） The road is straight and easy to follow.（这条路笔直，很好走。）"
+            ]
           },
           {
-            "word": "check-in",
-            "phonetic": "/ˈtʃek ɪn/",
+            "word": "across",
+            "phonetic": "/əˈkrɔːs/",
             "senses": [
               {
-                "pos": "n.",
-                "meaning": "（酒店）入住；（机场）值机",
-                "example": "The check-in time is 2 p.m.（入住时间是下午两点。）"
-              },
-              {
-                "pos": "v.",
-                "meaning": "办理入住/值机",
-                "example": "We checked in at the hotel around noon.（我们中午前后入住了酒店。）"
+                "pos": "prep.",
+                "meaning": "在…对面",
+                "example": "It's across from the park."
               }
-            ],
-            "meaning": "（酒店）入住；（机场）值机；办理入住/值机",
-            "example": "The check-in time is 2 p.m.（入住时间是下午两点。） We checked in at the hotel around noon.（我们中午前后入住了酒店。）"
-          },
-          {
-            "word": "subway",
-            "phonetic": "/ˈsʌbweɪ/",
-            "senses": [
-              {
-                "pos": "n.",
-                "meaning": "地铁（美式）",
-                "example": "Take the subway, line 3, to Times Square.（坐地铁 3 号线到时代广场。）"
-              }
-            ],
-            "meaning": "地铁（美式）",
-            "example": "Take the subway, line 3, to Times Square.（坐地铁 3 号线到时代广场。）"
-          },
-          {
-            "word": "landmark",
-            "phonetic": "/ˈlændmɑːrk/",
-            "senses": [
-              {
-                "pos": "n.",
-                "meaning": "地标；里程碑",
-                "example": "The Eiffel Tower is a famous landmark.（埃菲尔铁塔是著名地标。）"
-              }
-            ],
-            "meaning": "地标；里程碑",
-            "example": "The Eiffel Tower is a famous landmark.（埃菲尔铁塔是著名地标。）"
+            ]
           }
         ]
       },
       {
-        "theme": "职场沟通",
+        "theme": "理发美容",
         "spoken": {
-          "title": "给意见、说“不”也不尴尬",
-          "key": "I see your point, but I'm not sure I agree.",
-          "keyTrans": "我理解你的意思，但我不太确定我同意。",
+          "title": "说发型、长度、风格",
+          "key": "Just a trim, please — keep the length, but tidy up the sides.",
+          "keyTrans": "就修一下吧——长度保留，两边修整齐。",
           "keys": [
             {
-              "en": "I see your point, but I'm not sure I agree.",
-              "cn": "我理解你的意思，但我不太确定我同意。"
+              "en": "Just a trim, please — keep the length, but tidy up the sides.",
+              "cn": "就修一下吧——长度保留，两边修整齐。"
             },
             {
-              "en": "I'd love to help, but I'm tied up this week — can we revisit it next Monday?",
-              "cn": "我很想帮忙，但这周我忙得抽不开身——能下周一再谈吗？"
+              "en": "Can you thin it out a bit? It's been feeling heavy.",
+              "cn": "能打薄一点吗？总觉得太厚了。"
             },
             {
-              "en": "While I appreciate the proposal, I'd argue that the risks still outweigh the benefits at this stage.",
-              "cn": "虽然我欣赏这个方案，但我要说现阶段风险仍大于收益。"
+              "en": "Not too short on top — I still want to style it.",
+              "cn": "上面别太短——我还想能造型。"
             }
           ],
-          "transcript": "A: What do you think?\nB: I see your point, but I'm not sure I agree.\n\n【要点】拒绝额外工作：\"I'd love to help, but I'm tied up this week.\"（\"tied up\" = 忙得抽不开身）。",
+          "transcript": "A: What are we doing today?\nB: Just a trim, keep the length.\nA: Sure, and tidy the sides?\nB: Yes, please.\n\n【要点】\"trim\" = 修剪；\"keep the length\" = 保留长度；\"thin it out\" = 打薄；\"on top\" = 上面（头顶）。",
+          "video": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
+          "platform": "演示"
+        },
+        "vocab": [
+          {
+            "word": "trim",
+            "phonetic": "/trɪm/",
+            "senses": [
+              {
+                "pos": "n./v.",
+                "meaning": "修剪",
+                "example": "Just a trim, thanks."
+              }
+            ]
+          },
+          {
+            "word": "length",
+            "phonetic": "/leŋkθ/",
+            "senses": [
+              {
+                "pos": "n.",
+                "meaning": "长度",
+                "example": "Keep the length."
+              }
+            ]
+          },
+          {
+            "word": "tidy",
+            "phonetic": "/ˈtaɪdi/",
+            "senses": [
+              {
+                "pos": "v.",
+                "meaning": "整理、收拾",
+                "example": "Tidy up the sides."
+              }
+            ]
+          },
+          {
+            "word": "thin",
+            "phonetic": "/θɪn/",
+            "senses": [
+              {
+                "pos": "v.",
+                "meaning": "打薄",
+                "example": "Can you thin it out?"
+              }
+            ]
+          },
+          {
+            "word": "style",
+            "phonetic": "/staɪl/",
+            "senses": [
+              {
+                "pos": "v.",
+                "meaning": "做造型",
+                "example": "I want to style it."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "theme": "看电影",
+        "spoken": {
+          "title": "买票、选场次、评论",
+          "key": "Two for the seven-thirty showing, preferably not too close to the screen.",
+          "keyTrans": "两张七点半的场，最好别太靠近银幕。",
+          "keys": [
+            {
+              "en": "Two for the seven-thirty showing, preferably not too close to the screen.",
+              "cn": "两张七点半的场，最好别太靠近银幕。"
+            },
+            {
+              "en": "Is this seat reclining, or fixed?",
+              "cn": "这个座位能往后仰吗，还是固定的？"
+            },
+            {
+              "en": "Honestly, the plot was thin but the visuals were stunning.",
+              "cn": "说实话剧情单薄，但画面很惊艳。"
+            }
+          ],
+          "transcript": "A: Which showing?\nB: The seven-thirty, two tickets.\nA: Aisle or middle?\nB: Middle, not too close, please.\n\n【要点】\"showing\" = 场次；\"reclining\" = 可后仰的；\"plot\" = 剧情；\"stunning\" = 惊艳的。",
+          "video": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
+          "platform": "演示"
+        },
+        "vocab": [
+          {
+            "word": "showing",
+            "phonetic": "/ˈʃoʊɪŋ/",
+            "senses": [
+              {
+                "pos": "n.",
+                "meaning": "放映场次",
+                "example": "The seven-thirty showing."
+              }
+            ]
+          },
+          {
+            "word": "screen",
+            "phonetic": "/skriːn/",
+            "senses": [
+              {
+                "pos": "n.",
+                "meaning": "银幕",
+                "example": "Not too close to the screen."
+              }
+            ]
+          },
+          {
+            "word": "reclining",
+            "phonetic": "/rɪˈklaɪnɪŋ/",
+            "senses": [
+              {
+                "pos": "adj.",
+                "meaning": "可后仰的",
+                "example": "A reclining seat."
+              }
+            ]
+          },
+          {
+            "word": "plot",
+            "phonetic": "/plɑːt/",
+            "senses": [
+              {
+                "pos": "n.",
+                "meaning": "剧情",
+                "example": "The plot was thin."
+              }
+            ]
+          },
+          {
+            "word": "stunning",
+            "phonetic": "/ˈstʌnɪŋ/",
+            "senses": [
+              {
+                "pos": "adj.",
+                "meaning": "惊艳的",
+                "example": "The visuals were stunning."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "theme": "超市采购",
+        "spoken": {
+          "title": "找商品、看保质期、结账",
+          "key": "Where can I find the gluten-free section, please?",
+          "keyTrans": "请问无麸质食品区在哪儿？",
+          "keys": [
+            {
+              "en": "Where can I find the gluten-free section, please?",
+              "cn": "请问无麸质食品区在哪儿？"
+            },
+            {
+              "en": "This one's expired — do you have a fresher batch?",
+              "cn": "这个过期了——有更新鲜的一批吗？"
+            },
+            {
+              "en": "Do you take mobile pay, or is it card only?",
+              "cn": "你们收移动支付吗，还是只能刷卡？"
+            }
+          ],
+          "transcript": "A: Can I help you find something?\nB: Where's the gluten-free section?\nA: Aisle five, on your left.\n\n【要点】\"gluten-free\" = 无麸质；\"expired\" = 过期的；\"batch\" = 批次；\"mobile pay\" = 移动支付。",
+          "video": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
+          "platform": "演示"
+        },
+        "vocab": [
+          {
+            "word": "gluten",
+            "phonetic": "/ˈɡluːtn/",
+            "senses": [
+              {
+                "pos": "n.",
+                "meaning": "麸质",
+                "example": "Is it gluten-free?"
+              }
+            ]
+          },
+          {
+            "word": "section",
+            "phonetic": "/ˈsekʃn/",
+            "senses": [
+              {
+                "pos": "n.",
+                "meaning": "区、区域",
+                "example": "Which section is it?"
+              }
+            ]
+          },
+          {
+            "word": "expired",
+            "phonetic": "/ɪkˈspaɪərd/",
+            "senses": [
+              {
+                "pos": "adj.",
+                "meaning": "过期的",
+                "example": "This one's expired."
+              }
+            ]
+          },
+          {
+            "word": "batch",
+            "phonetic": "/bætʃ/",
+            "senses": [
+              {
+                "pos": "n.",
+                "meaning": "批次",
+                "example": "A fresher batch, please."
+              }
+            ]
+          },
+          {
+            "word": "mobile",
+            "phonetic": "/ˈmoʊbl/",
+            "senses": [
+              {
+                "pos": "adj.",
+                "meaning": "移动的",
+                "example": "Mobile pay works here."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "theme": "天气闲聊",
+        "spoken": {
+          "title": "聊天气、做计划、吐槽",
+          "key": "It's supposed to clear up by the afternoon — we might still go hiking.",
+          "keyTrans": "下午应该会放晴——我们说不定还能去徒步。",
+          "keys": [
+            {
+              "en": "It's supposed to clear up by the afternoon — we might still go hiking.",
+              "cn": "下午应该会放晴——我们说不定还能去徒步。"
+            },
+            {
+              "en": "They're calling for rain all weekend — so much for the picnic.",
+              "cn": "预报说整个周末都下雨——野餐算是泡汤了。"
+            },
+            {
+              "en": "It's been drizzling on and off since morning.",
+              "cn": "从早上起就时断时续地下着毛毛雨。"
+            }
+          ],
+          "transcript": "A: Weather's awful today.\nB: Yeah, but it should clear up this afternoon.\nA: Fingers crossed — I want to hike.\n\n【要点】\"clear up\" = 放晴；\"call for rain\" = 预报有雨；\"so much for…\" = …泡汤了；\"drizzle\" = 毛毛雨。",
+          "video": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4",
+          "platform": "演示"
+        },
+        "vocab": [
+          {
+            "word": "clear",
+            "phonetic": "/klɪr/",
+            "senses": [
+              {
+                "pos": "v.",
+                "meaning": "放晴",
+                "example": "It should clear up."
+              }
+            ]
+          },
+          {
+            "word": "hiking",
+            "phonetic": "/ˈhaɪkɪŋ/",
+            "senses": [
+              {
+                "pos": "n.",
+                "meaning": "徒步",
+                "example": "Let's go hiking."
+              }
+            ]
+          },
+          {
+            "word": "picnic",
+            "phonetic": "/ˈpɪknɪk/",
+            "senses": [
+              {
+                "pos": "n.",
+                "meaning": "野餐",
+                "example": "The picnic is off."
+              }
+            ]
+          },
+          {
+            "word": "drizzle",
+            "phonetic": "/ˈdrɪzl/",
+            "senses": [
+              {
+                "pos": "n.",
+                "meaning": "毛毛雨",
+                "example": "It's been drizzling."
+              }
+            ]
+          },
+          {
+            "word": "forecast",
+            "phonetic": "/ˈfɔːrkæst/",
+            "senses": [
+              {
+                "pos": "n.",
+                "meaning": "预报",
+                "example": "The forecast says rain."
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    [
+      {
+        "theme": "投诉维权",
+        "spoken": {
+          "title": "商品有问题、要求解决",
+          "key": "This stopped working after a week — I'd like a refund, not a repair.",
+          "keyTrans": "这个用了一个星期就坏了——我要退款，不是维修。",
+          "keys": [
+            {
+              "en": "This stopped working after a week — I'd like a refund, not a repair.",
+              "cn": "这个用了一个星期就坏了——我要退款，不是维修。"
+            },
+            {
+              "en": "That's not what I ordered — I expected the larger size.",
+              "cn": "这不是我订的——我要的是大一号。"
+            },
+            {
+              "en": "If we can't sort this out, I'll need to speak to a manager.",
+              "cn": "如果这事解决不了，我得找经理谈。"
+            }
+          ],
+          "transcript": "A: What seems to be the issue?\nB: It broke after a week — I want a refund.\nA: Let me see the warranty.\n\n【要点】\"refund\" = 退款；\"repair\" = 维修；\"sort out\" = 解决；\"manager\" = 经理。",
           "video": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
           "platform": "演示"
         },
         "vocab": [
           {
-            "word": "opinion",
-            "phonetic": "/əˈpɪnjən/",
+            "word": "refund",
+            "phonetic": "/ˈriːfʌnd/",
             "senses": [
               {
                 "pos": "n.",
-                "meaning": "意见；看法",
-                "example": "In my opinion, we should wait.（我觉得我们应该再等等。）"
+                "meaning": "退款",
+                "example": "I'd like a refund."
               }
-            ],
-            "meaning": "意见；看法",
-            "example": "In my opinion, we should wait.（我觉得我们应该再等等。）"
+            ]
           },
           {
-            "word": "agree",
-            "phonetic": "/əˈɡriː/",
+            "word": "repair",
+            "phonetic": "/rɪˈper/",
             "senses": [
               {
                 "pos": "v.",
-                "meaning": "同意；赞同",
-                "example": "I couldn't agree more.（我完全同意。）"
-              },
-              {
-                "pos": "v.",
-                "meaning": "约定；商定（后接 on）",
-                "example": "We agreed on a price for the project.（我们谈定了这个项目的价格。）"
+                "meaning": "修理",
+                "example": "Not a repair, a refund."
               }
-            ],
-            "meaning": "同意；赞同；约定；商定（后接 on）",
-            "example": "I couldn't agree more.（我完全同意。） We agreed on a price for the project.（我们谈定了这个项目的价格。）"
+            ]
           },
           {
-            "word": "decline",
-            "phonetic": "/dɪˈklaɪn/",
-            "senses": [
-              {
-                "pos": "v.",
-                "meaning": "婉拒；谢绝",
-                "example": "I'll have to decline the invitation.（我得谢绝邀请了。）"
-              },
-              {
-                "pos": "v.",
-                "meaning": "下降；减少",
-                "example": "Sales declined sharply last quarter.（上季度销售额大幅下滑。）"
-              },
-              {
-                "pos": "n.",
-                "meaning": "下降；衰退",
-                "example": "There's been a steady decline in walk-in customers.（进店顾客持续减少。）"
-              }
-            ],
-            "meaning": "婉拒；谢绝；下降；减少；下降；衰退",
-            "example": "I'll have to decline the invitation.（我得谢绝邀请了。） Sales declined sharply last quarter.（上季度销售额大幅下滑。） There's been a steady decline in walk-in customers.（进店顾客持续减少。）"
-          },
-          {
-            "word": "feedback",
-            "phonetic": "/ˈfiːdbæk/",
+            "word": "warranty",
+            "phonetic": "/ˈwɔːrənti/",
             "senses": [
               {
                 "pos": "n.",
-                "meaning": "反馈；意见（不可数）",
-                "example": "Thanks for the feedback — really helpful.（谢谢反馈——很有帮助。）"
+                "meaning": "保修",
+                "example": "Is it under warranty?"
               }
-            ],
-            "meaning": "反馈；意见（不可数）",
-            "example": "Thanks for the feedback — really helpful.（谢谢反馈——很有帮助。）"
+            ]
           },
           {
-            "word": "propose",
-            "phonetic": "/prəˈpoʊz/",
+            "word": "manager",
+            "phonetic": "/ˈmænɪdʒər/",
             "senses": [
               {
-                "pos": "v.",
-                "meaning": "提议；建议",
-                "example": "I propose we push the deadline to Friday.（我建议把截止日推到周五。）"
+                "pos": "n.",
+                "meaning": "经理",
+                "example": "I'll speak to the manager."
               }
-            ],
-            "meaning": "提议；建议",
-            "example": "I propose we push the deadline to Friday.（我建议把截止日推到周五。）"
+            ]
+          },
+          {
+            "word": "issue",
+            "phonetic": "/ˈɪʃuː/",
+            "senses": [
+              {
+                "pos": "n.",
+                "meaning": "问题",
+                "example": "What's the issue?"
+              }
+            ]
           }
         ]
       },
       {
-        "theme": "日常闲聊",
+        "theme": "参加婚礼",
         "spoken": {
-          "title": "闲聊破冰：天气、周末、近况",
-          "key": "How was your weekend? Anything fun?",
-          "keyTrans": "周末过得怎么样？有什么好玩的事吗？",
+          "title": "道贺、聊新人、上祝福",
+          "key": "Congratulations to both of you — you two make such a great pair.",
+          "keyTrans": "祝贺你们俩——你们真是绝配。",
           "keys": [
             {
-              "en": "How was your weekend? Anything fun?",
-              "cn": "周末过得怎么样？有什么好玩的事吗？"
+              "en": "Congratulations to both of you — you two make such a great pair.",
+              "cn": "祝贺你们俩——你们真是绝配。"
             },
             {
-              "en": "It was pouring outside, so I stayed in and caught up on some reading.",
-              "cn": "外面下着倾盆大雨，我就宅在家补了点阅读。"
+              "en": "How do you know the couple, if you don't mind my asking?",
+              "cn": "方便的话，你跟这对新人怎么认识的？"
             },
             {
-              "en": "Had the weather held up, I'd have gone hiking — but a rainy weekend indoors was just as restorative.",
-              "cn": "要是天气好，我就去远足了——不过一个下雨的周末宅在家也同样回血。"
+              "en": "The vows were beautiful — not a dry eye in the room.",
+              "cn": "誓言太动人了——全场没有不落泪的。"
             }
           ],
-          "transcript": "A: How was your weekend?\nB: Pretty relaxing — I just stayed in.\nA: Nice. Anything planned for the holiday?\n\n【要点】近况：\"Not bad, just busy as usual.\" 天气：\"It's pouring outside.\"（外面下大雨）",
+          "transcript": "A: Congratulations!\nB: Thanks for coming — how do you know the bride?\nA: We worked together years ago.\n\n【要点】\"congratulations\" = 恭喜；\"couple\" = 一对/新人；\"vows\" = 誓言；\"bride\" = 新娘。",
           "video": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
           "platform": "演示"
         },
         "vocab": [
           {
-            "word": "relaxing",
-            "phonetic": "/rɪˈlæksɪŋ/",
+            "word": "congratulations",
+            "phonetic": "/kənˌɡrætʃuˈleɪʃnz/",
+            "senses": [
+              {
+                "pos": "n.",
+                "meaning": "祝贺",
+                "example": "Congratulations to you both!"
+              }
+            ]
+          },
+          {
+            "word": "pair",
+            "phonetic": "/per/",
+            "senses": [
+              {
+                "pos": "n.",
+                "meaning": "一对",
+                "example": "You make a great pair."
+              }
+            ]
+          },
+          {
+            "word": "couple",
+            "phonetic": "/ˈkʌpl/",
+            "senses": [
+              {
+                "pos": "n.",
+                "meaning": "夫妻、一对",
+                "example": "How do you know the couple?"
+              }
+            ]
+          },
+          {
+            "word": "vow",
+            "phonetic": "/vaʊ/",
+            "senses": [
+              {
+                "pos": "n.",
+                "meaning": "誓言",
+                "example": "The vows were beautiful."
+              }
+            ]
+          },
+          {
+            "word": "bride",
+            "phonetic": "/braɪd/",
+            "senses": [
+              {
+                "pos": "n.",
+                "meaning": "新娘",
+                "example": "She's the bride."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "theme": "宠物相关",
+        "spoken": {
+          "title": "看病、寄养、遛狗闲聊",
+          "key": "He's been scratching a lot lately — could it be allergies?",
+          "keyTrans": "它最近老是挠——会不会是过敏？",
+          "keys": [
+            {
+              "en": "He's been scratching a lot lately — could it be allergies?",
+              "cn": "它最近老是挠——会不会是过敏？"
+            },
+            {
+              "en": "Do you offer boarding over the holiday weekend?",
+              "cn": "节假日周末你们接收寄养吗？"
+            },
+            {
+              "en": "What's the recommended feeding schedule for a puppy?",
+              "cn": "小狗建议怎么安排喂食时间？"
+            }
+          ],
+          "transcript": "A: What's going on with him?\nB: He scratches a lot — maybe allergies?\nA: Let's check his skin.\n\n【要点】\"scratch\" = 抓挠；\"allergies\" = 过敏；\"boarding\" = 寄养；\"puppy\" = 小狗。",
+          "video": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4",
+          "platform": "演示"
+        },
+        "vocab": [
+          {
+            "word": "scratch",
+            "phonetic": "/skrætʃ/",
+            "senses": [
+              {
+                "pos": "v.",
+                "meaning": "抓挠",
+                "example": "He scratches a lot."
+              }
+            ]
+          },
+          {
+            "word": "allergy",
+            "phonetic": "/ˈælərdʒi/",
+            "senses": [
+              {
+                "pos": "n.",
+                "meaning": "过敏",
+                "example": "Could it be allergies?"
+              }
+            ]
+          },
+          {
+            "word": "boarding",
+            "phonetic": "/ˈbɔːrdɪŋ/",
+            "senses": [
+              {
+                "pos": "n.",
+                "meaning": "寄养",
+                "example": "Do you offer boarding?"
+              }
+            ]
+          },
+          {
+            "word": "puppy",
+            "phonetic": "/ˈpʌpi/",
+            "senses": [
+              {
+                "pos": "n.",
+                "meaning": "小狗",
+                "example": "A feeding schedule for a puppy."
+              }
+            ]
+          },
+          {
+            "word": "feeding",
+            "phonetic": "/ˈfiːdɪŋ/",
+            "senses": [
+              {
+                "pos": "n.",
+                "meaning": "喂食",
+                "example": "The feeding time is set."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "theme": "快递物流",
+        "spoken": {
+          "title": "查件、催派、改地址",
+          "key": "My package shows delivered, but I never got it — can you check?",
+          "keyTrans": "我的包裹显示已送达，但我没收到——能查一下吗？",
+          "keys": [
+            {
+              "en": "My package shows delivered, but I never got it — can you check?",
+              "cn": "我的包裹显示已送达，但我没收到——能查一下吗？"
+            },
+            {
+              "en": "Could you redirect it to my office instead of my home?",
+              "cn": "能改送到我办公室而不是家里吗？"
+            },
+            {
+              "en": "It's been stuck in transit for three days — any update?",
+              "cn": "它卡在运输途中三天了——有进展吗？"
+            }
+          ],
+          "transcript": "A: How can I help?\nB: My package says delivered, but I didn't get it.\nA: Let me track the barcode.\n\n【要点】\"delivered\" = 已送达；\"redirect\" = 改址；\"stuck in transit\" = 卡在运输中；\"barcode\" = 条码。",
+          "video": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
+          "platform": "演示"
+        },
+        "vocab": [
+          {
+            "word": "package",
+            "phonetic": "/ˈpækɪdʒ/",
+            "senses": [
+              {
+                "pos": "n.",
+                "meaning": "包裹",
+                "example": "Where's my package?"
+              }
+            ]
+          },
+          {
+            "word": "delivered",
+            "phonetic": "/dɪˈlɪvərd/",
             "senses": [
               {
                 "pos": "adj.",
-                "meaning": "令人放松的",
-                "example": "It was a relaxing weekend.（这是个放松的周末。）"
+                "meaning": "已送达的",
+                "example": "It shows delivered."
               }
-            ],
-            "meaning": "令人放松的",
-            "example": "It was a relaxing weekend.（这是个放松的周末。）"
+            ]
           },
           {
-            "word": "stay in",
-            "phonetic": "/steɪ ɪn/",
-            "senses": [
-              {
-                "pos": "phr.",
-                "meaning": "宅在家；不出门",
-                "example": "I'd rather stay in tonight.（今晚我宁可宅在家。）"
-              }
-            ],
-            "meaning": "宅在家；不出门",
-            "example": "I'd rather stay in tonight.（今晚我宁可宅在家。）"
-          },
-          {
-            "word": "pour",
-            "phonetic": "/pɔːr/",
+            "word": "redirect",
+            "phonetic": "/ˌriːdəˈrekt/",
             "senses": [
               {
                 "pos": "v.",
-                "meaning": "（雨）倾盆而下",
-                "example": "It's pouring rain.（下着倾盆大雨。）"
-              },
-              {
-                "pos": "v.",
-                "meaning": "倒；斟（液体）",
-                "example": "Could you pour me a glass of water?（能给我倒杯水吗？）"
+                "meaning": "改投、改址",
+                "example": "Redirect to my office."
               }
-            ],
-            "meaning": "（雨）倾盆而下；倒；斟（液体）",
-            "example": "It's pouring rain.（下着倾盆大雨。） Could you pour me a glass of water?（能给我倒杯水吗？）"
+            ]
           },
           {
-            "word": "chill",
-            "phonetic": "/tʃɪl/",
+            "word": "transit",
+            "phonetic": "/ˈtrænzɪt/",
+            "senses": [
+              {
+                "pos": "n.",
+                "meaning": "运输途中",
+                "example": "Stuck in transit."
+              }
+            ]
+          },
+          {
+            "word": "update",
+            "phonetic": "/ˈʌpdeɪt/",
+            "senses": [
+              {
+                "pos": "n.",
+                "meaning": "进展、更新",
+                "example": "Any update on it?"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "theme": "修理报修",
+        "spoken": {
+          "title": "报修、说故障、约时间",
+          "key": "The sink's been leaking since this morning — could someone come by?",
+          "keyTrans": "水槽从今早就开始漏水——能派人来看看吗？",
+          "keys": [
+            {
+              "en": "The sink's been leaking since this morning — could someone come by?",
+              "cn": "水槽从今早就开始漏水——能派人来看看吗？"
+            },
+            {
+              "en": "Is there a slot this afternoon, or is tomorrow better?",
+              "cn": "今天下午有空档吗，还是明天更合适？"
+            },
+            {
+              "en": "It's flickering on and off — I think it's the wiring.",
+              "cn": "它忽明忽暗的——我猜是线路问题。"
+            }
+          ],
+          "transcript": "A: What's the problem?\nB: The sink's leaking since morning.\nA: I can send someone this afternoon.\n\n【要点】\"leak\" = 漏；\"come by\" = 顺路过来；\"slot\" = 空档；\"flicker\" = 闪烁；\"wiring\" = 线路。",
+          "video": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
+          "platform": "演示"
+        },
+        "vocab": [
+          {
+            "word": "sink",
+            "phonetic": "/sɪŋk/",
+            "senses": [
+              {
+                "pos": "n.",
+                "meaning": "水槽",
+                "example": "The sink is leaking."
+              }
+            ]
+          },
+          {
+            "word": "leak",
+            "phonetic": "/liːk/",
             "senses": [
               {
                 "pos": "v.",
-                "meaning": "放松；闲待着（俚语）",
-                "example": "Let's just chill at home tonight.（今晚就在家放松吧。）"
-              },
+                "meaning": "漏",
+                "example": "It's been leaking."
+              }
+            ]
+          },
+          {
+            "word": "slot",
+            "phonetic": "/slɑːt/",
+            "senses": [
+              {
+                "pos": "n.",
+                "meaning": "空档、时段",
+                "example": "Any slot today?"
+              }
+            ]
+          },
+          {
+            "word": "flicker",
+            "phonetic": "/ˈflɪkər/",
+            "senses": [
+              {
+                "pos": "v.",
+                "meaning": "闪烁",
+                "example": "The light flickers."
+              }
+            ]
+          },
+          {
+            "word": "wiring",
+            "phonetic": "/ˈwaɪərɪŋ/",
+            "senses": [
+              {
+                "pos": "n.",
+                "meaning": "线路",
+                "example": "It's the wiring."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "theme": "生日派对",
+        "spoken": {
+          "title": "邀约、带礼物、现场寒暄",
+          "key": "Happy birthday! I got you this little something — hope you like it.",
+          "keyTrans": "生日快乐！我给你带了点小东西——希望你喜欢。",
+          "keys": [
+            {
+              "en": "Happy birthday! I got you this little something — hope you like it.",
+              "cn": "生日快乐！我给你带了点小东西——希望你喜欢。"
+            },
+            {
+              "en": "Make a wish and blow out the candles — all twelve of them!",
+              "cn": "许个愿，把蜡烛吹灭——足足十二根呢！"
+            },
+            {
+              "en": "Thanks for having us over — the cake was amazing.",
+              "cn": "谢谢邀请我们来——蛋糕太赞了。"
+            }
+          ],
+          "transcript": "A: Happy birthday!\nB: Aw, you shouldn't have — thank you!\nA: Make a wish!\n\n【要点】\"make a wish\" = 许愿；\"blow out\" = 吹灭；\"candles\" = 蜡烛；\"have someone over\" = 邀请某人来家里。",
+          "video": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
+          "platform": "演示"
+        },
+        "vocab": [
+          {
+            "word": "birthday",
+            "phonetic": "/ˈbɜːrθdeɪ/",
+            "senses": [
+              {
+                "pos": "n.",
+                "meaning": "生日",
+                "example": "Happy birthday!"
+              }
+            ]
+          },
+          {
+            "word": "wish",
+            "phonetic": "/wɪʃ/",
+            "senses": [
+              {
+                "pos": "n.",
+                "meaning": "愿望",
+                "example": "Make a wish."
+              }
+            ]
+          },
+          {
+            "word": "candle",
+            "phonetic": "/ˈkændl/",
+            "senses": [
+              {
+                "pos": "n.",
+                "meaning": "蜡烛",
+                "example": "Blow out the candles."
+              }
+            ]
+          },
+          {
+            "word": "cake",
+            "phonetic": "/keɪk/",
+            "senses": [
+              {
+                "pos": "n.",
+                "meaning": "蛋糕",
+                "example": "The cake was great."
+              }
+            ]
+          },
+          {
+            "word": "amazing",
+            "phonetic": "/əˈmeɪzɪŋ/",
+            "senses": [
               {
                 "pos": "adj.",
-                "meaning": "凉爽的；放松的",
-                "example": "It's a chill evening — perfect for a walk.（这是个凉爽的傍晚，很适合散步。）"
+                "meaning": "太棒的",
+                "example": "That's amazing!"
               }
-            ],
-            "meaning": "放松；闲待着（俚语）；凉爽的；放松的",
-            "example": "Let's just chill at home tonight.（今晚就在家放松吧。） It's a chill evening — perfect for a walk.（这是个凉爽的傍晚，很适合散步。）"
-          },
+            ]
+          }
+        ]
+      },
+      {
+        "theme": "读书分享",
+        "spoken": {
+          "title": "聊书、推荐、谈感悟",
+          "key": "I just finished a book that completely changed how I see habits.",
+          "keyTrans": "我刚读完一本书，彻底改变了我对习惯的看法。",
+          "keys": [
+            {
+              "en": "I just finished a book that completely changed how I see habits.",
+              "cn": "我刚读完一本书，彻底改变了我对习惯的看法。"
+            },
+            {
+              "en": "Would you recommend it, or is it a bit dense?",
+              "cn": "你会推荐吗，还是说有点难啃？"
+            },
+            {
+              "en": "The part that stuck with me was the chapter on small wins.",
+              "cn": "最让我念念不忘的是讲「小胜」那一章。"
+            }
+          ],
+          "transcript": "A: Read anything good lately?\nB: Yeah, a book that changed how I see habits.\nA: I'm curious — what's it called?\n\n【要点】\"finish\" = 读完；\"dense\" = 艰涩难啃的；\"stuck with me\" = 让我念念不忘；\"chapter\" = 章节。",
+          "video": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
+          "platform": "演示"
+        },
+        "vocab": [
           {
-            "word": "catch up",
-            "phonetic": "/kætʃ ʌp/",
+            "word": "finish",
+            "phonetic": "/ˈfɪnɪʃ/",
             "senses": [
               {
-                "pos": "phr.",
-                "meaning": "叙旧；闲聊近况",
-                "example": "We should catch up over coffee sometime.（找时间喝杯咖啡叙叙旧。）"
-              },
-              {
-                "pos": "phr.",
-                "meaning": "赶上；补上（进度）",
-                "example": "I need to catch up on my emails after the trip.（出差回来我得补处理邮件。）"
+                "pos": "v.",
+                "meaning": "读完、完成",
+                "example": "I finished the book."
               }
-            ],
-            "meaning": "叙旧；闲聊近况；赶上；补上（进度）",
-            "example": "We should catch up over coffee sometime.（找时间喝杯咖啡叙叙旧。） I need to catch up on my emails after the trip.（出差回来我得补处理邮件。）"
+            ]
+          },
+          {
+            "word": "habit",
+            "phonetic": "/ˈhæbɪt/",
+            "senses": [
+              {
+                "pos": "n.",
+                "meaning": "习惯",
+                "example": "It changed my habits."
+              }
+            ]
+          },
+          {
+            "word": "recommend",
+            "phonetic": "/ˌrekəˈmend/",
+            "senses": [
+              {
+                "pos": "v.",
+                "meaning": "推荐",
+                "example": "Would you recommend it?"
+              }
+            ]
+          },
+          {
+            "word": "dense",
+            "phonetic": "/dens/",
+            "senses": [
+              {
+                "pos": "adj.",
+                "meaning": "艰涩的",
+                "example": "The book is a bit dense."
+              }
+            ]
+          },
+          {
+            "word": "chapter",
+            "phonetic": "/ˈtʃæptər/",
+            "senses": [
+              {
+                "pos": "n.",
+                "meaning": "章节",
+                "example": "My favorite chapter."
+              }
+            ]
           }
         ]
       }
     ]
-  },
+  ]
+},
   "fragmentReading": {
     "label": "碎片阅读 · 提升文笔",
     "updated": "2026-08-04",

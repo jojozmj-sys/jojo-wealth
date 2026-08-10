@@ -4942,11 +4942,31 @@
   exRenderCatChips();
   exRenderList();
 
+  /* ---------- English 多周内容库：按周轮换（告别每周重复） ---------- */
+  // 返回当前所在「周」与「当天」内容。weeks 为 4 周×7 天银行；
+  // 选择逻辑：weekIdx = floor(dayOfYear/7) % weeks.length，dayIdx = dayOfYear % 7。
+  // 这样同一周内每天内容不同，且每周内容整体轮换，杜绝「这周=上周」。
+  function engCtx() {
+    const ed = (D && D.englishDaily) || null;
+    if (!ed) return null;
+    const bank = (ed.weeks && ed.weeks.length) ? ed.weeks : [ed.days || []];
+    const now = new Date();
+    const start = new Date(now.getFullYear(), 0, 0);
+    const doy = Math.floor((now - start) / 86400000);
+    const weekIdx = Math.floor(doy / 7) % bank.length;
+    const dayIdx = doy % 7;
+    const week = bank[weekIdx] || [];
+    const day = week[dayIdx % (week.length || 1)] || null;
+    return { ed, bank, weekIdx, dayIdx, week, day, doy };
+  }
+
   /* ---------- English daily: spoken video + must-remember vocab ---------- */
   (function renderEnglishDaily() {
     if (!D || !D.englishDaily) return;
-    const days = D.englishDaily.days || [];
-    if (!days.length) return;
+    const ctx = engCtx();
+    if (!ctx || !ctx.day) return;
+    const days = ctx.week; // 兼容下方模板（day.vocab 等）
+    const day = ctx.day;
     function dayOfYear(d) {
       const start = new Date(d.getFullYear(), 0, 0);
       return Math.floor((d - start) / 86400000);
@@ -4999,7 +5019,7 @@
       }));
     }
     const today = new Date();
-    const day = days[dayOfYear(today) % days.length];
+    // day 已由 engCtx() 按当前周+当天选出（同一周每天不同、跨周轮换）
     const dateStr = fmtDate(today);
 
     // spoken video
@@ -5066,8 +5086,10 @@
   /* ---------- Ebbinghaus review (weekly English content) ---------- */
   (function renderEbbinghaus() {
     if (!D || !D.englishDaily) return;
-    const days = D.englishDaily.days || [];
-    if (days.length < 1) return;
+    const ctx = engCtx();
+    if (!ctx || !ctx.week.length) return;
+    const days = ctx.week; // 当前周 7 天内容
+    const weekIdx = ctx.weekIdx;
 
     const dkey = d => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
     const today = new Date();
@@ -5075,22 +5097,19 @@
     // 艾宾浩斯遗忘曲线复习间隔：第1天→第2天→第4天→第7天→第15天
     const INTERVALS = [1, 2, 4, 7, 15];
 
-    // 收集"已出现"复习条目：今天及之前的天（按口语区同样的 dayOfYear 索引）
+    // 收集"已出现"复习条目：本周今天及之前的天（按口语区同样的 dayOfYear 索引）
     // 满足"必须在今日必记词汇/核心句出现过才进入复习"
-    function dayOfYearYmd(d) {
-      const start = new Date(d.getFullYear(), 0, 0);
-      return Math.floor((d - start) / 86400000);
-    }
-    const todayIdx = dayOfYearYmd(today) % days.length;
+    // id 加 weekIdx 前缀，避免跨周内容互相串台、进度错乱
+    const todayIdx = ctx.dayIdx;
     function buildWeekItems() {
       const items = [];
       for (let di = 0; di <= todayIdx; di++) {
         const day = days[di];
         if (!day) continue;
-        const src = "Day" + (di + 1) + " · " + (day.theme || "");
+        const src = "W" + (weekIdx + 1) + "·Day" + (di + 1) + " · " + (day.theme || "");
         if (day.spoken && day.spoken.key) {
           items.push({
-            id: "eb_s" + di,
+            id: "eb_s" + weekIdx + "_" + di,
             kind: "sentence",
             front: day.spoken.key,
             trans: day.spoken.keyTrans || "",
@@ -5100,7 +5119,7 @@
         }
         (day.vocab || []).forEach((v, vi) => {
           items.push({
-            id: "eb_v" + di + "_" + vi,
+            id: "eb_v" + weekIdx + "_" + di + "_" + vi,
             kind: "word",
             front: v.word || "",
             back: (v.meaning || "") + (v.phonetic ? "  " + v.phonetic : ""),
@@ -5254,7 +5273,7 @@
       if (!ebWeek) return;
       ebWeek.innerHTML = `
         <div class="eb-week-chips">${days.map((day, i) => {
-          const rec = store["eb_s" + i];
+          const rec = store["eb_s" + weekIdx + "_" + i];
           const done = rec && rec.stage >= 5;
           const locked = i > todayIdx;
           return `<span class="eb-chip ${done ? "done" : ""} ${locked ? "locked" : ""}" ${locked ? 'title="该天内容尚未出现"' : ""}>${i + 1}·${day.theme || ""}</span>`;
@@ -5310,15 +5329,16 @@
   /* ---------- Word library: pass/fail self-test (会认·会读·知道意思) ---------- */
   (function renderWordLib() {
     if (!D || !D.englishDaily) return;
-    const days = D.englishDaily.days || [];
-    if (!days.length) return;
+    const ctx = engCtx();
+    if (!ctx || !ctx.week.length) return;
+    const days = ctx.week; // 当前周 7 天词汇
 
-    // 汇总全部词汇（7 天 × 3 个），携带来源主题便于归类
+    // 汇总本周全部词汇（7 天 × 5 个），携带来源主题便于归类
     const WORDS = [];
     days.forEach((day, di) => {
       (day.vocab || []).forEach(v => {
         WORDS.push({
-          id: "wl_" + di + "_" + WORDS.length,
+          id: "wl_" + ctx.weekIdx + "_" + di + "_" + WORDS.length,
           word: v.word || "",
           phonetic: v.phonetic || "",
           senses: (v.senses && v.senses.length) ? v.senses
@@ -10129,7 +10149,10 @@
       // 英语学习统计
       var enStatsHtml = "";
       if (D && D.englishDaily) {
-        var enDays = D.englishDaily.days || [];
+        // 多周内容库：统计整个 banks 的全部天数 / 词汇总量
+        var enDays = (D.englishDaily.weeks && D.englishDaily.weeks.length)
+          ? D.englishDaily.weeks.reduce(function (a, w) { return a.concat(w); }, [])
+          : (D.englishDaily.days || []);
         var enVocabTotal = 0, enKeysTotal = 0;
         enDays.forEach(function (d) {
           enVocabTotal += (d.vocab || []).length;
