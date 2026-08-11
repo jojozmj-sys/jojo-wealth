@@ -5118,11 +5118,16 @@
           });
         }
         (day.vocab || []).forEach((v, vi) => {
+          // 词汇含义存于 senses 数组（多词性各自独立义项），与口语区一致；
+          // 兼容旧结构（扁平 meaning/example）。缺失时兜底为空，绝不展示成只剩音标。
+          const senses = (v.senses && v.senses.length) ? v.senses
+            : [{ pos: "", meaning: v.meaning || "", example: v.example || "" }];
+          const wmean = senses.map(s => ((s.pos ? s.pos + " " : "") + (s.meaning || "")).trim()).filter(Boolean).join("；");
           items.push({
             id: "eb_v" + weekIdx + "_" + di + "_" + vi,
             kind: "word",
             front: v.word || "",
-            back: (v.meaning || "") + (v.phonetic ? "  " + v.phonetic : ""),
+            back: (wmean || v.meaning || "") + (v.phonetic ? "  " + v.phonetic : ""),
             src: src
           });
         });
