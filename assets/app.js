@@ -9628,12 +9628,12 @@
     }
 
     // ===== 收盘后自动拉取最新复盘 =====
-    // 根因：每日复盘由 15:10 自动化写入 data.js 并部署，但已打开的标签页
+    // 根因：每日复盘由 16:00 自动化写入 data.js 并部署，但已打开的标签页
     // 只在「页面加载时」把 dailyReview 快照进 window.WORKBENCH_DATA，
     // scheduleStockTick 的 renderReviews 只是重复渲染这份陈旧内存对象，
     // 不会重新请求 data.js → 收盘后复盘永远停在加载时的旧内容，必须手动刷新。
-    // 修复：收盘后（15:05 起）由前端主动拉取最新 data.js，提取 dailyReview，
-    // 若比内存中的新则就地更新并重渲染，已开页面无需整页刷新即可看到当日复盘。
+    // 修复：收盘后（15:55 起，待 16:00 自动化生成完毕）由前端主动拉取最新 data.js，
+    // 提取 dailyReview，若比内存中的新则就地更新并重渲染，已开页面无需整页刷新即可看到当日复盘。
     var _reviewPulledFor = null;
     function _reviewToday() { var d = new Date(); return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0"); }
 
@@ -9657,7 +9657,7 @@
       if (_reviewPulledFor === today) return;            // 今日已拉到，不再重复
       var now = new Date();
       var hm = now.getHours() * 60 + now.getMinutes();
-      if (hm < 15 * 60 + 5) return;                       // 收盘前复盘未生成，拉取无意义
+      if (hm < 15 * 60 + 55) return;                      // 16:00 自动化生成复盘前，拉取无意义
       try {
         var url = new URL("assets/data.js", document.baseURI).href + "?nc=" + Date.now();
         var res = await fetch(url, { cache: "no-store" });
