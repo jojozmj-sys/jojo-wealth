@@ -7257,7 +7257,7 @@
     const secid = (/^(0|3)/.test(code) ? "0" : "1") + "." + code;
     // 实时资金流（ulist.np 专用资金流接口）
     const ff = await jsonpFetch(
-      `https://push2delay.eastmoney.com/api/qt/ulist.np/get?secids=${secid}&fields=f2,f12,f14,f62,f66,f69,f72,f75,f78,f81,f84,f87,f184`,
+      `https://push2delay.eastmoney.com/api/qt/ulist.np/get?secids=${secid}&fields=f2,f12,f14,f37,f62,f66,f69,f72,f75,f78,f81,f84,f87,f184`,
       (j) => j && j.data && j.data.diff && j.data.diff[0] ? j.data.diff[0] : null
     );
     // 换手率(f168)/成交额(f84)/现价(f43) 快照
@@ -7277,6 +7277,7 @@
       f43: snap && snap.f43 != null ? snap.f43 / 100 : (ff.f2 != null ? ff.f2 / 100 : null), // 现价
       f84: snap && snap.f84 != null ? snap.f84 : null,   // 成交额
       f168: snap && snap.f168 != null ? snap.f168 / 100 : null, // 换手率%
+      f37: ff.f37 != null ? ff.f37 : null,  // 主力/机构持股占比%（占流通盘）
       f135: ff.f62, f140: div(ff.f184),   // 主力净额 / 主力净占比
       f136: ff.f66, f141: div(ff.f69),    // 超大单净额 / 占比
       f137: ff.f72, f142: div(ff.f75),    // 大单净额 / 占比
@@ -7336,7 +7337,7 @@
     const trend5 = hist.filter(d => !isNaN(d.main) && d.main !== 0);
     const avg5 = trend5.length ? trend5.reduce((s, d) => s + d.main, 0) / trend5.length : 0;
     const mainPos = main != null && main > 0;
-    const score = calcFundFlowScore(main, mainPct, avg5);
+    const score = calcFundFlowScore(main, mainPct, avg5, r.f37);
 
     // 今日 vs 5日均对比
     const todayAmt = main != null ? main : 0;
@@ -7381,6 +7382,7 @@
         <div class="st-fund-cell"><span class="lbl">换手率</span><span class="val">${r.f168 != null ? r.f168.toFixed(2) + "%" : "--"}</span></div>
         <div class="st-fund-cell"><span class="lbl">主力净流入</span><span class="val ${mainPos ? "up" : "down"}">${mainPos ? "+" : ""}${fmtAmt(main)}</span></div>
         <div class="st-fund-cell"><span class="lbl">主力净占比</span><span class="val ${mainPct != null && mainPct > 0 ? "up" : "down"}">${mainPct != null ? (mainPct > 0 ? "+" : "") + mainPct.toFixed(2) + "%" : "--"}</span></div>
+        <div class="st-fund-cell"><span class="lbl">主力持股占比</span><span class="val">${r.f37 != null ? r.f37.toFixed(2) + "%" : "--"}</span></div>
         <div class="st-fund-cell"><span class="lbl">5日均主力</span><span class="val ${avg5 >= 0 ? "up" : "down"}">${fmtAmt(avg5)}</span></div>
       </div>
 
@@ -7401,17 +7403,17 @@
           <div class="st-anl-score-info">
             <div class="st-anl-score-verdict">资金面评分 <b>${score}/100</b> · 倾向 <b class="st-anl-v-${score >= 65 ? 'up' : score <= 35 ? 'down' : 'flat'}">${score >= 65 ? "资金积极" : score <= 35 ? "资金流出" : "资金中性"}</b></div>
             <div class="st-anl-score-bar"><span style="width:${score}%"></span></div>
-            <div class="st-anl-score-txt">${fundFlowVerdict(main, mainPct, avg5)}</div>
+            <div class="st-anl-score-txt">${fundFlowVerdict(main, mainPct, avg5, r.f37)}</div>
           </div>
         </div>
         <div class="st-anl-risk">⚠️ 资金流为盘中/收盘实时数据，大单与小单口径随交易所与统计规则略有差异；主力资金持续净流入不代表股价必然上涨，请结合技术面与基本面综合判断，不构成投资建议。</div>
       </div>
-      <div style="font-size:11px;color:var(--pink-dark);margin-top:8px;">数据源：东方财富 push2delay 资金流（主力/超大/大/中/小单净额与占比），日度历史取近5个交易日。</div>
+      <div style="font-size:11px;color:var(--pink-dark);margin-top:8px;">数据源：东方财富 push2delay 资金流（主力/超大/大/中/小单净额与占比），主力持股占比为机构口径占流通盘比例，日度历史取近5个交易日。</div>
     `;
   }
 
   /* 资金面评分引擎（0-100） */
-  function calcFundFlowScore(main, mainPct, avg5) {
+  function calcFundFlowScore(main, mainPct, avg5, mainHoldPct) {
     let s = 50;
     // 主力净额（±25）
     if (main != null) {
@@ -7427,18 +7429,31 @@
     if (avg5 != null) {
       if (avg5 > 0) s += avg5 / 1e8 > 2 ? 8 : 5; else s -= Math.abs(avg5) / 1e8 > 2 ? 8 : 5;
     }
+    // 主力持股占比/筹码集中度（±10）：高控盘视为筹码稳固加分，极低视为分散减分
+    if (mainHoldPct != null) {
+      if (mainHoldPct >= 20) s += 8;
+      else if (mainHoldPct >= 15) s += 5;
+      else if (mainHoldPct >= 8) s += 2;
+      else if (mainHoldPct >= 4) s += 0;
+      else s -= 4;
+    }
     return Math.max(5, Math.min(95, Math.round(s)));
   }
 
   /* 资金面研判文案 */
-  function fundFlowVerdict(main, mainPct, avg5) {
+  function fundFlowVerdict(main, mainPct, avg5, mainHoldPct) {
     const t = (main != null ? main : 0);
     const a = (avg5 != null ? avg5 : 0);
-    if (t > 0 && t > a * 1.2 && mainPct > 3) return "主力资金今日大幅净流入且占比可观，明显强于近5日均值，短线做多意愿强烈，资金面偏积极；需警惕冲高后的获利兑现，可结合量能持续性判断。";
-    if (t > 0 && t >= a * 0.7) return "主力资金今日净流入，力度与近期水平相当，资金面温和偏多；若后续净流入持续放大，或进一步打开上行空间。";
-    if (t < 0 && t < a * 0.8) return "主力资金今日显著净流出，弱于近5日均值，短线抛压偏重，资金面偏空；建议观望，等待资金回补信号，不宜盲目抄底。";
-    if (t < 0 && t >= a * 0.7) return "主力资金今日小幅净流出，与近期水平相近，资金面中性偏弱；多空胶着，需观察后续方向选择。";
-    return "今日主力资金流向与近5日均值基本一致，资金面中性。可结合大单与小单的背离（大单流入而小单流出常为机构吸筹）研判主力真实意图。";
+    // 主力持股占比筹码维度：>=20% 高控盘，10-20% 中等，<10% 偏低
+    const holdTxt = mainHoldPct == null ? "" :
+      mainHoldPct >= 20 ? "，主力持股占比达 " + mainHoldPct.toFixed(1) + "% 呈现高控盘、筹码集中格局" :
+      mainHoldPct >= 10 ? "，主力持股占比约 " + mainHoldPct.toFixed(1) + "%、筹码结构相对集中" :
+      "，主力持股占比仅 " + mainHoldPct.toFixed(1) + "%、筹码相对分散";
+    if (t > 0 && t > a * 1.2 && mainPct > 3) return "主力资金今日大幅净流入且占比可观，明显强于近5日均值，短线做多意愿强烈，资金面偏积极" + holdTxt + "；需警惕冲高后的获利兑现，可结合量能持续性判断。";
+    if (t > 0 && t >= a * 0.7) return "主力资金今日净流入，力度与近期水平相当，资金面温和偏多" + holdTxt + "；若后续净流入持续放大，或进一步打开上行空间。";
+    if (t < 0 && t < a * 0.8) return "主力资金今日显著净流出，弱于近5日均值，短线抛压偏重，资金面偏空" + holdTxt + "；建议观望，等待资金回补信号，不宜盲目抄底。";
+    if (t < 0 && t >= a * 0.7) return "主力资金今日小幅净流出，与近期水平相近，资金面中性偏弱" + holdTxt + "；多空胶着，需观察后续方向选择。";
+    return "今日主力资金流向与近5日均值基本一致，资金面中性" + holdTxt + "。可结合大单与小单的背离（大单流入而小单流出常为机构吸筹）研判主力真实意图。";
   }
 
   /* 基本面/技术面/资金面 Tab 状态与切换 */
@@ -7447,7 +7462,7 @@
     stAnlTab = tab;
     const title = $("#stAnlTitle");
     const periodWrap = $("#stIndiPeriodWrap");
-    if (title) title.textContent = tab === "fund" ? "基本面分析 · 估值 / 成长 / 财务健康 / 商业模式" : tab === "money" ? "资金面分析 · 主力资金 / 大中小单" : "技术指标 · MACD / RSI / 均线";
+    if (title) title.textContent = tab === "fund" ? "基本面分析 · 估值 / 成长 / 财务健康 / 商业模式" : tab === "money" ? "资金面分析 · 主力资金 / 大中小单 / 持股占比" : "技术指标 · MACD / RSI / 均线";
     if (periodWrap) periodWrap.style.display = tab === "fund" || tab === "money" ? "none" : "";
     document.querySelectorAll("#stAnlTabs .st-anl-tab").forEach(b => b.classList.toggle("active", b.dataset.tab === tab));
     if (tab === "fund") renderFundamental(); else if (tab === "money") renderFundFlow(); else renderIndi();
