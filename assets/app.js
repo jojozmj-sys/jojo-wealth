@@ -10601,30 +10601,54 @@
           appToast("身体扫描引导已完成 🌿", 3000, "ok");
           return;
         }
-        const u = new SpeechSynthesisUtterance(GUIDE_SCRIPT[idx]);
-        u.lang = "zh-CN";
-        u.rate = 0.62;     /* 更慢，适合冥想引导 */
-        u.pitch = 1.12;    /* 略高音调，温暖治愈的女声感 */
-        u.volume = 0.85;   /* 略低音量，更柔和 */
-        const v = pickZhVoice();
-        if (v) u.voice = v;
-        u.onend = function () {
-          /* 这一步朗读完，自动勾选 */
-          done[idx] = true;
-          save();
-          render();
-          guideStepIdx = idx + 1;
-          if (guideState === "speaking") {
+
+        /* ---- 呼吸停顿节奏 ----
+           引导语拆成有停顿的小段播放：普通句间短停（BREATH_LOOP_MS），
+           含呼吸引导的句段后留长停（BREATH_HOLD_MS），给用户完成深呼吸。 */
+        const SPLIT = /(?<=[。！？；\n])/g;      /* 仅在句末标点处切分 */
+        const BREATH_RE = /(吸气|呼气|深呼吸|呼出|吐气)/;
+        const BREATH_HOLD_MS = 3800;            /* 呼吸引导句后的留白（吸气—屏息—呼气）*/
+        const SENSE_HOLD_MS = 2000;             /* 普通叙述句后的感受停顿（把注意力放到该处身体）*/
+        const par = String(GUIDE_SCRIPT[idx]).replace(/[“”]/g, "").split(/\s+/).join("");
+        const segs = par.split(SPLIT).map(s => s.trim()).filter(Boolean);
+
+        let segI = 0;
+        function speakSeg() {
+          if (guideState !== "speaking") return;   /* 暂停/结束则停 */
+          if (segI >= segs.length) {
+            /* 本步全部段落读完，自动勾选并进入下一步 */
+            done[idx] = true;
+            save();
+            render();
+            guideStepIdx = idx + 1;
             updateGuideUI();
-            /* 间隔 1.2 秒后继续下一步 */
-            setTimeout(function () { speakStep(guideStepIdx); }, 1200);
+            /* 短停顿后进入下一步 */
+            setTimeout(function () { speakStep(guideStepIdx); }, 1300);
+            return;
           }
-        };
-        u.onerror = function () {
-          guideState = "idle";
-          updateGuideUI();
-        };
-        window.speechSynthesis.speak(u);
+          const text = segs[segI];
+          const isBreath = BREATH_RE.test(text);
+          const u = new SpeechSynthesisUtterance(text);
+          u.lang = "zh-CN";
+          u.rate = 0.6;      /* 更慢，更适合冥想引导 */
+          u.pitch = 1.1;
+          u.volume = 0.85;
+          const v = pickZhVoice();
+          if (v) u.voice = v;
+          u.onend = function () {
+            segI++;
+            updateGuideUI();
+            /* 呼吸句后留长停（完成深呼吸），普通叙述句后留感受停顿 */
+            setTimeout(speakSeg, isBreath ? BREATH_HOLD_MS : SENSE_HOLD_MS);
+          };
+          u.onerror = function () {
+            guideState = "idle";
+            updateGuideUI();
+          };
+          /* 暂停状态下不继续读，等待用户 resume */
+          window.speechSynthesis.speak(u);
+        }
+        speakSeg();
       }
 
       if (guideBtn) {
