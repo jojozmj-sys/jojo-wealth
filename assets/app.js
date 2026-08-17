@@ -6552,9 +6552,10 @@
         const open = +f[5] || 0;
         const high = +f[33] || 0;
         const low = +f[34] || 0;
+        const turnover = +f[38] || 0;   // 腾讯 qt.gtimg.cn f[38]=换手率(%)，0 表示未提供
         // 若涨跌额/幅缺失（个别市场），用现价-昨收兜底
         const pctReal = (pct === 0 && pre > 0) ? ((cur - pre) / pre * 100) : pct;
-        map[code] = { cur, pct: pctReal, chg: (chg === 0 && pre > 0) ? (cur - pre) : chg, name: f[1], high, low, open, pre };
+        map[code] = { cur, pct: pctReal, chg: (chg === 0 && pre > 0) ? (cur - pre) : chg, name: f[1], high, low, open, pre, turnover };
       }
       return map;
     } catch (e) {
@@ -6715,12 +6716,14 @@
       const cur = d ? d.cur : 0;
       const pct = d ? d.pct : 0;
       const chg = d ? d.chg : 0;
+      const turnover = d ? d.turnover : 0;
       const cls = pct > 0 ? "st-up" : pct < 0 ? "st-down" : "st-flat";
       const sign = pct > 0 ? "+" : "";
       const alerted = alertSet.has(q.code);
       return `<div class="st-quote-row${alerted ? ' alert-blue' : ''}" data-code="${q.code}">
         <div><div class="st-quote-name">${alerted ? '<span class="st-alert-dot">🔔</span>' : ''}${q.name || q.code}<span class="st-quote-code">${q.code}</span></div></div>
         <div class="st-quote-price ${cls}">${cur ? cur.toFixed(2) : "--"}</div>
+        <div class="st-quote-turnover">${turnover ? turnover.toFixed(2) + "%" : "--"}<span class="lbl">换手</span></div>
         <div class="st-quote-pct ${cls}">${pct ? sign + pct.toFixed(2) + "%" : "--"}</div>
         <div class="st-quote-act"><button data-del="${q.code}">删除</button></div>
       </div>`;
