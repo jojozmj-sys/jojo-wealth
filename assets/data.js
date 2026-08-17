@@ -8776,7 +8776,7 @@ window.WORKBENCH_DATA = {
     "results": []
   },
   "dailyReview": {
-  "date": "2026-08-18",
+  "date": "2026-08-17",
   "market": {
     "indexPct": 1.4124639053977728,
     "volExpand": false,
@@ -8800,7 +8800,7 @@ window.WORKBENCH_DATA = {
     "note": "赚钱效应强，题材活跃，适合顺势操作并跟踪主线持续性。",
     "history": [
       {
-        "date": "2026-08-18",
+        "date": "2026-08-17",
         "score": 81,
         "level": "active",
         "upRatio": 79.9
