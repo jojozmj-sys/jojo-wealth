@@ -5722,7 +5722,7 @@ window.WORKBENCH_DATA = {
   },
   "dailyHot": {
     "mode": "daily",
-    "updated": "2026-08-17 22:58",
+    "updated": "2026-08-17 23:00",
     "platforms": [
       "微博",
       "抖音",
@@ -5740,7 +5740,7 @@ window.WORKBENCH_DATA = {
           "platform": "微博",
           "rank": 1,
           "title": "大批AI博主停更了",
-          "hot": 1695259,
+          "hot": 1701829,
           "url": "https://s.weibo.com/weibo?q=%E5%A4%A7%E6%89%B9AI%E5%8D%9A%E4%B8%BB%E5%81%9C%E6%9B%B4%E4%BA%86",
           "tag": "社会",
           "desc": ""
@@ -5749,7 +5749,7 @@ window.WORKBENCH_DATA = {
           "platform": "微博",
           "rank": 2,
           "title": "榴莲价格彻底崩了",
-          "hot": 1196045,
+          "hot": 1190380,
           "url": "https://s.weibo.com/weibo?q=%E6%A6%B4%E8%8E%B2%E4%BB%B7%E6%A0%BC%E5%BD%BB%E5%BA%95%E5%B4%A9%E4%BA%86",
           "tag": "社会",
           "desc": ""
@@ -5758,7 +5758,7 @@ window.WORKBENCH_DATA = {
           "platform": "微博",
           "rank": 3,
           "title": "未来5年我国能源蓝图划重点",
-          "hot": 721552,
+          "hot": 710929,
           "url": "https://s.weibo.com/weibo?q=%E6%9C%AA%E6%9D%A55%E5%B9%B4%E6%88%91%E5%9B%BD%E8%83%BD%E6%BA%90%E8%93%9D%E5%9B%BE%E5%88%92%E9%87%8D%E7%82%B9",
           "tag": "社会",
           "desc": ""
@@ -5767,7 +5767,7 @@ window.WORKBENCH_DATA = {
           "platform": "微博",
           "rank": 4,
           "title": "张艺谋电影 肖战",
-          "hot": 710077,
+          "hot": 694373,
           "url": "https://s.weibo.com/weibo?q=%E5%BC%A0%E8%89%BA%E8%B0%8B%E7%94%B5%E5%BD%B1%20%E8%82%96%E6%88%98",
           "tag": "社会",
           "desc": ""
@@ -5776,7 +5776,7 @@ window.WORKBENCH_DATA = {
           "platform": "微博",
           "rank": 5,
           "title": "只有中国人才能识别的加密暗号",
-          "hot": 665270,
+          "hot": 658274,
           "url": "https://s.weibo.com/weibo?q=%E5%8F%AA%E6%9C%89%E4%B8%AD%E5%9B%BD%E4%BA%BA%E6%89%8D%E8%83%BD%E8%AF%86%E5%88%AB%E7%9A%84%E5%8A%A0%E5%AF%86%E6%9A%97%E5%8F%B7",
           "tag": "社会",
           "desc": ""
@@ -5785,7 +5785,7 @@ window.WORKBENCH_DATA = {
           "platform": "微博",
           "rank": 6,
           "title": "曹骏初舞台人气票数倒挂",
-          "hot": 618770,
+          "hot": 620507,
           "url": "https://s.weibo.com/weibo?q=%E6%9B%B9%E9%AA%8F%E5%88%9D%E8%88%9E%E5%8F%B0%E4%BA%BA%E6%B0%94%E7%A5%A8%E6%95%B0%E5%80%92%E6%8C%82",
           "tag": "社会",
           "desc": ""
@@ -5794,7 +5794,7 @@ window.WORKBENCH_DATA = {
           "platform": "微博",
           "rank": 7,
           "title": "曝iPhone18ProMax独占可变光圈",
-          "hot": 482683,
+          "hot": 477021,
           "url": "https://s.weibo.com/weibo?q=%E6%9B%9DiPhone18ProMax%E7%8B%AC%E5%8D%A0%E5%8F%AF%E5%8F%98%E5%85%89%E5%9C%88",
           "tag": "社会",
           "desc": ""
@@ -5803,7 +5803,7 @@ window.WORKBENCH_DATA = {
           "platform": "微博",
           "rank": 8,
           "title": "公积金用途又变多了",
-          "hot": 474955,
+          "hot": 476547,
           "url": "https://s.weibo.com/weibo?q=%E5%85%AC%E7%A7%AF%E9%87%91%E7%94%A8%E9%80%94%E5%8F%88%E5%8F%98%E5%A4%9A%E4%BA%86",
           "tag": "社会",
           "desc": ""
@@ -5812,7 +5812,7 @@ window.WORKBENCH_DATA = {
           "platform": "微博",
           "rank": 9,
           "title": "杭州涉事招商蛇口高管已被免职",
-          "hot": 425839,
+          "hot": 444868,
           "url": "https://s.weibo.com/weibo?q=%E6%9D%AD%E5%B7%9E%E6%B6%89%E4%BA%8B%E6%8B%9B%E5%95%86%E8%9B%87%E5%8F%A3%E9%AB%98%E7%AE%A1%E5%B7%B2%E8%A2%AB%E5%85%8D%E8%81%8C",
           "tag": "社会",
           "desc": ""
@@ -5821,7 +5821,7 @@ window.WORKBENCH_DATA = {
           "platform": "微博",
           "rank": 10,
           "title": "泡面不健康不是因为防腐剂",
-          "hot": 373428,
+          "hot": 362732,
           "url": "https://s.weibo.com/weibo?q=%E6%B3%A1%E9%9D%A2%E4%B8%8D%E5%81%A5%E5%BA%B7%E4%B8%8D%E6%98%AF%E5%9B%A0%E4%B8%BA%E9%98%B2%E8%85%90%E5%89%82",
           "tag": "社会",
           "desc": ""
@@ -5829,18 +5829,18 @@ window.WORKBENCH_DATA = {
         {
           "platform": "微博",
           "rank": 11,
-          "title": "曝时代少年团工作人员公费旅游",
-          "hot": 372573,
-          "url": "https://s.weibo.com/weibo?q=%E6%9B%9D%E6%97%B6%E4%BB%A3%E5%B0%91%E5%B9%B4%E5%9B%A2%E5%B7%A5%E4%BD%9C%E4%BA%BA%E5%91%98%E5%85%AC%E8%B4%B9%E6%97%85%E6%B8%B8",
+          "title": "桃黑黑回应控诉",
+          "hot": 362425,
+          "url": "https://s.weibo.com/weibo?q=%E6%A1%83%E9%BB%91%E9%BB%91%E5%9B%9E%E5%BA%94%E6%8E%A7%E8%AF%89",
           "tag": "社会",
           "desc": ""
         },
         {
           "platform": "微博",
           "rank": 12,
-          "title": "桃黑黑回应控诉",
-          "hot": 371974,
-          "url": "https://s.weibo.com/weibo?q=%E6%A1%83%E9%BB%91%E9%BB%91%E5%9B%9E%E5%BA%94%E6%8E%A7%E8%AF%89",
+          "title": "曝时代少年团工作人员公费旅游",
+          "hot": 360494,
+          "url": "https://s.weibo.com/weibo?q=%E6%9B%9D%E6%97%B6%E4%BB%A3%E5%B0%91%E5%B9%B4%E5%9B%A2%E5%B7%A5%E4%BD%9C%E4%BA%BA%E5%91%98%E5%85%AC%E8%B4%B9%E6%97%85%E6%B8%B8",
           "tag": "社会",
           "desc": ""
         },
@@ -5848,7 +5848,7 @@ window.WORKBENCH_DATA = {
           "platform": "微博",
           "rank": 13,
           "title": "陈奕恒哭了",
-          "hot": 369962,
+          "hot": 359469,
           "url": "https://s.weibo.com/weibo?q=%E9%99%88%E5%A5%95%E6%81%92%E5%93%AD%E4%BA%86",
           "tag": "社会",
           "desc": ""
@@ -5857,7 +5857,7 @@ window.WORKBENCH_DATA = {
           "platform": "微博",
           "rank": 14,
           "title": "彭宇案 彭宇确实碰了老人",
-          "hot": 368771,
+          "hot": 358272,
           "url": "https://s.weibo.com/weibo?q=%E5%BD%AD%E5%AE%87%E6%A1%88%20%E5%BD%AD%E5%AE%87%E7%A1%AE%E5%AE%9E%E7%A2%B0%E4%BA%86%E8%80%81%E4%BA%BA",
           "tag": "社会",
           "desc": ""
@@ -5865,18 +5865,18 @@ window.WORKBENCH_DATA = {
         {
           "platform": "微博",
           "rank": 15,
-          "title": "郭敬明发百妖谱原始帧",
-          "hot": 367440,
-          "url": "https://s.weibo.com/weibo?q=%E9%83%AD%E6%95%AC%E6%98%8E%E5%8F%91%E7%99%BE%E5%A6%96%E8%B0%B1%E5%8E%9F%E5%A7%8B%E5%B8%A7",
+          "title": "左奇函 身体状况",
+          "hot": 356060,
+          "url": "https://s.weibo.com/weibo?q=%E5%B7%A6%E5%A5%87%E5%87%BD%20%E8%BA%AB%E4%BD%93%E7%8A%B6%E5%86%B5",
           "tag": "社会",
           "desc": ""
         },
         {
           "platform": "微博",
           "rank": 16,
-          "title": "左奇函 身体状况",
-          "hot": 365692,
-          "url": "https://s.weibo.com/weibo?q=%E5%B7%A6%E5%A5%87%E5%87%BD%20%E8%BA%AB%E4%BD%93%E7%8A%B6%E5%86%B5",
+          "title": "郭敬明发百妖谱原始帧",
+          "hot": 354734,
+          "url": "https://s.weibo.com/weibo?q=%E9%83%AD%E6%95%AC%E6%98%8E%E5%8F%91%E7%99%BE%E5%A6%96%E8%B0%B1%E5%8E%9F%E5%A7%8B%E5%B8%A7",
           "tag": "社会",
           "desc": ""
         },
@@ -5884,7 +5884,7 @@ window.WORKBENCH_DATA = {
           "platform": "微博",
           "rank": 17,
           "title": "女孩顺风车内暴晒2小时向家人求救",
-          "hot": 365271,
+          "hot": 353073,
           "url": "https://s.weibo.com/weibo?q=%E5%A5%B3%E5%AD%A9%E9%A1%BA%E9%A3%8E%E8%BD%A6%E5%86%85%E6%9A%B4%E6%99%922%E5%B0%8F%E6%97%B6%E5%90%91%E5%AE%B6%E4%BA%BA%E6%B1%82%E6%95%91",
           "tag": "社会",
           "desc": ""
@@ -5893,7 +5893,7 @@ window.WORKBENCH_DATA = {
           "platform": "微博",
           "rank": 18,
           "title": "陈奕恒腹肌",
-          "hot": 363417,
+          "hot": 351683,
           "url": "https://s.weibo.com/weibo?q=%E9%99%88%E5%A5%95%E6%81%92%E8%85%B9%E8%82%8C",
           "tag": "社会",
           "desc": ""
@@ -5901,9 +5901,9 @@ window.WORKBENCH_DATA = {
         {
           "platform": "微博",
           "rank": 19,
-          "title": "大牛股15天10板",
-          "hot": 362721,
-          "url": "https://s.weibo.com/weibo?q=%E5%A4%A7%E7%89%9B%E8%82%A115%E5%A4%A910%E6%9D%BF",
+          "title": "金价回调半年抛压基本释放",
+          "hot": 350743,
+          "url": "https://s.weibo.com/weibo?q=%E9%87%91%E4%BB%B7%E5%9B%9E%E8%B0%83%E5%8D%8A%E5%B9%B4%E6%8A%9B%E5%8E%8B%E5%9F%BA%E6%9C%AC%E9%87%8A%E6%94%BE",
           "tag": "社会",
           "desc": ""
         },
@@ -5911,7 +5911,7 @@ window.WORKBENCH_DATA = {
           "platform": "微博",
           "rank": 20,
           "title": "建议大家开车一定要专心",
-          "hot": 361546,
+          "hot": 349704,
           "url": "https://s.weibo.com/weibo?q=%E5%BB%BA%E8%AE%AE%E5%A4%A7%E5%AE%B6%E5%BC%80%E8%BD%A6%E4%B8%80%E5%AE%9A%E8%A6%81%E4%B8%93%E5%BF%83",
           "tag": "社会",
           "desc": ""
@@ -5920,7 +5920,7 @@ window.WORKBENCH_DATA = {
           "platform": "微博",
           "rank": 21,
           "title": "蓝盈莹承认恋情",
-          "hot": 361442,
+          "hot": 349544,
           "url": "https://s.weibo.com/weibo?q=%E8%93%9D%E7%9B%88%E8%8E%B9%E6%89%BF%E8%AE%A4%E6%81%8B%E6%83%85",
           "tag": "社会",
           "desc": ""
@@ -5929,7 +5929,7 @@ window.WORKBENCH_DATA = {
           "platform": "微博",
           "rank": 22,
           "title": "Jennie不得不用头发遮挡",
-          "hot": 360127,
+          "hot": 339234,
           "url": "https://s.weibo.com/weibo?q=Jennie%E4%B8%8D%E5%BE%97%E4%B8%8D%E7%94%A8%E5%A4%B4%E5%8F%91%E9%81%AE%E6%8C%A1",
           "tag": "社会",
           "desc": ""
@@ -5938,7 +5938,7 @@ window.WORKBENCH_DATA = {
           "platform": "微博",
           "rank": 23,
           "title": "越不操心的人越是人生赢家",
-          "hot": 358160,
+          "hot": 336165,
           "url": "https://s.weibo.com/weibo?q=%E8%B6%8A%E4%B8%8D%E6%93%8D%E5%BF%83%E7%9A%84%E4%BA%BA%E8%B6%8A%E6%98%AF%E4%BA%BA%E7%94%9F%E8%B5%A2%E5%AE%B6",
           "tag": "社会",
           "desc": ""
@@ -5947,7 +5947,7 @@ window.WORKBENCH_DATA = {
           "platform": "微博",
           "rank": 24,
           "title": "左奇函哭了",
-          "hot": 357925,
+          "hot": 329983,
           "url": "https://s.weibo.com/weibo?q=%E5%B7%A6%E5%A5%87%E5%87%BD%E5%93%AD%E4%BA%86",
           "tag": "社会",
           "desc": ""
@@ -5956,7 +5956,7 @@ window.WORKBENCH_DATA = {
           "platform": "微博",
           "rank": 25,
           "title": "茜拉自曝将移居中国",
-          "hot": 356849,
+          "hot": 327884,
           "url": "https://s.weibo.com/weibo?q=%E8%8C%9C%E6%8B%89%E8%87%AA%E6%9B%9D%E5%B0%86%E7%A7%BB%E5%B1%85%E4%B8%AD%E5%9B%BD",
           "tag": "社会",
           "desc": ""
@@ -6415,7 +6415,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 1,
           "title": "飞机安检模拟器",
-          "hot": 6256701,
+          "hot": 6258492,
           "url": "https://b23.tv/BV1fTb16KEDk",
           "tag": "影视",
           "desc": "飞机安检模拟器 ⛔请勿相信其他任何自称是我（鲤鱼Ace）的言论或求助 ⛔我不会在任何社交平台上创建官方社群或添加好友 ⛔请勿相信由人为模仿或人工智能生成关于我（鲤鱼Ace）的任何内容 ⛔内容仅供娱乐，与现实中任何事件无关，请勿代入并联想，请勿模仿 ⛔未经授权，禁止转载"
@@ -6424,7 +6424,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 2,
           "title": "我实现了我儿时的梦想",
-          "hot": 4409783,
+          "hot": 4411180,
           "url": "https://b23.tv/BV1iTgA6hENv",
           "tag": "影视",
           "desc": "-"
@@ -6433,7 +6433,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 3,
           "title": "《一切正常｜異常なし》MV：当所有日本人都说没问题 那问题大了",
-          "hot": 4318908,
+          "hot": 4319791,
           "url": "https://b23.tv/BV1Z9gT61EnM",
           "tag": "影视",
           "desc": "看见也不看，知道也不说。 本作品为艺术表达与对日本社会讽刺，不针对普通个体，也不代表对任何具体事件作事实判断。"
@@ -6442,7 +6442,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 4,
           "title": "什么⁉Bye bye baby blue翻译竟然是错的✖！",
-          "hot": 1844051,
+          "hot": 1845172,
           "url": "https://b23.tv/BV1tMby62EC4",
           "tag": "影视",
           "desc": "-"
@@ -6451,7 +6451,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 5,
           "title": "自行车被偷后，保安在监控里发现了霸王龙？#SpecialForAAIFF【AI全民制作人】",
-          "hot": 5218420,
+          "hot": 5221061,
           "url": "https://b23.tv/BV18Tby67EG9",
           "tag": "影视",
           "desc": "你！给我看完！ 我求你，看完，呜呜呜，求求你看完！我给你跪了！"
@@ -6460,7 +6460,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 6,
           "title": "口技表演《定海神珍铁》",
-          "hot": 2501678,
+          "hot": 2503535,
           "url": "https://b23.tv/BV1N8gG6qEpm",
           "tag": "影视",
           "desc": "传统口技表演《定海神珍铁》（龙宫借宝）"
@@ -6469,7 +6469,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 7,
           "title": "赛伯朋克之大圣归来：耗时两年半，精品制作，一口气看完。",
-          "hot": 9067846,
+          "hot": 9069259,
           "url": "https://b23.tv/BV15xgn6GEjH",
           "tag": "影视",
           "desc": ""
@@ -6478,7 +6478,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 8,
           "title": "法国最有松弛感的劫案是哪起？【硬核狠人91】",
-          "hot": 2628846,
+          "hot": 2629799,
           "url": "https://b23.tv/BV1y5gP61E6m",
           "tag": "影视",
           "desc": "本篇为硬核狠人之斯帕贾里。"
@@ -6487,7 +6487,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 9,
           "title": "周处除三害现实版，我们干掉他了！",
-          "hot": 1309285,
+          "hot": 1311125,
           "url": "https://b23.tv/BV1VfbR6pEw9",
           "tag": "影视",
           "desc": "现实中没有陈桂林，但是没关系。 有我们。 画面：《周处除三害》"
@@ -6496,7 +6496,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 10,
           "title": "《干噎砒霜》",
-          "hot": 3368637,
+          "hot": 3371615,
           "url": "https://b23.tv/BV1LrbU66E1G",
           "tag": "影视",
           "desc": "-"
@@ -6505,7 +6505,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 11,
           "title": "老王出息了，今天带家人们一起探班龙餐馆的幕后~",
-          "hot": 4287992,
+          "hot": 4290093,
           "url": "https://b23.tv/BV1e5gN6eE1D",
           "tag": "影视",
           "desc": "如果当年我们没有离开家乡，如果当年我也成了战争孤儿，如果我的童年被迫要拿起枪，我希望我可以听到一声：“欢迎来龙餐馆”。老王虽然天生不是个厨子，但老王学会了好好吃饭！"
@@ -6514,7 +6514,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 12,
           "title": "用MC还原《神的随波逐流》 【B萌应援】",
-          "hot": 2737461,
+          "hot": 2737728,
           "url": "https://b23.tv/BV1e1gH67EjN",
           "tag": "影视",
           "desc": "本来想鸟之诗先发出来的，可能力不太行，一直没调好。b萌应援的投稿14号截止，没办法了，不过也快了"
@@ -6523,7 +6523,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 13,
           "title": "【22娘×33娘】2233，生日快乐哇！",
-          "hot": 699036,
+          "hot": 699244,
           "url": "https://b23.tv/BV1GCb26hEac",
           "tag": "影视",
           "desc": "感谢命运，让你我相遇~ 后期 夜雨星繁y 22娘 / 33娘 CV 在下池魚 BGM 花澤香菜-恋爱サーキュレーション (Instrumental)"
@@ -6532,7 +6532,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 14,
           "title": "难倒100万人的铁球难题，我终于！解！开！了！",
-          "hot": 5237463,
+          "hot": 5238954,
           "url": "https://b23.tv/BV1RYbk6QE9o",
           "tag": "影视",
           "desc": "家人们！久等了！！！剑之大陆也来了！"
@@ -6541,7 +6541,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 15,
           "title": "三星堆：是谁杀死了他们的神？",
-          "hot": 2625105,
+          "hot": 2626521,
           "url": "https://b23.tv/BV1o7bm6TEMY",
           "tag": "影视",
           "desc": "谁铸就了青铜立人与通天神树？为何又将神器尽数砸毁、分埋黄土？亲手葬送神明的三星堆先民，最终又遁向了何方？ 声明：本片叙事基于真实考古发掘记录。关于“神像毁弃与政变”的推演，综合参考了多位学者的学术假说。历史的真相，仍在等待下一把洛阳铲的解答。 参考文献 [1] 冉宏林.三星堆遗址考古研究综述[J].四川文物,2026,(S1):4-17+54. [2] 二陈.广汉三星堆遗址二号祭祀坑发掘简报[J].文物,1989,(5):1-20+97-103. [3] 赵昊.三星堆器物坑形成过程分析与背景蠡测[J].考"
@@ -6550,7 +6550,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 16,
           "title": "“盘点那些无缝衔接的顶级串烧”",
-          "hot": 1993152,
+          "hot": 1995360,
           "url": "https://b23.tv/BV1abgn6gExX",
           "tag": "影视",
           "desc": "第一首原创在这里：BV1RZ786dEot 第五首原创在这里：BV1hQ7Y6tEgH 喜欢本期视频，可以帮青橘点个一键三连哦~"
@@ -6559,7 +6559,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 17,
           "title": "轮 回 跑 酷",
-          "hot": 1749571,
+          "hot": 1749719,
           "url": "https://b23.tv/BV1EWbk6ZE6d",
           "tag": "影视",
           "desc": "终于肝在暑假结束前肝出个大圈外向了) 制作总用时1星期左右 最难的部分无疑是1:26的连3墙，高版本都是X轴，过墙会晚1t，导致放方块的时机比低版本难不少，以及第一个方块也需要手动放，手感很怪，肝了我3小时左右(( 感觉最好玩的是1:31那部分，之前没任何搭路底力，导致最开始一直在苦恼怎么在10cps的同时瞄准方块，之后试着用bc+抬手用鼠标玩了半小时，成功率突飞猛进，感觉越玩越好玩，基本上1分钟内能搭出来一次了（刚好使用5个方块且搭到门中间）（这段正常距离无解，为了观赏性加长了交互距离） p.s. 一开"
@@ -6568,7 +6568,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 18,
           "title": "第6集丨“各怀心事？”",
-          "hot": 1805204,
+          "hot": 1805296,
           "url": "https://b23.tv/BV1S1gP6WE75",
           "tag": "影视",
           "desc": "(≧▽≦)看的开心的话求个三连 (≧▽≦)"
@@ -6577,7 +6577,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 19,
           "title": "我们的秘密……（1）",
-          "hot": 1470152,
+          "hot": 1471055,
           "url": "https://b23.tv/BV1n1gN6VE7j",
           "tag": "影视",
           "desc": "希望你喜欢我们新的剧本杀系列！ 如果还想看更多有意思的剧本杀不妨关注三连！！！"
@@ -6586,7 +6586,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 20,
           "title": "80年代东京，繁华背后藏着遗憾《Stay With Me》❤️",
-          "hot": 2696643,
+          "hot": 2697739,
           "url": "https://b23.tv/BV1emuf6mEg5",
           "tag": "影视",
           "desc": ""
@@ -6595,7 +6595,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 21,
           "title": "当单主拿着草稿来找我约稿",
-          "hot": 3652088,
+          "hot": 3652371,
           "url": "https://b23.tv/BV1ALgw6TEtA",
           "tag": "影视",
           "desc": "视频中聊天记录并非跟单主本人聊天，没有嘴单主的意思！！！ 禁止拿图！禁止融ai！！"
@@ -6604,7 +6604,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 22,
           "title": "80后老登，1人，4个月，113分钟AI长片电影《出马仙镇东北》【AI全民制作人】",
-          "hot": 943619,
+          "hot": 944010,
           "url": "https://b23.tv/BV1gMgM6KEUM",
           "tag": "影视",
           "desc": "前后断断续续4个月，从剧本打磨到后期完成，全由一个人完成，抽卡预算有限，效果差强人意，穿帮也不少，这次先这样吧，seedance2.5又出来了，没时间回头了。 感谢@RunningHub 赞助了大部分算力，rhtv在性价比这一块真心高。 其中用到的神调原唱灰宝宝，婆婆丁-灿哥（原唱张新华）。"
@@ -6613,7 +6613,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 23,
           "title": "ASMR 当憋了半个月没洗头的你去做头疗（绝望的“单王”）",
-          "hot": 2623576,
+          "hot": 2624803,
           "url": "https://b23.tv/BV1bXb26sEGu",
           "tag": "影视",
           "desc": ""
@@ -6622,7 +6622,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 24,
           "title": "能不跳这些雷霆舞蹈嘛...",
-          "hot": 1643086,
+          "hot": 1643614,
           "url": "https://b23.tv/BV1big36CEp5",
           "tag": "影视",
           "desc": "最高礼仪"
@@ -6631,7 +6631,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 25,
           "title": "【2233生日主题曲】˚₊‧✩夏日幻梦列车✩‧₊˚",
-          "hot": 921600,
+          "hot": 922033,
           "url": "https://b23.tv/BV1FAuJ6LEDy",
           "tag": "影视",
           "desc": "青春这趟列车终将到站，我们也会去往不同的远方。但幸好，在呼啸而过的风景里，我们曾坐在你身旁。 演唱：22和33 作曲/编曲：YokoJZ 作词：YokoJZ 音频编辑：彭思琦@ROOM 4A/刘璋@ROOM 4A 混音/母带：刘璋@ROOM 4A 演唱指导：木子立青Akira MV导演：千枼草_阑小逝 MV制作：Alice映画 MV协力：FUSIONNEXT 项目监制：Piyaya 项目制作人：边边牧羊犬 特别鸣谢：哔哩哔哩鸣实验室"
