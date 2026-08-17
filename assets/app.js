@@ -7244,21 +7244,43 @@
    * A 股展示完整资金流；港股/美股仅显示成交额/换手并提示。
    * ================================================================== */
 
-  /* 拉取东财资金流：实时汇总 + 日度历史（JSONP） */
+  /* 拉取东财资金流：实时汇总 + 日度历史（JSONP）
+     - 实时资金流走 /api/qt/ulist.np/get 专用资金流接口（f62主力净额 f184主力净占比
+       f66/f72/f78/f84 超大/大/中/小单净额，f69/f75/f81/f87 对应占比）
+     - 换手率(f168)/成交额(f84)/现价(f43)走 /api/qt/stock/get 快照
+     - 日度历史：/api/qt/stock/fflow/daykline/get klt=101（f52主力净额 f57主力占比） */
   async function fetchFundFlow(code, market) {
     if (market === "hk" || market === "us") return null; // 资金流明细仅 A 股
     const secid = (/^(0|3)/.test(code) ? "0" : "1") + "." + code;
-    // 实时汇总：主力/超大/大/中/小单净额(f135-f139)+占比(f140-f144)+成交额(f84)+换手(f87)+现价(f43)
-    const real = await jsonpFetch(
-      `https://push2delay.eastmoney.com/api/qt/stock/get?secid=${secid}&fields=f43,f57,f58,f84,f87,f135,f136,f137,f138,f139,f140,f141,f142,f143,f144`,
+    // 实时资金流（ulist.np 专用资金流接口）
+    const ff = await jsonpFetch(
+      `https://push2delay.eastmoney.com/api/qt/ulist.np/get?secids=${secid}&fields=f2,f12,f14,f62,f66,f69,f72,f75,f78,f81,f84,f87,f184`,
+      (j) => j && j.data && j.data.diff && j.data.diff[0] ? j.data.diff[0] : null
+    );
+    // 换手率(f168)/成交额(f84)/现价(f43) 快照
+    const snap = await jsonpFetch(
+      `https://push2delay.eastmoney.com/api/qt/stock/get?secid=${secid}&fields=f43,f84,f168`,
       (j) => j && j.data ? j.data : null
     );
-    // 日度历史（近 5 日主力净额 f53 + 占比 f57）
+    // 日度历史（近 5 日：f52主力净额 f57主力占比）
     const hist = await jsonpFetch(
       `https://push2delay.eastmoney.com/api/qt/stock/fflow/daykline/get?secid=${secid}&lmt=5&klt=101&fields1=f1,f2,f3,f7&fields2=f51,f52,f53,f54,f55,f56,f57,f58,f59,f60,f61,f62,f63,f64,f65`,
       (j) => j && j.data && j.data.klines ? j.data.klines : []
     );
-    return { real, hist: hist.slice(0, 5) };
+    if (!ff) return null;
+    // 统一映射回渲染层使用的 f135-f144 命名（占比÷100 转百分数）
+    const div = (v) => (v == null ? null : v / 100);
+    const r = {
+      f43: snap && snap.f43 != null ? snap.f43 / 100 : (ff.f2 != null ? ff.f2 / 100 : null), // 现价
+      f84: snap && snap.f84 != null ? snap.f84 : null,   // 成交额
+      f168: snap && snap.f168 != null ? snap.f168 / 100 : null, // 换手率%
+      f135: ff.f62, f140: div(ff.f184),   // 主力净额 / 主力净占比
+      f136: ff.f66, f141: div(ff.f69),    // 超大单净额 / 占比
+      f137: ff.f72, f142: div(ff.f75),    // 大单净额 / 占比
+      f138: ff.f78, f143: div(ff.f81),    // 中单净额 / 占比
+      f139: ff.f84, f144: div(ff.f87)     // 小单净额 / 占比
+    };
+    return { real: r, hist: hist.slice(0, 5) };
   }
 
   /* 金额格式化：>=1亿 显示 x.xx亿；>=1万 显示 x.xx万；否则原值 */
@@ -7306,7 +7328,7 @@
     // 资金面研判（基于主力净额 + 占比 + 5日趋势）
     const hist = ff.hist.map(h => {
       const p = h.split(",");
-      return { date: p[0], main: +p[2], pct: +p[6] }; // f53主力净额 f57主力占比
+      return { date: p[0], main: +p[1], pct: +p[6] }; // f52主力净额 f57主力占比
     });
     const trend5 = hist.filter(d => !isNaN(d.main) && d.main !== 0);
     const avg5 = trend5.length ? trend5.reduce((s, d) => s + d.main, 0) / trend5.length : 0;
@@ -7353,7 +7375,7 @@
       <div class="st-fund-grid">
         <div class="st-fund-cell"><span class="lbl">现价</span><span class="val">¥${fmtNum(r.f43)}</span></div>
         <div class="st-fund-cell"><span class="lbl">成交额</span><span class="val">${fmtAmt(r.f84)}</span></div>
-        <div class="st-fund-cell"><span class="lbl">换手率</span><span class="val">${r.f87 != null ? r.f87.toFixed(2) + "%" : "--"}</span></div>
+        <div class="st-fund-cell"><span class="lbl">换手率</span><span class="val">${r.f168 != null ? r.f168.toFixed(2) + "%" : "--"}</span></div>
         <div class="st-fund-cell"><span class="lbl">主力净流入</span><span class="val ${mainPos ? "up" : "down"}">${mainPos ? "+" : ""}${fmtAmt(main)}</span></div>
         <div class="st-fund-cell"><span class="lbl">主力净占比</span><span class="val ${mainPct != null && mainPct > 0 ? "up" : "down"}">${mainPct != null ? (mainPct > 0 ? "+" : "") + mainPct.toFixed(2) + "%" : "--"}</span></div>
         <div class="st-fund-cell"><span class="lbl">5日均主力</span><span class="val ${avg5 >= 0 ? "up" : "down"}">${fmtAmt(avg5)}</span></div>
