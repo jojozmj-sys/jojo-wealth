@@ -7906,14 +7906,19 @@
     // 1) 每只股票的公告（东财 np-anotice-stock，浏览器 CORS *）
     const annPromises = tracked.map(async s => {
       try {
-        const url = `https://np-anotice-stock.eastmoney.com/api/security/ann?sr=-1&page_size=6&page_index=1&ann_type=0&client_source=web&stock_list=${s.code}`;
+        // ann_type 原为 0 现返回空列表，改用 A（全部类型）；codes 现为对象数组（含 stock_code）
+        const url = `https://np-anotice-stock.eastmoney.com/api/security/ann?sr=-1&page_size=6&page_index=1&ann_type=A&client_source=web&stock_list=${s.code}`;
         const res = await fetch(url, { mode: "cors" });
         const j = await res.json();
         const items = (j && j.data && j.data.list) || [];
         const kw = stockNameKw(s.name);
         const lst = items.filter(x => {
           const codes = x.codes || [];
-          if (codes.length && codes.some(c => String(c).includes(s.code))) return true;
+          const hit = codes.some(c => {
+            const code = typeof c === "object" && c !== null ? c.stock_code || c.inner_code : c;
+            return String(code).includes(s.code);
+          });
+          if (hit) return true;
           const t = x.title || "";
           return kw && kw.length >= 2 && t.includes(kw);
         }).slice(0, 5).map(x => ({
