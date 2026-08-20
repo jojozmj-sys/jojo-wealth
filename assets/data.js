@@ -5352,7 +5352,7 @@ window.WORKBENCH_DATA = {
   },
   "dailyHot": {
     "mode": "daily",
-    "updated": "2026-08-21 05:04",
+    "updated": "2026-08-21 06:13",
     "platforms": [
       "微博",
       "抖音",
@@ -5595,7 +5595,7 @@ window.WORKBENCH_DATA = {
           "platform": "抖音",
           "rank": 1,
           "title": "台风沙德尔或于26日移入东海",
-          "hot": 11745053,
+          "hot": 12102757,
           "url": "https://www.douyin.com/search/%E5%8F%B0%E9%A3%8E%E6%B2%99%E5%BE%B7%E5%B0%94%E6%88%96%E4%BA%8E26%E6%97%A5%E7%A7%BB%E5%85%A5%E4%B8%9C%E6%B5%B7",
           "tag": "娱乐",
           "desc": "22001"
@@ -5604,7 +5604,7 @@ window.WORKBENCH_DATA = {
           "platform": "抖音",
           "rank": 2,
           "title": "我国服务业持续扩能提质",
-          "hot": 11079535,
+          "hot": 11088227,
           "url": "https://www.douyin.com/search/%E6%88%91%E5%9B%BD%E6%9C%8D%E5%8A%A1%E4%B8%9A%E6%8C%81%E7%BB%AD%E6%89%A9%E8%83%BD%E6%8F%90%E8%B4%A8",
           "tag": "娱乐",
           "desc": "7000"
@@ -5613,7 +5613,7 @@ window.WORKBENCH_DATA = {
           "platform": "抖音",
           "rank": 3,
           "title": "美这件事我只取悦自己",
-          "hot": 10974162,
+          "hot": 11045006,
           "url": "https://www.douyin.com/search/%E7%BE%8E%E8%BF%99%E4%BB%B6%E4%BA%8B%E6%88%91%E5%8F%AA%E5%8F%96%E6%82%A6%E8%87%AA%E5%B7%B1",
           "tag": "娱乐",
           "desc": "16000"
@@ -5622,7 +5622,7 @@ window.WORKBENCH_DATA = {
           "platform": "抖音",
           "rank": 4,
           "title": "2026IVL夏季赛总决赛开幕",
-          "hot": 10410960,
+          "hot": 10380792,
           "url": "https://www.douyin.com/search/2026IVL%E5%A4%8F%E5%AD%A3%E8%B5%9B%E6%80%BB%E5%86%B3%E8%B5%9B%E5%BC%80%E5%B9%95",
           "tag": "娱乐",
           "desc": "12000"
@@ -5631,7 +5631,7 @@ window.WORKBENCH_DATA = {
           "platform": "抖音",
           "rank": 5,
           "title": "AI补全了我对长辈的所有未知",
-          "hot": 10377453,
+          "hot": 10276569,
           "url": "https://www.douyin.com/search/AI%E8%A1%A5%E5%85%A8%E4%BA%86%E6%88%91%E5%AF%B9%E9%95%BF%E8%BE%88%E7%9A%84%E6%89%80%E6%9C%89%E6%9C%AA%E7%9F%A5",
           "tag": "娱乐",
           "desc": "6000"
@@ -5640,7 +5640,7 @@ window.WORKBENCH_DATA = {
           "platform": "抖音",
           "rank": 6,
           "title": "深度解析黑神话钟馗实机演示",
-          "hot": 9197078,
+          "hot": 9174235,
           "url": "https://www.douyin.com/search/%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%E9%BB%91%E7%A5%9E%E8%AF%9D%E9%92%9F%E9%A6%97%E5%AE%9E%E6%9C%BA%E6%BC%94%E7%A4%BA",
           "tag": "娱乐",
           "desc": "12000"
@@ -5649,7 +5649,7 @@ window.WORKBENCH_DATA = {
           "platform": "抖音",
           "rank": 7,
           "title": "追梦这件事只要开始就不晚",
-          "hot": 9180073,
+          "hot": 9140361,
           "url": "https://www.douyin.com/search/%E8%BF%BD%E6%A2%A6%E8%BF%99%E4%BB%B6%E4%BA%8B%E5%8F%AA%E8%A6%81%E5%BC%80%E5%A7%8B%E5%B0%B1%E4%B8%8D%E6%99%9A",
           "tag": "娱乐",
           "desc": "20002"
@@ -5658,7 +5658,7 @@ window.WORKBENCH_DATA = {
           "platform": "抖音",
           "rank": 8,
           "title": "俄军大规模导弹夜袭基辅",
-          "hot": 9110304,
+          "hot": 8988504,
           "url": "https://www.douyin.com/search/%E4%BF%84%E5%86%9B%E5%A4%A7%E8%A7%84%E6%A8%A1%E5%AF%BC%E5%BC%B9%E5%A4%9C%E8%A2%AD%E5%9F%BA%E8%BE%85",
           "tag": "娱乐",
           "desc": "21000"
@@ -5666,18 +5666,18 @@ window.WORKBENCH_DATA = {
         {
           "platform": "抖音",
           "rank": 9,
-          "title": "美联邦政府债务突破40万亿美元",
-          "hot": 8888737,
-          "url": "https://www.douyin.com/search/%E7%BE%8E%E8%81%94%E9%82%A6%E6%94%BF%E5%BA%9C%E5%80%BA%E5%8A%A1%E7%AA%81%E7%A0%B440%E4%B8%87%E4%BA%BF%E7%BE%8E%E5%85%83",
+          "title": "娃圈总动员全体开动",
+          "hot": 8937081,
+          "url": "https://www.douyin.com/search/%E5%A8%83%E5%9C%88%E6%80%BB%E5%8A%A8%E5%91%98%E5%85%A8%E4%BD%93%E5%BC%80%E5%8A%A8",
           "tag": "娱乐",
-          "desc": "7000"
+          "desc": "20002"
         },
         {
           "platform": "抖音",
           "rank": 10,
-          "title": "阿里巴巴2027财年财报公布",
-          "hot": 8883865,
-          "url": "https://www.douyin.com/search/%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B42027%E8%B4%A2%E5%B9%B4%E8%B4%A2%E6%8A%A5%E5%85%AC%E5%B8%83",
+          "title": "美联邦政府债务突破40万亿美元",
+          "hot": 8574316,
+          "url": "https://www.douyin.com/search/%E7%BE%8E%E8%81%94%E9%82%A6%E6%94%BF%E5%BA%9C%E5%80%BA%E5%8A%A1%E7%AA%81%E7%A0%B440%E4%B8%87%E4%BA%BF%E7%BE%8E%E5%85%83",
           "tag": "娱乐",
           "desc": "7000"
         },
@@ -5685,7 +5685,7 @@ window.WORKBENCH_DATA = {
           "platform": "抖音",
           "rank": 11,
           "title": "黑神话钟馗实机演示公布",
-          "hot": 8229864,
+          "hot": 8394189,
           "url": "https://www.douyin.com/search/%E9%BB%91%E7%A5%9E%E8%AF%9D%E9%92%9F%E9%A6%97%E5%AE%9E%E6%9C%BA%E6%BC%94%E7%A4%BA%E5%85%AC%E5%B8%83",
           "tag": "娱乐",
           "desc": "12000"
@@ -5693,17 +5693,17 @@ window.WORKBENCH_DATA = {
         {
           "platform": "抖音",
           "rank": 12,
-          "title": "机器人跑出凌波微步既视感",
-          "hot": 7829930,
-          "url": "https://www.douyin.com/search/%E6%9C%BA%E5%99%A8%E4%BA%BA%E8%B7%91%E5%87%BA%E5%87%8C%E6%B3%A2%E5%BE%AE%E6%AD%A5%E6%97%A2%E8%A7%86%E6%84%9F",
+          "title": "阿里巴巴2027财年财报公布",
+          "hot": 8117758,
+          "url": "https://www.douyin.com/search/%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B42027%E8%B4%A2%E5%B9%B4%E8%B4%A2%E6%8A%A5%E5%85%AC%E5%B8%83",
           "tag": "娱乐",
-          "desc": "6000"
+          "desc": "7000"
         },
         {
           "platform": "抖音",
           "rank": 13,
           "title": "华为发布阔直板手机",
-          "hot": 7808310,
+          "hot": 8072911,
           "url": "https://www.douyin.com/search/%E5%8D%8E%E4%B8%BA%E5%8F%91%E5%B8%83%E9%98%94%E7%9B%B4%E6%9D%BF%E6%89%8B%E6%9C%BA",
           "tag": "娱乐",
           "desc": "6000"
@@ -5712,7 +5712,7 @@ window.WORKBENCH_DATA = {
           "platform": "抖音",
           "rank": 14,
           "title": "华为阔直板手机首发开箱",
-          "hot": 7783573,
+          "hot": 7794617,
           "url": "https://www.douyin.com/search/%E5%8D%8E%E4%B8%BA%E9%98%94%E7%9B%B4%E6%9D%BF%E6%89%8B%E6%9C%BA%E9%A6%96%E5%8F%91%E5%BC%80%E7%AE%B1",
           "tag": "娱乐",
           "desc": "6000"
@@ -5721,7 +5721,7 @@ window.WORKBENCH_DATA = {
           "platform": "抖音",
           "rank": 15,
           "title": "秋天的主场是燕麦格雷",
-          "hot": 7773596,
+          "hot": 7785170,
           "url": "https://www.douyin.com/search/%E7%A7%8B%E5%A4%A9%E7%9A%84%E4%B8%BB%E5%9C%BA%E6%98%AF%E7%87%95%E9%BA%A6%E6%A0%BC%E9%9B%B7",
           "tag": "娱乐",
           "desc": "16000"
@@ -5729,17 +5729,17 @@ window.WORKBENCH_DATA = {
         {
           "platform": "抖音",
           "rank": 16,
-          "title": "揭秘朱雀三号的回家路",
-          "hot": 7769905,
-          "url": "https://www.douyin.com/search/%E6%8F%AD%E7%A7%98%E6%9C%B1%E9%9B%80%E4%B8%89%E5%8F%B7%E7%9A%84%E5%9B%9E%E5%AE%B6%E8%B7%AF",
+          "title": "生是为了证明爱存在的痕迹",
+          "hot": 7785090,
+          "url": "https://www.douyin.com/search/%E7%94%9F%E6%98%AF%E4%B8%BA%E4%BA%86%E8%AF%81%E6%98%8E%E7%88%B1%E5%AD%98%E5%9C%A8%E7%9A%84%E7%97%95%E8%BF%B9",
           "tag": "娱乐",
-          "desc": "6000"
+          "desc": "1002"
         },
         {
           "platform": "抖音",
           "rank": 17,
           "title": "英语四六级成绩8月24日起可查",
-          "hot": 7745074,
+          "hot": 7758936,
           "url": "https://www.douyin.com/search/%E8%8B%B1%E8%AF%AD%E5%9B%9B%E5%85%AD%E7%BA%A7%E6%88%90%E7%BB%A98%E6%9C%8824%E6%97%A5%E8%B5%B7%E5%8F%AF%E6%9F%A5",
           "tag": "娱乐",
           "desc": "14000"
@@ -5748,7 +5748,7 @@ window.WORKBENCH_DATA = {
           "platform": "抖音",
           "rank": 18,
           "title": "三角洲S11极星守望活动",
-          "hot": 7722000,
+          "hot": 7756292,
           "url": "https://www.douyin.com/search/%E4%B8%89%E8%A7%92%E6%B4%B2S11%E6%9E%81%E6%98%9F%E5%AE%88%E6%9C%9B%E6%B4%BB%E5%8A%A8",
           "tag": "娱乐",
           "desc": "12000"
@@ -5756,17 +5756,17 @@ window.WORKBENCH_DATA = {
         {
           "platform": "抖音",
           "rank": 19,
-          "title": "生是为了证明爱存在的痕迹",
-          "hot": 7721020,
-          "url": "https://www.douyin.com/search/%E7%94%9F%E6%98%AF%E4%B8%BA%E4%BA%86%E8%AF%81%E6%98%8E%E7%88%B1%E5%AD%98%E5%9C%A8%E7%9A%84%E7%97%95%E8%BF%B9",
+          "title": "一文前瞻王者S45新赛季",
+          "hot": 7755667,
+          "url": "https://www.douyin.com/search/%E4%B8%80%E6%96%87%E5%89%8D%E7%9E%BB%E7%8E%8B%E8%80%85S45%E6%96%B0%E8%B5%9B%E5%AD%A3",
           "tag": "娱乐",
-          "desc": "1002"
+          "desc": "12000"
         },
         {
           "platform": "抖音",
           "rank": 20,
           "title": "潮汕开海美食申请出战",
-          "hot": 7716498,
+          "hot": 7724082,
           "url": "https://www.douyin.com/search/%E6%BD%AE%E6%B1%95%E5%BC%80%E6%B5%B7%E7%BE%8E%E9%A3%9F%E7%94%B3%E8%AF%B7%E5%87%BA%E6%88%98",
           "tag": "娱乐",
           "desc": "9000"
@@ -5775,7 +5775,7 @@ window.WORKBENCH_DATA = {
           "platform": "抖音",
           "rank": 21,
           "title": "谢霆锋炫上东北烤串了",
-          "hot": 7716260,
+          "hot": 7715635,
           "url": "https://www.douyin.com/search/%E8%B0%A2%E9%9C%86%E9%94%8B%E7%82%AB%E4%B8%8A%E4%B8%9C%E5%8C%97%E7%83%A4%E4%B8%B2%E4%BA%86",
           "tag": "娱乐",
           "desc": "2012"
@@ -5784,7 +5784,7 @@ window.WORKBENCH_DATA = {
           "platform": "抖音",
           "rank": 22,
           "title": "我的喜欢或许遗憾",
-          "hot": 7715022,
+          "hot": 7709527,
           "url": "https://www.douyin.com/search/%E6%88%91%E7%9A%84%E5%96%9C%E6%AC%A2%E6%88%96%E8%AE%B8%E9%81%97%E6%86%BE",
           "tag": "娱乐",
           "desc": "1002"
@@ -5792,27 +5792,27 @@ window.WORKBENCH_DATA = {
         {
           "platform": "抖音",
           "rank": 23,
-          "title": "是时候跟上蔡徐坤的old school了",
-          "hot": 7709421,
-          "url": "https://www.douyin.com/search/%E6%98%AF%E6%97%B6%E5%80%99%E8%B7%9F%E4%B8%8A%E8%94%A1%E5%BE%90%E5%9D%A4%E7%9A%84old%20school%E4%BA%86",
+          "title": "广东男篮新任主教练曝光",
+          "hot": 7704273,
+          "url": "https://www.douyin.com/search/%E5%B9%BF%E4%B8%9C%E7%94%B7%E7%AF%AE%E6%96%B0%E4%BB%BB%E4%B8%BB%E6%95%99%E7%BB%83%E6%9B%9D%E5%85%89",
           "tag": "娱乐",
-          "desc": "2007"
+          "desc": "5000"
         },
         {
           "platform": "抖音",
           "rank": 24,
-          "title": "一文前瞻王者S45新赛季",
-          "hot": 7701340,
-          "url": "https://www.douyin.com/search/%E4%B8%80%E6%96%87%E5%89%8D%E7%9E%BB%E7%8E%8B%E8%80%85S45%E6%96%B0%E8%B5%9B%E5%AD%A3",
+          "title": "喜欢你6收官售后夯爆了",
+          "hot": 7697639,
+          "url": "https://www.douyin.com/search/%E5%96%9C%E6%AC%A2%E4%BD%A06%E6%94%B6%E5%AE%98%E5%94%AE%E5%90%8E%E5%A4%AF%E7%88%86%E4%BA%86",
           "tag": "娱乐",
-          "desc": "12000"
+          "desc": "2003"
         },
         {
           "platform": "抖音",
           "rank": 25,
-          "title": "箭上视角展现朱雀三号回收全流程",
-          "hot": 7700422,
-          "url": "https://www.douyin.com/search/%E7%AE%AD%E4%B8%8A%E8%A7%86%E8%A7%92%E5%B1%95%E7%8E%B0%E6%9C%B1%E9%9B%80%E4%B8%89%E5%8F%B7%E5%9B%9E%E6%94%B6%E5%85%A8%E6%B5%81%E7%A8%8B",
+          "title": "揭秘朱雀三号的回家路",
+          "hot": 7690080,
+          "url": "https://www.douyin.com/search/%E6%8F%AD%E7%A7%98%E6%9C%B1%E9%9B%80%E4%B8%89%E5%8F%B7%E7%9A%84%E5%9B%9E%E5%AE%B6%E8%B7%AF",
           "tag": "娱乐",
           "desc": "6000"
         },
@@ -6045,7 +6045,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 1,
           "title": "《黑神话：钟馗》15分钟实机演示",
-          "hot": 7681509,
+          "hot": 7712034,
           "url": "https://b23.tv/BV1kS8H6VERt",
           "tag": "影视",
           "desc": "剑下有血，染作新妆， 似故人，梦里来访。 前尘旧事，不知何往， 偏偏念念不忘。 红尘易老，正道且长， 恩仇难定终章。 谁道黄泉路远？ 正好，再走一趟。 由游戏科学开发的黑神话系列第二部作品《黑神话：钟馗》，今日带来全新15分钟游戏实机演示，首次展示主角战斗与部分剧情片段。 本视频为开发中版本录制，运行时屏幕宽高比设置为21:9。因产品仍处于研发早期，最终发售内容可能有所不同。 游戏官网：https://gamesci.cn/zhongkui 游戏各平台官号：黑神话"
@@ -6054,7 +6054,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 2,
           "title": "我这一生最大的罪，是把人写成了妖……",
-          "hot": 8696975,
+          "hot": 8716534,
           "url": "https://b23.tv/BV1rHbY6MEB9",
           "tag": "影视",
           "desc": "本片故事与人物皆为虚构。 片中妖异诸事，取材于东晋干宝的志怪作品所载汉代灾异：寺壁黄人、木不曲直、梁伯夏后、草作人状； 并参考东汉末年黄巾起义史事虚构演绎而成。"
@@ -6063,7 +6063,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 3,
           "title": "我们不欢迎这样的客人，也不赚这种米",
-          "hot": 4383079,
+          "hot": 4385586,
           "url": "https://b23.tv/BV1Neba63EDK",
           "tag": "影视",
           "desc": ""
@@ -6072,7 +6072,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 4,
           "title": "《商务柔道》",
-          "hot": 7389863,
+          "hot": 7398430,
           "url": "https://b23.tv/BV1cqb86hE8B",
           "tag": "影视",
           "desc": "-"
@@ -6081,7 +6081,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 5,
           "title": "一种很“嘉豪”的合成方式",
-          "hot": 3150730,
+          "hot": 3153001,
           "url": "https://b23.tv/BV18obz6BEiR",
           "tag": "影视",
           "desc": "资产： BV1tu4m1K7YV 4179资产库3代 BV12GhPzUEs9 ChestnutMC 人模 BV1Au411b7FV 内UV序列帧动画 BV1miGH63EJZ BV1obCtBEE7X BV14u41147YH 参考了 BV11r4y1L7Vc 5:58 做动画真的很痛苦，有的镜头观众看急了 认为k的实在丑陋 张牙舞爪要跟up分析俄乌局势 你先别急 up比你还急 up急着发视频 如果上帝把时间调回到8/15凌晨我一定会重新考虑龙娘作为视频收尾的方案 我从网上学了一招"
@@ -6090,7 +6090,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 6,
           "title": "七夕节老番茄就和自己玩游戏",
-          "hot": 3245462,
+          "hot": 3251797,
           "url": "https://b23.tv/BV1q28V6VEYU",
           "tag": "影视",
           "desc": "又到了吗？！那个日子！ 谁能想到森林冰火人今年出续作了？！"
@@ -6099,7 +6099,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 7,
           "title": "忍术回战 26分钟沉浸式观看",
-          "hot": 3801677,
+          "hot": 3805783,
           "url": "https://b23.tv/BV1GNbv6ZE1N",
           "tag": "影视",
           "desc": "-"
@@ -6108,7 +6108,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 8,
           "title": "地球毁灭后，人类只剩四条路｜你会把文明带向哪里？",
-          "hot": 4264701,
+          "hot": 4268757,
           "url": "https://b23.tv/BV1DTbv6xEHK",
           "tag": "影视",
           "desc": "1.提前说明：本剧情结合NASA等科学资料进行创作，【不代表符合真实情况，有艺术加工成分】 2.事件背景：一颗约12公里级天体撞击地球。人类并非临时造出四个超级避难所，而是把撞击前已经存在的四套大型人类设施全面转入“文明保存模式”：金星高空浮城“曙星”、日地L1观测站“天穹”、火星殖民地“极乐原”、月球地下工业基地“诺亚”。四条路线剧情截然不同，存在关联。 3.参考资料: ①路线1曙星参考资料：NASA的HAVOC概念把约50 km高度视为适合飞艇/浮空平台研究的区域，温度和压力比金星地面温和得多，但硫酸"
@@ -6117,7 +6117,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 9,
           "title": "当你相亲遇到天价嫁妆",
-          "hot": 6069673,
+          "hot": 6075690,
           "url": "https://b23.tv/BV1wqb86hEZV",
           "tag": "影视",
           "desc": "-"
@@ -6126,7 +6126,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 10,
           "title": "《影之刃零》专场 State of Play 全程回顾",
-          "hot": 7563473,
+          "hot": 7630024,
           "url": "https://b23.tv/BV1Zdbi6rER9",
           "tag": "影视",
           "desc": "8月18 日《影之刃零》专场 State of Play全球直播的完整版回放，创意监制甄子丹开场，制作人梁其伟讲述，带领玩家深入游戏的故事、世界与战斗系统，以及深度结合 PS5和 DualSense 无线控制器特性的沉浸体验功能。 《影之刃零》的终极目标，是从原汁原味的中国武术文化中汲取深厚养分，将其融入S-GAME称之为“功夫朋克”的那种凌厉，直击感官的美学之中。 PS5版《影之刃零》现已开启预购，标准版售价268元，豪华版售价328元。"
@@ -6134,26 +6134,26 @@ window.WORKBENCH_DATA = {
         {
           "platform": "B站",
           "rank": 11,
-          "title": "魅力四射",
-          "hot": 4577019,
-          "url": "https://b23.tv/BV1aEba6HEez",
-          "tag": "影视",
-          "desc": "-"
-        },
-        {
-          "platform": "B站",
-          "rank": 12,
           "title": "这几个片段大家可能都听过，但你们知道其实来源于同一首歌吗",
-          "hot": 5264177,
+          "hot": 5272358,
           "url": "https://b23.tv/BV1hY8g6xEwE",
           "tag": "影视",
           "desc": "这几个片段大家可能都听过，但其实来源于同一首歌"
         },
         {
           "platform": "B站",
+          "rank": 12,
+          "title": "魅力四射",
+          "hot": 4582221,
+          "url": "https://b23.tv/BV1aEba6HEez",
+          "tag": "影视",
+          "desc": "-"
+        },
+        {
+          "platform": "B站",
           "rank": 13,
           "title": "萨特：为什么你越想做自己，越容易被定义？",
-          "hot": 2778964,
+          "hot": 2780701,
           "url": "https://b23.tv/BV1pN8g6yE7m",
           "tag": "影视",
           "desc": "外界眼里的你，凭什么成了你无法辩解的宿命？ 参考文献 [1] 让-保尔·萨特. 萨特自述[M/OL]. 天津人民出版社, 2008 [2] 让-保尔·萨特. 恶心[M/OL]. 人民文学出版社, 2023 [3] 让·保罗·萨特. 存在与虚无[M/OL]. 生活·读书·新知三联书店, 2014 [4] SALADIN R. Androids for the Stone Age?[J]. US-Japan Women’s Journal, 2022(61): 98-119. [5] 让-保罗·萨特"
@@ -6162,7 +6162,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 14,
           "title": "怪谈逃生指南第一期：《恶魔法典》",
-          "hot": 1511982,
+          "hot": 1514673,
           "url": "https://b23.tv/BV1iv8j6EE77",
           "tag": "影视",
           "desc": ""
@@ -6171,7 +6171,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 15,
           "title": "《如常运转｜正常運転》MV：全世界都会震惊于日本的灾后重建速度",
-          "hot": 2292332,
+          "hot": 2296429,
           "url": "https://b23.tv/BV1h88g6tEQv",
           "tag": "影视",
           "desc": "流程在走了，先不要急。 本作品为艺术表达与对日本社会讽刺，请勿将画面及角色对应到特定受灾者个体，也不代表对任何具体事件作事实判断。"
@@ -6180,7 +6180,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 16,
           "title": "菜谱：洋葱炒蛋，家庭红烧鱼，蒜炒西兰花，辣椒炒猪腰，绿豆汤，从买菜开始，你在家随时可以复刻",
-          "hot": 3329745,
+          "hot": 3341331,
           "url": "https://b23.tv/BV1BS876oEwP",
           "tag": "影视",
           "desc": "-"
@@ -6189,7 +6189,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 17,
           "title": "当朋友总用奇怪的皮肤和你一起玩...",
-          "hot": 2804467,
+          "hot": 2820525,
           "url": "https://b23.tv/BV1Hn8j6ZEqN",
           "tag": "影视",
           "desc": "-"
@@ -6198,7 +6198,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 18,
           "title": "土地的枷锁，后发国家的现代化困局",
-          "hot": 836402,
+          "hot": 838183,
           "url": "https://b23.tv/BV1aPbv6bErh",
           "tag": "影视",
           "desc": "-"
@@ -6207,7 +6207,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 19,
           "title": "我看看谁错字了！",
-          "hot": 2542174,
+          "hot": 2545333,
           "url": "https://b23.tv/BV14Z8u6JEu4",
           "tag": "影视",
           "desc": "-"
@@ -6216,7 +6216,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 20,
           "title": "绝境降临！狭小缆车空间怎样熬过危机四伏的一百天！！「缆车惊变100天」",
-          "hot": 1949638,
+          "hot": 1950832,
           "url": "https://b23.tv/BV1gibB6PEih",
           "tag": "影视",
           "desc": "三连总和过8w火速更新！！！！！ 夏天yB站交流群：291049296 感谢作者老师@Q弹的果冻c"
@@ -6225,7 +6225,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 21,
           "title": "《鸡来》一个半小时超长电影！！！",
-          "hot": 2587622,
+          "hot": 2593093,
           "url": "https://b23.tv/BV1NBbe6jEzz",
           "tag": "影视",
           "desc": "2023年5月15日，背带侠第一条视频正式和大家见面。背带与铠甲的独特组合，收获了很多观众的喜爱。 两年半的时间里，“限时理想”产出近百集背带侠系列内容，我们的抖音账号，顺利突破100万粉丝。 一路走来，团队从最初3个人，慢慢扩充到7个人；从只有一台手机起步，一步步搭建起小型工作室。 我们有幸遇见许许多多同行者：一起出镜拍摄背带侠的伙伴——苏珊、梅狸猫、乔碧萝、泰酷怪；携手共创的博主朋友们——坤骑、夏楠、烟铠、封妖录、程坤、小滕； 还有曾经只能在屏幕上仰望的前辈：炎龙、风鹰、黑犀、地虎、梅老师。 回头"
@@ -6234,7 +6234,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 22,
           "title": "我把我所有的硬币立在了一支笔上(太简单了，等我弄到更多的硬币 )",
-          "hot": 2450956,
+          "hot": 2453755,
           "url": "https://b23.tv/BV1VEba6HEaD",
           "tag": "影视",
           "desc": "-"
@@ -6243,7 +6243,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 23,
           "title": "我的蚊子生病了，带它去看病",
-          "hot": 2017888,
+          "hot": 2025604,
           "url": "https://b23.tv/BV1Dx876VEXe",
           "tag": "影视",
           "desc": "（中医不能诊脉昆虫，此片段仅供娱乐）"
@@ -6252,7 +6252,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 24,
           "title": "《鸣潮》共鸣者「清宵」PV | 修行",
-          "hot": 2539698,
+          "hot": 2540342,
           "url": "https://b23.tv/BV1GFbk6LEVm",
           "tag": "影视",
           "desc": "“玄方地界，还需要镇玄司骑。” “这……也是我的修行。” 中文CV 清宵：姜贺 卜灵：张晔 日文CV 清宵：生天目仁美 卜灵：千本木彩花 英文CV 清宵：Kirsty Rider 卜灵：Elizabeth Chu 韩文CV 清宵：박리나 卜灵：이이로"
@@ -6261,7 +6261,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 25,
           "title": "奥特曼中 出了一个怪兽的卧底【AI全民制作人】",
-          "hot": 6442039,
+          "hot": 6446363,
           "url": "https://b23.tv/BV1wrba6iE56",
           "tag": "影视",
           "desc": "没想到，奥特曼中出了一个怪兽的卧底"
