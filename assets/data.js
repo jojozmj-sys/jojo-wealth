@@ -5581,7 +5581,7 @@ window.WORKBENCH_DATA = {
   },
   "dailyHot": {
     "mode": "daily",
-    "updated": "2026-08-21 08:55",
+    "updated": "2026-08-21 08:56",
     "platforms": [
       "微博",
       "抖音",
@@ -5599,7 +5599,7 @@ window.WORKBENCH_DATA = {
           "platform": "微博",
           "rank": 1,
           "title": "失业男子饿20天致肾衰竭",
-          "hot": 1563637,
+          "hot": 1554990,
           "url": "https://s.weibo.com/weibo?q=%E5%A4%B1%E4%B8%9A%E7%94%B7%E5%AD%90%E9%A5%BF20%E5%A4%A9%E8%87%B4%E8%82%BE%E8%A1%B0%E7%AB%AD",
           "tag": "社会",
           "desc": ""
@@ -5608,7 +5608,7 @@ window.WORKBENCH_DATA = {
           "platform": "微博",
           "rank": 2,
           "title": "张雪说送到统一为止",
-          "hot": 931888,
+          "hot": 876652,
           "url": "https://s.weibo.com/weibo?q=%E5%BC%A0%E9%9B%AA%E8%AF%B4%E9%80%81%E5%88%B0%E7%BB%9F%E4%B8%80%E4%B8%BA%E6%AD%A2",
           "tag": "社会",
           "desc": ""
@@ -5617,7 +5617,7 @@ window.WORKBENCH_DATA = {
           "platform": "微博",
           "rank": 3,
           "title": "中国铁路加速驶入AI赋能新阶段",
-          "hot": 859546,
+          "hot": 840780,
           "url": "https://s.weibo.com/weibo?q=%E4%B8%AD%E5%9B%BD%E9%93%81%E8%B7%AF%E5%8A%A0%E9%80%9F%E9%A9%B6%E5%85%A5AI%E8%B5%8B%E8%83%BD%E6%96%B0%E9%98%B6%E6%AE%B5",
           "tag": "社会",
           "desc": ""
@@ -5626,7 +5626,7 @@ window.WORKBENCH_DATA = {
           "platform": "微博",
           "rank": 4,
           "title": "上海餐厅 必须用ig预定",
-          "hot": 858753,
+          "hot": 832800,
           "url": "https://s.weibo.com/weibo?q=%E4%B8%8A%E6%B5%B7%E9%A4%90%E5%8E%85%20%E5%BF%85%E9%A1%BB%E7%94%A8ig%E9%A2%84%E5%AE%9A",
           "tag": "社会",
           "desc": ""
@@ -5635,7 +5635,7 @@ window.WORKBENCH_DATA = {
           "platform": "微博",
           "rank": 5,
           "title": "398一杯的芋圆葡萄",
-          "hot": 854361,
+          "hot": 831515,
           "url": "https://s.weibo.com/weibo?q=398%E4%B8%80%E6%9D%AF%E7%9A%84%E8%8A%8B%E5%9C%86%E8%91%A1%E8%90%84",
           "tag": "社会",
           "desc": ""
@@ -5644,7 +5644,7 @@ window.WORKBENCH_DATA = {
           "platform": "微博",
           "rank": 6,
           "title": "我国气候异常",
-          "hot": 831641,
+          "hot": 818787,
           "url": "https://s.weibo.com/weibo?q=%E6%88%91%E5%9B%BD%E6%B0%94%E5%80%99%E5%BC%82%E5%B8%B8",
           "tag": "社会",
           "desc": ""
@@ -5652,9 +5652,9 @@ window.WORKBENCH_DATA = {
         {
           "platform": "微博",
           "rank": 7,
-          "title": "癌症疫苗离普通患者有多远",
-          "hot": 438244,
-          "url": "https://s.weibo.com/weibo?q=%E7%99%8C%E7%97%87%E7%96%AB%E8%8B%97%E7%A6%BB%E6%99%AE%E9%80%9A%E6%82%A3%E8%80%85%E6%9C%89%E5%A4%9A%E8%BF%9C",
+          "title": "网购水果骗局",
+          "hot": 442202,
+          "url": "https://s.weibo.com/weibo?q=%E7%BD%91%E8%B4%AD%E6%B0%B4%E6%9E%9C%E9%AA%97%E5%B1%80",
           "tag": "社会",
           "desc": ""
         },
@@ -5662,7 +5662,7 @@ window.WORKBENCH_DATA = {
           "platform": "微博",
           "rank": 8,
           "title": "男子捡3根金条以为假的随手扔掉",
-          "hot": 427501,
+          "hot": 432518,
           "url": "https://s.weibo.com/weibo?q=%E7%94%B7%E5%AD%90%E6%8D%A13%E6%A0%B9%E9%87%91%E6%9D%A1%E4%BB%A5%E4%B8%BA%E5%81%87%E7%9A%84%E9%9A%8F%E6%89%8B%E6%89%94%E6%8E%89",
           "tag": "社会",
           "desc": ""
@@ -5671,7 +5671,7 @@ window.WORKBENCH_DATA = {
           "platform": "微博",
           "rank": 9,
           "title": "孟子义李昀锐第三视角",
-          "hot": 341754,
+          "hot": 355827,
           "url": "https://s.weibo.com/weibo?q=%E5%AD%9F%E5%AD%90%E4%B9%89%E6%9D%8E%E6%98%80%E9%94%90%E7%AC%AC%E4%B8%89%E8%A7%86%E8%A7%92",
           "tag": "社会",
           "desc": ""
@@ -5680,7 +5680,7 @@ window.WORKBENCH_DATA = {
           "platform": "微博",
           "rank": 10,
           "title": "曾辉小沈阳这段诡异得像AI生成",
-          "hot": 251845,
+          "hot": 253901,
           "url": "https://s.weibo.com/weibo?q=%E6%9B%BE%E8%BE%89%E5%B0%8F%E6%B2%88%E9%98%B3%E8%BF%99%E6%AE%B5%E8%AF%A1%E5%BC%82%E5%BE%97%E5%83%8FAI%E7%94%9F%E6%88%90",
           "tag": "社会",
           "desc": ""
@@ -5688,9 +5688,9 @@ window.WORKBENCH_DATA = {
         {
           "platform": "微博",
           "rank": 11,
-          "title": "网购水果骗局",
-          "hot": 251815,
-          "url": "https://s.weibo.com/weibo?q=%E7%BD%91%E8%B4%AD%E6%B0%B4%E6%9E%9C%E9%AA%97%E5%B1%80",
+          "title": "癌症疫苗离普通患者有多远",
+          "hot": 253711,
+          "url": "https://s.weibo.com/weibo?q=%E7%99%8C%E7%97%87%E7%96%AB%E8%8B%97%E7%A6%BB%E6%99%AE%E9%80%9A%E6%82%A3%E8%80%85%E6%9C%89%E5%A4%9A%E8%BF%9C",
           "tag": "社会",
           "desc": ""
         },
@@ -5698,7 +5698,7 @@ window.WORKBENCH_DATA = {
           "platform": "微博",
           "rank": 12,
           "title": "迪丽热巴跑男时期的感觉回来啦",
-          "hot": 251747,
+          "hot": 253468,
           "url": "https://s.weibo.com/weibo?q=%E8%BF%AA%E4%B8%BD%E7%83%AD%E5%B7%B4%E8%B7%91%E7%94%B7%E6%97%B6%E6%9C%9F%E7%9A%84%E6%84%9F%E8%A7%89%E5%9B%9E%E6%9D%A5%E5%95%A6",
           "tag": "社会",
           "desc": ""
@@ -5707,7 +5707,7 @@ window.WORKBENCH_DATA = {
           "platform": "微博",
           "rank": 13,
           "title": "何婧婧流产原因是胚胎优胜劣汰",
-          "hot": 251636,
+          "hot": 253363,
           "url": "https://s.weibo.com/weibo?q=%E4%BD%95%E5%A9%A7%E5%A9%A7%E6%B5%81%E4%BA%A7%E5%8E%9F%E5%9B%A0%E6%98%AF%E8%83%9A%E8%83%8E%E4%BC%98%E8%83%9C%E5%8A%A3%E6%B1%B0",
           "tag": "社会",
           "desc": ""
@@ -5715,45 +5715,45 @@ window.WORKBENCH_DATA = {
         {
           "platform": "微博",
           "rank": 14,
-          "title": "哈登成总薪资破5亿历史第4人",
-          "hot": 251539,
-          "url": "https://s.weibo.com/weibo?q=%E5%93%88%E7%99%BB%E6%88%90%E6%80%BB%E8%96%AA%E8%B5%84%E7%A0%B45%E4%BA%BF%E5%8E%86%E5%8F%B2%E7%AC%AC4%E4%BA%BA",
+          "title": "宇树上市答谢宴未见茅台",
+          "hot": 253110,
+          "url": "https://s.weibo.com/weibo?q=%E5%AE%87%E6%A0%91%E4%B8%8A%E5%B8%82%E7%AD%94%E8%B0%A2%E5%AE%B4%E6%9C%AA%E8%A7%81%E8%8C%85%E5%8F%B0",
           "tag": "社会",
           "desc": ""
         },
         {
           "platform": "微博",
           "rank": 15,
-          "title": "Selina社媒已停更半年以上",
-          "hot": 251444,
-          "url": "https://s.weibo.com/weibo?q=Selina%E7%A4%BE%E5%AA%92%E5%B7%B2%E5%81%9C%E6%9B%B4%E5%8D%8A%E5%B9%B4%E4%BB%A5%E4%B8%8A",
+          "title": "哈登成总薪资破5亿历史第4人",
+          "hot": 252914,
+          "url": "https://s.weibo.com/weibo?q=%E5%93%88%E7%99%BB%E6%88%90%E6%80%BB%E8%96%AA%E8%B5%84%E7%A0%B45%E4%BA%BF%E5%8E%86%E5%8F%B2%E7%AC%AC4%E4%BA%BA",
           "tag": "社会",
           "desc": ""
         },
         {
           "platform": "微博",
           "rank": 16,
-          "title": "广州地铁回应母亲为孩子硬挤屏蔽门",
-          "hot": 251434,
-          "url": "https://s.weibo.com/weibo?q=%E5%B9%BF%E5%B7%9E%E5%9C%B0%E9%93%81%E5%9B%9E%E5%BA%94%E6%AF%8D%E4%BA%B2%E4%B8%BA%E5%AD%A9%E5%AD%90%E7%A1%AC%E6%8C%A4%E5%B1%8F%E8%94%BD%E9%97%A8",
+          "title": "Selina社媒已停更半年以上",
+          "hot": 252581,
+          "url": "https://s.weibo.com/weibo?q=Selina%E7%A4%BE%E5%AA%92%E5%B7%B2%E5%81%9C%E6%9B%B4%E5%8D%8A%E5%B9%B4%E4%BB%A5%E4%B8%8A",
           "tag": "社会",
           "desc": ""
         },
         {
           "platform": "微博",
           "rank": 17,
-          "title": "银行员工称考核压力大自己买1万",
-          "hot": 251307,
-          "url": "https://s.weibo.com/weibo?q=%E9%93%B6%E8%A1%8C%E5%91%98%E5%B7%A5%E7%A7%B0%E8%80%83%E6%A0%B8%E5%8E%8B%E5%8A%9B%E5%A4%A7%E8%87%AA%E5%B7%B1%E4%B9%B01%E4%B8%87",
+          "title": "孙骁骁写信深情表白任重",
+          "hot": 252454,
+          "url": "https://s.weibo.com/weibo?q=%E5%AD%99%E9%AA%81%E9%AA%81%E5%86%99%E4%BF%A1%E6%B7%B1%E6%83%85%E8%A1%A8%E7%99%BD%E4%BB%BB%E9%87%8D",
           "tag": "社会",
           "desc": ""
         },
         {
           "platform": "微博",
           "rank": 18,
-          "title": "仅退款的风吹到了医疗界",
-          "hot": 251270,
-          "url": "https://s.weibo.com/weibo?q=%E4%BB%85%E9%80%80%E6%AC%BE%E7%9A%84%E9%A3%8E%E5%90%B9%E5%88%B0%E4%BA%86%E5%8C%BB%E7%96%97%E7%95%8C",
+          "title": "广州地铁回应母亲为孩子硬挤屏蔽门",
+          "hot": 252345,
+          "url": "https://s.weibo.com/weibo?q=%E5%B9%BF%E5%B7%9E%E5%9C%B0%E9%93%81%E5%9B%9E%E5%BA%94%E6%AF%8D%E4%BA%B2%E4%B8%BA%E5%AD%A9%E5%AD%90%E7%A1%AC%E6%8C%A4%E5%B1%8F%E8%94%BD%E9%97%A8",
           "tag": "社会",
           "desc": ""
         },
@@ -5761,7 +5761,7 @@ window.WORKBENCH_DATA = {
           "platform": "微博",
           "rank": 19,
           "title": "肖战香港活动上新闻了",
-          "hot": 251139,
+          "hot": 251994,
           "url": "https://s.weibo.com/weibo?q=%E8%82%96%E6%88%98%E9%A6%99%E6%B8%AF%E6%B4%BB%E5%8A%A8%E4%B8%8A%E6%96%B0%E9%97%BB%E4%BA%86",
           "tag": "社会",
           "desc": ""
@@ -5770,7 +5770,7 @@ window.WORKBENCH_DATA = {
           "platform": "微博",
           "rank": 20,
           "title": "杨旭文孔雪儿 天行九歌",
-          "hot": 251108,
+          "hot": 251787,
           "url": "https://s.weibo.com/weibo?q=%E6%9D%A8%E6%97%AD%E6%96%87%E5%AD%94%E9%9B%AA%E5%84%BF%20%E5%A4%A9%E8%A1%8C%E4%B9%9D%E6%AD%8C",
           "tag": "社会",
           "desc": ""
@@ -5779,7 +5779,7 @@ window.WORKBENCH_DATA = {
           "platform": "微博",
           "rank": 21,
           "title": "女子发现孩子没出地铁强行往车厢挤",
-          "hot": 251017,
+          "hot": 251671,
           "url": "https://s.weibo.com/weibo?q=%E5%A5%B3%E5%AD%90%E5%8F%91%E7%8E%B0%E5%AD%A9%E5%AD%90%E6%B2%A1%E5%87%BA%E5%9C%B0%E9%93%81%E5%BC%BA%E8%A1%8C%E5%BE%80%E8%BD%A6%E5%8E%A2%E6%8C%A4",
           "tag": "社会",
           "desc": ""
@@ -5787,36 +5787,36 @@ window.WORKBENCH_DATA = {
         {
           "platform": "微博",
           "rank": 22,
-          "title": "孙骁骁写信深情表白任重",
-          "hot": 250942,
-          "url": "https://s.weibo.com/weibo?q=%E5%AD%99%E9%AA%81%E9%AA%81%E5%86%99%E4%BF%A1%E6%B7%B1%E6%83%85%E8%A1%A8%E7%99%BD%E4%BB%BB%E9%87%8D",
+          "title": "仅退款的风吹到了医疗界",
+          "hot": 251313,
+          "url": "https://s.weibo.com/weibo?q=%E4%BB%85%E9%80%80%E6%AC%BE%E7%9A%84%E9%A3%8E%E5%90%B9%E5%88%B0%E4%BA%86%E5%8C%BB%E7%96%97%E7%95%8C",
           "tag": "社会",
           "desc": ""
         },
         {
           "platform": "微博",
           "rank": 23,
-          "title": "46岁小罗正式复出",
-          "hot": 250833,
-          "url": "https://s.weibo.com/weibo?q=46%E5%B2%81%E5%B0%8F%E7%BD%97%E6%AD%A3%E5%BC%8F%E5%A4%8D%E5%87%BA",
+          "title": "银行员工称考核压力大自己买1万",
+          "hot": 251057,
+          "url": "https://s.weibo.com/weibo?q=%E9%93%B6%E8%A1%8C%E5%91%98%E5%B7%A5%E7%A7%B0%E8%80%83%E6%A0%B8%E5%8E%8B%E5%8A%9B%E5%A4%A7%E8%87%AA%E5%B7%B1%E4%B9%B01%E4%B8%87",
           "tag": "社会",
           "desc": ""
         },
         {
           "platform": "微博",
           "rank": 24,
-          "title": "癌症疫苗",
-          "hot": 250797,
-          "url": "https://s.weibo.com/weibo?q=%E7%99%8C%E7%97%87%E7%96%AB%E8%8B%97",
+          "title": "46岁小罗正式复出",
+          "hot": 251038,
+          "url": "https://s.weibo.com/weibo?q=46%E5%B2%81%E5%B0%8F%E7%BD%97%E6%AD%A3%E5%BC%8F%E5%A4%8D%E5%87%BA",
           "tag": "社会",
           "desc": ""
         },
         {
           "platform": "微博",
           "rank": 25,
-          "title": "医院能办结婚证了",
-          "hot": 229629,
-          "url": "https://s.weibo.com/weibo?q=%E5%8C%BB%E9%99%A2%E8%83%BD%E5%8A%9E%E7%BB%93%E5%A9%9A%E8%AF%81%E4%BA%86",
+          "title": "癌症疫苗",
+          "hot": 237734,
+          "url": "https://s.weibo.com/weibo?q=%E7%99%8C%E7%97%87%E7%96%AB%E8%8B%97",
           "tag": "社会",
           "desc": ""
         },
@@ -6192,18 +6192,18 @@ window.WORKBENCH_DATA = {
         {
           "platform": "知乎",
           "rank": 17,
-          "title": "男子重病期间立遗嘱遗产全部留给弟弟不给妻儿，引爆房产争夺战，如何从法律角度解读？",
+          "title": "为什么分手后，大脑常常放大美好回忆，却淡化当初决定离开的原因？",
           "hot": 0,
-          "url": "https://www.zhihu.com/question/2073466033290090473",
+          "url": "https://www.zhihu.com/question/2072666413798576307",
           "tag": "知识",
           "desc": ""
         },
         {
           "platform": "知乎",
           "rank": 18,
-          "title": "为什么分手后，大脑常常放大美好回忆，却淡化当初决定离开的原因？",
+          "title": "男子重病期间立遗嘱遗产全部留给弟弟不给妻儿，引爆房产争夺战，如何从法律角度解读？",
           "hot": 0,
-          "url": "https://www.zhihu.com/question/2072666413798576307",
+          "url": "https://www.zhihu.com/question/2073466033290090473",
           "tag": "知识",
           "desc": ""
         },
@@ -6274,7 +6274,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 1,
           "title": "《黑神话：钟馗》15分钟实机演示",
-          "hot": 7915156,
+          "hot": 7919804,
           "url": "https://b23.tv/BV1kS8H6VERt",
           "tag": "影视",
           "desc": "剑下有血，染作新妆， 似故人，梦里来访。 前尘旧事，不知何往， 偏偏念念不忘。 红尘易老，正道且长， 恩仇难定终章。 谁道黄泉路远？ 正好，再走一趟。 由游戏科学开发的黑神话系列第二部作品《黑神话：钟馗》，今日带来全新15分钟游戏实机演示，首次展示主角战斗与部分剧情片段。 本视频为开发中版本录制，运行时屏幕宽高比设置为21:9。因产品仍处于研发早期，最终发售内容可能有所不同。 游戏官网：https://gamesci.cn/zhongkui 游戏各平台官号：黑神话"
@@ -6283,7 +6283,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 2,
           "title": "我这一生最大的罪，是把人写成了妖……",
-          "hot": 8853033,
+          "hot": 8854704,
           "url": "https://b23.tv/BV1rHbY6MEB9",
           "tag": "影视",
           "desc": "本片故事与人物皆为虚构。 片中妖异诸事，取材于东晋干宝的志怪作品所载汉代灾异：寺壁黄人、木不曲直、梁伯夏后、草作人状； 并参考东汉末年黄巾起义史事虚构演绎而成。"
@@ -6292,7 +6292,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 3,
           "title": "《商务柔道》",
-          "hot": 7448527,
+          "hot": 7449120,
           "url": "https://b23.tv/BV1cqb86hE8B",
           "tag": "影视",
           "desc": "-"
@@ -6301,7 +6301,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 4,
           "title": "我们不欢迎这样的客人，也不赚这种米",
-          "hot": 4397875,
+          "hot": 4398208,
           "url": "https://b23.tv/BV1Neba63EDK",
           "tag": "影视",
           "desc": ""
@@ -6310,7 +6310,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 5,
           "title": "一种很“嘉豪”的合成方式",
-          "hot": 3172643,
+          "hot": 3172952,
           "url": "https://b23.tv/BV18obz6BEiR",
           "tag": "影视",
           "desc": "资产： BV1tu4m1K7YV 4179资产库3代 BV12GhPzUEs9 ChestnutMC 人模 BV1Au411b7FV 内UV序列帧动画 BV1miGH63EJZ BV1obCtBEE7X BV14u41147YH 参考了 BV11r4y1L7Vc 5:58 做动画真的很痛苦，有的镜头观众看急了 认为k的实在丑陋 张牙舞爪要跟up分析俄乌局势 你先别急 up比你还急 up急着发视频 如果上帝把时间调回到8/15凌晨我一定会重新考虑龙娘作为视频收尾的方案 我从网上学了一招"
@@ -6319,7 +6319,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 6,
           "title": "七夕节老番茄就和自己玩游戏",
-          "hot": 3304250,
+          "hot": 3305611,
           "url": "https://b23.tv/BV1q28V6VEYU",
           "tag": "影视",
           "desc": "又到了吗？！那个日子！ 谁能想到森林冰火人今年出续作了？！"
@@ -6328,7 +6328,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 7,
           "title": "地球毁灭后，人类只剩四条路｜你会把文明带向哪里？",
-          "hot": 4296474,
+          "hot": 4297098,
           "url": "https://b23.tv/BV1DTbv6xEHK",
           "tag": "影视",
           "desc": "1.提前说明：本剧情结合NASA等科学资料进行创作，【不代表符合真实情况，有艺术加工成分】 2.事件背景：一颗约12公里级天体撞击地球。人类并非临时造出四个超级避难所，而是把撞击前已经存在的四套大型人类设施全面转入“文明保存模式”：金星高空浮城“曙星”、日地L1观测站“天穹”、火星殖民地“极乐原”、月球地下工业基地“诺亚”。四条路线剧情截然不同，存在关联。 3.参考资料: ①路线1曙星参考资料：NASA的HAVOC概念把约50 km高度视为适合飞艇/浮空平台研究的区域，温度和压力比金星地面温和得多，但硫酸"
@@ -6337,7 +6337,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 8,
           "title": "忍术回战 26分钟沉浸式观看",
-          "hot": 3836694,
+          "hot": 3837102,
           "url": "https://b23.tv/BV1GNbv6ZE1N",
           "tag": "影视",
           "desc": "-"
@@ -6346,7 +6346,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 9,
           "title": "当你相亲遇到天价嫁妆",
-          "hot": 6103967,
+          "hot": 6104341,
           "url": "https://b23.tv/BV1wqb86hEZV",
           "tag": "影视",
           "desc": "-"
@@ -6355,7 +6355,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 10,
           "title": "《影之刃零》专场 State of Play 全程回顾",
-          "hot": 8204611,
+          "hot": 8214671,
           "url": "https://b23.tv/BV1Zdbi6rER9",
           "tag": "影视",
           "desc": "8月18 日《影之刃零》专场 State of Play全球直播的完整版回放，创意监制甄子丹开场，制作人梁其伟讲述，带领玩家深入游戏的故事、世界与战斗系统，以及深度结合 PS5和 DualSense 无线控制器特性的沉浸体验功能。 《影之刃零》的终极目标，是从原汁原味的中国武术文化中汲取深厚养分，将其融入S-GAME称之为“功夫朋克”的那种凌厉，直击感官的美学之中。 PS5版《影之刃零》现已开启预购，标准版售价268元，豪华版售价328元。"
@@ -6364,7 +6364,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 11,
           "title": "这几个片段大家可能都听过，但你们知道其实来源于同一首歌吗",
-          "hot": 5324903,
+          "hot": 5326336,
           "url": "https://b23.tv/BV1hY8g6xEwE",
           "tag": "影视",
           "desc": "这几个片段大家可能都听过，但其实来源于同一首歌"
@@ -6373,7 +6373,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 12,
           "title": "萨特：为什么你越想做自己，越容易被定义？",
-          "hot": 2790217,
+          "hot": 2790401,
           "url": "https://b23.tv/BV1pN8g6yE7m",
           "tag": "影视",
           "desc": "外界眼里的你，凭什么成了你无法辩解的宿命？ 参考文献 [1] 让-保尔·萨特. 萨特自述[M/OL]. 天津人民出版社, 2008 [2] 让-保尔·萨特. 恶心[M/OL]. 人民文学出版社, 2023 [3] 让·保罗·萨特. 存在与虚无[M/OL]. 生活·读书·新知三联书店, 2014 [4] SALADIN R. Androids for the Stone Age?[J]. US-Japan Women’s Journal, 2022(61): 98-119. [5] 让-保罗·萨特"
@@ -6382,7 +6382,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 13,
           "title": "魅力四射",
-          "hot": 4615559,
+          "hot": 4616378,
           "url": "https://b23.tv/BV1aEba6HEez",
           "tag": "影视",
           "desc": "-"
@@ -6391,7 +6391,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 14,
           "title": "怪谈逃生指南第一期：《恶魔法典》",
-          "hot": 1532175,
+          "hot": 1532390,
           "url": "https://b23.tv/BV1iv8j6EE77",
           "tag": "影视",
           "desc": ""
@@ -6400,7 +6400,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 15,
           "title": "《如常运转｜正常運転》MV：全世界都会震惊于日本的灾后重建速度",
-          "hot": 2335298,
+          "hot": 2336139,
           "url": "https://b23.tv/BV1h88g6tEQv",
           "tag": "影视",
           "desc": "流程在走了，先不要急。 本作品为艺术表达与对日本社会讽刺，请勿将画面及角色对应到特定受灾者个体，也不代表对任何具体事件作事实判断。"
@@ -6409,7 +6409,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 16,
           "title": "菜谱：洋葱炒蛋，家庭红烧鱼，蒜炒西兰花，辣椒炒猪腰，绿豆汤，从买菜开始，你在家随时可以复刻",
-          "hot": 3391524,
+          "hot": 3392214,
           "url": "https://b23.tv/BV1BS876oEwP",
           "tag": "影视",
           "desc": "-"
@@ -6418,7 +6418,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 17,
           "title": "当朋友总用奇怪的皮肤和你一起玩...",
-          "hot": 2946501,
+          "hot": 2948304,
           "url": "https://b23.tv/BV1Hn8j6ZEqN",
           "tag": "影视",
           "desc": "-"
@@ -6427,7 +6427,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 18,
           "title": "我看看谁错字了！",
-          "hot": 2572546,
+          "hot": 2573322,
           "url": "https://b23.tv/BV14Z8u6JEu4",
           "tag": "影视",
           "desc": "-"
@@ -6436,7 +6436,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 19,
           "title": "土地的枷锁，后发国家的现代化困局",
-          "hot": 843662,
+          "hot": 843811,
           "url": "https://b23.tv/BV1aPbv6bErh",
           "tag": "影视",
           "desc": "-"
@@ -6445,7 +6445,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 20,
           "title": "我的蚊子生病了，带它去看病",
-          "hot": 2107763,
+          "hot": 2109399,
           "url": "https://b23.tv/BV1Dx876VEXe",
           "tag": "影视",
           "desc": "（中医不能诊脉昆虫，此片段仅供娱乐）"
@@ -6454,7 +6454,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 21,
           "title": "《鸡来》一个半小时超长电影！！！",
-          "hot": 2634596,
+          "hot": 2635628,
           "url": "https://b23.tv/BV1NBbe6jEzz",
           "tag": "影视",
           "desc": "2023年5月15日，背带侠第一条视频正式和大家见面。背带与铠甲的独特组合，收获了很多观众的喜爱。 两年半的时间里，“限时理想”产出近百集背带侠系列内容，我们的抖音账号，顺利突破100万粉丝。 一路走来，团队从最初3个人，慢慢扩充到7个人；从只有一台手机起步，一步步搭建起小型工作室。 我们有幸遇见许许多多同行者：一起出镜拍摄背带侠的伙伴——苏珊、梅狸猫、乔碧萝、泰酷怪；携手共创的博主朋友们——坤骑、夏楠、烟铠、封妖录、程坤、小滕； 还有曾经只能在屏幕上仰望的前辈：炎龙、风鹰、黑犀、地虎、梅老师。 回头"
@@ -6463,7 +6463,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 22,
           "title": "我把我所有的硬币立在了一支笔上(太简单了，等我弄到更多的硬币 )",
-          "hot": 2482683,
+          "hot": 2483048,
           "url": "https://b23.tv/BV1VEba6HEaD",
           "tag": "影视",
           "desc": "-"
@@ -6472,7 +6472,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 23,
           "title": "《鸣潮》共鸣者「清宵」PV | 修行",
-          "hot": 2543950,
+          "hot": 2543987,
           "url": "https://b23.tv/BV1GFbk6LEVm",
           "tag": "影视",
           "desc": "“玄方地界，还需要镇玄司骑。” “这……也是我的修行。” 中文CV 清宵：姜贺 卜灵：张晔 日文CV 清宵：生天目仁美 卜灵：千本木彩花 英文CV 清宵：Kirsty Rider 卜灵：Elizabeth Chu 韩文CV 清宵：박리나 卜灵：이이로"
@@ -6481,7 +6481,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 24,
           "title": "绝境降临！狭小缆车空间怎样熬过危机四伏的一百天！！「缆车惊变100天」",
-          "hot": 1972342,
+          "hot": 1972679,
           "url": "https://b23.tv/BV1gibB6PEih",
           "tag": "影视",
           "desc": "三连总和过8w火速更新！！！！！ 夏天yB站交流群：291049296 感谢作者老师@Q弹的果冻c"
@@ -6490,7 +6490,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 25,
           "title": "外卖小哥用电动车撞翻持刀男子，目击者赞撞翻持刀男子小哥有勇有谋",
-          "hot": 3343242,
+          "hot": 3344938,
           "url": "https://b23.tv/BV1K78n67EkC",
           "tag": "影视",
           "desc": ""
