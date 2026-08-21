@@ -5730,7 +5730,7 @@ window.WORKBENCH_DATA = {
   },
   "dailyHot": {
     "mode": "daily",
-    "updated": "2026-08-22 06:35",
+    "updated": "2026-08-22 06:51",
     "platforms": [
       "微博",
       "抖音",
@@ -6450,7 +6450,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 4,
           "title": "《下一个是谁》第七季（3）",
-          "hot": 1559215,
+          "hot": 1559473,
           "url": "https://b23.tv/BV1yj8T6zE1N",
           "tag": "影视",
           "desc": "《下一个是谁》第七季来啦！！ 每期都会抽一台iPhone17 Pro！每期抽奖去主投up主（@啊吗粽 ）的主页抽！ 抽奖资金由本期最后一名倒霉蛋出！所以不涉及剧透！"
@@ -6477,7 +6477,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 7,
           "title": "《崩坏：星穹铁道》千星纪游PV——「众声之外」",
-          "hot": 2108534,
+          "hot": 2108607,
           "url": "https://b23.tv/BV1Vj8K6DEFM",
           "tag": "影视",
           "desc": "万千声音曾试图将她描述，为她命名。 当所有的喧嚣都归于寂静，她听见了来自胸膛深处的共鸣。 中文CV： 知更鸟——钱琛 星期日——徐翔 翡翠——张若瑜 日文CV： 知更鸟——名冢佳织 星期日——大冢刚央 翡翠——三石琴乃 英文CV： 知更鸟——Alice Himora 星期日——Griffin Puatu 翡翠——Faye Mata 韩文CV： 知更鸟——신온유 星期日——강성우 翡翠——김순미"
@@ -6540,7 +6540,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 14,
           "title": "知道为啥这乐队没主唱了吧",
-          "hot": 4105826,
+          "hot": 4106008,
           "url": "https://b23.tv/BV1vF8n6ZEUz",
           "tag": "影视",
           "desc": "-"
@@ -6549,7 +6549,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 15,
           "title": "停更7年，我又以经典的方式玩MC",
-          "hot": 2222797,
+          "hot": 2222974,
           "url": "https://b23.tv/BV1bQ8u6WEtT",
           "tag": "影视",
           "desc": "停更了七年的时空小涵我的世界第一季-国服第一探险家生存 今天我又回来了！ 喜欢这个系列的话一定要多多点赞！！！ 灵感来源:aCookieGod"
@@ -6585,7 +6585,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 19,
           "title": "快看那边！有幽灵！！",
-          "hot": 1342893,
+          "hot": 1342938,
           "url": "https://b23.tv/BV1G18E6JEmh",
           "tag": "影视",
           "desc": "从前瞻的那刻夏风堇联动，联想到白厄遐蝶联动， 然后想起我好像没做过遐蝶联动服的视频 嘿嘿。。顺手摸一个玩玩 这种生活装真的看起来非常舒服…… 至此，树庭组的联动服已经齐了吧~ MODEL miHoYo/流云景/拉莱耶 STAGE SEGA/MMarty03/怪獣対若大将P EFFECT 舞力介入P/Rui/ikeno/ミーフォ茜/P.I.P/そぼろ/下っ腹P/针金P/三金络合物/养乐多"
@@ -6630,7 +6630,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 24,
           "title": "唐王随手捐闲钱，竟将阿萨拉扶成王！",
-          "hot": 2606750,
+          "hot": 2607016,
           "url": "https://b23.tv/BV1HQbf6CEG4",
           "tag": "影视",
           "desc": ""
