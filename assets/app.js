@@ -3302,6 +3302,112 @@
   var _almKey = "";
   function almDateKey(d) { return d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate(); }
 
+  /* ---------- 单日运势核心（八字 × 星盘双视角）
+     今日面板、周运、月运共用同一口径，避免三处文案/算法不一致 ---------- */
+  function almFortuneCore(date, label) {
+    label = label || "今日";
+    const solar = Solar.fromDate(date);
+    const lunar = solar.getLunar();
+    const WKV = ["日", "一", "二", "三", "四", "五", "六"];
+    const gzY = lunar.getYearInGanZhi();
+    const sx = lunar.getYearShengXiao();
+    const lm = lunar.getMonthInChinese();
+    const ld = lunar.getDayInChinese();
+    const gzM = lunar.getMonthInGanZhi();
+    const gzD = lunar.getDayInGanZhi();
+    const zhiXing = lunar.getZhiXing();
+    const yi = lunar.getDayYi() || [];
+    const ji = lunar.getDayJi() || [];
+    const chong = lunar.getChong();
+    const sha = lunar.getSha();
+    const xz = solar.getXingZuo();
+    const jq = lunar.getJieQi();
+    const jqStr = (jq && jq !== "" && jq !== "无") ? ` · ${jq}` : "";
+    const wk = "星期" + WKV[date.getDay()];
+
+    /* ---- 八字视角（身强戊土 · 喜金水木 · 木调和） ---- */
+    const dayStem = gzD.charAt(0), dayBranch = gzD.charAt(1);
+    const sw = wxOfChar(dayStem), bw = wxOfChar(dayBranch);
+    const fav = MY_PROFILE.fav;
+    const favCnt = (fav.includes(sw) ? 1 : 0) + (fav.includes(bw) ? 1 : 0);
+    const hasWood = (sw === "木" || bw === "木");
+    let luckLevel, luckText;
+    if (favCnt >= 2) { luckLevel = "大吉"; luckText = "金水木得气，身强得泄得制，思路清、行动顺，宜推进要事、把握机会。"; }
+    else if (favCnt === 1) { luckLevel = "平顺"; luckText = "喜用略有帮扶，气场中和，宜按部就班、稳扎稳打。"; }
+    else { luckLevel = "守成"; luckText = "土火偏旺、比劫印星当令，身强更盛，宜静不宜动，蓄力守成、重大决定缓一缓。"; }
+    if (hasWood) luckText += "木来调和，贵人暗助，沟通合作运佳。";
+
+    /* ---- 财运（八字视角）：戊土身强，以「金」为财星 ---- */
+    const dayIsMetal = (sw === "金" || bw === "金");
+    let wealthLevel, wealthText;
+    if (dayIsMetal) {
+      wealthLevel = "财旺"; wealthText = "日干日支临金，财星得地当令，正偏财皆有可得之机，宜把握进账、谈成合作与合同。";
+    } else if (favCnt >= 2) {
+      wealthLevel = "财顺"; wealthText = "喜用神得气，财路顺畅、进账稳健，可适度开源、规划理财。";
+    } else if (favCnt === 1) {
+      wealthLevel = "财平"; wealthText = "财星平平，宜守现有收益，避免冲动消费与投机冒进。";
+    } else {
+      wealthLevel = "财守"; wealthText = "比劫偏旺、财星受制，宜守财勿漏，重大投资与借贷缓一缓。";
+    }
+    const mainElem = hasWood ? "木" : (fav.includes(sw) ? sw : (fav.includes(bw) ? bw : "木"));
+    const mainColor = ELEM_COLOR[mainElem];
+
+    /* ---- 星盘视角：当日日月黄经 → 与精确本命盘度数级相位 ---- */
+    const lon = _ecliptic(date);
+    const moonSignIdx = _signOf(lon.moon);
+    const moonSign = ZODIAC_CN[moonSignIdx];
+    const moonElem = ZODIAC_ELEM[moonSignIdx];
+    const sunSign = ZODIAC_CN[_signOf(lon.sun)];
+    const aspSun = _aspectDeg(lon.moon, NATAL_LON.sun);
+    const aspMoon = _aspectDeg(lon.moon, NATAL_LON.moon);
+    const aspAsc = _aspectDeg(lon.sun, NATAL_LON.asc);
+    const ups = [aspSun, aspMoon, aspAsc].filter(Boolean).filter(a => a.level === "大吉").length;
+    const downs = [aspSun, aspMoon, aspAsc].filter(Boolean).filter(a => a.level === "守成").length;
+    let astroLevel;
+    if (aspSun && aspSun.level === "大吉" && ups >= 2) astroLevel = "大吉";
+    else if (aspSun && (aspSun.level === "守成") && downs >= 2) astroLevel = "守成";
+    else astroLevel = (aspSun && aspSun.level) || "平顺";
+    const mainAsp = aspSun || aspMoon || aspAsc;
+    const natalMoonSign = ZODIAC_CN[NATAL_MOON_IDX];
+    const moonNatalPart = aspMoon
+      ? `；月亮同时触发本命月亮（${natalMoonSign}），情绪面成「${aspMoon.name}」`
+      : `；本命月亮（${natalMoonSign}）${label}不受强相位扰动`;
+    const ascPart = aspAsc ? `对外表现受「${aspAsc.name}」影响` : `对外气场平稳`;
+    const astroText = `${label}月亮落在${moonSign}座（${moonElem}象），与你的本命太阳成「${mainAsp ? mainAsp.name : "顺行"}」${moonNatalPart}，${ascPart}。${mainAsp ? _ASPECT_CORE[mainAsp.kind] : _ASPECT_CORE.minor}${_ELEM_NOTE[moonElem]}`;
+
+    /* ---- 财运（星盘视角）：月亮四象 ---- */
+    const wealthMoonMap = { "土": "财旺", "火": "财活", "风": "财源", "水": "财平" };
+    const wealthNoteMap = {
+      "土": `月亮落${moonSign}座（土象），财帛宫得务实落地能量，谈钱进账、处理合约与财务较有把握。`,
+      "火": `月亮落${moonSign}座（火象），求财有冲劲但易急躁冒进，宜先谋定再出手。`,
+      "风": `月亮落${moonSign}座（风象），财源多来自人脉与点子，宜多沟通、谈合作、拓展资源。`,
+      "水": `月亮落${moonSign}座（水象），情绪易影响消费判断，宜克制冲动买单、量入为出。`
+    };
+    let astroWealthLevel = wealthMoonMap[moonElem] || "财平";
+    let astroWealthText = wealthNoteMap[moonElem] || "财运平顺，按计划打理即可。";
+    if (astroLevel === "大吉") { astroWealthLevel = "财旺"; astroWealthText = "星盘顺流加持，" + astroWealthText; }
+    else if (astroLevel === "守成") { astroWealthLevel = "财守"; astroWealthText = "星盘张力，财务宜守不宜攻，避免冲动投资与借贷。"; }
+
+    let synth;
+    if (luckLevel !== "守成" && astroLevel !== "守成") synth = "八字得气、星盘顺流，两盘同向向好——宜主动推进、把握关键节奏。";
+    else if (luckLevel === "守成" && astroLevel === "守成") synth = "八字与星盘皆宜守，" + label + "重蓄力与整理，重大决定缓一缓。";
+    else if (luckLevel === "守成") synth = "八字偏弱，但星盘有助力，可借外力与协作成事、对外多借势。";
+    else synth = "星盘张力，但八字得气，按自己节奏推进、对外多留弹性空间。";
+
+    /* 农历串：getMonthInChinese() 只返回「七」，需自行补「月」字 */
+    const lunarStr = `${gzY}${sx}年 ${lm}月${ld}`;
+    const LSC = { "大吉": 3, "平顺": 2, "守成": 1 };
+    const score = Math.round(((LSC[luckLevel] || 2) + (LSC[astroLevel] || 2)) / 6 * 100);
+
+    return {
+      solar, lunar, wk, gzY, sx, lm, ld, gzM, gzD, zhiXing, yi, ji, chong, sha, xz, jq, jqStr, lunarStr,
+      dayStem, dayBranch, sw, bw, fav, favCnt, hasWood, dayIsMetal,
+      luckLevel, luckText, wealthLevel, wealthText, mainElem, mainColor,
+      moonSign, moonElem, sunSign, aspSun, aspMoon, aspAsc, mainAsp,
+      astroLevel, astroText, astroWealthLevel, astroWealthText, synth, score
+    };
+  }
+
   function renderAlmanac() {
     const body = $("#almBody");
     if (!body) return;
@@ -3311,109 +3417,18 @@
     }
     try {
       const now = new Date();
-      const solar = Solar.fromDate(now);
-      const lunar = solar.getLunar();
       const WK = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
-      const gzY = lunar.getYearInGanZhi();
-      const sx = lunar.getYearShengXiao();
-      const lm = lunar.getMonthInChinese();
-      const ld = lunar.getDayInChinese();
-      const gzM = lunar.getMonthInGanZhi();
-      const gzD = lunar.getDayInGanZhi();
-      const zhiXing = lunar.getZhiXing();
-      const yi = lunar.getDayYi() || [];
-      const ji = lunar.getDayJi() || [];
-      const chong = lunar.getChong();
-      const sha = lunar.getSha();
-      const xz = solar.getXingZuo();
-      const jq = lunar.getJieQi();
-      const jqStr = (jq && jq !== "" && jq !== "无") ? ` · ${jq}` : "";
-
-      /* ---- 个人当日运势（身强戊土 喜金水木·木调和） ---- */
-      const dayStem = gzD.charAt(0), dayBranch = gzD.charAt(1);
-      const sw = wxOfChar(dayStem), bw = wxOfChar(dayBranch);
-      const fav = MY_PROFILE.fav;
-      const favCnt = (fav.includes(sw) ? 1 : 0) + (fav.includes(bw) ? 1 : 0);
-      const hasWood = (sw === "木" || bw === "木");
-      let luckLevel, luckText;
-      if (favCnt >= 2) { luckLevel = "大吉"; luckText = "金水木得气，身强得泄得制，思路清、行动顺，宜推进要事、把握机会。"; }
-      else if (favCnt === 1) { luckLevel = "平顺"; luckText = "喜用略有帮扶，气场中和，宜按部就班、稳扎稳打。"; }
-      else { luckLevel = "守成"; luckText = "土火偏旺、比劫印星当令，身强更盛，宜静不宜动，蓄力守成、重大决定缓一缓。"; }
-      if (hasWood) luckText += "木来调和，贵人暗助，沟通合作运佳。";
-      /* ---- 当日财运（八字视角）：戊土身强，以「金」为财星（土生金），金为喜用神之一 ---- */
-      const dayIsMetal = (sw === "金" || bw === "金");
-      let wealthLevel, wealthText;
-      if (dayIsMetal) {
-        wealthLevel = "财旺"; wealthText = "日干日支临金，财星得地当令，正偏财皆有可得之机，宜把握进账、谈成合作与合同。";
-      } else if (favCnt >= 2) {
-        wealthLevel = "财顺"; wealthText = "喜用神得气，财路顺畅、进账稳健，可适度开源、规划理财。";
-      } else if (favCnt === 1) {
-        wealthLevel = "财平"; wealthText = "财星平平，宜守现有收益，避免冲动消费与投机冒进。";
-      } else {
-        wealthLevel = "财守"; wealthText = "比劫偏旺、财星受制，宜守财勿漏，重大投资与借贷缓一缓。";
-      }
+      const F = almFortuneCore(now, "今日");
+      const { solar, lunar, fav, gzY, sx, lm, ld, gzM, gzD, zhiXing, yi, ji, chong, sha, xz, jq, jqStr, lunarStr,
+        favCnt, hasWood, dayStem, dayBranch, sw, bw,
+        luckLevel, luckText, wealthLevel, wealthText, mainColor,
+        astroLevel, astroText, astroWealthLevel, astroWealthText,
+        moonSign, moonElem, sunSign, mainAsp, synth } = F;
       const favColors = fav.map(e => `<span class="alm-clr" style="background:${ELEM_COLOR[e].hex};color:${ELEM_COLOR[e].txt}">${ELEM_COLOR[e].name}</span>`).join("");
-      const mainElem = hasWood ? "木" : (fav.includes(sw) ? sw : (fav.includes(bw) ? bw : "木"));
-      const mainColor = ELEM_COLOR[mainElem];
-
-      /* ---- 星盘视角：当日日月黄经 → 与精确本命盘(太阳/月亮/上升)的度数级相位 ---- */
-      const _lon = _ecliptic(now);
-      const _moonSignIdx = _signOf(_lon.moon);
-      const moonSign = ZODIAC_CN[_moonSignIdx];
-      const moonElem = ZODIAC_ELEM[_moonSignIdx];
-      const sunSign = ZODIAC_CN[_signOf(_lon.sun)];
-      // 度数级相位（orb 8°）：月亮→本命太阳(情感主线)、月亮→本命月亮(内在情绪)、太阳→本命上升(自我展现)
-      const aspSun = _aspectDeg(_lon.moon, NATAL_LON.sun);
-      const aspMoon = _aspectDeg(_lon.moon, NATAL_LON.moon);
-      const aspAsc = _aspectDeg(_lon.sun, NATAL_LON.asc);
-      // 星盘吉凶综合：以月照本命太阳为主，参考内在情绪与自我展现两面
-      const ups = [aspSun, aspMoon, aspAsc].filter(Boolean).filter(a => a.level === "大吉").length;
-      const downs = [aspSun, aspMoon, aspAsc].filter(Boolean).filter(a => a.level === "守成").length;
-      let astroLevel;
-      if (aspSun && aspSun.level === "大吉" && ups >= 2) astroLevel = "大吉";
-      else if (aspSun && (aspSun.level === "守成") && downs >= 2) astroLevel = "守成";
-      else astroLevel = (aspSun && aspSun.level) || "平顺";
-      // 主导相位（供文案定位）：月照本命太阳 > 月照本命月亮 > 太阳照上升
-      const mainAsp = aspSun || aspMoon || aspAsc;
-      const natalMoonSign = ZODIAC_CN[NATAL_MOON_IDX];
-      const natalAscSign = ZODIAC_CN[NATAL_ASC_IDX];
-      const moonNatalPart = aspMoon
-        ? `；月亮同时触发本命月亮（${natalMoonSign}），情绪面成「${aspMoon.name}」`
-        : `；本命月亮（${natalMoonSign}）今日不受强相位扰动`;
-      const ascPart = aspAsc
-        ? `对外表现受「${aspAsc.name}」影响`
-        : `对外气场平稳`;
-      const astroText = `今日月亮落在${moonSign}座（${moonElem}象），与你的本命太阳成「${mainAsp ? mainAsp.name : "顺行"}」${moonNatalPart}，${ascPart}。${mainAsp ? _ASPECT_CORE[mainAsp.kind] : _ASPECT_CORE.minor}${_ELEM_NOTE[moonElem]}`;
-      /* ---- 当日财运（星盘视角）：月亮四象定位务实/开拓/人脉/情绪消费，再以本命相位加持或收束 ---- */
-      const wealthMoonMap = { "土": "财旺", "火": "财活", "风": "财源", "水": "财平" };
-      const wealthNoteMap = {
-        "土": `月亮落${moonSign}座（土象），财帛宫得务实落地能量，谈钱进账、处理合约与财务较有把握。`,
-        "火": `月亮落${moonSign}座（火象），求财有冲劲但易急躁冒进，宜先谋定再出手。`,
-        "风": `月亮落${moonSign}座（风象），财源多来自人脉与点子，宜多沟通、谈合作、拓展资源。`,
-        "水": `月亮落${moonSign}座（水象），情绪易影响消费判断，宜克制冲动买单、量入为出。`
-      };
-      let astroWealthLevel = wealthMoonMap[moonElem] || "财平";
-      let astroWealthText = wealthNoteMap[moonElem] || "财运平顺，按计划打理即可。";
-      if (astroLevel === "大吉") {
-        astroWealthLevel = "财旺"; astroWealthText = "星盘顺流加持，" + astroWealthText;
-      } else if (astroLevel === "守成") {
-        astroWealthLevel = "财守"; astroWealthText = "星盘张力，财务宜守不宜攻，避免冲动投资与借贷。";
-      }
-      let synth;
-      if (luckLevel !== "守成" && astroLevel !== "守成") {
-        synth = "八字得气、星盘顺流，两盘同向向好——宜主动推进、把握关键节奏。";
-      } else if (luckLevel === "守成" && astroLevel === "守成") {
-        synth = "八字与星盘皆宜守，今日重蓄力与整理，重大决定缓一缓。";
-      } else if (luckLevel === "守成") {
-        synth = "八字偏弱，但星盘有助力，可借外力与协作成事、对外多借势。";
-      } else {
-        synth = "星盘张力，但八字得气，按自己节奏推进、对外多留弹性空间。";
-      }
 
       const y = now.getFullYear(), m = now.getMonth() + 1, d = now.getDate();
       const gd = `${y}年${m}月${d}日`;
       const wk = WK[now.getDay()];
-      const lunarStr = `${gzY}${sx}年 ${lm}${ld}`;
       _almKey = almDateKey(now);
       const yiHtml = yi.length
         ? yi.map(x => `<span class="alm-tag yi">${escapeHtml(x)}</span>`).join("")
@@ -3495,12 +3510,290 @@
   function almCheckDate() {
     try {
       const k = almDateKey(new Date());
-      if (k !== _almKey) renderAlmanac();
+      if (k !== _almKey) { renderAlmanac(); try { renderAlmFortune(); } catch (e) { /* 忽略月运刷新异常 */ } }
     } catch (e) { /* 忽略轮询异常 */ }
   }
   setInterval(almCheckDate, 60 * 1000);
   document.addEventListener("visibilitychange", () => { if (!document.hidden) almCheckDate(); });
   window.addEventListener("focus", almCheckDate);
+
+  /* ---------- 月运 · 周运：点击任意一天可展开当日完整运势 ---------- */
+  const ALM_WD_CN = ["一", "二", "三", "四", "五", "六", "日"];
+  const _almFortCache = {};
+  var _almFortMonth = null;    // 当前查看月份 "yyyy-m"（m 为 0-based）
+  var _almFortOpenDay = null;  // 当前展开的日期 key
+  var _almFortBound = false;
+
+  function almFortOf(date) {
+    const k = almDateKey(date);
+    if (!_almFortCache[k]) _almFortCache[k] = almFortuneCore(date, "当天");
+    return _almFortCache[k];
+  }
+  function almLevelCls(lv) { return lv === "大吉" ? "v-good" : (lv === "守成" ? "v-low" : "v-mid"); }
+
+  /* 月历矩阵：周一首列，补齐首尾跨月的整周 */
+  function almMonthGrid(y, m) {
+    const lead = (new Date(y, m, 1).getDay() + 6) % 7;
+    const lastD = new Date(y, m + 1, 0);
+    const tail = 6 - ((lastD.getDay() + 6) % 7);
+    const from = new Date(y, m, 1 - lead);
+    const to = new Date(y, m + 1, tail);
+    const weeks = [];
+    let cur = from;
+    while (cur <= to) {
+      const w = [];
+      for (let i = 0; i < 7; i++) w.push(new Date(cur.getFullYear(), cur.getMonth(), cur.getDate() + i));
+      weeks.push(w);
+      cur = new Date(cur.getFullYear(), cur.getMonth(), cur.getDate() + 7);
+    }
+    return weeks;
+  }
+
+  /* 本月整体评断 */
+  function almMonthVerdict(days) {
+    const total = days.length;
+    const g = days.filter(o => o.F.luckLevel === "大吉").length;
+    const l = days.filter(o => o.F.luckLevel === "守成").length;
+    const mid = total - g - l;
+    const avg = Math.round(days.reduce((s, o) => s + o.F.score, 0) / total);
+    const rate = g / total, lowRate = l / total;
+    let title, desc;
+    if (rate >= 0.35) {
+      title = "气势上行";
+      desc = `本月大吉日 ${g} 天（占 ${Math.round(rate * 100)}%），动能充足。适合把签约、启动、面试、公开表达这类「要结果」的事往前排，遇到机会果断出手。`;
+    } else if (lowRate >= 0.4) {
+      title = "守成为主";
+      desc = `本月守成日 ${l} 天（占 ${Math.round(lowRate * 100)}%），土火偏旺的日子偏多。适合做整理、复盘、蓄力与内部事务，重大决定与冒进投资缓到下月再看。`;
+    } else if (rate >= 0.2) {
+      title = "稳步向好";
+      desc = `本月大吉 ${g} 天、平顺 ${mid} 天、守成 ${l} 天，节奏张弛有度。把关键动作压在大吉日，平淡日子推进常规事务与收尾，整体效率最高。`;
+    } else {
+      title = "平稳蓄势";
+      desc = `本月以平顺日为主（大吉 ${g} 天、守成 ${l} 天），缺少强爆发窗口，也谈不上坑。适合按部就班积累，攒到大吉日再集中发力。`;
+    }
+    return { total: total, g: g, mid: mid, l: l, avg: avg, title: title, desc: desc };
+  }
+
+  /* 本周评断 */
+  function almWeekVerdict(list) {
+    const g = list.filter(o => o.F.luckLevel === "大吉").length;
+    const l = list.filter(o => o.F.luckLevel === "守成").length;
+    const avg = Math.round(list.reduce((s, o) => s + o.F.score, 0) / list.length);
+    let title, desc;
+    if (g >= 3) { title = "强势周"; desc = `本周 ${g} 天大吉，动能集中，适合啃硬骨头、谈结果、做需要当场拍板的事。`; }
+    else if (l >= 3) { title = "收敛周"; desc = `本周 ${l} 天守成，节奏宜慢，适合整理复盘、补漏结账、照顾身体，别硬推。`; }
+    else if (g >= 1 && l >= 1) { title = "起伏周"; desc = `本周 ${g} 天大吉、${l} 天守成，有峰值也有低谷。重要事排在大吉日，守成日做收尾与打磨。`; }
+    else { title = "平稳周"; desc = `本周整体平顺，没有明显波动，适合稳定推进常规节奏、按计划完成待办。`; }
+    return { g: g, l: l, avg: avg, title: title, desc: desc };
+  }
+
+  /* 周列表里每天的一句话摘要 */
+  function almDayBrief(F) {
+    if (F.luckLevel === "大吉") return F.dayIsMetal ? "财星当令 · 宜进账签约" : "气场全开 · 宜推进要事";
+    if (F.luckLevel === "守成") return "土火偏旺 · 宜守宜蓄力";
+    return F.hasWood ? "木来调和 · 贵人暗助" : "气场中和 · 稳扎稳打";
+  }
+
+  /* 某一天的完整运势（八字 × 星盘双视角） */
+  function almDayDetail(date, F) {
+    const y = date.getFullYear(), mo = date.getMonth() + 1, d = date.getDate();
+    const favColors = F.fav.map(e => `<span class="alm-clr" style="background:${ELEM_COLOR[e].hex};color:${ELEM_COLOR[e].txt}">${ELEM_COLOR[e].name}</span>`).join("");
+    const yiHtml = F.yi.length ? F.yi.map(x => `<span class="alm-tag yi">${escapeHtml(x)}</span>`).join("") : `<span class="alm-tag none">诸事随缘</span>`;
+    const jiHtml = F.ji.length ? F.ji.map(x => `<span class="alm-tag ji">${escapeHtml(x)}</span>`).join("") : `<span class="alm-tag none">无</span>`;
+    return `
+      <div class="alm-detail">
+        <div class="alm-detail-hd">
+          <span class="alm-detail-date">${y}年${mo}月${d}日 · ${F.wk}</span>
+          <span class="alm-detail-ln">${escapeHtml(F.lunarStr)}</span>
+        </div>
+        <div class="alm-ganzhi">${escapeHtml(F.gzY)}年 · ${escapeHtml(F.gzM)}月 · ${escapeHtml(F.gzD)}日 · ${escapeHtml(F.xz)}座</div>
+        <div class="alm-luck">
+          <span class="alm-star">${escapeHtml(F.zhiXing)}日</span>
+          ${F.chong ? `<span class="alm-clash">冲${escapeHtml(F.chong)}${F.sha ? ` · 煞${escapeHtml(F.sha)}` : ""}</span>` : ""}
+          <span class="alm-clash">综合指数 ${F.score}</span>
+        </div>
+        <div class="alm-views">
+          <div class="alm-view">
+            <div class="alm-view-h">☯ 八字视角</div>
+            <div class="alm-luck2">
+              <span class="alm-luck-lv lv-${F.luckLevel}">${F.luckLevel}</span>
+              <span class="alm-luck-txt">${escapeHtml(F.luckText)}</span>
+            </div>
+            <div class="alm-luck2 alm-wealth">
+              <span class="alm-luck-lv lv-${F.wealthLevel}">💰${F.wealthLevel}</span>
+              <span class="alm-luck-txt">${escapeHtml(F.wealthText)}</span>
+            </div>
+            <div class="alm-clr-row">
+              <span class="alm-clr-label">幸运色系</span>${favColors}
+            </div>
+            <div class="alm-clr-row">
+              <span class="alm-clr-label">当天主打</span><span class="alm-clr alm-clr-main" style="background:${F.mainColor.hex};color:${F.mainColor.txt}">${escapeHtml(F.mainColor.name)}</span>
+              <span class="alm-daywx">日干 ${escapeHtml(F.dayStem)}（${escapeHtml(F.sw)}）· 日支 ${escapeHtml(F.dayBranch)}（${escapeHtml(F.bw)}）</span>
+            </div>
+          </div>
+          <div class="alm-view alm-view-astro">
+            <div class="alm-view-h">✦ 星盘视角</div>
+            <div class="alm-luck2">
+              <span class="alm-luck-lv lv-${F.astroLevel}">${F.astroLevel}</span>
+              <span class="alm-luck-txt">${escapeHtml(F.astroText)}</span>
+            </div>
+            <div class="alm-luck2 alm-wealth">
+              <span class="alm-luck-lv lv-${F.astroWealthLevel}">💰${F.astroWealthLevel}</span>
+              <span class="alm-luck-txt">${escapeHtml(F.astroWealthText)}</span>
+            </div>
+            <div class="alm-clr-row">
+              <span class="alm-clr-label">月亮</span><span class="alm-clr alm-clr-main">${escapeHtml(F.moonSign)}座 · ${escapeHtml(F.moonElem)}象</span>
+            </div>
+            <div class="alm-clr-row">
+              <span class="alm-clr-label">太阳</span><span class="alm-clr">行进于${escapeHtml(F.sunSign)}座</span>
+              <span class="alm-clr-label" style="margin-left:4px">相位</span><span class="alm-clr">与巨蟹本命「${escapeHtml(F.mainAsp ? F.mainAsp.name : "顺行")}」</span>
+            </div>
+          </div>
+        </div>
+        <div class="alm-synth">🜔 综合：${escapeHtml(F.synth)}</div>
+        <div class="alm-row">
+          <div class="alm-yi-label">宜</div>
+          <div class="alm-tags">${yiHtml}</div>
+        </div>
+        <div class="alm-row">
+          <div class="alm-ji-label">忌</div>
+          <div class="alm-tags">${jiHtml}</div>
+        </div>
+      </div>`;
+  }
+
+  function almFortShift(delta) {
+    const now = new Date();
+    const cur = _almFortMonth ? _almFortMonth.split("-").map(Number) : [now.getFullYear(), now.getMonth()];
+    let y = cur[0], m = cur[1] + delta;
+    y += Math.floor(m / 12);
+    m = ((m % 12) + 12) % 12;
+    _almFortMonth = y + "-" + m;
+    _almFortOpenDay = null;
+    renderAlmFortune();
+  }
+
+  function renderAlmFortune() {
+    const box = $("#almFortune");
+    if (!box) return;
+    if (typeof Solar === "undefined" || !Solar.fromDate) {
+      box.innerHTML = `<div class="alm-fallback">月运组件未加载</div>`;
+      return;
+    }
+    const now = new Date();
+    const cur = _almFortMonth ? _almFortMonth.split("-").map(Number) : [now.getFullYear(), now.getMonth()];
+    const y = cur[0], m = cur[1];
+    try {
+      const todayKey = almDateKey(now);
+      const isThisMonth = (y === now.getFullYear() && m === now.getMonth());
+      const fm = d => `${d.getMonth() + 1}/${d.getDate()}`;
+
+      const days = [];
+      const lastD = new Date(y, m + 1, 0).getDate();
+      for (let i = 1; i <= lastD; i++) { const d = new Date(y, m, i); days.push({ date: d, F: almFortOf(d) }); }
+      const V = almMonthVerdict(days);
+      const ranked = days.slice().sort((a, b) => (b.F.score - a.F.score) || (a.date - b.date));
+      const topHtml = ranked.slice(0, 3).map(o => `<span class="alm-chip ${almLevelCls(o.F.luckLevel)}">${fm(o.date)} ${escapeHtml(o.F.luckLevel)}</span>`).join("");
+      const lowHtml = ranked.slice(-2).reverse().map(o => `<span class="alm-chip v-low">${fm(o.date)} ${escapeHtml(o.F.luckLevel)}</span>`).join("");
+
+      /* 月历（周一首列） */
+      let calHtml = `<div class="alm-cal">`;
+      for (let i = 0; i < 7; i++) calHtml += `<div class="alm-cal-hd">${ALM_WD_CN[i]}</div>`;
+      almMonthGrid(y, m).forEach(function (w) {
+        w.forEach(function (d) {
+          const F = almFortOf(d), k = almDateKey(d);
+          calHtml += `<div class="alm-cell${d.getMonth() === m ? "" : " out"}${k === todayKey ? " today" : ""}" data-alm-day="${k}" title="${d.getMonth() + 1}月${d.getDate()}日 · ${escapeHtml(F.luckLevel)}">
+            <div class="alm-cell-num">${d.getDate()}</div>
+            <div class="alm-cell-ln">${escapeHtml(F.ld)}</div>
+            <span class="alm-dot ${almLevelCls(F.luckLevel)}"></span>
+          </div>`;
+        });
+      });
+      calHtml += `</div>`;
+
+      /* 逐周运势 */
+      let weekHtml = "";
+      almMonthGrid(y, m).forEach(function (w, wi) {
+        const list = w.map(d => ({ date: d, F: almFortOf(d), inM: d.getMonth() === m }));
+        const W = almWeekVerdict(list);
+        const hasToday = list.some(o => almDateKey(o.date) === todayKey);
+        weekHtml += `<div class="alm-week${hasToday ? " cur" : ""}">
+          <div class="alm-week-hd">
+            <span class="alm-week-no">第 ${wi + 1} 周</span>
+            <span class="alm-week-range">${fm(w[0])} - ${fm(w[6])}</span>
+            <span class="alm-week-tag ${W.g >= 3 ? "v-good" : (W.l >= 3 ? "v-low" : "v-mid")}">${escapeHtml(W.title)}</span>
+            <span class="alm-week-avg">指数 ${W.avg}</span>
+          </div>
+          <div class="alm-week-desc">${escapeHtml(W.desc)}</div>
+          <div class="alm-week-days">`;
+        list.forEach(function (o) {
+          const k = almDateKey(o.date);
+          const open = _almFortOpenDay === k;
+          weekHtml += `<div class="alm-day${open ? " open" : ""}${k === todayKey ? " today" : ""}${o.inM ? "" : " out"}">
+            <div class="alm-day-bar" data-alm-day="${k}">
+              <span class="alm-day-w">${o.F.wk.replace("星期", "周")}</span>
+              <span class="alm-day-d">${fm(o.date)}</span>
+              <span class="alm-day-lv ${almLevelCls(o.F.luckLevel)}">${escapeHtml(o.F.luckLevel)}</span>
+              <span class="alm-day-brief">${escapeHtml(almDayBrief(o.F))}</span>
+              <span class="alm-day-arr">${open ? "▾" : "▸"}</span>
+            </div>
+            ${open ? almDayDetail(o.date, o.F) : ""}
+          </div>`;
+        });
+        weekHtml += `</div></div>`;
+      });
+
+      box.innerHTML = `
+        <div class="alm-fort-nav">
+          <span class="alm-fort-title">📆 月运 · 周运</span>
+          <button class="alm-fbtn" data-alm-nav="-1" type="button" title="上个月">◀</button>
+          <span class="alm-fort-ym">${y} 年 ${m + 1} 月</span>
+          <button class="alm-fbtn" data-alm-nav="1" type="button" title="下个月">▶</button>
+          ${isThisMonth ? "" : `<button class="alm-fbtn wide" data-alm-back="1" type="button">回到本月</button>`}
+        </div>
+        <div class="alm-sum">
+          <div class="alm-sum-hd">
+            <span class="alm-sum-title">本月基调 · ${escapeHtml(V.title)}</span>
+            <span class="alm-sum-avg">综合指数 ${V.avg}</span>
+          </div>
+          <div class="alm-sum-desc">${escapeHtml(V.desc)}</div>
+          <div class="alm-sum-cnt">
+            <span class="alm-cnt v-good">大吉 ${V.g} 天</span>
+            <span class="alm-cnt v-mid">平顺 ${V.mid} 天</span>
+            <span class="alm-cnt v-low">守成 ${V.l} 天</span>
+          </div>
+          <div class="alm-sum-row"><span class="alm-sum-lab">🌟 高光日</span>${topHtml}</div>
+          <div class="alm-sum-row"><span class="alm-sum-lab">⚠️ 谨慎日</span>${lowHtml}</div>
+        </div>
+        ${calHtml}
+        <div class="alm-fort-tip">👆 点击月历格子或周内任意一天，展开当天完整运势（八字 × 星盘双视角）</div>
+        <div class="alm-weeks">${weekHtml}</div>`;
+
+      if (!_almFortBound) {
+        _almFortBound = true;
+        box.addEventListener("click", function (ev) {
+          const t = ev.target;
+          if (!t || !t.closest) return;
+          const nav = t.closest("[data-alm-nav]");
+          if (nav) { almFortShift(Number(nav.getAttribute("data-alm-nav"))); return; }
+          if (t.closest("[data-alm-back]")) { _almFortMonth = null; _almFortOpenDay = null; renderAlmFortune(); return; }
+          const day = t.closest("[data-alm-day]");
+          if (day) {
+            const k = day.getAttribute("data-alm-day");
+            _almFortOpenDay = (_almFortOpenDay === k) ? null : k;
+            renderAlmFortune();
+            try {
+              const el = $(".alm-day.open");
+              if (el && el.scrollIntoView) el.scrollIntoView({ behavior: "smooth", block: "nearest" });
+            } catch (e) { /* 忽略滚动异常 */ }
+          }
+        });
+      }
+    } catch (e) {
+      box.innerHTML = `<div class="alm-fallback">月运生成失败：${escapeHtml(e && e.message ? e.message : e)}</div>`;
+    }
+  }
+  renderAlmFortune();
 
   renderMemoTabs();
   renderMemos();
@@ -6452,6 +6745,10 @@
   function lsSet(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
 
   /* ---------- 状态 ---------- */
+  /* trades 需早于下方「云同步初始化保护 IIFE」完成初始化：该段会同步调用
+     persistDefaultQuotes → renderQuotes → heldStockItems，此时读取 trades 若尚未
+     初始化会抛 "Cannot access 'trades' before initialization"（历史遗留 TDZ bug）。 */
+  let trades = lsGet(LS_KEYS.trades, []);    // [{...}]
   let quotes = lsGet(LS_KEYS.quotes, null);
   if (quotes === null) {
     quotes = [];
@@ -6503,7 +6800,6 @@
       persistDefaultQuotes();
     }
   }
-  let trades = lsGet(LS_KEYS.trades, []);    // [{...}]
   let alertCfg = lsGet(LS_KEYS.alert, { drop: 3, rise: 5, rsiHi: 70, rsiLo: 30 });
 
   /* ---------- 市场识别 ---------- */
