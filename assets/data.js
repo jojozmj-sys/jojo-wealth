@@ -5544,7 +5544,7 @@ window.WORKBENCH_DATA = {
   },
   "dailyHot": {
     "mode": "daily",
-    "updated": "2026-10-18 15:39",
+    "updated": "2026-10-18 15:40",
     "platforms": [
       "微博",
       "抖音",
@@ -6237,7 +6237,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 1,
           "title": "我造了一块会飞的滑板...",
-          "hot": 5905563,
+          "hot": 5906134,
           "url": "https://b23.tv/BV1KiJk67EQ9",
           "tag": "影视",
           "desc": "这次手搓的是一个操控难度有点高，但是超级灵活的个人飞行器—载人飞行滑板！ 掌握之后真的有种御剑飞行的感觉，超级自由。 感谢STEPX对本期视频的赞助支持，StepX Neo真的是一台让人很惊艳的Ai智能体手机。 同时也非常感谢我的家乡 — 湖北巴东县委宣传部以及各相关部门领导对这次拍摄的大力支持。 很高兴能够用自己的方式让大家看到我的家乡！"
@@ -6255,7 +6255,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 3,
           "title": "科学家们用物理智斗爱因斯坦？",
-          "hot": 3453253,
+          "hot": 3454433,
           "url": "https://b23.tv/BV1fZJ26mEiY",
           "tag": "影视",
           "desc": ""
@@ -6264,7 +6264,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 4,
           "title": "《剃刀 》每一个也许都要付钱：0.8⁵ = 33%",
-          "hot": 1846606,
+          "hot": 1846952,
           "url": "https://b23.tv/BV1WkJk6VEqA",
           "tag": "影视",
           "desc": "十个点，复杂曲线穿过每一个，直线一个都没穿过。第十一个点落下——简单的那条，输了昨天，赢了明天。"
@@ -6273,7 +6273,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 5,
           "title": "友情提示：没点艺术细胞的人刷不到这条视频！",
-          "hot": 1902850,
+          "hot": 1905805,
           "url": "https://b23.tv/BV1WwJy6EEMg",
           "tag": "影视",
           "desc": "-"
@@ -6291,7 +6291,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 7,
           "title": "《最有耐心の杀手》",
-          "hot": 4154849,
+          "hot": 4155218,
           "url": "https://b23.tv/BV1SMJC6sE6R",
           "tag": "影视",
           "desc": "-"
@@ -6309,7 +6309,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 9,
           "title": "婚礼摄影师记录下婚礼后感人一幕……喧闹落幕，新人相视一笑便红了眼眶",
-          "hot": 2645388,
+          "hot": 2645540,
           "url": "https://b23.tv/BV19gp16kEAV",
           "tag": "影视",
           "desc": "（素材来源：志伟的拍摄日记）"
@@ -6318,7 +6318,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 10,
           "title": "“起兵yes削藩no，奉天靖难gogogo！”",
-          "hot": 2055611,
+          "hot": 2056280,
           "url": "https://b23.tv/BV1HCpS6iEXh",
           "tag": "影视",
           "desc": "\"起兵yes削藩no，奉天靖难gogogo！\"大明严选，全程高能不烧心！ 特别鸣谢：@配音木成 老师的配音"
@@ -6336,7 +6336,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 12,
           "title": "花费上万！真人版弹丸论破开庭！",
-          "hot": 1713388,
+          "hot": 1714665,
           "url": "https://b23.tv/BV1Y2Je6BEDr",
           "tag": "影视",
           "desc": "既然评论区这么多人都想看，那就继续做一些吧 视频是AI和视频后期结合制作的 狛枝的声音AI确实比较难还原，所以这次用的狛枝的原声 不是很懂日语噢，可能会有些日语的发音错误"
@@ -6354,7 +6354,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 14,
           "title": "宵禁｜鼓敲满一千下，长安城会发生什么（4K成片）",
-          "hot": 2224538,
+          "hot": 2224778,
           "url": "https://b23.tv/BV1VyWw6sEAg",
           "tag": "影视",
           "desc": "唐朝的长安，天一黑先响鼓：敲满一千下，一百零八个坊的门全部关上，还走在大街上的人，抓住抽二十下。鼓已经敲到第九百下，离家还有三条街，你怎么办？"
@@ -6363,7 +6363,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 15,
           "title": "让百万人尖叫的鬼屋？我们发现了这里的秘密……",
-          "hot": 2252218,
+          "hot": 2252570,
           "url": "https://b23.tv/BV1KiJk67Ezw",
           "tag": "影视",
           "desc": "不知道你有没有被鬼屋吓过？为了让你尖叫，他们到底在背后做了什么？这一次我们受北京环球影城的邀请走进了他们的惊吓空间，想带你看看在惊吓之外，这里还藏着多少设计。如果你喜欢这期视频，请多多支持我们，并把视频分享给你的朋友们！"
@@ -6372,7 +6372,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 16,
           "title": "百斤玉米 擒巨物",
-          "hot": 3337273,
+          "hot": 3338141,
           "url": "https://b23.tv/BV1Nppn6tEhW",
           "tag": "影视",
           "desc": "-"
@@ -6390,7 +6390,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 18,
           "title": "【侦探TV】真好…每个人都有自己忙的事……",
-          "hot": 2143905,
+          "hot": 2144546,
           "url": "https://b23.tv/BV1czJS6bEG1",
           "tag": "影视",
           "desc": "世界像一个大滚轮，把一些小人物碾过。但是我有权力乐观！只是现在遇到点小问题~我还活着吗？不管了，相信荒诞的力量！收到请回复！收到请回复！这里是乾乾 speaking! Over！"
@@ -6408,7 +6408,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 20,
           "title": "猜！谁吃到了黑暗料理？",
-          "hot": 2197903,
+          "hot": 2198414,
           "url": "https://b23.tv/BV1RfJk6hENZ",
           "tag": "影视",
           "desc": "本期的冠军，将获得奖金100万(分钱)！"
@@ -6417,7 +6417,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 21,
           "title": "欠钱不还却有钱出道？是谁又在给老赖之女洗白？深扒李秀满新女团成员盛艾敬！",
-          "hot": 1830796,
+          "hot": 1831530,
           "url": "https://b23.tv/BV1s7JX6gELt",
           "tag": "影视",
           "desc": "我真是没招了。"
@@ -6426,7 +6426,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 22,
           "title": "“以善为饵，比恶更恶”",
-          "hot": 3066020,
+          "hot": 3066468,
           "url": "https://b23.tv/BV1q3pS6tE4J",
           "tag": "影视",
           "desc": "“以善为饵，比恶更恶”"
@@ -6444,7 +6444,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 24,
           "title": "手搓版迪迦奥特曼",
-          "hot": 1487446,
+          "hot": 1489347,
           "url": "https://b23.tv/BV1XJJ96oEXg",
           "tag": "影视",
           "desc": "-"
@@ -6453,7 +6453,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 25,
           "title": "我是人类",
-          "hot": 2152414,
+          "hot": 2154192,
           "url": "https://b23.tv/BV1gKJ86JEuP",
           "tag": "影视",
           "desc": "游戏：i'm not a robot"
