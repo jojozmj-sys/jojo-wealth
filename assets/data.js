@@ -5590,7 +5590,7 @@ window.WORKBENCH_DATA = {
   },
   "dailyHot": {
     "mode": "daily",
-    "updated": "2026-10-20 15:09",
+    "updated": "2026-10-20 15:36",
     "platforms": [
       "微博",
       "抖音",
@@ -5833,7 +5833,7 @@ window.WORKBENCH_DATA = {
           "platform": "抖音",
           "rank": 1,
           "title": "美舰冲闯南沙群岛仙宾礁附近海域",
-          "hot": 11997036,
+          "hot": 11897559,
           "url": "https://www.douyin.com/search/%E7%BE%8E%E8%88%B0%E5%86%B2%E9%97%AF%E5%8D%97%E6%B2%99%E7%BE%A4%E5%B2%9B%E4%BB%99%E5%AE%BE%E7%A4%81%E9%99%84%E8%BF%91%E6%B5%B7%E5%9F%9F",
           "tag": "娱乐",
           "desc": "3001"
@@ -5842,7 +5842,7 @@ window.WORKBENCH_DATA = {
           "platform": "抖音",
           "rank": 2,
           "title": "英雄联盟S16瑞士轮首日赛程",
-          "hot": 11700218,
+          "hot": 11667329,
           "url": "https://www.douyin.com/search/%E8%8B%B1%E9%9B%84%E8%81%94%E7%9B%9FS16%E7%91%9E%E5%A3%AB%E8%BD%AE%E9%A6%96%E6%97%A5%E8%B5%9B%E7%A8%8B",
           "tag": "娱乐",
           "desc": "12001"
@@ -5851,7 +5851,7 @@ window.WORKBENCH_DATA = {
           "platform": "抖音",
           "rank": 3,
           "title": "何以中国当惊世界殊",
-          "hot": 11168856,
+          "hot": 11310811,
           "url": "https://www.douyin.com/search/%E4%BD%95%E4%BB%A5%E4%B8%AD%E5%9B%BD%E5%BD%93%E6%83%8A%E4%B8%96%E7%95%8C%E6%AE%8A",
           "tag": "娱乐",
           "desc": "3001"
@@ -5860,7 +5860,7 @@ window.WORKBENCH_DATA = {
           "platform": "抖音",
           "rank": 4,
           "title": "吴艳妮说只要跑得动就不会退役",
-          "hot": 11103672,
+          "hot": 11238761,
           "url": "https://www.douyin.com/search/%E5%90%B4%E8%89%B3%E5%A6%AE%E8%AF%B4%E5%8F%AA%E8%A6%81%E8%B7%91%E5%BE%97%E5%8A%A8%E5%B0%B1%E4%B8%8D%E4%BC%9A%E9%80%80%E5%BD%B9",
           "tag": "娱乐",
           "desc": "20002"
@@ -5868,26 +5868,26 @@ window.WORKBENCH_DATA = {
         {
           "platform": "抖音",
           "rank": 5,
-          "title": "社保基金会原副理事长王文灵被双开",
-          "hot": 10534414,
-          "url": "https://www.douyin.com/search/%E7%A4%BE%E4%BF%9D%E5%9F%BA%E9%87%91%E4%BC%9A%E5%8E%9F%E5%89%AF%E7%90%86%E4%BA%8B%E9%95%BF%E7%8E%8B%E6%96%87%E7%81%B5%E8%A2%AB%E5%8F%8C%E5%BC%80",
-          "tag": "娱乐",
-          "desc": "3001"
-        },
-        {
-          "platform": "抖音",
-          "rank": 6,
           "title": "我关注的中国设计师都在抖音大秀",
-          "hot": 10507906,
+          "hot": 10548363,
           "url": "https://www.douyin.com/search/%E6%88%91%E5%85%B3%E6%B3%A8%E7%9A%84%E4%B8%AD%E5%9B%BD%E8%AE%BE%E8%AE%A1%E5%B8%88%E9%83%BD%E5%9C%A8%E6%8A%96%E9%9F%B3%E5%A4%A7%E7%A7%80",
           "tag": "娱乐",
           "desc": "16000"
         },
         {
           "platform": "抖音",
+          "rank": 6,
+          "title": "社保基金会原副理事长王文灵被双开",
+          "hot": 10517713,
+          "url": "https://www.douyin.com/search/%E7%A4%BE%E4%BF%9D%E5%9F%BA%E9%87%91%E4%BC%9A%E5%8E%9F%E5%89%AF%E7%90%86%E4%BA%8B%E9%95%BF%E7%8E%8B%E6%96%87%E7%81%B5%E8%A2%AB%E5%8F%8C%E5%BC%80",
+          "tag": "娱乐",
+          "desc": "3001"
+        },
+        {
+          "platform": "抖音",
           "rank": 7,
           "title": "当东北人假装南方人",
-          "hot": 9392127,
+          "hot": 9399848,
           "url": "https://www.douyin.com/search/%E5%BD%93%E4%B8%9C%E5%8C%97%E4%BA%BA%E5%81%87%E8%A3%85%E5%8D%97%E6%96%B9%E4%BA%BA",
           "tag": "娱乐",
           "desc": "10000"
@@ -5896,7 +5896,7 @@ window.WORKBENCH_DATA = {
           "platform": "抖音",
           "rank": 8,
           "title": "天黑了该我在乐园上场了",
-          "hot": 9340865,
+          "hot": 9367453,
           "url": "https://www.douyin.com/search/%E5%A4%A9%E9%BB%91%E4%BA%86%E8%AF%A5%E6%88%91%E5%9C%A8%E4%B9%90%E5%9B%AD%E4%B8%8A%E5%9C%BA%E4%BA%86",
           "tag": "娱乐",
           "desc": "10000"
@@ -5905,7 +5905,7 @@ window.WORKBENCH_DATA = {
           "platform": "抖音",
           "rank": 9,
           "title": "披旭日旗中国留学生已被遣返",
-          "hot": 9195115,
+          "hot": 9229578,
           "url": "https://www.douyin.com/search/%E6%8A%AB%E6%97%AD%E6%97%A5%E6%97%97%E4%B8%AD%E5%9B%BD%E7%95%99%E5%AD%A6%E7%94%9F%E5%B7%B2%E8%A2%AB%E9%81%A3%E8%BF%94",
           "tag": "娱乐",
           "desc": "4003"
@@ -5914,7 +5914,7 @@ window.WORKBENCH_DATA = {
           "platform": "抖音",
           "rank": 10,
           "title": "三角洲野火测评来了",
-          "hot": 9182624,
+          "hot": 9190010,
           "url": "https://www.douyin.com/search/%E4%B8%89%E8%A7%92%E6%B4%B2%E9%87%8E%E7%81%AB%E6%B5%8B%E8%AF%84%E6%9D%A5%E4%BA%86",
           "tag": "娱乐",
           "desc": "12000"
@@ -5922,26 +5922,26 @@ window.WORKBENCH_DATA = {
         {
           "platform": "抖音",
           "rank": 11,
-          "title": "一口气梳理维秘大秀造型看点",
-          "hot": 8715375,
-          "url": "https://www.douyin.com/search/%E4%B8%80%E5%8F%A3%E6%B0%94%E6%A2%B3%E7%90%86%E7%BB%B4%E7%A7%98%E5%A4%A7%E7%A7%80%E9%80%A0%E5%9E%8B%E7%9C%8B%E7%82%B9",
-          "tag": "娱乐",
-          "desc": "16000"
-        },
-        {
-          "platform": "抖音",
-          "rank": 12,
           "title": "非遗陶瓷有点东西",
-          "hot": 8712063,
+          "hot": 8893682,
           "url": "https://www.douyin.com/search/%E9%9D%9E%E9%81%97%E9%99%B6%E7%93%B7%E6%9C%89%E7%82%B9%E4%B8%9C%E8%A5%BF",
           "tag": "娱乐",
           "desc": "20002"
         },
         {
           "platform": "抖音",
+          "rank": 12,
+          "title": "专家谈美日大规模联合军演",
+          "hot": 8774266,
+          "url": "https://www.douyin.com/search/%E4%B8%93%E5%AE%B6%E8%B0%88%E7%BE%8E%E6%97%A5%E5%A4%A7%E8%A7%84%E6%A8%A1%E8%81%94%E5%90%88%E5%86%9B%E6%BC%94",
+          "tag": "娱乐",
+          "desc": "21000"
+        },
+        {
+          "platform": "抖音",
           "rank": 13,
           "title": "“加油站柴油普遍掺水”系谣言",
-          "hot": 8664674,
+          "hot": 8730479,
           "url": "https://www.douyin.com/search/%E2%80%9C%E5%8A%A0%E6%B2%B9%E7%AB%99%E6%9F%B4%E6%B2%B9%E6%99%AE%E9%81%8D%E6%8E%BA%E6%B0%B4%E2%80%9D%E7%B3%BB%E8%B0%A3%E8%A8%80",
           "tag": "娱乐",
           "desc": "4003"
@@ -5950,7 +5950,7 @@ window.WORKBENCH_DATA = {
           "platform": "抖音",
           "rank": 14,
           "title": "KDA新歌神之八秒",
-          "hot": 8589919,
+          "hot": 8644019,
           "url": "https://www.douyin.com/search/KDA%E6%96%B0%E6%AD%8C%E7%A5%9E%E4%B9%8B%E5%85%AB%E7%A7%92",
           "tag": "娱乐",
           "desc": "13000"
@@ -5959,7 +5959,7 @@ window.WORKBENCH_DATA = {
           "platform": "抖音",
           "rank": 15,
           "title": "长今你在工作里加了什么啊",
-          "hot": 8569025,
+          "hot": 8568068,
           "url": "https://www.douyin.com/search/%E9%95%BF%E4%BB%8A%E4%BD%A0%E5%9C%A8%E5%B7%A5%E4%BD%9C%E9%87%8C%E5%8A%A0%E4%BA%86%E4%BB%80%E4%B9%88%E5%95%8A",
           "tag": "娱乐",
           "desc": "1002"
@@ -5968,7 +5968,7 @@ window.WORKBENCH_DATA = {
           "platform": "抖音",
           "rank": 16,
           "title": "妲己配音大赛",
-          "hot": 8170904,
+          "hot": 8041978,
           "url": "https://www.douyin.com/search/%E5%A6%B2%E5%B7%B1%E9%85%8D%E9%9F%B3%E5%A4%A7%E8%B5%9B",
           "tag": "娱乐",
           "desc": "1002"
@@ -5977,7 +5977,7 @@ window.WORKBENCH_DATA = {
           "platform": "抖音",
           "rank": 17,
           "title": "嫁金钗反转张力拉满",
-          "hot": 7856170,
+          "hot": 7890068,
           "url": "https://www.douyin.com/search/%E5%AB%81%E9%87%91%E9%92%97%E5%8F%8D%E8%BD%AC%E5%BC%A0%E5%8A%9B%E6%8B%89%E6%BB%A1",
           "tag": "娱乐",
           "desc": "2002"
@@ -5985,35 +5985,35 @@ window.WORKBENCH_DATA = {
         {
           "platform": "抖音",
           "rank": 18,
-          "title": "曼城或被巨额扣分确保降级",
-          "hot": 7853314,
-          "url": "https://www.douyin.com/search/%E6%9B%BC%E5%9F%8E%E6%88%96%E8%A2%AB%E5%B7%A8%E9%A2%9D%E6%89%A3%E5%88%86%E7%A1%AE%E4%BF%9D%E9%99%8D%E7%BA%A7",
-          "tag": "娱乐",
-          "desc": "5000"
-        },
-        {
-          "platform": "抖音",
-          "rank": 19,
           "title": "王者荣耀2026周年庆CG",
-          "hot": 7840294,
+          "hot": 7853215,
           "url": "https://www.douyin.com/search/%E7%8E%8B%E8%80%85%E8%8D%A3%E8%80%802026%E5%91%A8%E5%B9%B4%E5%BA%86CG",
           "tag": "娱乐",
           "desc": "12000"
         },
         {
           "platform": "抖音",
-          "rank": 20,
+          "rank": 19,
           "title": "一看就是杠上开花的气质",
-          "hot": 7830988,
+          "hot": 7848855,
           "url": "https://www.douyin.com/search/%E4%B8%80%E7%9C%8B%E5%B0%B1%E6%98%AF%E6%9D%A0%E4%B8%8A%E5%BC%80%E8%8A%B1%E7%9A%84%E6%B0%94%E8%B4%A8",
           "tag": "娱乐",
           "desc": "1001"
         },
         {
           "platform": "抖音",
+          "rank": 20,
+          "title": "南部战区回应美舰冲闯中国海域",
+          "hot": 7831227,
+          "url": "https://www.douyin.com/search/%E5%8D%97%E9%83%A8%E6%88%98%E5%8C%BA%E5%9B%9E%E5%BA%94%E7%BE%8E%E8%88%B0%E5%86%B2%E9%97%AF%E4%B8%AD%E5%9B%BD%E6%B5%B7%E5%9F%9F",
+          "tag": "娱乐",
+          "desc": "3002"
+        },
+        {
+          "platform": "抖音",
           "rank": 21,
           "title": "遗落人间的神明少女",
-          "hot": 7826653,
+          "hot": 7825903,
           "url": "https://www.douyin.com/search/%E9%81%97%E8%90%BD%E4%BA%BA%E9%97%B4%E7%9A%84%E7%A5%9E%E6%98%8E%E5%B0%91%E5%A5%B3",
           "tag": "娱乐",
           "desc": "1004"
@@ -6021,38 +6021,38 @@ window.WORKBENCH_DATA = {
         {
           "platform": "抖音",
           "rank": 22,
-          "title": "肖战姜妍新剧抢弟弟修罗场",
-          "hot": 7800598,
-          "url": "https://www.douyin.com/search/%E8%82%96%E6%88%98%E5%A7%9C%E5%A6%8D%E6%96%B0%E5%89%A7%E6%8A%A2%E5%BC%9F%E5%BC%9F%E4%BF%AE%E7%BD%97%E5%9C%BA",
-          "tag": "娱乐",
-          "desc": "2002"
-        },
-        {
-          "platform": "抖音",
-          "rank": 23,
-          "title": "万物皆可变捏捏",
-          "hot": 7778519,
-          "url": "https://www.douyin.com/search/%E4%B8%87%E7%89%A9%E7%9A%86%E5%8F%AF%E5%8F%98%E6%8D%8F%E6%8D%8F",
+          "title": "五官还原挑战玩了不烧心",
+          "hot": 7817745,
+          "url": "https://www.douyin.com/search/%E4%BA%94%E5%AE%98%E8%BF%98%E5%8E%9F%E6%8C%91%E6%88%98%E7%8E%A9%E4%BA%86%E4%B8%8D%E7%83%A7%E5%BF%83",
           "tag": "娱乐",
           "desc": "1003"
         },
         {
           "platform": "抖音",
-          "rank": 24,
-          "title": "专家谈美日大规模联合军演",
-          "hot": 7772059,
-          "url": "https://www.douyin.com/search/%E4%B8%93%E5%AE%B6%E8%B0%88%E7%BE%8E%E6%97%A5%E5%A4%A7%E8%A7%84%E6%A8%A1%E8%81%94%E5%90%88%E5%86%9B%E6%BC%94",
+          "rank": 23,
+          "title": "曼城或被巨额扣分确保降级",
+          "hot": 7785201,
+          "url": "https://www.douyin.com/search/%E6%9B%BC%E5%9F%8E%E6%88%96%E8%A2%AB%E5%B7%A8%E9%A2%9D%E6%89%A3%E5%88%86%E7%A1%AE%E4%BF%9D%E9%99%8D%E7%BA%A7",
           "tag": "娱乐",
-          "desc": "21000"
+          "desc": "5000"
+        },
+        {
+          "platform": "抖音",
+          "rank": 24,
+          "title": "一口气梳理维秘大秀造型看点",
+          "hot": 7774501,
+          "url": "https://www.douyin.com/search/%E4%B8%80%E5%8F%A3%E6%B0%94%E6%A2%B3%E7%90%86%E7%BB%B4%E7%A7%98%E5%A4%A7%E7%A7%80%E9%80%A0%E5%9E%8B%E7%9C%8B%E7%82%B9",
+          "tag": "娱乐",
+          "desc": "16000"
         },
         {
           "platform": "抖音",
           "rank": 25,
-          "title": "三角洲S12新赛季超前爆料",
-          "hot": 7771880,
-          "url": "https://www.douyin.com/search/%E4%B8%89%E8%A7%92%E6%B4%B2S12%E6%96%B0%E8%B5%9B%E5%AD%A3%E8%B6%85%E5%89%8D%E7%88%86%E6%96%99",
+          "title": "白鹿工作室公布见面会补偿方案",
+          "hot": 7753939,
+          "url": "https://www.douyin.com/search/%E7%99%BD%E9%B9%BF%E5%B7%A5%E4%BD%9C%E5%AE%A4%E5%85%AC%E5%B8%83%E8%A7%81%E9%9D%A2%E4%BC%9A%E8%A1%A5%E5%81%BF%E6%96%B9%E6%A1%88",
           "tag": "娱乐",
-          "desc": "12000"
+          "desc": "2011"
         },
         {
           "platform": "知乎",
@@ -6283,7 +6283,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 1,
           "title": "带着100万，我们见了成人网红...",
-          "hot": 2409713,
+          "hot": 2452337,
           "url": "https://b23.tv/BV1pGnn67EbB",
           "tag": "影视",
           "desc": "这一次，我们的编导怀谷带着百万支票，又去探索了一些怪诞而真实的故事。我们走进了海外成人内容创作者的世界，想和你一起看看，这个神秘、疯狂又充满争议的行业，究竟是怎么运作的？在这些惊人的收入背后，又有什么样的秘密？ *本视频仅作文化现象科普，不建议未满18周岁的观众观看。 我国法律明令禁止制作、传播淫秽色情物品及相关信息，敬请严守法律边界，自觉抵制不良内容。"
@@ -6292,7 +6292,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 2,
           "title": "不是 AI 特效！这才是《中国功夫》的魅力！",
-          "hot": 2197857,
+          "hot": 2206104,
           "url": "https://b23.tv/BV1MHJB63Emv",
           "tag": "影视",
           "desc": "制作不易！感谢各位点赞大哥大姐都发大财！！！！"
@@ -6301,7 +6301,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 3,
           "title": "花费上万！真人版弹丸论破开庭！",
-          "hot": 2870345,
+          "hot": 2875121,
           "url": "https://b23.tv/BV1Y2Je6BEDr",
           "tag": "影视",
           "desc": "既然评论区这么多人都想看，那就继续做一些吧 视频是AI和视频后期结合制作的 狛枝的声音AI确实比较难还原，所以这次用的狛枝的原声 不是很懂日语噢，可能会有些日语的发音错误"
@@ -6310,7 +6310,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 4,
           "title": "每一位认真谋生的人都值得被仰望",
-          "hot": 2053969,
+          "hot": 2062149,
           "url": "https://b23.tv/BV1Jonu6mEwN",
           "tag": "影视",
           "desc": "-"
@@ -6319,7 +6319,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 5,
           "title": "长乐夜未央丨全新主题区域「未央城」即将上线",
-          "hot": 5234146,
+          "hot": 5237917,
           "url": "https://b23.tv/BV186Jq6uEFu",
           "tag": "影视",
           "desc": "这是一片令江湖里无数人魂牵梦萦的乐土。这里有天下最好最稀有的珍宝、最妙最神奇的享乐——只要你付得起价码，心有所求，皆可“得到”。 10月23日，全新主题区域「未央城」将正式开启。从杭州码头出发，游侠将循着故交的蛛丝马迹来到此处，展开一段光怪陆离、波谲云诡的旅途。 富贵便无忧，富贵乡难求。 贵客，欢迎来到未央城！ BGM：未央城宣传曲《宝船》（DOUDOU）"
@@ -6328,7 +6328,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 6,
           "title": "这款游戏出现在21世纪还是太超前了",
-          "hot": 1642532,
+          "hot": 1646118,
           "url": "https://b23.tv/BV1nFJ66PE1K",
           "tag": "影视",
           "desc": "游戏：Z.A.T.O. // I Love the World and Everything In It"
@@ -6337,7 +6337,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 7,
           "title": "科学家们用物理智斗爱因斯坦？",
-          "hot": 4868161,
+          "hot": 4879742,
           "url": "https://b23.tv/BV1fZJ26mEiY",
           "tag": "影视",
           "desc": ""
@@ -6346,7 +6346,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 8,
           "title": "【NMIXX】\"긴 소원(Birthday Wish)\" M/V",
-          "hot": 739135,
+          "hot": 745665,
           "url": "https://b23.tv/BV1Ben76vEwK",
           "tag": "影视",
           "desc": ""
@@ -6355,7 +6355,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 9,
           "title": "友情提示：没点艺术细胞的人刷不到这条视频！",
-          "hot": 2549453,
+          "hot": 2551551,
           "url": "https://b23.tv/BV1WwJy6EEMg",
           "tag": "影视",
           "desc": "-"
@@ -6364,7 +6364,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 10,
           "title": "【英雄联盟】K/DA官方MV - “FIRESTARTER（燃）”正式上线",
-          "hot": 1548452,
+          "hot": 1559264,
           "url": "https://b23.tv/BV1j5nj68E48",
           "tag": "影视",
           "desc": "看焰光盛放！K/DA最新单曲《FIRESTARTER（燃）》已上线！ 联合创作：Fortiche。 编舞：Sean Bankhead。 制作人员： FIRESTARTER 特邀音乐人：MIYEON and SOYEON of i-dle, Sophie Powers, Mimi Webb 作曲：David Dahlquist, Ashley Fulton, Georgia Ku, Aejin Kwon, Sebastien Najand, James Norton 歌词：Ashley Fulton"
@@ -6372,134 +6372,134 @@ window.WORKBENCH_DATA = {
         {
           "platform": "B站",
           "rank": 11,
-          "title": "【盲人无障碍电影】冰雪奇缘第一部，2013年美国动画",
-          "hot": 2215883,
-          "url": "https://b23.tv/BV1G5po6zECY",
-          "tag": "影视",
-          "desc": "自制无障碍电影，只为帮助盲人小朋友，纯公益"
-        },
-        {
-          "platform": "B站",
-          "rank": 12,
           "title": "手搓版迪迦奥特曼",
-          "hot": 2284215,
+          "hot": 2286950,
           "url": "https://b23.tv/BV1XJJ96oEXg",
           "tag": "影视",
           "desc": "-"
         },
         {
           "platform": "B站",
-          "rank": 13,
+          "rank": 12,
           "title": "【咩啊】要看一家广东糖水铺正不正宗，主要是看...",
-          "hot": 3160935,
+          "hot": 3165118,
           "url": "https://b23.tv/BV11CJy6nEaC",
           "tag": "影视",
           "desc": "-"
         },
         {
           "platform": "B站",
-          "rank": 14,
+          "rank": 13,
           "title": "『复活局合集』死去的声音突然攻击我.",
-          "hot": 893036,
+          "hot": 896863,
           "url": "https://b23.tv/BV19vJt6DE4k",
           "tag": "影视",
           "desc": "给个三连，好运连连！"
         },
         {
           "platform": "B站",
-          "rank": 15,
+          "rank": 14,
           "title": "【官方投稿】シスターに懺悔を / 重音テトsv",
-          "hot": 377641,
+          "hot": 377964,
           "url": "https://b23.tv/BV1rjJq6REW9",
           "tag": "影视",
           "desc": "廃原メモリです。 赦してください。 ボカコレ2025冬ルーキー 参加楽曲です 最終結果 99位でした！ありがとうございました イラスト 動画 次第ラスク 様 https://x.com/sidai_rusk_uu twitter https://twitter.com/Haibara_memory_ off vocal等 https://drive.google.com/file/d/12prN9-CoeP8uW3sEvzAQF1iMZjIn_Ckq/view 歌詞 あぁ神を信じる"
         },
         {
           "platform": "B站",
-          "rank": 16,
+          "rank": 15,
           "title": "第一次制作动画，不知道有没有播放量(表情)",
-          "hot": 1081347,
+          "hot": 1083886,
           "url": "https://b23.tv/BV1S8JY68EzK",
           "tag": "影视",
           "desc": "软件:爱笔思画X，耗时63时57分，最开始是随便画着玩，因此人物技能、分镜、内容什么的都比较乱(抱歉的表情)。如果以后有时间再作补充。"
         },
         {
           "platform": "B站",
-          "rank": 17,
+          "rank": 16,
           "title": "🛳️杀死伪人🛳️",
-          "hot": 1122254,
+          "hot": 1124960,
           "url": "https://b23.tv/BV1czJB6fErF",
           "tag": "影视",
           "desc": "一只踽踽独行的灰鼠， 一只觊觎宝藏的白鼠， 一只无处可逃的小鼠， 一只磨尖爪牙的硕鼠， 以及一头想把眼前之物都碾碎吞掉的圣诞怪物。 本视频角色立绘均为AI生成+后期人工修改，部分动画效果由Seedance完成，部分3D建模远景由GPT-6 Astra完成，反正我已经震惊瘫坐了。和以往一样，这期视频里很多内容是我做梦梦到的，我真的推荐文艺工作者多睡觉多做梦，很有助于灵感的迸发。 超级无敌的角色画风模型作者：@再见可可亚 可可亚大冒险 超级无敌的角色声音合成技术研发者：@花儿不哭 超级无敌的交流指"
         },
         {
           "platform": "B站",
-          "rank": 18,
+          "rank": 17,
           "title": "洗衣机如何演奏《雨爱》？",
-          "hot": 3871294,
+          "hot": 3878920,
           "url": "https://b23.tv/BV1fNJQ6bEAj",
           "tag": "影视",
           "desc": "-"
         },
         {
           "platform": "B站",
-          "rank": 19,
+          "rank": 18,
           "title": "“起兵yes削藩no，奉天靖难gogogo！”",
-          "hot": 2937075,
+          "hot": 2942971,
           "url": "https://b23.tv/BV1HCpS6iEXh",
           "tag": "影视",
           "desc": "\"起兵yes削藩no，奉天靖难gogogo！\"大明严选，全程高能不烧心！ 特别鸣谢：@配音木成 老师的配音"
         },
         {
           "platform": "B站",
-          "rank": 20,
+          "rank": 19,
           "title": "提示：本视频可以呼吸 《无呼吸义务》",
-          "hot": 1364349,
+          "hot": 1366908,
           "url": "https://b23.tv/BV1quJb6tEGe",
           "tag": "影视",
           "desc": "吹唢呐无呼吸义务"
         },
         {
           "platform": "B站",
-          "rank": 21,
-          "title": "观看一些老人",
-          "hot": 2147652,
-          "url": "https://b23.tv/BV1kMJv6pEPK",
-          "tag": "影视",
-          "desc": ""
-        },
-        {
-          "platform": "B站",
-          "rank": 22,
-          "title": "以为又是一次遗憾炸机，直到打开素材的瞬间 感觉一切都值了",
-          "hot": 1183046,
-          "url": "https://b23.tv/BV1wMJv6WErL",
-          "tag": "影视",
-          "desc": ""
-        },
-        {
-          "platform": "B站",
-          "rank": 23,
-          "title": "欠钱不还却有钱出道？是谁又在给老赖之女洗白？深扒李秀满新女团成员盛艾敬！",
-          "hot": 2645942,
-          "url": "https://b23.tv/BV1s7JX6gELt",
-          "tag": "影视",
-          "desc": "我真是没招了。"
-        },
-        {
-          "platform": "B站",
-          "rank": 24,
+          "rank": 20,
           "title": "班长的心脏有多大？卡壳处理真是这样吗？悬火哑火和卡壳有什么区别【鉴定网络军事言论】",
-          "hot": 1380369,
+          "hot": 1382413,
           "url": "https://b23.tv/BV16QJY6LESZ",
           "tag": "影视",
           "desc": "感觉时间一晃而过啊"
         },
         {
           "platform": "B站",
+          "rank": 21,
+          "title": "【盲人无障碍电影】冰雪奇缘第一部，2013年美国动画",
+          "hot": 2224239,
+          "url": "https://b23.tv/BV1G5po6zECY",
+          "tag": "影视",
+          "desc": "自制无障碍电影，只为帮助盲人小朋友，纯公益"
+        },
+        {
+          "platform": "B站",
+          "rank": 22,
+          "title": "观看一些老人",
+          "hot": 2149580,
+          "url": "https://b23.tv/BV1kMJv6pEPK",
+          "tag": "影视",
+          "desc": ""
+        },
+        {
+          "platform": "B站",
+          "rank": 23,
+          "title": "以为又是一次遗憾炸机，直到打开素材的瞬间 感觉一切都值了",
+          "hot": 1185857,
+          "url": "https://b23.tv/BV1wMJv6WErL",
+          "tag": "影视",
+          "desc": ""
+        },
+        {
+          "platform": "B站",
+          "rank": 24,
+          "title": "欠钱不还却有钱出道？是谁又在给老赖之女洗白？深扒李秀满新女团成员盛艾敬！",
+          "hot": 2650539,
+          "url": "https://b23.tv/BV1s7JX6gELt",
+          "tag": "影视",
+          "desc": "我真是没招了。"
+        },
+        {
+          "platform": "B站",
           "rank": 25,
           "title": "【使命召唤23：现代战争4】4K 最高画质 全战役 全剧情流程通关攻略 战役模式 COD23-Call of Duty：Modern Warfare 4【完结】",
-          "hot": 3938938,
+          "hot": 3947821,
           "url": "https://b23.tv/BV1seJb63ENu",
           "tag": "影视",
           "desc": "游戏名：《使命召唤23：现代战争4》- Call of Duty:Modern Warfare 4 一支年轻的韩国士兵小队在崩溃的前线奋力求生，而在半个地球之外，复仇心切的普莱斯上尉在暗中发动个人战争，始终领先追捕者一步。随着普莱斯的非正式任务与入侵势力发生冲突，战争迅速蔓延，超出任何人的控制。"
