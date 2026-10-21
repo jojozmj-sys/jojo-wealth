@@ -5410,7 +5410,7 @@ window.WORKBENCH_DATA = {
   },
   "dailyHot": {
     "mode": "daily",
-    "updated": "2026-10-21 12:35",
+    "updated": "2026-10-21 12:36",
     "platforms": [
       "微博",
       "抖音",
@@ -6103,7 +6103,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 1,
           "title": "带着100万，我们见了成人网红...",
-          "hot": 3849363,
+          "hot": 3853286,
           "url": "https://b23.tv/BV1pGnn67EbB",
           "tag": "影视",
           "desc": "这一次，我们的编导怀谷带着百万支票，又去探索了一些怪诞而真实的故事。我们走进了海外成人内容创作者的世界，想和你一起看看，这个神秘、疯狂又充满争议的行业，究竟是怎么运作的？在这些惊人的收入背后，又有什么样的秘密？ *本视频仅作文化现象科普，不建议未满18周岁的观众观看。 我国法律明令禁止制作、传播淫秽色情物品及相关信息，敬请严守法律边界，自觉抵制不良内容。"
@@ -6112,7 +6112,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 2,
           "title": "《绝区零》菲欧妮EP | 1% Battery Girl 低电量女孩",
-          "hot": 1856764,
+          "hot": 1857887,
           "url": "https://b23.tv/BV1SknF6KE5g",
           "tag": "影视",
           "desc": "我是个低电量女孩 残血状态 一格电量 人生真是漫长… 人生又很苦短… 我需要充电 如果你也电量告急 就让我与你相伴 ▼ 制作名单 音乐制作：ChiliChill乐团 作曲：ChiliChill乐团 作词：ChiliChill乐团 演唱：ChiliChill乐团 母带：Ted Jenson 弦乐监制：胡静成 弦乐演奏：国际首席爱乐乐团 弦乐录音：王小四 @ 金田录音棚 —— 欢迎来到罗斯凯利法！—— ▼《绝区零》3.3版本「重返天空的旅程」将于10月21日上线！ 版本期间，参与活动可免费领取妄想天使"
@@ -6130,7 +6130,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 4,
           "title": "每一位认真谋生的人都值得被仰望",
-          "hot": 2385888,
+          "hot": 2386196,
           "url": "https://b23.tv/BV1Jonu6mEwN",
           "tag": "影视",
           "desc": "-"
@@ -6139,7 +6139,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 5,
           "title": "【英雄联盟】K/DA官方MV - “FIRESTARTER（燃）”正式上线",
-          "hot": 1956412,
+          "hot": 1956939,
           "url": "https://b23.tv/BV1j5nj68E48",
           "tag": "影视",
           "desc": "看焰光盛放！K/DA最新单曲《FIRESTARTER（燃）》已上线！ 联合创作：Fortiche。 编舞：Sean Bankhead。 制作人员： FIRESTARTER 特邀音乐人：MIYEON and SOYEON of i-dle, Sophie Powers, Mimi Webb 作曲：David Dahlquist, Ashley Fulton, Georgia Ku, Aejin Kwon, Sebastien Najand, James Norton 歌词：Ashley Fulton"
@@ -6166,7 +6166,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 8,
           "title": "这款游戏出现在21世纪还是太超前了",
-          "hot": 1839276,
+          "hot": 1839622,
           "url": "https://b23.tv/BV1nFJ66PE1K",
           "tag": "影视",
           "desc": "游戏：Z.A.T.O. // I Love the World and Everything In It"
@@ -6175,7 +6175,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 9,
           "title": "法国影响力最大的八卦是什么？【神奇组织56】",
-          "hot": 1509820,
+          "hot": 1511355,
           "url": "https://b23.tv/BV1Vbnn6iEfG",
           "tag": "影视",
           "desc": "本篇为神奇组织之卡约夫人案。"
@@ -6184,7 +6184,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 10,
           "title": "花费上万！真人版弹丸论破开庭！",
-          "hot": 3154715,
+          "hot": 3155079,
           "url": "https://b23.tv/BV1Y2Je6BEDr",
           "tag": "影视",
           "desc": "既然评论区这么多人都想看，那就继续做一些吧 视频是AI和视频后期结合制作的 狛枝的声音AI确实比较难还原，所以这次用的狛枝的原声 不是很懂日语噢，可能会有些日语的发音错误"
@@ -6211,7 +6211,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 13,
           "title": "第一次制作动画，不知道有没有播放量(表情)",
-          "hot": 1185210,
+          "hot": 1185314,
           "url": "https://b23.tv/BV1S8JY68EzK",
           "tag": "影视",
           "desc": "软件:爱笔思画X，耗时63时57分，最开始是随便画着玩，因此人物技能、分镜、内容什么的都比较乱(抱歉的表情)。如果以后有时间再作补充。"
@@ -6220,7 +6220,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 14,
           "title": "“当人生变成曲线，你会看见谁一直陪着你”【把回忆拼好给你-DJ变速】【生命线の小曲】",
-          "hot": 922710,
+          "hot": 922926,
           "url": "https://b23.tv/BV1xmn36aEgv",
           "tag": "影视",
           "desc": "------------------"
@@ -6229,7 +6229,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 15,
           "title": "【咩啊】要看一家广东糖水铺正不正宗，主要是看...",
-          "hot": 3485268,
+          "hot": 3485897,
           "url": "https://b23.tv/BV11CJy6nEaC",
           "tag": "影视",
           "desc": "-"
@@ -6238,7 +6238,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 16,
           "title": "以色列和英国的文明内斗",
-          "hot": 1555062,
+          "hot": 1555732,
           "url": "https://b23.tv/BV1Lsnn6uEaH",
           "tag": "影视",
           "desc": "本视频提及事件以及信息来源如下： 《内塔尼亚胡讽刺英国是“大不列颠伊斯兰共和国”，英国政府：这些言论完全不可接受，已向以政府提出交涉》来自：鲁中晨报，2026-08-16 10:03发布 《12国拟限制与约旦河西岸以色列定居点商品贸易》来自：新华网，2026-09-09 00:29:30发布 《以色列总统刚开口，28国中13国代表就离席退场 此前内塔尼亚胡在联大演讲也遭到同样抗议，为此以色列还派专人“查岗”记录是谁离席》来自：鲁中晨报，2026-10-16 09:43发布 《英国和以色列，发生什么了？》来"
@@ -6256,7 +6256,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 18,
           "title": "重阳节，以此摇滚，缅怀逝去的姐妹。",
-          "hot": 1871860,
+          "hot": 1872629,
           "url": "https://b23.tv/BV18rn36iEBq",
           "tag": "影视",
           "desc": "-"
@@ -6265,7 +6265,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 19,
           "title": "赵本山携手象牙山巨头们激情演唱《Uptown Funk》",
-          "hot": 1896827,
+          "hot": 1897450,
           "url": "https://b23.tv/BV1T8J66CEEu",
           "tag": "影视",
           "desc": "AI生成视频，仅供娱乐 音频：BV1E1421t7QB"
@@ -6274,7 +6274,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 20,
           "title": "儿时追过的第一部电视剧！明明抄袭但却依然挥之不去？",
-          "hot": 2195567,
+          "hot": 2195870,
           "url": "https://b23.tv/BV1Xvn366Ef5",
           "tag": "影视",
           "desc": "老观众应该知道，我其实很早就想做电视剧相关的视频了，只是不知道先从哪部剧开始，之前偶然刷到了王传君参加综艺的视频，以及前段时间在隔壁比较火的爱情公寓第三视角（不知道有多少人看过），所以就想再把这部充满争议的剧和充满争议的人回顾一遍，除了有些内容以大人的视角能看到点不一样的以外，其他的欢声笑语仿佛和十几年前没有任何区别，回想起以前我总把爱情公寓当动画片来看，所以作为这个频道的第一个电视剧无疑是最完美的。"
@@ -6283,7 +6283,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 21,
           "title": "【盲人无障碍电影】冰雪奇缘第一部，2013年美国动画",
-          "hot": 2532132,
+          "hot": 2532495,
           "url": "https://b23.tv/BV1G5po6zECY",
           "tag": "影视",
           "desc": "自制无障碍电影，只为帮助盲人小朋友，纯公益"
@@ -6292,7 +6292,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 22,
           "title": "以为又是一次遗憾炸机，直到打开素材的瞬间 感觉一切都值了",
-          "hot": 1282908,
+          "hot": 1282992,
           "url": "https://b23.tv/BV1wMJv6WErL",
           "tag": "影视",
           "desc": ""
@@ -6301,7 +6301,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 23,
           "title": "【MV】带本姑娘去凡尘吧！【明日方舟：终末地】",
-          "hot": 546835,
+          "hot": 546980,
           "url": "https://b23.tv/BV1Qong6iEWD",
           "tag": "影视",
           "desc": "满口古风腔调、吐槽起来毫不留情的少女——祀酱！ 就连傲娇的方式都像漫画一样，独特又可爱！ -------------------------- 赞助：GRYPHLINE 《明日方舟：终末地》全新版本「丹青渡」现已正式上线，欢迎前往各大平台体验！ 支持平台：PlayStation 5、PC、iOS、Android ▼ 立即下载，开启塔卫二冒险！ https://akendfield.gryphline.com/d27t/vxvo3lfs ©GRYPHLINE Credits Lyrics, Movie:"
@@ -6319,7 +6319,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 25,
           "title": "《是我嘴太小了吗》",
-          "hot": 2446476,
+          "hot": 2447881,
           "url": "https://b23.tv/BV1omnG6nEUJ",
           "tag": "影视",
           "desc": "-"
