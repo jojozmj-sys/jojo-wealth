@@ -5599,7 +5599,7 @@ window.WORKBENCH_DATA = {
   },
   "dailyHot": {
     "mode": "daily",
-    "updated": "2026-10-30 16:21",
+    "updated": "2026-10-30 16:22",
     "platforms": [
       "微博",
       "抖音",
@@ -6310,7 +6310,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 3,
           "title": "奶奶的皱纹里，藏着我一生的甜与暖",
-          "hot": 2294653,
+          "hot": 2295160,
           "url": "https://b23.tv/BV1chxT6xEyo",
           "tag": "影视",
           "desc": ""
@@ -6319,7 +6319,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 4,
           "title": "《原神》米提亚角色PV——「小小伎俩」",
-          "hot": 1107916,
+          "hot": 1108209,
           "url": "https://b23.tv/BV1dAxE6VErW",
           "tag": "影视",
           "desc": "在劫后余生后的某个清晨，米提亚决定逃避监督，并趁机给忙碌的朋友们带些礼物。 只不过是丰富生活乐趣的小伎俩罢了，不用客气。 中文CV： 米提亚——苏尚卿 瓦列里——淦子齐 奥黛塔——潘丹妮 沃雅妮莎——苏婉 阿罗夏——王辅平 日文CV： 米提亚——小林裕介 瓦列里——古川慎 奥黛塔——上坂堇 沃雅妮莎——伊藤加奈惠 阿罗夏——佐藤元 《原神》bilibili服下载地址： https://www.biligame.com/detail/?id=103496"
@@ -6328,7 +6328,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 5,
           "title": "贴脸特写，是每个野生动物摄影师的必备技能！",
-          "hot": 3553767,
+          "hot": 3555021,
           "url": "https://b23.tv/BV16nxg6fE3s",
           "tag": "影视",
           "desc": ""
@@ -6337,7 +6337,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 6,
           "title": "永远和你在一起",
-          "hot": 1265334,
+          "hot": 1265439,
           "url": "https://b23.tv/BV1hmx56oEPg",
           "tag": "影视",
           "desc": ""
@@ -6346,7 +6346,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 7,
           "title": "《胡闹厨房》",
-          "hot": 3509265,
+          "hot": 3509695,
           "url": "https://b23.tv/BV1Xun96tEjo",
           "tag": "影视",
           "desc": "-"
@@ -6355,7 +6355,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 8,
           "title": "【究极佐菲格斗】第五集 危险的雄狮！佐菲机器人 雷欧 泰罗 超兽黑鸽子 黑暗星人巴巴尔 登场",
-          "hot": 1127807,
+          "hot": 1128088,
           "url": "https://b23.tv/BV1U3x56HE7v",
           "tag": "影视",
           "desc": ""
@@ -6364,7 +6364,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 9,
           "title": "鲸鲸，跑起来吧",
-          "hot": 1655442,
+          "hot": 1655600,
           "url": "https://b23.tv/BV1Qwx56bEig",
           "tag": "影视",
           "desc": "全程使用GPT-Image-2.5+wan3.0 480p完成。 参考赛博朋克：边缘行者片段改编。"
@@ -6373,7 +6373,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 10,
           "title": "挑战穿轮滑鞋全程爬武功山登顶后在滑下来",
-          "hot": 1175616,
+          "hot": 1175679,
           "url": "https://b23.tv/BV1rLxM6sEPk",
           "tag": "影视",
           "desc": "-"
@@ -6382,7 +6382,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 11,
           "title": "忙着跟生活对线的你，有多久没上号了？谨以此片，致和游戏一起长大的我们。【AI全民制作人】",
-          "hot": 1761831,
+          "hot": 1763559,
           "url": "https://b23.tv/BV1uGxj68EKt",
           "tag": "影视",
           "desc": ""
@@ -6391,7 +6391,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 12,
           "title": "反诈博主“徽剑”被曝2年前遭买凶遇害，曾公开举报电诈大佬刘忍，简介上写着：位卑未敢忘忧国，哪怕无人知我（编辑：卓光）",
-          "hot": 1886241,
+          "hot": 1886254,
           "url": "https://b23.tv/BV1pmxK6REXd",
           "tag": "影视",
           "desc": ""
@@ -6400,7 +6400,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 13,
           "title": "【2026全球总决赛】10月29日 LYON vs IG",
-          "hot": 6350833,
+          "hot": 6351246,
           "url": "https://b23.tv/BV1Eas967EY9",
           "tag": "影视",
           "desc": "【2026全球总决赛】10月29日 LYON vs IG"
@@ -6418,7 +6418,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 15,
           "title": "秦始皇之死：真的是求长生不老，害了他吗？",
-          "hot": 1689506,
+          "hot": 1689722,
           "url": "https://b23.tv/BV15CxT67Ev4",
           "tag": "影视",
           "desc": "“秦王扫六合，虎视何雄哉！”嬴政三十九岁扫平乱世，废分封、建郡县、书同文、车同轨，将大一统死死刻进华夏骨血。可如此睥睨天下的千古一帝，为何执迷长生？甚至被方士蒙骗十余载，最终死在求仙路上？ 参考文献 [1] 司马迁. 史记[M/OL]. 中华书局, 2006. [2] 李开元. 焚书坑儒的真伪虚实——半桩伪造的历史[J]. 史学集刊, 2010(6): 36-47. [3] 高中正. 《赵正书》与西汉前期的秦末记忆[J]. 南京师范大学文学院学报, 2018(2): 171-176. [4] 辛德勇."
@@ -6427,7 +6427,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 16,
           "title": "可观测宇宙最可爱的古风大肥鱼",
-          "hot": 2763803,
+          "hot": 2763849,
           "url": "https://b23.tv/BV16VxM6dEeb",
           "tag": "影视",
           "desc": ""
@@ -6454,7 +6454,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 19,
           "title": "热烈欢迎张伟丽！原来格斗世界冠军的生活是这样的！！（当天伟丽签了好多名✍️",
-          "hot": 762170,
+          "hot": 762468,
           "url": "https://b23.tv/BV1Z9xL6rEDb",
           "tag": "影视",
           "desc": "加更在@papi热烈欢迎"
@@ -6463,7 +6463,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 20,
           "title": "【捉迷躲猫王】😱太阴了躲在粪坑下面？？大哥你无敌了啊？！废弃监狱超高难度捉迷藏~！",
-          "hot": 2783777,
+          "hot": 2784583,
           "url": "https://b23.tv/BV1KwxM6NESD",
           "tag": "影视",
           "desc": "这一把难度太高了~换成数人数把"
@@ -6472,7 +6472,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 21,
           "title": "被人买凶杀死的自媒体人徽剑【热点详解01】",
-          "hot": 3309538,
+          "hot": 3310179,
           "url": "https://b23.tv/BV1mdxN68E7F",
           "tag": "影视",
           "desc": "希望能让更多人知道徽剑的故事，知道这个曾经反抗诈骗园区，被人污名化，被绑架，最后牺牲的吴恺先生。 希望吴恺先生的遭遇不再发生。 最后以他公众号的签名作为结尾。 位卑未敢忘忧国，哪怕无人知我，大家好，我是徽剑。 来自官方媒体界面新闻报道《自媒体人“徽剑”已于2年前遭买凶遇害，曾公开举报电诈大佬刘忍》"
@@ -6499,7 +6499,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 24,
           "title": "AL十六强单曲《游过太平洋》",
-          "hot": 1443265,
+          "hot": 1443419,
           "url": "https://b23.tv/BV1QSxT6GE64",
           "tag": "影视",
           "desc": "-"
@@ -6508,7 +6508,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 25,
           "title": "《信》信仰是什么",
-          "hot": 1131373,
+          "hot": 1131593,
           "url": "https://b23.tv/BV1TanZ6FEu2",
           "tag": "影视",
           "desc": ""
