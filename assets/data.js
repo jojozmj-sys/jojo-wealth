@@ -5599,7 +5599,7 @@ window.WORKBENCH_DATA = {
   },
   "dailyHot": {
     "mode": "daily",
-    "updated": "2026-10-30 15:04",
+    "updated": "2026-10-30 16:21",
     "platforms": [
       "微博",
       "抖音",
@@ -5842,7 +5842,7 @@ window.WORKBENCH_DATA = {
           "platform": "抖音",
           "rank": 1,
           "title": "中共中央举行新闻发布会",
-          "hot": 12107909,
+          "hot": 12106977,
           "url": "https://www.douyin.com/search/%E4%B8%AD%E5%85%B1%E4%B8%AD%E5%A4%AE%E4%B8%BE%E8%A1%8C%E6%96%B0%E9%97%BB%E5%8F%91%E5%B8%83%E4%BC%9A",
           "tag": "娱乐",
           "desc": "3001"
@@ -5851,7 +5851,7 @@ window.WORKBENCH_DATA = {
           "platform": "抖音",
           "rank": 2,
           "title": "比冬天先来的是一顿热火锅",
-          "hot": 11607937,
+          "hot": 11808856,
           "url": "https://www.douyin.com/search/%E6%AF%94%E5%86%AC%E5%A4%A9%E5%85%88%E6%9D%A5%E7%9A%84%E6%98%AF%E4%B8%80%E9%A1%BF%E7%83%AD%E7%81%AB%E9%94%85",
           "tag": "娱乐",
           "desc": "9000"
@@ -5859,18 +5859,18 @@ window.WORKBENCH_DATA = {
         {
           "platform": "抖音",
           "rank": 3,
-          "title": "6G技术加速走向应用",
-          "hot": 11074497,
-          "url": "https://www.douyin.com/search/6G%E6%8A%80%E6%9C%AF%E5%8A%A0%E9%80%9F%E8%B5%B0%E5%90%91%E5%BA%94%E7%94%A8",
+          "title": "党的二十届五中全会公报一图速览",
+          "hot": 11428890,
+          "url": "https://www.douyin.com/search/%E5%85%9A%E7%9A%84%E4%BA%8C%E5%8D%81%E5%B1%8A%E4%BA%94%E4%B8%AD%E5%85%A8%E4%BC%9A%E5%85%AC%E6%8A%A5%E4%B8%80%E5%9B%BE%E9%80%9F%E8%A7%88",
           "tag": "娱乐",
-          "desc": "6000"
+          "desc": "3001"
         },
         {
           "platform": "抖音",
           "rank": 4,
-          "title": "持之以恒推进全面从严治党",
-          "hot": 10846766,
-          "url": "https://www.douyin.com/search/%E6%8C%81%E4%B9%8B%E4%BB%A5%E6%81%92%E6%8E%A8%E8%BF%9B%E5%85%A8%E9%9D%A2%E4%BB%8E%E4%B8%A5%E6%B2%BB%E5%85%9A",
+          "title": "国防部回应美日近期军演",
+          "hot": 11273737,
+          "url": "https://www.douyin.com/search/%E5%9B%BD%E9%98%B2%E9%83%A8%E5%9B%9E%E5%BA%94%E7%BE%8E%E6%97%A5%E8%BF%91%E6%9C%9F%E5%86%9B%E6%BC%94",
           "tag": "娱乐",
           "desc": "3001"
         },
@@ -5878,7 +5878,7 @@ window.WORKBENCH_DATA = {
           "platform": "抖音",
           "rank": 5,
           "title": "中国U17女足首进世界杯8强",
-          "hot": 10246149,
+          "hot": 10546443,
           "url": "https://www.douyin.com/search/%E4%B8%AD%E5%9B%BDU17%E5%A5%B3%E8%B6%B3%E9%A6%96%E8%BF%9B%E4%B8%96%E7%95%8C%E6%9D%AF8%E5%BC%BA",
           "tag": "娱乐",
           "desc": "5000"
@@ -5886,17 +5886,17 @@ window.WORKBENCH_DATA = {
         {
           "platform": "抖音",
           "rank": 6,
-          "title": "国防部回应美日近期军演",
-          "hot": 10193548,
-          "url": "https://www.douyin.com/search/%E5%9B%BD%E9%98%B2%E9%83%A8%E5%9B%9E%E5%BA%94%E7%BE%8E%E6%97%A5%E8%BF%91%E6%9C%9F%E5%86%9B%E6%BC%94",
+          "title": "国防部称遵义舰从容应对侵权挑衅",
+          "hot": 10313962,
+          "url": "https://www.douyin.com/search/%E5%9B%BD%E9%98%B2%E9%83%A8%E7%A7%B0%E9%81%B5%E4%B9%89%E8%88%B0%E4%BB%8E%E5%AE%B9%E5%BA%94%E5%AF%B9%E4%BE%B5%E6%9D%83%E6%8C%91%E8%A1%85",
           "tag": "娱乐",
-          "desc": "3001"
+          "desc": "21000"
         },
         {
           "platform": "抖音",
           "rank": 7,
           "title": "国防部称“以台制华”必付沉重代价",
-          "hot": 8905013,
+          "hot": 9162063,
           "url": "https://www.douyin.com/search/%E5%9B%BD%E9%98%B2%E9%83%A8%E7%A7%B0%E2%80%9C%E4%BB%A5%E5%8F%B0%E5%88%B6%E5%8D%8E%E2%80%9D%E5%BF%85%E4%BB%98%E6%B2%89%E9%87%8D%E4%BB%A3%E4%BB%B7",
           "tag": "娱乐",
           "desc": "3001"
@@ -5904,164 +5904,164 @@ window.WORKBENCH_DATA = {
         {
           "platform": "抖音",
           "rank": 8,
-          "title": "手搓珍珠圣女可可妆",
-          "hot": 8755024,
-          "url": "https://www.douyin.com/search/%E6%89%8B%E6%90%93%E7%8F%8D%E7%8F%A0%E5%9C%A3%E5%A5%B3%E5%8F%AF%E5%8F%AF%E5%A6%86",
-          "tag": "娱乐",
-          "desc": "16000"
-        },
-        {
-          "platform": "抖音",
-          "rank": 9,
-          "title": "中国电影出海步伐加快",
-          "hot": 8613173,
-          "url": "https://www.douyin.com/search/%E4%B8%AD%E5%9B%BD%E7%94%B5%E5%BD%B1%E5%87%BA%E6%B5%B7%E6%AD%A5%E4%BC%90%E5%8A%A0%E5%BF%AB",
-          "tag": "娱乐",
-          "desc": "3001"
-        },
-        {
-          "platform": "抖音",
-          "rank": 10,
-          "title": "灰熊客场124:103大胜开拓者",
-          "hot": 8526972,
-          "url": "https://www.douyin.com/search/%E7%81%B0%E7%86%8A%E5%AE%A2%E5%9C%BA124%3A103%E5%A4%A7%E8%83%9C%E5%BC%80%E6%8B%93%E8%80%85",
-          "tag": "娱乐",
-          "desc": "5000"
-        },
-        {
-          "platform": "抖音",
-          "rank": 11,
-          "title": "武汉林丹杯开赛",
-          "hot": 7822657,
-          "url": "https://www.douyin.com/search/%E6%AD%A6%E6%B1%89%E6%9E%97%E4%B8%B9%E6%9D%AF%E5%BC%80%E8%B5%9B",
-          "tag": "娱乐",
-          "desc": "5000"
-        },
-        {
-          "platform": "抖音",
-          "rank": 12,
-          "title": "杨瀚森替补登场3分2板1帽",
-          "hot": 7821331,
-          "url": "https://www.douyin.com/search/%E6%9D%A8%E7%80%9A%E6%A3%AE%E6%9B%BF%E8%A1%A5%E7%99%BB%E5%9C%BA3%E5%88%862%E6%9D%BF1%E5%B8%BD",
-          "tag": "娱乐",
-          "desc": "5000"
-        },
-        {
-          "platform": "抖音",
-          "rank": 13,
           "title": "369说打瓦真的有用",
-          "hot": 7818869,
+          "hot": 9157359,
           "url": "https://www.douyin.com/search/369%E8%AF%B4%E6%89%93%E7%93%A6%E7%9C%9F%E7%9A%84%E6%9C%89%E7%94%A8",
           "tag": "娱乐",
           "desc": "12000"
         },
         {
           "platform": "抖音",
-          "rank": 14,
-          "title": "JackeyLove晋级八强赛后回应",
-          "hot": 7795743,
-          "url": "https://www.douyin.com/search/JackeyLove%E6%99%8B%E7%BA%A7%E5%85%AB%E5%BC%BA%E8%B5%9B%E5%90%8E%E5%9B%9E%E5%BA%94",
+          "rank": 9,
+          "title": "跨越山海的长征精神回响",
+          "hot": 9034553,
+          "url": "https://www.douyin.com/search/%E8%B7%A8%E8%B6%8A%E5%B1%B1%E6%B5%B7%E7%9A%84%E9%95%BF%E5%BE%81%E7%B2%BE%E7%A5%9E%E5%9B%9E%E5%93%8D",
           "tag": "娱乐",
-          "desc": "12000"
+          "desc": "20002"
+        },
+        {
+          "platform": "抖音",
+          "rank": 10,
+          "title": "海绵宝宝把比奇堡搬来厦门了",
+          "hot": 8336896,
+          "url": "https://www.douyin.com/search/%E6%B5%B7%E7%BB%B5%E5%AE%9D%E5%AE%9D%E6%8A%8A%E6%AF%94%E5%A5%87%E5%A0%A1%E6%90%AC%E6%9D%A5%E5%8E%A6%E9%97%A8%E4%BA%86",
+          "tag": "娱乐",
+          "desc": "10000"
+        },
+        {
+          "platform": "抖音",
+          "rank": 11,
+          "title": "灰熊客场124:103大胜开拓者",
+          "hot": 8232590,
+          "url": "https://www.douyin.com/search/%E7%81%B0%E7%86%8A%E5%AE%A2%E5%9C%BA124%3A103%E5%A4%A7%E8%83%9C%E5%BC%80%E6%8B%93%E8%80%85",
+          "tag": "娱乐",
+          "desc": "5000"
+        },
+        {
+          "platform": "抖音",
+          "rank": 12,
+          "title": "武汉林丹杯开赛",
+          "hot": 7799625,
+          "url": "https://www.douyin.com/search/%E6%AD%A6%E6%B1%89%E6%9E%97%E4%B8%B9%E6%9D%AF%E5%BC%80%E8%B5%9B",
+          "tag": "娱乐",
+          "desc": "5000"
+        },
+        {
+          "platform": "抖音",
+          "rank": 13,
+          "title": "AI珍珠圣女妆",
+          "hot": 7795576,
+          "url": "https://www.douyin.com/search/AI%E7%8F%8D%E7%8F%A0%E5%9C%A3%E5%A5%B3%E5%A6%86",
+          "tag": "娱乐",
+          "desc": "1001"
+        },
+        {
+          "platform": "抖音",
+          "rank": 14,
+          "title": "杨瀚森替补登场3分2板1帽",
+          "hot": 7790712,
+          "url": "https://www.douyin.com/search/%E6%9D%A8%E7%80%9A%E6%A3%AE%E6%9B%BF%E8%A1%A5%E7%99%BB%E5%9C%BA3%E5%88%862%E6%9D%BF1%E5%B8%BD",
+          "tag": "娱乐",
+          "desc": "5000"
         },
         {
           "platform": "抖音",
           "rank": 15,
-          "title": "自己就是千军万马名场面",
-          "hot": 7784396,
-          "url": "https://www.douyin.com/search/%E8%87%AA%E5%B7%B1%E5%B0%B1%E6%98%AF%E5%8D%83%E5%86%9B%E4%B8%87%E9%A9%AC%E5%90%8D%E5%9C%BA%E9%9D%A2",
+          "title": "想和你养个狗狗",
+          "hot": 7767462,
+          "url": "https://www.douyin.com/search/%E6%83%B3%E5%92%8C%E4%BD%A0%E5%85%BB%E4%B8%AA%E7%8B%97%E7%8B%97",
           "tag": "娱乐",
           "desc": "1001"
         },
         {
           "platform": "抖音",
           "rank": 16,
-          "title": "369：悟道中",
-          "hot": 7768381,
-          "url": "https://www.douyin.com/search/369%EF%BC%9A%E6%82%9F%E9%81%93%E4%B8%AD",
+          "title": "JackeyLove晋级八强赛后回应",
+          "hot": 7750163,
+          "url": "https://www.douyin.com/search/JackeyLove%E6%99%8B%E7%BA%A7%E5%85%AB%E5%BC%BA%E8%B5%9B%E5%90%8E%E5%9B%9E%E5%BA%94",
           "tag": "娱乐",
           "desc": "12000"
         },
         {
           "platform": "抖音",
           "rank": 17,
-          "title": "听完大麦哥关于“什么是爱情”",
-          "hot": 7765503,
-          "url": "https://www.douyin.com/search/%E5%90%AC%E5%AE%8C%E5%A4%A7%E9%BA%A6%E5%93%A5%E5%85%B3%E4%BA%8E%E2%80%9C%E4%BB%80%E4%B9%88%E6%98%AF%E7%88%B1%E6%83%85%E2%80%9D",
-          "tag": "娱乐",
-          "desc": "20000"
-        },
-        {
-          "platform": "抖音",
-          "rank": 18,
-          "title": "现场见证TES挺入八强",
-          "hot": 7748078,
-          "url": "https://www.douyin.com/search/%E7%8E%B0%E5%9C%BA%E8%A7%81%E8%AF%81TES%E6%8C%BA%E5%85%A5%E5%85%AB%E5%BC%BA",
-          "tag": "娱乐",
-          "desc": "12000"
-        },
-        {
-          "platform": "抖音",
-          "rank": 19,
-          "title": "北境往事硬骨江湖爽剧开播",
-          "hot": 7747190,
-          "url": "https://www.douyin.com/search/%E5%8C%97%E5%A2%83%E5%BE%80%E4%BA%8B%E7%A1%AC%E9%AA%A8%E6%B1%9F%E6%B9%96%E7%88%BD%E5%89%A7%E5%BC%80%E6%92%AD",
-          "tag": "娱乐",
-          "desc": "2002"
-        },
-        {
-          "platform": "抖音",
-          "rank": 20,
-          "title": "小羊崽开播了",
-          "hot": 7730945,
-          "url": "https://www.douyin.com/search/%E5%B0%8F%E7%BE%8A%E5%B4%BD%E5%BC%80%E6%92%AD%E4%BA%86",
-          "tag": "娱乐",
-          "desc": "12000"
-        },
-        {
-          "platform": "抖音",
-          "rank": 21,
-          "title": "X教授扮演者去世",
-          "hot": 7725400,
-          "url": "https://www.douyin.com/search/X%E6%95%99%E6%8E%88%E6%89%AE%E6%BC%94%E8%80%85%E5%8E%BB%E4%B8%96",
-          "tag": "娱乐",
-          "desc": "4007"
-        },
-        {
-          "platform": "抖音",
-          "rank": 22,
-          "title": "云县人民医院来了个剪辑天才",
-          "hot": 7723139,
-          "url": "https://www.douyin.com/search/%E4%BA%91%E5%8E%BF%E4%BA%BA%E6%B0%91%E5%8C%BB%E9%99%A2%E6%9D%A5%E4%BA%86%E4%B8%AA%E5%89%AA%E8%BE%91%E5%A4%A9%E6%89%8D",
-          "tag": "娱乐",
-          "desc": "20002"
-        },
-        {
-          "platform": "抖音",
-          "rank": 23,
-          "title": "洗摇粒绒释放70万微塑料引热议",
-          "hot": 7721663,
-          "url": "https://www.douyin.com/search/%E6%B4%97%E6%91%87%E7%B2%92%E7%BB%92%E9%87%8A%E6%94%BE70%E4%B8%87%E5%BE%AE%E5%A1%91%E6%96%99%E5%BC%95%E7%83%AD%E8%AE%AE",
-          "tag": "娱乐",
-          "desc": "20001"
-        },
-        {
-          "platform": "抖音",
-          "rank": 24,
           "title": "JISOO ADDICTED MV正式上线",
-          "hot": 7719866,
+          "hot": 7747300,
           "url": "https://www.douyin.com/search/JISOO%20ADDICTED%20MV%E6%AD%A3%E5%BC%8F%E4%B8%8A%E7%BA%BF",
           "tag": "娱乐",
           "desc": "2005"
         },
         {
           "platform": "抖音",
-          "rank": 25,
-          "title": "白鹿绝美建模珍珠可可妆",
-          "hot": 7719234,
-          "url": "https://www.douyin.com/search/%E7%99%BD%E9%B9%BF%E7%BB%9D%E7%BE%8E%E5%BB%BA%E6%A8%A1%E7%8F%8D%E7%8F%A0%E5%8F%AF%E5%8F%AF%E5%A6%86",
+          "rank": 18,
+          "title": "自己就是千军万马名场面",
+          "hot": 7744128,
+          "url": "https://www.douyin.com/search/%E8%87%AA%E5%B7%B1%E5%B0%B1%E6%98%AF%E5%8D%83%E5%86%9B%E4%B8%87%E9%A9%AC%E5%90%8D%E5%9C%BA%E9%9D%A2",
           "tag": "娱乐",
-          "desc": "2008"
+          "desc": "1001"
+        },
+        {
+          "platform": "抖音",
+          "rank": 19,
+          "title": "369：悟道中",
+          "hot": 7736147,
+          "url": "https://www.douyin.com/search/369%EF%BC%9A%E6%82%9F%E9%81%93%E4%B8%AD",
+          "tag": "娱乐",
+          "desc": "12000"
+        },
+        {
+          "platform": "抖音",
+          "rank": 20,
+          "title": "币安疑遭黑客攻击",
+          "hot": 7732756,
+          "url": "https://www.douyin.com/search/%E5%B8%81%E5%AE%89%E7%96%91%E9%81%AD%E9%BB%91%E5%AE%A2%E6%94%BB%E5%87%BB",
+          "tag": "娱乐",
+          "desc": "7000"
+        },
+        {
+          "platform": "抖音",
+          "rank": 21,
+          "title": "拆你脸上有点什么测试盲盒",
+          "hot": 7731557,
+          "url": "https://www.douyin.com/search/%E6%8B%86%E4%BD%A0%E8%84%B8%E4%B8%8A%E6%9C%89%E7%82%B9%E4%BB%80%E4%B9%88%E6%B5%8B%E8%AF%95%E7%9B%B2%E7%9B%92",
+          "tag": "娱乐",
+          "desc": "1003"
+        },
+        {
+          "platform": "抖音",
+          "rank": 22,
+          "title": "现场见证TES挺入八强",
+          "hot": 7728423,
+          "url": "https://www.douyin.com/search/%E7%8E%B0%E5%9C%BA%E8%A7%81%E8%AF%81TES%E6%8C%BA%E5%85%A5%E5%85%AB%E5%BC%BA",
+          "tag": "娱乐",
+          "desc": "12000"
+        },
+        {
+          "platform": "抖音",
+          "rank": 23,
+          "title": "姜乘澜首次公开停更三年细节",
+          "hot": 7716738,
+          "url": "https://www.douyin.com/search/%E5%A7%9C%E4%B9%98%E6%BE%9C%E9%A6%96%E6%AC%A1%E5%85%AC%E5%BC%80%E5%81%9C%E6%9B%B4%E4%B8%89%E5%B9%B4%E7%BB%86%E8%8A%82",
+          "tag": "娱乐",
+          "desc": "20003"
+        },
+        {
+          "platform": "抖音",
+          "rank": 24,
+          "title": "本来养一只猫怕它孤单",
+          "hot": 7714508,
+          "url": "https://www.douyin.com/search/%E6%9C%AC%E6%9D%A5%E5%85%BB%E4%B8%80%E5%8F%AA%E7%8C%AB%E6%80%95%E5%AE%83%E5%AD%A4%E5%8D%95",
+          "tag": "娱乐",
+          "desc": "1001"
+        },
+        {
+          "platform": "抖音",
+          "rank": 25,
+          "title": "一不小心就被挖走了",
+          "hot": 7712747,
+          "url": "https://www.douyin.com/search/%E4%B8%80%E4%B8%8D%E5%B0%8F%E5%BF%83%E5%B0%B1%E8%A2%AB%E6%8C%96%E8%B5%B0%E4%BA%86",
+          "tag": "娱乐",
+          "desc": "1003"
         },
         {
           "platform": "知乎",
@@ -6291,227 +6291,227 @@ window.WORKBENCH_DATA = {
         {
           "platform": "B站",
           "rank": 1,
-          "title": "姆巴佩这次怎就失了智？央视外交部为何如此重视？姆巴佩非是知道错了，只是知道自己要死了",
-          "hot": 649281,
-          "url": "https://b23.tv/BV1v6xj6gE6u",
+          "title": "旗舰手机芯片大横评：苹果高通发哥玄戒谁最强？",
+          "hot": 2918502,
+          "url": "https://b23.tv/BV1kMxM6FECM",
           "tag": "影视",
-          "desc": "姆巴佩这次怎就失了智？央视外交部为何如此重视？姆巴佩非是知道错了，只是知道自己要死了"
+          "desc": "终于来了！2026年旗舰手机芯片谁最强？我们今天凑齐了苹果A20 Pro、高通骁龙8 Elite Extreme Gen6、联发科天玑9600 Pro、小米玄戒O3四大旗舰手机芯片，也一同找来了麒麟9050 Pro和谷歌Tensor G6，赶紧来做一期芯片大横评，好好看一下各家的能效表现！不测不知道，一测吓一跳，今年不仅有遥遥领先的赢家，更有翻车严重的答辩！到底谁好谁拉？一起来看看吧……"
         },
         {
           "platform": "B站",
           "rank": 2,
-          "title": "姆巴佩发表涉华不当言论！全网封杀！没有中国市场，姆巴佩会失去什么？",
-          "hot": 3808089,
-          "url": "https://b23.tv/BV1XSxT6GEwQ",
+          "title": "《崩坏：星穹铁道》千星纪游PV：「有关星空的寓言集•其三」",
+          "hot": 3489825,
+          "url": "https://b23.tv/BV1JYsd6sE4k",
           "tag": "影视",
-          "desc": "一场看似轻松的海外访谈，直接引发了中国市场的商业巨震。皇马当家球星姆巴佩因为一句涉华不当言论，在短短一天内遭遇国内体育媒体的信息隔离与赞助品牌的集体解约。从东鹏蒙牛的光速切割，到跨国商事合同里的道德条款，再到皇马背后的中资连锁危机，我们带你深度拆解这场顶流公关灾难背后的深层逻辑与体育营销大变局。"
+          "desc": "狩猎贪饕的号角已然吹响！ 漫长的琥珀纪之后，诸神再度相会，祂将愚戏献予银河，点燃列神之战新的高潮。 无人能知这场死斗的结局，可末日已然绽开裂隙—— 窥视银河的视线从未来投向现在，带着已死之神自地狱归来。 也许你们终将相逢，但在此刻，祂向宇宙宣告—— 「开拓」没有终点，一如「欢愉」要有笑声。 中文CV： 星神★阿哈——子音 日文CV： 星神★阿哈——户松遥 英文CV： 星神★阿哈——Amber Lee Connors 韩文CV： 星神★阿哈——권다예"
         },
         {
           "platform": "B站",
           "rank": 3,
-          "title": "被人买凶杀死的自媒体人徽剑【热点详解01】",
-          "hot": 3274109,
-          "url": "https://b23.tv/BV1mdxN68E7F",
+          "title": "奶奶的皱纹里，藏着我一生的甜与暖",
+          "hot": 2294653,
+          "url": "https://b23.tv/BV1chxT6xEyo",
           "tag": "影视",
-          "desc": "希望能让更多人知道徽剑的故事，知道这个曾经反抗诈骗园区，被人污名化，被绑架，最后牺牲的吴恺先生。 希望吴恺先生的遭遇不再发生。 最后以他公众号的签名作为结尾。 位卑未敢忘忧国，哪怕无人知我，大家好，我是徽剑。 来自官方媒体界面新闻报道《自媒体人“徽剑”已于2年前遭买凶遇害，曾公开举报电诈大佬刘忍》"
+          "desc": ""
         },
         {
           "platform": "B站",
           "rank": 4,
-          "title": "刚用四天iPhone Duo，喀嚓一声炸屏了",
-          "hot": 1917762,
-          "url": "https://b23.tv/BV1hoxu6jEt8",
+          "title": "《原神》米提亚角色PV——「小小伎俩」",
+          "hot": 1107916,
+          "url": "https://b23.tv/BV1dAxE6VErW",
           "tag": "影视",
-          "desc": "悔的肠子都青了，iPhone Duo这一代我感觉真的是质量以及设计是个半成品，没想到自己也中招了，听说维修起来很麻烦也很贵，大家遇到过了吗？"
+          "desc": "在劫后余生后的某个清晨，米提亚决定逃避监督，并趁机给忙碌的朋友们带些礼物。 只不过是丰富生活乐趣的小伎俩罢了，不用客气。 中文CV： 米提亚——苏尚卿 瓦列里——淦子齐 奥黛塔——潘丹妮 沃雅妮莎——苏婉 阿罗夏——王辅平 日文CV： 米提亚——小林裕介 瓦列里——古川慎 奥黛塔——上坂堇 沃雅妮莎——伊藤加奈惠 阿罗夏——佐藤元 《原神》bilibili服下载地址： https://www.biligame.com/detail/?id=103496"
         },
         {
           "platform": "B站",
           "rank": 5,
-          "title": "令人愤怒的“卖1元火鸡面”视频，炸出了多少被毁掉的中国小孩",
-          "hot": 1567915,
-          "url": "https://b23.tv/BV1frn96iEKG",
+          "title": "贴脸特写，是每个野生动物摄影师的必备技能！",
+          "hot": 3553767,
+          "url": "https://b23.tv/BV16nxg6fE3s",
           "tag": "影视",
-          "desc": "如果小伙伴有更多的看法，可以在评论区给我留言哦。 下期想看什么热点事件，也可以跟椰子说说呀。 感谢大家的一键三连，你们的鼓励是我做视频的动力～ 也可以看看椰子的课程《普通人逆袭必备的30个认知模型》，在椰子的主页就可以看到哦。"
+          "desc": ""
         },
         {
           "platform": "B站",
           "rank": 6,
-          "title": "格温你不要再跳啦",
-          "hot": 750025,
-          "url": "https://b23.tv/BV1gmsQ6bEtp",
+          "title": "永远和你在一起",
+          "hot": 1265334,
+          "url": "https://b23.tv/BV1hmx56oEPg",
           "tag": "影视",
           "desc": ""
         },
         {
           "platform": "B站",
           "rank": 7,
-          "title": "最逆天的一节课！！",
-          "hot": 70187,
-          "url": "https://b23.tv/BV1Z7xK6LE8i",
+          "title": "《胡闹厨房》",
+          "hot": 3509265,
+          "url": "https://b23.tv/BV1Xun96tEjo",
           "tag": "影视",
-          "desc": "活字乱刷。 BGM：Panama-Matteo"
+          "desc": "-"
         },
         {
           "platform": "B站",
           "rank": 8,
-          "title": "不 看 尾 巴 挑 战 💃",
-          "hot": 989244,
-          "url": "https://b23.tv/BV1GxsX6YEuP",
-          "tag": "影视",
-          "desc": "一年一度生日作来啦！！！！！祝我生日快乐~~~生日这天选择了正常跳舞哈哈哈哈哈哈哈哈哈(ᕑᗢᓫ∗)感谢大家今年的陪伴，逐渐出走低迷阴霾的时刻，也有了很多新奇的视频想法，比之前更加勇敢啦~想做什么就努力去做！勇敢小兔没啥难题难住我！！新的一岁继续开开心心自由自在健健康康！想拍出更多有意思的内容出来~~~耶！！！！ 希望大家给个三连，多多投币支持舞蹈版小兔！！！ 点赞过5w加更纯舞蹈视频~！ 舞蹈:张楚寒《Bunny》"
-        },
-        {
-          "platform": "B站",
-          "rank": 9,
-          "title": "“我本该命途齐天”【孙悟空＆新·与天齐】",
-          "hot": 84575,
-          "url": "https://b23.tv/BV1bnsZ6GEN3",
-          "tag": "影视",
-          "desc": "原曲：新·与天齐---指尖笑"
-        },
-        {
-          "platform": "B站",
-          "rank": 10,
-          "title": "这是一条啃玉米视频",
-          "hot": 601487,
-          "url": "https://b23.tv/BV1Mfsd6qE2g",
+          "title": "【究极佐菲格斗】第五集 危险的雄狮！佐菲机器人 雷欧 泰罗 超兽黑鸽子 黑暗星人巴巴尔 登场",
+          "hot": 1127807,
+          "url": "https://b23.tv/BV1U3x56HE7v",
           "tag": "影视",
           "desc": ""
         },
         {
           "platform": "B站",
-          "rank": 11,
-          "title": "iPhone Duo 慢工出__活儿！",
-          "hot": 331551,
-          "url": "https://b23.tv/BV1eGxF6sEu5",
+          "rank": 9,
+          "title": "鲸鲸，跑起来吧",
+          "hot": 1655442,
+          "url": "https://b23.tv/BV1Qwx56bEig",
           "tag": "影视",
-          "desc": "正在适配中，请稍后"
+          "desc": "全程使用GPT-Image-2.5+wan3.0 480p完成。 参考赛博朋克：边缘行者片段改编。"
+        },
+        {
+          "platform": "B站",
+          "rank": 10,
+          "title": "挑战穿轮滑鞋全程爬武功山登顶后在滑下来",
+          "hot": 1175616,
+          "url": "https://b23.tv/BV1rLxM6sEPk",
+          "tag": "影视",
+          "desc": "-"
+        },
+        {
+          "platform": "B站",
+          "rank": 11,
+          "title": "忙着跟生活对线的你，有多久没上号了？谨以此片，致和游戏一起长大的我们。【AI全民制作人】",
+          "hot": 1761831,
+          "url": "https://b23.tv/BV1uGxj68EKt",
+          "tag": "影视",
+          "desc": ""
         },
         {
           "platform": "B站",
           "rank": 12,
-          "title": "HONG KONG",
-          "hot": 658266,
-          "url": "https://b23.tv/BV1SVsd6MEGZ",
+          "title": "反诈博主“徽剑”被曝2年前遭买凶遇害，曾公开举报电诈大佬刘忍，简介上写着：位卑未敢忘忧国，哪怕无人知我（编辑：卓光）",
+          "hot": 1886241,
+          "url": "https://b23.tv/BV1pmxK6REXd",
           "tag": "影视",
-          "desc": "HONG KONG"
+          "desc": ""
         },
         {
           "platform": "B站",
           "rank": 13,
-          "title": "衔花转圈居然能被他玩出新高度……",
-          "hot": 749466,
-          "url": "https://b23.tv/BV1E5xK6EEzf",
+          "title": "【2026全球总决赛】10月29日 LYON vs IG",
+          "hot": 6350833,
+          "url": "https://b23.tv/BV1Eas967EY9",
           "tag": "影视",
-          "desc": "-"
+          "desc": "【2026全球总决赛】10月29日 LYON vs IG"
         },
         {
           "platform": "B站",
           "rank": 14,
-          "title": "36岁不工作不结婚不生娃的贫穷大龄女性是如何在家啃老的？",
-          "hot": 260570,
-          "url": "https://b23.tv/BV17yxF6YEga",
+          "title": "《明日方舟》EP - A Necessary Message",
+          "hot": 715116,
+          "url": "https://b23.tv/BV16fsf6PEBH",
           "tag": "影视",
-          "desc": "-"
+          "desc": "10 月 29 日 A Necessary Message 正式上架各音乐平台 【专辑介绍】 你对我说的话，我没有忘。 我对自己说的话，不会再改变。 我带你们去春天。 【歌曲列表】 A Necessary Message A Necessary Message (Instrumental)"
         },
         {
           "platform": "B站",
           "rank": 15,
-          "title": "公测定档PV | 《星布谷地》12月4日全球上线！",
-          "hot": 255340,
-          "url": "https://b23.tv/BV1Xasf6QEFF",
+          "title": "秦始皇之死：真的是求长生不老，害了他吗？",
+          "hot": 1689506,
+          "url": "https://b23.tv/BV15CxT67Ev4",
           "tag": "影视",
-          "desc": "有了约定相见的日子，期待将慢慢延绵成幸福； 等到相聚的时刻，欢笑会点亮所有等待的漫长。 从今天起，属于你的星球静待生长， 理想生活将从手心萌芽—— 在生活的无限可能里，仰望漫天繁星。 *当前游戏仍处于研发打磨阶段，不代表最终游戏品质。 ⚝──✧─居谷地，见繁星─✧──⚝ ➤预约 星布谷地 ，12月4日公测见！ 立即预约，锁定「星空贴贴手灯」&「小星苗」套装等公测好礼。 ➤公测前瞻特别节目11月1日（本周日）19:00开启，我们不见不散~ ➤创作者激励计划现已上线，星海相遇，创想生活。"
+          "desc": "“秦王扫六合，虎视何雄哉！”嬴政三十九岁扫平乱世，废分封、建郡县、书同文、车同轨，将大一统死死刻进华夏骨血。可如此睥睨天下的千古一帝，为何执迷长生？甚至被方士蒙骗十余载，最终死在求仙路上？ 参考文献 [1] 司马迁. 史记[M/OL]. 中华书局, 2006. [2] 李开元. 焚书坑儒的真伪虚实——半桩伪造的历史[J]. 史学集刊, 2010(6): 36-47. [3] 高中正. 《赵正书》与西汉前期的秦末记忆[J]. 南京师范大学文学院学报, 2018(2): 171-176. [4] 辛德勇."
         },
         {
           "platform": "B站",
           "rank": 16,
-          "title": "鬼分̶两 三种plus版5.0！(万圣特辑)",
-          "hot": 150683,
-          "url": "https://b23.tv/BV16fsf6PEvi",
+          "title": "可观测宇宙最可爱的古风大肥鱼",
+          "hot": 2763803,
+          "url": "https://b23.tv/BV16VxM6dEeb",
           "tag": "影视",
-          "desc": "-"
+          "desc": ""
         },
         {
           "platform": "B站",
           "rank": 17,
+          "title": "⚡《新 三 国 FUNK》⚡",
+          "hot": 2249731,
+          "url": "https://b23.tv/BV1iXxV6vEmP",
+          "tag": "影视",
+          "desc": "接着奏乐，接着舞 ——————————— 填词/音频/视频：纽毕斯 ——————————— 做了好几天，第一次做Ai渲染比想象中复杂不少，求点赞投币！"
+        },
+        {
+          "platform": "B站",
+          "rank": 18,
+          "title": "一颗钻石里藏着多少光？",
+          "hot": 1260446,
+          "url": "https://b23.tv/BV18YxK6NEPy",
+          "tag": "影视",
+          "desc": "用Godot制作的3D像素宝石动画"
+        },
+        {
+          "platform": "B站",
+          "rank": 19,
           "title": "热烈欢迎张伟丽！原来格斗世界冠军的生活是这样的！！（当天伟丽签了好多名✍️",
-          "hot": 742874,
+          "hot": 762170,
           "url": "https://b23.tv/BV1Z9xL6rEDb",
           "tag": "影视",
           "desc": "加更在@papi热烈欢迎"
         },
         {
           "platform": "B站",
-          "rank": 18,
-          "title": "失眠风衣版",
-          "hot": 549806,
-          "url": "https://b23.tv/BV13CsQ6wEBF",
+          "rank": 20,
+          "title": "【捉迷躲猫王】😱太阴了躲在粪坑下面？？大哥你无敌了啊？！废弃监狱超高难度捉迷藏~！",
+          "hot": 2783777,
+          "url": "https://b23.tv/BV1KwxM6NESD",
+          "tag": "影视",
+          "desc": "这一把难度太高了~换成数人数把"
+        },
+        {
+          "platform": "B站",
+          "rank": 21,
+          "title": "被人买凶杀死的自媒体人徽剑【热点详解01】",
+          "hot": 3309538,
+          "url": "https://b23.tv/BV1mdxN68E7F",
+          "tag": "影视",
+          "desc": "希望能让更多人知道徽剑的故事，知道这个曾经反抗诈骗园区，被人污名化，被绑架，最后牺牲的吴恺先生。 希望吴恺先生的遭遇不再发生。 最后以他公众号的签名作为结尾。 位卑未敢忘忧国，哪怕无人知我，大家好，我是徽剑。 来自官方媒体界面新闻报道《自媒体人“徽剑”已于2年前遭买凶遇害，曾公开举报电诈大佬刘忍》"
+        },
+        {
+          "platform": "B站",
+          "rank": 22,
+          "title": "陕视评：判决未至，定论先入教材 武大图书馆事件反思：公共出版物不能越司法“断案” （策划：李彤 任超 评论员：刁坤 摄像：姬佩瑶）",
+          "hot": 1377061,
+          "url": "https://b23.tv/BV1zUnZ67EMY",
+          "tag": "影视",
+          "desc": "陕视评：判决未至，定论先入教材 武大图书馆事件反思：公共出版物不能越司法“断案” （策划：李彤 任超 评论员：刁坤 摄像：姬佩瑶） 一本教大学生“心理健康”的教材，凭什么让一个法院认定清白的男生，在白纸黑字上继续当“性骚扰犯”？ 2023年，武汉大学图书馆内，一名男生因患有特异性皮炎，突发瘙痒，于是隔着衣物抓挠止痒。对面自习女生不知情，误将抓挠行为认定为性骚扰，随即举报、网络发声。 舆情瞬间发酵。当时事实尚未核查完整、司法尚未介入，武汉大学依据单方举报和现场观感，先行对男生作出记过处分。 尤其严重的错位"
+        },
+        {
+          "platform": "B站",
+          "rank": 23,
+          "title": "姆巴佩发表涉华不当言论！全网封杀！没有中国市场，姆巴佩会失去什么？",
+          "hot": 3819645,
+          "url": "https://b23.tv/BV1XSxT6GEwQ",
+          "tag": "影视",
+          "desc": "一场看似轻松的海外访谈，直接引发了中国市场的商业巨震。皇马当家球星姆巴佩因为一句涉华不当言论，在短短一天内遭遇国内体育媒体的信息隔离与赞助品牌的集体解约。从东鹏蒙牛的光速切割，到跨国商事合同里的道德条款，再到皇马背后的中资连锁危机，我们带你深度拆解这场顶流公关灾难背后的深层逻辑与体育营销大变局。"
+        },
+        {
+          "platform": "B站",
+          "rank": 24,
+          "title": "AL十六强单曲《游过太平洋》",
+          "hot": 1443265,
+          "url": "https://b23.tv/BV1QSxT6GE64",
           "tag": "影视",
           "desc": "-"
         },
         {
           "platform": "B站",
-          "rank": 19,
-          "title": "S5赛季「圣龙宝藏」精灵生态抢先看！",
-          "hot": 235072,
-          "url": "https://b23.tv/BV1ydxA6QE9Y",
-          "tag": "影视",
-          "desc": "阿官温馨提示： 《洛克王国：世界》S5赛季「圣龙宝藏」将于11月5日正式开启！ ▶游戏支持PC/安卓/鸿蒙/iOS多端游玩，全平台数据互通 ▶S4赛季创作者激励火热进行中： https://www.bilibili.com/blackboard/era/BV4aEWJEimiFwu0d.html"
-        },
-        {
-          "platform": "B站",
-          "rank": 20,
-          "title": "前锋把愚人金轻轻抵在板区......",
-          "hot": 152177,
-          "url": "https://b23.tv/BV1ZgsX6kEaw",
-          "tag": "影视",
-          "desc": ""
-        },
-        {
-          "platform": "B站",
-          "rank": 21,
-          "title": "白蚁豪宅被大象拿来擦屁股，没想到擦出了一个微观水世界！",
-          "hot": 662178,
-          "url": "https://b23.tv/BV14txF65Efd",
-          "tag": "影视",
-          "desc": "视频素材来源：《白蚁和大象》 其他音视频素材均来自网络。 如有错误，欢迎大家指正！૮ ºﻌºა站岗 来都来了，点个关注再走吧~(●'◡'●)"
-        },
-        {
-          "platform": "B站",
-          "rank": 22,
-          "title": "牡丹亭【AI全民制作人】",
-          "hot": 166200,
-          "url": "https://b23.tv/BV1mysf6CEu5",
-          "tag": "影视",
-          "desc": "这期（ ）了"
-        },
-        {
-          "platform": "B站",
-          "rank": 23,
-          "title": "露思の雷霆语言",
-          "hot": 1125459,
-          "url": "https://b23.tv/BV1zYxE6XEBH",
-          "tag": "影视",
-          "desc": ""
-        },
-        {
-          "platform": "B站",
-          "rank": 24,
-          "title": "吴站长&梅姐《Trouble Maker》【AI MV大赛】",
-          "hot": 1319495,
-          "url": "https://b23.tv/BV1dEsX6TEGx",
-          "tag": "影视",
-          "desc": "AI生成视频，仅供娱乐"
-        },
-        {
-          "platform": "B站",
           "rank": 25,
-          "title": "可是...我已经长大了",
-          "hot": 78559,
-          "url": "https://b23.tv/BV1Qax76vExZ",
+          "title": "《信》信仰是什么",
+          "hot": 1131373,
+          "url": "https://b23.tv/BV1TanZ6FEu2",
           "tag": "影视",
-          "desc": "这集没有let's go 好好生活哦大家 （投错成没剪好的了，重投一下）"
+          "desc": ""
         },
         {
           "platform": "快手",
@@ -9059,29 +9059,35 @@ window.WORKBENCH_DATA = {
     "results": []
   },
   "dailyReview": {
-    "date": "2026-10-21",
+    "date": "2026-10-30",
     "market": {
-      "indexPct": -0.5980665904582327,
+      "indexPct": -1.4353280769451928,
       "volExpand": false,
       "volShrink": true,
-      "upCount": 1967,
-      "dnCount": 3092,
-      "limitUp": 50,
-      "limitDn": 5,
-      "maxBoard": 4,
-      "maxBoardStock": "东安动力",
+      "upCount": 880,
+      "dnCount": 4330,
+      "limitUp": 47,
+      "limitDn": 82,
+      "maxBoard": 5,
+      "maxBoardStock": "青岛食品",
       "cycle": "recover",
       "tone": "watch"
     },
     "sentiment": {
-      "score": 59,
-      "level": "warm",
-      "levelLabel": "回暖",
-      "upRatio": 38.9,
+      "score": 36,
+      "level": "cold",
+      "levelLabel": "低迷",
+      "upRatio": 16.9,
       "trend": "down",
       "dataLimited": false,
-      "note": "情绪回暖，可轻仓试错，关注连板高度能否继续打开。",
+      "note": "市场偏弱，防御为主，控制回撤等待情绪修复。",
       "history": [
+        {
+          "date": "2026-10-30",
+          "score": 36,
+          "level": "cold",
+          "upRatio": 16.9
+        },
         {
           "date": "2026-10-21",
           "score": 59,
@@ -9211,38 +9217,38 @@ window.WORKBENCH_DATA = {
       ]
     },
     "capital": {
-      "limitUpTotal": 50,
+      "limitUpTotal": 47,
       "leaderDriven": true,
       "themeCount": 6,
-      "sustainDays": 2,
+      "sustainDays": 1,
       "themes": [
         {
-          "name": "IT服务Ⅱ",
-          "level": "secondary",
-          "stocks": "5只涨停"
-        },
-        {
-          "name": "通用设备",
+          "name": "白酒Ⅱ",
           "level": "secondary",
           "stocks": "4只涨停"
         },
         {
-          "name": "通信设备",
+          "name": "休闲食品",
           "level": "secondary",
           "stocks": "3只涨停"
         },
         {
-          "name": "出版",
+          "name": "医疗服务",
           "level": "secondary",
           "stocks": "3只涨停"
         },
         {
-          "name": "化学制药",
+          "name": "元件",
+          "level": "secondary",
+          "stocks": "3只涨停"
+        },
+        {
+          "name": "中药Ⅱ",
           "level": "secondary",
           "stocks": "2只涨停"
         },
         {
-          "name": "照明设备",
+          "name": "房地产开",
           "level": "secondary",
           "stocks": "2只涨停"
         }
@@ -9255,7 +9261,7 @@ window.WORKBENCH_DATA = {
       },
       {
         "type": "方向",
-        "content": "重点关注: IT服务Ⅱ、通用设备、通信设备"
+        "content": "重点关注: 白酒Ⅱ、休闲食品、医疗服务"
       },
       {
         "type": "风险",
