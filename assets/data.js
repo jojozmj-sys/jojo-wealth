@@ -5605,7 +5605,7 @@ window.WORKBENCH_DATA = {
   },
   "dailyHot": {
     "mode": "daily",
-    "updated": "2026-11-04 13:52",
+    "updated": "2026-11-18 10:05",
     "platforms": [
       "微博",
       "抖音",
@@ -5616,7 +5616,7 @@ window.WORKBENCH_DATA = {
       "知乎"
     ],
     "today": {
-      "date": "2026-11-04",
+      "date": "2026-11-18",
       "weekday": "周三",
       "items": [
         {
@@ -5847,227 +5847,227 @@ window.WORKBENCH_DATA = {
         {
           "platform": "抖音",
           "rank": 1,
-          "title": "一句你好胜过千言万语",
-          "hot": 11978643,
-          "url": "https://www.douyin.com/search/%E4%B8%80%E5%8F%A5%E4%BD%A0%E5%A5%BD%E8%83%9C%E8%BF%87%E5%8D%83%E8%A8%80%E4%B8%87%E8%AF%AD",
+          "title": "2026年APEC工商领导人峰会开幕",
+          "hot": 12035139,
+          "url": "https://www.douyin.com/search/2026%E5%B9%B4APEC%E5%B7%A5%E5%95%86%E9%A2%86%E5%AF%BC%E4%BA%BA%E5%B3%B0%E4%BC%9A%E5%BC%80%E5%B9%95",
           "tag": "娱乐",
-          "desc": "20002"
+          "desc": "3001"
         },
         {
           "platform": "抖音",
           "rank": 2,
-          "title": "这泰山是非爬不可吗",
-          "hot": 11919144,
-          "url": "https://www.douyin.com/search/%E8%BF%99%E6%B3%B0%E5%B1%B1%E6%98%AF%E9%9D%9E%E7%88%AC%E4%B8%8D%E5%8F%AF%E5%90%97",
+          "title": "韩国总统李在明抵达深圳",
+          "hot": 11954275,
+          "url": "https://www.douyin.com/search/%E9%9F%A9%E5%9B%BD%E6%80%BB%E7%BB%9F%E6%9D%8E%E5%9C%A8%E6%98%8E%E6%8A%B5%E8%BE%BE%E6%B7%B1%E5%9C%B3",
           "tag": "娱乐",
-          "desc": "20002"
+          "desc": "3002"
         },
         {
           "platform": "抖音",
           "rank": 3,
-          "title": "五部门发文促消费基建升级",
-          "hot": 10849131,
-          "url": "https://www.douyin.com/search/%E4%BA%94%E9%83%A8%E9%97%A8%E5%8F%91%E6%96%87%E4%BF%83%E6%B6%88%E8%B4%B9%E5%9F%BA%E5%BB%BA%E5%8D%87%E7%BA%A7",
+          "title": "APEC是什么",
+          "hot": 11626793,
+          "url": "https://www.douyin.com/search/APEC%E6%98%AF%E4%BB%80%E4%B9%88",
           "tag": "娱乐",
           "desc": "3001"
         },
         {
           "platform": "抖音",
           "rank": 4,
-          "title": "IG战胜TES晋级四强",
-          "hot": 10717828,
-          "url": "https://www.douyin.com/search/IG%E6%88%98%E8%83%9CTES%E6%99%8B%E7%BA%A7%E5%9B%9B%E5%BC%BA",
+          "title": "普京抵达深圳",
+          "hot": 11243284,
+          "url": "https://www.douyin.com/search/%E6%99%AE%E4%BA%AC%E6%8A%B5%E8%BE%BE%E6%B7%B1%E5%9C%B3",
           "tag": "娱乐",
-          "desc": "12000"
+          "desc": "3001"
         },
         {
           "platform": "抖音",
           "rank": 5,
-          "title": "美媒预计民主党将夺回参众两院",
-          "hot": 10146869,
-          "url": "https://www.douyin.com/search/%E7%BE%8E%E5%AA%92%E9%A2%84%E8%AE%A1%E6%B0%91%E4%B8%BB%E5%85%9A%E5%B0%86%E5%A4%BA%E5%9B%9E%E5%8F%82%E4%BC%97%E4%B8%A4%E9%99%A2",
+          "title": "APEC峰会有哪些领导人参加",
+          "hot": 10545236,
+          "url": "https://www.douyin.com/search/APEC%E5%B3%B0%E4%BC%9A%E6%9C%89%E5%93%AA%E4%BA%9B%E9%A2%86%E5%AF%BC%E4%BA%BA%E5%8F%82%E5%8A%A0",
           "tag": "娱乐",
           "desc": "3002"
         },
         {
           "platform": "抖音",
           "rank": 6,
-          "title": "闯入毛茸茸的奇妙世界",
-          "hot": 9986637,
-          "url": "https://www.douyin.com/search/%E9%97%AF%E5%85%A5%E6%AF%9B%E8%8C%B8%E8%8C%B8%E7%9A%84%E5%A5%87%E5%A6%99%E4%B8%96%E7%95%8C",
+          "title": "国足2:2战平巴林",
+          "hot": 10504618,
+          "url": "https://www.douyin.com/search/%E5%9B%BD%E8%B6%B32%3A2%E6%88%98%E5%B9%B3%E5%B7%B4%E6%9E%97",
           "tag": "娱乐",
-          "desc": "20002"
+          "desc": "5000"
         },
         {
           "platform": "抖音",
           "rank": 7,
-          "title": "觉醒吧我的厨艺天赋",
-          "hot": 8671522,
-          "url": "https://www.douyin.com/search/%E8%A7%89%E9%86%92%E5%90%A7%E6%88%91%E7%9A%84%E5%8E%A8%E8%89%BA%E5%A4%A9%E8%B5%8B",
+          "title": "南迦巴瓦峰日照金山太美了",
+          "hot": 9391947,
+          "url": "https://www.douyin.com/search/%E5%8D%97%E8%BF%A6%E5%B7%B4%E7%93%A6%E5%B3%B0%E6%97%A5%E7%85%A7%E9%87%91%E5%B1%B1%E5%A4%AA%E7%BE%8E%E4%BA%86",
           "tag": "娱乐",
-          "desc": "9000"
+          "desc": "10000"
         },
         {
           "platform": "抖音",
           "rank": 8,
-          "title": "真正好吃的美味在民间",
-          "hot": 8484401,
-          "url": "https://www.douyin.com/search/%E7%9C%9F%E6%AD%A3%E5%A5%BD%E5%90%83%E7%9A%84%E7%BE%8E%E5%91%B3%E5%9C%A8%E6%B0%91%E9%97%B4",
+          "title": "辣皮子牛肋排香迷糊了",
+          "hot": 9299546,
+          "url": "https://www.douyin.com/search/%E8%BE%A3%E7%9A%AE%E5%AD%90%E7%89%9B%E8%82%8B%E6%8E%92%E9%A6%99%E8%BF%B7%E7%B3%8A%E4%BA%86",
           "tag": "娱乐",
           "desc": "9000"
         },
         {
           "platform": "抖音",
           "rank": 9,
-          "title": "苹果手机天气数据显示异常",
-          "hot": 7836959,
-          "url": "https://www.douyin.com/search/%E8%8B%B9%E6%9E%9C%E6%89%8B%E6%9C%BA%E5%A4%A9%E6%B0%94%E6%95%B0%E6%8D%AE%E6%98%BE%E7%A4%BA%E5%BC%82%E5%B8%B8",
-          "tag": "娱乐",
-          "desc": "4003"
-        },
-        {
-          "platform": "抖音",
-          "rank": 10,
-          "title": "TES对战IG",
-          "hot": 7820660,
-          "url": "https://www.douyin.com/search/TES%E5%AF%B9%E6%88%98IG",
-          "tag": "娱乐",
-          "desc": "12000"
-        },
-        {
-          "platform": "抖音",
-          "rank": 11,
-          "title": "特朗普向民主党人表示祝贺",
-          "hot": 7786124,
-          "url": "https://www.douyin.com/search/%E7%89%B9%E6%9C%97%E6%99%AE%E5%90%91%E6%B0%91%E4%B8%BB%E5%85%9A%E4%BA%BA%E8%A1%A8%E7%A4%BA%E7%A5%9D%E8%B4%BA",
-          "tag": "娱乐",
-          "desc": "3002"
-        },
-        {
-          "platform": "抖音",
-          "rank": 12,
-          "title": "现场见证IG挺进四强",
-          "hot": 7765486,
-          "url": "https://www.douyin.com/search/%E7%8E%B0%E5%9C%BA%E8%A7%81%E8%AF%81IG%E6%8C%BA%E8%BF%9B%E5%9B%9B%E5%BC%BA",
-          "tag": "娱乐",
-          "desc": "12000"
-        },
-        {
-          "platform": "抖音",
-          "rank": 13,
-          "title": "智启京彩 E路消谣",
-          "hot": 7761049,
-          "url": "https://www.douyin.com/search/%E6%99%BA%E5%90%AF%E4%BA%AC%E5%BD%A9%20E%E8%B7%AF%E6%B6%88%E8%B0%A3",
+          "title": "赴鹏城之约 寻合作答案",
+          "hot": 9281102,
+          "url": "https://www.douyin.com/search/%E8%B5%B4%E9%B9%8F%E5%9F%8E%E4%B9%8B%E7%BA%A6%20%E5%AF%BB%E5%90%88%E4%BD%9C%E7%AD%94%E6%A1%88",
           "tag": "娱乐",
           "desc": "3001"
         },
         {
           "platform": "抖音",
-          "rank": 14,
-          "title": "曼联3:2逆转罗马",
-          "hot": 7759535,
-          "url": "https://www.douyin.com/search/%E6%9B%BC%E8%81%943%3A2%E9%80%86%E8%BD%AC%E7%BD%97%E9%A9%AC",
+          "rank": 10,
+          "title": "媒体：特朗普将于18日晚抵达深圳",
+          "hot": 9262761,
+          "url": "https://www.douyin.com/search/%E5%AA%92%E4%BD%93%EF%BC%9A%E7%89%B9%E6%9C%97%E6%99%AE%E5%B0%86%E4%BA%8E18%E6%97%A5%E6%99%9A%E6%8A%B5%E8%BE%BE%E6%B7%B1%E5%9C%B3",
           "tag": "娱乐",
-          "desc": "5000"
+          "desc": "3001"
         },
         {
           "platform": "抖音",
-          "rank": 15,
-          "title": "我也拥有了亚麻发色厉娜",
-          "hot": 7750132,
-          "url": "https://www.douyin.com/search/%E6%88%91%E4%B9%9F%E6%8B%A5%E6%9C%89%E4%BA%86%E4%BA%9A%E9%BA%BB%E5%8F%91%E8%89%B2%E5%8E%89%E5%A8%9C",
+          "rank": 11,
+          "title": "贵州辣卤会惩罚每一个嘴硬的人",
+          "hot": 9171392,
+          "url": "https://www.douyin.com/search/%E8%B4%B5%E5%B7%9E%E8%BE%A3%E5%8D%A4%E4%BC%9A%E6%83%A9%E7%BD%9A%E6%AF%8F%E4%B8%80%E4%B8%AA%E5%98%B4%E7%A1%AC%E7%9A%84%E4%BA%BA",
           "tag": "娱乐",
-          "desc": "16000"
+          "desc": "9000"
         },
         {
           "platform": "抖音",
-          "rank": 16,
-          "title": "张百乔长文写贾鑫烧伤后心里话",
-          "hot": 7744134,
-          "url": "https://www.douyin.com/search/%E5%BC%A0%E7%99%BE%E4%B9%94%E9%95%BF%E6%96%87%E5%86%99%E8%B4%BE%E9%91%AB%E7%83%A7%E4%BC%A4%E5%90%8E%E5%BF%83%E9%87%8C%E8%AF%9D",
-          "tag": "娱乐",
-          "desc": "2002"
-        },
-        {
-          "platform": "抖音",
-          "rank": 17,
-          "title": "妈妈的话是家里的圣旨",
-          "hot": 7742229,
-          "url": "https://www.douyin.com/search/%E5%A6%88%E5%A6%88%E7%9A%84%E8%AF%9D%E6%98%AF%E5%AE%B6%E9%87%8C%E7%9A%84%E5%9C%A3%E6%97%A8",
-          "tag": "娱乐",
-          "desc": "19000"
-        },
-        {
-          "platform": "抖音",
-          "rank": 18,
-          "title": "小蓝叔对口型演绎大赏",
-          "hot": 7733925,
-          "url": "https://www.douyin.com/search/%E5%B0%8F%E8%93%9D%E5%8F%94%E5%AF%B9%E5%8F%A3%E5%9E%8B%E6%BC%94%E7%BB%8E%E5%A4%A7%E8%B5%8F",
-          "tag": "娱乐",
-          "desc": "1003"
-        },
-        {
-          "platform": "抖音",
-          "rank": 19,
-          "title": "西班牙足协停赛悼念德米格尔",
-          "hot": 7729192,
-          "url": "https://www.douyin.com/search/%E8%A5%BF%E7%8F%AD%E7%89%99%E8%B6%B3%E5%8D%8F%E5%81%9C%E8%B5%9B%E6%82%BC%E5%BF%B5%E5%BE%B7%E7%B1%B3%E6%A0%BC%E5%B0%94",
-          "tag": "娱乐",
-          "desc": "5000"
-        },
-        {
-          "platform": "抖音",
-          "rank": 20,
-          "title": "S16淘汰赛热点赛事观察",
-          "hot": 7727208,
-          "url": "https://www.douyin.com/search/S16%E6%B7%98%E6%B1%B0%E8%B5%9B%E7%83%AD%E7%82%B9%E8%B5%9B%E4%BA%8B%E8%A7%82%E5%AF%9F",
-          "tag": "娱乐",
-          "desc": "12000"
-        },
-        {
-          "platform": "抖音",
-          "rank": 21,
-          "title": "中方特使特代本月将赴多国访问",
-          "hot": 7726981,
-          "url": "https://www.douyin.com/search/%E4%B8%AD%E6%96%B9%E7%89%B9%E4%BD%BF%E7%89%B9%E4%BB%A3%E6%9C%AC%E6%9C%88%E5%B0%86%E8%B5%B4%E5%A4%9A%E5%9B%BD%E8%AE%BF%E9%97%AE",
-          "tag": "娱乐",
-          "desc": "3002"
-        },
-        {
-          "platform": "抖音",
-          "rank": 22,
-          "title": "金价回落消费者趁机购金",
-          "hot": 7720057,
-          "url": "https://www.douyin.com/search/%E9%87%91%E4%BB%B7%E5%9B%9E%E8%90%BD%E6%B6%88%E8%B4%B9%E8%80%85%E8%B6%81%E6%9C%BA%E8%B4%AD%E9%87%91",
+          "rank": 12,
+          "title": "英伟达第三季度财报公布",
+          "hot": 9072907,
+          "url": "https://www.douyin.com/search/%E8%8B%B1%E4%BC%9F%E8%BE%BE%E7%AC%AC%E4%B8%89%E5%AD%A3%E5%BA%A6%E8%B4%A2%E6%8A%A5%E5%85%AC%E5%B8%83",
           "tag": "娱乐",
           "desc": "7000"
         },
         {
           "platform": "抖音",
-          "rank": 23,
-          "title": "iG走心文案致敬仁川夺冠八周年",
-          "hot": 7719878,
-          "url": "https://www.douyin.com/search/iG%E8%B5%B0%E5%BF%83%E6%96%87%E6%A1%88%E8%87%B4%E6%95%AC%E4%BB%81%E5%B7%9D%E5%A4%BA%E5%86%A0%E5%85%AB%E5%91%A8%E5%B9%B4",
+          "rank": 13,
+          "title": "U19国足夺得熊猫杯冠军",
+          "hot": 8596207,
+          "url": "https://www.douyin.com/search/U19%E5%9B%BD%E8%B6%B3%E5%A4%BA%E5%BE%97%E7%86%8A%E7%8C%AB%E6%9D%AF%E5%86%A0%E5%86%9B",
           "tag": "娱乐",
-          "desc": "12000"
+          "desc": "5000"
+        },
+        {
+          "platform": "抖音",
+          "rank": 14,
+          "title": "抄抄老吃家的过冬美食清单",
+          "hot": 8537757,
+          "url": "https://www.douyin.com/search/%E6%8A%84%E6%8A%84%E8%80%81%E5%90%83%E5%AE%B6%E7%9A%84%E8%BF%87%E5%86%AC%E7%BE%8E%E9%A3%9F%E6%B8%85%E5%8D%95",
+          "tag": "娱乐",
+          "desc": "9000"
+        },
+        {
+          "platform": "抖音",
+          "rank": 15,
+          "title": "小米辟谣汽车召回短信",
+          "hot": 8023560,
+          "url": "https://www.douyin.com/search/%E5%B0%8F%E7%B1%B3%E8%BE%9F%E8%B0%A3%E6%B1%BD%E8%BD%A6%E5%8F%AC%E5%9B%9E%E7%9F%AD%E4%BF%A1",
+          "tag": "娱乐",
+          "desc": "11000"
+        },
+        {
+          "platform": "抖音",
+          "rank": 16,
+          "title": "东营观鸟浪全攻略",
+          "hot": 7995496,
+          "url": "https://www.douyin.com/search/%E4%B8%9C%E8%90%A5%E8%A7%82%E9%B8%9F%E6%B5%AA%E5%85%A8%E6%94%BB%E7%95%A5",
+          "tag": "娱乐",
+          "desc": "10000"
+        },
+        {
+          "platform": "抖音",
+          "rank": 17,
+          "title": "APEC媒体中心餐食出圈",
+          "hot": 7846231,
+          "url": "https://www.douyin.com/search/APEC%E5%AA%92%E4%BD%93%E4%B8%AD%E5%BF%83%E9%A4%90%E9%A3%9F%E5%87%BA%E5%9C%88",
+          "tag": "娱乐",
+          "desc": "9000"
+        },
+        {
+          "platform": "抖音",
+          "rank": 18,
+          "title": "冰糖葫芦进入纯手工时代",
+          "hot": 7827841,
+          "url": "https://www.douyin.com/search/%E5%86%B0%E7%B3%96%E8%91%AB%E8%8A%A6%E8%BF%9B%E5%85%A5%E7%BA%AF%E6%89%8B%E5%B7%A5%E6%97%B6%E4%BB%A3",
+          "tag": "娱乐",
+          "desc": "9000"
+        },
+        {
+          "platform": "抖音",
+          "rank": 19,
+          "title": "贵南像是一本摊开的地理书",
+          "hot": 7789203,
+          "url": "https://www.douyin.com/search/%E8%B4%B5%E5%8D%97%E5%83%8F%E6%98%AF%E4%B8%80%E6%9C%AC%E6%91%8A%E5%BC%80%E7%9A%84%E5%9C%B0%E7%90%86%E4%B9%A6",
+          "tag": "娱乐",
+          "desc": "10000"
+        },
+        {
+          "platform": "抖音",
+          "rank": 20,
+          "title": "谢谢小猫递来的红薯",
+          "hot": 7768265,
+          "url": "https://www.douyin.com/search/%E8%B0%A2%E8%B0%A2%E5%B0%8F%E7%8C%AB%E9%80%92%E6%9D%A5%E7%9A%84%E7%BA%A2%E8%96%AF",
+          "tag": "娱乐",
+          "desc": "1001"
+        },
+        {
+          "platform": "抖音",
+          "rank": 21,
+          "title": "我在APEC第一现场",
+          "hot": 7743203,
+          "url": "https://www.douyin.com/search/%E6%88%91%E5%9C%A8APEC%E7%AC%AC%E4%B8%80%E7%8E%B0%E5%9C%BA",
+          "tag": "娱乐",
+          "desc": "4003"
+        },
+        {
+          "platform": "抖音",
+          "rank": 22,
+          "title": "你看懂丑狐了吗",
+          "hot": 7738455,
+          "url": "https://www.douyin.com/search/%E4%BD%A0%E7%9C%8B%E6%87%82%E4%B8%91%E7%8B%90%E4%BA%86%E5%90%97",
+          "tag": "娱乐",
+          "desc": "18000"
+        },
+        {
+          "platform": "抖音",
+          "rank": 23,
+          "title": "神舟二十四号计划近日择机发射",
+          "hot": 7705408,
+          "url": "https://www.douyin.com/search/%E7%A5%9E%E8%88%9F%E4%BA%8C%E5%8D%81%E5%9B%9B%E5%8F%B7%E8%AE%A1%E5%88%92%E8%BF%91%E6%97%A5%E6%8B%A9%E6%9C%BA%E5%8F%91%E5%B0%84",
+          "tag": "娱乐",
+          "desc": "6000"
         },
         {
           "platform": "抖音",
           "rank": 24,
-          "title": "陈泽发布1103纪录片为你而来",
-          "hot": 7715596,
-          "url": "https://www.douyin.com/search/%E9%99%88%E6%B3%BD%E5%8F%91%E5%B8%831103%E7%BA%AA%E5%BD%95%E7%89%87%E4%B8%BA%E4%BD%A0%E8%80%8C%E6%9D%A5",
+          "title": "APEC接机现场中国排面再度圈粉",
+          "hot": 7705022,
+          "url": "https://www.douyin.com/search/APEC%E6%8E%A5%E6%9C%BA%E7%8E%B0%E5%9C%BA%E4%B8%AD%E5%9B%BD%E6%8E%92%E9%9D%A2%E5%86%8D%E5%BA%A6%E5%9C%88%E7%B2%89",
           "tag": "娱乐",
-          "desc": "2012"
+          "desc": "3002"
         },
         {
           "platform": "抖音",
           "rank": 25,
-          "title": "我的S16八强观赛日记",
-          "hot": 7711173,
-          "url": "https://www.douyin.com/search/%E6%88%91%E7%9A%84S16%E5%85%AB%E5%BC%BA%E8%A7%82%E8%B5%9B%E6%97%A5%E8%AE%B0",
+          "title": "我的表情包还得用自己的脸来做",
+          "hot": 7704617,
+          "url": "https://www.douyin.com/search/%E6%88%91%E7%9A%84%E8%A1%A8%E6%83%85%E5%8C%85%E8%BF%98%E5%BE%97%E7%94%A8%E8%87%AA%E5%B7%B1%E7%9A%84%E8%84%B8%E6%9D%A5%E5%81%9A",
           "tag": "娱乐",
-          "desc": "12000"
+          "desc": "1001"
         },
         {
           "platform": "知乎",
@@ -6297,227 +6297,227 @@ window.WORKBENCH_DATA = {
         {
           "platform": "B站",
           "rank": 1,
-          "title": "大家好，这里是 DeepSeek Harness，正式入驻 B 站！",
-          "hot": 2794092,
-          "url": "https://b23.tv/BV1i24P6rEmt",
+          "title": "【2026全球总决赛】11月15日 GEN vs BLG",
+          "hot": 28555931,
+          "url": "https://b23.tv/BV15es76gEgL",
           "tag": "影视",
-          "desc": "认识一下 DeepSeek Harness 创造模式：通过对话，把想法变成插件，写好就能直接用。 从设计工作台、沙盒游戏，到模型可视化工具，让 Harness 拥有你想要的功能，成为适合自己的样子。 你想为自己的 Harness 加点什么？ 我们也整理了视频中这些插件的中英文提示词，供大家参考：https://cdn.deepseek.com/harness/dsh-creator-mode-prompt-collection-zh.html"
+          "desc": "【2026全球总决赛】11月15日 GEN vs BLG"
         },
         {
           "platform": "B站",
           "rank": 2,
-          "title": "《原神》角色预告-「米提亚：井井有条」",
-          "hot": 1665663,
-          "url": "https://b23.tv/BV19b4A6PECX",
+          "title": "BLG S16夺冠赞歌《仰望星空》",
+          "hot": 3341251,
+          "url": "https://b23.tv/BV14VsJ6aEJd",
           "tag": "影视",
-          "desc": "与能源相关的实验都存在一定的危险性，所以工作人员需要时刻保持谨慎的态度。 不妨多问问自己：有日程可控的预期吗？有数据稳定的可能吗？有提前完成的风险吗？ 中文CV： 米提亚——苏尚卿 瓦列里——淦子齐 阿罗夏——王辅平 沃雅妮莎——苏婉 奥黛塔——潘丹妮 日文CV： 米提亚——小林裕介 瓦列里——古川慎 阿罗夏——佐藤元 沃雅妮莎——伊藤加奈惠 奥黛塔——上坂堇 《原神》bilibili服下载地址： https://www.biligame.com/detail/?id=103496"
+          "desc": "原曲：《仰望星空》 原唱：张杰 混音：益辉 填词/翻唱/和声/剪辑：蔚蓝边际"
         },
         {
           "platform": "B站",
           "rank": 3,
-          "title": "这样建？几棵树苗能做什么？【Minecraft】",
-          "hot": 1479869,
-          "url": "https://b23.tv/BV1o1xC6DEAa",
-          "tag": "影视",
-          "desc": "-"
-        },
-        {
-          "platform": "B站",
-          "rank": 4,
-          "title": "全球笑点下降2000倍而我不变【第二集】",
-          "hot": 7296818,
-          "url": "https://b23.tv/BV1TxxC6vEo4",
-          "tag": "影视",
-          "desc": "这一集等于我做三个视频了...我要去睡觉了 不过，很多朋友不知道怎么看完整版，关注雀巢 搞笑人才断代，龙国岌岌可危，雀巢被推上擂台。全民嘲笑他长这么帅根本不会搞笑，樱花国笑出眼泪。下一秒，雀巢讲出核弹级地狱笑话。当雀巢获胜，全网跪了。世人终于颤栗，龙国的搞笑大王，终于诞生！"
-        },
-        {
-          "platform": "B站",
-          "rank": 5,
-          "title": "你从未离去 x 平凡之路",
-          "hot": 822719,
-          "url": "https://b23.tv/BV1mVxx6SEJ4",
-          "tag": "影视",
-          "desc": "第二首回忆向混曲 又把自己听哭了 部分MV片段来自@熊出没家族"
-        },
-        {
-          "platform": "B站",
-          "rank": 6,
-          "title": "【全网最全】DeepSeek Harness超详细教程！50分钟吃透DSH，让SuperAgent给你干活！",
-          "hot": 1453085,
-          "url": "https://b23.tv/BV1REx46NEc4",
-          "tag": "影视",
-          "desc": "DeepSeek Harness超详细教程！ 大家可以速速收藏啦~ 耗时60天制作！感谢大家的三联 未来还会出其他AI教程，大家可以关注一下~"
-        },
-        {
-          "platform": "B站",
-          "rank": 7,
-          "title": "选一条路，决定你接下来的旅途",
-          "hot": 3584850,
-          "url": "https://b23.tv/BV1Nax16uEHm",
-          "tag": "影视",
-          "desc": "你在一间废弃很久的工厂里醒来，眼前有三条路。选一条路，决定接下来的旅途。 背景音乐： 1.麒麟光谱 - 遗失的梦（开头选择） 2.麒麟光谱 - 云端的扶梯（前往电扶梯） 3.麒麟光谱 - 与白鲸一起做梦（选择1） 4.麒麟光谱 - 被遗忘的走廊（前往爬梯） 5.麒麟光谱 - 亿象流转（选择2） 6.麒麟光谱 - 足迹回响（前往电梯） 7.麒麟光谱 - 我的家没有边际（选择3） 8.麒麟光谱 - 繁花盛开的故乡（选择4都不选）"
-        },
-        {
-          "platform": "B站",
-          "rank": 8,
-          "title": "世界最最最烂活",
-          "hot": 4004943,
-          "url": "https://b23.tv/BV15YxH6nEku",
-          "tag": "影视",
-          "desc": "希望观众朋友们可以喜欢这个系列！ （希望你们喜欢，记得一键三连！）"
-        },
-        {
-          "platform": "B站",
-          "rank": 9,
-          "title": "网络热传生物鉴定 第65期",
-          "hot": 2225872,
-          "url": "https://b23.tv/BV18wxY63Erp",
+          "title": "命运让他们彼此对立，也让他们彼此靠近｜上",
+          "hot": 3201062,
+          "url": "https://b23.tv/BV1jHsp69Ekg",
           "tag": "影视",
           "desc": ""
         },
         {
           "platform": "B站",
-          "rank": 10,
-          "title": "《崩坏：星穹铁道》走近星穹——「星神★阿哈：为了拖稿竟说自己是星神？」",
-          "hot": 1477595,
-          "url": "https://b23.tv/BV1mU4u6yEz5",
+          "rank": 4,
+          "title": "“成华大道没有「烂奇迹」”",
+          "hot": 1654523,
+          "url": "https://b23.tv/BV1BDsE67Eom",
           "tag": "影视",
-          "desc": "《苍天航路绒绒号•第一部》宣告完结后，我们特别寻访了一些社会知名人士，听听他们对此事的看法。 「首席催稿官」真小珠：「提问：何时连载第二部？我在二相乐园城郊买了一块田地，种了很多豆橛子，连载重启之日，希望能邀请马老师品尝。」 「七休日」周天鸽：「你是什么人？偷偷潜入列车有什么目的？」 「乐园第一吃货」朽叶：「你是怎么找到我的？」 「仙舟第一杀手」芝麻酥：「你到底怎么进我家的？」 「寰宇第一黑客」狼尊：「回答我叔的问题，不然我开枪了。」 「宠物」不死途：「你到底怎么进我家的？」 「最严厉的旁白」猴：「你为什"
+          "desc": "原曲：《烂奇迹》- 杨羊烊 翻填/调音/混音/视频：@Dieorite"
+        },
+        {
+          "platform": "B站",
+          "rank": 5,
+          "title": "【卜劳恩《父与子》/非凡父爱】“如果没有那一场残酷的战争，父与子的结局或许会是这样……”",
+          "hot": 5009775,
+          "url": "https://b23.tv/BV1Zos36FEZz",
+          "tag": "影视",
+          "desc": "觉得风格很搭就做了 参考自X的antrofrog的AI生成作品《No Ordinary Love-非凡之爱》 本视频是非凡之爱的渲染大赛二创，不是自己单独做的画面"
+        },
+        {
+          "platform": "B站",
+          "rank": 6,
+          "title": "1穿4连斩LCK战队！恭喜BLG，加冕为王！",
+          "hot": 2587475,
+          "url": "https://b23.tv/BV1yvsj6SE6m",
+          "tag": "影视",
+          "desc": ""
+        },
+        {
+          "platform": "B站",
+          "rank": 7,
+          "title": "我是Tim，我变不动了...",
+          "hot": 2091794,
+          "url": "https://b23.tv/BV1BJsV6PEek",
+          "tag": "影视",
+          "desc": ""
+        },
+        {
+          "platform": "B站",
+          "rank": 8,
+          "title": "术式反转久留美 【泛式】",
+          "hot": 1821830,
+          "url": "https://b23.tv/BV1Pwsp6qEbo",
+          "tag": "影视",
+          "desc": "储蓄战士久留美，堂堂连载！ *本视频中涉及的投资产品，仅为搞笑娱乐服务，不构成任何投资建议。实际投资请以官方信息为准，理性判断风险。"
+        },
+        {
+          "platform": "B站",
+          "rank": 9,
+          "title": "三年之期已到，恭迎世一上归位！【第18集】",
+          "hot": 2654066,
+          "url": "https://b23.tv/BV1uUsJ6BES6",
+          "tag": "影视",
+          "desc": "AI生成视频，非真实事件，台词和动作基于短剧模仿设计，并非针对选手，各位选手仅作为演员出场，请勿上纲上线。"
+        },
+        {
+          "platform": "B站",
+          "rank": 10,
+          "title": "灭霸金融小课堂：应届生小浣熊的疑惑，什么是五险一金",
+          "hot": 1754659,
+          "url": "https://b23.tv/BV1JRsw66E1s",
+          "tag": "影视",
+          "desc": "-"
         },
         {
           "platform": "B站",
           "rank": 11,
-          "title": "一条没下巴的鱼杀穿奥陶纪？",
-          "hot": 2808748,
-          "url": "https://b23.tv/BV1Xx4c6tEKM",
+          "title": "BLG夺冠单曲《十年人间》——“旧时梦魇，今日高声唱！”",
+          "hot": 1754102,
+          "url": "https://b23.tv/BV1Cvsj6SENy",
           "tag": "影视",
-          "desc": "结果...... BGM: after the moment-Craft Spells Sacabambaspis - 琴葉姉妹"
+          "desc": "原曲：盗墓笔记·十年人间——李常超 填词、制作：鲤顺鱼 翻唱：AI 所有的认可和批评我都会记住，任何人都能大大方方发表观点。本人填词作品问询过我后可随意翻唱。 BLG牛逼！太攒劲了！熬通宵看这场比赛就是S16做的最棒的决定！ In NEW YORK you can be a new man！在纽约一切都会兑现！终于做到了！ 熬不动了视频发完我先睡觉了，这首为MSI准备的夺冠曲，却是在S赛发了出来。塞翁失马焉知非福？ 反正BLG牛逼！！！兄弟们别软脚了，硬起来！ 惊天一串四！我说这是有史以来含金量最高"
         },
         {
           "platform": "B站",
           "rank": 12,
-          "title": "4941抽，67塔露拉",
-          "hot": 1179432,
-          "url": "https://b23.tv/BV1Gpxs6REwB",
+          "title": "“46块3，问清一条规则。”",
+          "hot": 4536724,
+          "url": "https://b23.tv/BV1VBs76qE16",
           "tag": "影视",
-          "desc": "一切都结束了，大家都辛苦了"
+          "desc": "“46块3，问清一条规则。”"
         },
         {
           "platform": "B站",
           "rank": 13,
-          "title": "【OC动画】馆长大人，请消消气！🌙酒魔女与她的贵客【魔女夜话小剧场】【手搓动画大赛】",
-          "hot": 1475862,
-          "url": "https://b23.tv/BV1dRx16pEPw",
+          "title": "大肥鱼捅穿AZ3？！带着大肥鱼猛攻三角洲是什么感觉？",
+          "hot": 2249565,
+          "url": "https://b23.tv/BV16GsF6hEKf",
           "tag": "影视",
-          "desc": "#1 欢迎光临永夜的魔女酒吧「月光开关」！ 今天似乎也是没有客人的一天>-<|||……诶？ 等等！今晚的特别来客是——通天塔图书馆的馆长！ ++++++++++++++++++++++ @魔女夜话MajoTale ←欢迎关注官号！ 导演|绘制：莉莉莉莉尔 剧本：@魔女书记诗易 配音：酒魔女-@烟囱下的楚越 小女仆-@银子宝宝吃兔兔 图书馆魔女-@啃话筒的姜英俊小朋友 费加罗-@阿盐AyanMusic 《片尾曲-欢迎光临月光开关》 作编曲：@阿盐AyanMusic 作词：@魔女书记"
+          "desc": "这是我家的弥枫，可爱吧~暂时夺舍了大肥鱼，后面会陆陆续续给她安排上皮肤、语音，让她人设更丰富~大家最近也可以多来看直播，与弥枫互动噢~"
         },
         {
           "platform": "B站",
           "rank": 14,
-          "title": "筋角弓制作",
-          "hot": 2409644,
-          "url": "https://b23.tv/BV1LRxi6aEtj",
+          "title": "美国野心滔天？把战火烧到鸭绿江？！那么 你将面对中朝军民合力反击！",
+          "hot": 2164720,
+          "url": "https://b23.tv/BV1SAWC6YEFg",
           "tag": "影视",
-          "desc": "冬析干，春液角，夏治筋，秋合三材—筋角弓"
+          "desc": "1950年11月24日，麦克阿瑟飞到前线对军长说：打到鸭绿江，小伙子们就能回家过圣诞。一个月后的12月24日，第二次战役结束，联合国军退回了三八线附近。 本片为历史题材地图动画，以一张朝鲜半岛战术地图一镜到底的形式回顾 1950 至 1953 年中国人民志愿军抗美援朝的主要战役。内容依据公开出版的史料与研究整理，为配合音乐节奏，部分战役进程、时间节点、部队位置与进攻路线有所简化与艺术化处理，不作为严谨的史学依据，难免存在疏漏，欢迎指正。 片中地图只取朝鲜半岛与中国东北局部，战线推移、占领区范围、箭头走"
         },
         {
           "platform": "B站",
           "rank": 15,
-          "title": "【纸绘动画/卡点】爆肝600张！！数形结合！让你爱上数学【手搓动画大赛】",
-          "hot": 1401802,
-          "url": "https://b23.tv/BV1yhxp66Ez8",
+          "title": "星铁表面在讲「欢愉」，实际在讲200年前的哲学史【底层代码】",
+          "hot": 1044383,
+          "url": "https://b23.tv/BV1Q8sp67Ejj",
           "tag": "影视",
-          "desc": "这一期是制作时间最长，最认真的一次作品，手绘大约600张，总制作时长高于50小时，创新动效想法和知识点真的构思了好久，喜欢的话支持一下叭~ 由于自己是高中生，所以高数的知识自己预习着去做了，如果错了的话我会及时在评论区纠正。 感谢E废音效配音和秋秋的审核纠正~"
+          "desc": "二相乐园表面是归寂vs阿哈，实际是叔本华vs尼采。"
         },
         {
           "platform": "B站",
           "rank": 16,
-          "title": "小黑你爸回你消息了",
-          "hot": 2049763,
-          "url": "https://b23.tv/BV1Lrxt6uEuR",
+          "title": "波兰小伙自灭满门后景区屠杀，警界战神丝血反杀，国宝神医逆天改命！【2026年波兰克拉科夫枪击案详解】",
+          "hot": 1807211,
+          "url": "https://b23.tv/BV1ZXsn69E14",
           "tag": "影视",
-          "desc": "视频内容仅供娱乐，不代表对任何AI产品的商业评价或技术评测。角色形象参考来自b站up： @ZipZipPipe @这个刀子真甜"
+          "desc": "【2026年波兰克拉科夫枪击案详解】"
         },
         {
           "platform": "B站",
           "rank": 17,
-          "title": "宠粉天花板，请我的粉丝朋友清空一家零食店，你来选我买单，看看要花多少钱",
-          "hot": 3844329,
-          "url": "https://b23.tv/BV14o4F6EELU",
+          "title": "《最礼乐崩坏の一集》",
+          "hot": 2142702,
+          "url": "https://b23.tv/BV1b2sK6aEJ9",
           "tag": "影视",
           "desc": "-"
         },
         {
           "platform": "B站",
           "rank": 18,
-          "title": "这！绝对不是儿童餐！",
-          "hot": 3804297,
-          "url": "https://b23.tv/BV1hBxJ6uEcy",
+          "title": "《美队全家福VS灭霸全家福》灭霸的爸爸叫灭建国！",
+          "hot": 5444000,
+          "url": "https://b23.tv/BV1bzsV6nEM6",
           "tag": "影视",
-          "desc": "小五 这要挨不少打"
+          "desc": "《美队全家福VS灭霸全家福》灭霸的爸爸叫灭建国！ 音频：DJ铁柱、阿主 最强信息位 你们太过分了 我不跟你们玩了 攻防转换 钢志强 蜘秀英 奇博的爸爸奇卫兵 你们被艾特的都是扎啤 火箭浣熊 灭建国 灭大春 灭霸的妈妈灭桂芬 灭霸的爷爷灭国栋 灭霸的堂哥灭狗剩"
         },
         {
           "platform": "B站",
           "rank": 19,
-          "title": "【文明与地图】12个大模型扮演君主谁能带领人类走向星际文明？",
-          "hot": 574179,
-          "url": "https://b23.tv/BV1onxb6rEeE",
+          "title": "欧洲开心坏了",
+          "hot": 2138893,
+          "url": "https://b23.tv/BV1pdsL67EKy",
           "tag": "影视",
-          "desc": "项目仓库地址：https://github.com/guaner-334/civ-atlas 视频内容是基于上述项目提供的引擎制作，项目本身支持Agent SDK，但项目提供api但没有提供原生的MCP，想还原视频中的效果你需要做以下两个改造： 1、将api重新封装成mcp或其他可以被Harness调用的形式，然后将内置Agent SDK替换成需要的Harness 2、修改推演的规则（这部分在1.4.0版本已经和引擎层剥离开），降低推演的强度，提高DM模型修改的权重 上述这些改造会在后续以插件的形式在“创"
+          "desc": "本视频提及事件以及信息来源如下： 《国际观察丨俄美乌重启会谈，欧洲借军演“刷存在”》来自：新华网，2026-11-10 21:14发布 《欧洲议会投票批准欧美贸易协议》来自：新华网，2026-06-16 20:48:03发布 《排除美国参与，欧洲多国演练“出兵乌克兰”》来自：中国青年报，2026-11-09 15:29发布 《北约秘书长：叫特朗普“爸爸”是一个巨大的错误》来自：威海新闻网，2026-11-06 17:50发布 《谈判桌没有欧洲席位！俄美乌重启会谈，欧洲多国军演造势、“刷存在感”》来自：光明"
         },
         {
           "platform": "B站",
           "rank": 20,
-          "title": "大肥鱼适合做女朋友吗？（2）",
-          "hot": 1870488,
-          "url": "https://b23.tv/BV1y5xW63EVq",
+          "title": "用美式乡村讲中国故事（二）",
+          "hot": 1537791,
+          "url": "https://b23.tv/BV1Trs363ET6",
           "tag": "影视",
-          "desc": "女友不适合，因为女友关系不够确定。 适合当老婆！中不中？！ 谈不到这样的大肥鱼我就不死[傲娇] 蓝色大肥鱼形象来源:@这个刀子真甜 @ZipZipPipe"
+          "desc": "我的原创歌曲 The Third Drumroll Wins It All (曹刿论战） with @大鬍子牛仔"
         },
         {
           "platform": "B站",
           "rank": 21,
-          "title": "哟西！故乡的樱花开了！",
-          "hot": 2995557,
-          "url": "https://b23.tv/BV1w34A62Eq2",
+          "title": "手机不小心掉床缝听了一小时…",
+          "hot": 2540885,
+          "url": "https://b23.tv/BV1oFsW6oEs5",
           "tag": "影视",
-          "desc": ""
+          "desc": "-"
         },
         {
           "platform": "B站",
           "rank": 22,
-          "title": "恨火，流向原野",
-          "hot": 891831,
-          "url": "https://b23.tv/BV1KXxW6jEsF",
+          "title": "我们是冠军🏆！！！",
+          "hot": 1911950,
+          "url": "https://b23.tv/BV1rysE6HEFZ",
           "tag": "影视",
           "desc": ""
         },
         {
           "platform": "B站",
           "rank": 23,
-          "title": "美国中期选举大斗法",
-          "hot": 2238225,
-          "url": "https://b23.tv/BV15Mxn6UEnt",
+          "title": "EUV光刻机 | \"上帝的手术刀\"",
+          "hot": 1808675,
+          "url": "https://b23.tv/BV1kYsW6NE6E",
           "tag": "影视",
-          "desc": "本视频提及事件以及信息来源如下： 《特朗普：成为第51个州，委内瑞拉将再次伟大》来自：上观新闻，2026-10-28 14:53发布 《深度丨特朗普连跑红州20次，奥巴马出山压阵，美国中期选举攻防战怎么打？》来自：上观新闻，2026-10-29 19:20发布 《特朗普发布百万美金悬赏：成功举报选举舞弊、促成舞弊者被定罪，将获得100万美元奖励》来自：威海新闻网，2026-10-27 10:02发布 《美媒爆料：绑架马杜罗前，特朗普特地问了AI数小时；AI告诉特朗普，“马杜罗是极不受欢迎的独裁者，许多委内"
+          "desc": "EUV 光刻机，它用激光每秒 5 万次轰击锡滴，打出 50 万度的等离子体，从中得到 13.5 纳米的极紫外光；光在真空里经过世界上最平滑的反射镜，穿过掩模，把电路图缩小投到硅片上。一台约 180 吨、十万多个零件，背后约 5100 家供应商，运一次要装满 40 个集装箱、3 架货机。目前，全世界只有荷兰 ASML 能造它。"
         },
         {
           "platform": "B站",
           "rank": 24,
-          "title": "今天请假的同学be like",
-          "hot": 2960677,
-          "url": "https://b23.tv/BV1HHxv6KETZ",
+          "title": "根本没有这样的夹子",
+          "hot": 6505441,
+          "url": "https://b23.tv/BV12oWi6VEz7",
           "tag": "影视",
-          "desc": "这谁绷得住"
+          "desc": "-"
         },
         {
           "platform": "B站",
           "rank": 25,
-          "title": "以此朋克，倚老卖老。",
-          "hot": 2146049,
-          "url": "https://b23.tv/BV1uQxx69E7x",
+          "title": "假如一家人都是在网上认识的",
+          "hot": 3075548,
+          "url": "https://b23.tv/BV1Cksn6hEYb",
           "tag": "影视",
-          "desc": "-"
+          "desc": "参考了作品：BV1SN4n6CEXb"
         },
         {
           "platform": "快手",
