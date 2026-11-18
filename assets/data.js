@@ -5605,7 +5605,7 @@ window.WORKBENCH_DATA = {
   },
   "dailyHot": {
     "mode": "daily",
-    "updated": "2026-11-18 10:07",
+    "updated": "2026-11-18 10:08",
     "platforms": [
       "微博",
       "抖音",
@@ -6298,7 +6298,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 1,
           "title": "【2026全球总决赛】11月15日 GEN vs BLG",
-          "hot": 28558127,
+          "hot": 28559121,
           "url": "https://b23.tv/BV15es76gEgL",
           "tag": "影视",
           "desc": "【2026全球总决赛】11月15日 GEN vs BLG"
@@ -6307,7 +6307,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 2,
           "title": "BLG S16夺冠赞歌《仰望星空》",
-          "hot": 3341629,
+          "hot": 3341983,
           "url": "https://b23.tv/BV14VsJ6aEJd",
           "tag": "影视",
           "desc": "原曲：《仰望星空》 原唱：张杰 混音：益辉 填词/翻唱/和声/剪辑：蔚蓝边际"
@@ -6316,7 +6316,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 3,
           "title": "命运让他们彼此对立，也让他们彼此靠近｜上",
-          "hot": 3201758,
+          "hot": 3202132,
           "url": "https://b23.tv/BV1jHsp69Ekg",
           "tag": "影视",
           "desc": ""
@@ -6352,7 +6352,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 7,
           "title": "我是Tim，我变不动了...",
-          "hot": 2092796,
+          "hot": 2093328,
           "url": "https://b23.tv/BV1BJsV6PEek",
           "tag": "影视",
           "desc": ""
@@ -6361,7 +6361,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 8,
           "title": "术式反转久留美 【泛式】",
-          "hot": 1822154,
+          "hot": 1822344,
           "url": "https://b23.tv/BV1Pwsp6qEbo",
           "tag": "影视",
           "desc": "储蓄战士久留美，堂堂连载！ *本视频中涉及的投资产品，仅为搞笑娱乐服务，不构成任何投资建议。实际投资请以官方信息为准，理性判断风险。"
@@ -6379,7 +6379,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 10,
           "title": "灭霸金融小课堂：应届生小浣熊的疑惑，什么是五险一金",
-          "hot": 1754743,
+          "hot": 1754815,
           "url": "https://b23.tv/BV1JRsw66E1s",
           "tag": "影视",
           "desc": "-"
@@ -6397,7 +6397,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 12,
           "title": "“46块3，问清一条规则。”",
-          "hot": 4539062,
+          "hot": 4540201,
           "url": "https://b23.tv/BV1VBs76qE16",
           "tag": "影视",
           "desc": "“46块3，问清一条规则。”"
@@ -6406,7 +6406,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 13,
           "title": "大肥鱼捅穿AZ3？！带着大肥鱼猛攻三角洲是什么感觉？",
-          "hot": 2250739,
+          "hot": 2251367,
           "url": "https://b23.tv/BV16GsF6hEKf",
           "tag": "影视",
           "desc": "这是我家的弥枫，可爱吧~暂时夺舍了大肥鱼，后面会陆陆续续给她安排上皮肤、语音，让她人设更丰富~大家最近也可以多来看直播，与弥枫互动噢~"
@@ -6415,7 +6415,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 14,
           "title": "美国野心滔天？把战火烧到鸭绿江？！那么 你将面对中朝军民合力反击！",
-          "hot": 2165335,
+          "hot": 2165635,
           "url": "https://b23.tv/BV1SAWC6YEFg",
           "tag": "影视",
           "desc": "1950年11月24日，麦克阿瑟飞到前线对军长说：打到鸭绿江，小伙子们就能回家过圣诞。一个月后的12月24日，第二次战役结束，联合国军退回了三八线附近。 本片为历史题材地图动画，以一张朝鲜半岛战术地图一镜到底的形式回顾 1950 至 1953 年中国人民志愿军抗美援朝的主要战役。内容依据公开出版的史料与研究整理，为配合音乐节奏，部分战役进程、时间节点、部队位置与进攻路线有所简化与艺术化处理，不作为严谨的史学依据，难免存在疏漏，欢迎指正。 片中地图只取朝鲜半岛与中国东北局部，战线推移、占领区范围、箭头走"
@@ -6424,7 +6424,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 15,
           "title": "星铁表面在讲「欢愉」，实际在讲200年前的哲学史【底层代码】",
-          "hot": 1044721,
+          "hot": 1044883,
           "url": "https://b23.tv/BV1Q8sp67Ejj",
           "tag": "影视",
           "desc": "二相乐园表面是归寂vs阿哈，实际是叔本华vs尼采。"
@@ -6433,7 +6433,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 16,
           "title": "波兰小伙自灭满门后景区屠杀，警界战神丝血反杀，国宝神医逆天改命！【2026年波兰克拉科夫枪击案详解】",
-          "hot": 1807808,
+          "hot": 1808114,
           "url": "https://b23.tv/BV1ZXsn69E14",
           "tag": "影视",
           "desc": "【2026年波兰克拉科夫枪击案详解】"
@@ -6460,7 +6460,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 19,
           "title": "欧洲开心坏了",
-          "hot": 2139128,
+          "hot": 2139240,
           "url": "https://b23.tv/BV1pdsL67EKy",
           "tag": "影视",
           "desc": "本视频提及事件以及信息来源如下： 《国际观察丨俄美乌重启会谈，欧洲借军演“刷存在”》来自：新华网，2026-11-10 21:14发布 《欧洲议会投票批准欧美贸易协议》来自：新华网，2026-06-16 20:48:03发布 《排除美国参与，欧洲多国演练“出兵乌克兰”》来自：中国青年报，2026-11-09 15:29发布 《北约秘书长：叫特朗普“爸爸”是一个巨大的错误》来自：威海新闻网，2026-11-06 17:50发布 《谈判桌没有欧洲席位！俄美乌重启会谈，欧洲多国军演造势、“刷存在感”》来自：光明"
@@ -6469,7 +6469,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 20,
           "title": "用美式乡村讲中国故事（二）",
-          "hot": 1537924,
+          "hot": 1538002,
           "url": "https://b23.tv/BV1Trs363ET6",
           "tag": "影视",
           "desc": "我的原创歌曲 The Third Drumroll Wins It All (曹刿论战） with @大鬍子牛仔"
@@ -6478,7 +6478,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 21,
           "title": "手机不小心掉床缝听了一小时…",
-          "hot": 2541185,
+          "hot": 2541487,
           "url": "https://b23.tv/BV1oFsW6oEs5",
           "tag": "影视",
           "desc": "-"
@@ -6496,7 +6496,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 23,
           "title": "EUV光刻机 | \"上帝的手术刀\"",
-          "hot": 1811296,
+          "hot": 1812646,
           "url": "https://b23.tv/BV1kYsW6NE6E",
           "tag": "影视",
           "desc": "EUV 光刻机，它用激光每秒 5 万次轰击锡滴，打出 50 万度的等离子体，从中得到 13.5 纳米的极紫外光；光在真空里经过世界上最平滑的反射镜，穿过掩模，把电路图缩小投到硅片上。一台约 180 吨、十万多个零件，背后约 5100 家供应商，运一次要装满 40 个集装箱、3 架货机。目前，全世界只有荷兰 ASML 能造它。"
@@ -6514,7 +6514,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 25,
           "title": "假如一家人都是在网上认识的",
-          "hot": 3075946,
+          "hot": 3076350,
           "url": "https://b23.tv/BV1Cksn6hEYb",
           "tag": "影视",
           "desc": "参考了作品：BV1SN4n6CEXb"
