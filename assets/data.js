@@ -5594,7 +5594,7 @@ window.WORKBENCH_DATA = {
   },
   "dailyHot": {
     "mode": "daily",
-    "updated": "2026-11-23 12:23",
+    "updated": "2026-11-23 12:24",
     "platforms": [
       "微博",
       "抖音",
@@ -6296,7 +6296,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 2,
           "title": "【IGN独家】《鸣潮：永明的烬焰》实机演示",
-          "hot": 4717167,
+          "hot": 4717627,
           "url": "https://b23.tv/BV1jKsq6cEEP",
           "tag": "影视",
           "desc": "《鸣潮》即将于12月22日开启全新的年度篇章《永明的烬焰》，在4.0版本中玩家将可以使用全新共鸣者「安娜」、「露希尔」，并操纵名为「隧铠」的穿戴式机甲进行360度高机动性探索，甚至直接参与战斗。在即将到来的4.0版本中，漂泊者将率先抵达新联邦的布法罗山脉，以此为起点开启全新的冒险。本视频演示内容为开发中版本进度演示，不代表最终画面与品质。"
@@ -6314,7 +6314,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 4,
           "title": "我是Tim，我爹太离谱了…",
-          "hot": 2939220,
+          "hot": 2940152,
           "url": "https://b23.tv/BV1VvyazyEBo",
           "tag": "影视",
           "desc": ""
@@ -6341,7 +6341,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 7,
           "title": "当我爸开始教我成年人潜规则",
-          "hot": 3992789,
+          "hot": 3993189,
           "url": "https://b23.tv/BV1pAWq6uEom",
           "tag": "影视",
           "desc": "你的关注，我的荣幸。"
@@ -6350,7 +6350,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 8,
           "title": "90分钟中俄美会晤，摆了哪些事上桌？王骁APEC观察",
-          "hot": 2810940,
+          "hot": 2811903,
           "url": "https://b23.tv/BV18psq6JEgF",
           "tag": "影视",
           "desc": "一键三连推荐给更多朋友！"
@@ -6368,7 +6368,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 10,
           "title": "小时候眼中的罚抄神器be like:",
-          "hot": 2933859,
+          "hot": 2934554,
           "url": "https://b23.tv/BV1LjyWzREC1",
           "tag": "影视",
           "desc": "感谢@极地の眼 协助制作 本视频模组可用pcl2在curseforge上可查到，名为brainlayers 封面设计来源油管Knarfy大佬 作为文具来说，这个铅笔无疑是不合格的，但作为玩具来说，它夯爆了"
@@ -6377,7 +6377,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 11,
           "title": "村民装备演示",
-          "hot": 1920745,
+          "hot": 1920992,
           "url": "https://b23.tv/BV12xsq67Ear",
           "tag": "影视",
           "desc": ""
@@ -6395,7 +6395,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 13,
           "title": "炒蔬菜的底层逻辑：4种方法搞定99%的蔬菜？",
-          "hot": 2155448,
+          "hot": 2156313,
           "url": "https://b23.tv/BV1nuyWz8E7t",
           "tag": "影视",
           "desc": "BGM AC／DC - Big Gun 野肆乐队Reckless Abandon - 社会生死论 贊詩 - 跳金水河 扎进心脏的智齿 - 頂樓上五十個我先矛盾的理由 塞壬唱片-MSR,Erik Castro - 近尘烟 声音碎片乐队 - 优美的低于生活 当代电影大师 - 我常常有一种感觉 许冠杰 - 天才白痴梦"
@@ -6404,7 +6404,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 14,
           "title": "《明日方舟：终末地》特别映像「基石」",
-          "hot": 1695827,
+          "hot": 1696084,
           "url": "https://b23.tv/BV1MMyazPEKy",
           "tag": "影视",
           "desc": "新生的文明迟早会认清现实——造物从不具备造主的视野。"
@@ -6413,7 +6413,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 15,
           "title": "《猫富贵 狗不让》",
-          "hot": 3931003,
+          "hot": 3931876,
           "url": "https://b23.tv/BV1rhyszPE6p",
           "tag": "影视",
           "desc": "作词、翻唱：我 原曲：陈奕迅《富士山下》 视频素材来自网络"
@@ -6422,7 +6422,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 16,
           "title": "《我救不死你》",
-          "hot": 4648356,
+          "hot": 4649606,
           "url": "https://b23.tv/BV1bGysz7EoD",
           "tag": "影视",
           "desc": "-"
@@ -6431,7 +6431,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 17,
           "title": "学了五分钟建模做出来的绯英技能动画",
-          "hot": 1748531,
+          "hot": 1748954,
           "url": "https://b23.tv/BV1bRyszmEXc",
           "tag": "影视",
           "desc": "谢谢你观看这期视频！！！！！！！！！！！！！我是光荣的绯英厨！！！！！！！！！！！！！ （也是星期日厨 谢谢你星期日 现在4命了 下次你复刻我要给你补6命） 借物表： 绯英、开拓者、海瑟音：miHoYo、流云景 爱可漠斯：零化域、miHoYo、流云景 猫猫快递盒：肥肠_MOZU 信用点：不是姐姐是阿姨 白色塑料椅（plastic chair）：备课脑壳疼 归寂：堆、miHoYo/流云景/鱼鱼鱼 虚照：MMDKai、miHoYo 刻律德菈王冠火焰（Cerydra_Effect）：Wis 哥伦比娅（鸽"
@@ -6440,7 +6440,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 18,
           "title": "⚡霸 爸 去 哪 儿⚡",
-          "hot": 4448933,
+          "hot": 4449223,
           "url": "https://b23.tv/BV1sKs16AEWv",
           "tag": "影视",
           "desc": ""
@@ -6449,7 +6449,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 19,
           "title": "在B站就能玩到的像素射击游戏，点击即玩！【B站AI创造公开赛】",
-          "hot": 737121,
+          "hot": 737256,
           "url": "https://b23.tv/BV1vBypzDECn",
           "tag": "影视",
           "desc": "全程使用Claude Fable 5.2开发~ 三连+关注即可获得海量枪皮+解锁排位模式！ 游玩链接：https://www.bilibili.com/toy/potatoepic"
@@ -6467,7 +6467,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 21,
           "title": "🐧如果把人的一生换算成24小时🐧",
-          "hot": 1897905,
+          "hot": 1898160,
           "url": "https://b23.tv/BV1R6ypzJEpy",
           "tag": "影视",
           "desc": "如果把人的一生换算成24小时，25岁就是人生的七点半。那么童年就是一场梦，但是睡眠质量会影响一天的生活。回首往事，童年就像是凌晨三四点让人不知不觉，青春就像是晨曦五六点懵懵懂懂，青年就像是早晨七八点恍恍惚惚，壮年就像是上午九十点忙忙碌碌，中年就像是正午十二点热热闹闹，暮年就像是傍晚五六点日落斜阳，晚年就像是深夜九十点静谧悠长"
@@ -6476,7 +6476,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 22,
           "title": "\"我在5:20入睡13:14准时起\"",
-          "hot": 1063035,
+          "hot": 1063396,
           "url": "https://b23.tv/BV1yKse6YE16",
           "tag": "影视",
           "desc": "\"我在5:20入睡13:14准时起\""
@@ -6503,7 +6503,7 @@ window.WORKBENCH_DATA = {
           "platform": "B站",
           "rank": 25,
           "title": "司老凤联盟第111集:老牧师演唱会5:20am（完整版）",
-          "hot": 1075736,
+          "hot": 1075877,
           "url": "https://b23.tv/BV1Y4sa63ENm",
           "tag": "影视",
           "desc": "-"
